@@ -1,0 +1,67 @@
+{
+  "title": "Manage API Keys",
+  "description": "Manage your API keys for different AI providers",
+  "providers": {
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "azure": "Azure OpenAI",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
+    "cohere": "Cohere"
+  },
+  "form": {
+    "title": {
+      "new": "New Key",
+      "edit": "Edit Key"
+    },
+    "labels": {
+      "name": "Name",
+      "provider": "Provider",
+      "key": "Key",
+      "status": "Status",
+      "active": "Active"
+    },
+    "placeholders": {
+      "name": "Ex: OpenAI Production",
+      "provider": "Select a provider",
+      "keyNew": "Enter your API key here",
+      "keyEdit": "Enter new key (leave blank to keep current)"
+    }
+  },
+  "actions": {
+    "add": "New Key",
+    "addFirst": "Add First Key",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Add",
+    "update": "Update",
+    "close": "Close"
+  },
+  "list": {
+    "title": "Available Keys",
+    "createdAt": "Created at",
+    "inactive": "Inactive"
+  },
+  "empty": {
+    "title": "No keys found",
+    "description": "Add your API keys to start using agents"
+  },
+  "messages": {
+    "loadError": "Error loading API keys",
+    "saveError": "Error saving API key",
+    "deleteError": "Error deleting API key",
+    "createSuccess": "API key created successfully!",
+    "updateSuccess": "API key updated successfully!",
+    "deleteSuccess": "API key deleted successfully!",
+    "requiredFields": "All fields are required",
+    "accountIdError": "Account ID not available"
+  },
+  "deleteDialog": {
+    "title": "Delete API Key",
+    "description": "Are you sure you want to delete the API key \"{{name}}\"? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  }
+}

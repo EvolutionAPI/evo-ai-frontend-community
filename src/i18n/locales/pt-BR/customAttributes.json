@@ -1,0 +1,275 @@
+{
+  "title": "Atributos Personalizados",
+  "loading": "Carregando atributos personalizados...",
+  "sections": {
+    "defined": "Atributos Personalizados Definidos",
+    "additional": "Atributos Adicionais",
+    "newAttribute": "Novo Atributo Personalizado"
+  },
+  "tabs": {
+    "conversation": "Conversas",
+    "contact": "Contatos",
+    "pipeline_attribute": "Pipeline"
+  },
+  "attributeTypeOptions": {
+    "text": {
+      "label": "Texto",
+      "description": "Campo de texto simples"
+    },
+    "number": {
+      "label": "Número",
+      "description": "Campo numérico"
+    },
+    "currency": {
+      "label": "Moeda",
+      "description": "Valor monetário"
+    },
+    "percent": {
+      "label": "Porcentagem",
+      "description": "Valor percentual"
+    },
+    "link": {
+      "label": "Link",
+      "description": "URL ou link"
+    },
+    "date": {
+      "label": "Data",
+      "description": "Campo de data"
+    },
+    "datetime": {
+      "label": "Data e Hora",
+      "description": "Campo de data e hora"
+    },
+    "list": {
+      "label": "Lista",
+      "description": "Seleção de opções predefinidas"
+    },
+    "checkbox": {
+      "label": "Caixa de seleção",
+      "description": "Verdadeiro ou falso"
+    }
+  },
+  "header": {
+    "title": "Atributos Personalizados",
+    "subtitle": "{{count}} atributo(s) {{tabName}} no total",
+    "subtitleSingular": "{{count}} atributo {{tabName}} no total",
+    "searchPlaceholder": "Buscar atributos personalizados...",
+    "newAttribute": "Novo Atributo",
+    "bulkDelete": "Deletar",
+    "clearSelection": "Limpar Seleção",
+    "selected": "{{count}} selecionado(s)"
+  },
+  "modal": {
+    "title": {
+      "new": "Novo Atributo Personalizado",
+      "edit": "Editar Atributo Personalizado"
+    },
+    "description": {
+      "new": "Crie um novo atributo personalizado para coletar informações específicas.",
+      "edit": "Edite as informações do atributo personalizado."
+    },
+    "fields": {
+      "attributeModel": {
+        "label": "Aplicar a",
+        "required": true
+      },
+      "displayName": {
+        "label": "Nome de exibição",
+        "placeholder": "Ex: Prioridade do Cliente",
+        "required": true,
+        "errors": {
+          "required": "Nome de exibição é obrigatório",
+          "minLength": "Nome de exibição deve ter pelo menos 2 caracteres"
+        }
+      },
+      "attributeKey": {
+        "label": "Chave do atributo",
+        "placeholder": "Ex: customer_priority",
+        "required": true,
+        "hint": "A chave será usada para identificar este atributo na API. Use apenas letras minúsculas, números e sublinhados.",
+        "errors": {
+          "required": "Chave do atributo é obrigatória",
+          "invalid": "Chave deve conter apenas letras minúsculas, números e sublinhados"
+        }
+      },
+      "description": {
+        "label": "Descrição",
+        "placeholder": "Descreva o propósito deste atributo",
+        "required": true,
+        "errors": {
+          "required": "Descrição é obrigatória"
+        }
+      },
+      "displayType": {
+        "label": "Tipo",
+        "required": true
+      },
+      "listValues": {
+        "label": "Valores da lista",
+        "placeholder": "Digite um valor e pressione Enter",
+        "required": true,
+        "errors": {
+          "required": "Lista deve ter pelo menos um valor"
+        }
+      },
+      "regexEnabled": {
+        "label": "Validação com Regex",
+        "description": "Adicione um padrão regex para validar os valores deste atributo"
+      },
+      "regexPattern": {
+        "label": "Padrão Regex",
+        "placeholder": "Ex: ^[0-9]{3}-[0-9]{3}-[0-9]{4}$",
+        "errors": {
+          "invalid": "Padrão regex inválido"
+        }
+      },
+      "regexCue": {
+        "label": "Dica para o usuário",
+        "placeholder": "Ex: Formato: 123-456-7890",
+        "hint": "Esta dica será exibida aos usuários quando eles preencherem o campo"
+      },
+      "pipelineType": {
+        "label": "Tipo de Pipeline",
+        "placeholder": "Selecione o tipo de pipeline",
+        "hint": "Selecione se este atributo se aplica ao pipeline, estágio ou item",
+        "errors": {
+          "required": "Tipo de pipeline é obrigatório para atributos de pipeline"
+        }
+      }
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "key": "Chave",
+      "type": "Tipo",
+      "description": "Descrição",
+      "values": "Valores",
+      "regex": "Regex",
+      "createdAt": "Criado em",
+      "actions": "Ações",
+      "model": {
+        "label": "Modelo",
+        "pipeline_attribute": "Pipeline",
+        "pipeline_stage_attribute": "Estágio",
+        "pipeline_item_attribute": "Item"
+      }
+    },
+    "regexBadge": {
+      "yes": "Sim"
+    },
+    "noDescription": "-",
+    "noValues": "-",
+    "noRegex": "-",
+    "moreValues": "+{{count}}"
+  },
+  "fields": {
+    "attributeKey": {
+      "label": "Nome do Atributo",
+      "placeholder": "Ex: cliente_vip, setor, cargo"
+    },
+    "attributeValue": {
+      "label": "Valor",
+      "placeholder": "Valor do atributo"
+    },
+    "attributeScope": {
+      "label": "Escopo do Atributo",
+      "placeholder": "Selecione para quem é este atributo",
+      "options": {
+        "pipeline": {
+          "label": "Para este Pipeline",
+          "description": "Atributo específico para este pipeline"
+        },
+        "stages": {
+          "label": "Para os Estágios",
+          "description": "Atributo compartilhado com todos os estágios deste pipeline"
+        },
+        "stage": {
+          "label": "Para este Estágio",
+          "description": "Atributo específico para este estágio"
+        },
+        "items": {
+          "label": "Para os Cards",
+          "description": "Atributo compartilhado com todos os cards"
+        },
+        "item": {
+          "label": "Para este Card",
+          "description": "Atributo específico para este card"
+        }
+      },
+      "sharedMessage": {
+        "label": "Compartilhado com cards",
+        "labelStages": "Compartilhado com estágios",
+        "pipeline": "Este atributo será preenchido diretamente no card.",
+        "stage": "Este atributo será preenchido diretamente no card.",
+        "descriptionStages": "O valor será definido pelos estágios",
+        "descriptionCards": "O valor será definido pelos cards"
+      },
+      "attributeOrigin": {
+        "pipeline": "Atributo do Pipeline",
+        "stage": "Atributo do Estágio",
+        "item": "Atributo do Card"
+      }
+    }
+  },
+  "placeholders": {
+    "text": "Digite {{name}}",
+    "number": "Digite {{name}}",
+    "link": "https://exemplo.com",
+    "select": "Selecione {{name}}",
+    "textarea": "Digite {{name}}"
+  },
+  "actions": {
+    "add": "Adicionar",
+    "cancel": "Cancelar",
+    "remove": "Remover",
+    "addAttribute": "Adicionar Atributo Personalizado",
+    "edit": "Editar",
+    "delete": "Deletar",
+    "save": "Salvar",
+    "create": "Criar",
+    "update": "Atualizar",
+    "saving": "Salvando...",
+    "confirm": "Confirmar"
+  },
+  "checkbox": {
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "empty": {
+    "title": "Nenhum atributo personalizado encontrado",
+    "description": "Defina atributos personalizados nas configurações ou adicione um atributo ad-hoc abaixo",
+    "descriptionReadOnly": "Configure atributos personalizados nas configurações da conta",
+    "descriptionConversation": "Crie um novo atributo personalizado para conversas para começar a coletar informações específicas.",
+    "descriptionContact": "Crie um novo atributo personalizado para contatos para começar a coletar informações específicas.",
+    "descriptionPipeline": "Crie um novo atributo personalizado para pipelines, estágios ou items para começar a coletar informações específicas.",
+    "action": "Novo Atributo"
+  },
+  "messages": {
+    "loadError": "Erro ao carregar atributos personalizados",
+    "createSuccess": "Atributo personalizado criado com sucesso",
+    "createError": "Erro ao criar atributo personalizado",
+    "updateSuccess": "Atributo personalizado atualizado com sucesso",
+    "updateError": "Erro ao atualizar atributo personalizado",
+    "deleteSuccess": "Atributo personalizado deletado com sucesso",
+    "deleteError": "Erro ao deletar atributo personalizado",
+    "bulkDeleteSuccess": "{{count}} atributo(s) personalizado(s) deletado(s) com sucesso",
+    "bulkDeleteError": "Erro ao deletar atributos personalizados"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Deletar Atributo Personalizado",
+      "description": "Tem certeza de que deseja deletar o atributo personalizado \"{{name}}\"? Esta ação não pode ser desfeita e removerá todos os dados associados.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar",
+      "deleting": "Deletando..."
+    },
+    "bulkDelete": {
+      "title": "Deletar Atributos Personalizados",
+      "description": "Tem certeza de que deseja deletar {{count}} atributo(s) personalizado(s) selecionado(s)? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar Todos",
+      "deleting": "Deletando..."
+    }
+  }
+}

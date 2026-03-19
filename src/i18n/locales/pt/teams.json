@@ -1,0 +1,184 @@
+{
+  "title": "Equipes",
+  "subtitle": "Organize seus atendentes em equipes para melhor gestão e atribuição automática",
+  "loading": "Carregando equipes...",
+  "card": {
+    "autoAssign": "Auto-atribuição",
+    "id": "ID",
+    "members": "Membros",
+    "actions": {
+      "users": "Usuários",
+      "edit": "Editar",
+      "delete": "Deletar"
+    }
+  },
+  "details": {
+    "autoAssignActive": "Auto-atribuição ativa",
+    "autoAssignInactive": "Auto-atribuição inativa",
+    "id": "ID",
+    "tabs": {
+      "overview": "Visão Geral",
+      "members": "Membros",
+      "activity": "Atividade",
+      "settings": "Configurações"
+    },
+    "overview": {
+      "description": "Descrição",
+      "noDescription": "Nenhuma descrição fornecida para esta equipe.",
+      "totalMembers": "Total de Membros",
+      "autoAssign": "Auto-atribuição",
+      "active": "Ativa",
+      "inactive": "Inativa",
+      "temporalInfo": "Informações Temporais",
+      "created": "Criada:",
+      "lastUpdate": "Última atualização:"
+    },
+    "members": {
+      "placeholder": "Lista de membros será implementada em breve.",
+      "manageUsers": "Gerenciar Usuários"
+    },
+    "activity": {
+      "placeholder": "Histórico de atividades será implementado em breve."
+    },
+    "settings": {
+      "title": "Configurações da Equipe",
+      "autoAssignTitle": "Auto-atribuição de conversas",
+      "autoAssignDescription": "Permite que conversas sejam automaticamente atribuídas aos membros desta equipe",
+      "enabled": "Ativada",
+      "disabled": "Desativada",
+      "editSettings": "Editar Configurações"
+    },
+    "actions": {
+      "manageUsers": "Gerenciar Usuários",
+      "edit": "Editar"
+    }
+  },
+  "form": {
+    "basicInfo": "Informações Básicas",
+    "name": {
+      "label": "Nome da Equipe *",
+      "placeholder": "Ex: Atendimento VIP, Suporte Técnico...",
+      "required": "Nome da equipe é obrigatório",
+      "minLength": "Nome deve ter pelo menos 2 caracteres"
+    },
+    "description": {
+      "label": "Descrição",
+      "placeholder": "Descreva o propósito e responsabilidades desta equipe...",
+      "maxLength": "Descrição deve ter no máximo 500 caracteres",
+      "counter": "{{current}}/500 caracteres"
+    },
+    "configuration": "Configurações",
+    "autoAssign": {
+      "label": "Auto-atribuição de conversas",
+      "description": "Permite que conversas sejam automaticamente atribuídas aos membros desta equipe"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "saving": "Salvando...",
+      "create": "Criar Equipe",
+      "save": "Salvar Alterações"
+    }
+  },
+  "modal": {
+    "create": "Criar Nova Equipe",
+    "edit": "Editar {{name}}"
+  },
+  "header": {
+    "newTeam": "Nova Equipe",
+    "export": "Exportar",
+    "import": "Importar",
+    "delete": "Deletar",
+    "searchPlaceholder": "Buscar por nome ou descrição..."
+  },
+  "table": {
+    "columns": {
+      "team": "Equipe",
+      "members": "Membros",
+      "autoAssign": "Auto-atribuição",
+      "id": "ID",
+      "enabled": "Ativada",
+      "disabled": "Desativada"
+    },
+    "actions": {
+      "manageUsers": "Gerenciar Usuários",
+      "edit": "Editar",
+      "delete": "Deletar"
+    }
+  },
+  "messages": {
+    "loadError": "Erro ao carregar equipes",
+    "loadDataError": "Erro ao carregar dados",
+    "createSuccess": "Equipe criada com sucesso!",
+    "updateSuccess": "Equipe atualizada com sucesso!",
+    "deleteSuccess": "Equipe deletada com sucesso!",
+    "bulkDeleteSuccess": "{{count}} equipes deletadas com sucesso!",
+    "createError": "Erro ao criar equipe",
+    "updateError": "Erro ao atualizar equipe",
+    "deleteError": "Erro ao deletar equipe",
+    "bulkDeleteError": "Erro ao deletar equipes selecionadas",
+    "selectAtLeastOne": "Selecione pelo menos um usuário",
+    "usersAddedSuccess": "Usuários adicionados com sucesso!",
+    "addUsersError": "Erro ao adicionar usuários",
+    "permissionDenied": {
+      "read": "Sem permissão para visualizar equipes",
+      "create": "Sem permissão para criar equipes",
+      "update": "Sem permissão para editar equipes",
+      "delete": "Sem permissão para deletar equipes"
+    },
+    "importInfo": "Funcionalidade de importação em desenvolvimento",
+    "exportInfo": "Funcionalidade de exportação em desenvolvimento",
+    "filterInfo": "Funcionalidade de filtros em desenvolvimento"
+  },
+  "empty": {
+    "title": "Nenhuma equipe encontrada",
+    "description": "Crie sua primeira equipe para organizar seus atendentes.",
+    "action": "Nova Equipe"
+  },
+  "addUsers": {
+    "title": "Adicionar Usuários - {{name}}",
+    "subtitle": "Selecione os usuários que deseja adicionar à equipe",
+    "summary": "{{selected}} de {{total}} usuários selecionados",
+    "table": {
+      "select": "Selecionar",
+      "user": "Usuário", 
+      "email": "E-mail",
+      "status": {
+        "online": "Online",
+        "busy": "Ocupado",
+        "offline": "Offline"
+      }
+    },
+    "empty": {
+      "title": "Nenhum usuário disponível",
+      "description": "Todos os usuários já fazem parte desta equipe ou não há usuários disponíveis."
+    },
+    "notFound": {
+      "title": "Equipe não encontrada",
+      "description": "A equipe que você está procurando não foi encontrada.",
+      "action": "Voltar para equipes"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "title": "Deletar Equipe",
+      "description": "Tem certeza que deseja deletar a equipe \"{{name}}\"? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar",
+      "deleting": "Deletando..."
+    },
+    "bulkDelete": {
+      "title": "Deletar Equipes",
+      "description": "Tem certeza que deseja deletar {{count}} equipes selecionadas? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar", 
+      "confirm": "Deletar Todas",
+      "deleting": "Deletando..."
+    }
+  },
+  "actions": {
+    "back": "Voltar",
+    "selectAll": "Selecionar Todos",
+    "deselectAll": "Desmarcar Todos",
+    "saving": "Salvando...",
+    "addUsers": "Adicionar Usuários"
+  }
+}

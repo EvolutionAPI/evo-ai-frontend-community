@@ -1,0 +1,136 @@
+{
+  "base": {
+    "pagination": {
+      "itemsPerPage": "Ítems por página:",
+      "showing": "Mostrando {{start}} a {{end}} de {{total}} ítems",
+      "page": "Página {{current}} de {{total}}"
+    },
+    "header": {
+      "searchPlaceholder": "Buscar...",
+      "filters": "Filtros",
+      "selected": "{{count}} ítem seleccionado",
+      "selected_other": "{{count}} ítems seleccionados",
+      "clear": "Limpiar"
+    },
+    "table": {
+      "emptyMessage": "Ningún ítem encontrado",
+      "loading": "Cargando...",
+      "yes": "Sí",
+      "no": "No",
+      "selectAll": "Seleccionar todos",
+      "selectItem": "Seleccionar ítem {{key}}",
+      "actions": "Acciones"
+    },
+    "buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "edit": "Editar",
+      "create": "Crear",
+      "update": "Actualizar",
+      "close": "Cerrar",
+      "confirm": "Confirmar",
+      "back": "Volver"
+    },
+    "messages": {
+      "success": "Operación realizada con éxito",
+      "error": "Ocurrió un error",
+      "loading": "Cargando...",
+      "saving": "Guardando...",
+      "deleting": "Eliminando...",
+      "updating": "Actualizando..."
+    },
+    "filter": {
+      "title": "Filtros",
+      "description": "Configure los filtros para encontrar los ítems que busca",
+      "applyFilters": "Aplicar Filtros",
+      "clearFilters": "Limpiar Filtros",
+      "addFilter": "Agregar Filtro",
+      "cancel": "Cancelar",
+      "and": "Y",
+      "or": "O",
+      "selectDate": "Seleccionar fecha",
+      "selectOption": "Seleccionar opción",
+      "enterNumber": "Digite un número",
+      "enterValue": "Digite el valor"
+    },
+    "form": {
+      "required": "{{field}} es obligatorio",
+      "minLength": "{{field}} debe tener al menos {{min}} caracteres",
+      "maxLength": "{{field}} debe tener como máximo {{max}} caracteres",
+      "invalidFormat": "{{field}} tiene formato inválido",
+      "minValue": "{{field}} debe ser al menos {{min}}",
+      "maxValue": "{{field}} debe ser como máximo {{max}}",
+      "saving": "Guardando...",
+      "requiredMark": "*"
+    },
+    "flow": {
+      "editor": {
+        "title": "Editor de Flow",
+        "unsaved": "• No guardado",
+        "saving": "Guardando...",
+        "save": "Guardar",
+        "execute": "Ejecutar",
+        "stop": "Detener",
+        "reset": "Resetear",
+        "loading": "Cargando flow...",
+        "errors": "{{count}} error(es) encontrado(s)"
+      },
+      "node": {
+        "nextStep": "Siguiente Paso",
+        "options": "Opciones del Nodo",
+        "duplicate": "Duplicar",
+        "edit": "Editar",
+        "delete": "Eliminar"
+      },
+      "panel": {
+        "title": "Componentes",
+        "subtitle": "Arrastre los componentes al canvas",
+        "search": "Buscar componentes...",
+        "searchAll": "Buscando en todos los componentes",
+        "noResults": "Ningún componente encontrado para \"{{query}}\"",
+        "dragToAdd": "Arrastre para agregar",
+        "allComponents": "Todos",
+        "allDescription": "Todos los componentes"
+      }
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "blocked": "Bloqueado",
+      "pending": "Pendiente",
+      "success": "Éxito",
+      "error": "Error",
+      "warning": "Atención",
+      "expiring": "Expirando",
+      "days": "días"
+    },
+    "appInitializer": {
+      "initializing": "Inicializando aplicación...",
+      "initError": "Error de Inicialización",
+      "errorMessage": "Fallo al inicializar aplicación",
+      "reload": "Recargar Aplicación"
+    },
+    "errorBoundary": {
+      "title": "¡Ups! Algo salió mal",
+      "description": "Ocurrió un error inesperado. Nuestro equipo ha sido notificado y está trabajando para resolverlo.",
+      "technicalDetails": "Detalles técnicos (desarrollo)",
+      "retry": "Intentar nuevamente"
+    },
+    "impersonation": {
+      "viewing": "Está visualizando como cliente:",
+      "exit": "Volver al admin"
+    },
+    "theme": {
+      "toggle": "Alternar tema",
+      "light": "Modo claro",
+      "dark": "Modo oscuro"
+    }
+  },
+  "cancel": "Cancelar",
+  "delete": "Eliminar",
+  "close": "Cerrar",
+  "table": {
+    "inUse": "En uso"
+  }
+}

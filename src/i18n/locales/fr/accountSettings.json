@@ -1,0 +1,104 @@
+{
+  "title": "Paramètres du Compte",
+  "subtitle": "Gérez les paramètres et préférences de votre compte",
+  "loading": "Chargement...",
+  "sections": {
+    "general": {
+      "title": "Paramètres Généraux",
+      "description": "Configurez les informations de base de votre compte"
+    },
+    "autoResolve": {
+      "title": "Résolution Automatique des Conversations",
+      "description": "Configurez la résolution automatique des conversations inactives"
+    },
+    "audioTranscription": {
+      "title": "Transcription Audio",
+      "description": "Activez la transcription automatique des messages audio"
+    },
+    "accountId": {
+      "title": "ID du Compte",
+      "description": "Identifiant unique de votre compte pour les intégrations"
+    },
+    "accountDeletion": {
+      "title": "Suppression du Compte",
+      "description": "Supprimez définitivement votre compte et toutes les données"
+    }
+  },
+  "fields": {
+    "name": {
+      "label": "Nom du Compte *",
+      "placeholder": "Nom de votre compte"
+    },
+    "locale": {
+      "label": "Langue *"
+    },
+    "domain": {
+      "label": "Domaine Personnalisé",
+      "placeholder": "exemple.com",
+      "description": "Configurez un domaine personnalisé pour les e-mails de réponse"
+    },
+    "supportEmail": {
+      "label": "E-mail de Support",
+      "placeholder": "support@exemple.com"
+    },
+    "autoResolveTime": {
+      "label": "Délai de Résolution Automatique (minutes)",
+      "unit": "minutes",
+      "description": "Les conversations inactives seront résolues automatiquement après cette période"
+    },
+    "autoResolveMessage": {
+      "label": "Message de Résolution Automatique",
+      "placeholder": "Message optionnel envoyé lorsque la conversation est résolue automatiquement"
+    },
+    "ignoreWaiting": {
+      "label": "Ignorer les conversations en attente de réponse"
+    },
+    "applyLabel": {
+      "label": "Appliquer l'étiquette",
+      "placeholder": "Sélectionner une étiquette",
+      "none": "Aucune étiquette"
+    }
+  },
+  "buttons": {
+    "save": "Enregistrer les Paramètres",
+    "saving": "Enregistrement...",
+    "updateAutoResolve": "Mettre à Jour la Résolution Automatique",
+    "deleteAccount": "Supprimer le Compte",
+    "cancelDeletion": "Annuler la Suppression"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Vous n'avez pas la permission de visualiser les paramètres du compte",
+      "update": "Vous n'avez pas la permission de mettre à jour les paramètres du compte",
+      "delete": "Vous n'avez pas la permission de supprimer le compte"
+    },
+    "success": {
+      "generalUpdated": "Paramètres généraux mis à jour avec succès",
+      "autoResolveDisabled": "Résolution automatique désactivée",
+      "autoResolveUpdated": "Paramètres de résolution automatique mis à jour",
+      "audioTranscriptionEnabled": "Transcription audio activée",
+      "audioTranscriptionDisabled": "Transcription audio désactivée",
+      "accountDeleted": "Compte marqué pour suppression",
+      "deletionCancelled": "Suppression du compte annulée",
+      "accountIdCopied": "ID du compte copié dans le presse-papiers"
+    },
+    "error": {
+      "loadFailed": "Impossible de charger les données du compte",
+      "saveFailed": "Erreur lors de l'enregistrement des paramètres",
+      "autoResolveDisableFailed": "Erreur lors de la désactivation de la résolution automatique",
+      "autoResolveSaveFailed": "Erreur lors de l'enregistrement de la résolution automatique",
+      "audioTranscriptionFailed": "Erreur lors de la modification de la transcription audio",
+      "deleteFailed": "Erreur lors du marquage du compte pour suppression",
+      "cancelDeletionFailed": "Erreur lors de l'annulation de la suppression",
+      "minTime": "Le délai minimum est de 10 minutes"
+    }
+  },
+  "validation": {
+    "nameRequired": "Le nom du compte est obligatoire",
+    "localeRequired": "La langue est obligatoire",
+    "minAutoResolveTime": "Le délai minimum est de 10 minutes"
+  },
+  "deletion": {
+    "scheduledMessage": "Ce compte est programmé pour suppression le {{date}}"
+  }
+}

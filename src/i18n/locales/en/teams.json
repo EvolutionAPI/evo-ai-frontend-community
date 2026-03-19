@@ -1,0 +1,184 @@
+{
+  "title": "Teams",
+  "subtitle": "Organize your Agents in teams for better management and automatic assignment",
+  "loading": "Loading teams...",
+  "card": {
+    "autoAssign": "Auto-assignment",
+    "id": "ID",
+    "members": "Members",
+    "actions": {
+      "users": "Users",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "details": {
+    "autoAssignActive": "Auto-assignment active",
+    "autoAssignInactive": "Auto-assignment inactive",
+    "id": "ID",
+    "tabs": {
+      "overview": "Overview",
+      "members": "Members",
+      "activity": "Activity",
+      "settings": "Settings"
+    },
+    "overview": {
+      "description": "Description",
+      "noDescription": "No description provided for this team.",
+      "totalMembers": "Total Members",
+      "autoAssign": "Auto-assignment",
+      "active": "Active",
+      "inactive": "Inactive",
+      "temporalInfo": "Temporal Information",
+      "created": "Created:",
+      "lastUpdate": "Last Update:"
+    },
+    "members": {
+      "placeholder": "Members list will be implemented soon.",
+      "manageUsers": "Manage Users"
+    },
+    "activity": {
+      "placeholder": "Activity history will be implemented soon."
+    },
+    "settings": {
+      "title": "Team Settings",
+      "autoAssignTitle": "Auto-assignment of conversations",
+      "autoAssignDescription": "Allows conversations to be automatically assigned to team members",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "editSettings": "Edit Settings"
+    },
+    "actions": {
+      "manageUsers": "Manage Users",
+      "edit": "Edit"
+    }
+  },
+  "form": {
+    "basicInfo": "Basic Information",
+    "name": {
+      "label": "Team Name *",
+      "placeholder": "Ex: Sales, Customer Support...",
+      "required": "Team name is required",
+      "minLength": "Team name must be at least 2 characters"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Describe the purpose and responsibilities of this team...",
+      "maxLength": "Description must be at most 500 characters",
+      "counter": "{{current}}/500 characters"
+    },
+    "configuration": "Settings",
+    "autoAssign": {
+      "label": "Auto-assignment of conversations",
+      "description": "Allows conversations to be automatically assigned to team members"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "create": "Create Team",
+      "save": "Save Changes"
+    }
+  },
+  "modal": {
+    "create": "Create New Team",
+    "edit": "Edit {{name}}"
+  },
+  "header": {
+    "newTeam": "New Team",
+    "export": "Export",
+    "import": "Import",
+    "delete": "Delete",
+    "searchPlaceholder": "Search by name or description..."
+  },
+  "table": {
+    "columns": {
+      "team": "Team",
+      "members": "Members",
+      "autoAssign": "Auto-assignment",
+      "id": "ID",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "actions": {
+      "manageUsers": "Manage Users",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "messages": {
+    "loadError": "Error loading teams",
+    "loadDataError": "Error loading data",
+    "createSuccess": "Team created successfully!",
+    "updateSuccess": "Team updated successfully!",
+    "deleteSuccess": "Team deleted successfully!",
+    "bulkDeleteSuccess": "{{count}} teams deleted successfully!",
+    "createError": "Error creating team",
+    "updateError": "Error updating team",
+    "deleteError": "Error deleting team",
+    "bulkDeleteError": "Error deleting selected teams",
+    "selectAtLeastOne": "Select at least one user",
+    "usersAddedSuccess": "Users added successfully!",
+    "addUsersError": "Error adding users",
+    "permissionDenied": {
+      "read": "No permission to view teams",
+      "create": "No permission to create teams",
+      "update": "No permission to edit teams",
+      "delete": "No permission to delete teams"
+    },
+    "importInfo": "Import feature in development",
+    "exportInfo": "Export feature in development",
+    "filterInfo": "Filter feature in development"
+  },
+  "empty": {
+    "title": "No team found",
+    "description": "Create your first team to organize your Agents.",
+    "action": "New Team"
+  },
+  "addUsers": {
+    "title": "Add Users - {{name}}",
+    "subtitle": "Select the users you want to add to the team",
+    "summary": "{{selected}} of {{total}} users selected",
+    "table": {
+      "select": "Select",
+      "user": "User",
+      "email": "Email",
+      "status": {
+        "online": "Online",
+        "busy": "Busy",
+        "offline": "Offline"
+      }
+    },
+    "empty": {
+      "title": "No user available",
+      "description": "All users are already part of this team or there are no users available."
+    },
+    "notFound": {
+      "title": "Team not found",
+      "description": "The team you are looking for was not found.",
+      "action": "Back to teams"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "title": "Delete Team",
+      "description": "Are you sure you want to delete the team \"{{name}}\"? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "bulkDelete": {
+      "title": "Delete Teams",
+      "description": "Are you sure you want to delete {{count}} selected teams? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete All",
+      "deleting": "Deleting..."
+    }
+  },
+  "actions": {
+    "back": "Back",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "saving": "Saving...",
+    "addUsers": "Add Users"
+  }
+}

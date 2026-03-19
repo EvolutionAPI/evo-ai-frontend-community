@@ -1,0 +1,156 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Visão geral dos seus principais indicadores e métricas",
+    "loading": "Carregando dashboard...",
+    "error": "Falha ao carregar dashboard",
+    "filters": {
+      "title": "Filtros",
+      "subtitle": "Refine os indicadores por pipeline, equipe, canal e período",
+      "pipeline": "Pipeline",
+      "team": "Equipe",
+      "channel": "Canal",
+      "user": "Usuário",
+      "allPipelines": "Todos os pipelines",
+      "allTeams": "Todas as equipes",
+      "allChannels": "Todos os canais",
+      "allUsers": "Todos os usuários",
+      "since": "De",
+      "until": "Até",
+      "period": "Período",
+      "apply": "Aplicar filtros",
+      "clear": "Limpar filtros"
+    },
+    "stats": {
+      "totalPipeline": "Total no Funil",
+      "followUpsPending": "Follow-ups Pendentes",
+      "sent": "enviados",
+      "avgResponseTime": "Tempo Médio de Resposta",
+      "improvement": "melhoria",
+      "recoveredValue": "Valor Recuperado",
+      "incomingMessages": "Mensagens recebidas",
+      "realData": "Dados reais",
+      "leads": "leads",
+      "activeConversations": "Conversas ativas agora",
+      "unassignedConversations": "Conversas sem responsável"
+    },
+    "csat": {
+      "avg": "CSAT médio",
+      "responses": "avaliações",
+      "positiveRate": "Taxa positiva (4-5)",
+      "negativeRate": "Taxa negativa (1-2)",
+      "breakdown": "Distribuição de notas",
+      "lowSampleHint": "Ainda sem avaliações suficientes para uma leitura estatística confiável."
+    },
+    "aiVsHuman": {
+      "aiShare": "Participação IA nas respostas",
+      "humanShare": "Participação humana nas respostas",
+      "aiFirstResponse": "1ª resposta média IA",
+      "humanFirstResponse": "1ª resposta média humana",
+      "responses": "respostas IA",
+      "responsesHuman": "respostas humanas",
+      "conversations": "conversas com IA",
+      "conversationsHuman": "conversas humanas",
+      "title": "IA vs Humano",
+      "noDataHint": "IA ainda não está ativa neste período, ou as respostas não foram classificadas."
+    },
+    "pipeline": {
+      "title": "Funil por Etapa",
+      "subtitle": "Acompanhe suas oportunidades ao longo do funil de vendas",
+      "opportunities": "oportunidades",
+      "insights": "Resumo do funil",
+      "conversionRate": "Conversas no funil",
+      "avgTicket": "Ticket médio no funil",
+      "totalValue": "Valor total do funil"
+    },
+    "responseTime": {
+      "title": "Velocidade de Resposta",
+      "subtitle": "Comparação entre atendimento IA e humano",
+      "ai": "Atendimento IA",
+      "human": "Atendimento Humano",
+      "average": "Tempo médio geral"
+    },
+    "recovery": {
+      "title": "Dinheiro Recuperado",
+      "subtitle": "Leads reativados após follow-up automático",
+      "reactivated": "Leads Reativados",
+      "conversion": "Taxa de Conversão",
+      "totalRecovered": "Total recuperado",
+      "aiContribution": "Contribuição da IA"
+    },
+    "channels": {
+      "title": "Desempenho por Canal",
+      "subtitle": "Distribuição de conversas e valor por canal de comunicação",
+      "conversations": "conversas",
+      "conversion": "conversão",
+      "insights": "Insights de canais",
+      "topChannel": "Canal líder",
+      "concentration": "Concentração Top 3",
+      "activeCount": "Canais ativos",
+      "totalValue": "Valor total por canais",
+      "valueLeaders": "Canais com maior valor"
+    },
+    "agents": {
+      "title": "Desempenho dos Atendentes",
+      "subtitle": "Métricas de performance individual dos atendentes",
+      "humanTitle": "Desempenho dos Atendentes",
+      "humanSubtitle": "Performance do time humano no período filtrado",
+      "aiTitle": "Desempenho dos Agentes de IA",
+      "aiSubtitle": "Volume e participação dos agentes IA nas respostas",
+      "aiMessages": "mensagens IA",
+      "aiEmpty": "Sem mensagens de IA no período selecionado.",
+      "conversations": "conversas",
+      "avgTime": "Tempo Médio",
+      "satisfaction": "Satisfação"
+    },
+    "charts": {
+      "visitorsTrend": "Conversas por dia",
+      "visitorsDescription": "Tendência diária de conversas no período",
+      "conversionRate": "Taxa de Conversão",
+      "conversionDescription": "Taxa de conversão por tipo",
+      "channelShare": "Participação por canal",
+      "channelShareDescription": "Distribuição percentual de conversas por canal",
+      "sessionDuration": "Tempo de 1ª resposta por dia",
+      "sessionDescription": "Média diária de first response time (segundos)",
+      "heatmapTitle": "Mapa de calor da operação",
+      "heatmapDescription": "Volume de conversas por data e hora",
+      "heatmapPeakSlot": "Pico semanal",
+      "heatmapPeakWeekday": "Dia mais forte",
+      "heatmapPeakHour": "Hora de pico",
+      "heatmapPeakPeriodDay": "Dia de pico no período",
+      "heatmapExpand": "Expandir período completo",
+      "heatmapCollapse": "Mostrar últimos 15 dias",
+      "heatmapShowing": "Mostrando {shown} de {total} dias",
+      "timezone": "Fuso",
+      "channelsLabel": "Canais",
+      "shareLabel": "Participação"
+    },
+    "sections": {
+      "statusNow": "Status da operação agora",
+      "statusNowSubtitle": "Indicadores-chave para leitura rápida da saúde operacional",
+      "trends": "Tendências no tempo",
+      "trendsSubtitle": "Evolução da operação ao longo do período filtrado",
+      "optimization": "Diagnóstico e otimização",
+      "optimizationSubtitle": "Onde estão os gargalos e oportunidades de ganho na operação"
+    },
+    "status": {
+      "good": "Dentro do esperado",
+      "warning": "Atenção",
+      "critical": "Crítico",
+      "noSample": "Sem base",
+      "volume": "Volume no período",
+      "overdue": "em atraso",
+      "automationActive": "Automação ativa",
+      "noAutomation": "Sem automação no período",
+      "currentBacklog": "Backlog operacional atual",
+      "monitor": "Monitorar",
+      "pendingNow": "pendentes agora"
+    },
+    "empty": {
+      "pipeline": "Sem oportunidades no período selecionado.",
+      "agents": "Sem dados de atendentes para o período selecionado.",
+      "channels": "Sem dados de canal no período selecionado.",
+      "pipelineInactive": "Funil inativo no período selecionado."
+    }
+  }
+}

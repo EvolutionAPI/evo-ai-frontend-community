@@ -1,0 +1,197 @@
+{
+  "title": "Custom Tools",
+  "header": {
+    "title": "Custom Tools",
+    "subtitle": "Create and manage custom HTTP tools for your agents",
+    "newTool": "New Custom Tool",
+    "searchPlaceholder": "Search by name, method or endpoint..."
+  },
+  "card": {
+    "noDescription": "No description",
+    "examples": "{{count}} example(s)",
+    "createdAt": "Created at",
+    "actions": {
+      "test": "Test",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "details": {
+    "title": "Tool Details",
+    "sections": {
+      "basicInfo": "Basic Information",
+      "tags": "Tags",
+      "examples": "Examples",
+      "headers": "Headers HTTP",
+      "inputOutput": "Input and Output Modes"
+    },
+    "fields": {
+      "name": "Name",
+      "description": "Description",
+      "method": "HTTP Method",
+      "createdAt": "Created at",
+      "endpoint": "Endpoint",
+      "inputModes": "Input Modes",
+      "outputModes": "Output Modes",
+      "notSpecified": "Not specified"
+    },
+    "empty": {
+      "tags": "No tags configured",
+      "examples": "No examples available",
+      "headers": "No header HTTP configured"
+    },
+    "actions": {
+      "test": "Test",
+      "edit": "Edit"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Create New Custom Tool",
+      "edit": "Edit {{name}}",
+      "view": "View {{name}}"
+    },
+    "sections": {
+      "basicInfo": "Basic Information",
+      "httpConfig": "HTTP Configuration",
+      "tags": "Tags",
+      "examples": "Examples"
+    },
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Custom tool name",
+        "required": true
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Custom tool description..."
+      },
+      "method": {
+        "label": "HTTP Method",
+        "placeholder": "Select the method",
+        "required": true
+      },
+      "endpoint": {
+        "label": "Endpoint",
+        "placeholder": "https://api.example.com/endpoint",
+        "required": true
+      },
+      "headers": {
+        "label": "Headers HTTP (JSON)",
+        "placeholder": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+        "hint": "Configure the HTTP headers required for authentication and communication"
+      },
+      "bodyParams": {
+        "label": "Body Parameters (JSON)",
+        "placeholder": "{\"key\": \"value\", \"nested\": {\"field\": \"data\"}}",
+        "hint": "Configure the request body parameters sent with POST/PUT/PATCH requests"
+      },
+      "queryParams": {
+        "label": "Query Parameters (JSON)",
+        "placeholder": "{\"param1\": \"value1\", \"param2\": \"value2\"}",
+        "hint": "Configure URL query string parameters appended to the endpoint"
+      },
+      "pathParams": {
+        "label": "Path Parameters (JSON)",
+        "placeholder": "{\"user_id\": \"{user_id}\", \"resource_id\": \"{resource_id}\"}",
+        "hint": "Configure path parameters that will be substituted in the endpoint URL (e.g., /users/{user_id})"
+      },
+      "values": {
+        "label": "Default Values (JSON)",
+        "placeholder": "{\"default_key\": \"default_value\"}",
+        "hint": "Configure default values used as fallback when parameters are not provided at runtime"
+      },
+      "errorHandling": {
+        "label": "Error Handling (JSON)",
+        "placeholder": "{\"timeout\": 30, \"retry_count\": 3, \"fallback_response\": \"{}\"}",
+        "hint": "Configure error handling settings: timeout (seconds), retry_count, and fallback_response"
+      },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "api, http, webhook",
+        "hint": "Separate the tags with commas to organize and categorize the tool"
+      },
+      "examples": {
+        "label": "Examples",
+        "placeholder": "Add example of use..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "endpointRequired": "Endpoint is required",
+      "endpointInvalid": "Endpoint must be a valid URL",
+      "methodRequired": "HTTP Method is required",
+      "headersInvalid": "Invalid JSON headers",
+      "bodyParamsInvalid": "Invalid JSON for body parameters",
+      "queryParamsInvalid": "Invalid JSON for query parameters",
+      "pathParamsInvalid": "Invalid JSON for path parameters",
+      "valuesInvalid": "Invalid JSON for default values",
+      "errorHandlingInvalid": "Invalid JSON for error handling"
+    },
+    "actions": {
+      "cancel": "Cancel",
+      "save": "Save Changes",
+      "create": "Create Tool",
+      "saving": "Saving..."
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Create New Custom Tool",
+      "edit": "Edit {{name}}",
+      "view": "View {{name}}",
+      "editFallback": "Edit Custom Tool",
+      "viewFallback": "View Custom Tool"
+    }
+  },
+  "filter": {
+    "title": "Filter Custom Tools",
+    "description": "Configure the filters to find the custom tools you are looking for",
+    "apply": "Apply Filters",
+    "clear": "Clear Filters",
+    "addFilter": "Add Filter"
+  },
+  "table": {
+    "columns": {
+      "tool": "Tool",
+      "description": "Description",
+      "endpoint": "Endpoint",
+      "tags": "Tags",
+      "createdAt": "Created at",
+      "test": "Test"
+    },
+    "noName": "No name",
+    "noDescription": "No description",
+    "noTags": "-",
+    "actions": {
+      "test": "Test",
+      "edit": "Edit tool",
+      "delete": "Delete tool",
+      "create": "Create custom tool"
+    },
+    "empty": {
+      "title": "No custom tool created",
+      "description": "Create custom tools to expand the capabilities of agents.",
+      "noResults": "No custom tool found"
+    }
+  },
+  "loading": {
+    "tools": "Loading tools...",
+    "creating": "Creating...",
+    "updating": "Updating...",
+    "deleting": "Deleting...",
+    "testing": "Testing..."
+  },
+  "messages": {
+    "loadError": "Error loading custom tools",
+    "createSuccess": "Custom tool created successfully",
+    "createError": "Error creating custom tool",
+    "updateSuccess": "Custom tool updated successfully",
+    "updateError": "Error updating custom tool",
+    "deleteSuccess": "Custom tool deleted successfully",
+    "deleteError": "Error deleting custom tool",
+    "testSuccess": "Test executed successfully",
+    "testError": "Error testing custom tool"
+  }
+}

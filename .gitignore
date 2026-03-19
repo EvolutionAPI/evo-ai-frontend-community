@@ -1,0 +1,41 @@
+AGENTS_IMPLEMENTATION_ROADMAP.md
+API_INTEGRATION_CHECKLIST.md
+CHAT_IMPLEMENTATION_ROADMAP.md
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.yalc/
+yalc.lock
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env.test.local
+.env.test.development
+.env.test.production

@@ -1,0 +1,67 @@
+{
+  "title": "Gestisci Chiavi API",
+  "description": "Gestisci le tue chiavi API per diversi provider di IA",
+  "providers": {
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "azure": "Azure OpenAI",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
+    "cohere": "Cohere"
+  },
+  "form": {
+    "title": {
+      "new": "Nuova Chiave",
+      "edit": "Modifica Chiave"
+    },
+    "labels": {
+      "name": "Nome",
+      "provider": "Provider",
+      "key": "Chiave",
+      "status": "Stato",
+      "active": "Attivo"
+    },
+    "placeholders": {
+      "name": "Es: OpenAI Produzione",
+      "provider": "Seleziona un provider",
+      "keyNew": "Incolla qui la tua chiave API",
+      "keyEdit": "Inserisci nuova chiave (lascia vuoto per mantenere quella attuale)"
+    }
+  },
+  "actions": {
+    "add": "Nuova Chiave",
+    "addFirst": "Aggiungi Prima Chiave",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "save": "Aggiungi",
+    "update": "Aggiorna",
+    "close": "Chiudi"
+  },
+  "list": {
+    "title": "Chiavi Disponibili",
+    "createdAt": "Creato il",
+    "inactive": "Inattivo"
+  },
+  "empty": {
+    "title": "Nessuna chiave trovata",
+    "description": "Aggiungi le tue chiavi API per iniziare a utilizzare gli agenti"
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento delle chiavi API",
+    "saveError": "Errore durante il salvataggio della chiave API",
+    "deleteError": "Errore durante l'eliminazione della chiave API",
+    "createSuccess": "Chiave API creata con successo!",
+    "updateSuccess": "Chiave API aggiornata con successo!",
+    "deleteSuccess": "Chiave API eliminata con successo!",
+    "requiredFields": "Tutti i campi sono obbligatori",
+    "accountIdError": "ID account non disponibile"
+  },
+  "deleteDialog": {
+    "title": "Elimina Chiave API",
+    "description": "Sei sicuro di voler eliminare la chiave \"{{name}}\"? Questa azione non può essere annullata.",
+    "cancel": "Annulla",
+    "confirm": "Elimina"
+  }
+}

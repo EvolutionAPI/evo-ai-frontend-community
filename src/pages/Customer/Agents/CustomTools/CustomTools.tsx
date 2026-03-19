@@ -1,0 +1,517 @@
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { toast } from 'sonner';
+import { useUserPermissions } from '@/hooks/useUserPermissions';
+import { useLanguage } from '@/hooks/useLanguage';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, Button } from '@evoapi/design-system';
+import { Grid3X3, List, Wand } from 'lucide-react';
+import EmptyState from '@/components/base/EmptyState';
+import { useAccountId } from '@/hooks/useAccountId';
+
+import { CustomTool, CustomToolsState, CustomToolFormData, CustomToolsListParams } from '@/types/ai';
+import { BaseFilter, AppliedFilter } from '@/types/core';
+import {
+  CustomToolCard,
+  CustomToolsHeader,
+  CustomToolsTable,
+  CustomToolsPagination,
+  CustomToolModal,
+  CustomToolDetails,
+  CustomToolsFilter,
+} from '@/components/customTools';
+import {
+  listCustomTools,
+  createCustomTool,
+  updateCustomTool,
+  deleteCustomTool,
+  testCustomTool,
+  initialCustomToolsState,
+  getErrorMessage,
+} from '@/services/agents/customToolsService';
+import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
+
+const INITIAL_STATE: CustomToolsState = initialCustomToolsState;
+
+export default function CustomTools() {
+  const { can, isReady: permissionsReady } = useUserPermissions();
+  const accountId = useAccountId();
+  const { t } = useLanguage('customTools');
+  const [state, setState] = useState<CustomToolsState>(INITIAL_STATE);
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [toolToDelete, setToolToDelete] = useState<CustomTool | null>(null);
+
+  const [toolModalOpen, setToolModalOpen] = useState(false);
+  const [editingTool, setEditingTool] = useState<CustomTool | null>(null);
+  const [detailsModalOpen, setDetailsModalOpen] = useState(false);
+  const [detailsTool, setDetailsTool] = useState<CustomTool | null>(null);
+  const [filterModalOpen, setFilterModalOpen] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<BaseFilter[]>([]);
+  const [appliedFilters, setAppliedFilters] = useState<AppliedFilter[]>([]);
+  const [testingTool, setTestingTool] = useState<string | null>(null);
+  const hasLoaded = useRef(false);
+
+  // Load tools
+  const loadTools = useCallback(
+    async (params?: Partial<CustomToolsListParams>) => {
+      if (!can('ai_custom_tools', 'read')) {
+        toast.error(t('permissions.viewDenied'));
+        return;
+      }
+      if (!accountId) {
+        console.error(t('errors.accountNotFound'));
+        return;
+      }
+
+      setState(prev => ({ ...prev, loading: { ...prev.loading, list: true } }));
+
+      try {
+        const searchParams: CustomToolsListParams = {
+          page: params?.skip ? Math.floor(params.skip / (params.limit || DEFAULT_PAGE_SIZE)) + 1 : 1,
+          pageSize: params?.limit || DEFAULT_PAGE_SIZE,
+          skip: params?.skip,
+          limit: params?.limit,
+          search: params?.search,
+          tags: params?.tags,
+        };
+
+        const tools = await listCustomTools(searchParams);
+
+        setState(prev => ({
+          ...prev,
+          tools: tools || [],
+          meta: {
+            pagination: {
+              page: searchParams.skip ? Math.floor(searchParams.skip / (searchParams.limit || DEFAULT_PAGE_SIZE)) + 1 : 1,
+              page_size: searchParams.limit || DEFAULT_PAGE_SIZE,
+              total: tools.length,
+              total_pages: Math.ceil(tools.length / (searchParams.limit || DEFAULT_PAGE_SIZE)),
+            },
+          },
+          loading: { ...prev.loading, list: false },
+        }));
+      } catch (error) {
+        console.error('Error loading custom tools:', error);
+        toast.error(getErrorMessage(error as Error, t('errors.loadError')));
+        setState(prev => ({ ...prev, loading: { ...prev.loading, list: false } }));
+      }
+    },
+    [accountId, can, t],
+  );
+
+  // Initial load
+  useEffect(() => {
+    if (!permissionsReady) {
+      return;
+    }
+
+    if (!hasLoaded.current) {
+      hasLoaded.current = true;
+      loadTools();
+    }
+  }, [permissionsReady, loadTools]);
+
+  // Handlers
+  const handleSearchChange = (query: string) => {
+    setState(prev => ({
+      ...prev,
+      searchQuery: query,
+      meta: { ...prev.meta, pagination: { ...prev.meta.pagination, page: 1 } },
+    }));
+
+    loadTools({ skip: 0, search: query });
+  };
+
+  const convertFiltersToApplied = (filters: BaseFilter[]): AppliedFilter[] => {
+    return filters.map((filter, index) => ({
+      id: `filter-${index}`,
+      label: `${filter.attributeKey}: ${Array.isArray(filter.values) ? filter.values.join(',') : filter.values}`,
+      value: Array.isArray(filter.values)
+        ? String(filter.values.join(','))
+        : (filter.values as string | number),
+      onRemove: () => handleRemoveFilter(index),
+    }));
+  };
+
+  const handleOpenFilter = () => {
+    setFilterModalOpen(true);
+  };
+
+  const handleApplyFilters = async (filters: BaseFilter[]) => {
+    setActiveFilters(filters);
+    setAppliedFilters(convertFiltersToApplied(filters));
+
+    setState(prev => ({
+      ...prev,
+      loading: { ...prev.loading, list: true },
+      meta: { ...prev.meta, pagination: { ...prev.meta.pagination, page: 1 } },
+    }));
+
+    try {
+      await loadTools({ skip: 0 });
+    } catch (error) {
+      console.error('Error applying filters:', error);
+      toast.error(getErrorMessage(error as Error, t('errors.applyFiltersError')));
+    }
+  };
+
+  const handleClearFilters = () => {
+    setActiveFilters([]);
+    setAppliedFilters([]);
+    loadTools({ skip: 0 });
+  };
+
+  const handleRemoveFilter = (index: number) => {
+    const newFilters = activeFilters.filter((_, i) => i !== index);
+    if (newFilters.length === 0) {
+      handleClearFilters();
+    } else {
+      handleApplyFilters(newFilters);
+    }
+  };
+
+  const handlePageChange = (page: number) => {
+    setState(prev => ({
+      ...prev,
+      meta: { ...prev.meta, pagination: { ...prev.meta.pagination, page } },
+    }));
+
+    const skip = (page - 1) * state.meta.pagination.page_size;
+    loadTools({ skip });
+  };
+
+  const handlePerPageChange = (perPage: number) => {
+    setState(prev => ({
+      ...prev,
+      meta: { ...prev.meta, pagination: { ...prev.meta.pagination, page_size: perPage, page: 1 } },
+    }));
+
+    loadTools({ skip: 0, limit: perPage });
+  };
+
+  // Tool actions
+  const handleToolClick = (tool: CustomTool) => {
+    setDetailsTool(tool);
+    setDetailsModalOpen(true);
+  };
+
+  const handleCreateTool = () => {
+    if (!can('ai_custom_tools', 'create')) {
+      toast.error(t('permissions.createDenied'));
+      return;
+    }
+    setEditingTool(null);
+    setToolModalOpen(true);
+  };
+
+  const handleEditTool = (tool: CustomTool) => {
+    if (!can('ai_custom_tools', 'update')) {
+      toast.error(t('permissions.editDenied'));
+      return;
+    }
+    setEditingTool(tool);
+    setToolModalOpen(true);
+  };
+
+  const handleDeleteTool = (tool: CustomTool) => {
+    if (!can('ai_custom_tools', 'delete')) {
+      toast.error(t('permissions.deleteDenied'));
+      return;
+    }
+    setToolToDelete(tool);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleTestTool = async (tool: CustomTool) => {
+    if (!accountId) {
+      toast.error(t('errors.accountNotFound'));
+      return;
+    }
+
+    setTestingTool(tool.id);
+    setState(prev => ({ ...prev, loading: { ...prev.loading, test: true } }));
+
+    try {
+      const result = await testCustomTool(tool.id);
+
+      if (result.test_result.success) {
+        toast.success(
+          t('success.testSuccess', {
+            statusCode: result.test_result.status_code,
+            responseTime: result.test_result.response_time
+          })
+        );
+      } else {
+        toast.error(t('test.failed', { error: result.test_result.error || t('test.unknownError') }));
+      }
+    } catch (error) {
+      console.error('Error testing custom tool:', error);
+      toast.error(getErrorMessage(error as Error, t('errors.testError')));
+    } finally {
+      setTestingTool(null);
+      setState(prev => ({ ...prev, loading: { ...prev.loading, test: false } }));
+    }
+  };
+
+
+
+  // Confirm delete single tool
+  const confirmDeleteTool = async () => {
+    if (!toolToDelete || !accountId) {
+      if (!accountId) toast.error(t('errors.accountNotFound'));
+      return;
+    }
+
+    setState(prev => ({ ...prev, loading: { ...prev.loading, delete: true } }));
+
+    try {
+      await deleteCustomTool(toolToDelete.id);
+      toast.success(t('success.deleteSuccess'));
+
+      // Refresh the list
+      loadTools();
+
+      setDeleteDialogOpen(false);
+      setToolToDelete(null);
+    } catch (error) {
+      console.error('Error deleting custom tool:', error);
+      toast.error(t('errors.deleteError'));
+    } finally {
+      setState(prev => ({ ...prev, loading: { ...prev.loading, delete: false } }));
+    }
+  };
+
+
+
+  // Handle tool form submission
+  const handleToolFormSubmit = async (data: CustomToolFormData) => {
+    if (!accountId) {
+      toast.error(t('errors.accountNotFound'));
+      return;
+    }
+
+    setState(prev => ({
+      ...prev,
+      loading: { ...prev.loading, [editingTool ? 'update' : 'create']: true },
+    }));
+
+    try {
+      if (editingTool) {
+        // Update existing tool
+        const response = await updateCustomTool(editingTool.id, data);
+        toast.success(t('success.updateSuccess'));
+
+        // Update the specific tool in the list with the latest data
+        setState(prev => ({
+          ...prev,
+          tools: prev.tools.map(tool =>
+            tool.id === editingTool.id
+              ? { ...tool, ...response }
+              : tool
+          )
+        }));
+      } else {
+        // Create new tool
+        await createCustomTool(data);
+        toast.success(t('success.createSuccess'));
+
+        // Refresh the entire list for new tools
+        loadTools();
+      }
+
+      // Close modal and clear editing state
+      setToolModalOpen(false);
+      setEditingTool(null);
+    } catch (error) {
+      console.error('Error saving custom tool:', error);
+      toast.error(editingTool ? t('errors.updateError') : t('errors.createError'));
+    } finally {
+      setState(prev => ({
+        ...prev,
+        loading: { ...prev.loading, create: false, update: false },
+      }));
+    }
+  };
+
+  // Handle modal close
+  const handleToolModalClose = (open: boolean) => {
+    if (!open) {
+      setToolModalOpen(false);
+      setEditingTool(null);
+    }
+  };
+
+  const handleDetailsModalClose = (open: boolean) => {
+    if (!open) {
+      setDetailsModalOpen(false);
+      setDetailsTool(null);
+    }
+  };
+
+  return (
+    <div className="h-full flex flex-col p-4">
+      <CustomToolsHeader
+        totalCount={state.meta.pagination.total}
+        selectedCount={state.selectedToolIds.length}
+        searchValue={state.searchQuery}
+        onSearchChange={handleSearchChange}
+        onNewTool={handleCreateTool}
+        onFilter={handleOpenFilter}
+
+        onClearSelection={() => setState(prev => ({ ...prev, selectedToolIds: [] }))}
+        activeFilters={appliedFilters}
+        showFilters={true}
+      />
+
+      {/* View Mode Toggle */}
+      <div className="flex items-center justify-end mb-3">
+        <div className="flex items-center border rounded-lg">
+          <Button
+            variant={viewMode === 'cards' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('cards')}
+            className="border-0 rounded-r-none"
+          >
+            <Grid3X3 className="h-4 w-4" />
+          </Button>
+          <Button
+            variant={viewMode === 'table' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setViewMode('table')}
+            className="border-0 rounded-l-none"
+          >
+            <List className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-auto">
+        {state.loading.list ? (
+          <div className="flex items-center justify-center py-16">
+            <div className="text-muted-foreground">{t('loading.tools')}</div>
+          </div>
+        ) : state.tools.length === 0 ? (
+          <EmptyState
+            icon={Wand}
+            title={t('table.empty.title')}
+            description={t('table.empty.description')}
+            action={{
+              label: t('table.actions.create'),
+              onClick: handleCreateTool
+            }}
+            className="h-full"
+          />
+        ) : viewMode === 'cards' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {state.tools.map(tool => (
+              <CustomToolCard
+                key={tool.id}
+                tool={tool}
+                onEdit={handleEditTool}
+                onDelete={handleDeleteTool}
+                onTest={handleTestTool}
+                onClick={handleToolClick}
+                isTestLoading={testingTool === tool.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <CustomToolsTable
+            tools={state.tools}
+            selectedTools={state.tools.filter(tool =>
+              state.selectedToolIds.includes(tool.id),
+            )}
+            loading={state.loading.list}
+            onSelectionChange={(tools: CustomTool[]) =>
+              setState(prev => ({
+                ...prev,
+                selectedToolIds: tools.map((t: CustomTool) => t.id),
+              }))
+            }
+            onToolClick={handleToolClick}
+            onEditTool={handleEditTool}
+            onDeleteTool={handleDeleteTool}
+            onTestTool={handleTestTool}
+            onCreateTool={handleCreateTool}
+            testingToolId={testingTool}
+          />
+        )}
+      </div>
+
+      {/* Pagination */}
+      {state.meta.pagination.total > 0 && (
+        <CustomToolsPagination
+          currentPage={state.meta.pagination.page}
+          totalPages={state.meta.pagination.total_pages}
+          totalCount={state.meta.pagination.total}
+          perPage={state.meta.pagination.page_size}
+          onPageChange={handlePageChange}
+          onPerPageChange={handlePerPageChange}
+          loading={state.loading.list}
+        />
+      )}
+
+      {/* Delete Tool Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t('deleteDialog.title')}</DialogTitle>
+            <DialogDescription>
+              {t('deleteDialog.description', { name: toolToDelete?.name })}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+              disabled={state.loading.delete}
+            >
+              {t('deleteDialog.cancel')}
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDeleteTool}
+              disabled={state.loading.delete}
+            >
+              {state.loading.delete ? t('loading.deleting') : t('deleteDialog.confirm')}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Tool Modal */}
+      <CustomToolModal
+        open={toolModalOpen}
+        onOpenChange={handleToolModalClose}
+        tool={editingTool || undefined}
+        mode={!editingTool ? 'create' : 'edit'}
+        loading={state.loading.create || state.loading.update}
+        onSubmit={handleToolFormSubmit}
+      />
+
+      {/* Tool Details Modal */}
+      <CustomToolDetails
+        open={detailsModalOpen}
+        onOpenChange={handleDetailsModalClose}
+        tool={detailsTool}
+        onEdit={(tool: CustomTool) => {
+          setDetailsModalOpen(false);
+          setEditingTool(tool);
+          setToolModalOpen(true);
+        }}
+        onTest={handleTestTool}
+        isTestLoading={testingTool === detailsTool?.id}
+      />
+
+      {/* Tools Filter Modal */}
+      <CustomToolsFilter
+        open={filterModalOpen}
+        onOpenChange={setFilterModalOpen}
+        filters={activeFilters}
+        onFiltersChange={setActiveFilters}
+        onApplyFilters={handleApplyFilters}
+        onClearFilters={handleClearFilters}
+      />
+    </div>
+  );
+}

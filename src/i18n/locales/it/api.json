@@ -1,0 +1,41 @@
+{
+  "title": "Canale API",
+  "name": "API",
+  "description": "Configura il tuo canale API personalizzato",
+  "fields": {
+    "displayName": {
+      "label": "Nome di Visualizzazione",
+      "placeholder": "Supporto API",
+      "helpText": "Nome descrittivo per l'identificazione",
+      "required": true
+    },
+    "name": {
+      "label": "Nome del Canale",
+      "placeholder": "supporto-api",
+      "helpText": "Generato automaticamente dal nome di visualizzazione",
+      "required": true
+    },
+    "webhookUrl": {
+      "label": "Webhook URL",
+      "placeholder": "https://tua-api.com/webhook",
+      "helpText": "URL dove verranno inviati gli eventi"
+    }
+  },
+  "info": {
+    "title": "Canale API",
+    "description": "Permette l'integrazione personalizzata tramite API REST",
+    "webhookInfo": "Opzionale - URL per ricevere eventi in tempo reale",
+    "documentationLabel": "Documentazione",
+    "documentation": "Consulta la documentazione dell'API per l'implementazione"
+  },
+  "validation": {
+    "nameRequired": "Il nome è obbligatorio",
+    "webhookUrlFormat": "URL non valido"
+  },
+  "success": {
+    "created": "Canale API creato con successo!"
+  },
+  "errors": {
+    "createError": "Errore durante la creazione del canale API"
+  }
+}

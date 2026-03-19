@@ -1,0 +1,108 @@
+{
+  "oauth": {
+    "login": {
+      "titles": {
+        "selectAccount": "Select Account for Authorization",
+        "redirecting": "Redirecting to Authorization...",
+        "loginRequired": "Login Required for OAuth"
+      },
+      "descriptions": {
+        "selectAccount": "Select an account to authorize this application.",
+        "redirecting": "You will be redirected to the application's authorization page.",
+        "loginRequired": "Please log in to authorize the third-party application."
+      },
+      "accounts": {
+        "available": "Available Accounts:",
+        "noAccounts": "No accounts available for OAuth authorization"
+      },
+      "applicationDetails": {
+        "title": "Application Details:",
+        "clientId": "Client ID:",
+        "redirectUri": "Redirect URI:",
+        "scope": "Scope:",
+        "oauthUrl": "OAuth URL:",
+        "returnUrl": "Return URL:"
+      },
+      "buttons": {
+        "loginToAuthorize": "Login to Authorize",
+        "continueToAuthorization": "Continue to Authorization",
+        "redirecting": "Redirecting..."
+      },
+      "loading": {
+        "processingAuthorization": "Processing authorization...",
+        "redirectingToAuthorization": "Redirecting to authorization..."
+      },
+      "footer": {
+        "disclaimer": "By continuing, you authorize the application to access your Evolution account.",
+        "revoke": "You can revoke this access at any time in your account settings."
+      },
+      "errors": {
+        "missingParameters": "Missing required OAuth parameters",
+        "noAccounts": "No accounts available for OAuth authorization",
+        "failedToLoadAccounts": "Failed to load accounts:",
+        "missingOAuthUrl": "OAuth URL missing. Please restart the OAuth flow.",
+        "missingUrlForAuth": "OAuth or return URL missing for authorization",
+        "failedToRedirect": "Failed to redirect to login page",
+        "missingOAuthUrlDirect": "OAuth URL missing",
+        "missingOAuthParams": "OAuth parameters missing",
+        "failedToCreateApp": "Failed to create OAuth application:"
+      }
+    },
+    "authorize": {
+      "titles": {
+        "authorizeApp": "Authorize Application",
+        "loginRequired": "Login Required",
+        "invalidRequest": "Invalid Request"
+      },
+      "descriptions": {
+        "requestingAccess": "An application is requesting access to your account.",
+        "needLogin": "You need to log in to authorize this application.",
+        "invalidParams": "Missing or invalid OAuth parameters"
+      },
+      "appInfo": {
+        "name": "MCP Application",
+        "description": "Model Context Protocol Integration",
+        "redirectUri": "Redirect URI:",
+        "requestedScope": "Requested Scope:",
+        "user": "User:"
+      },
+      "buttons": {
+        "authorize": "Authorize",
+        "authorizing": "Authorizing...",
+        "deny": "Deny",
+        "goToLogin": "Go to Login"
+      },
+      "footer": {
+        "disclaimer": "By authorizing, you allow this application to access your Evolution account with the requested permissions.",
+        "revoke": "You can revoke this access at any time in your account settings."
+      },
+      "errors": {
+        "missingParams": "Missing required OAuth parameters",
+        "missingParamsOrAuth": "Missing OAuth parameters or user not authenticated",
+        "authorizationFailed": "Authorization failed:",
+        "userDenied": "User denied authorization"
+      }
+    },
+    "callback": {
+      "title": "OAuth Authorization",
+      "loading": {
+        "processing": "Processing authorization..."
+      },
+      "success": {
+        "title": "Success!",
+        "message": "Authorization completed successfully! You can close this window."
+      },
+      "errors": {
+        "title": "Error",
+        "oauthError": "OAuth Error:",
+        "invalidCallback": "Invalid OAuth callback - authorization code missing"
+      },
+      "footer": {
+        "canClose": "This window can be safely closed after authorization."
+      }
+    },
+    "common": {
+      "error": "Error"
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "title": "Agenti",
+  "subtitle": "Gestisci il tuo team e configura i permessi di accesso",
+  "loading": "Caricamento agenti...",
+  "card": {
+    "id": "ID",
+    "role": "Ruolo",
+    "customRole": "Ruolo Personalizzato",
+    "actions": {
+      "chat": "Conversare",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    }
+  },
+  "details": {
+    "tabs": {
+      "overview": "Panoramica",
+      "activity": "Attività",
+      "settings": "Impostazioni"
+    },
+    "status": {
+      "online": "Online",
+      "busy": "Occupato",
+      "offline": "Offline",
+      "confirmed": "Confermato",
+      "pending": "In attesa"
+    },
+    "id": "ID",
+    "edit": "Modifica",
+    "contactInfo": {
+      "title": "Informazioni di Contatto",
+      "email": "Email:"
+    },
+    "rolePermissions": {
+      "title": "Ruolo e Permessi",
+      "role": "Ruolo:",
+      "availability": "Stato di Disponibilità:"
+    },
+    "accountStatus": {
+      "title": "Stato dell'Account",
+      "confirmation": "Conferma:",
+      "confirmed": "Account Confermato",
+      "pending": "Conferma in Attesa",
+      "accountId": "ID Account:"
+    },
+    "timestamps": {
+      "title": "Informazioni Temporali",
+      "created": "Creato:",
+      "lastUpdate": "Ultimo aggiornamento:"
+    },
+    "activity": {
+      "placeholder": "La cronologia delle attività sarà implementata a breve."
+    },
+    "settingsTab": {
+      "title": "Impostazioni Agente",
+      "systemRole": {
+        "title": "Ruolo nel Sistema",
+        "description": "Definisce i permessi e gli accessi dell'agente"
+      },
+      "availabilityStatus": {
+        "title": "Stato di Disponibilità",
+        "description": "Indica se l'agente è disponibile a ricevere conversazioni"
+      },
+      "emailConfirmation": {
+        "title": "Conferma Email",
+        "description": "Stato di verifica dell'indirizzo email",
+        "verified": "Verificato",
+        "pending": "In attesa"
+      },
+      "editSettings": "Modifica Impostazioni"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Nuovo Agente",
+      "edit": "Modifica Agente"
+    },
+    "fields": {
+      "name": {
+        "label": "Nome *",
+        "placeholder": "Nome dell'agente"
+      },
+      "email": {
+        "label": "Email *",
+        "placeholder": "email@esempio.com",
+        "cannotChange": "L'email non può essere modificata dopo la creazione"
+      },
+      "role": {
+        "label": "Ruolo *"
+      },
+      "availability": {
+        "label": "Stato di Disponibilità",
+        "online": "Online",
+        "busy": "Occupato",
+        "offline": "Offline"
+      },
+      "password": {
+        "label": "Password *",
+        "labelOptional": "Nuova Password (facoltativo)",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Conferma Password *",
+        "labelOptional": "Conferma Nuova Password",
+        "placeholder": "••••••••"
+      }
+    },
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "emailRequired": "L'email è obbligatoria",
+      "emailInvalid": "Email non valida",
+      "passwordRequired": "La password è obbligatoria",
+      "passwordMinLength": "La password deve contenere almeno 6 caratteri",
+      "passwordMismatch": "Le password non corrispondono"
+    },
+    "actions": {
+      "cancel": "Annulla",
+      "saving": "Salvataggio...",
+      "save": "Salva",
+      "create": "Crea Agente"
+    },
+    "messages": {
+      "createSuccess": "Agente creato con successo",
+      "updateSuccess": "Agente aggiornato con successo",
+      "saveError": "Errore durante il salvataggio dell'agente"
+    }
+  },
+  "bulkInvite": {
+    "title": "Invito in Massa",
+    "resultTitle": "Risultato degli Inviti",
+    "howToUse": {
+      "title": "Come usare:",
+      "step1": "Digita o incolla un elenco di email",
+      "step2": "Un'email per riga o separate da virgola",
+      "step3": "Le email duplicate verranno automaticamente rimosse",
+      "step4": "Gli agenti riceveranno un'email di invito per creare il loro account"
+    },
+    "fields": {
+      "emails": {
+        "label": "Email degli Agenti",
+        "placeholder": "utente1@esempio.com\nutente2@esempio.com, utente3@esempio.com\nutente4@esempio.com",
+        "hint": "Incolla un elenco di email, una per riga o separate da virgola"
+      }
+    },
+    "results": {
+      "invited": "Inviti Inviati ({{count}})",
+      "failed": "Inviti Falliti ({{count}})"
+    },
+    "actions": {
+      "cancel": "Annulla",
+      "sendInvites": "Invia Inviti",
+      "sending": "Invio Inviti...",
+      "sendMore": "Invia Altri Inviti",
+      "finish": "Completa"
+    },
+    "messages": {
+      "enterEmail": "Inserisci almeno un'email",
+      "noValidEmail": "Nessuna email valida trovata",
+      "allSuccess": "{{count}} invito/i inviato/i con successo",
+      "partialSuccess": "{{successCount}} invito/i inviato/i, {{failedCount}} fallito/i",
+      "allFailed": "Impossibile inviare {{count}} invito/i",
+      "sendError": "Errore durante l'invio degli inviti"
+    }
+  },
+  "filter": {
+    "title": "Filtra Agenti",
+    "description": "Configura i filtri per trovare gli agenti che stai cercando",
+    "applyFilters": "Applica Filtri",
+    "clearFilters": "Cancella Filtri",
+    "addFilter": "Aggiungi Filtro"
+  },
+  "header": {
+    "newUser": "Nuovo Agente",
+    "bulkInvite": "Invita in Massa",
+    "export": "Esporta",
+    "delete": "Elimina",
+    "searchPlaceholder": "Cerca per nome, email o ruolo..."
+  },
+  "table": {
+    "columns": {
+      "user": "Agente",
+      "role": "Ruolo",
+      "status": "Stato",
+      "confirmation": "Conferma",
+      "id": "ID",
+      "confirmed": "Confermato",
+      "pending": "In attesa"
+    },
+    "actions": {
+      "edit": "Modifica",
+      "delete": "Elimina"
+    },
+    "empty": {
+      "title": "Nessun agente trovato",
+      "description": "Crea il tuo primo agente per iniziare a gestire il tuo team.",
+      "action": "Nuovo Agente"
+    }
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Non hai il permesso di visualizzare gli agenti",
+      "create": "Non hai il permesso di creare agenti",
+      "update": "Non hai il permesso di modificare agenti",
+      "delete": "Non hai il permesso di eliminare agenti",
+      "invite": "Non hai il permesso di invitare agenti"
+    },
+    "loadError": "Errore durante il caricamento degli agenti",
+    "filterError": "Errore durante l'applicazione dei filtri",
+    "deleteSuccess": "Agente eliminato con successo",
+    "deleteError": "Errore durante l'eliminazione dell'agente",
+    "bulkDeleteSuccess": "{{count}} agente/i eliminato/i con successo",
+    "bulkDeleteError": "Errore durante l'eliminazione degli agenti",
+    "availabilityUpdated": "Stato di disponibilità aggiornato"
+  },
+  "empty": {
+    "title": "Nessun agente trovato",
+    "description": "Crea il tuo primo agente per iniziare a gestire il tuo team.",
+    "action": "Nuovo Agente"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Elimina Agente",
+      "description": "Sei sicuro di voler eliminare l'agente \"{{name}}\"? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "deleting": "Eliminazione...",
+      "confirm": "Elimina"
+    },
+    "bulkDelete": {
+      "title": "Elimina Agenti",
+      "description": "Sei sicuro di voler eliminare {{count}} agente/i selezionato/i? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "deleting": "Eliminazione...",
+      "confirm": "Elimina Tutti"
+    }
+  }
+}

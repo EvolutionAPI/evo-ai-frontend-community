@@ -1,0 +1,177 @@
+{
+  "title": "Agenti IA",
+  "subtitle": "Gestisci i tuoi agenti IA",
+  "loading": {
+    "agent": "Caricamento agente IA...",
+    "creating": "Creazione agente IA...",
+    "updating": "Aggiornamento agente IA..."
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento dell'agente IA",
+    "loadErrorDescription": "Non è stato possibile caricare i dati dell'agente IA per la modifica.",
+    "createSuccess": "Agente IA creato con successo!",
+    "updateSuccess": "Agente IA aggiornato con successo!",
+    "saveError": "Errore durante il salvataggio dell'agente IA",
+    "confirmCancel": "Hai modifiche non salvate. Vuoi davvero annullare?",
+    "apiKeysError": "Errore durante il caricamento delle chiavi API:",
+    "agentToolsError": "Errore durante il caricamento dei dati degli agenti:"
+  },
+  "header": {
+    "back": "Indietro",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "edit": "Modifica",
+    "view": "Visualizza",
+    "duplicate": "Duplica"
+  },
+  "tabs": {
+    "basic": "Base",
+    "configuration": "Configurazione",
+    "subagents": "Sotto-agenti",
+    "tools": "Strumenti"
+  },
+  "validation": {
+    "nameRequired": "Il nome è obbligatorio",
+    "configurationIncomplete": "Configurazione incompleta"
+  },
+  "forms": {
+    "basicInfo": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "type": "Tipo",
+      "role": "Ruolo",
+      "goal": "Obiettivo"
+    },
+    "llmConfig": {
+      "model": "Modello",
+      "apiKey": "Chiave API",
+      "instruction": "Istruzione",
+      "outputKey": "Chiave di Output",
+      "advancedConfig": "Configurazione Avanzata",
+      "messageWaitTime": "Tempo di Attesa Messaggio",
+      "messageSignature": "Firma del Messaggio",
+      "enableTextSegmentation": "Abilita Segmentazione del Testo",
+      "maxCharactersPerSegment": "Massimo Caratteri per Segmento",
+      "minSegmentSize": "Dimensione Minima Segmento",
+      "characterDelayMs": "Ritardo Carattere (ms)"
+    },
+    "a2aConfig": {
+      "agentCardUrl": "URL Card Agente IA",
+      "outputKey": "Chiave di Output"
+    },
+    "toolsConfig": {
+      "tools": "Strumenti",
+      "agentTools": "Agente IA come Strumento",
+      "customTools": "Strumenti Personalizzati",
+      "mcpServers": "Server MCP",
+      "loadMemory": "Carica Memoria",
+      "preloadMemory": "Pre-carica Memoria",
+      "planner": "Pianificatore",
+      "outputSchema": "Schema di Output"
+    }
+  },
+  "types": {
+    "llm": "LLM",
+    "a2a": "Agent-to-Agent",
+    "workflow": "Workflow",
+    "task": "Attività"
+  },
+  "actions": {
+    "create": "Crea Agente IA",
+    "update": "Aggiorna Agente IA",
+    "delete": "Elimina Agente IA",
+    "duplicate": "Duplica Agente IA",
+    "save": "Salva",
+    "cancel": "Annulla",
+    "edit": "Modifica",
+    "view": "Visualizza"
+  },
+  "permissions": {
+    "viewDenied": "Non hai il permesso di visualizzare gli agenti IA",
+    "createDenied": "Non hai il permesso di creare agenti IA",
+    "editDenied": "Non hai il permesso di modificare gli agenti IA",
+    "deleteDenied": "Non hai il permesso di eliminare gli agenti IA"
+  },
+  "loadError": "Errore durante il caricamento degli agenti IA",
+  "createAgent": "Nuovo Agente IA",
+  "emptyState": {
+    "title": "Nessun agente IA creato",
+    "description": "Connetti agenti IA per iniziare a inviare e ricevere messaggi.",
+    "noResults": "Nessun agente IA trovato"
+  },
+  "search": {
+    "placeholder": "Cerca agenti IA...",
+    "noResults": "Nessun agente IA corrisponde alla tua ricerca",
+    "clearSearch": "Cancella ricerca"
+  },
+  "fields": {
+    "name": "Nome",
+    "description": "Descrizione",
+    "noDescription": "Nessuna descrizione",
+    "type": "Tipo",
+    "model": "Modello",
+    "notAvailable": "N/D",
+    "createdAt": "Creato il"
+  },
+  "card": {
+    "actions": "Azioni",
+    "model": "Modello",
+    "type": "Tipo"
+  },
+  "table": {
+    "actions": "Azioni",
+    "emptyMessage": "Nessun agente IA trovato",
+    "clickToView": "💡 Clicca su un agente IA per visualizzare i dettagli o aprire l'Agent Card"
+  },
+  "dropdown": {
+    "testA2A": "Testa A2A",
+    "edit": "Modifica",
+    "moveToFolder": "Sposta in cartella",
+    "exportJSON": "Esporta JSON",
+    "share": "Condividi",
+    "delete": "Elimina"
+  },
+  "apiKeys": {
+    "manage": "Gestisci Chiavi API"
+  },
+  "export": {
+    "all": "Esporta Tutti",
+    "success": "Agenti IA esportati con successo",
+    "successDesc": "{{count}} agenti IA sono stati esportati",
+    "error": "Errore durante l'esportazione degli agenti IA",
+    "errorDesc": "Non è stato possibile esportare gli agenti IA"
+  },
+  "deleteDialog": {
+    "title": "Elimina Agente IA",
+    "description": "Sei sicuro di voler eliminare l'agente IA \"{{name}}\"? Questa azione non può essere annullata.",
+    "cancel": "Annulla",
+    "confirm": "Elimina",
+    "deleting": "Eliminazione...",
+    "success": "Agente IA \"{{name}}\" eliminato con successo!"
+  },
+  "bulkDelete": "Funzionalità di eliminazione di massa in sviluppo",
+  "testA2A": "Funzionalità di test A2A in sviluppo",
+  "moveToFolder": "Funzionalità di spostamento in cartella in sviluppo",
+  "exportJSON": "Funzionalità di esportazione JSON in sviluppo",
+  "share": "Funzionalità di condivisione agente IA in sviluppo",
+  "edit": {
+    "integrations": {
+      "github": {
+        "configTitle": "Configura GitHub",
+        "connectTitle": "Connetti a GitHub",
+        "connectDescription": "Consenti all'agente IA di accedere a repository, issue e pull request di GitHub",
+        "connecting": "Connessione...",
+        "connectButton": "Connetti a GitHub",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "L'agente IA può ora accedere a repository, issue, pull request e altre informazioni di GitHub.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti GitHub può usare l'agente IA",
+        "selectAll": "Seleziona tutto",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONE",
+        "disconnect": "Disconnetti"
+      }
+    }
+  }
+}

@@ -1,0 +1,314 @@
+{
+    "title": "Perfil",
+    "subtitle": "Gestione su información personal y configuraciones de cuenta",
+    "loading": "Cargando perfil...",
+    "personalData": {
+      "title": "Datos Personales",
+      "description": "Actualice su información personal y foto de perfil",
+      "defaultUser": "Usuario",
+      "fields": {
+        "fullName": "Nombre Completo",
+        "displayName": "Nombre de Visualización",
+        "email": "Email",
+        "fullNamePlaceholder": "Su nombre completo",
+        "displayNamePlaceholder": "Cómo quiere ser llamado",
+        "emailPlaceholder": "su@email.com"
+      },
+      "actions": {
+        "saveChanges": "Guardar Cambios",
+        "saving": "Guardando..."
+      },
+      "emailConfirmation": {
+        "pendingChange": "Se ha enviado un email de confirmación a {{email}}. Revise su bandeja de entrada para completar el cambio.",
+        "resend": "Reenviar confirmación",
+        "cancel": "Cancelar cambio de email",
+        "resendSuccess": "Email de confirmación reenviado con éxito",
+        "resendError": "Error al reenviar email de confirmación",
+        "cancelSuccess": "Cambio de email cancelado",
+        "cancelError": "Error al cancelar cambio de email",
+        "emailUpdatedPending": "Perfil actualizado. Email de confirmación enviado a {{email}}."
+      }
+    },
+    "password": {
+      "title": "Cambiar Contraseña",
+      "description": "Mantenga su cuenta segura con una contraseña fuerte",
+      "fields": {
+        "currentPassword": "Contraseña Actual",
+        "newPassword": "Nueva Contraseña",
+        "confirmPassword": "Confirmar Contraseña",
+        "currentPlaceholder": "Digite su contraseña actual",
+        "newPlaceholder": "Digite su nueva contraseña",
+        "confirmPlaceholder": "Digite su contraseña nuevamente"
+      },
+      "actions": {
+        "changePassword": "Cambiar Contraseña",
+        "changing": "Cambiando..."
+      },
+      "validation": {
+        "allFields": "Todos los campos son obligatorios",
+        "mismatch": "Las contraseñas no coinciden",
+        "minLength": "La contraseña debe tener al menos 6 caracteres"
+      }
+    },
+    "accessToken": {
+      "title": "Token de Acceso de la API",
+      "description": "Use este token para acceder a la API de Evolution. Manténgalo seguro y no lo comparta.",
+      "actions": {
+        "copy": "Copiar",
+        "reset": "Resetear Token",
+        "resetting": "Reseteando..."
+      },
+      "notifications": {
+        "copied": "Token copiado al portapapeles",
+        "copyError": "Error al copiar token",
+        "resetSuccess": "Token reseteado con éxito",
+        "resetError": "Error al resetear token"
+      }
+    },
+    "interface": {
+      "title": "Configuraciones de Interfaz",
+      "description": "Personalice la apariencia y comportamiento de la interfaz",
+      "fontSize": {
+        "title": "Tamaño de la Fuente",
+        "description": "Ajuste el tamaño del texto del panel según su preferencia.",
+        "options": {
+          "smallest": "Menor",
+          "small": "Pequeño",
+          "default": "Predeterminado",
+          "large": "Grande",
+          "largest": "Mayor"
+        }
+      },
+      "messageSignature": {
+        "title": "Firma de mensajes personales",
+        "description": "Cree una firma de mensaje única para aparecer al final de cada mensaje que envíe desde cualquier bandeja de entrada.",
+        "label": "Firma del mensaje",
+        "placeholder": "Inserte aquí la firma de su mensaje personal."
+      },
+      "hotkeys": {
+        "title": "Tecla de atajo para enviar mensajes",
+        "description": "Puede seleccionar una tecla de atajo (Enter o Cmd/Ctrl+Enter) según su preferencia de escritura.",
+        "enter": {
+          "title": "Enter (↵)",
+          "description": "Enviar mensajes presionando la tecla Enter en lugar de hacer clic en el botón de envío."
+        },
+        "cmdEnter": {
+          "title": "Cmd + Enter (⌘ + ↵)",
+          "description": "Presione la tecla Cmd/Ctrl + Enter en lugar de hacer clic en el botón enviar."
+        }
+      }
+    },
+    "notifications": {
+      "title": "Preferencias de Notificación",
+      "description": "Configure cómo desea recibir notificaciones",
+      "browserPermission": {
+        "title": "Permiso del Navegador",
+        "description": "Permitir notificaciones push del navegador",
+        "granted": "Permisos de notificación concedidos",
+        "denied": "Permisos de notificación denegados"
+      },
+      "email": {
+        "title": "Notificaciones por Email",
+        "types": {
+          "conversation_creation": "Nueva conversación creada",
+          "conversation_assignment": "Conversación asignada a mí",
+          "assigned_conversation_new_message": "Nuevo mensaje en conversación asignada",
+          "conversation_mention": "Mencionado en conversación",
+          "participating_conversation_new_message": "Nuevo mensaje en conversación participante",
+          "sla_missed_first_response": "SLA de primera respuesta perdido",
+          "sla_missed_next_response": "SLA de próxima respuesta perdido",
+          "sla_missed_resolution": "SLA de resolución perdido"
+        }
+      },
+      "push": {
+        "title": "Notificaciones Push",
+        "types": {
+          "conversation_creation": "Nueva conversación creada",
+          "conversation_assignment": "Conversación asignada a mí",
+          "assigned_conversation_new_message": "Nuevo mensaje en conversación asignada",
+          "conversation_mention": "Mencionado en conversación",
+          "participating_conversation_new_message": "Nuevo mensaje en conversación participante",
+          "sla_missed_first_response": "SLA de primera respuesta perdido",
+          "sla_missed_next_response": "SLA de próxima respuesta perdido",
+          "sla_missed_resolution": "SLA de resolución perdido"
+        }
+      },
+      "loading": "Cargando preferencias de notificación...",
+      "updated": "Configuración de notificación actualizada",
+      "profileUpdated": "Perfil actualizado con éxito",
+      "profileUpdateError": "Error al actualizar perfil",
+      "passwordChanged": "Contraseña cambiada con éxito",
+      "passwordChangeError": "Error al cambiar contraseña",
+      "settingsUpdated": "Configuraciones actualizadas",
+      "settingsUpdateError": "Error al actualizar configuraciones",
+      "accountDeleted": "Cuenta eliminada con éxito",
+      "accountDeleteError": "Error al eliminar cuenta"
+    },
+    "audio": {
+      "title": "Notificaciones de Audio",
+      "description": "Configure alertas sonoras para notificaciones",
+      "enable": {
+        "title": "Habilitar Alertas de Audio",
+        "description": "Reproducir sonido al recibir notificaciones"
+      },
+      "tone": {
+        "title": "Tono de Notificación",
+        "preview": "Escuchar sonido",
+        "options": {
+          "ding": "Ding",
+          "chime": "Chime",
+          "bell": "Bell",
+          "notification": "Notification",
+          "magic": "Magic"
+        }
+      },
+      "conditions": {
+        "title": "Condiciones para Alertas",
+        "playWhenInactive": "Reproducir solo cuando la pestaña esté inactiva",
+        "alertUnread": "Alertar si existen conversaciones no leídas asignadas"
+      },
+      "updated": "Configuraciones de audio actualizadas"
+    },
+    "twoFactor": {
+      "title": "Autenticación de Dos Factores",
+      "description": "Agregue una capa extra de seguridad a su cuenta",
+      "status": {
+        "title": "Estado",
+        "enabled": "Activo",
+        "configured": "Configurado y activo",
+        "pending": "Configuración pendiente"
+      },
+      "methods": {
+        "totp": "App Autenticador",
+        "email": "Email"
+      },
+      "setup": {
+        "title": "Activar Autenticación de Dos Factores",
+        "description": "Elija el método de autenticación y confirme su contraseña para continuar.",
+        "methodSelection": "Método de Autenticación",
+        "totp": {
+          "title": "Aplicación Autenticadora",
+          "description": "Use una app como Google Authenticator o Authy"
+        },
+        "email": {
+          "title": "Email",
+          "description": "Reciba códigos de verificación por email"
+        },
+        "currentPassword": "Contraseña Actual",
+        "currentPasswordPlaceholder": "Digite su contraseña actual",
+        "actions": {
+          "cancel": "Cancelar",
+          "continue": "Continuar",
+          "processing": "Procesando..."
+        }
+      },
+      "configure": {
+        "title": "Configure su Aplicación Autenticadora",
+        "description": "Escanee el código QR abajo con su aplicación autenticadora o inserte la clave manualmente.",
+        "qrCodeLoading": "Generando código QR...",
+        "qrCodeError": "Si el problema persiste, use la clave manual abajo",
+        "manualKey": "Clave Manual",
+        "manualKeyDescription": "Use esta clave si no puede escanear el código QR",
+        "actions": {
+          "cancel": "Cancelar",
+          "configured": "Ya Configuré"
+        }
+      },
+      "verify": {
+        "title": "Verificar Configuración",
+        "descriptionTotp": "Digite el código de 6 dígitos de su aplicación autenticadora.",
+        "descriptionEmail": "Digite el código de 6 dígitos enviado a su email.",
+        "codeLabel": "Código de Verificación",
+        "codePlaceholder": "000000",
+        "resendEmail": "Reenviar Código",
+        "actions": {
+          "back": "Volver",
+          "verify": "Verificar",
+          "verifying": "Verificando..."
+        },
+        "errors": {
+          "invalidCode": "Código de verificación inválido",
+          "attemptsRemaining": "Código inválido. {{attempts}} intentos restantes"
+        }
+      },
+      "backupCodes": {
+        "title": "Códigos de Backup",
+        "description": "Guarde estos códigos en un lugar seguro. Cada código puede ser usado solo una vez para iniciar sesión en caso de que pierda acceso a su dispositivo.",
+        "warning": "¡Estos códigos no se mostrarán nuevamente. Asegúrese de guardarlos ahora!",
+        "copyAll": "Copiar Todos los Códigos",
+        "complete": "Completar Configuración",
+        "remaining": "{{count}} códigos restantes",
+        "regenerate": "Regenerar",
+        "regenerated": "Nuevos códigos de backup generados"
+      },
+      "disable": {
+        "title": "Desactivar Autenticación de Dos Factores",
+        "description": "¿Está seguro de que desea desactivar? Su cuenta quedará menos segura.",
+        "warning": "Remover la autenticación de dos factores hará su cuenta más vulnerable a accesos no autorizados.",
+        "passwordLabel": "Confirme su contraseña",
+        "passwordPlaceholder": "Digite su contraseña",
+        "actions": {
+          "cancel": "Cancelar",
+          "disable": "Desactivar",
+          "disabling": "Desactivando..."
+        }
+      },
+      "notifications": {
+        "enabled": "¡Autenticación de dos factores activada con éxito!",
+        "disabled": "Autenticación de dos factores desactivada",
+        "emailCodeSent": "Código de verificación enviado a su email",
+        "emailCodeResent": "Nuevo código enviado a su email",
+        "emailCodeError": "Error al enviar código",
+        "emailCodeRateLimit": "Por favor, espere antes de solicitar un nuevo código",
+        "passwordRequired": "Por favor, inserte su contraseña",
+        "passwordIncorrect": "Contraseña incorrecta",
+        "enableError": "Error al activar autenticación de dos factores",
+        "disableError": "Error al desactivar autenticación de dos factores",
+        "backupCodesError": "Error al generar nuevos códigos de backup"
+      },
+      "actions": {
+        "enable": "Activar Autenticación de Dos Factores",
+        "disable": "Desactivar Autenticación de Dos Factores"
+      },
+      "info": "La autenticación de dos factores agrega una capa extra de seguridad exigiendo un código adicional además de su contraseña al iniciar sesión."
+    },
+    "common": {
+      "cancel": "Cancelar",
+      "save": "Guardar"
+    },
+    "photoUploader": {
+      "changePhoto": "Cambiar Foto",
+      "removePhoto": "Eliminar",
+      "uploading": "Cargando...",
+      "fileTypeError": "Por favor, seleccione solo archivos de imagen",
+      "fileSizeError": "La imagen debe tener como máximo 5MB",
+      "fileInfo": "JPG, PNG o GIF. Máximo 5MB.",
+      "photoRemoved": "Foto eliminada con éxito",
+      "photoRemoveError": "Error al eliminar foto"
+    },
+    "dangerZone": {
+      "title": "Zona de Peligro",
+      "description": "Acciones irreversibles que afectan permanentemente su cuenta",
+      "deleteAccount": {
+        "title": "Eliminar Cuenta",
+        "description": "Eliminar permanentemente su cuenta y todos los datos asociados. Esta acción no se puede deshacer.",
+        "button": "Eliminar Cuenta",
+        "confirmTitle": "Confirmar Eliminación de la Cuenta",
+        "confirmDescription": "Esta acción es irreversible y eliminará permanentemente su cuenta.",
+        "permanentWarning": "Todos sus datos, conversaciones y configuraciones se perderán para siempre.",
+        "emailConfirmText": "Para confirmar, digite su email:",
+        "emailLabel": "Confirmar Email",
+        "emailPlaceholder": "Digite su email para confirmar",
+        "emailMismatch": "El email no coincide",
+        "cancel": "Cancelar",
+        "confirmButton": "Eliminar Cuenta",
+        "deleting": "Eliminando..."
+      }
+    },
+    "tabs": {
+      "personalData": "Datos Personales",
+      "interface": "Interfaz",
+      "notifications": "Notificaciones",
+      "security": "Seguridad"
+    }
+}

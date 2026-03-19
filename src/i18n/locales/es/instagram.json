@@ -1,0 +1,66 @@
+{
+  "title": "Conectar con Instagram",
+  "name": "Instagram",
+  "description": "Conecte su cuenta Instagram Business para comenzar a usar la API de Instagram",
+  "connectButton": "Conectar con Instagram",
+  "connecting": "Conectando...",
+  "cancel": "Cancelar",
+  "facebookAuth": "Autenticación con Facebook",
+  "authDescription": "Conecte su cuenta para acceder a las páginas de Instagram",
+  "signInWithFacebook": "Iniciar sesión con Facebook",
+  "selectPage": "Seleccionar Página",
+  "selectPageDescription": "Elija la página que será conectada a Instagram",
+  "selected": "Seleccionado",
+  "channelConfiguration": "Configuración del Canal",
+  "channelConfigDescription": "Defina un nombre para identificar este canal",
+  "channelName": "Nombre del Canal",
+  "channelNamePlaceholder": "Canal Instagram",
+  "creating": "Creando...",
+  "createChannel": "Crear canal",
+  "warnings": {
+    "notConfigured": "Instagram no configurado",
+    "notConfiguredDescription": "No se encontró la configuración INSTAGRAM_APP_ID. Por favor contacte al administrador del sistema."
+  },
+  "duplicate": {
+    "title": "Inbox Duplicado Detectado - Instagram",
+    "description": "Detectamos múltiples inboxes para la misma cuenta de Instagram. Esto puede causar problemas en la entrega de mensajes.",
+    "resolveButton": "Resolver Conflicto",
+    "detailsButton": "Ver Detalles"
+  },
+  "validation": {
+    "pageRequired": "Seleccione una página de Instagram",
+    "nameRequired": "El nombre del canal es obligatorio"
+  },
+  "errors": {
+    "notConfigured": "Instagram no está configurado",
+    "noAccount": "Cuenta no encontrada",
+    "authorizationFailed": "Error al conectar con Instagram. Verifique la configuración.",
+    "sdkNotLoaded": "Facebook SDK no cargado",
+    "authNotCompleted": "Autorización de Facebook no completada",
+    "fetchPagesError": "Fallo al buscar páginas",
+    "createChannelError": "Fallo al crear canal"
+  },
+  "instructions": {
+    "redirect": "Será redirigido a Instagram para autorizar la conexión",
+    "businessAccount": "Asegúrese de que su cuenta sea de tipo Instagram Business"
+  },
+  "success": {
+    "created": "¡Canal Instagram creado con éxito!"
+  },
+  "callback": {
+    "processing": "Procesando conexión Instagram...",
+    "processingAuth": "Procesando autorización...",
+    "processingStatus": "Procesando...",
+    "success": "¡Éxito!",
+    "successMessage": "¡Instagram conectado con éxito!",
+    "redirecting": "Redirigiendo a la lista de canales...",
+    "error": "Error en la conexión",
+    "errorAuth": "Error en la autorización",
+    "errorMessage": "Error al procesar la conexión",
+    "errorMissingCode": "Código de autorización o state no recibido",
+    "errorInvalidParams": "Parámetros inválidos en la respuesta de Instagram",
+    "errorUnknown": "Error desconocido al procesar la conexión",
+    "closeMessage": "Puede cerrar esta página e intentar nuevamente.",
+    "footer": "Espere mientras procesamos su autorización de Instagram."
+  }
+}

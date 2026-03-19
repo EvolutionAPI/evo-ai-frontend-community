@@ -1,0 +1,132 @@
+{
+  "header": {
+    "defaultTitle": "EvoAI",
+    "defaultSubtitle": "¿Cómo podemos ayudar?",
+    "endConversation": "Finalizar conversación",
+    "onlineNow": "En línea ahora",
+    "weAreResponding": "Estamos respondiendo",
+    "replyTime": "Respuesta: {{time}}"
+  },
+  "chat": {
+    "uploadingFiles": "Enviando archivos...",
+    "retryMessage": "Intentar nuevamente",
+    "replyTo": "Responder",
+    "you": "Usted",
+    "agent": "Agente",
+    "user": "Usuario",
+    "file": "Archivo",
+    "fileSize": "{{size}} KB",
+    "loadMore": "Cargar más mensajes"
+  },
+  "composer": {
+    "placeholder": "Escriba su mensaje...",
+    "send": "Enviar"
+  },
+  "attachment": {
+    "attach": "Adjuntar archivo",
+    "dropHere": "Suelte el archivo aquí",
+    "error": "Error en el archivo: {{error}}"
+  },
+  "emoji": {
+    "addEmoji": "Agregar emoji"
+  },
+  "emailTranscript": {
+    "button": "Enviar por email",
+    "sending": "Enviando..."
+  },
+  "endConversation": {
+    "tooltip": "Finalizar conversación",
+    "error": "Error al finalizar conversación"
+  },
+  "replyTo": {
+    "replyingTo": "Respondiendo a {{name}}",
+    "cancelReply": "Cancelar respuesta",
+    "you": "Usted",
+    "agent": "Agente"
+  },
+  "messageList": {
+    "loadingOld": "Cargando mensajes antiguos...",
+    "loadOldMessages": "Cargar mensajes antiguos",
+    "sending": "enviando…",
+    "retry": "reenviar",
+    "reply": "responder",
+    "now": "ahora"
+  },
+  "startNewConversation": {
+    "button": "Iniciar nueva conversación",
+    "starting": "Iniciando conversación..."
+  },
+  "typing": {
+    "typing": "{{name}} está escribiendo",
+    "now": "ahora"
+  },
+  "toast": {
+    "emailTranscriptSuccess": "¡Historial de la conversación enviado por email con éxito!",
+    "emailTranscriptError": "Falla al enviar historial por email. Intente nuevamente.",
+    "conversationEnded": "¡Conversación finalizada con éxito!",
+    "newConversationStarted": "¡Nueva conversación iniciada!",
+    "uploadFailed": "Falla en el envío del archivo"
+  },
+  "buttons": {
+    "sendEmailTranscript": "Enviar historial por email",
+    "startNewConversation": "Iniciar nueva conversación",
+    "send": "Enviar",
+    "attach": "Adjuntar archivo"
+  },
+  "input": {
+    "placeholder": "Digite su mensaje...",
+    "replyingTo": "Respondiendo a"
+  },
+  "errors": {
+    "generic": "Ocurrió un error. Por favor, intente nuevamente.",
+    "sendMessage": "Error al enviar mensaje",
+    "loadMessages": "Error al cargar mensajes",
+    "createConversation": "Error al crear conversación",
+    "connectionLost": "Conexión perdida. Intentando reconectar..."
+  },
+  "status": {
+    "online": "En línea",
+    "offline": "Desconectado",
+    "sending": "Enviando...",
+    "sent": "Enviado",
+    "failed": "Falló",
+    "replyTime": "Tiempo de respuesta: {{time}}"
+  },
+  "pagination": {
+    "loadingMore": "Cargando mensajes anteriores...",
+    "noMoreMessages": "No hay más mensajes"
+  },
+  "preChat": {
+    "loading": "Preparando conversación..."
+  },
+  "system": {
+    "conversationCreated": "Conversación iniciada",
+    "conversationResolved": "Conversación finalizada",
+    "agentJoined": "{{name}} entró a la conversación",
+    "agentLeft": "{{name}} salió de la conversación"
+  },
+  "replyTimeStatus": {
+    "inAFewMinutes": "Responderemos en unos minutos",
+    "inAFewHours": "Responderemos en unas horas",
+    "inADay": "Responderemos en un día"
+  },
+  "businessHours": {
+    "backTomorrow": "Volveremos mañana",
+    "backAt": "Volveremos a las {{time}}",
+    "offline": "Equipo desconectado"
+  },
+  "attachments": {
+    "uploading": "Enviando archivo...",
+    "uploaded": "Archivo enviado",
+    "failed": "Falla en el envío",
+    "maxSizeExceeded": "Archivo muy grande. Tamaño máximo: {{maxSize}}MB",
+    "unsupportedType": "Tipo de archivo no soportado"
+  },
+  "emailCollect": {
+    "placeholder": "Ingrese su email",
+    "button": "Enviar",
+    "invalidEmail": "Por favor, ingrese un email válido",
+    "success": "Email guardado con éxito!",
+    "error": "Error al guardar email. Intente nuevamente."
+  }
+}

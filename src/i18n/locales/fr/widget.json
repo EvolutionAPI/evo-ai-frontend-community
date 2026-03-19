@@ -1,0 +1,132 @@
+{
+  "header": {
+    "defaultTitle": "EvoAI",
+    "defaultSubtitle": "Comment pouvons-nous vous aider ?",
+    "endConversation": "Terminer la conversation",
+    "onlineNow": "En ligne maintenant",
+    "weAreResponding": "Nous répondons",
+    "replyTime": "Réponse : {{time}}"
+  },
+  "chat": {
+    "uploadingFiles": "Envoi de fichiers en cours...",
+    "retryMessage": "Réessayer",
+    "replyTo": "Répondre",
+    "you": "Vous",
+    "agent": "Agent",
+    "user": "Utilisateur",
+    "file": "Fichier",
+    "fileSize": "{{size}} Ko",
+    "loadMore": "Charger plus de messages"
+  },
+  "composer": {
+    "placeholder": "Écrivez votre message...",
+    "send": "Envoyer"
+  },
+  "attachment": {
+    "attach": "Joindre un fichier",
+    "dropHere": "Déposez le fichier ici",
+    "error": "Erreur de fichier : {{error}}"
+  },
+  "emoji": {
+    "addEmoji": "Ajouter un emoji"
+  },
+  "emailTranscript": {
+    "button": "Envoyer par e-mail",
+    "sending": "Envoi en cours..."
+  },
+  "endConversation": {
+    "tooltip": "Terminer la conversation",
+    "error": "Erreur lors de la fin de la conversation"
+  },
+  "replyTo": {
+    "replyingTo": "Répondre à {{name}}",
+    "cancelReply": "Annuler la réponse",
+    "you": "Vous",
+    "agent": "Agent"
+  },
+  "messageList": {
+    "loadingOld": "Chargement des anciens messages...",
+    "loadOldMessages": "Charger les anciens messages",
+    "sending": "envoi en cours…",
+    "retry": "renvoyer",
+    "reply": "répondre",
+    "now": "maintenant"
+  },
+  "startNewConversation": {
+    "button": "Démarrer une nouvelle conversation",
+    "starting": "Démarrage de la conversation en cours..."
+  },
+  "typing": {
+    "typing": "{{name}} est en train d'écrire",
+    "now": "maintenant"
+  },
+  "toast": {
+    "emailTranscriptSuccess": "Historique de la conversation envoyé par e-mail avec succès !",
+    "emailTranscriptError": "Échec de l'envoi de l'historique par e-mail. Veuillez réessayer.",
+    "conversationEnded": "Conversation terminée avec succès !",
+    "newConversationStarted": "Nouvelle conversation démarrée !",
+    "uploadFailed": "Échec de l'envoi du fichier"
+  },
+  "buttons": {
+    "sendEmailTranscript": "Envoyer l'historique par e-mail",
+    "startNewConversation": "Démarrer une nouvelle conversation",
+    "send": "Envoyer",
+    "attach": "Joindre un fichier"
+  },
+  "input": {
+    "placeholder": "Saisissez votre message...",
+    "replyingTo": "Répondre à"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "sendMessage": "Erreur lors de l'envoi du message",
+    "loadMessages": "Erreur lors du chargement des messages",
+    "createConversation": "Erreur lors de la création de la conversation",
+    "connectionLost": "Connexion perdue. Tentative de reconnexion..."
+  },
+  "status": {
+    "online": "En ligne",
+    "offline": "Hors ligne",
+    "sending": "Envoi en cours...",
+    "sent": "Envoyé",
+    "failed": "Échoué",
+    "replyTime": "Temps de réponse : {{time}}"
+  },
+  "pagination": {
+    "loadingMore": "Chargement des messages précédents...",
+    "noMoreMessages": "Il n'y a plus de messages"
+  },
+  "preChat": {
+    "loading": "Préparation de la conversation..."
+  },
+  "system": {
+    "conversationCreated": "Conversation démarrée",
+    "conversationResolved": "Conversation terminée",
+    "agentJoined": "{{name}} a rejoint la conversation",
+    "agentLeft": "{{name}} a quitté la conversation"
+  },
+  "replyTimeStatus": {
+    "inAFewMinutes": "Nous répondrons dans quelques minutes",
+    "inAFewHours": "Nous répondrons dans quelques heures",
+    "inADay": "Nous répondrons dans la journée"
+  },
+  "businessHours": {
+    "backTomorrow": "Nous serons de retour demain",
+    "backAt": "Nous serons de retour à {{time}}",
+    "offline": "Équipe hors ligne"
+  },
+  "attachments": {
+    "uploading": "Envoi du fichier en cours...",
+    "uploaded": "Fichier envoyé",
+    "failed": "Échec de l'envoi",
+    "maxSizeExceeded": "Fichier trop volumineux. Taille maximale : {{maxSize}}Mo",
+    "unsupportedType": "Type de fichier non pris en charge"
+  },
+  "emailCollect": {
+    "placeholder": "Entrez votre email",
+    "button": "Envoyer",
+    "invalidEmail": "Veuillez entrer un email valide",
+    "success": "Email enregistré avec succès !",
+    "error": "Erreur lors de l'enregistrement. Veuillez réessayer."
+  }
+}

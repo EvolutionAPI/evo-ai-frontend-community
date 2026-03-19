@@ -1,0 +1,197 @@
+{
+  "title": "Outils Personnalisés",
+  "header": {
+    "title": "Outils Personnalisés",
+    "subtitle": "Créez et gérez des outils HTTP personnalisés pour vos agents",
+    "newTool": "Nouvel Outil Personnalisé",
+    "searchPlaceholder": "Rechercher par nom, méthode ou endpoint..."
+  },
+  "card": {
+    "noDescription": "Sans description",
+    "examples": "{{count}} exemple(s)",
+    "createdAt": "Créé le",
+    "actions": {
+      "test": "Tester",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    }
+  },
+  "details": {
+    "title": "Détails de l'Outil",
+    "sections": {
+      "basicInfo": "Informations de Base",
+      "tags": "Tags",
+      "examples": "Exemples",
+      "headers": "En-têtes HTTP",
+      "inputOutput": "Modes d'Entrée et de Sortie"
+    },
+    "fields": {
+      "name": "Nom",
+      "description": "Description",
+      "method": "Méthode HTTP",
+      "createdAt": "Créé le",
+      "endpoint": "Endpoint",
+      "inputModes": "Modes d'Entrée",
+      "outputModes": "Modes de Sortie",
+      "notSpecified": "Non spécifié"
+    },
+    "empty": {
+      "tags": "Aucun tag configuré",
+      "examples": "Aucun exemple disponible",
+      "headers": "Aucun en-tête HTTP configuré"
+    },
+    "actions": {
+      "test": "Tester",
+      "edit": "Modifier"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Créer un Nouvel Outil Personnalisé",
+      "edit": "Modifier {{name}}",
+      "view": "Visualiser {{name}}"
+    },
+    "sections": {
+      "basicInfo": "Informations de Base",
+      "httpConfig": "Configuration HTTP",
+      "tags": "Tags",
+      "examples": "Exemples"
+    },
+    "fields": {
+      "name": {
+        "label": "Nom",
+        "placeholder": "Nom de l'outil personnalisé",
+        "required": true
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Description de l'outil personnalisé..."
+      },
+      "method": {
+        "label": "Méthode HTTP",
+        "placeholder": "Sélectionnez la méthode",
+        "required": true
+      },
+      "endpoint": {
+        "label": "Endpoint",
+        "placeholder": "https://api.exemple.com/endpoint",
+        "required": true
+      },
+      "headers": {
+        "label": "En-têtes HTTP (JSON)",
+        "placeholder": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+        "hint": "Configurez les en-têtes HTTP nécessaires pour l'authentification et la communication"
+      },
+      "bodyParams": {
+        "label": "Paramètres du Body (JSON)",
+        "placeholder": "{\"key\": \"value\", \"nested\": {\"field\": \"data\"}}",
+        "hint": "Configurez les paramètres du corps de la requête envoyés avec les requêtes POST/PUT/PATCH"
+      },
+      "queryParams": {
+        "label": "Paramètres de Query (JSON)",
+        "placeholder": "{\"param1\": \"value1\", \"param2\": \"value2\"}",
+        "hint": "Configurez les paramètres de la chaîne de requête de l'URL ajoutés à l'endpoint"
+      },
+      "pathParams": {
+        "label": "Paramètres de Path (JSON)",
+        "placeholder": "{\"user_id\": \"{user_id}\", \"resource_id\": \"{resource_id}\"}",
+        "hint": "Configurez les paramètres de path qui seront remplacés dans l'URL de l'endpoint (ex: /users/{user_id})"
+      },
+      "values": {
+        "label": "Valeurs par Défaut (JSON)",
+        "placeholder": "{\"default_key\": \"default_value\"}",
+        "hint": "Configurez les valeurs par défaut utilisées comme repli lorsque les paramètres ne sont pas fournis à l'exécution"
+      },
+      "errorHandling": {
+        "label": "Gestion des Erreurs (JSON)",
+        "placeholder": "{\"timeout\": 30, \"retry_count\": 3, \"fallback_response\": \"{}\"}",
+        "hint": "Configurez les paramètres de gestion des erreurs: timeout (secondes), retry_count et fallback_response"
+      },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "api, http, webhook",
+        "hint": "Séparez les tags par des virgules pour organiser et catégoriser l'outil"
+      },
+      "examples": {
+        "label": "Exemples",
+        "placeholder": "Ajouter un exemple d'utilisation..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Le nom est obligatoire",
+      "endpointRequired": "L'endpoint est obligatoire",
+      "endpointInvalid": "L'endpoint doit être une URL valide",
+      "methodRequired": "La méthode HTTP est obligatoire",
+      "headersInvalid": "JSON des en-têtes invalide",
+      "bodyParamsInvalid": "JSON invalide pour les paramètres du body",
+      "queryParamsInvalid": "JSON invalide pour les paramètres de query",
+      "pathParamsInvalid": "JSON invalide pour les paramètres de path",
+      "valuesInvalid": "JSON invalide pour les valeurs par défaut",
+      "errorHandlingInvalid": "JSON invalide pour la gestion des erreurs"
+    },
+    "actions": {
+      "cancel": "Annuler",
+      "save": "Enregistrer les Modifications",
+      "create": "Créer l'Outil",
+      "saving": "Enregistrement..."
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Créer un Nouvel Outil Personnalisé",
+      "edit": "Modifier {{name}}",
+      "view": "Visualiser {{name}}",
+      "editFallback": "Modifier l'Outil Personnalisé",
+      "viewFallback": "Visualiser l'Outil Personnalisé"
+    }
+  },
+  "filter": {
+    "title": "Filtrer les Outils Personnalisés",
+    "description": "Configurez les filtres pour trouver les outils personnalisés que vous recherchez",
+    "apply": "Appliquer les Filtres",
+    "clear": "Effacer les Filtres",
+    "addFilter": "Ajouter un Filtre"
+  },
+  "table": {
+    "columns": {
+      "tool": "Outil",
+      "description": "Description",
+      "endpoint": "Endpoint",
+      "tags": "Tags",
+      "createdAt": "Créé le",
+      "test": "Test"
+    },
+    "noName": "Sans nom",
+    "noDescription": "Sans description",
+    "noTags": "-",
+    "actions": {
+      "test": "Tester",
+      "edit": "Modifier l'outil",
+      "delete": "Supprimer l'outil",
+      "create": "Créer un outil personnalisé"
+    },
+    "empty": {
+      "title": "Aucun outil personnalisé créé",
+      "description": "Créez des outils personnalisés pour étendre les capacités des agents.",
+      "noResults": "Aucun outil personnalisé trouvé"
+    }
+  },
+  "loading": {
+    "tools": "Chargement des outils...",
+    "creating": "Création...",
+    "updating": "Mise à jour...",
+    "deleting": "Suppression...",
+    "testing": "Test en cours..."
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des outils personnalisés",
+    "createSuccess": "Outil personnalisé créé avec succès",
+    "createError": "Erreur lors de la création de l'outil personnalisé",
+    "updateSuccess": "Outil personnalisé mis à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour de l'outil personnalisé",
+    "deleteSuccess": "Outil personnalisé supprimé avec succès",
+    "deleteError": "Erreur lors de la suppression de l'outil personnalisé",
+    "testSuccess": "Test exécuté avec succès",
+    "testError": "Erreur lors du test de l'outil personnalisé"
+  }
+}

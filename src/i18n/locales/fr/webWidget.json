@@ -1,0 +1,67 @@
+{
+  "title": "Canal Website",
+  "description": "Connectez votre site avec un widget de chat en direct",
+  "basicInfo": {
+    "title": "Informations de Base",
+    "description": "Configurez le nom et l'URL de votre site web"
+  },
+  "appearance": {
+    "title": "Apparence du Widget",
+    "description": "Personnalisez les couleurs et messages du widget"
+  },
+  "greeting": {
+    "title": "Message de Bienvenue",
+    "description": "Configurez les messages automatiques de bienvenue",
+    "autoDescription": "Envoyer automatiquement un message de bienvenue lorsque les clients démarrent une conversation"
+  },
+  "fields": {
+    "channelName": "Nom du Canal",
+    "channelNamePlaceholder": "Site Web",
+    "websiteUrl": "URL du Site Web",
+    "websiteUrlPlaceholder": "https://monsite.com",
+    "widgetColor": "Couleur du Widget",
+    "welcomeTitle": "Titre de Bienvenue",
+    "welcomeTitlePlaceholder": "Bonjour ! Comment pouvons-nous vous aider ?",
+    "welcomeTagline": "Slogan de Bienvenue",
+    "welcomeTaglinePlaceholder": "Nous répondons généralement en quelques minutes",
+    "welcomeTaglineHelp": "Ce message sera affiché dans l'en-tête du widget",
+    "greetingEnabled": "Activer le message de bienvenue automatique",
+    "greetingMessage": "Message de Bienvenue",
+    "greetingMessagePlaceholder": "Bonjour ! Bienvenue sur notre site. Comment pouvons-nous vous aider aujourd'hui ?"
+  },
+  "summary": {
+    "title": "Résumé de la Configuration",
+    "name": "Nom",
+    "url": "URL",
+    "color": "Couleur",
+    "greeting": "Bienvenue",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "notConfigured": "non configuré"
+  },
+  "validation": {
+    "websiteNameRequired": "Le nom du site est obligatoire",
+    "widgetColorRequired": "La couleur du widget est obligatoire",
+    "replyTimeRequired": "Le délai de réponse est obligatoire"
+  },
+  "widgetHelpers": {
+    "positions": {
+      "left": "Gauche",
+      "right": "Droite"
+    },
+    "bubbleTypes": {
+      "standard": "Standard",
+      "expanded": "Étendu"
+    },
+    "viewOptions": {
+      "preview": "Aperçu",
+      "script": "Code"
+    },
+    "replyTime": {
+      "fewMinutes": "En quelques minutes",
+      "fewHours": "En quelques heures",
+      "day": "En un jour"
+    },
+    "defaultLauncherTitle": "Contactez-nous"
+  }
+}

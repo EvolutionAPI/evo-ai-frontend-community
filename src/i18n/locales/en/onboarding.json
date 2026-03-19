@@ -1,0 +1,48 @@
+{
+  "createAccount": {
+    "title": "Welcome!",
+    "subtitle": "To start using the system, you need to create your first organization.",
+    "form": {
+      "organizationName": {
+        "label": "Organization Name",
+        "placeholder": "Ex: My Company LLC",
+        "errors": {
+          "required": "Organization name is required",
+          "minLength": "Organization name must be at least 2 characters"
+        }
+      },
+      "userFullName": {
+        "label": "Your Full Name",
+        "placeholder": "Ex: John Smith",
+        "errors": {
+          "required": "Your full name is required",
+          "minLength": "Name must be at least 2 characters"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "helper": "This is the email used to create your account"
+      },
+      "support_email": {
+        "label": "Support Email",
+        "helper": "This is the support email for your account",
+        "errors": {
+          "required": "Support email is required",
+          "invalid": "Support email must be a valid email address"
+        }
+      },
+      "submitButton": {
+        "idle": "Create Organization",
+        "loading": "Creating organization..."
+      }
+    },
+    "success": {
+      "title": "Organization created successfully!",
+      "description": "Your account has been created and you can now start using the system."
+    },
+    "error": {
+      "generic": "Error creating organization"
+    },
+    "footer": "By creating an organization, you become its administrator and can add other users later."
+  }
+}

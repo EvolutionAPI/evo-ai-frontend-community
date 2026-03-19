@@ -1,0 +1,15 @@
+{
+  "title": "Accès Refusé",
+  "subtitle": "Vous n'avez pas la permission d'accéder à cette page",
+  "description": "Cette page nécessite des permissions spécifiques qui ne sont pas disponibles pour votre compte actuel.",
+  "contactAdmin": {
+    "title": "Besoin d'accès?",
+    "message": "Contactez l'administrateur de votre compte pour demander les permissions nécessaires."
+  },
+  "buttons": {
+    "back": "Retour",
+    "goHome": "Aller à l'Accueil"
+  },
+  "errorCode": "Code d'erreur: 403 - Accès Refusé"
+}
+

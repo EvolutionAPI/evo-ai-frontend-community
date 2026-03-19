@@ -1,0 +1,177 @@
+{
+  "title": "Agents IA",
+  "subtitle": "Gérez vos agents IA",
+  "loading": {
+    "agent": "Chargement de l'agent IA...",
+    "creating": "Création de l'agent IA...",
+    "updating": "Mise à jour de l'agent IA..."
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement de l'agent IA",
+    "loadErrorDescription": "Impossible de charger les données de l'agent IA pour l'édition.",
+    "createSuccess": "Agent IA créé avec succès !",
+    "updateSuccess": "Agent IA mis à jour avec succès !",
+    "saveError": "Erreur lors de l'enregistrement de l'agent IA",
+    "confirmCancel": "Vous avez des modifications non enregistrées. Voulez-vous vraiment annuler ?",
+    "apiKeysError": "Erreur lors du chargement des clés API :",
+    "agentToolsError": "Erreur lors du chargement des données des agents IA :"
+  },
+  "header": {
+    "back": "Retour",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "view": "Visualiser",
+    "duplicate": "Dupliquer"
+  },
+  "tabs": {
+    "basic": "Basique",
+    "configuration": "Configuration",
+    "subagents": "Sous-agents",
+    "tools": "Outils"
+  },
+  "validation": {
+    "nameRequired": "Le nom est obligatoire",
+    "configurationIncomplete": "Configuration incomplète"
+  },
+  "forms": {
+    "basicInfo": {
+      "name": "Nom",
+      "description": "Description",
+      "type": "Type",
+      "role": "Rôle",
+      "goal": "Objectif"
+    },
+    "llmConfig": {
+      "model": "Modèle",
+      "apiKey": "Clé API",
+      "instruction": "Instruction",
+      "outputKey": "Clé de Sortie",
+      "advancedConfig": "Configuration Avancée",
+      "messageWaitTime": "Temps d'Attente du Message",
+      "messageSignature": "Signature du Message",
+      "enableTextSegmentation": "Activer la Segmentation de Texte",
+      "maxCharactersPerSegment": "Maximum de Caractères par Segment",
+      "minSegmentSize": "Taille Minimale du Segment",
+      "characterDelayMs": "Délai par Caractère (ms)"
+    },
+    "a2aConfig": {
+      "agentCardUrl": "URL de la Carte d'Agent IA",
+      "outputKey": "Clé de Sortie"
+    },
+    "toolsConfig": {
+      "tools": "Outils",
+      "agentTools": "Agent comme Outil",
+      "customTools": "Outils Personnalisés",
+      "mcpServers": "Serveurs MCP",
+      "loadMemory": "Charger la Mémoire",
+      "preloadMemory": "Précharger la Mémoire",
+      "planner": "Planificateur",
+      "outputSchema": "Schéma de Sortie"
+    }
+  },
+  "types": {
+    "llm": "LLM",
+    "a2a": "Agent-to-Agent",
+    "workflow": "Workflow",
+    "task": "Tâche"
+  },
+  "actions": {
+    "create": "Créer un Agent IA",
+    "update": "Mettre à Jour l'Agent IA",
+    "delete": "Supprimer l'Agent IA",
+    "duplicate": "Dupliquer l'Agent IA",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "edit": "Modifier",
+    "view": "Visualiser"
+  },
+  "permissions": {
+    "viewDenied": "Vous n'avez pas la permission de visualiser les agents IA",
+    "createDenied": "Vous n'avez pas la permission de créer des agents IA",
+    "editDenied": "Vous n'avez pas la permission de modifier les agents IA",
+    "deleteDenied": "Vous n'avez pas la permission de supprimer les agents IA"
+  },
+  "loadError": "Erreur lors du chargement des agents IA",
+  "createAgent": "Nouvel Agent IA",
+  "emptyState": {
+    "title": "Aucun agent IA créé",
+    "description": "Créez des agents IA pour commencer à automatiser les tâches.",
+    "noResults": "Aucun agent IA trouvé"
+  },
+  "search": {
+    "placeholder": "Rechercher des agents IA...",
+    "noResults": "Aucun agent IA ne correspond à votre recherche",
+    "clearSearch": "Effacer la recherche"
+  },
+  "fields": {
+    "name": "Nom",
+    "description": "Description",
+    "noDescription": "Sans description",
+    "type": "Type",
+    "model": "Modèle",
+    "notAvailable": "N/A",
+    "createdAt": "Créé le"
+  },
+  "card": {
+    "actions": "Actions",
+    "model": "Modèle",
+    "type": "Type"
+  },
+  "table": {
+    "actions": "Actions",
+    "emptyMessage": "Aucun agent IA trouvé",
+    "clickToView": "💡 Cliquez sur un agent IA pour voir les détails ou ouvrir la Carte d'Agent IA"
+  },
+  "dropdown": {
+    "testA2A": "Tester A2A",
+    "edit": "Modifier",
+    "moveToFolder": "Déplacer vers un dossier",
+    "exportJSON": "Exporter JSON",
+    "share": "Partager",
+    "delete": "Supprimer"
+  },
+  "apiKeys": {
+    "manage": "Gérer les Clés API"
+  },
+  "export": {
+    "all": "Exporter Tout",
+    "success": "Agents IA exportés avec succès",
+    "successDesc": "{{count}} agents IA ont été exportés",
+    "error": "Erreur lors de l'exportation des agents IA",
+    "errorDesc": "Impossible d'exporter les agents IA"
+  },
+  "deleteDialog": {
+    "title": "Supprimer l'Agent IA",
+    "description": "Êtes-vous sûr de vouloir supprimer l'agent IA \"{{name}}\" ? Cette action ne peut pas être annulée.",
+    "cancel": "Annuler",
+    "confirm": "Supprimer",
+    "deleting": "Suppression...",
+    "success": "Agent IA \"{{name}}\" supprimé avec succès !"
+  },
+  "bulkDelete": "Fonctionnalité de suppression en masse en développement",
+  "testA2A": "Fonctionnalité de test A2A en développement",
+  "moveToFolder": "Fonctionnalité de déplacement vers un dossier en développement",
+  "exportJSON": "Fonctionnalité d'exportation JSON en développement",
+  "share": "Fonctionnalité de partage d'agent IA en développement",
+  "edit": {
+    "integrations": {
+      "github": {
+        "configTitle": "Configurer GitHub",
+        "connectTitle": "Se connecter à GitHub",
+        "connectDescription": "Permettre à l'agent IA d'accéder aux dépôts, issues et pull requests GitHub",
+        "connecting": "Connexion...",
+        "connectButton": "Se connecter à GitHub",
+        "connected": "Connecté",
+        "connectedAs": "Connecté en tant que",
+        "connectedDescription": "L'agent IA peut maintenant accéder aux dépôts, issues, pull requests et autres informations GitHub.",
+        "toolsTitle": "Outils Disponibles",
+        "toolsDescription": "Sélectionnez les outils GitHub que l'agent IA peut utiliser",
+        "selectAll": "Tout sélectionner",
+        "noTools": "Aucun outil disponible",
+        "saveConfig": "ENREGISTRER LA CONFIGURATION",
+        "disconnect": "Déconnecter"
+      }
+    }
+  }
+}

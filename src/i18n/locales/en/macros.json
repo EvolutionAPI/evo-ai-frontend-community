@@ -1,0 +1,126 @@
+{
+  "title": "Macros",
+  "loading": "Loading macros...",
+  "header": {
+    "title": "Macros",
+    "subtitle": "{{count}} macros in total",
+    "searchPlaceholder": "Search macros...",
+    "newMacro": "New Macro",
+    "bulkDelete": "Delete",
+    "clearSelection": "Clear Selection",
+    "selected": "{{count}} selected",
+    "filter": "Filter"
+  },
+  "empty": {
+    "title": "No macros found",
+    "description": "Create your first macro to automate repetitive tasks.",
+    "action": "New Macro"
+  },
+  "modal": {
+    "title": {
+      "create": "New Macro",
+      "edit": "Edit Macro"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Enter macro name",
+      "visibility": "Visibility",
+      "visibilityPersonal": "Private",
+      "visibilityPersonalDesc": "This macro will be private and available only to you",
+      "visibilityGlobal": "Public",
+      "visibilityGlobalDesc": "This macro will be public and available to all agents",
+      "actionsTitle": "Actions",
+      "actionsSubtitle": "Macros will execute actions in the defined order",
+      "addAction": "Add Action",
+      "actionLabel": "Action",
+      "configLabel": "Configuration"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "actionsRequired": "At least one action is required",
+      "actionTypeRequired": "Action type is required",
+      "selectAtLeastOne": "Select at least one option",
+      "fieldRequired": "This field is required"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "create": "Create",
+      "update": "Update",
+      "saving": "Saving..."
+    }
+  },
+  "actionRow": {
+    "selectPlaceholder": "Select an option",
+    "multiSelectPlaceholder": "Select options",
+    "loadingOptions": "Loading options...",
+    "textareaPlaceholder": "Enter message or note",
+    "textPlaceholder": "Enter value",
+    "hoursPlaceholder": "Hours to snooze",
+    "emailPlaceholder": "Enter email",
+    "urlPlaceholder": "Enter webhook URL",
+    "fileSelectButton": "Select File",
+    "fileUploading": "Uploading...",
+    "fileSelected": "File selected: {{filename}}",
+    "noConfig": "This action does not require additional configuration."
+  },
+  "table": {
+    "columns": {
+      "name": "Name",
+      "visibility": "Visibility",
+      "createdAt": "Created at",
+      "updatedAt": "Updated at",
+      "id": "ID"
+    },
+    "actionCount": "{{count}} action",
+    "actionCount_plural": "{{count}} actions",
+    "visibility": {
+      "public": "Public",
+      "private": "Private"
+    },
+    "actions": {
+      "view": "View",
+      "execute": "Execute",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "noData": "-",
+    "noDate": "Date not available"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "execute": "Execute",
+    "cancel": "Cancel",
+    "save": "Save",
+    "confirm": "Confirm"
+  },
+  "messages": {
+    "loadError": "Error loading macros",
+    "createSuccess": "Macro created successfully",
+    "createError": "Error creating macro",
+    "updateSuccess": "Macro updated successfully",
+    "updateError": "Error updating macro",
+    "deleteSuccess": "Macro deleted successfully",
+    "deleteError": "Error deleting macro",
+    "bulkDeleteSuccess": "{{count}} macro(s) deleted successfully",
+    "bulkDeleteError": "Error deleting macros",
+    "executeSuccess": "Macro \"{{name}}\" executed successfully",
+    "executeError": "Error executing macro"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Delete Macro",
+      "description": "Are you sure you want to delete the macro \"{{name}}\"? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "bulkDelete": {
+      "title": "Delete Macros",
+      "description": "Are you sure you want to delete {{count}} selected macro(s)? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete All",
+      "deleting": "Deleting..."
+    }
+  }
+}

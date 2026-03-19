@@ -1,0 +1,15 @@
+{
+  "title": "Access Denied",
+  "subtitle": "You do not have permission to access this page",
+  "description": "This page requires specific permissions that are not available for your current account.",
+  "contactAdmin": {
+    "title": "Need access?",
+    "message": "Contact your account administrator to request the necessary permissions."
+  },
+  "buttons": {
+    "back": "Back",
+    "goHome": "Go to Home"
+  },
+  "errorCode": "Error code: 403 - Access Denied"
+}
+

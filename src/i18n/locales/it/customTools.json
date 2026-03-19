@@ -1,0 +1,197 @@
+{
+  "title": "Strumenti Personalizzati",
+  "header": {
+    "title": "Strumenti Personalizzati",
+    "subtitle": "Crea e gestisci strumenti HTTP personalizzati per i tuoi agenti",
+    "newTool": "Nuovo Strumento Personalizzato",
+    "searchPlaceholder": "Cerca per nome, metodo o endpoint..."
+  },
+  "card": {
+    "noDescription": "Nessuna descrizione",
+    "examples": "{{count}} esempio/i",
+    "createdAt": "Creato il",
+    "actions": {
+      "test": "Testa",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    }
+  },
+  "details": {
+    "title": "Dettagli Strumento",
+    "sections": {
+      "basicInfo": "Informazioni di Base",
+      "tags": "Tag",
+      "examples": "Esempi",
+      "headers": "Header HTTP",
+      "inputOutput": "Modalità Input e Output"
+    },
+    "fields": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "method": "Metodo HTTP",
+      "createdAt": "Creato il",
+      "endpoint": "Endpoint",
+      "inputModes": "Modalità Input",
+      "outputModes": "Modalità Output",
+      "notSpecified": "Non specificato"
+    },
+    "empty": {
+      "tags": "Nessun tag configurato",
+      "examples": "Nessun esempio disponibile",
+      "headers": "Nessun header HTTP configurato"
+    },
+    "actions": {
+      "test": "Testa",
+      "edit": "Modifica"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Crea Nuovo Strumento Personalizzato",
+      "edit": "Modifica {{name}}",
+      "view": "Visualizza {{name}}"
+    },
+    "sections": {
+      "basicInfo": "Informazioni di Base",
+      "httpConfig": "Configurazione HTTP",
+      "tags": "Tag",
+      "examples": "Esempi"
+    },
+    "fields": {
+      "name": {
+        "label": "Nome",
+        "placeholder": "Nome dello strumento personalizzato",
+        "required": true
+      },
+      "description": {
+        "label": "Descrizione",
+        "placeholder": "Descrizione dello strumento personalizzato..."
+      },
+      "method": {
+        "label": "Metodo HTTP",
+        "placeholder": "Seleziona il metodo",
+        "required": true
+      },
+      "endpoint": {
+        "label": "Endpoint",
+        "placeholder": "https://api.example.com/endpoint",
+        "required": true
+      },
+      "headers": {
+        "label": "Header HTTP (JSON)",
+        "placeholder": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+        "hint": "Configura gli header HTTP necessari per autenticazione e comunicazione"
+      },
+      "bodyParams": {
+        "label": "Parametri del Body (JSON)",
+        "placeholder": "{\"key\": \"value\", \"nested\": {\"field\": \"data\"}}",
+        "hint": "Configura i parametri del corpo della richiesta inviati con richieste POST/PUT/PATCH"
+      },
+      "queryParams": {
+        "label": "Parametri di Query (JSON)",
+        "placeholder": "{\"param1\": \"value1\", \"param2\": \"value2\"}",
+        "hint": "Configura i parametri della query string dell'URL allegati all'endpoint"
+      },
+      "pathParams": {
+        "label": "Parametri di Path (JSON)",
+        "placeholder": "{\"user_id\": \"{user_id}\", \"resource_id\": \"{resource_id}\"}",
+        "hint": "Configura i parametri di path che saranno sostituiti nell'URL dell'endpoint (es: /users/{user_id})"
+      },
+      "values": {
+        "label": "Valori Predefiniti (JSON)",
+        "placeholder": "{\"default_key\": \"default_value\"}",
+        "hint": "Configura valori predefiniti usati come fallback quando i parametri non sono forniti a runtime"
+      },
+      "errorHandling": {
+        "label": "Gestione Errori (JSON)",
+        "placeholder": "{\"timeout\": 30, \"retry_count\": 3, \"fallback_response\": \"{}\"}",
+        "hint": "Configura le impostazioni di gestione errori: timeout (secondi), retry_count e fallback_response"
+      },
+      "tags": {
+        "label": "Tag",
+        "placeholder": "api, http, webhook",
+        "hint": "Separa i tag con virgole per organizzare e categorizzare lo strumento"
+      },
+      "examples": {
+        "label": "Esempi",
+        "placeholder": "Aggiungi esempio d'uso..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "endpointRequired": "L'endpoint è obbligatorio",
+      "endpointInvalid": "L'endpoint deve essere un URL valido",
+      "methodRequired": "Il metodo HTTP è obbligatorio",
+      "headersInvalid": "JSON degli header non valido",
+      "bodyParamsInvalid": "JSON non valido per i parametri del body",
+      "queryParamsInvalid": "JSON non valido per i parametri di query",
+      "pathParamsInvalid": "JSON non valido per i parametri di path",
+      "valuesInvalid": "JSON non valido per i valori predefiniti",
+      "errorHandlingInvalid": "JSON non valido per la gestione errori"
+    },
+    "actions": {
+      "cancel": "Annulla",
+      "save": "Salva Modifiche",
+      "create": "Crea Strumento",
+      "saving": "Salvataggio..."
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Crea Nuovo Strumento Personalizzato",
+      "edit": "Modifica {{name}}",
+      "view": "Visualizza {{name}}",
+      "editFallback": "Modifica Strumento Personalizzato",
+      "viewFallback": "Visualizza Strumento Personalizzato"
+    }
+  },
+  "filter": {
+    "title": "Filtra Strumenti Personalizzati",
+    "description": "Configura i filtri per trovare gli strumenti personalizzati che cerchi",
+    "apply": "Applica Filtri",
+    "clear": "Cancella Filtri",
+    "addFilter": "Aggiungi Filtro"
+  },
+  "table": {
+    "columns": {
+      "tool": "Strumento",
+      "description": "Descrizione",
+      "endpoint": "Endpoint",
+      "tags": "Tag",
+      "createdAt": "Creato il",
+      "test": "Test"
+    },
+    "noName": "Nessun nome",
+    "noDescription": "Nessuna descrizione",
+    "noTags": "-",
+    "actions": {
+      "test": "Testa",
+      "edit": "Modifica strumento",
+      "delete": "Elimina strumento",
+      "create": "Crea strumento personalizzato"
+    },
+    "empty": {
+      "title": "Nessuno strumento personalizzato creato",
+      "description": "Crea strumenti personalizzati per espandere le capacità degli agenti.",
+      "noResults": "Nessuno strumento personalizzato trovato"
+    }
+  },
+  "loading": {
+    "tools": "Caricamento strumenti...",
+    "creating": "Creazione...",
+    "updating": "Aggiornamento...",
+    "deleting": "Eliminazione...",
+    "testing": "Test..."
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento degli strumenti personalizzati",
+    "createSuccess": "Strumento personalizzato creato con successo",
+    "createError": "Errore durante la creazione dello strumento personalizzato",
+    "updateSuccess": "Strumento personalizzato aggiornato con successo",
+    "updateError": "Errore durante l'aggiornamento dello strumento personalizzato",
+    "deleteSuccess": "Strumento personalizzato eliminato con successo",
+    "deleteError": "Errore durante l'eliminazione dello strumento personalizzato",
+    "testSuccess": "Test eseguito con successo",
+    "testError": "Errore durante il test dello strumento personalizzato"
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "created": "Created successfully",
+  "updated": "Updated successfully",
+  "deleted": "Deleted successfully",
+  "cancel": "Cancel",
+  "save": "Save",
+  "create": "Create",
+  "update": "Update",
+  "delete": "Delete",
+  "close": "Close",
+  "table": {
+    "inUse": "In use"
+  },
+  "noResultsFound": "No results found",
+  "base": {
+    "pagination": {
+      "itemsPerPage": "Items per page:",
+      "showing": "Showing {{start}} to {{end}} of {{total}} items",
+      "page": "Page {{current}} of {{total}}"
+    },
+    "header": {
+      "searchPlaceholder": "Search...",
+      "filters": "Filters",
+      "selected": "{{count}} item selected",
+      "selected_other": "{{count}} items selected",
+      "clear": "Clear"
+    },
+    "table": {
+      "emptyMessage": "No items found",
+      "loading": "Loading...",
+      "yes": "Yes",
+      "no": "No",
+      "selectAll": "Select all",
+      "selectItem": "Select item {{key}}",
+      "actions": "Actions"
+    },
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "create": "Create",
+      "update": "Update",
+      "close": "Close",
+      "confirm": "Confirm",
+      "back": "Back"
+    },
+    "messages": {
+      "success": "Operation completed successfully",
+      "error": "An error occurred",
+      "loading": "Loading...",
+      "saving": "Saving...",
+      "deleting": "Deleting...",
+      "updating": "Updating..."
+    },
+    "filter": {
+      "title": "Filters",
+      "description": "Configure filters to find the items you're looking for",
+      "applyFilters": "Apply Filters",
+      "clearFilters": "Clear Filters",
+      "addFilter": "Add Filter",
+      "cancel": "Cancel",
+      "and": "AND",
+      "or": "OR",
+      "selectDate": "Select date",
+      "selectOption": "Select option",
+      "enterNumber": "Enter a number",
+      "enterValue": "Enter value"
+    },
+    "form": {
+      "required": "{{field}} is required",
+      "minLength": "{{field}} must be at least {{min}} characters",
+      "maxLength": "{{field}} must be at most {{max}} characters",
+      "invalidFormat": "{{field}} has invalid format",
+      "minValue": "{{field}} must be at least {{min}}",
+      "maxValue": "{{field}} must be at most {{max}}",
+      "saving": "Saving...",
+      "requiredMark": "*"
+    },
+    "flow": {
+      "editor": {
+        "title": "Flow Editor",
+        "unsaved": "• Unsaved",
+        "saving": "Saving...",
+        "save": "Save",
+        "execute": "Execute",
+        "stop": "Stop",
+        "reset": "Reset",
+        "loading": "Loading flow...",
+        "errors": "{{count}} error(s) found"
+      },
+      "node": {
+        "nextStep": "Next Step",
+        "options": "Node Options",
+        "duplicate": "Duplicate",
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "panel": {
+        "title": "Components",
+        "subtitle": "Drag components to the canvas",
+        "search": "Search components...",
+        "searchAll": "Searching all components",
+        "noResults": "No components found for \"{{query}}\"",
+        "dragToAdd": "Drag to add",
+        "allComponents": "All",
+        "allDescription": "All components"
+      }
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "blocked": "Blocked",
+      "pending": "Pending",
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning",
+      "expiring": "Expiring",
+      "days": "days"
+    },
+    "appInitializer": {
+      "initializing": "Initializing application...",
+      "initError": "Initialization Error",
+      "errorMessage": "Failed to initialize application",
+      "reload": "Reload Application"
+    },
+    "errorBoundary": {
+      "title": "Oops! Something went wrong",
+      "description": "An unexpected error occurred. Our team has been notified and is working to resolve it.",
+      "technicalDetails": "Technical details (development)",
+      "retry": "Try again"
+    },
+    "impersonation": {
+      "viewing": "You are viewing as customer:",
+      "exit": "Back to admin"
+    },
+    "theme": {
+      "toggle": "Toggle theme",
+      "light": "Light mode",
+      "dark": "Dark mode"
+    }
+  }
+}

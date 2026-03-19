@@ -1,0 +1,697 @@
+{
+  "title": "Pipelines",
+  "header": {
+    "newPipeline": "Crear Pipeline",
+    "searchPlaceholder": "Buscar pipelines..."
+  },
+  "stats": {
+    "totalPipelines": "Pipelines",
+    "activePipelines": "Activos",
+    "totalItems": "Item Totales",
+    "completedPipelines": "Pipelines Completados"
+  },
+  "viewMode": {
+    "cards": "Tarjetas",
+    "table": "Tabla"
+  },
+  "empty": {
+    "noResults": "Ningún pipeline encontrado",
+    "noResultsDescription": "Intente ajustar su búsqueda para encontrar el pipeline deseado.",
+    "noPipelines": "Ningún pipeline creado",
+    "noPipelinesDescription": "Cree un pipeline para organizar y acompañar sus conversaciones a través de diferentes etapas.",
+    "createPipeline": "Crear Pipeline"
+  },
+  "loading": {
+    "pipelines": "Cargando pipelines...",
+    "creating": "Creando...",
+    "updating": "Actualizando...",
+    "deleting": "Eliminando...",
+    "duplicating": "Duplicando..."
+  },
+  "actions": {
+    "view": "Visualizar",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "delete": "Eliminar",
+    "toggle": "Alternar Estado",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "confirm": "Confirmar"
+  },
+  "messages": {
+    "loadError": "Error al cargar pipelines",
+    "createSuccess": "Pipeline creado con éxito",
+    "createError": "Error al crear pipeline",
+    "updateSuccess": "Pipeline actualizado con éxito",
+    "updateError": "Error al actualizar pipeline",
+    "deleteSuccess": "Pipeline eliminado con éxito",
+    "deleteError": "Error al eliminar pipeline",
+    "duplicateSuccess": "Pipeline duplicado con éxito",
+    "duplicateError": "Error al duplicar pipeline",
+    "activateSuccess": "Pipeline activado con éxito",
+    "deactivateSuccess": "Pipeline desactivado con éxito",
+    "toggleError": "Error al cambiar estado del pipeline",
+    "setAsDefaultSuccess": "Pipeline marcado como predeterminado con éxito",
+    "setAsDefaultError": "Error al marcar pipeline como predeterminado",
+    "noPermissionRead": "No tiene permiso para visualizar pipelines",
+    "noPermissionCreate": "No tiene permiso para crear pipelines",
+    "noPermissionUpdate": "No tiene permiso para actualizar pipelines"
+  },
+  "createPipeline": {
+    "title": "Crear Nuevo Pipeline",
+    "description": "Configure un nuevo pipeline y sus etapas para organizar sus conversaciones.",
+    "basicInfo": "Información Básica",
+    "pipelineName": "Nombre del Pipeline",
+    "pipelineNamePlaceholder": "Ej: Pipeline de Ventas",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Describa el objetivo de este pipeline...",
+    "type": "Tipo",
+    "types": {
+      "custom": "Personalizado",
+      "sales": "Ventas",
+      "support": "Soporte",
+      "marketing": "Marketing"
+    },
+    "visibility": "Visibilidad",
+    "visibilities": {
+      "private": "Privado",
+      "public": "Público",
+      "team": "Equipo"
+    },
+    "stages": "Etapas del Pipeline",
+    "stagesCount": "{{count}} etapas",
+    "reset": "Resetear",
+    "addStage": "Agregar Acción",
+    "newStageName": "Nombre de la nueva etapa...",
+    "newStageDescription": "Descripción (opcional)...",
+    "addStageMessage": "Agregue al menos una etapa para el pipeline",
+    "cancel": "Cancelar",
+    "creating": "Creando...",
+    "create": "Crear Pipeline",
+    "templates": {
+      "sales": {
+        "newLead": {
+          "name": "Nuevo Lead",
+          "description": "Nuevos contactos interesados"
+        },
+        "qualification": {
+          "name": "Calificación",
+          "description": "Verificación de interés y ajuste"
+        },
+        "proposal": {
+          "name": "Propuesta",
+          "description": "Propuesta enviada y negociación"
+        },
+        "closing": {
+          "name": "Cierre",
+          "description": "Conclusión y onboarding"
+        }
+      },
+      "support": {
+        "new": {
+          "name": "Nuevo",
+          "description": "Tickets recién creados"
+        },
+        "inProgress": {
+          "name": "En Progreso",
+          "description": "Siendo atendido"
+        },
+        "waiting": {
+          "name": "Esperando",
+          "description": "Esperando respuesta del cliente"
+        },
+        "resolved": {
+          "name": "Resuelto",
+          "description": "Ticket resuelto"
+        }
+      },
+      "marketing": {
+        "lead": {
+          "name": "Lead",
+          "description": "Leads generados"
+        },
+        "nurturing": {
+          "name": "Nutrición",
+          "description": "En proceso de nutrición"
+        },
+        "qualified": {
+          "name": "Calificado",
+          "description": "Lead calificado"
+        },
+        "converted": {
+          "name": "Convertido",
+          "description": "Convertido en oportunidad"
+        }
+      },
+      "custom": {
+        "start": {
+          "name": "Inicio",
+          "description": "Punto de partida"
+        },
+        "inProgress": {
+          "name": "En Progreso",
+          "description": "En desarrollo"
+        },
+        "completed": {
+          "name": "Completado",
+          "description": "Finalizado"
+        }
+      }
+    }
+  },
+  "createStage": {
+    "title": "Crear Nueva Etapa",
+    "description": "Agregue una nueva etapa al pipeline para organizar sus conversaciones.",
+    "name": "Nombre de la Etapa",
+    "namePlaceholder": "Ej: Leads Calificados",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Describa el propósito de esta etapa...",
+    "color": "Color de la Etapa",
+    "colorSelected": "Color seleccionado",
+    "stageType": "Tipo de Etapa",
+    "stageTypes": {
+      "active": "Activa",
+      "completed": "Finalizada",
+      "cancelled": "Cancelada"
+    },
+    "selectType": "Seleccione el tipo",
+    "cancel": "Cancelar",
+    "creating": "Creando...",
+    "create": "Crear Etapa",
+    "colors": {
+      "blue": "Azul",
+      "green": "Verde",
+      "orange": "Naranja",
+      "red": "Rojo",
+      "purple": "Morado",
+      "darkOrange": "Naranja Oscuro",
+      "cyan": "Cian",
+      "lime": "Verde Lima"
+    }
+  },
+  "deletePipeline": {
+    "title": "Eliminar Pipeline",
+    "description": "Esta acción no se puede deshacer y afectará todos los datos relacionados.",
+    "confirmMessage": "¿Está seguro de que desea eliminar el pipeline",
+    "info": {
+      "conversations": "Conversaciones",
+      "stages": "Etapas",
+      "type": "Tipo"
+    },
+    "warningTitle": "Atención: Este pipeline tiene conversaciones activas",
+    "warningMessage": "Hay {{count}} conversación{{plural}} en este pipeline. Al eliminar el pipeline, todas estas conversaciones serán removidas del sistema de pipelines.",
+    "note": "Las conversaciones continuarán existiendo en el sistema principal, pero perderán su asociación con este pipeline.",
+    "safeToDelete": "Este pipeline no tiene conversaciones activas y puede ser eliminado de forma segura.",
+    "willDelete": "La eliminación del pipeline:",
+    "effects": {
+      "remove": "Eliminar permanentemente el pipeline y todas sus configuraciones",
+      "deleteStages": "Eliminar todas las {{count}} etapa{{plural}} configuradas",
+      "removeConversations": "Remover {{count}} conversación{{plural}} del sistema de pipelines",
+      "deleteHistory": "Eliminar todo el historial y métricas asociadas",
+      "invalidateReports": "Invalidar reportes y análisis dependientes"
+    },
+    "cancel": "Cancelar",
+    "deleting": "Eliminando...",
+    "delete": "Eliminar Pipeline"
+  },
+  "deleteStage": {
+    "title": "Eliminar Etapa",
+    "description": "Esta acción no se puede deshacer.",
+    "confirmMessage": "¿Está seguro de que desea eliminar la etapa",
+    "warningTitle": "Atención: Esta etapa tiene conversaciones activas",
+    "warningMessage": "Hay {{count}} conversación{{plural}} en esta etapa. Al eliminar la etapa, {{pronoun}} será{{verbPlural}} removida{{plural}} del pipeline.",
+    "safeToDelete": "Esta etapa no tiene conversaciones activas y puede ser eliminada de forma segura.",
+    "important": "Importante:",
+    "effects": {
+      "remove": "Eliminar permanentemente la etapa del pipeline",
+      "removeConversations": "Remover todas las conversaciones de esta etapa del pipeline",
+      "reorder": "Reordenar automáticamente las etapas restantes"
+    },
+    "cancel": "Cancelar",
+    "deleting": "Eliminando...",
+    "delete": "Eliminar Etapa"
+  },
+  "duplicatePipeline": {
+    "title": "Duplicar Pipeline",
+    "description": "Cree una copia del pipeline \"{{name}}\" con las mismas configuraciones y etapas.",
+    "name": "Nombre",
+    "namePlaceholder": "Ej: Pipeline de Ventas (Copia)",
+    "copyDefault": "{{name}} (Copia)",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Describa el objetivo de este pipeline...",
+    "whatCopied": "Lo que será copiado:",
+    "settings": "Configuraciones del pipeline (tipo, visibilidad)",
+    "allStages": "Todas las etapas del pipeline",
+    "structure": "Estructura y organización",
+    "observation": "Observación:",
+    "noConversations": "Las conversaciones no serán copiadas. El nuevo pipeline iniciará vacío.",
+    "cancel": "Cancelar",
+    "duplicating": "Duplicando...",
+    "duplicate": "Duplicar Pipeline"
+  },
+  "editItem": {
+    "title": "Editar Ítem en Pipeline",
+    "description": "Detalles del ítem",
+    "unknownUser": "Usuario Desconocido",
+    "currentStage": "Etapa Actual",
+    "chooseStage": "Elija una etapa",
+    "currency": "Moneda",
+    "currencies": {
+      "brl": "Real Brasileño (BRL)",
+      "usd": "Dólar Americano (USD)",
+      "eur": "Euro (EUR)"
+    },
+    "services": "Servicios",
+    "addService": "Agregar Servicio",
+    "noServices": "No hay servicios agregados",
+    "serviceName": "Nombre del servicio",
+    "searchService": "Buscar o escribir servicio...",
+    "useCustomService": "Usar \"{{name}}\" como nuevo servicio",
+    "noServicesFound": "Ningún servicio encontrado",
+    "catalogServices": "Catálogo de servicios",
+    "serviceValue": "Valor del servicio",
+    "value": "Valor",
+    "totalValue": "Valor Total:",
+    "notes": "Observaciones",
+    "notesPlaceholder": "Agregue observaciones sobre este elemento en el pipeline...",
+    "customAttributes": "Atributos Personalizados",
+    "servicesDescription": "Gestione los servicios asociados con este elemento",
+    "attributesDescription": "Configure atributos personalizados para este elemento",
+    "tabs": {
+      "details": "Detalles",
+      "services": "Servicios",
+      "attributes": "Atributos",
+      "tasks": "Tareas"
+    },
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "save": "Guardar Cambios"
+  },
+  "editConversation": {
+    "title": "Editar Conversación en el Pipeline",
+    "description": "Detalles de la conversación",
+    "unknownUser": "Usuario Desconocido",
+    "currentStage": "Etapa Actual",
+    "chooseStage": "Elija una etapa",
+    "currency": "Moneda",
+    "currencies": {
+      "brl": "Real Brasileño (BRL)",
+      "usd": "Dólar Americano (USD)",
+      "eur": "Euro (EUR)"
+    },
+    "services": "Servicios",
+    "addService": "Agregar Servicio",
+    "noServices": "Ningún servicio agregado",
+    "serviceName": "Nombre del servicio",
+    "serviceValue": "Valor del servicio",
+    "value": "Valor",
+    "totalValue": "Valor Total:",
+    "notes": "Observaciones",
+    "notesPlaceholder": "Agregue observaciones sobre esta conversación en el pipeline...",
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "save": "Guardar Cambios"
+  },
+  "editPipeline": {
+    "title": "Editar Pipeline",
+    "description": "Actualice la información del pipeline \"{{name}}\".",
+    "details": "Detalles",
+    "customAttributes": "Atributos",
+    "attributesDescription": "Configure atributos para este pipeline",
+    "name": "Nombre",
+    "namePlaceholder": "Ej: Pipeline de Ventas",
+    "descriptionLabel": "Descripción",
+    "descriptionPlaceholder": "Describa el objetivo de este pipeline...",
+    "pipelineType": "Tipo de Pipeline",
+    "selectType": "Seleccione el tipo",
+    "types": {
+      "custom": "Personalizado",
+      "sales": "Ventas",
+      "support": "Soporte",
+      "marketing": "Marketing"
+    },
+    "visibility": "Visibilidad",
+    "selectVisibility": "Seleccione la visibilidad",
+    "visibilityOptions": {
+      "private": "Privado",
+      "public": "Público",
+      "team": "Equipo"
+    },
+    "pipelineActive": "Pipeline activo",
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "save": "Guardar Cambios"
+  },
+  "editStage": {
+    "title": "Editar Etapa",
+    "description": "Edite la información de esta etapa del pipeline.",
+    "details": "Detalles",
+    "customAttributes": "Atributos",
+    "attributesDescription": "Configure atributos para esta etapa",
+    "name": "Nombre de la Etapa",
+    "namePlaceholder": "Ej: Prospección, Negociación, Cierre...",
+    "color": "Color de la Etapa",
+    "customColor": "Personalizado",
+    "colors": {
+      "red": "Rojo",
+      "orange": "Naranja",
+      "green": "Verde",
+      "blue": "Azul",
+      "purple": "Morado",
+      "darkOrange": "Naranja Oscuro",
+      "cyan": "Cian",
+      "lime": "Lima",
+      "pink": "Rosa",
+      "gray": "Gris"
+    },
+    "stageType": "Tipo de la Etapa",
+    "stageTypes": {
+      "active": "Activa",
+      "completed": "Completa",
+      "cancelled": "Cancelada"
+    },
+    "descriptionLabel": "Descripción (opcional)",
+    "descriptionPlaceholder": "Describa esta etapa del pipeline...",
+    "characterCount": "{{current}}/{{max}} caracteres",
+    "preview": "Vista Previa",
+    "stageName": "Nombre de la etapa",
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "save": "Guardar Cambios"
+  },
+  "pipelineCard": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "default": "Predeterminado",
+    "edit": "Editar",
+    "duplicate": "Duplicar",
+    "activate": "Activar",
+    "deactivate": "Desactivar",
+    "delete": "Eliminar",
+    "view": "Visualizar",
+    "setAsDefault": "Marcar como predeterminado",
+    "stats": {
+      "items": "Ítems",
+      "stages": "Etapas",
+      "completion": "Conclusión",
+      "type": "Tipo",
+      "totalValue": "Valor Total"
+    },
+    "types": {
+      "sales": "Ventas",
+      "support": "Soporte",
+      "marketing": "Marketing",
+      "custom": "Personalizado"
+    }
+  },
+  "pipelinesHeader": {
+    "title": "Pipelines",
+    "subtitle": "{{count}} pipeline{{plural}} encontrado{{plural}}",
+    "organize": "Organice sus conversaciones en diferentes etapas",
+    "searchPlaceholder": "Buscar pipelines...",
+    "newPipeline": "Nuevo Pipeline"
+  },
+  "pipelinesStats": {
+    "totalPipelines": "Total de Pipelines",
+    "activePipelines": "Pipelines Activos",
+    "totalItems": "Total de Ítems",
+    "completedPipelines": "Pipelines Completados"
+  },
+  "pipelinesTable": {
+    "loading": "Cargando pipelines...",
+    "columns": {
+      "name": "Nombre",
+      "type": "Tipo",
+      "status": "Estado",
+      "conversations": "Conversaciones",
+      "completedPipelines": "Pipelines Completados",
+      "createdAt": "Creado el",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "view": "Visualizar",
+      "edit": "Editar",
+      "duplicate": "Duplicar",
+      "activate": "Activar",
+      "deactivate": "Desactivar",
+      "delete": "Eliminar"
+    },
+    "types": {
+      "sales": "Ventas",
+      "support": "Soporte",
+      "marketing": "Marketing",
+      "custom": "Personalizado"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    }
+  },
+  "pipelineSwitcher": {
+    "loading": "Cargando pipeline...",
+    "noDescription": "Pipeline sin descripción",
+    "waiting": "Esperando carga...",
+    "search": "Buscar pipelines...",
+    "noResults": "Ningún pipeline encontrado",
+    "noAvailable": "Ningún pipeline disponible",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "conversationsCount": "{{count}} conversaciones",
+    "stagesCount": "{{count}} etapas"
+  },
+  "removeItem": {
+    "title": "Remover Ítem del Pipeline",
+    "description": "Esta acción no se puede deshacer.",
+    "confirmMessage": "¿Está seguro de que desea remover el ítem de",
+    "unknownUser": "Usuario Desconocido",
+    "details": "Detalles del ítem:",
+    "contact": "Contacto:",
+    "id": "ID:",
+    "status": "Estado:",
+    "inbox": "Bandeja:",
+    "note": "El ítem solo se removerá del pipeline, pero continuará existiendo en el sistema.",
+    "cancel": "Cancelar",
+    "removing": "Removiendo...",
+    "remove": "Remover del Pipeline"
+  },
+  "removeConversation": {
+    "title": "Remover Conversación del Pipeline",
+    "description": "Esta acción no se puede deshacer.",
+    "confirmMessage": "¿Está seguro de que desea remover la conversación de",
+    "unknownUser": "Usuario Desconocido",
+    "details": "Detalles de la conversación:",
+    "contact": "Contacto:",
+    "id": "ID:",
+    "status": "Estado:",
+    "inbox": "Inbox:",
+    "note": "La conversación solo será removida del pipeline, pero continuará existiendo en el sistema.",
+    "cancel": "Cancelar",
+    "removing": "Removiendo...",
+    "remove": "Remover del Pipeline"
+  },
+  "reorderStages": {
+    "title": "Reordenar Etapas",
+    "description": "Arrastre las etapas para reorganizarlas o use los botones de flecha.",
+    "conversationsCount": "{{count}} conversación{{plural}}",
+    "noStages": "Ninguna etapa encontrada para reordenar.",
+    "cancel": "Cancelar",
+    "saving": "Guardando...",
+    "save": "Guardar Orden"
+  },
+  "kanban": {
+    "header": {
+      "conversations": "Conversaciones",
+      "stages": "Etapas",
+      "totalValue": "Valor Total",
+      "addConversation": "Agregar Conversación",
+      "editPipeline": "Editar Pipeline",
+      "reorderStages": "Reordenar Etapas",
+      "deletePipeline": "Eliminar Pipeline"
+    },
+    "stage": {
+      "addStage": "Agregar Etapa",
+      "addStageDescription": "Haga clic para crear una nueva etapa en este pipeline",
+      "editStage": "Editar Etapa",
+      "deleteStage": "Eliminar Etapa",
+      "noConversations": "Ninguna conversación en esta etapa",
+      "noStages": "Ninguna etapa encontrada para este pipeline",
+      "totalValue": "R$ {{value}}"
+    },
+    "item": {
+      "unknownUser": "Usuario Desconocido",
+      "editItem": "Editar Ítem",
+      "scheduleAction": "Programar Acción",
+      "scheduleActionComingSoon": "Próximamente",
+      "scheduleActionTooltip": "Esta funcionalidad está en desarrollo y estará disponible próximamente.",
+      "removeFromPipeline": "Remover del Pipeline",
+      "noInbox": "Sin Inbox",
+      "status": {
+        "open": "Abierto",
+        "resolved": "Resuelto",
+        "unknown": "Desconocido"
+      },
+      "valueLabel": "Valor Total:",
+      "system": "Sistema"
+    },
+    "conversation": {
+      "unknownUser": "Usuario Desconocido",
+      "editConversation": "Editar Conversación",
+      "removeFromPipeline": "Remover del Pipeline",
+      "noInbox": "Sin Inbox",
+      "status": {
+        "open": "Abierto",
+        "resolved": "Resuelto",
+        "unknown": "Desconocido"
+      },
+      "valueLabel": "Valor Total:",
+      "system": "Sistema"
+    },
+    "messages": {
+      "conversationMoved": "Conversación movida con éxito",
+      "conversationMoveError": "Error al mover conversación",
+      "loadDataError": "Error al cargar datos del pipeline",
+      "stageCreated": "Etapa creada con éxito",
+      "stageCreateError": "Error al crear etapa",
+      "stageUpdated": "Etapa actualizada con éxito",
+      "stageUpdateError": "Error al actualizar etapa",
+      "stageDeleted": "Etapa eliminada con éxito",
+      "stageDeleteError": "Error al eliminar etapa",
+      "stageReordered": "Orden de las etapas actualizado con éxito",
+      "stageReorderError": "Error al reordenar etapas",
+      "itemAdded": "Ítem agregado con éxito",
+      "itemRemoved": "Ítem removido del pipeline con éxito",
+      "itemRemoveError": "Error al remover ítem del pipeline",
+      "itemUpdated": "Ítem actualizado con éxito",
+      "itemUpdateError": "Error al actualizar ítem",
+      "conversationAdded": "Ítem agregado con éxito",
+      "conversationRemoved": "Ítem removido del pipeline con éxito",
+      "conversationRemoveError": "Error al remover ítem del pipeline",
+      "conversationUpdated": "Ítem actualizado con éxito",
+      "conversationUpdateError": "Error al actualizar ítem"
+    },
+    "tasks": {
+      "pending": "pendientes",
+      "overdue": "atrasadas"
+    }
+  },
+  "tasks": {
+    "title": "Tareas",
+    "newTask": "Nueva Tarea",
+    "createFirstTask": "Crear Primera Tarea",
+    "noTasks": "No se encontraron tareas",
+    "pending": "Pendientes",
+    "overdue": "Atrasadas",
+    "filters": {
+      "all": "Todas",
+      "pending": "Pendientes",
+      "overdue": "Atrasadas",
+      "completed": "Completadas"
+    },
+    "types": {
+      "call": "Llamada",
+      "email": "Correo",
+      "meeting": "Reunión",
+      "follow_up": "Seguimiento",
+      "note": "Nota",
+      "other": "Otro"
+    },
+    "priority": {
+      "low": "Baja",
+      "medium": "Media",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "status": {
+      "pending": "Pendiente",
+      "completed": "Completada",
+      "cancelled": "Cancelada",
+      "overdue": "Atrasada"
+    },
+    "dueDates": {
+      "today": "Hoy",
+      "tomorrow": "Mañana"
+    },
+    "form": {
+      "title": "Título",
+      "titlePlaceholder": "Ej: Llamar al cliente",
+      "subtasks": "Subtareas",
+      "subtask": "subtarea",
+      "description": "Descripción",
+      "descriptionPlaceholder": "Agregar detalles sobre la tarea...",
+      "type": "Tipo",
+      "priority": "Prioridad",
+      "dueDate": "Fecha de Vencimiento",
+      "maxDueDate": "Fecha máxima",
+      "exactDueDate": "La fecha debe ser exactamente",
+      "assignedTo": "Asignado a",
+      "assignedToPlaceholder": "Seleccione un responsable",
+      "none": "Ninguno",
+      "unassigned": "No asignado",
+      "cancel": "Cancelar",
+      "create": "Crear Tarea",
+      "update": "Actualizar Tarea",
+      "errors": {
+        "titleRequired": "El título es obligatorio",
+        "assignedToRequired": "La asignación es obligatoria",
+        "dueDateExceedsParent": "La fecha de vencimiento no puede ser posterior a la fecha de la tarea padre",
+        "dueDateBeforeParent": "La fecha de vencimiento no puede ser anterior a la fecha de la tarea padre. Las subtareas deben tener la misma fecha que la tarea padre"
+      }
+    },
+    "createModal": {
+      "title": "Crear Nueva Tarea",
+      "description": "Agregar una nueva tarea al elemento del pipeline."
+    },
+    "editModal": {
+      "title": "Editar Tarea",
+      "description": "Actualizar información de la tarea."
+    },
+    "actions": {
+      "move": "Mover",
+      "promoteToRoot": "Promover a raíz",
+      "moveUnder": "Mover bajo {{parent}}",
+      "addSubtask": "Añadir subtarea",
+      "collapse": "Contraer",
+      "expand": "Expandir"
+    },
+    "hierarchy": {
+      "subtask": "subtarea",
+      "subtasks": "subtareas",
+      "of": "de"
+    },
+    "messages": {
+      "loadError": "Error al cargar tareas",
+      "createSuccess": "Tarea creada exitosamente",
+      "createError": "Error al crear tarea",
+      "updateSuccess": "Tarea actualizada exitosamente",
+      "updateError": "Error al actualizar tarea",
+      "deleteSuccess": "Tarea eliminada exitosamente",
+      "deleteError": "Error al eliminar tarea",
+      "deleteConfirm": "¿Está seguro que desea eliminar esta tarea?",
+      "completeSuccess": "Tarea completada exitosamente",
+      "completeError": "Error al completar tarea",
+      "completeConfirm": "¿Está seguro que desea marcar esta tarea como completada?",
+      "completeWithSubtasksConfirm": "Esta tarea tiene {{count}} subtarea(s) pendiente(s). Al completarla, todas las subtareas también se marcarán como completadas. ¿Desea continuar?",
+      "completeWithAllDescendantsConfirm": "Esta tarea tiene {{count}} tarea(s) descendiente(s) pendiente(s) en todos los niveles inferiores. Al completarla, TODAS las tareas descendientes también se marcarán como completadas. ¿Desea continuar?",
+      "cancelSuccess": "Tarea cancelada exitosamente",
+      "cancelError": "Error al cancelar tarea",
+      "cancelConfirm": "¿Está seguro que desea cancelar esta tarea?",
+      "reopenSuccess": "Tarea reabierta exitosamente",
+      "reopenError": "Error al reabrir tarea",
+      "reopenConfirm": "¿Está seguro que desea reabrir esta tarea?",
+      "reopenWithAllDescendantsConfirm": "Esta tarea tiene {{count}} tarea(s) descendiente(s) completada(s) en todos los niveles inferiores. Al reabrirla, TODAS las tareas descendientes también se reabrirán. ¿Desea continuar?",
+      "moveSuccess": "Tarea movida exitosamente",
+      "moveError": "Error al mover tarea",
+      "addSubtaskSuccess": "Subtarea añadida exitosamente",
+      "addSubtaskError": "Error al añadir subtarea"
+    }
+  },
+  "dialog": {
+    "deletePipeline": {
+      "title": "Eliminar Pipeline",
+      "description": "¿Está seguro de que desea eliminar este pipeline? Esta acción no se puede deshacer y afectará todos los datos relacionados.",
+      "cancel": "Cancelar",
+      "delete": "Eliminar Pipeline",
+      "deleting": "Eliminando..."
+    }
+  }
+}

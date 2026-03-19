@@ -1,0 +1,15 @@
+{
+  "title": "Acesso Negado",
+  "subtitle": "Não tem permissão para aceder a esta página",
+  "description": "Esta página requer permissões específicas que não estão disponíveis para a sua conta atual.",
+  "contactAdmin": {
+    "title": "Precisa de acesso?",
+    "message": "Entre em contacto com o administrador da sua conta para solicitar as permissões necessárias."
+  },
+  "buttons": {
+    "back": "Voltar",
+    "goHome": "Ir para Início"
+  },
+  "errorCode": "Código de erro: 403 - Acesso Negado"
+}
+

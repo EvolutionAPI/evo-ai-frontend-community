@@ -1,0 +1,197 @@
+{
+  "title": "Herramientas Personalizadas",
+  "header": {
+    "title": "Herramientas Personalizadas",
+    "subtitle": "Cree y gestione herramientas HTTP personalizadas para sus agentes",
+    "newTool": "Nueva Herramienta Personalizada",
+    "searchPlaceholder": "Buscar por nombre, método o endpoint..."
+  },
+  "card": {
+    "noDescription": "Sin descripción",
+    "examples": "{{count}} ejemplo(s)",
+    "createdAt": "Creado el",
+    "actions": {
+      "test": "Probar",
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "details": {
+    "title": "Detalles de la Herramienta",
+    "sections": {
+      "basicInfo": "Información Básica",
+      "tags": "Etiquetas",
+      "examples": "Ejemplos",
+      "headers": "Headers HTTP",
+      "inputOutput": "Modos de Entrada y Salida"
+    },
+    "fields": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "method": "Método HTTP",
+      "createdAt": "Creado el",
+      "endpoint": "Endpoint",
+      "inputModes": "Modos de Entrada",
+      "outputModes": "Modos de Salida",
+      "notSpecified": "No especificado"
+    },
+    "empty": {
+      "tags": "Ninguna etiqueta configurada",
+      "examples": "Ningún ejemplo disponible",
+      "headers": "Ningún header HTTP configurado"
+    },
+    "actions": {
+      "test": "Probar",
+      "edit": "Editar"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Crear Nueva Herramienta Personalizada",
+      "edit": "Editar {{name}}",
+      "view": "Visualizar {{name}}"
+    },
+    "sections": {
+      "basicInfo": "Información Básica",
+      "httpConfig": "Configuración HTTP",
+      "tags": "Etiquetas",
+      "examples": "Ejemplos"
+    },
+    "fields": {
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Nombre de la herramienta personalizada",
+        "required": true
+      },
+      "description": {
+        "label": "Descripción",
+        "placeholder": "Descripción de la herramienta personalizada..."
+      },
+      "method": {
+        "label": "Método HTTP",
+        "placeholder": "Seleccione el método",
+        "required": true
+      },
+      "endpoint": {
+        "label": "Endpoint",
+        "placeholder": "https://api.example.com/endpoint",
+        "required": true
+      },
+      "headers": {
+        "label": "Headers HTTP (JSON)",
+        "placeholder": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+        "hint": "Configure los headers HTTP necesarios para autenticación y comunicación"
+      },
+      "bodyParams": {
+        "label": "Parámetros del Body (JSON)",
+        "placeholder": "{\"key\": \"value\", \"nested\": {\"field\": \"data\"}}",
+        "hint": "Configure los parámetros del cuerpo de la solicitud enviados con solicitudes POST/PUT/PATCH"
+      },
+      "queryParams": {
+        "label": "Parámetros de Query (JSON)",
+        "placeholder": "{\"param1\": \"value1\", \"param2\": \"value2\"}",
+        "hint": "Configure los parámetros de la cadena de consulta de la URL anexados al endpoint"
+      },
+      "pathParams": {
+        "label": "Parámetros de Path (JSON)",
+        "placeholder": "{\"user_id\": \"{user_id}\", \"resource_id\": \"{resource_id}\"}",
+        "hint": "Configure los parámetros de path que serán sustituidos en la URL del endpoint (ej: /users/{user_id})"
+      },
+      "values": {
+        "label": "Valores por Defecto (JSON)",
+        "placeholder": "{\"default_key\": \"default_value\"}",
+        "hint": "Configure valores por defecto usados como respaldo cuando los parámetros no se proporcionan en tiempo de ejecución"
+      },
+      "errorHandling": {
+        "label": "Manejo de Errores (JSON)",
+        "placeholder": "{\"timeout\": 30, \"retry_count\": 3, \"fallback_response\": \"{}\"}",
+        "hint": "Configure las configuraciones de manejo de errores: timeout (segundos), retry_count y fallback_response"
+      },
+      "tags": {
+        "label": "Etiquetas",
+        "placeholder": "api, http, webhook",
+        "hint": "Separe las etiquetas con comas para organizar y categorizar la herramienta"
+      },
+      "examples": {
+        "label": "Ejemplos",
+        "placeholder": "Agregar ejemplo de uso..."
+      }
+    },
+    "validation": {
+      "nameRequired": "El nombre es obligatorio",
+      "endpointRequired": "El endpoint es obligatorio",
+      "endpointInvalid": "El endpoint debe ser una URL válida",
+      "methodRequired": "El método HTTP es obligatorio",
+      "headersInvalid": "JSON de headers inválido",
+      "bodyParamsInvalid": "JSON inválido para parámetros del body",
+      "queryParamsInvalid": "JSON inválido para parámetros de query",
+      "pathParamsInvalid": "JSON inválido para parámetros de path",
+      "valuesInvalid": "JSON inválido para valores por defecto",
+      "errorHandlingInvalid": "JSON inválido para manejo de errores"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "save": "Guardar Cambios",
+      "create": "Crear Herramienta",
+      "saving": "Guardando..."
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Crear Nueva Herramienta Personalizada",
+      "edit": "Editar {{name}}",
+      "view": "Visualizar {{name}}",
+      "editFallback": "Editar Herramienta Personalizada",
+      "viewFallback": "Visualizar Herramienta Personalizada"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Herramientas Personalizadas",
+    "description": "Configure los filtros para encontrar las herramientas personalizadas que busca",
+    "apply": "Aplicar Filtros",
+    "clear": "Limpiar Filtros",
+    "addFilter": "Agregar Filtro"
+  },
+  "table": {
+    "columns": {
+      "tool": "Herramienta",
+      "description": "Descripción",
+      "endpoint": "Endpoint",
+      "tags": "Etiquetas",
+      "createdAt": "Creado el",
+      "test": "Prueba"
+    },
+    "noName": "Sin nombre",
+    "noDescription": "Sin descripción",
+    "noTags": "-",
+    "actions": {
+      "test": "Probar",
+      "edit": "Editar herramienta",
+      "delete": "Eliminar herramienta",
+      "create": "Crear herramienta personalizada"
+    },
+    "empty": {
+      "title": "Ninguna herramienta personalizada creada",
+      "description": "Cree herramientas personalizadas para expandir las capacidades de los agentes.",
+      "noResults": "Ninguna herramienta personalizada encontrada"
+    }
+  },
+  "loading": {
+    "tools": "Cargando herramientas...",
+    "creating": "Creando...",
+    "updating": "Actualizando...",
+    "deleting": "Eliminando...",
+    "testing": "Probando..."
+  },
+  "messages": {
+    "loadError": "Error al cargar herramientas personalizadas",
+    "createSuccess": "Herramienta personalizada creada con éxito",
+    "createError": "Error al crear herramienta personalizada",
+    "updateSuccess": "Herramienta personalizada actualizada con éxito",
+    "updateError": "Error al actualizar herramienta personalizada",
+    "deleteSuccess": "Herramienta personalizada eliminada con éxito",
+    "deleteError": "Error al eliminar herramienta personalizada",
+    "testSuccess": "Prueba ejecutada con éxito",
+    "testError": "Error al probar herramienta personalizada"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Herramientas del Sistema",
+  "subtitle": "Explore las herramientas disponibles en el sistema",
+  "loading": "Cargando herramientas...",
+  "card": {
+    "noDescription": "Sin descripción",
+    "input": "Entrada:",
+    "output": "Salida:",
+    "examplesCount": "{{count}} ejemplo(s) disponible(s)"
+  },
+  "details": {
+    "title": "Detalles de la Herramienta",
+    "basicInfo": {
+      "title": "Información Básica",
+      "name": "Nombre",
+      "description": "Descripción"
+    },
+    "tags": {
+      "title": "Etiquetas",
+      "count": "Etiquetas ({{count}})",
+      "empty": "Ninguna etiqueta disponible"
+    },
+    "modes": {
+      "title": "Modos de Entrada y Salida",
+      "input": "Modos de Entrada",
+      "output": "Modos de Salida",
+      "notSpecified": "No especificado"
+    },
+    "examples": {
+      "title": "Ejemplos",
+      "count": "Ejemplos ({{count}})",
+      "empty": "Ningún ejemplo disponible"
+    },
+    "configuration": {
+      "title": "Configuración",
+      "requiredFields": "Campos Obligatorios",
+      "optionalFields": "Campos Opcionales",
+      "defaultValues": "Valores Predeterminados"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Herramientas",
+    "description": "Configure los filtros para encontrar las herramientas que busca",
+    "applyFilters": "Aplicar Filtros",
+    "clearFilters": "Limpiar Filtros",
+    "addFilter": "Agregar Filtro"
+  },
+  "header": {
+    "searchPlaceholder": "Buscar por nombre, descripción o etiquetas..."
+  },
+  "table": {
+    "columns": {
+      "tool": "Herramienta",
+      "tags": "Etiquetas",
+      "examples": "Ejemplos",
+      "input": "Entrada",
+      "output": "Salida"
+    },
+    "noName": "Sin nombre",
+    "noDescription": "Sin descripción",
+    "noTags": "Sin etiquetas",
+    "actions": {
+      "viewDetails": "Ver detalles"
+    },
+    "empty": {
+      "title": "Ninguna herramienta disponible",
+      "description": "No hay herramientas disponibles en el sistema.",
+      "message": "Ninguna herramienta encontrada"
+    }
+  },
+  "messages": {
+    "loadError": "Error al cargar herramientas"
+  }
+}

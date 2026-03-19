@@ -1,0 +1,177 @@
+{
+  "title": "AI Agents",
+  "subtitle": "Manage your AI agents",
+  "loading": {
+    "agent": "Loading AI agent...",
+    "creating": "Creating AI agent...",
+    "updating": "Updating AI agent..."
+  },
+  "messages": {
+    "loadError": "Error loading AI agent",
+    "loadErrorDescription": "Unable to load AI agent data for editing.",
+    "createSuccess": "AI agent created successfully!",
+    "updateSuccess": "AI agent updated successfully!",
+    "saveError": "Error saving AI agent",
+    "confirmCancel": "You have unsaved changes. Do you really want to cancel?",
+    "apiKeysError": "Error loading API keys:",
+    "agentToolsError": "Error loading AI agent data:"
+  },
+  "header": {
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "view": "View",
+    "duplicate": "Duplicate"
+  },
+  "tabs": {
+    "basic": "Basic",
+    "configuration": "Configuration",
+    "subagents": "Sub-agents",
+    "tools": "Tools"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "configurationIncomplete": "Configuration incomplete"
+  },
+  "forms": {
+    "basicInfo": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "role": "Role",
+      "goal": "Goal"
+    },
+    "llmConfig": {
+      "model": "Model",
+      "apiKey": "API Key",
+      "instruction": "Instruction",
+      "outputKey": "Output Key",
+      "advancedConfig": "Advanced Config",
+      "messageWaitTime": "Message Wait Time",
+      "messageSignature": "Message Signature",
+      "enableTextSegmentation": "Enable Text Segmentation",
+      "maxCharactersPerSegment": "Max Characters per Segment",
+      "minSegmentSize": "Min Segment Size",
+      "characterDelayMs": "Character Delay (ms)"
+    },
+    "a2aConfig": {
+      "agentCardUrl": "Agent Card URL",
+      "outputKey": "Output Key"
+    },
+    "toolsConfig": {
+      "tools": "Tools",
+      "agentTools": "Agent Tools",
+      "customTools": "Custom Tools",
+      "mcpServers": "MCP Servers",
+      "loadMemory": "Load Memory",
+      "preloadMemory": "Preload Memory",
+      "planner": "Planner",
+      "outputSchema": "Output Schema"
+    }
+  },
+  "types": {
+    "llm": "LLM",
+    "a2a": "Agent-to-Agent",
+    "workflow": "Workflow",
+    "task": "Task"
+  },
+  "actions": {
+    "create": "Create AI Agent",
+    "update": "Update AI Agent",
+    "delete": "Delete AI Agent",
+    "duplicate": "Duplicate AI Agent",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "view": "View"
+  },
+  "permissions": {
+    "viewDenied": "You don't have permission to view AI agents",
+    "createDenied": "You don't have permission to create AI agents",
+    "editDenied": "You don't have permission to edit AI agents",
+    "deleteDenied": "You don't have permission to delete AI agents"
+  },
+  "loadError": "Error loading AI agents",
+  "createAgent": "New AI Agent",
+  "emptyState": {
+    "title": "No AI agent created",
+    "description": "Create AI agents to start automating tasks.",
+    "noResults": "No AI agent found"
+  },
+  "search": {
+    "placeholder": "Search AI agents...",
+    "noResults": "No AI agent matches your search",
+    "clearSearch": "Clear search"
+  },
+  "fields": {
+    "name": "Name",
+    "description": "Description",
+    "noDescription": "No description",
+    "type": "Type",
+    "model": "Model",
+    "notAvailable": "N/A",
+    "createdAt": "Created at"
+  },
+  "card": {
+    "actions": "Actions",
+    "model": "Model",
+    "type": "Type"
+  },
+  "table": {
+    "actions": "Actions",
+    "emptyMessage": "No AI agent found",
+    "clickToView": "💡 Click on an AI agent to view details or open the Agent Card"
+  },
+  "dropdown": {
+    "testA2A": "Test A2A",
+    "edit": "Edit",
+    "moveToFolder": "Move to folder",
+    "exportJSON": "Export JSON",
+    "share": "Share",
+    "delete": "Delete"
+  },
+  "apiKeys": {
+    "manage": "Manage API Keys"
+  },
+  "export": {
+    "all": "Export All",
+    "success": "AI agents exported successfully",
+    "successDesc": "{{count}} AI agents were exported",
+    "error": "Error exporting AI agents",
+    "errorDesc": "Unable to export AI agents"
+  },
+  "deleteDialog": {
+    "title": "Delete AI Agent",
+    "description": "Are you sure you want to delete the AI agent \"{{name}}\"? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete",
+    "deleting": "Deleting...",
+    "success": "AI agent \"{{name}}\" deleted successfully!"
+  },
+  "bulkDelete": "Bulk Delete",
+  "testA2A": "Test A2A",
+  "moveToFolder": "Move to folder",
+  "exportJSON": "Export JSON",
+  "share": "Share AI Agent",
+  "edit": {
+    "integrations": {
+      "github": {
+        "configTitle": "Configure GitHub",
+        "connectTitle": "Connect to GitHub",
+        "connectDescription": "Allow the agent to access GitHub repositories, issues, and pull requests",
+        "connecting": "Connecting...",
+        "connectButton": "Connect to GitHub",
+        "connected": "Connected",
+        "connectedAs": "Connected as",
+        "connectedDescription": "The agent can now access repositories, issues, pull requests, and other GitHub information.",
+        "toolsTitle": "Available Tools",
+        "toolsDescription": "Select which GitHub tools the agent can use",
+        "selectAll": "Select all",
+        "noTools": "No tools available",
+        "saveConfig": "SAVE SETTINGS",
+        "disconnect": "Disconnect"
+      }
+    }
+  }
+}

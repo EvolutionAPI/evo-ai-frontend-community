@@ -1,0 +1,275 @@
+{
+  "title": "Custom Attributes",
+  "loading": "Loading custom attributes...",
+  "sections": {
+    "defined": "Custom Attributes Defined",
+    "additional": "Additional Attributes",
+    "newAttribute": "New Custom Attribute"
+  },
+  "tabs": {
+    "conversation": "Conversations",
+    "contact": "Contacts",
+    "pipeline_attribute": "Pipeline"
+  },
+  "attributeTypeOptions": {
+    "text": {
+      "label": "Text",
+      "description": "Simple text field"
+    },
+    "number": {
+      "label": "Number",
+      "description": "Numeric field"
+    },
+    "currency": {
+      "label": "Currency",
+      "description": "Monetary value"
+    },
+    "percent": {
+      "label": "Percentage",
+      "description": "Percentage value"
+    },
+    "link": {
+      "label": "Link",
+      "description": "URL or link"
+    },
+    "date": {
+      "label": "Date",
+      "description": "Date field"
+    },
+    "datetime": {
+      "label": "Date and Time",
+      "description": "Date and time field"
+    },
+    "list": {
+      "label": "List",
+      "description": "Selection from predefined options"
+    },
+    "checkbox": {
+      "label": "Checkbox",
+      "description": "True or false"
+    }
+  },
+  "header": {
+    "title": "Custom Attributes",
+    "subtitle": "{{count}} attribute(s) {{tabName}} in total",
+    "subtitleSingular": "{{count}} attribute {{tabName}} in total",
+    "searchPlaceholder": "Search custom attributes...",
+    "newAttribute": "New Custom Attribute",
+    "bulkDelete": "Delete",
+    "clearSelection": "Clear Selection",
+    "selected": "{{count}} selected(s)"
+  },
+  "modal": {
+    "title": {
+      "new": "New Custom Attribute",
+      "edit": "Edit Custom Attribute"
+    },
+    "description": {
+      "new": "Create a new custom attribute to collect specific information.",
+      "edit": "Edit the custom attribute information."
+    },
+    "fields": {
+      "attributeModel": {
+        "label": "Apply to",
+        "required": true
+      },
+      "displayName": {
+        "label": "Display Name",
+        "placeholder": "Ex: Customer Priority",
+        "required": true,
+        "errors": {
+          "required": "Display Name is required",
+          "minLength": "Display Name must have at least 2 characters"
+        }
+      },
+      "attributeKey": {
+        "label": "Attribute Key",
+        "placeholder": "Ex: customer_priority",
+        "required": true,
+        "hint": "The key will be used to identify this attribute in the API. Use only lowercase letters, numbers and underscores.",
+        "errors": {
+          "required": "Attribute Key is required",
+          "invalid": "Attribute Key must contain only lowercase letters, numbers and underscores"
+        }
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "Describe the purpose of this attribute",
+        "required": true,
+        "errors": {
+          "required": "Description is required"
+        }
+      },
+      "displayType": {
+        "label": "Type",
+        "required": true
+      },
+      "listValues": {
+        "label": "List Values",
+        "placeholder": "Enter a value and press Enter",
+        "required": true,
+        "errors": {
+          "required": "List must have at least one value"
+        }
+      },
+      "regexEnabled": {
+        "label": "Regex Validation",
+        "description": "Add a regex pattern to validate the values of this attribute"
+      },
+      "regexPattern": {
+        "label": "Regex Pattern",
+        "placeholder": "Ex: ^[0-9]{3}-[0-9]{3}-[0-9]{4}$",
+        "errors": {
+          "invalid": "Invalid regex pattern"
+        }
+      },
+      "regexCue": {
+        "label": "Regex Cue",
+        "placeholder": "Ex: Format: 123-456-7890",
+        "hint": "This cue will be displayed to users when they fill in the field"
+      },
+      "pipelineType": {
+        "label": "Pipeline Type",
+        "placeholder": "Select pipeline type",
+        "hint": "Select whether this attribute applies to the pipeline, stage, or item",
+        "errors": {
+          "required": "Pipeline type is required for pipeline attributes"
+        }
+      }
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Name",
+      "key": "Key",
+      "type": "Type",
+      "description": "Description",
+      "values": "Values",
+      "regex": "Regex",
+      "createdAt": "Created at",
+      "actions": "Actions",
+      "model": {
+        "label": "Model",
+        "pipeline_attribute": "Pipeline",
+        "pipeline_stage_attribute": "Stage",
+        "pipeline_item_attribute": "Item"
+      }
+    },
+    "regexBadge": {
+      "yes": "Yes"
+    },
+    "noDescription": "-",
+    "noValues": "-",
+    "noRegex": "-",
+    "moreValues": "+{{count}}"
+  },
+  "fields": {
+    "attributeKey": {
+      "label": "Name of the Attribute",
+      "placeholder": "Ex: customer_vip, department, cargo"
+    },
+    "attributeValue": {
+      "label": "Value",
+      "placeholder": "Value of the attribute"
+    },
+    "attributeScope": {
+      "label": "Attribute Scope",
+      "placeholder": "Select who this attribute is for",
+      "options": {
+        "pipeline": {
+          "label": "For this Pipeline",
+          "description": "Attribute specific to this pipeline"
+        },
+        "stages": {
+          "label": "For Stages",
+          "description": "Attribute shared with all stages of this pipeline"
+        },
+        "stage": {
+          "label": "For this Stage",
+          "description": "Attribute specific to this stage"
+        },
+        "items": {
+          "label": "For Cards",
+          "description": "Attribute shared with all cards"
+        },
+        "item": {
+          "label": "For this Card",
+          "description": "Attribute specific to this card"
+        }
+      },
+      "sharedMessage": {
+        "label": "Shared with cards",
+        "labelStages": "Shared with stages",
+        "pipeline": "This attribute will be filled directly in the card.",
+        "stage": "This attribute will be filled directly in the card.",
+        "descriptionStages": "The value will be defined by the stages",
+        "descriptionCards": "The value will be defined by the cards"
+      },
+      "attributeOrigin": {
+        "pipeline": "Pipeline Attribute",
+        "stage": "Stage Attribute",
+        "item": "Card Attribute"
+      }
+    }
+  },
+  "placeholders": {
+    "text": "Enter {{name}}",
+    "number": "Enter {{name}}",
+    "link": "https://exemplo.com",
+    "select": "Select {{name}}",
+    "textarea": "Enter {{name}}"
+  },
+  "actions": {
+    "add": "Add",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "addAttribute": "Add Custom Attribute",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "create": "Create",
+    "update": "Update",
+    "saving": "Saving...",
+    "confirm": "Confirm"
+  },
+  "checkbox": {
+    "yes": "Yes",
+    "no": "No"
+  },
+  "empty": {
+    "title": "No custom attribute found",
+    "description": "Define custom attributes in the settings or add a custom attribute below",
+    "descriptionReadOnly": "Configure custom attributes in the account settings",
+    "descriptionConversation": "Create a new custom attribute for conversations to start collecting specific information.",
+    "descriptionContact": "Create a new custom attribute for contacts to start collecting specific information.",
+    "descriptionPipeline": "Create a new custom attribute for pipelines, stages, or items to start collecting specific information.",
+    "action": "New Attribute"
+  },
+  "messages": {
+    "loadError": "Error loading custom attributes",
+    "createSuccess": "Custom attribute created successfully",
+    "createError": "Error creating custom attribute",
+    "updateSuccess": "Custom attribute updated successfully",
+    "updateError": "Error updating custom attribute",
+    "deleteSuccess": "Custom attribute deleted successfully",
+    "deleteError": "Error deleting custom attribute",
+    "bulkDeleteSuccess": "{{count}} custom attribute(s) deleted successfully",
+    "bulkDeleteError": "Error deleting custom attributes"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Delete Custom Attribute",
+      "description": "Are you sure you want to delete the custom attribute \"{{name}}\"? This action cannot be undone and will remove all associated data.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "bulkDelete": {
+      "title": "Delete Custom Attributes",
+      "description": "Are you sure you want to delete {{count}} custom attribute(s) selected? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete All",
+      "deleting": "Deleting..."
+    }
+  }
+}

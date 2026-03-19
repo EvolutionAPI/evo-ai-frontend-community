@@ -1,0 +1,104 @@
+{
+  "title": "Impostazioni account",
+  "subtitle": "Gestisci le impostazioni e le preferenze del tuo account",
+  "loading": "Caricamento...",
+  "sections": {
+    "general": {
+      "title": "Impostazioni generali",
+      "description": "Configura le informazioni di base del tuo account"
+    },
+    "autoResolve": {
+      "title": "Risoluzione automatica delle conversazioni",
+      "description": "Configura la risoluzione automatica delle conversazioni inattive"
+    },
+    "audioTranscription": {
+      "title": "Trascrizione audio",
+      "description": "Attiva la trascrizione automatica dei messaggi audio"
+    },
+    "accountId": {
+      "title": "ID account",
+      "description": "Identificatore univoco del tuo account per le integrazioni"
+    },
+    "accountDeletion": {
+      "title": "Eliminazione account",
+      "description": "Elimina definitivamente il tuo account e tutti i dati"
+    }
+  },
+  "fields": {
+    "name": {
+      "label": "Nome account *",
+      "placeholder": "Nome del tuo account"
+    },
+    "locale": {
+      "label": "Lingua *"
+    },
+    "domain": {
+      "label": "Dominio personalizzato",
+      "placeholder": "esempio.com",
+      "description": "Configura un dominio personalizzato per le email di risposta"
+    },
+    "supportEmail": {
+      "label": "Email di supporto",
+      "placeholder": "supporto@esempio.com"
+    },
+    "autoResolveTime": {
+      "label": "Tempo per risoluzione automatica (minuti)",
+      "unit": "minuti",
+      "description": "Le conversazioni inattive verranno risolte automaticamente dopo questo periodo"
+    },
+    "autoResolveMessage": {
+      "label": "Messaggio di risoluzione automatica",
+      "placeholder": "Messaggio facoltativo inviato quando la conversazione viene risolta automaticamente"
+    },
+    "ignoreWaiting": {
+      "label": "Ignora conversazioni in attesa di risposta"
+    },
+    "applyLabel": {
+      "label": "Applica etichetta",
+      "placeholder": "Seleziona etichetta",
+      "none": "Nessuna etichetta"
+    }
+  },
+  "buttons": {
+    "save": "Salva impostazioni",
+    "saving": "Salvataggio...",
+    "updateAutoResolve": "Aggiorna risoluzione automatica",
+    "deleteAccount": "Elimina account",
+    "cancelDeletion": "Annulla eliminazione"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Non hai l'autorizzazione per visualizzare le impostazioni dell'account",
+      "update": "Non hai l'autorizzazione per aggiornare le impostazioni dell'account",
+      "delete": "Non hai l'autorizzazione per eliminare l'account"
+    },
+    "success": {
+      "generalUpdated": "Impostazioni generali aggiornate con successo",
+      "autoResolveDisabled": "Risoluzione automatica disabilitata",
+      "autoResolveUpdated": "Impostazioni di risoluzione automatica aggiornate",
+      "audioTranscriptionEnabled": "Trascrizione audio abilitata",
+      "audioTranscriptionDisabled": "Trascrizione audio disabilitata",
+      "accountDeleted": "Account contrassegnato per l'eliminazione",
+      "deletionCancelled": "Eliminazione account annullata",
+      "accountIdCopied": "ID account copiato negli appunti"
+    },
+    "error": {
+      "loadFailed": "Impossibile caricare i dati dell'account",
+      "saveFailed": "Errore durante il salvataggio delle impostazioni",
+      "autoResolveDisableFailed": "Errore durante la disabilitazione della risoluzione automatica",
+      "autoResolveSaveFailed": "Errore durante il salvataggio della risoluzione automatica",
+      "audioTranscriptionFailed": "Errore durante la modifica della trascrizione audio",
+      "deleteFailed": "Errore durante la contrassegnazione dell'account per l'eliminazione",
+      "cancelDeletionFailed": "Errore durante l'annullamento dell'eliminazione",
+      "minTime": "Il tempo minimo è di 10 minuti"
+    }
+  },
+  "validation": {
+    "nameRequired": "Il nome dell'account è obbligatorio",
+    "localeRequired": "La lingua è obbligatoria",
+    "minAutoResolveTime": "Il tempo minimo è di 10 minuti"
+  },
+  "deletion": {
+    "scheduledMessage": "Questo account è programmato per l'eliminazione il {{date}}"
+  }
+}

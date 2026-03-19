@@ -1,0 +1,48 @@
+{
+  "createAccount": {
+    "title": "Bienvenue !",
+    "subtitle": "Pour commencer à utiliser le système, vous devez créer votre première organisation.",
+    "form": {
+      "organizationName": {
+        "label": "Nom de l'Organisation",
+        "placeholder": "Ex : Mon Entreprise SAS",
+        "errors": {
+          "required": "Le nom de l'organisation est obligatoire",
+          "minLength": "Le nom de l'organisation doit contenir au moins 2 caractères"
+        }
+      },
+      "userFullName": {
+        "label": "Votre Nom Complet",
+        "placeholder": "Ex : Jean Dupont",
+        "errors": {
+          "required": "Votre nom complet est obligatoire",
+          "minLength": "Le nom doit contenir au moins 2 caractères"
+        }
+      },
+      "email": {
+        "label": "Email",
+        "helper": "C'est l'email utilisé pour créer votre compte"
+      },
+      "support_email": { 
+        "label": "Email de Support",
+        "helper": "Ceci est l'email de support de votre compte",
+        "errors": {
+          "required": "L'email de support est obligatoire",
+          "invalid": "L'email de support doit être une adresse email valide"
+        }
+      },
+      "submitButton": {
+        "idle": "Créer l'Organisation",
+        "loading": "Création de l'organisation..."
+      }
+    },
+    "success": {
+      "title": "Organisation créée avec succès !",
+      "description": "Votre compte a été créé et vous pouvez maintenant commencer à utiliser le système."
+    },
+    "error": {
+      "generic": "Erreur lors de la création de l'organisation"
+    },
+    "footer": "En créant une organisation, vous en devenez l'administrateur et vous pouvez ajouter d'autres utilisateurs ultérieurement."
+  }
+}

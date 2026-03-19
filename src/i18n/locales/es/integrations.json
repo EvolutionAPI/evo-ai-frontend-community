@@ -1,0 +1,1299 @@
+{
+  "title": "Integraciones",
+  "subtitle": "Conecte herramientas y servicios para expandir las funcionalidades del sistema",
+  "header": {
+    "title": "Integraciones",
+    "subtitle": "Conecte herramientas y servicios para expandir las funcionalidades"
+  },
+  "search": {
+    "placeholder": "Buscar integraciones..."
+  },
+  "categories": {
+    "all": "Todas",
+    "crm": "CRM",
+    "communication": "Comunicación",
+    "productivity": "Productividad",
+    "ai": "IA & Automatización",
+    "custom": "Personalizables"
+  },
+  "empty": {
+    "title": "Ninguna integración encontrada",
+    "descriptionWithSearch": "Intente ajustar sus filtros o término de búsqueda",
+    "descriptionWithoutSearch": "No hay integraciones disponibles en esta categoría"
+  },
+  "loading": {
+    "title": "Cargando integración..."
+  },
+  "providers": {
+    "bms": {
+      "name": "BMS (Brius Message System)",
+      "description": "Configure la integración con Brius Message System para sincronización de contactos"
+    },
+    "dialogflow": {
+      "name": "Dialogflow",
+      "description": "Configure la integración con Google Dialogflow"
+    },
+    "googleTranslate": {
+      "name": "Google Translate",
+      "description": "Configure la integración con Google Translate"
+    },
+    "hubspot": {
+      "name": "HubSpot",
+      "description": "Integre con HubSpot CRM para gestionar contactos, negocios y pipelines"
+    },
+    "leadsquared": {
+      "name": "LeadSquared",
+      "description": "Configure la integración con LeadSquared CRM"
+    },
+    "linear": {
+      "name": "Linear",
+      "description": "Integre con Linear para gestión de issues y proyectos"
+    },
+    "openai": {
+      "name": "OpenAI",
+      "description": "Configure la integración con OpenAI para sugerencias inteligentes",
+      "globallyConfigured": "OpenAI ya está configurado globalmente por el administrador"
+    },
+    "shopify": {
+      "name": "Shopify",
+      "description": "Integre con Shopify para sincronizar datos de clientes y pedidos"
+    },
+    "slack": {
+      "name": "Slack",
+      "description": "Conecte su workspace Slack para recibir notificaciones en tiempo real"
+    },
+    "paypal": {
+      "name": "PayPal",
+      "description": "Integre con PayPal para gestionar pagos, transacciones e información de clientes"
+    },
+    "canva": {
+      "name": "Canva",
+      "description": "Cree y edite diseños, presentaciones y materiales visuales con Canva"
+    }
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "No tiene permiso para visualizar integraciones",
+      "update": "No tiene permiso para configurar integraciones"
+    },
+    "loadError": "Error al cargar integraciones",
+    "toggleError": "Error al cambiar estado de la integración",
+    "disconnected": "{{name}} desconectado con éxito",
+    "saveSuccess": "¡Configuraciones guardadas con éxito!",
+    "saveError": "Error al guardar configuraciones"
+  },
+  "actions": {
+    "configure": "Configurar",
+    "connect": "Conectar",
+    "disconnect": "Desconectar",
+    "processing": "Procesando...",
+    "refresh": "Actualizar",
+    "visitSite": "Visitar sitio",
+    "visitOfficialSite": "Visitar sitio oficial",
+    "delete": "Eliminar",
+    "reconnect": "Reconectar",
+    "backToIntegrations": "Volver a Integraciones"
+  },
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "error": "Error",
+    "pending": "Pendiente",
+    "syncing": "Sincronizando",
+    "statusLabel": "Estado",
+    "typeLabel": "Tipo",
+    "configured": "Configurado",
+    "notConfigured": "No configurado"
+  },
+  "statusDescriptions": {
+    "connected": "Integración funcionando normalmente",
+    "disconnected": "Integración no está activa",
+    "error": "Problema en la conexión",
+    "pending": "Aguardando configuración",
+    "syncing": "Datos siendo sincronizados"
+  },
+  "connection": {
+    "account": "Cuenta:",
+    "workspace": "Workspace:",
+    "lastSync": "Última sincronización:",
+    "permissions": "Permisos:",
+    "permissionsConfigured": "{{count}} configurados",
+    "never": "Nunca",
+    "errorLabel": "Error:"
+  },
+  "breadcrumb": {
+    "integrations": "Integraciones"
+  },
+  "genericSettings": {
+    "title": "Integración {{name}}",
+    "loadingConfig": "Cargando configuración...",
+    "configure": "Configurar",
+    "disconnect": "Desconectar",
+    "connect": "Conectar",
+    "messages": {
+      "loadError": "Error al cargar configuración {{name}}",
+      "updateSuccess": "Configuración {{name}} actualizada con éxito",
+      "createSuccess": "Integración {{name}} configurada con éxito",
+      "updateError": "Error al actualizar configuración {{name}}",
+      "createError": "Error al configurar integración {{name}}",
+      "deleteSuccess": "Integración {{name}} eliminada con éxito",
+      "deleteError": "Error al eliminar integración {{name}}"
+    },
+    "dialog": {
+      "deleteTitle": "Eliminar Integración {{name}}",
+      "deleteDescription": "¿Está seguro de que desea eliminar la integración con {{name}}? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "remove": "Eliminar Integración",
+      "removing": "Eliminando..."
+    }
+  },
+  "oauthSettings": {
+    "title": "Integración {{name}}",
+    "loadingConfig": "Cargando configuración...",
+    "configure": "Configurar",
+    "disconnect": "Desconectar",
+    "connect": "Conectar",
+    "configInDev": "Configuración en desarrollo",
+    "messages": {
+      "loadError": "Error al cargar integración {{name}}",
+      "disconnectSuccess": "Integración {{name}} desconectada con éxito",
+      "disconnectError": "Error al desconectar integración {{name}}"
+    },
+    "dialog": {
+      "disconnectTitle": "Desconectar {{name}}",
+      "disconnectDescription": "¿Está seguro de que desea desconectar la integración con {{name}}? Necesitará autorizar nuevamente para reconectar.",
+      "cancel": "Cancelar",
+      "disconnect": "Desconectar",
+      "disconnecting": "Desconectando..."
+    }
+  },
+  "bms": {
+    "title": "Integración BMS",
+    "subtitle": "Configure la integración con Brius Message System",
+    "notConfigured": "BMS no configurado",
+    "notConfiguredDescription": "Configure su integración con Brius Message System para sincronización de contactos, etiquetas y campañas.",
+    "configureBMS": "Configurar BMS",
+    "modal": {
+      "title": "Configurar Integración BMS",
+      "updateTitle": "Actualizar Integración BMS",
+      "description": "Configure la integración con Brius Message System (BMS) para sincronización de contactos, etiquetas y campañas.",
+      "apiConfig": "Configuración de la API",
+      "syncOptions": "Opciones de Sincronización",
+      "fields": {
+        "apiKey": {
+          "label": "Clave de la API BMS",
+          "placeholder": "Inserte su clave de la API BMS",
+          "hint": "Digite su clave de la API de Brius Message System",
+          "required": "API Key es obligatoria"
+        },
+        "contactSync": {
+          "label": "Sincronizar Contactos",
+          "description": "Permite sincronización automática de contactos con BMS"
+        },
+        "labelSync": {
+          "label": "Sincronizar Etiquetas",
+          "description": "Permite sincronización automática de etiquetas con BMS"
+        },
+        "customAttributesSync": {
+          "label": "Sincronizar Atributos Personalizados",
+          "description": "Permite sincronización de atributos personalizados con BMS"
+        },
+        "campaignSync": {
+          "label": "Sincronizar Campañas",
+          "description": "Permite sincronización automática de campañas con BMS"
+        }
+      },
+      "features": {
+        "title": "Recursos Disponibles",
+        "bidirectionalSync": "Sincronización bidireccional de contactos",
+        "labelSync": "Sincronización automática de etiquetas y tags",
+        "customAttributes": "Integración con atributos personalizados",
+        "campaignSync": "Sincronización de campañas de marketing",
+        "centralizedHistory": "Historial de interacciones centralizado"
+      },
+      "security": {
+        "title": "Seguridad:",
+        "description": "Su clave de la API será almacenada de forma segura y encriptada. Nunca comparta su clave de la API BMS con terceros."
+      },
+      "actions": {
+        "documentation": "Documentación BMS",
+        "cancel": "Cancelar",
+        "configure": "Configurar Integración",
+        "update": "Actualizar Integración",
+        "saving": "Guardando..."
+      }
+    },
+    "status": {
+      "title": "Estado de la Integración",
+      "active": "Activo",
+      "inactive": "Inactivo",
+      "configuredAt": "Configurado el",
+      "lastUpdate": "Última actualización"
+    },
+    "configuration": {
+      "title": "Configuración",
+      "edit": "Editar",
+      "remove": "Eliminar",
+      "apiKey": "API Key",
+      "notConfigured": "No configurada",
+      "contactSync": "Sincronizar Contactos",
+      "labelSync": "Sincronizar Etiquetas",
+      "customAttributes": "Atributos Personalizados",
+      "campaignSync": "Sincronizar Campañas",
+      "enabled": "✓ Activado",
+      "disabled": "✗ Desactivado"
+    },
+    "featuresCard": {
+      "title": "Recursos Disponibles",
+      "contactSync": "Sincronización de Contactos: Mantenga contactos sincronizados entre sistemas",
+      "labelManagement": "Gestión de Etiquetas: Sincronice tags y categorías automáticamente",
+      "customAttributes": "Atributos Personalizados: Transfiera datos personalizados entre plataformas",
+      "campaigns": "Campañas Integradas: Conecte campañas de marketing y comunicación",
+      "unifiedHistory": "Historial Unificado: Vea todo el historial de interacciones en un solo lugar"
+    },
+    "deleteDialog": {
+      "title": "Eliminar Integración BMS",
+      "description": "¿Está seguro de que desea eliminar la integración con BMS? Todos los recursos de sincronización serán deshabilitados y esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "remove": "Eliminar Integración",
+      "removing": "Eliminando..."
+    },
+    "messages": {
+      "loadError": "Error al cargar configuración BMS",
+      "updateSuccess": "Configuración BMS actualizada con éxito",
+      "createSuccess": "Integración BMS configurada con éxito",
+      "updateError": "Error al actualizar configuración BMS",
+      "createError": "Error al configurar integración BMS",
+      "deleteSuccess": "Integración BMS eliminada con éxito",
+      "deleteError": "Error al eliminar integración BMS"
+    },
+    "name": "BMS Email Provider",
+    "description": "Provider de email transaccional vía BMS API",
+    "apiKey": "BMS API Key",
+    "ipPool": "BMS IP Pool (Opcional)",
+    "senderEmail": "Email del Remitente",
+    "ipPoolDescription": "Pool de IPs para envío de emails. Predeterminado: evoapicloud",
+    "senderEmailDescription": "Email que aparecerá como remitente en los emails enviados",
+    "placeholders": {
+      "apiKey": "Digite la API Key de BMS",
+      "ipPool": "Digite el IP Pool de BMS",
+      "senderEmail": "Ej: Evolution <contacto@evoapicloud.com>"
+    }
+  },
+  "dashboardApps": {
+    "title": "Aplicaciones del Dashboard",
+    "subtitle": "Configure aplicaciones personalizadas para integrar al dashboard",
+    "loading": "Cargando aplicaciones del dashboard...",
+    "notConfigured": "Ninguna aplicación del dashboard configurada",
+    "notConfiguredDescription": "Configure aplicaciones personalizadas para integrar al dashboard.",
+    "newApp": "Nueva Aplicación",
+    "modal": {
+      "title": "Nueva Aplicación del Dashboard",
+      "updateTitle": "Editar Aplicación del Dashboard",
+      "basicInfo": "Información Básica",
+      "displayConfig": "Configuración de Visualización",
+      "fields": {
+        "title": {
+          "label": "Título",
+          "placeholder": "Mi Aplicación Personalizada",
+          "required": "El título es obligatorio"
+        },
+        "url": {
+          "label": "URL de la Aplicación",
+          "placeholder": "https://miapp.com/dashboard",
+          "hint": "URL que será cargada en el dashboard",
+          "required": "La URL es obligatoria",
+          "invalid": "URL inválida"
+        },
+        "displayType": {
+          "label": "Tipo de Visualización",
+          "conversation": "Conversación",
+          "conversationDescription": "Aparece en el área de conversación",
+          "sidebar": "Sidebar",
+          "sidebarDescription": "Aparece en la barra lateral"
+        },
+        "sidebarMenu": {
+          "label": "Menú del Sidebar",
+          "conversations": "Conversaciones",
+          "contacts": "Contactos",
+          "pipelines": "Pipelines",
+          "automation": "Automatización",
+          "agents": "Agentes",
+          "channels": "Canales",
+          "settings": "Configuraciones"
+        },
+        "sidebarPosition": {
+          "label": "Posición en el Sidebar",
+          "before": "Antes",
+          "beforeDescription": "Aparece antes del menú seleccionado",
+          "after": "Después",
+          "afterDescription": "Aparece después del menú seleccionado"
+        }
+      },
+      "info": {
+        "title": "Importante:",
+        "description": "Asegúrese de que la URL esté configurada para permitir carga en iframe si es del tipo 'frame'. Verifique que no haya restricciones de X-Frame-Options."
+      },
+      "actions": {
+        "cancel": "Cancelar",
+        "create": "Crear Aplicación",
+        "update": "Actualizar Aplicación",
+        "saving": "Guardando..."
+      }
+    },
+    "table": {
+      "columns": {
+        "application": "Aplicación",
+        "type": "Tipo",
+        "menuPosition": "Menú/Posición",
+        "createdAt": "Creado el"
+      },
+      "displayType": {
+        "sidebar": "Sidebar",
+        "conversation": "Conversación"
+      },
+      "position": {
+        "before": "Antes",
+        "after": "Después"
+      },
+      "actions": {
+        "open": "Abrir aplicación",
+        "edit": "Editar aplicación",
+        "delete": "Eliminar aplicación",
+        "create": "Crear aplicación"
+      },
+      "empty": {
+        "title": "Ninguna aplicación configurada",
+        "description": "Configure aplicaciones personalizadas para integrar al dashboard.",
+        "noResults": "Ninguna aplicación encontrada"
+      }
+    },
+    "header": {
+      "searchPlaceholder": "Buscar aplicaciones...",
+      "newApp": "Nueva Aplicación",
+      "delete": "Eliminar"
+    },
+    "deleteDialog": {
+      "title": "Eliminar Aplicación del Dashboard",
+      "description": "¿Está seguro de que desea eliminar la aplicación \"{{title}}\"? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "bulkDeleteDialog": {
+      "title": "Eliminar Aplicaciones del Dashboard",
+      "description": "¿Está seguro de que desea eliminar {{count}} aplicación(es) del dashboard seleccionada(s)? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "deleteAll": "Eliminar Todas",
+      "deleting": "Eliminando..."
+    },
+    "messages": {
+      "loadError": "Error al cargar aplicaciones del dashboard",
+      "deleteSuccess": "Aplicación del dashboard eliminada con éxito",
+      "deleteError": "Error al eliminar aplicación del dashboard",
+      "bulkDeleteSuccess": "{{count}} aplicación(es) eliminada(s) con éxito",
+      "bulkDeleteError": "Error al eliminar aplicaciones del dashboard",
+      "createSuccess": "Aplicación del dashboard creada con éxito",
+      "createError": "Error al crear aplicación del dashboard",
+      "updateSuccess": "Aplicación del dashboard actualizada con éxito",
+      "updateError": "Error al actualizar aplicación del dashboard"
+    },
+    "page": {
+      "poweredBy": "Desarrollado por",
+      "error": {
+        "title": "Error",
+        "notFound": "Aplicación no encontrada",
+        "heading": "No se pudo cargar la aplicación",
+        "description": "La aplicación solicitada no se encontró o no tiene permiso para acceder a ella.",
+        "goBack": "Volver",
+        "invalidUrl": "URL inválida"
+      }
+    }
+  },
+  "googleTranslate": {
+    "modal": {
+      "title": "Configurar Integración Google Translate",
+      "updateTitle": "Actualizar Integración Google Translate",
+      "description": "Configure la integración con Google Translate para traducción automática de mensajes y detección de idiomas.",
+      "apiConfig": "Configuración de la API",
+      "translationOptions": "Opciones de Traducción",
+      "fields": {
+        "projectId": {
+          "label": "Google Cloud Project ID",
+          "placeholder": "Inserte el ID de su proyecto Google Cloud",
+          "hint": "ID del proyecto Google Cloud con API Translate habilitada",
+          "required": "Project ID es obligatorio"
+        },
+        "defaultLanguage": {
+          "label": "Idioma Predeterminado de Traducción",
+          "placeholder": "Seleccione el idioma predeterminado",
+          "hint": "Idioma al cual los mensajes serán traducidos por defecto"
+        },
+        "enableAgentBot": {
+          "label": "Traducción para Agentes",
+          "description": "Permite que los agentes vean traducciones de los mensajes de los clientes"
+        },
+        "enableAutoTranslate": {
+          "label": "Traducción Automática",
+          "description": "Traduce automáticamente mensajes recibidos al idioma predeterminado"
+        },
+        "enableDetection": {
+          "label": "Detección de Idioma",
+          "description": "Detecta automáticamente el idioma de los mensajes recibidos"
+        }
+      },
+      "features": {
+        "title": "Recursos Disponibles",
+        "realtime": "Traducción de mensajes en tiempo real",
+        "detection": "Detección automática de idiomas",
+        "languages": "Soporte para más de 100 idiomas",
+        "multilingual": "Interfaz multilingüe para agentes",
+        "context": "Preservación del contexto original"
+      },
+      "warning": {
+        "title": "Configuración Necesaria:",
+        "description": "Esta integración requiere configuración de credenciales de Google Cloud en el servidor. Contacte con su administrador de sistema para completar la configuración."
+      },
+      "actions": {
+        "documentation": "Documentación Google Translate",
+        "cancel": "Cancelar",
+        "configure": "Configurar Integración",
+        "update": "Actualizar Integración",
+        "saving": "Guardando..."
+      }
+    }
+  },
+  "leadSquared": {
+    "modal": {
+      "title": "Configurar Integración LeadSquared",
+      "updateTitle": "Actualizar Integración LeadSquared",
+      "description": "Configure la integración con LeadSquared CRM para sincronización de leads y actividades.",
+      "apiConfig": "Configuración de la API",
+      "activitySettings": "Configuraciones de Actividades",
+      "fields": {
+        "accessKey": {
+          "label": "Access Key",
+          "placeholder": "Inserte su Access Key",
+          "required": "Access Key es obligatoria"
+        },
+        "secretKey": {
+          "label": "Secret Key",
+          "placeholder": "Inserte su Secret Key",
+          "required": "Secret Key es obligatoria"
+        },
+        "endpointUrl": {
+          "label": "Endpoint URL",
+          "placeholder": "https://api.leadsquared.com"
+        },
+        "appUrl": {
+          "label": "App URL",
+          "placeholder": "https://app.leadsquared.com"
+        },
+        "timezone": {
+          "label": "Zona Horaria",
+          "placeholder": "Seleccione la zona horaria"
+        },
+        "conversationActivity": {
+          "label": "Actividad de Conversación",
+          "description": "Registra conversaciones como actividades en LeadSquared",
+          "score": "Score de la Conversación",
+          "code": "Código de la Actividad",
+          "scorePlaceholder": "10",
+          "codePlaceholder": "100"
+        },
+        "transcriptActivity": {
+          "label": "Actividad de Transcripción",
+          "description": "Registra transcripciones completas como actividades en LeadSquared",
+          "score": "Score de la Transcripción",
+          "code": "Código de la Actividad",
+          "scorePlaceholder": "5",
+          "codePlaceholder": "101"
+        }
+      },
+      "security": {
+        "title": "Seguridad:",
+        "description": "Sus credenciales serán almacenadas de forma segura y encriptada. Nunca comparta sus claves de la API LeadSquared con terceros."
+      },
+      "actions": {
+        "documentation": "Documentación LeadSquared",
+        "cancel": "Cancelar",
+        "configure": "Configurar Integración",
+        "update": "Actualizar Integración",
+        "saving": "Guardando..."
+      }
+    }
+  },
+  "oauth": {
+    "header": {
+      "title": "Aplicaciones OAuth",
+      "subtitle": "Configure aplicaciones OAuth para integración con APIs externas",
+      "searchPlaceholder": "Buscar aplicaciones...",
+      "newApp": "Nueva Aplicación",
+      "delete": "Eliminar"
+    },
+    "modal": {
+      "title": "Nueva Aplicación OAuth",
+      "updateTitle": "Editar Aplicación OAuth",
+      "basicInfo": "Información Básica",
+      "scopes": "Permisos (Scopes)",
+      "fields": {
+        "name": {
+          "label": "Nombre de la Aplicación",
+          "placeholder": "Mi Aplicación OAuth",
+          "required": "El nombre es obligatorio"
+        },
+        "redirectUri": {
+          "label": "URI de Redirección",
+          "placeholder": "https://miapp.com/oauth/callback",
+          "hint": "URL a donde el usuario será redirigido después de la autorización",
+          "required": "URI de redirección es obligatoria",
+          "invalid": "URI de redirección inválida"
+        },
+        "scopes": {
+          "label": "Scopes",
+          "placeholder": "read:conversations write:messages",
+          "hint": "Permisos separados por espacio. Ej: read:conversations write:messages",
+          "required": "Al menos un scope es obligatorio"
+        }
+      },
+      "presets": {
+        "title": "Presets de Permisos",
+        "readOnly": "Solo Lectura",
+        "readWrite": "Lectura/Escritura",
+        "admin": "Administrador"
+      },
+      "security": {
+        "title": "Seguridad:",
+        "description": "Después de crear la aplicación, recibirá un Client ID y Client Secret. Mantenga el Client Secret en seguridad - no podrá ser recuperado después de creado, solo regenerado."
+      },
+      "actions": {
+        "cancel": "Cancelar",
+        "create": "Crear Aplicación",
+        "update": "Actualizar Aplicación",
+        "saving": "Guardando..."
+      }
+    },
+    "table": {
+      "columns": {
+        "application": "Aplicación",
+        "clientId": "Client ID",
+        "scopes": "Scopes",
+        "status": "Estado",
+        "createdAt": "Creado el"
+      },
+      "actions": {
+        "copyClientId": "Copiar Client ID",
+        "viewSecret": "Ver Secret",
+        "hideSecret": "Ocultar Secret",
+        "copySecret": "Copiar Secret",
+        "edit": "Editar aplicación",
+        "delete": "Eliminar aplicación",
+        "create": "Crear aplicación"
+      },
+      "status": {
+        "active": "Activo"
+      },
+      "empty": {
+        "title": "Ninguna aplicación OAuth configurada",
+        "description": "Cree su primera aplicación OAuth para permitir integraciones con APIs externas.",
+        "noResults": "Ninguna aplicación OAuth encontrada"
+      }
+    },
+    "credentials": {
+      "title": "Credenciales",
+      "clientId": "Client ID",
+      "clientSecret": "Client Secret"
+    },
+    "deleteDialog": {
+      "title": "Eliminar Aplicación OAuth",
+      "description": "¿Está seguro de que desea eliminar la aplicación \"{{name}}\"? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "bulkDeleteDialog": {
+      "title": "Eliminar Aplicaciones OAuth",
+      "description": "¿Está seguro de que desea eliminar {{count}} aplicación(es) OAuth seleccionada(s)? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar Todas",
+      "deleting": "Eliminando..."
+    },
+    "messages": {
+      "loading": "Cargando aplicaciones OAuth...",
+      "deleteSuccess": "Aplicación OAuth eliminada con éxito",
+      "deleteError": "Error al eliminar aplicación OAuth",
+      "bulkDeleteSuccess": "{{count}} aplicación(es) OAuth eliminada(s) con éxito",
+      "bulkDeleteError": "Error al eliminar aplicaciones OAuth",
+      "createSuccess": "Aplicación OAuth creada con éxito",
+      "createError": "Error al crear aplicación OAuth",
+      "updateSuccess": "Aplicación OAuth actualizada con éxito",
+      "updateError": "Error al actualizar aplicación OAuth",
+      "clientIdCopied": "Client ID copiado al portapapeles",
+      "clientSecretCopied": "Client Secret copiado al portapapeles"
+    }
+  },
+  "openai": {
+    "header": {
+      "title": "Integración OpenAI",
+      "subtitle": "Configure la integración con OpenAI para recursos de IA"
+    },
+    "modal": {
+      "title": "Configurar Integración OpenAI",
+      "updateTitle": "Actualizar Integración OpenAI",
+      "description": "Integre con OpenAI para traer recursos avanzados de IA a su dashboard usando los modelos GPT.",
+      "apiConfig": "Configuración de la API",
+      "fields": {
+        "apiKey": {
+          "label": "Clave de la API OpenAI",
+          "placeholder": "sk-...",
+          "hint": "Digite su clave de la API de OpenAI para configurar la integración",
+          "required": "API Key es obligatoria",
+          "invalid": "API Key debe comenzar con \"sk-\""
+        }
+      },
+      "features": {
+        "title": "Recursos Disponibles",
+        "suggestions": "Sugerencias de respuesta inteligentes",
+        "summaries": "Resúmenes automáticos de conversaciones",
+        "improvement": "Mejora de redacción y tono de los mensajes",
+        "correction": "Corrección de gramática y ortografía",
+        "labels": "Sugerencia de etiquetas automatizadas"
+      },
+      "security": {
+        "title": "Seguridad:",
+        "description": "Su clave de la API será almacenada de forma segura y encriptada. Nunca comparta su clave de la API OpenAI con terceros."
+      },
+      "actions": {
+        "help": "¿Necesita Ayuda?",
+        "cancel": "Cancelar",
+        "configure": "Configurar Integración",
+        "update": "Actualizar Integración",
+        "saving": "Guardando..."
+      }
+    },
+    "settings": {
+      "loading": "Cargando configuración...",
+      "notConfigured": {
+        "title": "OpenAI no configurado",
+        "description": "Configure su integración con OpenAI para aprovechar recursos avanzados de IA en sus conversaciones.",
+        "action": "Configurar OpenAI"
+      },
+      "status": {
+        "title": "Estado de la Integración",
+        "active": "Activo",
+        "inactive": "Inactivo",
+        "configuredAt": "Configurado el",
+        "lastUpdate": "Última actualización"
+      },
+      "configuration": {
+        "title": "Configuración",
+        "apiKey": "API Key",
+        "notConfigured": "No configurada",
+        "actions": {
+          "edit": "Editar",
+          "remove": "Eliminar"
+        }
+      },
+      "features": {
+        "title": "Recursos Disponibles",
+        "suggestions": "Sugerencias de Respuesta: IA genera sugerencias inteligentes basadas en el contexto",
+        "summaries": "Resúmenes de Conversación: Cree resúmenes automáticos de las conversaciones",
+        "improvement": "Mejora de Texto: Refine el tono y la redacción de los mensajes",
+        "correction": "Corrección Automática: Corrige gramática y ortografía",
+        "labels": "Etiquetas Inteligentes: Sugerencia automática de etiquetas para conversaciones"
+      },
+      "deleteDialog": {
+        "title": "Eliminar Integración OpenAI",
+        "description": "¿Está seguro de que desea eliminar la integración con OpenAI? Todos los recursos de IA serán deshabilitados y esta acción no se puede deshacer.",
+        "cancel": "Cancelar",
+        "confirm": "Eliminar Integración",
+        "removing": "Eliminando..."
+      },
+      "messages": {
+        "loadError": "Error al cargar configuración OpenAI",
+        "createSuccess": "Integración OpenAI configurada con éxito",
+        "createError": "Error al configurar integración OpenAI",
+        "updateSuccess": "Configuración OpenAI actualizada con éxito",
+        "updateError": "Error al actualizar configuración OpenAI",
+        "deleteSuccess": "Integración OpenAI eliminada con éxito",
+        "deleteError": "Error al eliminar integración OpenAI"
+      }
+    },
+    "name": "OpenAI",
+    "description": "Integración con OpenAI",
+    "apiUrl": "OpenAI API URL",
+    "apiKey": "OpenAI API Key",
+    "model": "OpenAI Model",
+    "customPrompts": "Prompts Personalizados",
+    "customPromptsDescription": "Configure los prompts para diferentes funcionalidades de OpenAI",
+    "enableAudioTranscription": "Habilitar Transcripción de Audio",
+    "enableAudioTranscriptionDescription": "Transcribir automáticamente mensajes de audio entrantes usando la API Whisper de OpenAI",
+    "prompts": {
+      "reply": "Prompt de Respuesta",
+      "summary": "Prompt de Resumen",
+      "rephrase": "Prompt de Reformulación",
+      "fixGrammar": "Prompt de Corrección Gramatical",
+      "shorten": "Prompt de Reducción",
+      "expand": "Prompt de Expansión",
+      "friendly": "Prompt de Tono Amigable",
+      "formal": "Prompt de Tono Formal",
+      "simplify": "Prompt de Simplificación",
+      "sentimentAnalysis": "Prompt de Análisis de Sentimiento",
+      "generatePrompt": "Prompt de Generación de Prompt",
+      "reviewPrompt": "Prompt de Revisión de Prompt"
+    },
+    "placeholders": {
+      "apiUrl": "URL de la API de OpenAI",
+      "apiKey": "Digite la API Key de OpenAI",
+      "model": "Digite el Modelo de OpenAI",
+      "reply": "Prompt para sugerencia de respuesta",
+      "summary": "Prompt para resumen de la conversación",
+      "rephrase": "Prompt para reformular texto",
+      "fixGrammar": "Prompt para corrección gramatical",
+      "shorten": "Prompt para acortar texto",
+      "expand": "Prompt para expandir texto",
+      "friendly": "Prompt para tono más amigable",
+      "formal": "Prompt para tono más formal",
+      "simplify": "Prompt para simplificar texto",
+      "sentimentAnalysis": "Prompt para análisis de sentimiento de comentarios de Facebook",
+      "generatePrompt": "Prompt para generar prompts personalizados basados en contexto",
+      "reviewPrompt": "Prompt para revisar y optimizar prompts existentes"
+    }
+  },
+  "slack": {
+    "subtitle": "Configure notificaciones y mensajes de Slack",
+    "loading": "Cargando...",
+    "configuration": {
+      "title": "Configuración",
+      "webhookUrl": {
+        "label": "Webhook URL",
+        "placeholder": "https://hooks.slack.com/services/...",
+        "hint": "URL del webhook de Slack para envío de notificaciones"
+      },
+      "referenceId": {
+        "label": "ID de Referencia",
+        "placeholder": "Identificador único"
+      },
+      "flagReferenceId": {
+        "label": "Incluir ID de referencia en los mensajes",
+        "description": "Agrega el ID de referencia en todos los mensajes"
+      },
+      "enableNotifications": {
+        "label": "Activar notificaciones",
+        "description": "Recibir notificaciones de nuevos mensajes"
+      },
+      "saveButton": "Guardar Configuración",
+      "saving": "Guardando..."
+    },
+    "channels": {
+      "title": "Canales",
+      "private": "Canal privado",
+      "public": "Canal público"
+    },
+    "stats": {
+      "title": "Estadísticas",
+      "members": "Miembros",
+      "channels": "Canales",
+      "notifications": "Notificaciones",
+      "active": "Activas",
+      "inactive": "Inactivas"
+    },
+    "help": {
+      "title": "Cómo configurar",
+      "step1": "1. Acceda a su workspace Slack",
+      "step2": "2. Vaya a Apps → Incoming Webhooks",
+      "step3": "3. Cree un nuevo webhook",
+      "step4": "4. Copie la URL y péguela aquí"
+    },
+    "status": {
+      "errorMessage": "Configure el webhook URL para activar la integración"
+    },
+    "messages": {
+      "loadError": "Error al cargar configuración de Slack",
+      "saveSuccess": "Configuración de Slack guardada con éxito",
+      "saveError": "Error al guardar configuración de Slack",
+      "disconnectSuccess": "Slack desconectado con éxito",
+      "disconnectError": "Error al desconectar Slack"
+    },
+    "name": "Slack",
+    "description": "Integración con Slack",
+    "clientId": "Slack Client ID",
+    "clientSecret": "Slack Client Secret",
+    "placeholders": {
+      "clientId": "Digite el Client ID de Slack",
+      "clientSecret": "Digite el Client Secret de Slack"
+    }
+  },
+  "webhooks": {
+    "header": {
+      "title": "Webhooks",
+      "subtitle": "Configure webhooks para recibir eventos en tiempo real",
+      "searchPlaceholder": "Buscar webhooks...",
+      "newWebhook": "Nuevo Webhook",
+      "delete": "Eliminar"
+    },
+    "modal": {
+      "title": "Nuevo Webhook",
+      "updateTitle": "Editar Webhook",
+      "basicConfig": "Configuración Básica",
+      "events": "Eventos",
+      "fields": {
+        "url": {
+          "label": "URL del Webhook",
+          "placeholder": "https://ejemplo.com/webhook",
+          "hint": "URL que recibirá las solicitudes POST con los datos de los eventos",
+          "required": "La URL es obligatoria",
+          "invalid": "URL inválida"
+        },
+        "description": {
+          "label": "Descripción",
+          "placeholder": "Descripción opcional del webhook"
+        },
+        "enabled": {
+          "label": "Activar webhook",
+          "description": "Desactive temporalmente sin eliminar"
+        },
+        "subscriptions": {
+          "required": "Seleccione al menos un evento"
+        }
+      },
+      "eventList": {
+        "selectAll": "Seleccionar todos",
+        "deselectAll": "Desmarcar todos"
+      },
+      "eventTypes": {
+        "conversation_created": {
+          "name": "Conversación Creada",
+          "description": "Cuando una nueva conversación es iniciada"
+        },
+        "conversation_updated": {
+          "name": "Conversación Actualizada",
+          "description": "Cuando una conversación es actualizada (estado, asignado, etc.)"
+        },
+        "conversation_status_changed": {
+          "name": "Estado de Conversación Cambiado",
+          "description": "Cuando el estado de una conversación cambia (abierta, resuelta, pendiente, etc.)"
+        },
+        "conversation_typing_on": {
+          "name": "Escribiendo en Conversación (Inicio)",
+          "description": "Cuando alguien comienza a escribir en una conversación"
+        },
+        "conversation_typing_off": {
+          "name": "Escribiendo en Conversación (Fin)",
+          "description": "Cuando alguien deja de escribir en una conversación"
+        },
+        "contact_created": {
+          "name": "Contacto Creado",
+          "description": "Cuando un nuevo contacto es agregado"
+        },
+        "contact_updated": {
+          "name": "Contacto Actualizado",
+          "description": "Cuando información de contacto es actualizada"
+        },
+        "message_created": {
+          "name": "Mensaje Creado",
+          "description": "Cuando un nuevo mensaje es enviado"
+        },
+        "message_updated": {
+          "name": "Mensaje Actualizado",
+          "description": "Cuando un mensaje es editado"
+        },
+        "inbox_created": {
+          "name": "Bandeja de Entrada Creada",
+          "description": "Cuando se crea una nueva bandeja de entrada"
+        },
+        "inbox_updated": {
+          "name": "Bandeja de Entrada Actualizada",
+          "description": "Cuando se actualiza la configuración de una bandeja de entrada"
+        },
+        "webwidget_triggered": {
+          "name": "Widget Web Activado",
+          "description": "Cuando se activa un evento de widget web"
+        },
+        "pipeline_item.created": {
+          "name": "Item de Pipeline Creado",
+          "description": "Cuando un contacto o conversación se agrega a un pipeline"
+        },
+        "pipeline_item.updated": {
+          "name": "Item de Pipeline Actualizado",
+          "description": "Cuando un item de pipeline (contacto o conversación) es actualizado"
+        },
+        "pipeline_item.completed": {
+          "name": "Item de Pipeline Completado",
+          "description": "Cuando un item de pipeline se marca como completado"
+        },
+        "pipeline_item.cancelled": {
+          "name": "Item de Pipeline Cancelado",
+          "description": "Cuando un item de pipeline se elimina de un pipeline"
+        },
+        "pipeline_task.created": {
+          "name": "Tarea de Pipeline Creada",
+          "description": "Cuando se crea una nueva tarea de pipeline"
+        },
+        "pipeline_task.updated": {
+          "name": "Tarea de Pipeline Actualizada",
+          "description": "Cuando una tarea de pipeline es actualizada"
+        },
+        "pipeline_task.completed": {
+          "name": "Tarea de Pipeline Completada",
+          "description": "Cuando una tarea de pipeline se marca como completada"
+        },
+        "pipeline_task.overdue": {
+          "name": "Tarea de Pipeline Vencida",
+          "description": "Cuando una tarea de pipeline se vuelve vencida"
+        },
+        "pipeline_task.cancelled": {
+          "name": "Tarea de Pipeline Cancelada",
+          "description": "Cuando una tarea de pipeline es cancelada"
+        }
+      },
+      "info": {
+        "title": "Importante:",
+        "description": "Asegúrese de que su URL esté configurada para recibir solicitudes POST con Content-Type application/json. Los datos serán enviados en formato JSON con información del evento."
+      },
+      "actions": {
+        "cancel": "Cancelar",
+        "create": "Crear Webhook",
+        "update": "Actualizar Webhook",
+        "saving": "Guardando..."
+      }
+    },
+    "table": {
+      "columns": {
+        "webhook": "Webhook",
+        "events": "Eventos",
+        "status": "Estado",
+        "createdAt": "Creado el"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "actions": {
+        "test": "Probar webhook",
+        "edit": "Editar webhook",
+        "delete": "Eliminar webhook",
+        "create": "Crear webhook"
+      },
+      "empty": {
+        "title": "Ningún webhook configurado",
+        "description": "Cree su primer webhook para recibir eventos en tiempo real de la plataforma.",
+        "noResults": "Ningún webhook encontrado"
+      }
+    },
+    "deleteDialog": {
+      "title": "Eliminar Webhook",
+      "description": "¿Está seguro de que desea eliminar el webhook \"{{url}}\"? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "bulkDeleteDialog": {
+      "title": "Eliminar Webhooks",
+      "description": "¿Está seguro de que desea eliminar {{count}} webhook(s) seleccionado(s)? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar Todos",
+      "deleting": "Eliminando..."
+    },
+    "messages": {
+      "loading": "Cargando webhooks...",
+      "loadError": "Error al cargar webhooks",
+      "createSuccess": "Webhook creado con éxito",
+      "createError": "Error al crear webhook",
+      "updateSuccess": "Webhook actualizado con éxito",
+      "updateError": "Error al actualizar webhook",
+      "deleteSuccess": "Webhook eliminado con éxito",
+      "deleteError": "Error al eliminar webhook",
+      "bulkDeleteSuccess": "{{count}} webhook(s) eliminado(s) con éxito",
+      "bulkDeleteError": "Error al eliminar webhooks",
+      "testSuccess": "Prueba de webhook enviada con éxito",
+      "testError": "Error al probar webhook"
+    }
+  },
+  "callback": {
+    "processing": {
+      "title": "Procesando autorización...",
+      "message": "Por favor espere mientras procesamos su autorización de {{name}}"
+    },
+    "success": {
+      "title": "¡{{name}} conectado!",
+      "message": "¡{{name}} conectado con éxito!{{username}}",
+      "username": " Conectado como {{username}}"
+    },
+    "error": {
+      "title": "Error en la autorización",
+      "authorizationError": "Error de autorización: {{error}}",
+      "codeNotFound": "Código de autorización o state no encontrado",
+      "accountNotFound": "Account ID o Agent ID no encontrado en state",
+      "connectionError": "Error al conectar {{name}}",
+      "processingError": "Error al procesar la autorización de {{name}}",
+      "backToAgents": "Volver a Agentes"
+    }
+  },
+  "refresh": "Actualizar",
+  "configure": "Configurar",
+  "active": "Integración activa",
+  "modal": {
+    "title": "Configurar {{name}}",
+    "save": "Guardar",
+    "expand": "Expandir modal",
+    "collapse": "Reducir modal"
+  },
+  "facebook": {
+    "name": "Facebook Messenger",
+    "description": "Conéctese con sus clientes a través de Facebook Messenger",
+    "appId": "App ID",
+    "appSecret": "App Secret",
+    "verifyToken": "Webhook Verify Token",
+    "apiVersion": "Facebook API Version",
+    "placeholders": {
+      "appId": "Digite el App ID de Facebook",
+      "appSecret": "Digite el App Secret",
+      "verifyToken": "Digite el Webhook Verify Token",
+      "apiVersion": "Digite la versión de la API de Facebook"
+    }
+  },
+  "whatsapp": {
+    "name": "WhatsApp",
+    "description": "Integración con WhatsApp Business API",
+    "appId": "WhatsApp App ID",
+    "appSecret": "App Secret",
+    "configId": "WhatsApp Config ID",
+    "verifyToken": "Webhook Verify Token",
+    "apiVersion": "WhatsApp API Version",
+    "placeholders": {
+      "appId": "Digite el App ID de WhatsApp",
+      "appSecret": "Digite el App Secret",
+      "configId": "Digite el Config ID de WhatsApp",
+      "verifyToken": "Digite el Webhook Verify Token",
+      "apiVersion": "Digite la versión de la API de WhatsApp"
+    }
+  },
+  "instagram": {
+    "name": "Instagram",
+    "description": "Responda mensajes directos de Instagram",
+    "appId": "Instagram App ID",
+    "appSecret": "Instagram App Secret",
+    "verifyToken": "Instagram Verify Token",
+    "apiVersion": "Instagram API Version",
+    "redirectUri": "URI de Redirección",
+    "redirectUriDescription": "URL del FRONTEND donde Instagram redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su App Instagram (Facebook Developer Console).",
+    "enableHumanAgent": "Enable Human Agent",
+    "enableHumanAgentDescription": "Habilita agente humano para canal Instagram para período de respuesta más largo.",
+    "placeholders": {
+      "appId": "ID de la cuenta de Instagram Business",
+      "appSecret": "Access Token de Instagram",
+      "verifyToken": "Digite el Verify Token",
+      "apiVersion": "Digite la versión de la API de Instagram",
+      "redirectUri": "Ej: https://su-dominio.com/instagram/callback"
+    }
+  },
+  "evolution": {
+    "name": "Evolution API",
+    "description": "Integración con Evolution API",
+    "apiUrl": "Evolution API URL",
+    "adminToken": "Evolution Admin Token",
+    "placeholders": {
+      "apiUrl": "URL de la API de Evolution",
+      "adminToken": "Digite el Admin Token"
+    }
+  },
+  "evolutionGo": {
+    "name": "Evolution Go",
+    "description": "Integración con Evolution Go API",
+    "apiUrl": "Evolution Go API URL",
+    "adminToken": "Evolution Go Admin Token",
+    "instanceId": "Instance ID",
+    "instanceToken": "Instance Token",
+    "placeholders": {
+      "apiUrl": "URL de la API de Evolution Go",
+      "adminToken": "Digite el Admin Token",
+      "instanceId": "Digite el Instance ID",
+      "instanceToken": "Digite el Instance Token"
+    }
+  },
+  "linear": {
+    "name": "Linear",
+    "description": "Cree y gestione tickets en Linear",
+    "clientId": "Client ID",
+    "clientSecret": "Client Secret",
+    "redirectUri": "Redirect URI (Integración General)",
+    "mcpRedirectUri": "Redirect URI (MCP)",
+    "clientIdDescription": "Client ID de la aplicación OAuth de Linear",
+    "clientSecretDescription": "Client Secret de la aplicación OAuth de Linear",
+    "redirectUriDescription": "URL del FRONTEND donde Linear redirigirá después de la autenticación para integración general. Configure esta URL exacta en la configuración de la aplicación OAuth de Linear.",
+    "mcpRedirectUriDescription": "URL del FRONTEND donde Linear redirigirá después de la autenticación para integración MCP. Configure esta URL exacta en la configuración de la aplicación OAuth de Linear.",
+    "placeholders": {
+      "clientId": "Digite el Client ID de Linear",
+      "clientSecret": "Digite el Client Secret de Linear",
+      "redirectUri": "Ej: https://su-dominio.com/app/accounts/{id}/settings/integrations/linear",
+      "mcpRedirectUri": "Ej: https://su-dominio.com/linear/callback"
+    }
+  },
+  "shopify": {
+    "name": "Shopify",
+    "description": "Integración con su tienda Shopify",
+    "clientId": "Shopify Client ID",
+    "clientSecret": "Shopify Client Secret",
+    "placeholders": {
+      "clientId": "Digite el Client ID de Shopify",
+      "clientSecret": "Digite el Client Secret de Shopify"
+    }
+  },
+  "googleOAuth": {
+    "name": "Google OAuth (Gmail)",
+    "description": "Autenticación OAuth con Google para Gmail e inicio de sesión",
+    "clientId": "Google Client ID",
+    "clientSecret": "Google Client Secret",
+    "callbackUrl": "Callback URL",
+    "callbackUrlDescription": "URL de callback configurada en Google Cloud Console",
+    "gcpProjectId": "GCP Project ID",
+    "gcpProjectIdDescription": "ID del Proyecto de Google Cloud Platform para integración Gmail Pub/Sub",
+    "gmailPubsubTopic": "Gmail Pub/Sub Topic",
+    "gmailPubsubTopicDescription": "Nombre del tópico Pub/Sub de Gmail para recibir notificaciones de email",
+    "placeholders": {
+      "clientId": "Digite el Client ID de Google",
+      "clientSecret": "Digite el Client Secret de Google",
+      "callbackUrl": "Ej: https://su-dominio.com/auth/google/callback",
+      "gcpProjectId": "su-project-id",
+      "gmailPubsubTopic": "gmail-topic"
+    }
+  },
+  "microsoft": {
+    "name": "Microsoft Azure",
+    "description": "Integración con Microsoft Azure para autenticación y email",
+    "appId": "Azure App ID",
+    "appSecret": "Azure App Secret",
+    "placeholders": {
+      "appId": "Digite el App ID de Azure",
+      "appSecret": "Digite el App Secret de Azure"
+    }
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "description": "Integración CRM completa con sincronización de contactos y deals",
+    "clientId": "HubSpot Client ID",
+    "clientSecret": "HubSpot Client Secret",
+    "callbackUrl": "Callback URL",
+    "callbackUrlDescription": "Configure esta URL como Redirect URI en su app HubSpot",
+    "placeholders": {
+      "clientId": "Digite el Client ID de HubSpot",
+      "clientSecret": "Digite el Client Secret de HubSpot"
+    }
+  },
+  "github": {
+    "name": "GitHub",
+    "description": "Autenticación OAuth con GitHub para integración MCP",
+    "clientId": "GitHub Client ID",
+    "clientSecret": "GitHub Client Secret",
+    "redirectUri": "Redirect URI",
+    "clientIdDescription": "Client ID de la aplicación OAuth de GitHub",
+    "clientSecretDescription": "Client Secret de la aplicación OAuth de GitHub",
+    "redirectUriDescription": "URL del FRONTEND donde GitHub redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su GitHub OAuth App.",
+    "placeholders": {
+      "clientId": "Digite el Client ID de GitHub",
+      "clientSecret": "Digite el Client Secret de GitHub",
+      "redirectUri": "Ej: https://su-dominio.com/github/callback"
+    }
+  },
+  "notion": {
+    "name": "Notion",
+    "description": "Autenticación OAuth con Notion para integración MCP",
+    "clientId": "Notion Client ID",
+    "clientSecret": "Notion Client Secret",
+    "redirectUri": "Redirect URI",
+    "clientIdDescription": "Client ID de la aplicación OAuth de Notion",
+    "clientSecretDescription": "Client Secret de la aplicación OAuth de Notion",
+    "redirectUriDescription": "URL del FRONTEND donde Notion redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Notion OAuth App.",
+    "placeholders": {
+      "clientId": "Digite el Client ID de Notion",
+      "clientSecret": "Digite el Client Secret de Notion",
+      "redirectUri": "Ej: https://su-dominio.com/notion/callback"
+    }
+  },
+  "stripe": {
+    "name": "Stripe",
+    "description": "Autenticación OAuth con Stripe para integración MCP",
+    "clientId": "Stripe Client ID",
+    "clientSecret": "Stripe Client Secret",
+    "redirectUri": "Redirect URI",
+    "authorizationUrl": "URL de Autorización (Modo Prueba)",
+    "clientIdDescription": "Client ID de su aplicación OAuth de Stripe",
+    "clientSecretDescription": "Client Secret de su aplicación OAuth de Stripe",
+    "redirectUriDescription": "URL del FRONTEND donde Stripe redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Stripe OAuth App.",
+    "authorizationUrlDescription": "URL de autorización OAuth personalizada para modo prueba (ej: enlace OAuth de Stripe Marketplace). Deje vacío para usar el flujo de descubrimiento OAuth estándar.",
+    "placeholders": {
+      "clientId": "Ingrese el Client ID de Stripe",
+      "clientSecret": "Ingrese el Client Secret de Stripe",
+      "redirectUri": "Ej: https://su-dominio.com/stripe/callback",
+      "authorizationUrl": "Ej: https://marketplace.stripe.com/oauth/v2/..."
+    }
+  },
+  "paypal": {
+    "name": "PayPal",
+    "description": "Autenticación OAuth con PayPal para integración MCP",
+    "environment": "Entorno",
+    "environments": {
+      "production": "Producción",
+      "sandbox": "Sandbox"
+    },
+    "environmentDescription": "Seleccione el entorno de PayPal. Use Sandbox para pruebas, Producción para transacciones reales.",
+    "clientId": "PayPal Client ID",
+    "clientSecret": "PayPal Client Secret",
+    "redirectUri": "Redirect URI",
+    "clientIdDescription": "Client ID de su aplicación OAuth de PayPal",
+    "clientSecretDescription": "Client Secret de su aplicación OAuth de PayPal",
+    "redirectUriDescription": "URL del FRONTEND donde PayPal redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su PayPal OAuth App.",
+    "placeholders": {
+      "clientId": "Ingrese el PayPal Client ID",
+      "clientSecret": "Ingrese el PayPal Client Secret",
+      "redirectUri": "Ej: https://su-dominio.com/paypal/callback"
+    }
+  },
+  "canva": {
+    "name": "Canva",
+    "description": "Autenticación OAuth con Canva para integración MCP",
+    "redirectUri": "Redirect URI",
+    "redirectUriDescription": "URL del FRONTEND donde Canva redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Canva OAuth App.",
+    "placeholders": {
+      "redirectUri": "Ej: https://su-dominio.com/canva/callback"
+    }
+  },
+  "atlassian": {
+    "name": "Atlassian",
+    "description": "Autenticación OAuth con Atlassian para integración MCP",
+    "redirectUri": "Redirect URI",
+    "redirectUriDescription": "URL del FRONTEND donde Atlassian redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Atlassian OAuth App.",
+    "placeholders": {
+      "redirectUri": "Ej: https://su-dominio.com/atlassian/callback"
+    }
+  },
+  "asana": {
+    "name": "Asana",
+    "description": "Autenticación OAuth con Asana para integración MCP",
+    "redirectUri": "Redirect URI",
+    "redirectUriDescription": "URL del FRONTEND donde Asana redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Asana OAuth App.",
+    "placeholders": {
+      "redirectUri": "Ej: https://su-dominio.com/asana/callback"
+    }
+  },
+  "supabase": {
+    "name": "Supabase",
+    "description": "Autenticación OAuth con Supabase para integración MCP",
+    "redirectUri": "Redirect URI",
+    "redirectUriDescription": "URL del FRONTEND donde Supabase redirigirá después de la autenticación. Configure esta URL exacta en la configuración de su Supabase OAuth App. Nota: Supabase solo requiere redirect_uri, no requiere client_id/secret. La URL de autorización y el endpoint MCP se descubren automáticamente.",
+    "placeholders": {
+      "redirectUri": "Ej: https://su-dominio.com/supabase/callback"
+    }
+  },
+  "livechat": {
+    "name": "Live Chat",
+    "description": "Widget de chat en vivo para su sitio"
+  },
+  "email": {
+    "name": "Email",
+    "description": "Soporte vía email integrado"
+  }
+}

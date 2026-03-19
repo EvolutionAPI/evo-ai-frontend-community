@@ -1,0 +1,104 @@
+{
+  "title": "Configurações da Conta",
+  "subtitle": "Gerencie as configurações e preferências da sua conta",
+  "loading": "Carregando...",
+  "sections": {
+    "general": {
+      "title": "Configurações Gerais",
+      "description": "Configure as informações básicas da sua conta"
+    },
+    "autoResolve": {
+      "title": "Auto-Resolução de Conversas",
+      "description": "Configure a resolução automática de conversas inativas"
+    },
+    "audioTranscription": {
+      "title": "Transcrição de Áudio",
+      "description": "Ative a transcrição automática de mensagens de áudio"
+    },
+    "accountId": {
+      "title": "ID da Conta",
+      "description": "Identificador único da sua conta para integrações"
+    },
+    "accountDeletion": {
+      "title": "Exclusão da Conta",
+      "description": "Exclua permanentemente sua conta e todos os dados"
+    }
+  },
+  "fields": {
+    "name": {
+      "label": "Nome da Conta *",
+      "placeholder": "Nome da sua conta"
+    },
+    "locale": {
+      "label": "Idioma *"
+    },
+    "domain": {
+      "label": "Domínio Personalizado",
+      "placeholder": "exemplo.com",
+      "description": "Configure um domínio personalizado para e-mails de resposta"
+    },
+    "supportEmail": {
+      "label": "Email de Suporte",
+      "placeholder": "suporte@exemplo.com"
+    },
+    "autoResolveTime": {
+      "label": "Tempo para Auto-Resolução (minutos)",
+      "unit": "minutos",
+      "description": "Conversas inativas serão resolvidas automaticamente após este período"
+    },
+    "autoResolveMessage": {
+      "label": "Mensagem de Auto-Resolução",
+      "placeholder": "Mensagem opcional enviada quando a conversa for resolvida automaticamente"
+    },
+    "ignoreWaiting": {
+      "label": "Ignorar conversas aguardando resposta"
+    },
+    "applyLabel": {
+      "label": "Aplicar etiqueta",
+      "placeholder": "Selecionar etiqueta",
+      "none": "Nenhuma etiqueta"
+    }
+  },
+  "buttons": {
+    "save": "Salvar Configurações",
+    "saving": "Salvando...",
+    "updateAutoResolve": "Atualizar Auto-Resolução",
+    "deleteAccount": "Excluir Conta",
+    "cancelDeletion": "Cancelar Exclusão"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Você não tem permissão para visualizar configurações da conta",
+      "update": "Você não tem permissão para atualizar configurações da conta",
+      "delete": "Você não tem permissão para excluir a conta"
+    },
+    "success": {
+      "generalUpdated": "Configurações gerais atualizadas com sucesso",
+      "autoResolveDisabled": "Auto-resolução desabilitada",
+      "autoResolveUpdated": "Configurações de auto-resolução atualizadas",
+      "audioTranscriptionEnabled": "Transcrição de áudio habilitada",
+      "audioTranscriptionDisabled": "Transcrição de áudio desabilitada",
+      "accountDeleted": "Conta marcada para exclusão",
+      "deletionCancelled": "Exclusão da conta cancelada",
+      "accountIdCopied": "ID da conta copiado para a área de transferência"
+    },
+    "error": {
+      "loadFailed": "Não foi possível carregar os dados da conta",
+      "saveFailed": "Erro ao salvar configurações",
+      "autoResolveDisableFailed": "Erro ao desabilitar auto-resolução",
+      "autoResolveSaveFailed": "Erro ao salvar auto-resolução",
+      "audioTranscriptionFailed": "Erro ao alterar transcrição de áudio",
+      "deleteFailed": "Erro ao marcar conta para exclusão",
+      "cancelDeletionFailed": "Erro ao cancelar exclusão",
+      "minTime": "Tempo mínimo é de 10 minutos"
+    }
+  },
+  "validation": {
+    "nameRequired": "Nome da conta é obrigatório",
+    "localeRequired": "Idioma é obrigatório",
+    "minAutoResolveTime": "Tempo mínimo é de 10 minutos"
+  },
+  "deletion": {
+    "scheduledMessage": "Esta conta está programada para exclusão em {{date}}"
+  }
+}

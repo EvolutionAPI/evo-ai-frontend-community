@@ -1,0 +1,41 @@
+{
+  "title": "Canal API",
+  "name": "API",
+  "description": "Configure su canal API personalizado",
+  "fields": {
+    "displayName": {
+      "label": "Nombre de Visualización",
+      "placeholder": "Soporte API",
+      "helpText": "Nombre amigable para identificación",
+      "required": true
+    },
+    "name": {
+      "label": "Nombre del Canal",
+      "placeholder": "soporte-api",
+      "helpText": "Generado automáticamente del nombre de visualización",
+      "required": true
+    },
+    "webhookUrl": {
+      "label": "Webhook URL",
+      "placeholder": "https://sua-api.com/webhook",
+      "helpText": "URL donde los eventos serán enviados"
+    }
+  },
+  "info": {
+    "title": "Canal API",
+    "description": "Permite integración customizada via API REST",
+    "webhookInfo": "Opcional - URL para recibir eventos en tiempo real",
+    "documentationLabel": "Documentación",
+    "documentation": "Consulte la documentación de la API para implementación"
+  },
+  "validation": {
+    "nameRequired": "Nombre es obligatorio",
+    "webhookUrlFormat": "URL inválida"
+  },
+  "success": {
+    "created": "Canal API creado con éxito!"
+  },
+  "errors": {
+    "createError": "Error al crear canal API"
+  }
+}

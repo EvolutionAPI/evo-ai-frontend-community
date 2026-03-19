@@ -1,0 +1,104 @@
+{
+  "title": "Configuración de la cuenta",
+  "subtitle": "Gestiona la configuración y las preferencias de tu cuenta",
+  "loading": "Cargando...",
+  "sections": {
+    "general": {
+      "title": "Configuración general",
+      "description": "Configure la información básica de su cuenta"
+    },
+    "autoResolve": {
+      "title": "Resolución automática de conversaciones",
+      "description": "Configure la resolución automática de conversaciones inactivas"
+    },
+    "audioTranscription": {
+      "title": "Transcripción de audio",
+      "description": "Activa la transcripción automática de mensajes de audio"
+    },
+    "accountId": {
+      "title": "ID de la cuenta",
+      "description": "Identificador único de su cuenta para integraciones"
+    },
+    "accountDeletion": {
+      "title": "Eliminación de la cuenta",
+      "description": "Elimine permanentemente su cuenta y todos los datos"
+    }
+  },
+  "fields": {
+    "name": {
+      "label": "Nombre de la cuenta *",
+      "placeholder": "Nombre de su cuenta"
+    },
+    "locale": {
+      "label": "Idioma *"
+    },
+    "domain": {
+      "label": "Dominio personalizado",
+      "placeholder": "ejemplo.com",
+      "description": "Configura un dominio personalizado para los correos electrónicos de respuesta"
+    },
+    "supportEmail": {
+      "label": "Correo electrónico de asistencia",
+      "placeholder": "suporte@exemplo.com"
+    },
+    "autoResolveTime": {
+      "label": "Tiempo para la resolución automática (minutos)",
+      "unit": "minutos",
+      "description": "Las conversaciones inactivas se resolverán automáticamente tras este periodo"
+    },
+    "autoResolveMessage": {
+      "label": "Mensaje de resolución automática",
+      "placeholder": "Mensaje opcional enviado cuando la conversación se resuelve automáticamente"
+    },
+    "ignoreWaiting": {
+      "label": "Ignorar conversaciones en espera de respuesta"
+    },
+    "applyLabel": {
+      "label": "Aplicar etiqueta",
+      "placeholder": "Seleccionar etiqueta",
+      "none": "Sin etiqueta"
+    }
+  },
+  "buttons": {
+    "save": "Guardar configuración",
+    "saving": "Guardando...",
+    "updateAutoResolve": "Actualizar resolución automática",
+    "deleteAccount": "Eliminar cuenta",
+    "cancelDeletion": "Cancelar eliminación"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "No tienes permiso para ver la configuración de la cuenta",
+      "update": "No tienes permiso para actualizar la configuración de la cuenta",
+      "delete": "No tienes permiso para eliminar la cuenta"
+    },
+    "success": {
+      "generalUpdated": "Configuración general actualizada correctamente",
+      "autoResolveDisabled": "Auto-resolución desactivada",
+      "autoResolveUpdated": "Configuración de auto-resolución actualizada",
+      "audioTranscriptionEnabled": "Transcripción de audio habilitada",
+      "audioTranscriptionDisabled": "Transcripción de audio deshabilitada",
+      "accountDeleted": "Cuenta marcada para eliminación",
+      "deletionCancelled": "Eliminación de la cuenta cancelada",
+      "accountIdCopied": "ID de la cuenta copiado al portapapeles"
+    },
+    "error": {
+      "loadFailed": "No se pudieron cargar los datos de la cuenta",
+      "saveFailed": "Error al guardar la configuración",
+      "autoResolveDisableFailed": "Error al desactivar la resolución automática",
+      "autoResolveSaveFailed": "Error al guardar la resolución automática",
+      "audioTranscriptionFailed": "Error al cambiar la transcripción de audio",
+      "deleteFailed": "Error al marcar la cuenta para su eliminación",
+      "cancelDeletionFailed": "Error al cancelar la eliminación",
+      "minTime": "El tiempo mínimo es de 10 minutos"
+    }
+  },
+  "validation": {
+    "nameRequired": "El nombre de la cuenta es obligatorio",
+    "localeRequired": "El idioma es obligatorio",
+    "minAutoResolveTime": "El tiempo mínimo es de 10 minutos"
+  },
+  "deletion": {
+    "scheduledMessage": "Esta cuenta está programada para su eliminación el {{date}}"
+  }
+}

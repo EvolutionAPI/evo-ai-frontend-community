@@ -1,0 +1,61 @@
+{
+  "title": "Email Channel",
+  "name": "Email",
+  "description": "Connect your email box for support via email",
+  "connect": "Connect",
+  "connectGmail": "Connect your Gmail account via OAuth",
+  "connectOutlook": "Connect your Outlook account via OAuth",
+  "configureImap": "Configure your email via IMAP/SMTP",
+  "emailFrom": "Email from {{provider}}",
+  "oauthDescription": "Click the {{provider}} button to start. You will be asked to accept the requested permissions, and you will be redirected back to the dashboard.",
+  "emailPlaceholder": "Enter the email address",
+  "connecting": "Connecting...",
+  "signInWith": "Sign in with {{provider}}",
+  "emailChannel": "Email Channel",
+  "emailChannelDescription": "Configure a simple channel to forward received emails.",
+  "channelName": "Channel Name",
+  "channelNamePlaceholder": "Email Channel",
+  "email": "Email",
+  "emailAddressPlaceholder": "support@company.com",
+  "forwardDescription": "The received messages will be forwarded to this email address.",
+  "creating": "Creating...",
+  "createEmailChannel": "Create Email Channel",
+  "fields": {
+    "basicInfo": "Basic Information",
+    "name": {
+      "label": "Channel Name",
+      "placeholder": "Email Channel"
+    },
+    "emailAddress": {
+      "label": "Email Address",
+      "placeholder": "support@company.com"
+    }
+  },
+  "providers": {
+    "gmail": {
+      "name": "Gmail",
+      "description": "Configure using your Gmail account"
+    },
+    "outlook": {
+      "name": "Outlook",
+      "description": "Configure using your Microsoft/Outlook account"
+    },
+    "imap": {
+      "name": "IMAP/SMTP",
+      "description": "Configure manually using IMAP/SMTP server"
+    }
+  },
+  "validation": {
+    "emailRequired": "Enter the email address",
+    "nameRequired": "Channel name is required",
+    "fillAllFields": "Fill all required fields"
+  },
+  "errors": {
+    "authError": "Error starting authentication. Check the OAuth settings.",
+    "connectError": "Error connecting with {{provider}}",
+    "createError": "Error creating email channel"
+  },
+  "success": {
+    "created": "Email channel created successfully!"
+  }
+}

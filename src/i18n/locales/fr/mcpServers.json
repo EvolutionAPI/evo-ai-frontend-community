@@ -1,0 +1,154 @@
+{
+  "title": "Serveurs MCP",
+  "subtitle": "Gérez les serveurs Model Context Protocol",
+  "stats": {
+    "total": "Total des Serveurs",
+    "official": "Serveurs Officiels",
+    "community": "Serveurs de la Communauté",
+    "withTools": "Avec Outils",
+    "newThisMonth": "{{count}} nouveaux ce mois-ci",
+    "noNewThisMonth": "Aucun nouveau ce mois-ci",
+    "percentOfTotal": "{{percent}}% du total"
+  },
+  "header": {
+    "title": "Serveurs MCP",
+    "subtitle": "Explorez les serveurs MCP disponibles dans le système",
+    "searchPlaceholder": "Rechercher par nom, type ou description..."
+  },
+  "card": {
+    "noDescription": "Sans description",
+    "toolsCount": "{{count}} outils",
+    "toolsCount_plural": "{{count}} outils"
+  },
+  "details": {
+    "sections": {
+      "basicInfo": "Informations de Base",
+      "tools": "Outils",
+      "environments": "Variables d'Environnement",
+      "configJson": "Configuration JSON"
+    },
+    "labels": {
+      "name": "Nom",
+      "type": "Type",
+      "description": "Description",
+      "configType": "Type de Configuration"
+    },
+    "buttons": {
+      "edit": "Modifier"
+    },
+    "empty": {
+      "tools": "Aucun outil configuré",
+      "environments": "Aucune variable d'environnement configurée"
+    },
+    "environment": {
+      "configured": "Configuré"
+    }
+  },
+  "form": {
+    "sections": {
+      "basicInfo": "Informations de Base",
+      "configuration": "Configuration",
+      "tools": "Outils"
+    },
+    "labels": {
+      "name": "Nom",
+      "type": "Type",
+      "description": "Description",
+      "configType": "Type de Configuration"
+    },
+    "placeholders": {
+      "name": "Nom du serveur MCP",
+      "description": "Description du serveur MCP..."
+    },
+    "validation": {
+      "nameRequired": "Le nom est obligatoire",
+      "configTypeRequired": "Le type de configuration est obligatoire",
+      "typeRequired": "Le type de serveur est obligatoire"
+    },
+    "buttons": {
+      "cancel": "Annuler",
+      "saving": "Enregistrement...",
+      "create": "Créer un Serveur MCP",
+      "update": "Enregistrer les Modifications"
+    },
+    "toolsInfo": {
+      "configured": "{{count}} outil(s) configuré(s)",
+      "noTools": "Aucun outil configuré",
+      "autoLoad": "Les outils seront chargés automatiquement depuis le serveur MCP"
+    },
+    "types": {
+      "official": "Officiel",
+      "community": "Communauté"
+    },
+    "configTypes": {
+      "sse": "SSE (Server-Sent Events)",
+      "studio": "Studio"
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Créer un Nouveau Serveur MCP",
+      "edit": "Modifier {{name}}",
+      "view": "Visualiser {{name}}"
+    }
+  },
+  "filter": {
+    "title": "Filtrer les Serveurs MCP",
+    "description": "Configurez les filtres pour trouver les serveurs MCP que vous recherchez",
+    "buttons": {
+      "apply": "Appliquer les Filtres",
+      "clear": "Effacer les Filtres",
+      "addFilter": "Ajouter un Filtre"
+    }
+  },
+  "table": {
+    "title": "Liste des Serveurs",
+    "description": "Visualisez et gérez tous les serveurs MCP configurés",
+    "headers": {
+      "name": "Nom",
+      "description": "Description",
+      "type": "Type",
+      "configuration": "Configuration",
+      "tools": "Outils",
+      "createdAt": "Créé le",
+      "actions": "Actions"
+    },
+    "columns": {
+      "server": "Serveur",
+      "description": "Description",
+      "tools": "Outils"
+    },
+    "noName": "Sans nom",
+    "noDescription": "Sans description",
+    "actions": {
+      "viewDetails": "Voir les détails",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "empty": {
+      "title": "Aucun serveur MCP créé",
+      "description": "Créez des serveurs MCP pour intégrer avec des services externes.",
+      "message": "Aucun serveur MCP trouvé"
+    }
+  },
+  "emptyState": {
+    "title": "Aucun serveur trouvé",
+    "description": "Vous n'avez pas encore de serveurs MCP configurés. Ajoutez votre premier serveur pour commencer.",
+    "addFirst": "Ajouter le premier serveur"
+  },
+  "fields": {
+    "noDescription": "Sans description"
+  },
+  "types": {
+    "official": "Officiel",
+    "community": "Communauté"
+  },
+  "buttons": {
+    "newServer": "Nouveau Serveur",
+    "tryAgain": "Réessayer"
+  },
+  "messages": {
+    "loading": "Chargement...",
+    "loadError": "Erreur lors du chargement des serveurs MCP"
+  }
+}

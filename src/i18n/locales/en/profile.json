@@ -1,0 +1,316 @@
+{
+    "title": "Profile",
+    "subtitle": "Manage your personal information and account settings",
+    "loading": "Loading profile...",
+    "personalData": {
+      "title": "Personal Data",
+      "description": "Update your personal information and profile photo",
+      "defaultUser": "User",
+      "fields": {
+        "fullName": "Full Name",
+        "displayName": "Display Name",
+        "email": "Email",
+        "fullNamePlaceholder": "Your full name",
+        "displayNamePlaceholder": "How you want to be called",
+        "emailPlaceholder": "your@email.com"
+      },
+      "actions": {
+        "saveChanges": "Save Changes",
+        "saving": "Saving..."
+      },
+      "emailConfirmation": {
+        "pendingChange": "A confirmation email has been sent to {{email}}. Please check your inbox to complete the change.",
+        "resend": "Resend confirmation",
+        "cancel": "Cancel email change",
+        "resendSuccess": "Confirmation email resent successfully",
+        "resendError": "Failed to resend confirmation email",
+        "cancelSuccess": "Email change cancelled",
+        "cancelError": "Failed to cancel email change",
+        "emailUpdatedPending": "Profile updated. Confirmation email sent to {{email}}."
+      }
+    },
+    "password": {
+      "title": "Change Password",
+      "description": "Keep your account secure with a strong password",
+      "fields": {
+        "currentPassword": "Current Password",
+        "newPassword": "New Password",
+        "confirmPassword": "Confirm Password",
+        "currentPlaceholder": "Enter your current password",
+        "newPlaceholder": "Enter your new password",
+        "confirmPlaceholder": "Enter your password again"
+      },
+      "actions": {
+        "changePassword": "Change Password",
+        "changing": "Changing..."
+      },
+      "validation": {
+        "allFields": "All fields are required",
+        "mismatch": "Passwords do not match",
+        "minLength": "Password must be at least 6 characters"
+      }
+    },
+    "accessToken": {
+      "title": "API Access Token",
+      "description": "Use this token to access the Evolution API. Keep it secure and don't share it.",
+      "actions": {
+        "copy": "Copy",
+        "reset": "Reset Token",
+        "resetting": "Resetting..."
+      },
+      "notifications": {
+        "copied": "Token copied to clipboard",
+        "copyError": "Error copying token",
+        "resetSuccess": "Token reset successfully",
+        "resetError": "Error resetting token"
+      }
+    },
+    "interface": {
+      "title": "Interface Settings",
+      "description": "Personalize the appearance and behavior of the interface",
+      "fontSize": {
+        "title": "Font Size",
+        "description": "Adjust the size of the text in the panel based on your preference.",
+        "options": {
+          "smallest": "Smallest",
+          "small": "Small",
+          "default": "Default",
+          "large": "Large",
+          "largest": "Largest"
+        }
+      },
+      "messageSignature": {
+        "title": "Personal Message Signature",
+        "description": "Create a unique message signature to appear at the end of every message you send from any inbox.",
+        "label": "Message Signature",
+        "placeholder": "Insert your personal message signature here."
+      },
+      "hotkeys": {
+        "title": "Hotkey to Send Messages",
+        "description": "You can select a hotkey (Enter or Cmd/Ctrl+Enter) based on your writing preference.",
+        "enter": {
+          "title": "Enter (↵)",
+          "description": "Send messages by pressing the Enter key instead of clicking the send button."
+        },
+        "cmdEnter": {
+          "title": "Cmd + Enter (⌘ + ↵)",
+          "description": "Press Cmd/Ctrl + Enter instead of clicking the send button."
+        }
+      }
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Configure how you want to receive notifications",
+      "browserPermission": {
+        "title": "Browser Permission",
+        "description": "Allow browser push notifications",
+        "granted": "Notification permissions granted",
+        "denied": "Notification permissions denied"
+      },
+      "email": {
+        "title": "Email Notifications",
+        "types": {
+          "conversation_creation": "New conversation created",
+          "conversation_assignment": "Conversation assigned to me",
+          "assigned_conversation_new_message": "New message in assigned conversation",
+          "conversation_mention": "Mentioned in conversation",
+          "participating_conversation_new_message": "New message in participating conversation",
+          "sla_missed_first_response": "First response SLA missed",
+          "sla_missed_next_response": "Next response SLA missed",
+          "sla_missed_resolution": "Resolution SLA missed"
+        }
+      },
+      "push": {
+        "title": "Push Notifications",
+        "types": {
+          "conversation_creation": "New conversation created",
+          "conversation_assignment": "Conversation assigned to me",
+          "assigned_conversation_new_message": "New message in assigned conversation",
+          "conversation_mention": "Mentioned in conversation",
+          "participating_conversation_new_message": "New message in participating conversation",
+          "sla_missed_first_response": "First response SLA missed",
+          "sla_missed_next_response": "Next response SLA missed",
+          "sla_missed_resolution": "Resolution SLA missed"
+        }
+      },
+      "loading": "Loading notification preferences...",
+      "updated": "Notification configuration updated",
+      "profileUpdated": "Profile updated successfully",
+      "profileUpdateError": "Error updating profile",
+      "passwordChanged": "Password changed successfully",
+      "passwordChangeError": "Error changing password",
+      "settingsUpdated": "Settings updated",
+      "settingsUpdateError": "Error updating settings",
+      "accountDeleted": "Account deleted successfully",
+      "accountDeleteError": "Error deleting account"
+    },
+    "audio": {
+      "title": "Audio Notifications",
+      "description": "Configure audio alerts for notifications",
+      "enable": {
+        "title": "Enable Audio Alerts",
+        "description": "Play sound when receiving notifications"
+      },
+      "tone": {
+        "title": "Notification Tone",
+        "preview": "Preview sound",
+        "options": {
+          "ding": "Ding",
+          "chime": "Chime",
+          "bell": "Bell",
+          "notification": "Notification",
+          "magic": "Magic"
+        }
+      },
+      "conditions": {
+        "title": "Conditions for Alerts",
+        "playWhenInactive": "Play only when the tab is inactive",
+        "alertUnread": "Alert if there are unread assigned conversations"
+      },
+      "updated": "Audio settings updated"
+    },
+    "twoFactor": {
+      "title": "Two-Factor Authentication",
+      "description": "Add an extra layer of security to your account",
+      "status": {
+        "title": "Status",
+        "enabled": "Enabled",
+        "configured": "Configured and active",
+        "pending": "Pending configuration"
+      },
+      "methods": {
+        "totp": "Authenticator App",
+        "email": "Email"
+      },
+      "setup": {
+        "title": "Enable Two-Factor Authentication",
+        "description": "Choose the authentication method and confirm your password to continue.",
+        "methodSelection": "Authentication Method",
+        "totp": {
+          "title": "Authenticator App",
+          "description": "Use an app like Google Authenticator or Authy"
+        },
+        "email": {
+          "title": "Email",
+          "description": "Receive verification codes by email"
+        },
+        "currentPassword": "Current Password",
+        "currentPasswordPlaceholder": "Enter your current password",
+        "actions": {
+          "cancel": "Cancel",
+          "continue": "Continue",
+          "processing": "Processing..."
+        }
+      },
+      "configure": {
+        "title": "Configure your Authenticator App",
+        "description": "Scan the QR code below with your authenticator app or enter the manual key.",
+        "qrCodeLoading": "Generating QR Code...",
+        "qrCodeError": "If the problem persists, use the manual key below",
+        "manualKey": "Manual Key",
+        "manualKeyDescription": "Use this key if you can't scan the QR code",
+        "actions": {
+          "cancel": "Cancel",
+          "configured": "Already Configured"
+        }
+      },
+      "verify": {
+        "title": "Verify Configuration",
+        "descriptionTotp": "Enter the 6-digit code from your authenticator app.",
+        "descriptionEmail": "Enter the 6-digit code sent to your email.",
+        "codeLabel": "Verification Code",
+        "codePlaceholder": "000000",
+        "resendEmail": "Resend Code",
+        "actions": {
+          "back": "Back",
+          "verify": "Verify",
+          "verifying": "Verifying..."
+        },
+        "errors": {
+          "invalidCode": "Invalid verification code",
+          "attemptsRemaining": "Invalid code. {{attempts}} attempts remaining"
+        }
+      },
+      "backupCodes": {
+        "title": "Backup Codes",
+        "description": "Save these codes in a secure location. Each code can be used only once to login if you lose access to your device.",
+        "warning": "These codes will not be shown again. Make sure to save them now!",
+        "copyAll": "Copy All Codes",
+        "complete": "Complete Configuration",
+        "remaining": "{{count}} codes remaining",
+        "regenerate": "Regenerate",
+        "regenerated": "New backup codes generated"
+      },
+      "disable": {
+        "title": "Disable Two-Factor Authentication",
+        "description": "Are you sure you want to disable? Your account will be less secure.",
+        "warning": "Removing two-factor authentication will make your account more vulnerable to unauthorized access.",
+        "passwordLabel": "Confirm your password",
+        "passwordPlaceholder": "Enter your password",
+        "actions": {
+          "cancel": "Cancel",
+          "disable": "Disable",
+          "disabling": "Disabling..."
+        }
+      },
+      "notifications": {
+        "enabled": "Two-factor authentication enabled successfully!",
+        "disabled": "Two-factor authentication disabled",
+        "emailCodeSent": "Verification code sent to your email",
+        "emailCodeResent": "New code sent to your email",
+        "emailCodeError": "Error sending code",
+        "emailCodeRateLimit": "Please wait before requesting a new code",
+        "passwordRequired": "Please enter your password",
+        "passwordIncorrect": "Incorrect password",
+        "enableError": "Error enabling two-factor authentication",
+        "disableError": "Error disabling two-factor authentication",
+        "backupCodesError": "Error generating new backup codes"
+      },
+      "actions": {
+        "enable": "Enable Two-Factor Authentication",
+        "disable": "Disable Two-Factor Authentication"
+      },
+      "info": "Two-factor authentication adds an extra layer of security by requiring an additional code in addition to your password when logging in."
+    },
+    "common": {
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "photoUploader": {
+      "changePhoto": "Change Photo",
+      "removePhoto": "Remove",
+      "uploading": "Uploading...",
+      "fileTypeError": "Please select only image files",
+      "fileSizeError": "The image must be less than 5MB",
+      "fileInfo": "JPG, PNG or GIF. Maximum 5MB.",
+      "photoRemoved": "Photo removed successfully",
+      "photoRemoveError": "Error removing photo",
+      "photoUpdated": "Photo updated successfully",
+      "uploadError": "Error uploading photo"
+    },
+    "dangerZone": {
+      "title": "Danger Zone",
+      "description": "Irreversible actions that permanently affect your account",
+      "deleteAccount": {
+        "title": "Delete Account",
+        "description": "Delete your account and all associated data permanently. This action cannot be undone.",
+        "button": "Delete Account",
+        "confirmTitle": "Confirm Delete Account",
+        "confirmDescription": "This action is irreversible and will permanently delete your account.",
+        "permanentWarning": "All your data, conversations and settings will be lost forever.",
+        "emailConfirmText": "To confirm, enter your email:",
+        "emailLabel": "Confirm Email",
+        "emailPlaceholder": "Enter your email to confirm",
+        "emailMismatch": "The email does not match",
+        "cancel": "Cancel",
+        "confirmButton": "Delete Account",
+        "deleting": "Deleting..."
+      }
+    },
+    "tabs": {
+      "personalData": "Personal Data",
+      "interface": "Interface",
+      "notifications": "Notifications",
+      "security": "Security"
+    }
+}

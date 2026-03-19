@@ -1,0 +1,112 @@
+{
+  "title": "Etichette",
+  "loading": "Caricamento etichette...",
+  "header": {
+    "title": "Etichette",
+    "subtitle": "{{count}} etichetta{{plural}} in totale",
+    "searchPlaceholder": "Cerca etichette...",
+    "newLabel": "Nuova Etichetta",
+    "bulkDelete": "Elimina",
+    "clearSelection": "Cancella Selezione",
+    "selected": "{{count}} selezionata/e"
+  },
+  "empty": {
+    "title": "Nessuna etichetta trovata",
+    "description": "Crea una nuova etichetta per organizzare e categorizzare le tue conversazioni.",
+    "action": "Nuova Etichetta"
+  },
+  "modal": {
+    "title": {
+      "create": "Nuova Etichetta",
+      "edit": "Modifica Etichetta"
+    },
+    "description": {
+      "create": "Crea una nuova etichetta per organizzare le tue conversazioni.",
+      "edit": "Modifica le informazioni dell'etichetta."
+    },
+    "labels": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "color": "Colore",
+      "showOnSidebar": "Visualizza nella barra laterale"
+    },
+    "placeholders": {
+      "name": "Inserisci il nome dell'etichetta",
+      "description": "Inserisci una descrizione (facoltativo)",
+      "color": "#1f93ff"
+    },
+    "hints": {
+      "showOnSidebar": "Rende l'etichetta visibile nella barra laterale delle conversazioni"
+    },
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "nameMinLength": "Il nome deve contenere almeno 2 caratteri",
+      "colorRequired": "Il colore è obbligatorio",
+      "colorInvalid": "Il colore deve essere in formato esadecimale (#RRGGBB)"
+    },
+    "buttons": {
+      "cancel": "Annulla",
+      "create": "Crea",
+      "update": "Aggiorna",
+      "saving": "Salvataggio..."
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "color": "Colore",
+      "sidebar": "Barra Laterale",
+      "createdAt": "Creato il"
+    },
+    "noDescription": "-",
+    "sidebar": {
+      "yes": "Sì",
+      "no": "No"
+    },
+    "actions": {
+      "edit": "Modifica",
+      "delete": "Elimina"
+    }
+  },
+  "actions": {
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "confirm": "Conferma"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Non hai il permesso di visualizzare le etichette",
+      "create": "Non hai il permesso di creare etichette",
+      "update": "Non hai il permesso di modificare etichette",
+      "delete": "Non hai il permesso di eliminare etichette"
+    },
+    "loadError": "Errore durante il caricamento delle etichette",
+    "createSuccess": "Etichetta creata con successo",
+    "createError": "Errore durante la creazione dell'etichetta",
+    "updateSuccess": "Etichetta aggiornata con successo",
+    "updateError": "Errore durante l'aggiornamento dell'etichetta",
+    "deleteSuccess": "Etichetta eliminata con successo",
+    "deleteError": "Errore durante l'eliminazione dell'etichetta",
+    "bulkDeleteSuccess": "{{count}} etichetta/e eliminata/e con successo",
+    "bulkDeleteError": "Errore durante l'eliminazione delle etichette"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Elimina Etichetta",
+      "description": "Sei sicuro di voler eliminare l'etichetta \"{{title}}\"? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina",
+      "deleting": "Eliminazione..."
+    },
+    "bulkDelete": {
+      "title": "Elimina Etichette",
+      "description": "Sei sicuro di voler eliminare {{count}} etichetta/e selezionata/e? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina Tutte",
+      "deleting": "Eliminazione..."
+    }
+  }
+}

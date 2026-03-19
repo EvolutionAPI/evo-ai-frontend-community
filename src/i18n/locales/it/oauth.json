@@ -1,0 +1,108 @@
+{
+  "oauth": {
+    "login": {
+      "titles": {
+        "selectAccount": "Seleziona account per autorizzazione",
+        "redirecting": "Reindirizzamento ad autorizzazione...",
+        "loginRequired": "Login necessario per OAuth"
+      },
+      "descriptions": {
+        "selectAccount": "Seleziona un account per autorizzare questa applicazione.",
+        "redirecting": "Verrai reindirizzato alla pagina di autorizzazione dell'applicazione.",
+        "loginRequired": "Effettua l'accesso per autorizzare l'applicazione di terze parti."
+      },
+      "accounts": {
+        "available": "Account disponibili:",
+        "noAccounts": "Nessun account disponibile per l'autorizzazione OAuth"
+      },
+      "applicationDetails": {
+        "title": "Dettagli applicazione:",
+        "clientId": "ID cliente:",
+        "redirectUri": "URI di reindirizzamento:",
+        "scope": "Ambito:",
+        "oauthUrl": "URL OAuth:",
+        "returnUrl": "URL di ritorno:"
+      },
+      "buttons": {
+        "loginToAuthorize": "Accedi per autorizzare",
+        "continueToAuthorization": "Continua all'autorizzazione",
+        "redirecting": "Reindirizzamento..."
+      },
+      "loading": {
+        "processingAuthorization": "Elaborazione autorizzazione...",
+        "redirectingToAuthorization": "Reindirizzamento all'autorizzazione..."
+      },
+      "footer": {
+        "disclaimer": "Continuando, autorizzi l'applicazione ad accedere al tuo account Evolution.",
+        "revoke": "Puoi revocare questo accesso in qualsiasi momento nelle impostazioni del tuo account."
+      },
+      "errors": {
+        "missingParameters": "Parametri OAuth obbligatori mancanti",
+        "noAccounts": "Nessun account disponibile per l'autorizzazione OAuth",
+        "failedToLoadAccounts": "Impossibile caricare gli account:",
+        "missingOAuthUrl": "URL OAuth mancante. Riavvia il flusso OAuth.",
+        "missingUrlForAuth": "URL OAuth o di ritorno mancante per l'autorizzazione",
+        "failedToRedirect": "Impossibile reindirizzare alla pagina di login",
+        "missingOAuthUrlDirect": "URL OAuth mancante",
+        "missingOAuthParams": "Parametri OAuth mancanti",
+        "failedToCreateApp": "Impossibile creare l'applicazione OAuth:"
+      }
+    },
+    "authorize": {
+      "titles": {
+        "authorizeApp": "Autorizza applicazione",
+        "loginRequired": "Login necessario",
+        "invalidRequest": "Richiesta non valida"
+      },
+      "descriptions": {
+        "requestingAccess": "Un'applicazione sta richiedendo l'accesso al tuo account.",
+        "needLogin": "Devi effettuare l'accesso per autorizzare questa applicazione.",
+        "invalidParams": "Parametri OAuth mancanti o non validi"
+      },
+      "appInfo": {
+        "name": "Applicazione MCP",
+        "description": "Integrazione Model Context Protocol",
+        "redirectUri": "URI di reindirizzamento:",
+        "requestedScope": "Ambito richiesto:",
+        "user": "Utente:"
+      },
+      "buttons": {
+        "authorize": "Autorizza",
+        "authorizing": "Autorizzazione...",
+        "deny": "Nega",
+        "goToLogin": "Vai al login"
+      },
+      "footer": {
+        "disclaimer": "Autorizzando, consenti a questa applicazione di accedere al tuo account Evolution con le autorizzazioni richieste.",
+        "revoke": "Puoi revocare questo accesso in qualsiasi momento nelle impostazioni del tuo account."
+      },
+      "errors": {
+        "missingParams": "Parametri OAuth obbligatori mancanti",
+        "missingParamsOrAuth": "Parametri OAuth mancanti o utente non autenticato",
+        "authorizationFailed": "Autorizzazione fallita:",
+        "userDenied": "Utente ha negato l'autorizzazione"
+      }
+    },
+    "callback": {
+      "title": "Autorizzazione OAuth",
+      "loading": {
+        "processing": "Elaborazione autorizzazione..."
+      },
+      "success": {
+        "title": "Successo!",
+        "message": "Autorizzazione completata con successo! Puoi chiudere questa finestra."
+      },
+      "errors": {
+        "title": "Errore",
+        "oauthError": "Errore OAuth:",
+        "invalidCallback": "Callback OAuth non valido - codice di autorizzazione mancante"
+      },
+      "footer": {
+        "canClose": "Questa finestra può essere chiusa in sicurezza dopo l'autorizzazione."
+      }
+    },
+    "common": {
+      "error": "Errore"
+    }
+  }
+}

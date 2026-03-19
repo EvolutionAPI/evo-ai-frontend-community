@@ -1,0 +1,66 @@
+{
+  "title": "Connect with Instagram",
+  "name": "Instagram",
+  "description": "Connect your Instagram Business account to start using the Instagram API",
+  "connectButton": "Connect with Instagram",
+  "connecting": "Connecting...",
+  "cancel": "Cancel",
+  "facebookAuth": "Facebook Authentication",
+  "authDescription": "Connect your account to access Instagram pages",
+  "signInWithFacebook": "Sign in with Facebook",
+  "selectPage": "Select Page",
+  "selectPageDescription": "Choose the page that will be connected to Instagram",
+  "selected": "Selected",
+  "channelConfiguration": "Channel Configuration",
+  "channelConfigDescription": "Define a name to identify this channel",
+  "channelName": "Channel Name",
+  "channelNamePlaceholder": "Instagram Channel",
+  "creating": "Creating...",
+  "createChannel": "Create Channel",
+  "warnings": {
+    "notConfigured": "Instagram not configured",
+    "notConfiguredDescription": "The INSTAGRAM_APP_ID configuration was not found. Please contact your system administrator."
+  },
+  "duplicate": {
+    "title": "Duplicate Inbox Detected - Instagram",
+    "description": "We detected multiple inboxes for the same Instagram account. This can cause problems with message delivery.",
+    "resolveButton": "Resolve Conflict",
+    "detailsButton": "View Details"
+  },
+  "validation": {
+    "pageRequired": "Select an Instagram page",
+    "nameRequired": "Channel name is required"
+  },
+  "errors": {
+    "notConfigured": "Instagram is not configured",
+    "noAccount": "Account not found",
+    "authorizationFailed": "Error connecting to Instagram. Please check your settings.",
+    "sdkNotLoaded": "Facebook SDK not loaded",
+    "authNotCompleted": "Facebook authorization not completed",
+    "fetchPagesError": "Failed to fetch pages",
+    "createChannelError": "Failed to create channel"
+  },
+  "instructions": {
+    "redirect": "You will be redirected to Instagram to authorize the connection",
+    "businessAccount": "Make sure your account is an Instagram Business account"
+  },
+  "success": {
+    "created": "Instagram channel created successfully!"
+  },
+  "callback": {
+    "processing": "Processing Instagram connection...",
+    "processingAuth": "Processing authorization...",
+    "processingStatus": "Processing...",
+    "success": "Success!",
+    "successMessage": "Instagram connected successfully!",
+    "redirecting": "Redirecting to channels list...",
+    "error": "Connection error",
+    "errorAuth": "Authorization error",
+    "errorMessage": "Error processing connection",
+    "errorMissingCode": "Authorization code or state not received",
+    "errorInvalidParams": "Invalid parameters in Instagram response",
+    "errorUnknown": "Unknown error processing connection",
+    "closeMessage": "You can close this page and try again.",
+    "footer": "Please wait while we process your Instagram authorization."
+  }
+}

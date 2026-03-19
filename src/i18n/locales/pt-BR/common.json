@@ -1,0 +1,146 @@
+{
+  "loading": "Carregando...",
+  "error": "Erro",
+  "success": "Sucesso",
+  "created": "Criado com sucesso",
+  "updated": "Atualizado com sucesso",
+  "deleted": "Excluído com sucesso",
+  "cancel": "Cancelar",
+  "save": "Salvar",
+  "create": "Criar",
+  "update": "Atualizar",
+  "delete": "Excluir",
+  "close": "Fechar",
+  "table": {
+    "inUse": "Em uso"
+  },
+  "noResultsFound": "Nenhum resultado encontrado",
+  "base": {
+    "pagination": {
+      "itemsPerPage": "Itens por página:",
+      "showing": "Mostrando {{start}} a {{end}} de {{total}} itens",
+      "page": "Página {{current}} de {{total}}"
+    },
+    "header": {
+      "searchPlaceholder": "Pesquisar...",
+      "filters": "Filtros",
+      "selected": "{{count}} item selecionado",
+      "selected_other": "{{count}} itens selecionados",
+      "clear": "Limpar"
+    },
+    "table": {
+      "emptyMessage": "Nenhum item encontrado",
+      "loading": "Carregando...",
+      "yes": "Sim",
+      "no": "Não",
+      "selectAll": "Selecionar todos",
+      "selectItem": "Selecionar item {{key}}",
+      "actions": "Ações"
+    },
+    "buttons": {
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "delete": "Excluir",
+      "edit": "Editar",
+      "create": "Criar",
+      "update": "Atualizar",
+      "close": "Fechar",
+      "confirm": "Confirmar",
+      "back": "Voltar"
+    },
+    "messages": {
+      "success": "Operação realizada com sucesso",
+      "error": "Ocorreu um erro",
+      "loading": "Carregando...",
+      "saving": "Salvando...",
+      "deleting": "Excluindo...",
+      "updating": "Atualizando..."
+    },
+    "filter": {
+      "title": "Filtros",
+      "description": "Configure os filtros para encontrar os itens que você procura",
+      "applyFilters": "Aplicar Filtros",
+      "clearFilters": "Limpar Filtros",
+      "addFilter": "Adicionar Filtro",
+      "cancel": "Cancelar",
+      "and": "E",
+      "or": "OU",
+      "selectDate": "Selecionar data",
+      "selectOption": "Selecionar opção",
+      "enterNumber": "Digite um número",
+      "enterValue": "Digite o valor"
+    },
+    "form": {
+      "required": "{{field}} é obrigatório",
+      "minLength": "{{field}} deve ter pelo menos {{min}} caracteres",
+      "maxLength": "{{field}} deve ter no máximo {{max}} caracteres",
+      "invalidFormat": "{{field}} tem formato inválido",
+      "minValue": "{{field}} deve ser pelo menos {{min}}",
+      "maxValue": "{{field}} deve ser no máximo {{max}}",
+      "saving": "Salvando...",
+      "requiredMark": "*"
+    },
+    "flow": {
+      "editor": {
+        "title": "Editor de Flow",
+        "unsaved": "• Não salvo",
+        "saving": "Salvando...",
+        "save": "Salvar",
+        "execute": "Executar",
+        "stop": "Parar",
+        "reset": "Resetar",
+        "loading": "Carregando flow...",
+        "errors": "{{count}} erro(s) encontrado(s)"
+      },
+      "node": {
+        "nextStep": "Próximo Passo",
+        "options": "Opções do Node",
+        "duplicate": "Duplicar",
+        "edit": "Editar",
+        "delete": "Excluir"
+      },
+      "panel": {
+        "title": "Componentes",
+        "subtitle": "Arraste os componentes para o canvas",
+        "search": "Buscar componentes...",
+        "searchAll": "Buscando em todos os componentes",
+        "noResults": "Nenhum componente encontrado para \"{{query}}\"",
+        "dragToAdd": "Arraste para adicionar",
+        "allComponents": "Todos",
+        "allDescription": "Todos os componentes"
+      }
+    },
+    "status": {
+      "active": "Ativo",
+      "inactive": "Inativo",
+      "blocked": "Bloqueado",
+      "pending": "Pendente",
+      "success": "Sucesso",
+      "error": "Erro",
+      "warning": "Atenção",
+      "expiring": "Expirando",
+      "days": "dias"
+    },
+    "appInitializer": {
+      "initializing": "Initializing application...",
+      "initError": "Initialization Error",
+      "errorMessage": "Failed to initialize application",
+      "reload": "Reload Application"
+    },
+    "errorBoundary": {
+      "title": "Ops! Algo deu errado",
+      "description": "Ocorreu um erro inesperado. Nossa equipe foi notificada e está trabalhando para resolver.",
+      "technicalDetails": "Detalhes técnicos (desenvolvimento)",
+      "retry": "Tentar novamente"
+    },
+    "impersonation": {
+      "viewing": "Você está visualizando como cliente:",
+      "exit": "Voltar ao admin"
+    },
+    "theme": {
+      "toggle": "Alternar tema",
+      "light": "Modo claro",
+      "dark": "Modo escuro"
+    }
+  }
+}

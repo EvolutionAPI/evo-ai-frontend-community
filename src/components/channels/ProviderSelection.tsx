@@ -1,0 +1,68 @@
+import React from 'react';
+import ProviderGrid, { Provider } from './ProviderGrid';
+import ChannelBreadcrumb from './ChannelBreadcrumb';
+import { useLanguage } from '@/hooks/useLanguage';
+
+interface ProviderSelectionProps {
+  channelName: string;
+  channelType: 'web_widget' | 'whatsapp' | 'facebook' | 'instagram' | 'telegram' | 'sms' | 'email' | 'api';
+  providers: Provider[];
+  isDisabled?: (providerId: string) => boolean;
+  onProviderSelect: (provider: Provider) => void;
+  onBack: () => void;
+  onChannelListClick?: () => void;
+  className?: string;
+}
+
+const ProviderSelection: React.FC<ProviderSelectionProps> = ({
+  channelName,
+  channelType,
+  providers,
+  isDisabled,
+  onProviderSelect,
+  onBack,
+  onChannelListClick,
+  className = '',
+}) => {
+  const { t } = useLanguage('channels');
+
+  return (
+    <div className={`mx-auto w-full max-w-6xl px-4 md:px-6 ${className}`}>
+      {/* Breadcrumb/Navigation */}
+      <ChannelBreadcrumb
+        items={[
+          { label: t('navigation.channels'), onClick: onChannelListClick || onBack },
+          { label: t('navigation.createChannel'), onClick: onBack },
+          { label: channelName, active: true },
+        ]}
+        onBack={onBack}
+      />
+
+      {/* Header */}
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl font-bold tracking-tight text-sidebar-foreground mb-2">
+          {t('newChannel.providerSelection.channelOf', { channelName })}
+        </h1>
+        <p className="text-sidebar-foreground/70">
+          {t('newChannel.providerSelection.connectDescription', { channelName })}
+        </p>
+      </div>
+
+      {/* Provider Selection */}
+      <div className="mb-6">
+        <h2 className="text-lg font-semibold text-sidebar-foreground mb-4">
+          {t('newChannel.providerSelection.apiProvider')}
+        </h2>
+
+        <ProviderGrid
+          channelType={channelType}
+          providers={providers}
+          isDisabled={isDisabled}
+          onSelect={onProviderSelect}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default ProviderSelection;

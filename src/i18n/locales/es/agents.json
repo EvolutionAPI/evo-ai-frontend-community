@@ -1,0 +1,177 @@
+{
+  "title": "Agentes de IA",
+  "subtitle": "Gestiona tus agentes de IA",
+  "loading": {
+    "agent": "Cargando agente de IA...",
+    "creating": "Creando agente de IA...",
+    "updating": "Actualizando agente de IA..."
+  },
+  "messages": {
+    "loadError": "Error al cargar agente de IA",
+    "loadErrorDescription": "No fue posible cargar los datos del agente de IA para edición.",
+    "createSuccess": "¡Agente de IA creado con éxito!",
+    "updateSuccess": "¡Agente de IA actualizado con éxito!",
+    "saveError": "Error al guardar agente de IA",
+    "confirmCancel": "Tienes cambios no guardados. ¿Realmente deseas cancelar?",
+    "apiKeysError": "Error al cargar claves API:",
+    "agentToolsError": "Error al cargar datos de los agentes de IA:"
+  },
+  "header": {
+    "back": "Volver",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "view": "Visualizar",
+    "duplicate": "Duplicar"
+  },
+  "tabs": {
+    "basic": "Básico",
+    "configuration": "Configuración",
+    "subagents": "Sub-agentes",
+    "tools": "Herramientas"
+  },
+  "validation": {
+    "nameRequired": "El nombre es obligatorio",
+    "configurationIncomplete": "Configuración incompleta"
+  },
+  "forms": {
+    "basicInfo": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "type": "Tipo",
+      "role": "Rol",
+      "goal": "Objetivo"
+    },
+    "llmConfig": {
+      "model": "Modelo",
+      "apiKey": "Clave API",
+      "instruction": "Instrucción",
+      "outputKey": "Clave de Salida",
+      "advancedConfig": "Configuración Avanzada",
+      "messageWaitTime": "Tiempo de Espera del Mensaje",
+      "messageSignature": "Firma del Mensaje",
+      "enableTextSegmentation": "Habilitar Segmentación de Texto",
+      "maxCharactersPerSegment": "Máximo de Caracteres por Segmento",
+      "minSegmentSize": "Tamaño Mínimo del Segmento",
+      "characterDelayMs": "Retraso de Carácter (ms)"
+    },
+    "a2aConfig": {
+      "agentCardUrl": "URL de la Tarjeta del Agente de IA",
+      "outputKey": "Clave de Salida"
+    },
+    "toolsConfig": {
+      "tools": "Herramientas",
+      "agentTools": "Agente como Herramienta",
+      "customTools": "Herramientas Personalizadas",
+      "mcpServers": "Servidores MCP",
+      "loadMemory": "Cargar Memoria",
+      "preloadMemory": "Pre-cargar Memoria",
+      "planner": "Planificador",
+      "outputSchema": "Esquema de Salida"
+    }
+  },
+  "types": {
+    "llm": "LLM",
+    "a2a": "Agent-to-Agent",
+    "workflow": "Flujo de trabajo",
+    "task": "Tarea"
+  },
+  "actions": {
+    "create": "Crear Agente de IA",
+    "update": "Actualizar Agente de IA",
+    "delete": "Eliminar Agente de IA",
+    "duplicate": "Duplicar Agente de IA",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "view": "Visualizar"
+  },
+  "permissions": {
+    "viewDenied": "No tienes permiso para visualizar agentes de IA",
+    "createDenied": "No tienes permiso para crear agentes de IA",
+    "editDenied": "No tienes permiso para editar agentes de IA",
+    "deleteDenied": "No tienes permiso para eliminar agentes de IA"
+  },
+  "loadError": "Error al cargar agentes de IA",
+  "createAgent": "Nuevo Agente de IA",
+  "emptyState": {
+    "title": "Ningún agente de IA creado",
+    "description": "Crea agentes de IA para comenzar a automatizar tareas.",
+    "noResults": "Ningún agente de IA encontrado"
+  },
+  "search": {
+    "placeholder": "Buscar agentes de IA...",
+    "noResults": "Ningún agente de IA coincide con tu búsqueda",
+    "clearSearch": "Limpiar búsqueda"
+  },
+  "fields": {
+    "name": "Nombre",
+    "description": "Descripción",
+    "noDescription": "Sin descripción",
+    "type": "Tipo",
+    "model": "Modelo",
+    "notAvailable": "N/A",
+    "createdAt": "Creado el"
+  },
+  "card": {
+    "actions": "Acciones",
+    "model": "Modelo",
+    "type": "Tipo"
+  },
+  "table": {
+    "actions": "Acciones",
+    "emptyMessage": "Ningún agente de IA encontrado",
+    "clickToView": "💡 Haz clic en un agente de IA para ver detalles o abrir la Tarjeta de Agente"
+  },
+  "dropdown": {
+    "testA2A": "Probar A2A",
+    "edit": "Editar",
+    "moveToFolder": "Mover a carpeta",
+    "exportJSON": "Exportar JSON",
+    "share": "Compartir",
+    "delete": "Eliminar"
+  },
+  "apiKeys": {
+    "manage": "Gestionar Claves API"
+  },
+  "export": {
+    "all": "Exportar Todos",
+    "success": "Agentes de IA exportados con éxito",
+    "successDesc": "{{count}} agentes de IA fueron exportados",
+    "error": "Error al exportar agentes de IA",
+    "errorDesc": "No fue posible exportar los agentes de IA"
+  },
+  "deleteDialog": {
+    "title": "Eliminar Agente de IA",
+    "description": "¿Estás seguro de que deseas eliminar el agente de IA \"{{name}}\"? Esta acción no se puede deshacer.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar",
+    "deleting": "Eliminando...",
+    "success": "¡Agente de IA \"{{name}}\" eliminado con éxito!"
+  },
+  "bulkDelete": "Funcionalidad de eliminación masiva en desarrollo",
+  "testA2A": "Funcionalidad de prueba A2A en desarrollo",
+  "moveToFolder": "Funcionalidad de mover a carpeta en desarrollo",
+  "exportJSON": "Funcionalidad de exportar JSON en desarrollo",
+  "share": "Compartir Agente de IA",
+  "edit": {
+    "integrations": {
+      "github": {
+        "configTitle": "Configurar GitHub",
+        "connectTitle": "Conectar con GitHub",
+        "connectDescription": "Permite que el agente acceda a repositorios, issues y pull requests de GitHub",
+        "connecting": "Conectando...",
+        "connectButton": "Conectar con GitHub",
+        "connected": "Conectado",
+        "connectedAs": "Conectado como",
+        "connectedDescription": "El agente ahora puede acceder a repositorios, issues, pull requests y otra información de GitHub.",
+        "toolsTitle": "Herramientas Disponibles",
+        "toolsDescription": "Selecciona qué herramientas de GitHub puede usar el agente",
+        "selectAll": "Seleccionar todas",
+        "noTools": "No hay herramientas disponibles",
+        "saveConfig": "GUARDAR CONFIGURACIÓN",
+        "disconnect": "Desconectar"
+      }
+    }
+  }
+}

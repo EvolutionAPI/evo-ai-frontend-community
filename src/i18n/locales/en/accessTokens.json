@@ -1,0 +1,139 @@
+{
+  "title": "Access Tokens",
+  "description": "Manage access tokens for API authentication",
+  "header": {
+    "subtitle": "{{count}} access token total",
+    "subtitle_plural": "{{count}} access tokens total",
+    "searchPlaceholder": "Search access tokens..."
+  },
+  "form": {
+    "title": {
+      "new": "New Access Token",
+      "edit": "Edit Access Token",
+      "view": "View Token"
+    },
+    "labels": {
+      "name": "Token Name",
+      "scopes": "Permissions (Scopes)",
+      "selectedCount": "{{count}} permission selected",
+      "selectedCount_plural": "{{count}} permissions selected",
+      "selectAll": "Select All",
+      "clearAll": "Clear All"
+    },
+    "placeholders": {
+      "name": "e.g. My API Token",
+      "searchPermissions": "Search resources and actions..."
+    },
+    "descriptions": {
+      "name": "Descriptive name to identify this access token",
+      "scopes": "Select the permissions this token will have access to"
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Name",
+      "scopes": "Scopes",
+      "owner": "Owner",
+      "createdAt": "Created At"
+    }
+  },
+  "actions": {
+    "create": "New Token",
+    "view": "View Token",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleting": "Deleting",
+    "regenerate": "Regenerate Token",
+    "copy": "Copy Token",
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close"
+  },
+  "messages": {
+    "loading": "Loading access tokens...",
+    "loadError": "Error loading access tokens",
+    "createSuccess": "Access token created successfully",
+    "updateSuccess": "Access token updated successfully",
+    "deleteSuccess": "Access token deleted successfully",
+    "bulkDeleteSuccess": "{{count}} access token deleted successfully",
+    "bulkDeleteSuccess_plural": "{{count}} access tokens deleted successfully",
+    "regenerateSuccess": "Token regenerated successfully",
+    "copySuccess": "Token copied to clipboard",
+    "createError": "Error creating access token",
+    "updateError": "Error updating access token",
+    "deleteError": "Error deleting access token",
+    "regenerateError": "Error regenerating token",
+    "copyError": "Error copying to clipboard",
+    "loadDetailsError": "Error loading token details",
+    "permissionDenied": "You do not have permission to {{action}} access tokens",
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "scopesRequired": "Select at least one permission"
+    }
+  },
+  "deleteDialog": {
+    "title": "Delete Access Token",
+    "description": "Are you sure you want to delete the token \"{{name}}\"? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "bulkDeleteDialog": {
+    "title": "Delete Selected Tokens",
+    "description": "Are you sure you want to delete {{count}} selected token? This action cannot be undone.",
+    "description_plural": "Are you sure you want to delete {{count}} selected tokens? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete All"
+  },
+  "viewModal": {
+    "title": "Access Token",
+    "labels": {
+      "name": "Name",
+      "owner": "Owner",
+      "token": "Access Token",
+      "scopes": "Permissions (Scopes)",
+      "createdAt": "Created At",
+      "updatedAt": "Last Updated",
+      "ownerId": "Owner ID",
+      "tokenId": "Token ID"
+    },
+    "copyToken": "Access Token",
+    "descriptions": {
+      "tokenId": "Unique identifier for this access token",
+      "tokenUsage": "Use this token in the Authorization header: Authorization: Bearer {token}...",
+      "scopes": "Permissions that this token has access to",
+      "noScopes": "No scopes configured"
+    },
+    "sections": {
+      "tokenDetails": "Token Details",
+      "apiUsage": "API Usage Example",
+      "security": "Important - Security"
+    },
+    "examples": {
+      "curl": "cURL Example",
+      "javascript": "JavaScript Example"
+    },
+    "security": {
+      "title": "Important - Security",
+      "tips": [
+        "Never expose the access token in client-side code or public repositories",
+        "Use HTTPS in production for all API communications",
+        "Regenerate the token if you suspect it has been compromised",
+        "Monitor token usage regularly",
+        "Store tokens securely using environment variables or secure vaults"
+      ]
+    },
+    "close": "Close",
+    "tokenCopied": "Token copied!"
+  },
+  "empty": {
+    "title": "No tokens found",
+    "description": "Create your first access token to start using the API"
+  },
+  "permissions": {
+    "loadingPermissions": "Loading permissions...",
+    "noPermissionsAvailable": "No permissions available",
+    "retryLoad": "Retry",
+    "loadError": "Failed to load permissions. Please try again."
+  }
+}

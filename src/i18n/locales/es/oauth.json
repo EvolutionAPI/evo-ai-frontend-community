@@ -1,0 +1,108 @@
+{
+  "oauth": {
+    "login": {
+      "titles": {
+        "selectAccount": "Seleccionar Cuenta para Autorización",
+        "redirecting": "Redirigiendo para Autorización...",
+        "loginRequired": "Login Necesario para OAuth"
+      },
+      "descriptions": {
+        "selectAccount": "Seleccione una cuenta para autorizar esta aplicación.",
+        "redirecting": "Será redirigido a la página de autorización de la aplicación.",
+        "loginRequired": "Inicie sesión para autorizar la aplicación de terceros."
+      },
+      "accounts": {
+        "available": "Cuentas Disponibles:",
+        "noAccounts": "Ninguna cuenta disponible para autorización OAuth"
+      },
+      "applicationDetails": {
+        "title": "Detalles de la Aplicación:",
+        "clientId": "ID del Cliente:",
+        "redirectUri": "URI de Redirección:",
+        "scope": "Alcance:",
+        "oauthUrl": "URL OAuth:",
+        "returnUrl": "URL de Retorno:"
+      },
+      "buttons": {
+        "loginToAuthorize": "Iniciar Sesión para Autorizar",
+        "continueToAuthorization": "Continuar a Autorización",
+        "redirecting": "Redirigiendo..."
+      },
+      "loading": {
+        "processingAuthorization": "Procesando autorización...",
+        "redirectingToAuthorization": "Redirigiendo a autorización..."
+      },
+      "footer": {
+        "disclaimer": "Al continuar, autoriza la aplicación a acceder a su cuenta Evolution.",
+        "revoke": "Puede revocar este acceso en cualquier momento en la configuración de su cuenta."
+      },
+      "errors": {
+        "missingParameters": "Parámetros OAuth obligatorios ausentes",
+        "noAccounts": "Ninguna cuenta disponible para autorización OAuth",
+        "failedToLoadAccounts": "Falla al cargar cuentas:",
+        "missingOAuthUrl": "URL OAuth ausente. Reinicie el flujo OAuth.",
+        "missingUrlForAuth": "URL OAuth o de retorno ausente para autorización",
+        "failedToRedirect": "Falla al redirigir a la página de login",
+        "missingOAuthUrlDirect": "URL OAuth ausente",
+        "missingOAuthParams": "Parámetros OAuth ausentes",
+        "failedToCreateApp": "Falla al crear aplicación OAuth:"
+      }
+    },
+    "authorize": {
+      "titles": {
+        "authorizeApp": "Autorizar Aplicación",
+        "loginRequired": "Login Necesario",
+        "invalidRequest": "Solicitud Inválida"
+      },
+      "descriptions": {
+        "requestingAccess": "Una aplicación está solicitando acceso a su cuenta.",
+        "needLogin": "Necesita iniciar sesión para autorizar esta aplicación.",
+        "invalidParams": "Parámetros OAuth ausentes o inválidos"
+      },
+      "appInfo": {
+        "name": "Aplicación MCP",
+        "description": "Integración del Model Context Protocol",
+        "redirectUri": "URI de Redirección:",
+        "requestedScope": "Alcance Solicitado:",
+        "user": "Usuario:"
+      },
+      "buttons": {
+        "authorize": "Autorizar",
+        "authorizing": "Autorizando...",
+        "deny": "Negar",
+        "goToLogin": "Ir a Login"
+      },
+      "footer": {
+        "disclaimer": "Al autorizar, permite que esta aplicación acceda a su cuenta Evolution con los permisos solicitados.",
+        "revoke": "Puede revocar este acceso en cualquier momento en la configuración de su cuenta."
+      },
+      "errors": {
+        "missingParams": "Parámetros OAuth obligatorios ausentes",
+        "missingParamsOrAuth": "Parámetros OAuth ausentes o usuario no autenticado",
+        "authorizationFailed": "Falla en la autorización:",
+        "userDenied": "Usuario negó autorización"
+      }
+    },
+    "callback": {
+      "title": "Autorización OAuth",
+      "loading": {
+        "processing": "Procesando autorización..."
+      },
+      "success": {
+        "title": "¡Éxito!",
+        "message": "¡Autorización realizada con éxito! Puede cerrar esta ventana."
+      },
+      "errors": {
+        "title": "Error",
+        "oauthError": "Error OAuth:",
+        "invalidCallback": "Callback OAuth inválido - código de autorización ausente"
+      },
+      "footer": {
+        "canClose": "Esta ventana puede cerrarse de forma segura después de la autorización."
+      }
+    },
+    "common": {
+      "error": "Error"
+    }
+  }
+}

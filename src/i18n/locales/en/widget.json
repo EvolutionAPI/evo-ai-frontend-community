@@ -1,0 +1,132 @@
+{
+  "header": {
+    "defaultTitle": "EvoAI",
+    "defaultSubtitle": "How can we help?",
+    "endConversation": "End conversation",
+    "onlineNow": "Online now",
+    "weAreResponding": "We are responding",
+    "replyTime": "Response: {{time}}"
+  },
+  "chat": {
+    "uploadingFiles": "Uploading files...",
+    "retryMessage": "Retry",
+    "replyTo": "Reply",
+    "you": "You",
+    "agent": "Agent",
+    "user": "User",
+    "file": "File",
+    "fileSize": "{{size}} KB",
+    "loadMore": "Load more messages"
+  },
+  "composer": {
+    "placeholder": "Write your message...",
+    "send": "Send"
+  },
+  "attachment": {
+    "attach": "Attach file",
+    "dropHere": "Drop file here",
+    "error": "Error in file: {{error}}"
+  },
+  "emoji": {
+    "addEmoji": "Add emoji"
+  },
+  "emailTranscript": {
+    "button": "Send by email",
+    "sending": "Sending..."
+  },
+  "endConversation": {
+    "tooltip": "End conversation",
+    "error": "Error ending conversation"
+  },
+  "replyTo": {
+    "replyingTo": "Replying to {{name}}",
+    "cancelReply": "Cancel reply",
+    "you": "You",
+    "agent": "Agent"
+  },
+  "messageList": {
+    "loadingOld": "Loading old messages...",
+    "loadOldMessages": "Load old messages",
+    "sending": "sending…",
+    "retry": "Retry",
+    "reply": "Reply",
+    "now": "now"
+  },
+  "startNewConversation": {
+    "button": "Start new conversation",
+    "starting": "Starting conversation..."
+  },
+  "typing": {
+    "typing": "{{name}} is typing",
+    "now": "now"
+  },
+  "toast": {
+    "emailTranscriptSuccess": "Conversation history sent by email successfully!",
+    "emailTranscriptError": "Error sending conversation history by email. Please try again.",
+    "conversationEnded": "Conversation ended successfully!",
+    "newConversationStarted": "New conversation started!",
+    "uploadFailed": "File upload failed"
+  },
+  "buttons": {
+    "sendEmailTranscript": "Send conversation history by email",
+    "startNewConversation": "Start new conversation",
+    "send": "Send",
+    "attach": "Attach file"
+  },
+  "input": {
+    "placeholder": "Write your message...",
+    "replyingTo": "Replying to"
+  },
+  "errors": {
+    "generic": "An error occurred. Please try again.",
+    "sendMessage": "Error sending message",
+    "loadMessages": "Error loading messages",
+    "createConversation": "Error creating conversation",
+    "connectionLost": "Connection lost. Trying to reconnect..."
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "sending": "Sending...",
+    "sent": "Sent",
+    "failed": "Failed",
+    "replyTime": "Response time: {{time}}"
+  },
+  "pagination": {
+    "loadingMore": "Loading previous messages...",
+    "noMoreMessages": "No more messages"
+  },
+  "preChat": {
+    "loading": "Preparing conversation..."
+  },
+  "system": {
+    "conversationCreated": "Conversation created",
+    "conversationResolved": "Conversation resolved",
+    "agentJoined": "{{name}} joined the conversation",
+    "agentLeft": "{{name}} left the conversation"
+  },
+  "replyTimeStatus": {
+    "inAFewMinutes": "We will respond in a few minutes",
+    "inAFewHours": "We will respond in a few hours",
+    "inADay": "We will respond in a day"
+  },
+  "businessHours": {
+    "backTomorrow": "We'll be back tomorrow",
+    "backAt": "We'll be back at {{time}}",
+    "offline": "Team offline"
+  },
+  "attachments": {
+    "uploading": "Uploading file...",
+    "uploaded": "File uploaded",
+    "failed": "Upload failed",
+    "maxSizeExceeded": "File too large. Maximum size: {{maxSize}}MB",
+    "unsupportedType": "Unsupported file type"
+  },
+  "emailCollect": {
+    "placeholder": "Enter your email",
+    "button": "Submit",
+    "invalidEmail": "Please enter a valid email",
+    "success": "Email saved successfully!",
+    "error": "Error saving email. Please try again."
+  }
+}

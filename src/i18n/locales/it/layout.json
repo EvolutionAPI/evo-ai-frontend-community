@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "language": "Lingua",
+    "myProfile": "Il Mio Profilo",
+    "logout": "Esci",
+    "userInitial": "U",
+    "defaultUser": "Agente"
+  },
+  "logout": {
+    "title": "Conferma Logout",
+    "description": "Sei sicuro di voler uscire dal tuo account?",
+    "cancel": "Annulla",
+    "confirm": "Esci",
+    "loggingOut": "Disconnessione...",
+    "success": "Logout effettuato con successo!",
+    "error": "Errore durante il logout"
+  },
+  "notifications": {
+    "bell": {
+      "ariaLabel": "Notifiche"
+    },
+    "item": {
+      "someTimeAgo": "Qualche tempo fa",
+      "noAssignee": "NA",
+      "noContent": "Nessun contenuto"
+    },
+    "panel": {
+      "title": "Notifiche non lette",
+      "markAllAsRead": "Segna tutte come lette",
+      "loading": "Caricamento notifiche...",
+      "emptyTitle": "Tutto a posto!",
+      "emptyDescription": "Non hai notifiche non lette al momento.",
+      "pagination": {
+        "separator": " - "
+      },
+      "types": {
+        "conversation_assignment": "Assegnazione",
+        "conversation_mention": "Menzione",
+        "conversation_creation": "Nuova Conversazione",
+        "conversation_status_changed": "Stato Modificato",
+        "message_created": "Nuovo Messaggio",
+        "assigned_conversation_new_message": "Nuovo Messaggio in Conversazione Assegnata",
+        "conversation_assigned": "Conversazione Assegnata",
+        "conversation_unassigned": "Conversazione Non Assegnata",
+        "conversation_resolved": "Conversazione Risolta",
+        "conversation_opened": "Conversazione Aperta",
+        "conversation_closed": "Conversazione Chiusa",
+        "message_updated": "Messaggio Aggiornato",
+        "message_deleted": "Messaggio Eliminato"
+      }
+    }
+  },
+  "organizationSwitcher": {
+    "selectOrganization": "Seleziona organizzazione",
+    "searchPlaceholder": "Cerca organizzazioni...",
+    "noResults": "Nessuna organizzazione trovata",
+    "noOrganizations": "Nessuna organizzazione disponibile",
+    "roles": {
+      "administrator": "Amministratore",
+      "agent": "Agente"
+    }
+  },
+  "sidebar": {
+    "openMenu": "Apri menu",
+    "navigationMenu": "Menu di navigazione",
+    "organization": "Organizzazione",
+    "expand": "Espandi barra laterale",
+    "collapse": "Riduci barra laterale",
+    "closeSubmenu": "Chiudi sottomenu",
+    "footer": {
+      "brand": "Evo AI",
+      "copyright": "© {{year}} Evo AI",
+      "documentation": "Documentazione",
+      "support": "Ho bisogno di supporto"
+    }
+  },
+  "menu": {
+    "customer": {
+      "dashboard": "Dashboard",
+      "conversations": "Conversazioni",
+      "contacts": "Contatti",
+      "pipelines": "Pipeline",
+      "agents": "Agenti",
+      "channels": "Canali",
+      "settings": "Impostazioni"
+    },
+    "contacts": {
+      "list": "Contatti",
+      "scheduledActions": "Azioni Programmate"
+    },
+    "agents": {
+      "list": "Agenti",
+      "customTools": "Strumenti Personalizzati",
+      "customMcps": "MCP Personalizzati"
+    },
+    "settings": {
+      "account": "Account",
+      "users": "Agenti",
+      "teams": "Team",
+      "labels": "Etichette",
+      "customAttributes": "Attributi Personalizzati",
+      "cannedResponses": "Risposte Predefinite",
+      "macros": "Macro",
+      "integrations": "Integrazioni",
+      "accessTokens": "Tokens di Accesso"
+    }
+  }
+}

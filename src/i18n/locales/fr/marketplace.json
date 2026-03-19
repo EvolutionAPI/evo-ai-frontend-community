@@ -1,0 +1,45 @@
+{
+  "header": {
+    "title": "Marketplace",
+    "productsCount": "{{count}} produits",
+    "subtitle": "Découvrez et installez des agents, outils et ressources pour étendre vos capacités"
+  },
+  "search": {
+    "title": "Rechercher et Filtrer",
+    "placeholder": "Rechercher des produits...",
+    "clearFilters": "Effacer les Filtres",
+    "tagsLabel": "Tags :"
+  },
+  "product": {
+    "install": "Installer",
+    "free": "Gratuit",
+    "version": "v{{version}}"
+  },
+  "empty": {
+    "title": "Aucun produit trouvé",
+    "description": "Essayez d'ajuster les filtres de recherche ou explorez d'autres catégories.",
+    "action": "Effacer les Filtres"
+  },
+  "pagination": {
+    "pageInfo": "Page {{current}} sur {{total}} - {{count}} produits",
+    "previous": "Précédent",
+    "next": "Suivant"
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des produits du marketplace"
+  },
+  "mockProducts": {
+    "aiAssistant": {
+      "name": "Agent Assistant IA",
+      "description": "Un agent IA polyvalent pour l'assistance générale avec des capacités de recherche et d'analyse."
+    },
+    "customerSupport": {
+      "name": "Bot de Support Client",
+      "description": "Agent spécialisé dans le service client avec des réponses automatiques et une escalade intelligente."
+    },
+    "dataAnalysis": {
+      "name": "Agent d'Analyse de Données",
+      "description": "Agent spécialisé dans l'analyse de données avec des capacités de génération de rapports et d'insights."
+    }
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "title": "Canal de WhatsApp",
+  "description": "Conéctese para ofrecer soporte a sus clientes por WhatsApp",
+  "providers": {
+    "badges": {
+      "recommended": "Recomendado",
+      "popular": "Popular"
+    },
+    "cloud": {
+      "name": "WhatsApp Cloud",
+      "description": "API oficial de WhatsApp Business con integración directa y mejor confiabilidad."
+    },
+    "evolutionV2": {
+      "name": "Evolution API V2",
+      "description": "Automatización de WhatsApp open-source con recursos avanzados y personalización."
+    },
+    "evolutionGo": {
+      "name": "Evolution Go",
+      "description": "API de WhatsApp moderna basada en Go con alta performance y estabilidad."
+    },
+    "notificame": {
+      "name": "Notificame",
+      "description": "Proveedor brasileño con recursos robustos y soporte local."
+    },
+    "zapi": {
+      "name": "Z-API",
+      "description": "Proveedor brasileño con API simple y documentación completa."
+    },
+    "twilio": {
+      "name": "Twilio",
+      "description": "Mensajes vía infraestructura global de Twilio para WhatsApp."
+    }
+  },
+  "cloudForm": {
+    "title": "WhatsApp Cloud",
+    "defaultChannelName": "WhatsApp Cloud",
+    "or": "o",
+    "autoConfig": {
+      "title": "Configuración Automática",
+      "description": "Use el Facebook Embedded Signup para configurar automáticamente su canal WhatsApp.",
+      "connecting": "Conectando...",
+      "configureButton": "Configurar con Facebook"
+    },
+    "manualConfig": {
+      "title": "Configuración Manual",
+      "creating": "Creando...",
+      "createButton": "Crear canal"
+    },
+    "autoFilled": {
+      "title": "Campos completados automáticamente",
+      "description": "Los campos fueron completados automáticamente a través de la integración con Facebook",
+      "message": "✅ Datos completados automáticamente. Revise la información y haga clic en \"Crear canal\".",
+      "clearButton": "Limpiar campos"
+    },
+    "facebookIntegration": {
+      "title": "Integración con Facebook",
+      "connectButton": "Conectar con Facebook",
+      "description": "Conecte su cuenta de Facebook para configuración automática de WhatsApp Business API"
+    },
+    "fields": {
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "phoneNumber": {
+        "label": "Número de Teléfono",
+        "placeholder": "+5511999999999",
+        "helpText": "Incluya el código de país (ej: +55 para Brasil)"
+      },
+      "apiKey": {
+        "label": "Token de Acceso",
+        "placeholder": "Token de acceso permanente"
+      },
+      "phoneNumberId": {
+        "label": "Phone Number ID",
+        "placeholder": "ID del número en WhatsApp Business"
+      },
+      "businessAccountId": {
+        "label": "Business Account ID",
+        "placeholder": "ID de la cuenta de negocio en Meta"
+      },
+      "wabaId": {
+        "label": "WABA ID",
+        "placeholder": "ID de la cuenta de WhatsApp Business"
+      }
+    },
+    "success": {
+      "dataObtained": "¡Datos obtenidos con éxito! Revise y confirme."
+    },
+    "errors": {
+      "sdkNotLoaded": "Facebook SDK no cargado",
+      "loginCanceled": "Inicio de sesión de Facebook cancelado",
+      "embeddedSignupError": "Error en Facebook Embedded Signup",
+      "embeddedSignupFailed": "Falla en Embedded Signup",
+      "createChannelError": "Falla al crear canal"
+    }
+  },
+  "evolutionForm": {
+    "title": "Evolution API",
+    "description": "Configure su canal de WhatsApp usando Evolution API",
+    "backButton": "Volver",
+    "creating": "Creando Canal...",
+    "createButton": "Crear Canal WhatsApp",
+    "testConnection": "Probar Conexión",
+    "testing": "Probando...",
+    "fields": {
+      "basicInfo": "Información Básica",
+      "configuration": "Configuración de Evolution API",
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "instanceName": {
+        "label": "Nombre de la Instancia",
+        "placeholder": "mi-instancia",
+        "helpText": "Nombre único para identificar su instancia"
+      },
+      "baseUrl": {
+        "label": "URL Base",
+        "placeholder": "https://api.evolution.com",
+        "helpText": "URL de su instalación Evolution API"
+      },
+      "apiKey": {
+        "label": "API Key",
+        "placeholder": "Su clave API",
+        "helpText": "Clave de acceso a Evolution API"
+      }
+    },
+    "sections": {
+      "proxy": {
+        "title": "Configuración de Proxy",
+        "enableProxy": "Habilitar Proxy",
+        "host": {
+          "label": "Host del Proxy",
+          "placeholder": "proxy.ejemplo.com"
+        },
+        "port": {
+          "label": "Puerto del Proxy",
+          "placeholder": "8080"
+        },
+        "protocol": "Protocolo",
+        "username": {
+          "label": "Usuario",
+          "placeholder": "usuario"
+        },
+        "password": {
+          "label": "Contraseña",
+          "placeholder": "contraseña"
+        }
+      },
+      "instance": {
+        "title": "Configuraciones de la Instancia",
+        "rejectCalls": "Rechazar Llamadas",
+        "alwaysOnline": "Siempre En Línea",
+        "readMessages": "Marcar Mensajes como Leídos",
+        "readStatus": "Leer Estado",
+        "groupsIgnore": "Ignorar Grupos",
+        "enableSyncFeatures": "Habilitar Sincronización",
+        "syncFullHistory": "Sincronizar Historial Completo",
+        "msgCall": {
+          "label": "Mensaje para Llamadas",
+          "placeholder": "No atendemos llamadas por aquí"
+        }
+      }
+    },
+    "connectionTest": {
+      "success": "¡Conexión establecida con éxito!",
+      "error": "Error al conectar con Evolution API"
+    }
+  },
+  "notificameForm": {
+    "title": "WhatsApp vía Notificame",
+    "description": "Configure su canal de WhatsApp usando el proveedor brasileño Notificame",
+    "backButton": "Volver",
+    "creating": "Creando Canal...",
+    "createButton": "Crear Canal WhatsApp",
+    "fields": {
+      "basicInfo": "Información Básica",
+      "configuration": "Configuración de Notificame",
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "phoneNumber": {
+        "label": "Número de WhatsApp",
+        "placeholder": "+5511999999999",
+        "helpText": "Incluya el código del país (ej: +55 para Brasil)"
+      },
+      "apiToken": {
+        "label": "Token API",
+        "placeholder": "Su token API de Notificame",
+        "helpText": "Encuéntrelo en su cuenta Notificame"
+      },
+      "channel": {
+        "label": "Canal Notificame",
+        "refresh": "Actualizar",
+        "placeholder": "Seleccione un canal",
+        "noChannelsFound": "Ningún canal encontrado. Verifique el token API."
+      }
+    },
+    "selectedChannel": {
+      "title": "Canal Seleccionado",
+      "name": "Nombre",
+      "number": "Número",
+      "status": "Estado"
+    },
+    "help": {
+      "title": "Ayuda - Notificame",
+      "apiToken": {
+        "title": "API Token",
+        "description": "Encuéntrelo en su cuenta Notificame"
+      },
+      "channelId": {
+        "title": "Canal ID",
+        "description": "ID del canal en Notificame"
+      },
+      "phone": {
+        "title": "Teléfono",
+        "description": "Número en formato internacional"
+      },
+      "support": {
+        "title": "Soporte",
+        "description": "Acceda al soporte de Notificame"
+      }
+    }
+  },
+  "zapiForm": {
+    "title": "WhatsApp vía Z-API",
+    "description": "Configure su canal de WhatsApp usando Z-API",
+    "fields": {
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "phoneNumber": {
+        "label": "Número de WhatsApp",
+        "placeholder": "+5511999999999",
+        "helpText": "Incluya el código de país (ej: +55 para Brasil)"
+      },
+      "instanceId": {
+        "label": "Instance ID",
+        "placeholder": "Su Instance ID de Z-API"
+      },
+      "token": {
+        "label": "Token",
+        "placeholder": "Su token de Z-API"
+      },
+      "clientToken": {
+        "label": "Client Token",
+        "placeholder": "Su Client Token de Z-API",
+        "helpText": "Token separado usado para autenticación en algunos endpoints de Z-API"
+      }
+    },
+    "help": {
+      "title": "Ayuda - Z-API",
+      "instanceId": {
+        "title": "Instance ID",
+        "description": "Encuéntrelo en su cuenta Z-API"
+      },
+      "token": {
+        "title": "Token",
+        "description": "Token de acceso de Z-API"
+      },
+      "clientToken": {
+        "title": "Client Token",
+        "description": "Token separado usado para autenticación en algunos endpoints de Z-API. Configúrelo en el panel de Z-API."
+      },
+      "webhook": {
+        "title": "Webhook",
+        "description": "Configurado automáticamente"
+      },
+      "phone": {
+        "title": "Teléfono",
+        "description": "Número en formato internacional"
+      }
+    }
+  },
+  "twilioForm": {
+    "title": "WhatsApp vía Twilio",
+    "description": "Configure su canal de WhatsApp usando Twilio",
+    "fields": {
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "accountSid": {
+        "label": "Account SID",
+        "placeholder": "Su Account SID de Twilio"
+      },
+      "authToken": {
+        "label": "Auth Token",
+        "placeholder": "Su Auth Token de Twilio"
+      },
+      "phoneNumber": {
+        "label": "Número de Teléfono",
+        "placeholder": "+5511999999999"
+      },
+      "useApiKey": "Usar API Key (en lugar de Auth Token)",
+      "apiKeySid": {
+        "label": "API Key SID",
+        "placeholder": "SK..."
+      },
+      "useMessagingService": "Usar Messaging Service",
+      "messagingServiceSid": {
+        "label": "Messaging Service SID",
+        "placeholder": "MG..."
+      }
+    },
+    "help": {
+      "title": "Ayuda - Twilio WhatsApp"
+    }
+  },
+  "evolutionGoForm": {
+    "title": "Evolution Go API",
+    "description": "Configure su canal de WhatsApp usando Evolution Go",
+    "fields": {
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "apiUrl": {
+        "label": "URL de la API",
+        "placeholder": "https://api.evolutiongo.com"
+      },
+      "adminToken": {
+        "label": "Admin Token",
+        "placeholder": "Su token de administración"
+      },
+      "instanceName": {
+        "label": "Nombre de la Instancia",
+        "placeholder": "mi-instancia"
+      },
+      "phoneNumber": {
+        "label": "Número de WhatsApp",
+        "placeholder": "+5511999999999"
+      },
+      "instanceUuid": {
+        "label": "UUID de la Instancia",
+        "placeholder": "Generado automáticamente"
+      },
+      "instanceToken": {
+        "label": "Token de la Instancia",
+        "placeholder": "Generado automáticamente"
+      }
+    },
+    "sections": {
+      "instance": {
+        "title": "Configuraciones de la Instancia",
+        "alwaysOnline": "Siempre En Línea",
+        "rejectCall": "Rechazar Llamadas",
+        "readMessages": "Marcar Mensajes como Leídos",
+        "ignoreGroups": "Ignorar Grupos",
+        "ignoreStatus": "Ignorar Estado"
+      }
+    },
+    "help": {
+      "title": "Ayuda - Evolution Go",
+      "performance": {
+        "title": "Performance",
+        "description": "API moderna basada en Go con alta performance"
+      },
+      "stability": {
+        "title": "Estabilidad",
+        "description": "Arquitectura robusta y estable"
+      },
+      "features": {
+        "title": "Recursos",
+        "description": "Recursos avanzados y personalizaciones"
+      },
+      "uuidToken": {
+        "title": "UUID/Token",
+        "description": "Generados automáticamente después de verificación"
+      }
+    }
+  },
+  "cloudWhatsappForm": {
+    "facebookIntegration": {
+      "title": "Integración con Facebook",
+      "connectButton": "Conectar con Facebook",
+      "description": "Conecte con su cuenta de Facebook para completar automáticamente la información de WhatsApp Business",
+      "connecting": "Conectando..."
+    },
+    "autoFilled": {
+      "title": "Información Completada Automáticamente",
+      "description": "Los campos fueron completados automáticamente a través de la integración con Facebook",
+      "clearButton": "Limpiar Campos"
+    },
+    "fields": {
+      "displayName": {
+        "label": "Nombre de Visualización",
+        "placeholder": "Ej: Soporte WhatsApp",
+        "helpText": "Nombre amigable para identificación"
+      },
+      "channelName": {
+        "label": "Nombre del Canal",
+        "placeholder": "Ej: soporte-whatsapp",
+        "helpText": "Generado automáticamente del nombre de visualización"
+      },
+      "phoneNumber": {
+        "label": "Número de Teléfono",
+        "placeholder": "+5511999999999"
+      },
+      "phoneNumberId": {
+        "label": "Phone Number ID",
+        "placeholder": "ID del número en WhatsApp Business"
+      },
+      "wabaId": {
+        "label": "WABA ID",
+        "placeholder": "ID de la cuenta de WhatsApp Business"
+      },
+      "businessAccountId": {
+        "label": "Business Account ID",
+        "placeholder": "ID de la cuenta de negocios de Meta"
+      },
+      "apiKey": {
+        "label": "Access Token",
+        "placeholder": "Token de acceso permanente"
+      }
+    },
+    "help": {
+      "title": "Ayuda - WhatsApp Business API (Cloud)",
+      "metaBusiness": "Cree una cuenta en Meta Business Manager",
+      "whatsappApi": "Configure WhatsApp Business API",
+      "apiKey": "Genere un token de acceso permanente",
+      "phoneNumberId": "Copie el Phone Number ID de la API",
+      "businessAccountId": "Encuentre el Business Account ID",
+      "wabaId": "Obtenga el WABA ID de su cuenta"
+    },
+    "success": {
+      "dataObtained": "¡Datos obtenidos con éxito! Revise y confirme."
+    },
+    "errors": {
+      "loginCanceled": "Inicio de sesión en Facebook cancelado",
+      "connectionCanceled": "Conexión con Facebook cancelada"
+    }
+  },
+  "validation": {
+    "nameRequired": "El nombre del canal es obligatorio",
+    "phoneRequired": "El número de teléfono es obligatorio",
+    "apiKeyRequired": "La API Key es obligatoria",
+    "tokenRequired": "El token es obligatorio",
+    "instanceRequired": "El nombre de la instancia es obligatorio",
+    "urlRequired": "La URL es obligatoria",
+    "fillAllFields": "Complete todos los campos obligatorios"
+  },
+  "success": {
+    "created": "¡Canal WhatsApp creado con éxito!",
+    "connected": "¡Conectado con éxito!",
+    "tested": "¡Conexión probada con éxito!"
+  },
+  "errors": {
+    "createError": "Error al crear canal WhatsApp",
+    "connectionError": "Error de conexión",
+    "testError": "Error al probar conexión",
+    "invalidCredentials": "Credenciales inválidas",
+    "instanceNotFound": "Instancia no encontrada",
+    "providerNotImplemented": "Proveedor {{provider}} no implementado aún."
+  }
+}

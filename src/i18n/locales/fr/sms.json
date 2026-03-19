@@ -1,0 +1,136 @@
+{
+  "title": "SMS via {{provider}}",
+  "name": "SMS",
+  "description": "Envoyez et recevez des messages SMS",
+  "backButton": "Retour",
+  "createButton": "Créer un Canal SMS",
+  "creating": "Création du Canal...",
+  "fields": {
+    "basicInfo": "Informations de Base",
+    "displayName": {
+      "label": "Nom d'affichage",
+      "placeholder": "Ex: Support SMS",
+      "helpText": "Nom convivial pour l'identification",
+      "required": true
+    },
+    "channelName": {
+      "label": "Nom du Canal",
+      "placeholder": "Ex: support-sms",
+      "helpText": "Généré automatiquement à partir du nom d'affichage",
+      "required": true
+    },
+    "phoneNumber": {
+      "label": "Téléphone",
+      "placeholder": "+33612345678",
+      "helpText": "Numéro au format international",
+      "required": true
+    },
+    "configuration": "Configuration de {{provider}}",
+    "advancedAuth": {
+      "title": "Authentification Avancée",
+      "description": "Configurez la clé API comme alternative au Auth Token",
+      "useApiKey": "Utiliser la clé API (au lieu du Auth Token)",
+      "apiKeySid": {
+        "label": "API Key SID",
+        "placeholder": "SK...",
+        "helpText": "Clé API générée dans Twilio"
+      },
+      "apiKeySecret": {
+        "label": "API Key Secret",
+        "placeholder": "...",
+        "helpText": "Secret de la clé API"
+      }
+    },
+    "twilio": {
+      "displayName": {
+        "label": "Nom d'affichage",
+        "placeholder": "Ex: Support SMS",
+        "helpText": "Nom convivial pour l'identification"
+      },
+      "channelName": {
+        "label": "Nom du Canal",
+        "placeholder": "Ex: support-sms",
+        "helpText": "Généré automatiquement à partir du nom d'affichage"
+      },
+      "accountSid": {
+        "label": "Account SID",
+        "placeholder": "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "helpText": "Votre Account SID Twilio"
+      },
+      "authToken": {
+        "label": "Auth Token",
+        "placeholder": "Auth Token de Twilio",
+        "helpText": "Clé API générée dans Twilio"
+      }
+    },
+    "phoneConfig": {
+      "title": "Configuration du Téléphone",
+      "description": "Configurez le numéro ou le service de messagerie",
+      "useMessagingService": "Utiliser le Messaging Service",
+      "messagingServiceSid": {
+        "label": "Messaging Service SID",
+        "placeholder": "MGxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "helpText": "Si vous utilisez le Messaging Service dans Twilio"
+      }
+    },
+    "bandwidth": {
+      "displayName": {
+        "label": "Nom d'affichage",
+        "placeholder": "SMS Bandwidth",
+        "helpText": "Nom convivial pour l'identification"
+      },
+      "channelName": {
+        "label": "Nom du Canal",
+        "placeholder": "sms-bandwidth",
+        "helpText": "Généré automatiquement à partir du nom d'affichage"
+      },
+      "phoneNumber": {
+        "label": "Numéro de Téléphone",
+        "placeholder": "+33612345678",
+        "helpText": "Numéro au format international"
+      },
+      "apiToken": {
+        "label": "API Token",
+        "placeholder": "API Token de Bandwidth"
+      },
+      "apiSecret": {
+        "label": "API Secret",
+        "placeholder": "API Secret de Bandwidth"
+      },
+      "applicationId": {
+        "label": "Application ID",
+        "placeholder": "Application ID de Bandwidth"
+      },
+      "accountId": {
+        "label": "Account ID",
+        "placeholder": "Account ID de Bandwidth"
+      },
+      "info": {
+        "title": "Aide - Bandwidth",
+        "apiKeyInfo": "Trouvez dans votre tableau de bord Bandwidth",
+        "applicationIdInfo": "ID de l'application configurée dans Bandwidth",
+        "accountIdInfo": "ID du compte dans Bandwidth"
+      }
+    }
+  },
+  "providers": {
+    "twilio": {
+      "name": "Twilio",
+      "description": "Configurez SMS en utilisant Twilio"
+    }
+  },
+  "validation": {
+    "nameRequired": "Le nom du canal est obligatoire",
+    "phoneRequired": "Le numéro de téléphone est obligatoire",
+    "accountSidRequired": "Account SID est obligatoire",
+    "authTokenRequired": "Auth Token est obligatoire",
+    "fillAllFields": "Remplissez tous les champs obligatoires"
+  },
+  "success": {
+    "created": "Canal SMS créé avec succès !"
+  },
+  "errors": {
+    "createError": "Erreur lors de la création du canal SMS {{provider}}",
+    "providerNotImplemented": "Le fournisseur {{provider}} n'est pas encore implémenté."
+  }
+}

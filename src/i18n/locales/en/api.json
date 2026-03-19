@@ -1,0 +1,39 @@
+{
+  "title": "API Channel",
+  "name": "API",
+  "description": "Configure your API channel",
+  "fields": {
+    "displayName": {
+      "label": "Display Name",
+      "placeholder": "API Support",
+      "required": true
+    },
+    "name": {
+      "label": "Channel Name",
+      "placeholder": "api-support",
+      "required": true
+    },
+    "webhookUrl": {
+      "label": "Webhook URL",
+      "placeholder": "https://your-api.com/webhook",
+      "helpText": "URL where events will be sent"
+    }
+  },
+  "info": {
+    "title": "API Channel",
+    "description": "Custom integration via API REST",
+    "webhookInfo": "Optional - URL to receive events in real time",
+    "documentationLabel": "Documentation",
+    "documentation": "Consult the API documentation for implementation"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "webhookUrlFormat": "Invalid URL"
+  },
+  "success": {
+    "created": "API channel created successfully!"
+  },
+  "errors": {
+    "createError": "Error creating API channel"
+  }
+}

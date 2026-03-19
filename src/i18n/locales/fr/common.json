@@ -1,0 +1,136 @@
+{
+  "base": {
+    "pagination": {
+      "itemsPerPage": "Éléments par page :",
+      "showing": "Affichage de {{start}} à {{end}} sur {{total}} éléments",
+      "page": "Page {{current}} sur {{total}}"
+    },
+    "header": {
+      "searchPlaceholder": "Rechercher...",
+      "filters": "Filtres",
+      "selected": "{{count}} élément sélectionné",
+      "selected_other": "{{count}} éléments sélectionnés",
+      "clear": "Effacer"
+    },
+    "table": {
+      "emptyMessage": "Aucun élément trouvé",
+      "loading": "Chargement...",
+      "yes": "Oui",
+      "no": "Non",
+      "selectAll": "Tout sélectionner",
+      "selectItem": "Sélectionner l'élément {{key}}",
+      "actions": "Actions"
+    },
+    "buttons": {
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "delete": "Supprimer",
+      "edit": "Modifier",
+      "create": "Créer",
+      "update": "Mettre à Jour",
+      "close": "Fermer",
+      "confirm": "Confirmer",
+      "back": "Retour"
+    },
+    "messages": {
+      "success": "Opération réalisée avec succès",
+      "error": "Une erreur s'est produite",
+      "loading": "Chargement...",
+      "saving": "Enregistrement...",
+      "deleting": "Suppression...",
+      "updating": "Mise à jour..."
+    },
+    "filter": {
+      "title": "Filtres",
+      "description": "Configurez les filtres pour trouver les éléments que vous recherchez",
+      "applyFilters": "Appliquer les Filtres",
+      "clearFilters": "Effacer les Filtres",
+      "addFilter": "Ajouter un Filtre",
+      "cancel": "Annuler",
+      "and": "ET",
+      "or": "OU",
+      "selectDate": "Sélectionner une date",
+      "selectOption": "Sélectionner une option",
+      "enterNumber": "Entrez un nombre",
+      "enterValue": "Entrez la valeur"
+    },
+    "form": {
+      "required": "{{field}} est obligatoire",
+      "minLength": "{{field}} doit contenir au moins {{min}} caractères",
+      "maxLength": "{{field}} doit contenir au maximum {{max}} caractères",
+      "invalidFormat": "{{field}} a un format invalide",
+      "minValue": "{{field}} doit être au moins {{min}}",
+      "maxValue": "{{field}} doit être au maximum {{max}}",
+      "saving": "Enregistrement...",
+      "requiredMark": "*"
+    },
+    "flow": {
+      "editor": {
+        "title": "Éditeur de Flow",
+        "unsaved": "• Non enregistré",
+        "saving": "Enregistrement...",
+        "save": "Enregistrer",
+        "execute": "Exécuter",
+        "stop": "Arrêter",
+        "reset": "Réinitialiser",
+        "loading": "Chargement du flow...",
+        "errors": "{{count}} erreur(s) trouvée(s)"
+      },
+      "node": {
+        "nextStep": "Étape Suivante",
+        "options": "Options du Nœud",
+        "duplicate": "Dupliquer",
+        "edit": "Modifier",
+        "delete": "Supprimer"
+      },
+      "panel": {
+        "title": "Composants",
+        "subtitle": "Faites glisser les composants sur le canevas",
+        "search": "Rechercher des composants...",
+        "searchAll": "Recherche dans tous les composants",
+        "noResults": "Aucun composant trouvé pour \"{{query}}\"",
+        "dragToAdd": "Faites glisser pour ajouter",
+        "allComponents": "Tous",
+        "allDescription": "Tous les composants"
+      }
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif",
+      "blocked": "Bloqué",
+      "pending": "En attente",
+      "success": "Succès",
+      "error": "Erreur",
+      "warning": "Attention",
+      "expiring": "Expirant",
+      "days": "jours"
+    },
+    "appInitializer": {
+      "initializing": "Initialisation de l'application...",
+      "initError": "Erreur d'Initialisation",
+      "errorMessage": "Échec de l'initialisation de l'application",
+      "reload": "Recharger l'Application"
+    },
+    "errorBoundary": {
+      "title": "Oups ! Quelque chose s'est mal passé",
+      "description": "Une erreur inattendue s'est produite. Notre équipe a été notifiée et travaille à la résoudre.",
+      "technicalDetails": "Détails techniques (développement)",
+      "retry": "Réessayer"
+    },
+    "impersonation": {
+      "viewing": "Vous visualisez en tant que client :",
+      "exit": "Retour à l'admin"
+    },
+    "theme": {
+      "toggle": "Basculer le thème",
+      "light": "Mode clair",
+      "dark": "Mode sombre"
+    }
+  },
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "close": "Fermer",
+  "table": {
+    "inUse": "En cours d'utilisation"
+  }
+}

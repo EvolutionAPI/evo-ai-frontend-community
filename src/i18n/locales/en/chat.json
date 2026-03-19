@@ -1,0 +1,910 @@
+{
+  "messages": {
+    "noPermissionView": "You don't have permission to view conversations",
+    "noPermissionSend": "You don't have permission to send messages",
+    "audioPlayer": {
+      "defaultFilename": "Audio"
+    },
+    "messageAudio": {
+      "downloadStarted": "Download started",
+      "audioFallback": "Audio",
+      "playbackError": "Error playing audio",
+      "playbackErrorDescription": "Could not play this audio file",
+      "transcription": "Transcription"
+    },
+    "messageBubble": {
+      "contextMenu": {
+        "reply": "Reply",
+        "copy": "Copy message",
+        "delete": "Delete message"
+      },
+      "userFallback": "User",
+      "agent": {
+        "badge": "Agent",
+        "fallback": "Agent"
+      },
+      "bot": {
+        "badge": "🤖 Bot",
+        "fallback": "Bot"
+      },
+      "privateNote": {
+        "badge": "Private Note",
+        "description": "Visible only to Agents"
+      },
+      "moderation": {
+        "pending": "Pending Moderation",
+        "blocked": "Comment Blocked"
+      },
+      "deleteDialog": {
+        "title": "Delete message",
+        "description": "Are you sure you want to delete this message? This action cannot be undone and the message will be permanently removed from the conversation.",
+        "cancel": "Cancel",
+        "confirm": "Delete message"
+      }
+    },
+    "moderation": {
+      "banner": {
+        "pendingApproval": "Pending Approval",
+        "responseReady": "AI-generated response ready for review",
+        "generatedResponse": "Generated Response",
+        "approve": "Approve",
+        "reject": "Reject",
+        "regenerate": "Regenerate",
+        "approved": "Response approved successfully",
+        "rejected": "Response rejected successfully",
+        "regenerated": "Response regenerated successfully",
+        "approveError": "Error approving response",
+        "rejectError": "Error rejecting response",
+        "regenerateError": "Error regenerating response"
+      }
+    },
+    "messageFile": {
+      "fileFallback": "file",
+      "unknownSize": "Unknown size",
+      "fileFallbackTitle": "File"
+    },
+    "messageImage": {
+      "downloadStarted": "Download started",
+      "imageFallback": "Image",
+      "imageZoomedAlt": "Zoomed image"
+    },
+    "messageList": {
+      "loadingConversation": "Loading conversation...",
+      "loadingPrevious": "Loading previous messages...",
+      "conversationStart": "Start of conversation"
+    },
+    "messageLocation": {
+      "sharedLocation": "Shared location",
+      "openInMaps": "Open in Google Maps"
+    },
+    "messageStatus": {
+      "statusUnavailable": "Message status unavailable",
+      "statusUnavailableDescription": "The message was sent, but we could not confirm the delivery status.",
+      "checkChannelConfig": "Check channel configuration",
+      "webhookIssue": "The webhook may be outdated or inactive.",
+      "deliveryStatusUnavailable": "Delivery status unavailable - Click for more details",
+      "statusUnavailableText": "Status unavailable",
+      "retryInDevelopment": "Retry functionality in development",
+      "sendFailed": "Send failed - Click to try again",
+      "tryAgain": "Try again"
+    }
+  },
+  "assignment": {
+    "agent": {
+      "title": "Assign Agent",
+      "description": "Select an Agent for the conversation with {{name}}",
+      "contactFallback": "this contact",
+      "searchPlaceholder": "Search Agents..."
+    },
+    "team": {
+      "title": "Assign Team",
+      "description": "Select a team for the conversation with {{name}}",
+      "contactFallback": "this contact",
+      "searchPlaceholder": "Search teams..."
+    },
+    "label": {
+      "title": "Assign Labels",
+      "description": "Select labels for the conversation with {{name}}",
+      "contactFallback": "this contact",
+      "searchPlaceholder": "Search labels..."
+    }
+  },
+  "dashboardApp": {
+    "notFound": "App not found or has no content",
+    "urlNotConfigured": "App URL not configured"
+  },
+  "empty": {
+    "title": "Select a conversation",
+    "description": "Choose a conversation from the list to start viewing messages"
+  },
+  "deleteDialog": {
+    "title": "Delete conversation",
+    "description": "Are you sure you want to delete this conversation with {{name}}? This action cannot be undone and all messages will be permanently removed.",
+    "contactFallback": "this contact",
+    "cancel": "Cancel",
+    "confirm": "Delete conversation"
+  },
+  "aiAssistance": {
+    "title": "AI Assistance",
+    "description": {
+      "withMessage": "Select an action to improve your message",
+      "withoutMessage": "Select an action to get started"
+    },
+    "actions": {
+      "rephrase": {
+        "label": "Rephrase",
+        "description": "Rewrite the message in a different way"
+      },
+      "fix_spelling_grammar": {
+        "label": "Fix spelling",
+        "description": "Correct grammatical and spelling errors"
+      },
+      "expand": {
+        "label": "Expand",
+        "description": "Make the message more detailed"
+      },
+      "shorten": {
+        "label": "Shorten",
+        "description": "Summarize the message"
+      },
+      "make_friendly": {
+        "label": "Make friendly",
+        "description": "Use a more casual and friendly tone"
+      },
+      "make_formal": {
+        "label": "Make formal",
+        "description": "Use a more professional tone"
+      },
+      "simplify": {
+        "label": "Simplify",
+        "description": "Make it easier to understand"
+      },
+      "reply_suggestion": {
+        "label": "Reply suggestion",
+        "description": "Generate reply suggestion"
+      },
+      "summarize": {
+        "label": "Summarize conversation",
+        "description": "Create conversation summary"
+      },
+      "analyze_sentiment": {
+        "label": "Analyze sentiment",
+        "description": "Check if the message contains offensive or inappropriate content"
+      }
+    },
+    "button": {
+      "title": "AI Assistance",
+      "fallbackLabel": "AI"
+    },
+    "errors": {
+      "accountIdNotFound": "Account ID not found",
+      "processError": "Error processing AI action"
+    },
+    "messages": {
+      "textAppliedSuccess": "Text applied successfully"
+    },
+    "resultModal": {
+      "title": "Result of {{actionLabel}}",
+      "description": {
+        "loading": "Generating content...",
+        "ready": "Review the result and apply if desired"
+      },
+      "originalMessage": "Original message",
+      "generatedResult": "Generated result",
+      "copy": {
+        "label": "Copy",
+        "copied": "Copied",
+        "success": "Copied to clipboard"
+      },
+      "processing": "Processing...",
+      "noContent": "No content generated",
+      "actions": {
+        "cancel": "Cancel",
+        "apply": "Apply"
+      }
+    }
+  },
+  "assignmentModal": {
+    "searchPlaceholder": "Search...",
+    "selected": "Selected:",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "noOptions": "No options available",
+    "cancel": "Cancel",
+    "applying": "Applying...",
+    "apply": "Apply"
+  },
+  "audioRecorder": {
+    "notSupported": "Audio recording not supported in this browser",
+    "record": "Record",
+    "paused": "(paused)",
+    "send": "Send"
+  },
+  "cannedResponses": {
+    "loading": "Loading canned responses...",
+    "noResults": "No responses found",
+    "tryAnotherTerm": "Try another search term or create a new canned response",
+    "title": "Canned Responses",
+    "result": "result",
+    "results": "results",
+    "searchingFor": "Searching for:",
+    "navigate": "Navigate",
+    "select": "Select",
+    "close": "Close"
+  },
+  "chatArea": {
+    "selectConversation": {
+      "title": "Select a conversation",
+      "description": "Choose a conversation from the list to start viewing messages"
+    },
+    "banner": {
+      "whatsappMessage": "You can only reply to this conversation using a message template due to",
+      "cannotReply": "You cannot reply because",
+      "linkText": "24-hour messaging window restrictions",
+      "zapiDisconnected": "WhatsApp disconnected. Connect the number to send messages."
+    },
+    "errors": {
+      "loadMessages": "Error loading messages",
+      "tryAgain": "Try again"
+    }
+  },
+  "chatHeader": {
+    "actions": {
+      "markAsRead": "Mark as read",
+      "markAsUnread": "Mark as unread",
+      "markAsOpen": "Mark as open",
+      "markAsResolved": "Mark as resolved",
+      "markAsPending": "Mark as pending",
+      "pauseConversation": "Pause conversation",
+      "priorityUrgent": "Urgent Priority",
+      "priorityHigh": "High Priority",
+      "priorityMedium": "Medium Priority",
+      "priorityLow": "Low Priority",
+      "removePriority": "Remove Priority",
+      "pinConversation": "Pin conversation",
+      "unpinConversation": "Unpin conversation",
+      "archiveConversation": "Archive conversation",
+      "unarchiveConversation": "Unarchive conversation",
+      "assignAgent": "Assign Agent",
+      "assignTeam": "Assign Team",
+      "assignTag": "Assign Label",
+      "deleteConversation": "Delete conversation"
+    },
+    "contactNoName": "Contact without name",
+    "status": "Status:",
+    "openConversation": "Open Conversation",
+    "closeConversation": "Close conversation"
+  },
+  "chatSidebar": {
+    "searchPlaceholder": "Search conversations...",
+    "conversation": "conversation",
+    "conversations": "conversations",
+    "filter": "filter",
+    "filters": "filters",
+    "filtersButton": "Filters",
+    "view": {
+      "active": "Active",
+      "archived": "Archived"
+    },
+    "archivedNotice": "Showing only archived conversations loaded in this list. Use “Load more” to see older ones.",
+    "errors": {
+      "loadConversations": "Error loading conversations",
+      "tryAgain": "Try again"
+    },
+    "empty": {
+      "title": "No conversations found",
+      "description": "There are no conversations available at the moment."
+    },
+    "emptyArchived": {
+      "title": "No archived conversations",
+      "description": "There are no archived conversations at the moment."
+    },
+    "lastMessage": {
+      "noMessages": "No messages",
+      "noContent": "Message without content"
+    },
+    "contactNoName": "Contact without name"
+  },
+  "chatTabs": {
+    "chat": "Chat"
+  },
+  "contactSidebar": {
+    "sections": {
+      "contactDetails": {
+        "title": "Contact Information",
+        "description": "Personal data and attributes"
+      },
+      "macros": {
+        "title": "Macros",
+        "description": "Execute automations"
+      },
+      "pipeline": {
+        "title": "Pipeline",
+        "description": "Manage sales funnel"
+      },
+      "contactNotes": {
+        "title": "Contact Notes",
+        "description": "Important notes",
+        "noNotes": "No notes added yet"
+      },
+      "previousConversations": {
+        "title": "Previous Conversations",
+        "description": "Conversation history",
+        "loading": "Loading previous conversations..."
+      },
+      "conversationInfo": {
+        "title": "Conversation Information",
+        "description": "Technical details",
+        "status": "Status:",
+        "channel": "Channel:",
+        "assigned": "Assigned:",
+        "assignedTo": "Agent #{{id}}"
+      },
+      "conversationAttributes": {
+        "title": "Conversation Attributes",
+        "description": "Editable custom attributes"
+      },
+      "contactAttributes": {
+        "title": "Contact Attributes",
+        "description": "Editable custom attributes"
+      }
+    },
+    "contactHeader": {
+      "contactNoName": "Contact without name",
+      "online": "Online"
+    },
+    "contactDetails": {
+      "actions": {
+        "edit": "Edit",
+        "updateSuccess": "Contact updated successfully",
+        "updateError": "Error updating contact"
+      },
+      "sections": {
+        "basicInfo": "Basic Information",
+        "customAttributes": "Custom Attributes",
+        "additionalInfo": "Additional Information",
+        "history": "History"
+      },
+      "fields": {
+        "name": "Name",
+        "phone": "Phone",
+        "identifier": "Identifier",
+        "email": "Email",
+        "location": "Location",
+        "createdAt": "Created at",
+        "lastActivity": "Last activity"
+      },
+      "notInformed": "Not informed",
+      "copiedToClipboard": "Copied to clipboard"
+    },
+    "customAttributes": {
+      "noAttributes": "No custom attributes configured",
+      "updateSuccess": "Attributes updated successfully",
+      "updateError": "Error updating attributes",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "conversationAttributes": {
+      "noAttributes": "No conversation attributes configured",
+      "updateSuccess": "Conversation attributes updated",
+      "updateError": "Error updating conversation attributes",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "conversationActions": {
+      "status": {
+        "title": "Conversation Status",
+        "open": "Open",
+        "resolved": "Resolved",
+        "pending": "Pending",
+        "snoozed": "Paused",
+        "changed": "Status changed to: {{status}}",
+        "error": "Error changing conversation status"
+      },
+      "assignment": {
+        "title": "Assignment",
+        "assignedTo": "Assigned to Agent #{{id}}",
+        "notAssigned": "Conversation not assigned",
+        "unassign": "Unassign conversation",
+        "assignedSuccess": "Conversation assigned successfully",
+        "unassignedSuccess": "Conversation unassigned",
+        "error": "Error changing assignment"
+      },
+      "labels": {
+        "title": "Labels",
+        "noneApplied": "No labels applied",
+        "manage": "Manage labels"
+      },
+      "priority": {
+        "title": "Priority",
+        "none": "No priority defined",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent",
+        "remove": "Remove Priority"
+      }
+    },
+    "macros": {
+      "loading": "Error loading macros",
+      "noMacros": "No macros available",
+      "action": "action",
+      "actions": "actions",
+      "executeSuccess": "Macro \"{{name}}\" executed successfully",
+      "executeError": "Error executing macro \"{{name}}\"",
+      "dialog": {
+        "title": "Execute Macro",
+        "description": "Are you sure you want to execute the macro {{name}}? This action will apply {{count}} {{actionLabel}} to this conversation.",
+        "cancel": "Cancel",
+        "execute": "Execute Macro"
+      }
+    },
+    "pipeline": {
+      "loading": "Error loading pipeline data",
+      "noPipelines": "No pipeline configured",
+      "current": "Current Pipeline",
+      "label": "Pipeline",
+      "selectPipeline": "Select a pipeline",
+      "selectStage": "Select a stage",
+      "stage": "Stage",
+      "saving": "Saving...",
+      "save": "Save",
+      "saveSuccess": "Pipeline updated successfully",
+      "saveError": "Error updating pipeline",
+      "selectError": "Select a pipeline and a stage",
+      "removeSuccess": "Conversation removed from pipeline",
+      "removeError": "Error removing from pipeline",
+      "dialogs": {
+        "update": {
+          "title": "Update Pipeline",
+          "description": "Are you sure you want to move this conversation to {{pipelineName}} at stage {{stageName}}?",
+          "confirm": "Update"
+        },
+        "add": {
+          "title": "Add to Pipeline",
+          "description": "Are you sure you want to add this conversation to pipeline {{pipelineName}} at stage {{stageName}}?",
+          "confirm": "Add"
+        },
+        "remove": {
+          "title": "Remove from Pipeline",
+          "description": "Are you sure you want to remove this conversation from pipeline {{pipelineName}}? This action cannot be undone.",
+          "cancel": "Cancel",
+          "confirm": "Remove"
+        }
+      }
+    },
+    "filters": {
+      "assignee": {
+        "title": "Conversation Assignment",
+        "options": {
+          "all": {
+            "label": "All conversations",
+            "description": "All team conversations"
+          },
+          "me": {
+            "label": "My conversations",
+            "description": "Only conversations assigned to me"
+          },
+          "unassigned": {
+            "label": "Unassigned",
+            "description": "Conversations without assigned Agent"
+          }
+        },
+        "showAll": "Show all conversations"
+      },
+      "inbox": {
+        "title": "Support Channels",
+        "options": {
+          "all": "All channels",
+          "whatsapp": "WhatsApp Business",
+          "email": "Support Email",
+          "website": "Website Chat",
+          "telegram": "Telegram"
+        },
+        "showAll": "Show all channels"
+      },
+      "status": {
+        "title": "Conversation Status",
+        "options": {
+          "all": "All",
+          "open": "Open",
+          "pending": "Pending",
+          "resolved": "Resolved",
+          "snoozed": "Snoozed"
+        },
+        "clearFilters": "Clear filters"
+      }
+    },
+    "richTextEditor": {
+      "toolbar": {
+        "bold": "Bold (Ctrl+B)",
+        "italic": "Italic (Ctrl+I)",
+        "code": "Code (Ctrl+`)",
+        "bulletList": "Bullet list",
+        "undo": "Undo (Ctrl+Z)",
+        "redo": "Redo (Ctrl+Y)"
+      }
+    },
+    "typingIndicator": {
+      "single": "{{name}} is typing",
+      "two": "{{name1}} and {{name2}} are typing",
+      "multiple": "{{name}} and {{count}} more people are typing"
+    },
+    "webSocketStatus": {
+      "connected": "Real-time active",
+      "reconnecting": "Reconnecting..."
+    },
+    "channelDiagnostic": {
+      "title": "Channel Diagnostic",
+      "description": "Messages are failing, possibly due to channel configuration.",
+      "inboxId": "Inbox ID:",
+      "accountId": "Account ID:",
+      "possibleSolutions": "Possible Solutions:",
+      "solutions": {
+        "checkChannel": "Check if WhatsApp/Telegram channel is configured",
+        "confirmCredentials": "Confirm provider API credentials",
+        "testConnectivity": "Test connectivity with external service",
+        "checkWebhooks": "Check configured webhooks"
+      },
+      "settings": "Settings",
+      "close": "Close"
+    }
+  },
+  "replyModeToggle": {
+    "reply": "Reply",
+    "privateNote": "Private Note",
+    "visibleOnlyToAgents": "Visible only to Agents"
+  },
+  "contexts": {
+    "conversations": {
+      "errors": {
+        "loadConversations": "Error loading conversations",
+        "loadConversation": "Error loading conversation",
+        "conversationNotFound": "Conversation not found",
+        "updateStatus": "Error updating conversation status",
+        "updatePriority": "Error updating conversation priority",
+        "deleteConversation": "Error deleting conversation",
+        "markAsRead": "Error marking as read",
+        "markAsUnread": "Error marking as unread",
+        "markAsResolved": "Error marking as resolved",
+        "markAsPending": "Error marking as pending",
+        "assignAgent": "Error assigning agent",
+        "assignTeam": "Error assigning team",
+        "assignLabels": "Error assigning labels",
+        "pinConversation": "Error pinning conversation",
+        "archiveConversation": "Error archiving conversation",
+        "pinNotSupported": "Pin action unavailable",
+        "pinNotSupportedDescription": "The backend contract for pinning conversations is not available.",
+        "archiveNotSupported": "Archive action unavailable",
+        "archiveNotSupportedDescription": "The backend contract for archiving conversations is not available."
+      },
+      "success": {
+        "statusChanged": "Status changed to: {{status}}",
+        "priorityChanged": "Priority changed to: {{priority}}",
+        "deleted": "Conversation deleted successfully",
+        "markedAsRead": "Conversation marked as read",
+        "markedAsUnread": "Conversation marked as unread",
+        "markedAsResolved": "Conversation marked as resolved",
+        "markedAsPending": "Conversation marked as pending",
+        "agentAssigned": "Agent assigned successfully",
+        "agentRemoved": "Agent removed successfully",
+        "teamAssigned": "Team assigned successfully",
+        "teamRemoved": "Team removed successfully",
+        "labelsAssigned": "Labels assigned successfully",
+        "pinned": "Conversation pinned successfully",
+        "unpinned": "Conversation unpinned successfully",
+        "archived": "Conversation archived successfully",
+        "unarchived": "Conversation unarchived successfully"
+      },
+      "statusNames": {
+        "open": "Open",
+        "resolved": "Resolved",
+        "pending": "Pending",
+        "snoozed": "Paused"
+      },
+      "priorityNames": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent",
+        "none": "None"
+      },
+      "tryAgain": "Try again",
+      "tryAgainDescription": "Try again"
+    },
+    "filters": {
+      "errors": {
+        "applyFilters": "Error applying filters",
+        "loadConversations": "Error loading conversations",
+        "search": "Search error"
+      }
+    },
+    "messages": {
+      "errors": {
+        "loadMessages": "Error loading messages",
+        "loadMoreMessages": "Error loading older messages",
+        "sendMessage": "Error sending message",
+        "sendMessageWithAttachments": "Error sending message with attachments",
+        "deleteMessage": "Error deleting message",
+        "replyToPrivateNote": "Cannot reply to private notes"
+      },
+      "success": {
+        "messageCopied": "Message copied to clipboard!",
+        "messageDeleted": "Message deleted successfully"
+      },
+      "tryAgain": "Try again"
+    },
+    "webSocket": {
+      "newConversation": {
+        "title": "New conversation started",
+        "description": "{{name}} sent a message",
+        "newContact": "New contact"
+      }
+    }
+  },
+  "messageInput": {
+    "pendingPlaceholder": "This conversation is pending. Only private notes can be sent.",
+    "restrictedPlaceholder": "Cannot send messages due to 24-hour messaging window",
+    "defaultPlaceholder": "Type your message...",
+    "emojiPicker": {
+      "searchPlaceholder": "Search emojis..."
+    },
+    "filePreview": {
+      "file": "file",
+      "files": "files",
+      "sending": "Sending...",
+      "send": "Send"
+    },
+    "fileUpload": {
+      "attachFiles": "Attach files",
+      "dropFiles": "Drop files here",
+      "maxSize": "Maximum {{maxSize}}MB",
+      "fileTypes": {
+        "images": "images",
+        "pdf": "PDF",
+        "text": "text",
+        "audio": "audio",
+        "video": "video",
+        "word": "Word"
+      },
+      "errors": {
+        "fileTooLarge": "File too large",
+        "fileTooLargeDescription": "{{fileName}} exceeds the limit of {{maxSize}}MB",
+        "fileTypeNotAllowed": "File type not allowed",
+        "fileTypeNotAllowedDescription": "{{fileName}} is not a supported file type"
+      },
+      "success": {
+        "fileAdded": "File added",
+        "filesAdded": "{{count}} files added"
+      }
+    },
+    "audio": {
+      "sentSuccess": "Audio sent successfully!",
+      "sendError": "Error sending audio"
+    },
+    "templates": {
+      "inDevelopment": "Message templates in development 📝"
+    },
+    "replyPreview": {
+      "replyingTo": "Replying to {{name}}",
+      "userFallback": "User",
+      "asPrivateNote": "(as private note)",
+      "fileAttachment": "📎 {{fileType}}",
+      "fileFallback": "File",
+      "noContent": "Message with no content"
+    },
+    "signature": {
+      "enable": "Enable signature",
+      "disable": "Disable signature"
+    },
+    "placeholders": {
+      "default": "Type your message... (type / for canned responses)",
+      "pendingNote": "Type your private note (pending conversation)...",
+      "privateNote": "Type your private note... (type / for canned responses)"
+    }
+  },
+  "conversationsFilter": {
+    "title": "Filter Conversations",
+    "description": "Configure filters to find the conversations you're looking for",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "addFilter": "Add Filter",
+    "operators": {
+      "equal_to": "Equal to",
+      "not_equal_to": "Not equal to",
+      "contains": "Contains",
+      "is_present": "Has labels",
+      "is_not_present": "Does not have labels",
+      "is_greater_than": "Is after",
+      "is_less_than": "Is before",
+      "days_before": "Days ago"
+    },
+    "attributes": {
+      "status": "Status",
+      "assignee_type": "Assignee",
+      "inbox_id": "Channel",
+      "channel_type": "Channel Type",
+      "team_id": "Team",
+      "labels": "Labels",
+      "created_at": "Creation Date",
+      "last_activity_at": "Last Activity",
+      "priority": "Priority",
+      "pipeline_id": "Pipeline"
+    },
+    "options": {
+      "status": {
+        "all": "All",
+        "open": "Open",
+        "resolved": "Resolved",
+        "pending": "Pending",
+        "snoozed": "Snoozed"
+      },
+      "assignee_type": {
+        "me": "Assigned to me",
+        "assigned": "Assigned",
+        "unassigned": "Unassigned",
+        "all": "All"
+      },
+      "priority": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "channel_type": {
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "web_widget": "Web Widget",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "telegram": "Telegram",
+        "line": "LINE",
+        "api": "API",
+        "sms": "SMS",
+        "twilio": "Twilio SMS",
+        "twitter": "Twitter"
+      }
+    }
+  },
+  "conversationStatusIcon": {
+    "open": {
+      "label": "Open",
+      "description": "Active and ongoing conversation"
+    },
+    "pending": {
+      "label": "Pending",
+      "description": "Waiting for customer response"
+    },
+    "resolved": {
+      "label": "Resolved",
+      "description": "Conversation successfully completed"
+    },
+    "snoozed": {
+      "label": "Paused",
+      "description": "Temporarily paused conversation"
+    },
+    "unknown": {
+      "label": "Unknown",
+      "description": "Unidentified status"
+    }
+  },
+  "contactAvatar": {
+    "unknownChannel": "Unknown channel",
+    "avatarAlt": "Contact avatar",
+    "communicationChannel": "Communication channel"
+  },
+  "conversationActionsDropdown": {
+    "srOnly": "Conversation actions",
+    "title": "Conversation Actions",
+    "markAsRead": "Mark as read",
+    "markAsUnread": "Mark as unread",
+    "status": "Status",
+    "markAsOpen": "Mark as open",
+    "markAsResolved": "Mark as resolved",
+    "markAsPending": "Mark as pending",
+    "pauseConversation": "Pause conversation",
+    "priority": "Priority",
+    "priorityLabels": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "lowPriority": "Low priority",
+    "mediumPriority": "Medium priority",
+    "highPriority": "High priority",
+    "removePriority": "Remove priority",
+    "management": "Management",
+    "pinConversation": "Pin conversation",
+    "unpinConversation": "Unpin conversation",
+    "archiveConversation": "Archive conversation",
+    "unarchiveConversation": "Unarchive conversation",
+    "assignment": "Assignment",
+    "assignAgent": "Assign Agent",
+    "assignTeam": "Assign team",
+    "assignTag": "Assign tag",
+    "deleteConversation": "Delete conversation"
+  },
+  "conversationBadges": {
+    "priority": {
+      "urgent": {
+        "label": "Urgent Priority",
+        "description": "Requires immediate attention"
+      },
+      "high": {
+        "label": "High Priority",
+        "description": "Important, but not urgent"
+      },
+      "medium": {
+        "label": "Medium Priority",
+        "description": "Default priority"
+      },
+      "low": {
+        "label": "Low Priority",
+        "description": "Can wait"
+      }
+    },
+    "otherLabels": "Other labels",
+    "timeAgo": "ago",
+    "timeUnits": {
+      "day": "day",
+      "days": "days",
+      "week": "wk",
+      "weeks": "wks",
+      "month": "mo",
+      "months": "mos"
+    }
+  },
+  "emptyStates": {
+    "noConversations": {
+      "title": {
+        "search": "No conversations found",
+        "default": "No conversations yet"
+      },
+      "description": {
+        "search": "We couldn't find conversations matching \"{{searchTerm}}\". Try adjusting your search.",
+        "default": "When you receive messages from your customers, they will appear here."
+      },
+      "createNew": "Start new conversation"
+    },
+    "noMessages": {
+      "title": "Conversation started",
+      "description": "This conversation doesn't have any messages yet. Be the first to send a message!",
+      "hint": "Use the field below to send your first message"
+    }
+  },
+  "messageTemplates": {
+    "button": {
+      "title": "Message Templates"
+    },
+    "modal": {
+      "title": "Message Templates",
+      "subtitle": "Select the message template you want to send",
+      "templateSelectedSubtitle": "Process {{templateName}}"
+    },
+    "picker": {
+      "searchPlaceholder": "Search templates",
+      "noTemplatesFound": "No templates found for",
+      "labels": {
+        "language": "Language",
+        "templateBody": "Template Body",
+        "category": "Category"
+      }
+    },
+    "parser": {
+      "variablesLabel": "Variables",
+      "variablePlaceholder": "Enter value for {{variable}}",
+      "goBackLabel": "Go Back",
+      "sendMessageLabel": "Send Message",
+      "formErrorMessage": "Please fill in all variables before sending"
+    },
+    "noTemplates": "No message templates available",
+    "errors": {
+      "loadError": "Error loading message templates",
+      "sendError": "Error sending message template"
+    },
+    "success": {
+      "sent": "Template sent successfully!"
+    }
+  }
+}

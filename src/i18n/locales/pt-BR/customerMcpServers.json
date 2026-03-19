@@ -1,0 +1,28 @@
+{
+  "title": "Servidores MCP",
+  "errors": {
+    "accountNotFound": "Account ID not available",
+    "loadError": "Erro ao carregar servidores MCP"
+  },
+  "loading": {
+    "servers": "Carregando servidores MCP..."
+  },
+  "emptyState": {
+    "title": "Nenhum servidor MCP encontrado",
+    "description": "Não há servidores MCP disponíveis no sistema."
+  },
+  "viewMode": {
+    "cards": "Visualização em Cards",
+    "table": "Visualização em Tabela"
+  },
+  "header": {
+    "searchPlaceholder": "Buscar servidores MCP...",
+    "clearSelection": "Limpar Seleção",
+    "totalCount": "{{count}} servidor(es)",
+    "selectedCount": "{{count}} selecionado(s)"
+  },
+  "actions": {
+    "view": "Visualizar",
+    "details": "Detalhes"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Canale Sito Web",
+  "description": "Connetti il tuo sito con un widget di chat dal vivo",
+  "basicInfo": {
+    "title": "Informazioni di Base",
+    "description": "Configura il nome e l'URL del tuo sito web"
+  },
+  "appearance": {
+    "title": "Aspetto del Widget",
+    "description": "Personalizza i colori e i messaggi del widget"
+  },
+  "greeting": {
+    "title": "Messaggio di Saluto",
+    "description": "Configura messaggi di benvenuto automatici",
+    "autoDescription": "Invia automaticamente un messaggio di saluto quando i clienti iniziano una conversazione"
+  },
+  "fields": {
+    "channelName": "Nome del Canale",
+    "channelNamePlaceholder": "Sito Web",
+    "websiteUrl": "URL del Sito Web",
+    "websiteUrlPlaceholder": "https://miosito.com",
+    "widgetColor": "Colore del Widget",
+    "welcomeTitle": "Titolo di Benvenuto",
+    "welcomeTitlePlaceholder": "Ciao! Come possiamo aiutarti?",
+    "welcomeTagline": "Tagline di Benvenuto",
+    "welcomeTaglinePlaceholder": "Di solito rispondiamo in pochi minuti",
+    "welcomeTaglineHelp": "Questo messaggio verrà visualizzato nell'intestazione del widget",
+    "greetingEnabled": "Abilita messaggio di saluto automatico",
+    "greetingMessage": "Messaggio di Saluto",
+    "greetingMessagePlaceholder": "Ciao! Benvenuto sul nostro sito. Come possiamo aiutarti oggi?"
+  },
+  "summary": {
+    "title": "Riepilogo della Configurazione",
+    "name": "Nome",
+    "url": "URL",
+    "color": "Colore",
+    "greeting": "Saluto",
+    "enabled": "Abilitato",
+    "disabled": "Disabilitato",
+    "notConfigured": "non configurato"
+  },
+  "validation": {
+    "websiteNameRequired": "Il nome del sito è obbligatorio",
+    "widgetColorRequired": "Il colore del widget è obbligatorio",
+    "replyTimeRequired": "Il tempo di risposta è obbligatorio"
+  },
+  "widgetHelpers": {
+    "positions": {
+      "left": "Sinistra",
+      "right": "Destra"
+    },
+    "bubbleTypes": {
+      "standard": "Standard",
+      "expanded": "Espanso"
+    },
+    "viewOptions": {
+      "preview": "Anteprima",
+      "script": "Codice"
+    },
+    "replyTime": {
+      "fewMinutes": "In pochi minuti",
+      "fewHours": "In poche ore",
+      "day": "In un giorno"
+    },
+    "defaultLauncherTitle": "Parla con noi"
+  }
+}

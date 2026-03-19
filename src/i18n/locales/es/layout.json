@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "language": "Idioma",
+    "myProfile": "Mi Perfil",
+    "logout": "Salir",
+    "userInitial": "U",
+    "defaultUser": "Usuario"
+  },
+  "logout": {
+    "title": "Confirmación de Cierre de Sesión",
+    "description": "¿Está seguro de que desea salir de su cuenta?",
+    "cancel": "Cancelar",
+    "confirm": "Salir",
+    "loggingOut": "Saliendo...",
+    "success": "¡Cierre de sesión realizado con éxito!",
+    "error": "Error al cerrar sesión"
+  },
+  "notifications": {
+    "bell": {
+      "ariaLabel": "Notificaciones"
+    },
+    "item": {
+      "someTimeAgo": "Hace algún tiempo",
+      "noAssignee": "NA",
+      "noContent": "Sin contenido"
+    },
+    "panel": {
+      "title": "Notificaciones no leídas",
+      "markAllAsRead": "Marcar todas como leídas",
+      "loading": "Cargando notificaciones...",
+      "emptyTitle": "¡Todo al día!",
+      "emptyDescription": "No tiene notificaciones no leídas en este momento.",
+      "pagination": {
+        "separator": " - "
+      },
+      "types": {
+        "conversation_assignment": "Asignación",
+        "conversation_mention": "Mención",
+        "conversation_creation": "Nueva Conversación",
+        "conversation_status_changed": "Estado Cambiado",
+        "message_created": "Nuevo Mensaje",
+        "assigned_conversation_new_message": "Nuevo Mensaje en Conversación Asignada",
+        "conversation_assigned": "Conversación Asignada",
+        "conversation_unassigned": "Conversación Desasignada",
+        "conversation_resolved": "Conversación Resuelta",
+        "conversation_opened": "Conversación Abierta",
+        "conversation_closed": "Conversación Cerrada",
+        "message_updated": "Mensaje Actualizado",
+        "message_deleted": "Mensaje Eliminado"
+      }
+    }
+  },
+  "organizationSwitcher": {
+    "selectOrganization": "Seleccionar organización",
+    "searchPlaceholder": "Buscar organizaciones...",
+    "noResults": "Ninguna organización encontrada",
+    "noOrganizations": "Ninguna organización disponible",
+    "roles": {
+      "administrator": "Administrador",
+      "agent": "Agente"
+    }
+  },
+  "sidebar": {
+    "openMenu": "Abrir menú",
+    "navigationMenu": "Menú de navegación",
+    "organization": "Organización",
+    "expand": "Expandir barra lateral",
+    "collapse": "Contraer barra lateral",
+    "closeSubmenu": "Cerrar submenú",
+    "footer": {
+      "brand": "Evo AI",
+      "copyright": "© {{year}} Evo AI",
+      "documentation": "Documentación",
+      "support": "Necesito soporte"
+    }
+  },
+  "menu": {
+    "customer": {
+      "dashboard": "Panel de Control",
+      "conversations": "Conversaciones",
+      "contacts": "Contactos",
+      "pipelines": "Pipelines",
+      "agents": "Agentes",
+      "channels": "Canales",
+      "settings": "Configuraciones"
+    },
+    "contacts": {
+      "list": "Contactos",
+      "scheduledActions": "Acciones Programadas"
+    },
+    "agents": {
+      "list": "Agentes",
+      "customTools": "Herramientas Personalizadas",
+      "customMcps": "MCPs Personalizados"
+    },
+    "settings": {
+      "account": "Cuenta",
+      "users": "Usuarios",
+      "teams": "Equipos",
+      "labels": "Etiquetas",
+      "customAttributes": "Atributos Personalizados",
+      "cannedResponses": "Respuestas Rápidas",
+      "macros": "Macros",
+      "integrations": "Integraciones",
+      "accessTokens": "Tokens de Acceso"
+    }
+  }
+}

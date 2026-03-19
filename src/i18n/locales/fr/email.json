@@ -1,0 +1,61 @@
+{
+  "title": "Canal Email",
+  "name": "Email",
+  "description": "Connectez votre boîte email pour le support par e-mail",
+  "connect": "Connecter",
+  "connectGmail": "Connectez votre compte Gmail via OAuth",
+  "connectOutlook": "Connectez votre compte Outlook via OAuth",
+  "configureImap": "Configurez votre email via IMAP/SMTP",
+  "emailFrom": "E-mail de {{provider}}",
+  "oauthDescription": "Cliquez sur le bouton Se connecter avec {{provider}} pour commencer. Vous serez invité à accepter les permissions demandées, puis vous serez redirigé vers le tableau de bord.",
+  "emailPlaceholder": "Saisissez l'adresse e-mail",
+  "connecting": "Connexion...",
+  "signInWith": "Se connecter avec {{provider}}",
+  "emailChannel": "Canal E-mail",
+  "emailChannelDescription": "Configurez un canal simple pour transférer les e-mails reçus.",
+  "channelName": "Nom du Canal",
+  "channelNamePlaceholder": "Canal E-mail",
+  "email": "Email",
+  "emailAddressPlaceholder": "support@entreprise.com",
+  "forwardDescription": "Les messages reçus seront transférés à cette adresse e-mail.",
+  "creating": "Création...",
+  "createEmailChannel": "Créer un Canal E-mail",
+  "fields": {
+    "basicInfo": "Informations de Base",
+    "name": {
+      "label": "Nom du Canal",
+      "placeholder": "Canal E-mail"
+    },
+    "emailAddress": {
+      "label": "Adresse E-mail",
+      "placeholder": "support@entreprise.com"
+    }
+  },
+  "providers": {
+    "gmail": {
+      "name": "Gmail",
+      "description": "Configurez en utilisant votre compte Gmail"
+    },
+    "outlook": {
+      "name": "Outlook",
+      "description": "Configurez en utilisant votre compte Microsoft/Outlook"
+    },
+    "imap": {
+      "name": "IMAP/SMTP",
+      "description": "Configurez manuellement en utilisant un serveur IMAP/SMTP"
+    }
+  },
+  "validation": {
+    "emailRequired": "Saisissez l'adresse e-mail",
+    "nameRequired": "Le nom de la boîte de réception est obligatoire",
+    "fillAllFields": "Remplissez tous les champs obligatoires"
+  },
+  "errors": {
+    "authError": "Erreur lors du démarrage de l'authentification. Vérifiez les paramètres OAuth.",
+    "connectError": "Erreur lors de la connexion avec {{provider}}",
+    "createError": "Erreur lors de la création du canal e-mail"
+  },
+  "success": {
+    "created": "Canal e-mail créé avec succès !"
+  }
+}
