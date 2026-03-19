@@ -1,0 +1,67 @@
+{
+  "title": "Gerenciar Chaves API",
+  "description": "Gerencie suas chaves de API para diferentes provedores de IA",
+  "providers": {
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "azure": "Azure OpenAI",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
+    "cohere": "Cohere"
+  },
+  "form": {
+    "title": {
+      "new": "Nova Chave",
+      "edit": "Editar Chave"
+    },
+    "labels": {
+      "name": "Nome",
+      "provider": "Provedor",
+      "key": "Chave",
+      "status": "Status",
+      "active": "Ativo"
+    },
+    "placeholders": {
+      "name": "Ex: OpenAI Produção",
+      "provider": "Selecione um provedor",
+      "keyNew": "Cole sua chave API aqui",
+      "keyEdit": "Digite nova chave (deixe vazio para manter atual)"
+    }
+  },
+  "actions": {
+    "add": "Nova Chave",
+    "addFirst": "Adicionar Primeira Chave",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "cancel": "Cancelar",
+    "save": "Adicionar",
+    "update": "Atualizar",
+    "close": "Fechar"
+  },
+  "list": {
+    "title": "Chaves Disponíveis",
+    "createdAt": "Criado em",
+    "inactive": "Inativo"
+  },
+  "empty": {
+    "title": "Nenhuma chave encontrada",
+    "description": "Adicione suas chaves API para começar a usar os agentes"
+  },
+  "messages": {
+    "loadError": "Erro ao carregar chaves API",
+    "saveError": "Erro ao salvar chave API",
+    "deleteError": "Erro ao excluir chave API",
+    "createSuccess": "Chave API criada com sucesso!",
+    "updateSuccess": "Chave API atualizada com sucesso!",
+    "deleteSuccess": "Chave API excluída com sucesso!",
+    "requiredFields": "Todos os campos são obrigatórios",
+    "accountIdError": "Account ID not available"
+  },
+  "deleteDialog": {
+    "title": "Excluir Chave API",
+    "description": "Tem certeza que deseja excluir a chave \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "cancel": "Cancelar",
+    "confirm": "Excluir"
+  }
+}

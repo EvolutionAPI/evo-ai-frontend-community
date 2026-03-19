@@ -1,0 +1,154 @@
+{
+  "title": "Server MCP",
+  "subtitle": "Gestisci i server Model Context Protocol",
+  "stats": {
+    "total": "Totale Server",
+    "official": "Server Ufficiali",
+    "community": "Server della Community",
+    "withTools": "Con Strumenti",
+    "newThisMonth": "{{count}} nuovi questo mese",
+    "noNewThisMonth": "Nessun nuovo questo mese",
+    "percentOfTotal": "{{percent}}% del totale"
+  },
+  "header": {
+    "title": "Server MCP",
+    "subtitle": "Esplora i server MCP disponibili nel sistema",
+    "searchPlaceholder": "Cerca per nome, tipo o descrizione..."
+  },
+  "card": {
+    "noDescription": "Nessuna descrizione",
+    "toolsCount": "{{count}} strumenti",
+    "toolsCount_plural": "{{count}} strumenti"
+  },
+  "details": {
+    "sections": {
+      "basicInfo": "Informazioni di Base",
+      "tools": "Strumenti",
+      "environments": "Variabili d'Ambiente",
+      "configJson": "Configurazione JSON"
+    },
+    "labels": {
+      "name": "Nome",
+      "type": "Tipo",
+      "description": "Descrizione",
+      "configType": "Tipo di Configurazione"
+    },
+    "buttons": {
+      "edit": "Modifica"
+    },
+    "empty": {
+      "tools": "Nessuno strumento configurato",
+      "environments": "Nessuna variabile d'ambiente configurata"
+    },
+    "environment": {
+      "configured": "Configurato"
+    }
+  },
+  "form": {
+    "sections": {
+      "basicInfo": "Informazioni di Base",
+      "configuration": "Configurazione",
+      "tools": "Strumenti"
+    },
+    "labels": {
+      "name": "Nome",
+      "type": "Tipo",
+      "description": "Descrizione",
+      "configType": "Tipo di Configurazione"
+    },
+    "placeholders": {
+      "name": "Nome del server MCP",
+      "description": "Descrizione del server MCP..."
+    },
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "configTypeRequired": "Il tipo di configurazione è obbligatorio",
+      "typeRequired": "Il tipo del server è obbligatorio"
+    },
+    "buttons": {
+      "cancel": "Annulla",
+      "saving": "Salvataggio...",
+      "create": "Crea Server MCP",
+      "update": "Salva Modifiche"
+    },
+    "toolsInfo": {
+      "configured": "{{count}} strumento/i configurato/i",
+      "noTools": "Nessuno strumento configurato",
+      "autoLoad": "Gli strumenti verranno caricati automaticamente dal server MCP"
+    },
+    "types": {
+      "official": "Ufficiale",
+      "community": "Community"
+    },
+    "configTypes": {
+      "sse": "SSE (Server-Sent Events)",
+      "studio": "Studio"
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Crea Nuovo Server MCP",
+      "edit": "Modifica {{name}}",
+      "view": "Visualizza {{name}}"
+    }
+  },
+  "filter": {
+    "title": "Filtra Server MCP",
+    "description": "Configura i filtri per trovare i server MCP che cerchi",
+    "buttons": {
+      "apply": "Applica Filtri",
+      "clear": "Cancella Filtri",
+      "addFilter": "Aggiungi Filtro"
+    }
+  },
+  "table": {
+    "title": "Elenco Server",
+    "description": "Visualizza e gestisci tutti i server MCP configurati",
+    "headers": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "type": "Tipo",
+      "configuration": "Configurazione",
+      "tools": "Strumenti",
+      "createdAt": "Creato il",
+      "actions": "Azioni"
+    },
+    "columns": {
+      "server": "Server",
+      "description": "Descrizione",
+      "tools": "Strumenti"
+    },
+    "noName": "Nessun nome",
+    "noDescription": "Nessuna descrizione",
+    "actions": {
+      "viewDetails": "Vedi dettagli",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    },
+    "empty": {
+      "title": "Nessun server MCP creato",
+      "description": "Crea server MCP per integrarti con servizi esterni.",
+      "message": "Nessun server MCP trovato"
+    }
+  },
+  "emptyState": {
+    "title": "Nessun server trovato",
+    "description": "Non hai ancora server MCP configurati. Aggiungi il tuo primo server per iniziare.",
+    "addFirst": "Aggiungi primo server"
+  },
+  "fields": {
+    "noDescription": "Nessuna descrizione"
+  },
+  "types": {
+    "official": "Ufficiale",
+    "community": "Community"
+  },
+  "buttons": {
+    "newServer": "Nuovo Server",
+    "tryAgain": "Riprova"
+  },
+  "messages": {
+    "loading": "Caricamento...",
+    "loadError": "Errore durante il caricamento dei server MCP"
+  }
+}

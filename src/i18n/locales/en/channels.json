@@ -1,0 +1,1646 @@
+{
+  "title": "Channels",
+  "subtitle": "Manage your communication channels",
+  "common": {
+    "channel": "Channel",
+    "notAvailable": "N/A"
+  },
+  "card": {
+    "channelId": "Channel ID",
+    "type": "Type",
+    "displayName": "Display Name"
+  },
+  "table": {
+    "channels": "Channels",
+    "id": "ID",
+    "displayName": "Display Name",
+    "empty": {
+      "title": "No channels found",
+      "description": "Create a new channel to start receiving messages from your customers."
+    }
+  },
+  "navigation": {
+    "channels": "Channels",
+    "createChannel": "Create channel"
+  },
+  "provider": {
+    "chooseProvider": "Choose a provider",
+    "selectProviderDescription": "Select the provider you want to use for this channel."
+  },
+  "permissions": {
+    "viewDenied": "You don't have permission to view channels",
+    "createDenied": "You don't have permission to create channels",
+    "deleteDenied": "You don't have permission to delete channels"
+  },
+  "errors": {
+    "removeError": "Error removing channel",
+    "loadError": "Error loading channels"
+  },
+  "success": {
+    "removeSuccess": "Channel removed successfully"
+  },
+  "emptyState": {
+    "title": "No channels found",
+    "description": "Create a new channel to start receiving messages from your customers.",
+    "action": "New channel"
+  },
+  "search": {
+    "placeholder": "Search channels..."
+  },
+  "actions": {
+    "newChannel": "New Channel",
+    "settings": "Settings",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "enable": "Enable",
+    "disable": "Disable",
+    "disconnect": "Disconnect",
+    "reconnect": "Reconnect",
+    "configure": "Configure"
+  },
+  "confirmDialog": {
+    "title": "Delete channel \"{{name}}\"",
+    "description": "This action cannot be undone. This will permanently delete the channel \"{{name}}\" and all its settings.",
+    "confirmButton": "Delete channel",
+    "cancelButton": "Cancel"
+  },
+  "filters": {
+    "all": "All",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "error": "Error",
+    "pending": "Pending",
+    "configuring": "Configuring"
+  },
+  "types": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "messenger": "Messenger",
+    "sms": "SMS",
+    "email": "Email",
+    "api": "API",
+    "webWidget": "Web Widget"
+  },
+  "labels": {
+    "provider": "Provider",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "webhook": "Webhook",
+    "apiKey": "API Key",
+    "token": "Token",
+    "lastMessage": "Last Message",
+    "conversations": "Conversations",
+    "createdAt": "Created at"
+  },
+  "newChannel": {
+    "title": "New Channel",
+    "subtitle": "Add a new channel to communicate with your customers",
+    "selectChannelType": "Select channel type",
+    "selectProvider": "Select a provider",
+    "configureChannel": "Configure channel",
+    "configureTitle": "Configure Channel",
+    "description": "Configure your new channel to start receiving messages",
+    "review": "Review and create",
+    "stepper": {
+      "selectType": "Channel Type",
+      "selectProvider": "Provider",
+      "configure": "Configure",
+      "review": "Review"
+    },
+    "breadcrumb": {
+      "channels": "Channels",
+      "createChannel": "Create Channel"
+    },
+    "channelGrid": {
+      "title": "Select a channel type",
+      "subtitle": "Choose the channel that best meets your communication needs",
+      "searchPlaceholder": "Search channels..."
+    },
+    "channelTypes": {
+      "website": {
+        "name": "Web Widget",
+        "description": "Chat widget for your website"
+      },
+      "whatsapp": {
+        "name": "WhatsApp",
+        "description": "WhatsApp channel for customer service"
+      },
+      "telegram": {
+        "name": "Telegram",
+        "description": "Telegram bot for automated support"
+      },
+      "instagram": {
+        "name": "Instagram",
+        "description": "Instagram direct messages"
+      },
+      "facebook": {
+        "name": "Facebook Messenger",
+        "description": "Facebook Messenger chat"
+      },
+      "sms": {
+        "name": "SMS",
+        "description": "SMS text messages"
+      },
+      "email": {
+        "name": "Email",
+        "description": "Email support"
+      },
+      "api": {
+        "name": "API",
+        "description": "Custom API integration"
+      }
+    },
+    "providers": {
+      "badges": {
+        "recommended": "Recommended",
+        "popular": "Popular"
+      },
+      "whatsappCloud": {
+        "name": "WhatsApp Business API (Cloud)",
+        "description": "Official WhatsApp API with direct integration"
+      },
+      "evolution": {
+        "name": "Evolution API",
+        "description": "WhatsApp Evolution API - robust solution"
+      },
+      "evolutionGo": {
+        "name": "Evolution Go",
+        "description": "WhatsApp Evolution Go API - optimized performance"
+      },
+      "notificame": {
+        "name": "Notificame",
+        "description": "Brazilian WhatsApp provider"
+      },
+      "zapi": {
+        "name": "Z-API",
+        "description": "WhatsApp Z-API"
+      },
+      "twilio": {
+        "name": "Twilio",
+        "description": "Twilio WhatsApp Business API"
+      },
+      "twilioSms": {
+        "name": "Twilio SMS",
+        "description": "SMS sending via Twilio"
+      },
+      "bandwidth": {
+        "name": "Bandwidth",
+        "description": "SMS sending via Bandwidth"
+      },
+      "gmail": {
+        "name": "Gmail",
+        "description": "Gmail integration via OAuth"
+      },
+      "outlook": {
+        "name": "Outlook",
+        "description": "Outlook/Microsoft 365 integration"
+      },
+      "otherEmail": {
+        "name": "Other Email (IMAP)",
+        "description": "Configure manually via IMAP/SMTP"
+      }
+    },
+    "messages": {
+      "facebookConfigMissing": "Facebook configuration not found",
+      "instagramConfigMissing": "Instagram configuration not found",
+      "whatsappCloudConfigMissing": "WhatsApp Cloud configuration not found",
+      "googleOAuthNotConfigured": "Google OAuth not configured",
+      "microsoftOAuthNotConfigured": "Microsoft OAuth not configured",
+      "selectProvider": "Select a provider to continue",
+      "selectEmailProvider": "Select an email provider to continue",
+      "selectSmsProvider": "Select an SMS provider to continue",
+      "testConnectionFirst": "You must test the connection before saving"
+    },
+    "success": {
+      "channelCreated": "Channel created successfully!",
+      "emailChannelCreated": "Email channel created successfully!"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "createChannel": "Create Channel",
+      "back": "Back",
+      "next": "Next",
+      "save": "Save",
+      "testConnection": "Test Connection",
+      "creating": "Creating...",
+      "testing": "Testing..."
+    },
+    "providerSelection": {
+      "channelOf": "{{channelName}} Channel",
+      "connectDescription": "Connect to offer support to your customers through {{channelName}}",
+      "apiProvider": "API Provider",
+      "facebookIntegrationDescription": "Connect your Facebook account to automatically fill in the WhatsApp Business information"
+    }
+  },
+  "settings": {
+    "loading": "Loading settings...",
+    "saving": "Saving...",
+    "save": "Save",
+    "description": "Configure your channel settings",
+    "reauthorize": {
+      "action": "Reauthorize {{provider}}",
+      "redirecting": "Redirecting to {{provider}}..."
+    },
+    "authorizationBanners": {
+      "success": {
+        "connectedWith": "Connected with {{provider}}",
+        "active": "Active",
+        "lastConnection": "Last connection: {{date}}",
+        "reconnect": "Reconnect",
+        "reconnected": "Reconnected successfully!",
+        "reconnectingWhatsApp": "Reconnecting WhatsApp...",
+        "whatsappReconnectNotImplemented": "WhatsApp reconnection is not yet implemented for this provider",
+        "reconnectError": "Error reconnecting. Please try again.",
+        "facebookNotConfigured": "Facebook is not configured",
+        "instagramNotConfigured": "Instagram is not configured",
+        "whatsappNotConfigured": "WhatsApp is not configured",
+        "sdkNotLoaded": "Facebook SDK failed to load",
+        "loginCancelled": "Login cancelled",
+        "pageNotFound": "Page not found",
+        "emailRequired": "Email is required for reconnection"
+      }
+    },
+    "breadcrumb": {
+      "channels": "Channels",
+      "settings": "Settings"
+    },
+    "tabs": {
+      "inbox_settings": "Channel Settings",
+      "collaborators": "Collaborators",
+      "businesshours": "Business Hours",
+      "csat": "Satisfaction Survey",
+      "preChatForm": "Pre-Chat Form",
+      "widgetBuilder": "Widget Builder",
+      "configuration": "Configuration",
+      "botConfiguration": "AI Agent Configuration",
+      "moderation": "Moderation",
+      "messageTemplates": "Message Templates"
+    },
+    "basicSettings": {
+      "title": "Basic Settings",
+      "description": "Configure your channel's basic information",
+      "avatar": {
+        "label": "Channel Avatar",
+        "upload": "Upload Avatar",
+        "remove": "Remove Avatar",
+        "uploading": "Uploading...",
+        "help": "This avatar will be displayed in the chat widget"
+      },
+      "name": {
+        "websiteLabel": "Channel Name",
+        "channelLabel": "Channel Name",
+        "placeholder": "Ex: whatsapp-support",
+        "websitePlaceholder": "Ex: my-website",
+        "channelPlaceholder": "Ex: whatsapp-support",
+        "helpText": "Unique identifier (only lowercase letters, numbers and hyphens)"
+      },
+      "displayName": {
+        "label": "Display Name",
+        "placeholder": "Ex: WhatsApp Support",
+        "helpText": "Friendly name displayed in interfaces"
+      },
+      "whatsappProvider": {
+        "label": "WhatsApp Provider"
+      },
+      "websiteUrl": {
+        "label": "Website URL",
+        "placeholder": "https://example.com"
+      },
+      "welcomeTitle": {
+        "label": "Welcome Title",
+        "placeholder": "Hello! How can we help?"
+      },
+      "welcomeTagline": {
+        "label": "Welcome Message",
+        "placeholder": "We're here to help you"
+      },
+      "widgetColor": {
+        "label": "Widget Color",
+        "help": "This color will be used in the chat widget"
+      },
+      "webhook": {
+        "label": "Webhook URL",
+        "placeholder": "Webhook URL will be generated after channel creation",
+        "copied": "Webhook URL copied to clipboard!",
+        "noUrl": "No webhook URL available to copy"
+      }
+    },
+    "collaborators": {
+      "agents": {
+        "title": "Agents",
+        "description": "Manage agents who can handle conversations on this channel",
+        "selectedCount": "{{count}} agent selected",
+        "selectedCount_other": "{{count}} agents selected",
+        "total": "total",
+        "loading": "Loading agents...",
+        "noAgentsSelected": "No agents selected",
+        "allAgentsSelected": "All agents selected",
+        "noAgents": {
+          "title": "No agents found",
+          "description": "There are no agents available at the moment. Please add agents first."
+        },
+        "buttons": {
+          "selectFirst": "Select First",
+          "selectAll": "Select All",
+          "deselectAll": "Deselect All",
+          "update": "Update",
+          "updating": "Updating..."
+        },
+        "roles": {
+          "agent": "Agent",
+          "administrator": "Administrator"
+        }
+      },
+      "status": {
+        "online": "Online",
+        "busy": "Busy",
+        "offline": "Offline",
+        "unknown": "Unknown"
+      },
+      "table": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status"
+      },
+      "autoAssignment": {
+        "title": "Auto Assignment",
+        "description": "Configure how conversations are automatically assigned to agents",
+        "enable": {
+          "label": "Enable auto assignment",
+          "description": "New conversations will be automatically assigned to available agents"
+        },
+        "maxLimit": {
+          "title": "Maximum Conversations Limit",
+          "label": "Maximum conversations per agent",
+          "placeholder": "Enter the maximum number",
+          "help": "Maximum number of conversations an agent can have simultaneously"
+        },
+        "buttons": {
+          "updateLimit": "Update Limit",
+          "updating": "Updating..."
+        },
+        "info": {
+          "title": "Important Information:",
+          "point1": "Auto assignment distributes conversations among available agents",
+          "point2": "Considers each agent's current workload",
+          "point3": "Offline agents don't receive new conversations automatically",
+          "point4": "You can set maximum conversation limit per agent"
+        },
+        "success": {
+          "updated": "Auto assignment updated successfully!",
+          "limitUpdated": "Conversation limit updated successfully!"
+        },
+        "errors": {
+          "updateError": "Error updating auto assignment",
+          "limitUpdateError": "Error updating conversation limit"
+        },
+        "validation": {
+          "limitPositive": "Limit must be a positive number"
+        }
+      },
+      "errors": {
+        "loadError": "Error loading collaborators data",
+        "updateError": "Error updating agents"
+      },
+      "success": {
+        "updated": "Collaborators updated successfully!"
+      },
+      "validation": {
+        "selectAtLeastOne": "Select at least one agent"
+      }
+    },
+    "businessHours": {
+      "title": "Business Hours",
+      "description": "Configure the hours when your team is available",
+      "enable": {
+        "label": "Enable business hours",
+        "description": "Auto-reply will be sent outside business hours"
+      },
+      "unavailableMessage": {
+        "label": "Unavailability Message",
+        "placeholder": "Sorry, we're outside business hours...",
+        "help": "This message will be sent when outside business hours"
+      },
+      "timezone": {
+        "label": "Timezone",
+        "placeholder": "Select timezone"
+      },
+      "weekSchedule": {
+        "label": "Weekly Schedule"
+      },
+      "days": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      },
+      "timezones": {
+        "brasilia": "Brasília (GMT-3)",
+        "acre": "Acre (GMT-5)",
+        "manaus": "Manaus (GMT-4)",
+        "fernandoDeNoronha": "Fernando de Noronha (GMT-2)",
+        "utc": "UTC",
+        "easternTime": "Eastern Time (GMT-5)",
+        "centralTime": "Central Time (GMT-6)",
+        "mountainTime": "Mountain Time (GMT-7)",
+        "pacificTime": "Pacific Time (GMT-8)",
+        "london": "London (GMT+0)",
+        "paris": "Paris (GMT+1)",
+        "tokyo": "Tokyo (GMT+9)"
+      },
+      "validation": {
+        "fixErrors": "Fix errors before saving",
+        "hasErrors": "There are errors in the schedules"
+      },
+      "success": {
+        "updated": "Business hours updated successfully"
+      },
+      "info": {
+        "title": "Important Information:",
+        "point1": "Hours are based on the selected timezone",
+        "point2": "Messages received outside hours will receive auto-reply",
+        "point3": "Agents can still respond manually outside hours",
+        "point4": "Settings apply only to this channel"
+      },
+      "buttons": {
+        "updating": "Updating...",
+        "update": "Update Settings"
+      },
+      "disabled": {
+        "title": "Business Hours Disabled",
+        "description": "Business hours are disabled. All messages will be processed normally."
+      }
+    },
+    "businessDay": {
+      "unavailable": "Unavailable",
+      "twentyFourHours": "24 hours",
+      "enableDay": "Enable {{day}}",
+      "open24Hours": "Open 24 hours",
+      "startPlaceholder": "Start"
+    },
+    "csat": {
+      "title": "Customer Satisfaction (CSAT) Survey",
+      "description": "Configure satisfaction surveys to collect customer feedback",
+      "displayType": {
+        "label": "Display Type",
+        "help": "How the survey will be presented to the customer"
+      },
+      "message": {
+        "label": "Survey Message",
+        "placeholder": "How would you rate our service?",
+        "help": "Message that will be displayed along with the survey"
+      },
+      "surveyRules": {
+        "label": "Survey Rules",
+        "description1": "The survey will be sent automatically when:",
+        "description2": "Only conversations with these labels will receive the survey:",
+        "addLabel": "Select label",
+        "noLabelsSelected": "No labels selected - survey will be sent for all conversations"
+      },
+      "addTrigger": "Add Trigger",
+      "noTriggers": "No triggers configured. Add a trigger to get started.",
+      "allTriggersAdded": "All trigger types have been added",
+      "triggerTypes": {
+        "label": "Label",
+        "stage": "Pipeline Stage",
+        "regex": "Regex Pattern",
+        "inactivity": "Inactivity"
+      },
+      "ratings": {
+        "poor": "Poor",
+        "fair": "Fair",
+        "average": "Average",
+        "good": "Good",
+        "excellent": "Excellent"
+      },
+      "operators": {
+        "contains": "contains",
+        "doesNotContain": "does not contain"
+      },
+      "stageTrigger": {
+        "label": "Pipeline Stage Trigger",
+        "selectPipeline": "Select Pipeline",
+        "selectStages": "Select Stages",
+        "loadingStages": "Loading stages...",
+        "noStagesSelected": "No stages selected",
+        "noStagesAvailable": "No stages available for this pipeline"
+      },
+      "regexTrigger": {
+        "label": "Regex Pattern Trigger",
+        "field": "Field",
+        "fieldMessageContent": "Message Content",
+        "pattern": "Pattern",
+        "patternPlaceholder": "Enter regex pattern (max 200 chars)",
+        "help": "Regular expression pattern to match against message content"
+      },
+      "inactivityTrigger": {
+        "label": "Inactivity Trigger",
+        "minutes": "Minutes of Inactivity",
+        "placeholder": "e.g., 30",
+        "help": "Trigger CSAT survey after conversation is inactive for specified minutes"
+      },
+      "errors": {
+        "loadLabelsError": "Error loading labels",
+        "loadStagesError": "Error loading pipeline stages",
+        "updateError": "Error updating CSAT settings"
+      },
+      "success": {
+        "updated": "CSAT settings updated successfully"
+      },
+      "info": {
+        "title": "How it works:",
+        "point1": "Survey is sent automatically after conversation resolution",
+        "point2": "Customers can rate from 1 to 5 stars",
+        "point3": "Responses are stored for later analysis",
+        "point4": "CSAT reports are available in the reports section"
+      },
+      "buttons": {
+        "saving": "Saving...",
+        "save": "Save Settings"
+      },
+      "disabled": {
+        "title": "CSAT Disabled",
+        "description": "Customer satisfaction survey is disabled for this channel."
+      }
+    },
+    "success": {
+      "saveSuccess": "Settings saved successfully",
+      "avatarDeleteSuccess": "Avatar removed successfully",
+      "senderUpdateSuccess": "Sender settings updated",
+      "configUpdateSuccess": "Configuration updated successfully"
+    },
+    "errors": {
+      "loadError": "Error loading settings",
+      "saveError": "Error saving settings",
+      "useTabUpdate": "Use the update button inside the current tab",
+      "avatarDeleteError": "Error removing avatar",
+      "senderUpdateError": "Error updating sender settings",
+      "configUpdateError": "Error updating configuration",
+      "loadLabelsError": "Error loading labels"
+    },
+    "info": {
+      "tabSpecificSave": "Use the update action inside this tab."
+    },
+    "messageTemplates": {
+      "title": "Message Templates",
+      "description": "Manage message templates for this channel",
+      "searchPlaceholder": "Search templates...",
+      "actions": {
+        "sync": "Sync",
+        "newTemplate": "New Template",
+        "createTemplate": "Create Template",
+        "editTemplate": "Edit Template",
+        "cancel": "Cancel"
+      },
+      "newTemplate": "New Message Template",
+      "table": {
+        "name": "Name",
+        "category": "Category",
+        "status": "Status",
+        "language": "Language",
+        "createdAt": "Created At",
+        "actions": "Actions"
+      },
+      "noTemplatesFound": {
+        "_": "No templates found",
+        "create": "Create your first message template",
+        "search": "No templates found matching your search"
+      },
+      "form": {
+        "createTitle": "Create Message Template",
+        "editTitle": "Edit Message Template",
+        "description": "Configure your message template",
+        "name": "Template Name",
+        "namePlaceholder": "Enter template name",
+        "category": "Category",
+        "language": "Language",
+        "templateType": "Template Type",
+        "templateTypes": {
+          "text": "Text",
+          "image": "Image",
+          "video": "Video",
+          "document": "Document",
+          "audio": "Audio",
+          "location": "Location",
+          "contact": "Contact"
+        },
+        "categories": {
+          "marketing": "Marketing",
+          "utility": "Utility",
+          "authentication": "Authentication",
+          "transactional": "Transactional"
+        },
+        "headerFormat": "Header Format",
+        "headerFormats": {
+          "text": "Text",
+          "image": "Image",
+          "video": "Video",
+          "document": "Document"
+        },
+        "headerText": "Header Text",
+        "headerTextPlaceholder": "Enter header text",
+        "bodyText": "Body Text",
+        "bodyTextPlaceholder": "Enter message body text",
+        "footerText": "Footer Text",
+        "footerTextPlaceholder": "Enter footer text (optional)",
+        "variablesHelp": "Use {{variable}} syntax for dynamic values",
+        "buttons": "Buttons",
+        "addButton": "Add Button",
+        "buttonTypes": {
+          "quickReply": "Quick Reply",
+          "url": "URL",
+          "phone": "Phone Number"
+        },
+        "buttonTextPlaceholder": "Button text",
+        "urlPlaceholder": "https://example.com",
+        "phonePlaceholder": "+1234567890",
+        "content": "Content",
+        "contentPlaceholder": "Enter template content",
+        "liquidHelp": "Use Liquid syntax for dynamic values: {{ contact.name }}",
+        "subject": "Subject",
+        "subjectPlaceholder": "Email subject",
+        "active": "Active",
+        "activeHelp": "Inactive templates won't be available for use",
+        "create": "Create Template",
+        "save": "Save Changes",
+        "cancel": "Cancel",
+        "requiredFields": "Please fill in all required fields"
+      },
+      "tinymce": {
+        "insertTemplate": "Insert Template",
+        "templates": {
+          "basic": {
+            "title": "Basic Template",
+            "description": "Basic email with header and footer",
+            "content": "<h2>Email Title</h2><p>Hello {{contact.name}},</p><p>Email content here...</p><p>Best regards,<br>Team</p>"
+          },
+          "withButton": {
+            "title": "Template with Button",
+            "description": "Email with call-to-action",
+            "content": "<h2>Email Title</h2><p>Hello {{contact.name}},</p><p>Email content here...</p><p style=\"text-align: center;\"><a href=\"#\" style=\"background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;\">Click Here</a></p>"
+          }
+        },
+        "styles": {
+          "heading1": "Heading 1",
+          "heading2": "Heading 2",
+          "heading3": "Heading 3",
+          "paragraph": "Paragraph",
+          "blockquote": "Blockquote",
+          "code": "Code"
+        }
+      },
+      "categories": {
+        "marketing": "Marketing",
+        "utility": "Utility",
+        "authentication": "Authentication",
+        "transactional": "Transactional"
+      },
+      "status": {
+        "approved": "Approved",
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "paused": "Paused",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "preview": {
+        "title": "Preview",
+        "modalTitle": "Template Preview",
+        "whatsappPreview": "Preview",
+        "apiDescription": "API channel templates use custom formatting",
+        "liquidDescription": "Email templates support Liquid syntax for dynamic content",
+        "bodyPlaceholder": "Message content will appear here",
+        "today": "Today",
+        "description": "This is an approximate preview of the template"
+      },
+      "emptyState": {
+        "title": "No templates found",
+        "description": "Create your first message template to get started",
+        "searchEmpty": "No templates match your search"
+      },
+      "deleteDialog": {
+        "title": "Delete Template",
+        "message": "Are you sure you want to delete the template \"{{templateName}}\"?",
+        "warning": "This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "Delete"
+      },
+      "errors": {
+        "loadError": "Error loading templates",
+        "syncError": "Error syncing templates",
+        "createError": "Error creating template",
+        "updateError": "Error updating template",
+        "deleteError": "Error deleting template",
+        "requiredFields": "Please fill in all required fields"
+      },
+      "success": {
+        "syncSuccess": "Templates synced successfully!",
+        "createSuccess": "Template created successfully!",
+        "updateSuccess": "Template updated successfully!",
+        "deleteSuccess": "Template deleted successfully!"
+      },
+      "editor": {
+        "subtitle": "Visual email template editor",
+        "loadingTemplate": "Loading template...",
+        "loadingEditor": "Loading editor...",
+        "back": "Back",
+        "templateInfo": "Template Information",
+        "editorNotReady": "Editor is not ready yet. Please wait a few seconds.",
+        "accountIdNotFound": "Account ID not found",
+        "incompleteData": "Incomplete data to update template",
+        "exportError": "Error exporting HTML from editor",
+        "legacyHtmlWarning": "This template was created with HTML. You can now edit it visually.",
+        "invalidContentWarning": "Could not load content. Editor started empty.",
+        "htmlPreview": "HTML Preview",
+        "htmlPreviewDescription": "This template was created with HTML. You can edit it visually in the editor below.",
+        "startVisualEdit": "Start Visual Edit"
+      }
+    },
+    "configuration": {
+      "api": {
+        "hmac": {
+          "title": "HMAC Authentication",
+          "description": "Enable HMAC authentication to secure your API requests",
+          "enabled": "HMAC authentication enabled",
+          "disabled": "HMAC authentication disabled",
+          "active": "HMAC authentication is active",
+          "activeDescription": "All API requests must include a valid HMAC signature",
+          "success": {
+            "updated": "HMAC configured successfully!"
+          },
+          "errors": {
+            "updateError": "Error updating HMAC"
+          }
+        },
+        "keys": {
+          "title": "Current API Key",
+          "description": "Your current API Key for WhatsApp communication",
+          "updateTitle": "Update API Key",
+          "updateDescription": "Paste your new WhatsApp API Key here",
+          "placeholder": "Paste your new API Key here",
+          "show": "Show",
+          "hide": "Hide",
+          "update": "Update",
+          "success": {
+            "updated": "API Key updated successfully!",
+            "copied": "API Key copied to clipboard!"
+          },
+          "errors": {
+            "updateError": "Error updating API Key"
+          }
+        },
+        "provider": {
+          "success": {
+            "updated": "Provider URL updated successfully!"
+          },
+          "errors": {
+            "updateError": "Error updating provider URL"
+          }
+        },
+        "markAsRead": {
+          "title": "Mark as Read",
+          "description": "Automatically mark messages as read on WhatsApp",
+          "enabled": "Mark messages as read",
+          "disabled": "Don't mark as read",
+          "success": {
+            "updated": "Mark as read configuration updated!"
+          },
+          "errors": {
+            "updateError": "Error updating configuration"
+          }
+        }
+      },
+      "whatsapp": {
+        "instance": {
+          "statusTitle": "Instance Status",
+          "statusConnected": "Connected",
+          "statusDisconnected": "Disconnected",
+          "statusConnecting": "Connecting",
+          "connectDevice": "Connect Device",
+          "qrCodeInstructions": "Scan this QR Code with your WhatsApp",
+          "settingsTitle": "Instance Settings",
+          "settingsDescription": "Configure your WhatsApp instance behavior",
+          "rejectCall": "Reject calls",
+          "alwaysOnline": "Always online",
+          "readMessages": "Read messages",
+          "ignoreGroups": "Ignore groups",
+          "syncFullHistory": "Sync full history",
+          "readStatus": "Read status",
+          "ignoreStatus": "Ignore Status",
+          "callRejectionMessage": "Call rejection message",
+          "callRejectionPlaceholder": "Message when rejecting calls",
+          "saveSettings": "Save Settings",
+          "errors": {
+            "nameNotFound": "Instance name not found",
+            "qrCodeError": "Error generating QR Code",
+            "updateError": "Error updating instance settings"
+          },
+          "success": {
+            "qrCodeGenerated": "QR Code generated successfully!",
+            "updated": "Instance settings updated successfully!",
+            "connected": "Device connected successfully!"
+          },
+          "qrCodeTitle": "Connect WhatsApp",
+          "waitingConnection": "Waiting for connection...",
+          "generatingQrCode": "Generating QR Code...",
+          "profile": {
+            "title": "Profile Settings",
+            "description": "Manage your WhatsApp profile information",
+            "name": "Profile Name",
+            "namePlaceholder": "Profile name",
+            "status": "Status (About)",
+            "statusPlaceholder": "Profile status",
+            "picture": "Profile Picture (URL)",
+            "picturePlaceholder": "https://example.com/photo.jpg",
+            "pictureHelp": "Enter the image URL you want to use as your profile picture",
+            "update": "Update",
+            "remove": "Remove",
+            "success": {
+              "nameUpdated": "Profile name updated successfully!",
+              "statusUpdated": "Profile status updated successfully!",
+              "pictureUpdated": "Profile picture updated successfully!",
+              "pictureRemoved": "Profile picture removed successfully!"
+            },
+            "errors": {
+              "nameNotFound": "Instance name not found",
+              "nameUpdateError": "Error updating profile name",
+              "statusUpdateError": "Error updating profile status",
+              "pictureUpdateError": "Error updating profile picture",
+              "pictureRemoveError": "Error removing profile picture"
+            },
+            "confirmRemovePicture": "Are you sure you want to remove the profile picture?"
+          },
+          "privacy": {
+            "title": "Privacy Settings",
+            "description": "Configure WhatsApp privacy settings",
+            "readReceipts": "Read Receipts",
+            "profilePicture": "Profile Picture Visibility",
+            "status": "Status Visibility",
+            "online": "Online Visibility",
+            "lastSeen": "Last Seen",
+            "groupAdd": "Group Add Permission",
+            "options": {
+              "all": "Everyone",
+              "contacts": "Contacts",
+              "contactBlacklist": "Contact Blacklist",
+              "none": "Nobody",
+              "matchLastSeen": "Match Last Seen"
+            },
+            "success": {
+              "updated": "Privacy settings updated"
+            },
+            "errors": {
+              "loadError": "Error loading privacy settings",
+              "updateError": "Error updating {{setting}}"
+            }
+          },
+          "actions": {
+            "title": "Instance Actions",
+            "disconnect": "Disconnect Instance",
+            "confirmDisconnect": "Are you sure you want to disconnect the instance?",
+            "success": {
+              "disconnected": "Instance disconnected successfully!"
+            },
+            "errors": {
+              "disconnectError": "Error disconnecting instance"
+            }
+          }
+        },
+        "zapi": {
+          "privacy": {
+            "readReceipts": "Read Receipts",
+            "profilePicture": "Profile Picture Visibility",
+            "status": "Status Visibility",
+            "online": "Online Visibility",
+            "lastSeen": "Last Seen",
+            "groupAdd": "Group Add Permission",
+            "messagesDuration": "Messages Duration (seconds)",
+            "messagesDurationPlaceholder": "0 = disabled",
+            "messagesDurationHelp": "Configure how long messages remain visible (0 = disabled)",
+            "options": {
+              "all": "Everyone",
+              "contacts": "Contacts",
+              "contactBlacklist": "Contact Blacklist",
+              "nobody": "Nobody"
+            },
+            "success": {
+              "lastSeenUpdated": "\"Last Seen\" setting updated",
+              "photoVisualizationUpdated": "Profile picture visibility setting updated",
+              "descriptionUpdated": "Description setting updated",
+              "groupAddUpdated": "Group add permission setting updated",
+              "onlineUpdated": "Online visibility setting updated",
+              "readReceiptsUpdated": "Read receipts setting updated",
+              "messagesDurationUpdated": "Messages duration updated"
+            },
+            "errors": {
+              "updateError": "Error updating {{setting}}",
+              "messagesDurationError": "Error updating messages duration",
+              "durationMustBePositive": "Duration must be greater than or equal to 0"
+            }
+          },
+          "profile": {
+            "title": "Profile Settings",
+            "name": "Profile Name",
+            "namePlaceholder": "Profile name",
+            "description": "Profile Description",
+            "descriptionPlaceholder": "Profile description",
+            "update": "Update",
+            "success": {
+              "nameUpdated": "Profile name updated successfully!",
+              "descriptionUpdated": "Profile description updated successfully!"
+            },
+            "errors": {
+              "nameUpdateError": "Error updating profile name",
+              "descriptionUpdateError": "Error updating profile description"
+            }
+          },
+          "calls": {
+            "title": "Call Settings",
+            "rejectAuto": "Automatically Reject Calls",
+            "rejectAutoDescription": "Automatically reject all incoming calls",
+            "rejectMessage": "Rejection Message",
+            "rejectMessagePlaceholder": "Message sent when rejecting calls",
+            "update": "Update",
+            "success": {
+              "rejectUpdated": "Call rejection settings updated!",
+              "messageUpdated": "Rejection message updated!"
+            },
+            "errors": {
+              "rejectUpdateError": "Error updating call rejection settings",
+              "messageUpdateError": "Error updating message"
+            }
+          },
+          "qrCode": {
+            "title": "QR Code for Connection",
+            "description": "Scan the QR code with your WhatsApp to connect the instance",
+            "getQRCode": "Get QR Code",
+            "refreshQRCode": "Refresh QR Code",
+            "instructions": "Scan this QR code with your WhatsApp to connect the instance",
+            "generating": "Generating QR Code...",
+            "notAvailable": "QR Code not available. Click \"Refresh QR Code\" to generate a new one.",
+            "close": "Close",
+            "success": {
+              "qrCodeRefreshed": "QR Code refreshed successfully!",
+              "connected": "Instance connected successfully!"
+            },
+            "errors": {
+              "qrCodeNotFound": "QR Code not found",
+              "getError": "Error getting QR code",
+              "refreshError": "Error refreshing QR code"
+            }
+          },
+          "actions": {
+            "title": "Instance Actions",
+            "restart": "Restart Instance",
+            "disconnect": "Disconnect Instance",
+            "confirmRestart": "Are you sure you want to restart the instance?",
+            "confirmDisconnect": "Are you sure you want to disconnect the instance?",
+            "success": {
+              "restarted": "Instance restarted successfully!",
+              "disconnected": "Instance disconnected successfully!"
+            },
+            "errors": {
+              "restartError": "Error restarting instance",
+              "disconnectError": "Error disconnecting instance"
+            }
+          },
+          "privacyTitle": "Privacy Settings",
+          "privacyDescription": "Configure WhatsApp privacy settings"
+        }
+      },
+      "email": {
+        "imap": {
+          "title": "IMAP Settings",
+          "description": "Configure IMAP server to receive emails",
+          "server": "IMAP Server",
+          "serverPlaceholder": "imap.gmail.com",
+          "port": "Port",
+          "portPlaceholder": "993",
+          "login": "Login",
+          "loginPlaceholder": "your@email.com",
+          "password": "Password",
+          "passwordPlaceholder": "••••••••",
+          "enableSsl": "Enable SSL"
+        },
+        "smtp": {
+          "title": "SMTP Settings",
+          "description": "Configure SMTP server to send emails",
+          "server": "SMTP Server",
+          "serverPlaceholder": "smtp.gmail.com",
+          "port": "Port",
+          "portPlaceholder": "587",
+          "login": "Login",
+          "loginPlaceholder": "your@email.com",
+          "password": "Password",
+          "passwordPlaceholder": "••••••••",
+          "authentication": "Authentication",
+          "authOptions": {
+            "login": "Login",
+            "plain": "Plain",
+            "cramMd5": "CRAM-MD5"
+          },
+          "enableStarttls": "Enable STARTTLS"
+        },
+        "signature": {
+          "title": "Email Signature",
+          "description": "Configure a default signature appended to all outgoing emails from this channel",
+          "placeholder": "Enter your email signature (HTML supported)...",
+          "save": "Save Signature"
+        },
+        "saveButton": "Save Email Settings",
+        "success": {
+          "updated": "Email settings updated successfully!"
+        },
+        "errors": {
+          "updateError": "Error updating email settings"
+        }
+      },
+      "twilio": {
+        "title": "Twilio SMS Configuration",
+        "description": "Twilio settings are managed during channel creation"
+      },
+      "fallback": {
+        "title": "Specific Settings",
+        "description": "This channel type ({{channelType}}) has no specific settings available"
+      }
+    },
+    "preChatForm": {
+      "success": {
+        "updated": "Pre-chat form settings updated successfully!"
+      },
+      "errors": {
+        "updateError": "Error updating pre-chat form settings"
+      }
+    },
+    "greeting": {
+      "title": "Greeting Message",
+      "description": "Configure automatic welcome messages",
+      "enable": {
+        "label": "Enable greeting message",
+        "description": "Send automatic message when starting a new conversation"
+      },
+      "message": {
+        "label": "Greeting Message",
+        "placeholder": "Enter your welcome message here..."
+      }
+    },
+    "webWidgetAdvanced": {
+      "title": "Advanced Settings",
+      "description": "Configure advanced options for the web widget",
+      "replyTime": {
+        "label": "Reply Time",
+        "options": {
+          "fewMinutes": "Few minutes",
+          "fewHours": "Few hours",
+          "day": "A day"
+        },
+        "helpText": "Estimated response time that will be displayed in the widget"
+      },
+      "emailCollection": {
+        "label": "Email Collection",
+        "description": "Request visitor's email before starting conversation"
+      },
+      "allowMessagesAfterResolved": {
+        "label": "Allow messages after resolution",
+        "description": "Allow customers to send messages even after conversation is resolved"
+      },
+      "continuityViaEmail": {
+        "label": "Continuity via Email",
+        "description": "Continue conversation via email when agent is offline"
+      },
+      "featureFlags": {
+        "title": "Widget Features",
+        "description": "Enable or disable specific widget features",
+        "attachments": {
+          "title": "Attachments",
+          "description": "Allow file uploads in the widget"
+        },
+        "emojiPicker": {
+          "title": "Emoji Picker",
+          "description": "Allow use of emojis in messages"
+        },
+        "endConversation": {
+          "title": "End Conversation",
+          "description": "Show button to end conversation"
+        },
+        "botAvatar": {
+          "title": "AI Agent Avatar",
+          "description": "Display AI agent avatar in automatic messages"
+        }
+      }
+    },
+    "senderSettings": {
+      "title": "Sender Settings",
+      "description": "Configure how messages will appear to customers",
+      "friendly": {
+        "title": "Friendly",
+        "description": "Messages appear with agent's first name",
+        "format": "{{name}}"
+      },
+      "professional": {
+        "title": "Professional",
+        "description": "Messages appear with company name"
+      },
+      "preview": {
+        "example": "Preview example"
+      },
+      "businessName": {
+        "set": "Set business name",
+        "change": "Change business name",
+        "current": "Current name: {{businessName}}",
+        "label": "Business Name",
+        "placeholder": "Enter your business name",
+        "save": "Save"
+      }
+    },
+    "widgetHelpers": {
+      "positions": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "bubbleTypes": {
+        "standard": "Standard",
+        "expanded": "Expanded"
+      },
+      "viewOptions": {
+        "preview": "Preview",
+        "script": "Script"
+      },
+      "replyTime": {
+        "fewMinutes": "Few minutes",
+        "fewHours": "Few hours",
+        "day": "A day"
+      },
+      "defaultLauncherTitle": "Hello! Need help?",
+      "validation": {
+        "websiteNameRequired": "Website name is required",
+        "widgetColorRequired": "Widget color is required",
+        "replyTimeRequired": "Reply time is required"
+      }
+    },
+    "preChatHelpers": {
+      "standardFields": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "fullName": {
+          "label": "Full Name",
+          "placeholder": "Enter your full name"
+        },
+        "phoneNumber": {
+          "label": "Phone Number",
+          "placeholder": "Enter your phone number"
+        }
+      },
+      "fieldTypes": {
+        "text": "Text",
+        "email": "Email",
+        "number": "Number",
+        "url": "URL",
+        "date": "Date",
+        "checkbox": "Checkbox",
+        "select": "Select",
+        "textarea": "Text area"
+      },
+      "validation": {
+        "fieldNameRequired": "Field name is required",
+        "labelRequired": "Label is required",
+        "selectFieldOptionsRequired": "Select field options are required"
+      }
+    },
+    "preChatFields": {
+      "table": {
+        "active": "Active",
+        "field": "Field",
+        "type": "Type",
+        "required": "Required",
+        "label": "Label",
+        "placeholder": "Placeholder"
+      },
+      "emptyState": "No fields configured",
+      "instructions": {
+        "dragDrop": "Drag and drop to reorder",
+        "active": {
+          "title": "Active Field",
+          "description": "This field will be displayed in the pre-chat form"
+        },
+        "required": {
+          "title": "Required Field",
+          "description": "This field must be filled out mandatorily"
+        },
+        "label": {
+          "title": "Field Label",
+          "description": "Text that will be displayed as field label"
+        },
+        "placeholder": {
+          "title": "Placeholder",
+          "description": "Example text that appears in empty field"
+        }
+      },
+      "placeholders": {
+        "label": "Enter field label",
+        "placeholder": "Enter field placeholder"
+      }
+    },
+    "agentBot": {
+      "providers": {
+        "webhook": {
+          "label": "Webhook",
+          "description": "Custom webhook integration"
+        },
+        "dialogflow": {
+          "label": "Dialogflow",
+          "description": "Google Dialogflow integration"
+        },
+        "rasa": {
+          "label": "Rasa",
+          "description": "Rasa Open Source integration"
+        }
+      },
+      "types": {
+        "webhook": {
+          "label": "Webhook",
+          "description": "Bot via webhook"
+        },
+        "csml": {
+          "label": "CSML",
+          "description": "CSML Bot"
+        }
+      },
+      "status": {
+        "connected": "Connected",
+        "disconnected": "Disconnected"
+      },
+      "validation": {
+        "nameRequired": "Name is required",
+        "descriptionRequired": "Description is required",
+        "webhookUrlRequired": "Webhook URL is required",
+        "webhookUrlInvalid": "Invalid webhook URL",
+        "segmentationLimitMinimum": "Segmentation limit must be greater than 0",
+        "segmentationMinSizeMinimum": "Minimum segmentation size must be greater than 0",
+        "segmentationMinSizeSmallerThanLimit": "Minimum size must be smaller than limit",
+        "delayPerCharacterNonNegative": "Delay per character must be non-negative",
+        "debounceTimeNonNegative": "Debounce time must be non-negative"
+      }
+    },
+    "widgetBuilder": {
+      "title": "Widget Builder",
+      "description": "Customize the appearance and behavior of your chat widget",
+      "avatar": {
+        "label": "Widget Avatar",
+        "upload": "Upload Avatar",
+        "change": "Change Avatar"
+      },
+      "websiteName": {
+        "label": "Website Name",
+        "placeholder": "Enter your website name (e.g. Acme Inc)"
+      },
+      "welcomeHeading": {
+        "label": "Welcome Heading",
+        "placeholder": "Hello! How can we help?"
+      },
+      "welcomeTagline": {
+        "label": "Welcome Message",
+        "placeholder": "We're here to help you"
+      },
+      "replyTime": {
+        "label": "Reply Time",
+        "placeholder": "Select reply time"
+      },
+      "widgetColor": {
+        "label": "Widget Color"
+      },
+      "position": {
+        "label": "Widget Position"
+      },
+      "bubbleType": {
+        "label": "Bubble Type"
+      },
+      "launcherTitle": {
+        "label": "Launcher Title",
+        "placeholder": "Chat with our team"
+      },
+      "defaultLauncherTitle": "Chat with team",
+      "saveSettings": "Save Settings",
+      "saving": "Saving...",
+      "widgetCode": {
+        "title": "Widget Code",
+        "copyCode": "Copy Code",
+        "copySuccess": "Code copied to clipboard!",
+        "copyError": "Failed to copy code",
+        "noScriptError": "No script available to copy",
+        "placeholder": "Code will be generated automatically...",
+        "instructions": {
+          "title": "How to use this code:",
+          "step1": "Copy the code above",
+          "step2": "Paste it into your page's HTML, before the closing </body> tag",
+          "step3": "The widget will appear automatically on your site"
+        }
+      },
+      "success": {
+        "updateSuccess": "Widget updated successfully!"
+      },
+      "errors": {
+        "updateError": "Error updating widget"
+      }
+    },
+    "widget": {
+      "preview": {
+        "screenDefault": "Default Screen",
+        "screenChat": "Chat Screen",
+        "sentMessageExample": "Sent message example",
+        "sampleSentMessage": "Hi! I'd like to talk to support."
+      },
+      "footer": {
+        "teamOnline": "Team Online",
+        "startConversation": "Start Conversation"
+      },
+      "container": {
+        "poweredBy": "Powered by"
+      }
+    },
+    "timestamp": {
+      "unavailable": "Unavailable"
+    },
+    "agentBotConfiguration": {
+      "title": "AI Agent Configuration",
+      "description": "Configure AI agents to automate responses",
+      "fields": {
+        "selectBot": "Select AI Agent",
+        "provider": "Provider",
+        "type": "Type"
+      },
+      "placeholders": {
+        "selectBot": "Select an AI agent"
+      },
+      "status": {
+        "disconnected": "Disconnected",
+        "connected": "Connected",
+        "active": "Active"
+      },
+      "noBots": {
+        "title": "No AI Agents Available",
+        "description": "You don't have any AI agents configured for this channel yet."
+      },
+      "buttons": {
+        "manageBots": "Manage AI Agents",
+        "configure": "Configure AI Agent",
+        "configuring": "Configuring...",
+        "disconnect": "Disconnect AI Agent",
+        "disconnecting": "Disconnecting...",
+        "advancedSettings": "Advanced Settings"
+      },
+      "info": {
+        "title": "How It Works:",
+        "point1": "AI agents can automatically respond to customer messages",
+        "point2": "Configure keywords and automatic responses",
+        "point3": "AI agents can transfer conversations to human agents",
+        "point4": "AI agent performance statistics are available"
+      },
+      "advanced": {
+        "title": "Advanced Configuration",
+        "description": "Configure advanced AI agent settings and behaviors",
+        "conversationStatus": {
+          "title": "Conversation Status",
+          "description": "Select which conversation statuses allow the AI agent to execute. If none are selected, the AI agent will execute for all statuses.",
+          "emptyHint": "If no status is selected, the AI agent will execute for all conversation statuses."
+        },
+        "labels": {
+          "title": "Labels",
+          "description": "Select which labels allow the AI agent to execute. If none are selected, the AI agent will execute for all conversations regardless of labels.",
+          "emptyHint": "If no labels are selected, the AI agent will execute for all conversations regardless of labels.",
+          "noLabels": "No labels available. Create labels in the Labels section to use this feature.",
+          "addLabel": "Add Label"
+        },
+        "ignoredLabels": {
+          "title": "Ignored Labels",
+          "description": "Select labels that will prevent the AI agent from responding. Conversations with these labels will be skipped by the AI agent.",
+          "addLabel": "Add Ignored Label",
+          "noAvailableLabels": "No available labels to ignore. All labels are either already ignored or in the allowed list."
+        },
+        "facebookMessenger": {
+          "title": "Facebook Messenger Configuration",
+          "description": "Configure how the AI agent interacts with direct messages and comments on Facebook",
+          "interactionType": "Interaction Type",
+          "interactionTypes": {
+            "both": "Comments and Direct Messages",
+            "commentsOnly": "Comments Only",
+            "messagesOnly": "Direct Messages Only"
+          },
+          "enableCommentReplies": "Enable Comment Replies",
+          "enableCommentRepliesDescription": "When enabled, the AI agent will respond to comments on Facebook posts",
+          "commentAgentBot": "Comment AI Agent",
+          "commentAgentBotDescription": "Select which AI agent should handle comment replies. Choose 'Use Same Agent' to use the main AI agent, or select a different agent specifically for comments.",
+          "useSameAgent": "Use Same Agent (Main AI Agent)",
+          "noOtherBots": "No other AI agents available. The main AI agent will be used for comments.",
+          "postSelection": "Post Selection",
+          "postSelectionDescription": "Choose whether the AI agent should respond to all posts or only specific posts",
+          "allPosts": "All Posts",
+          "specificPosts": "Specific Posts",
+          "postIdPlaceholder": "Enter post ID (e.g., 123456789_987654321)",
+          "addPostId": "Add",
+          "selectedPosts": "Selected Posts",
+          "noPostsFound": "No posts found. Please check if the Facebook page is properly connected.",
+          "viewOnFacebook": "View on Facebook"
+        },
+        "moderation": {
+          "title": "Message Moderation",
+          "description": "Configure automatic moderation for incoming messages",
+          "enableModeration": "Enable Moderation",
+          "enableModerationDescription": "When enabled, messages will be automatically filtered and moderated before responses are sent",
+          "explicitWords": {
+            "title": "Explicit Words Filter",
+            "description": "Enter words or regex patterns (one per line) to filter explicit content. Messages containing these words will be flagged for moderation.",
+            "placeholder": "Enter words or regex patterns, one per line\ne.g.:\nbadword\n\\bprofanity\\b\n^spam"
+          },
+          "sentimentAnalysis": {
+            "title": "Sentiment Analysis",
+            "description": "Use AI to detect offensive or inappropriate messages. Messages flagged as offensive will be sent to moderation."
+          },
+          "autoApproveResponses": {
+            "title": "Auto-Approve Responses",
+            "description": "When enabled, AI-generated responses will be sent automatically without requiring approval. When disabled, all responses must be approved before being sent."
+          },
+          "autoRejectExplicitWords": {
+            "title": "Auto-Reject - Explicit Words",
+            "description": "When enabled, messages containing explicit words will be automatically rejected and deleted without requiring manual approval."
+          },
+          "autoRejectOffensiveSentiment": {
+            "title": "Auto-Reject - Offensive Sentiment",
+            "description": "When enabled, messages detected as offensive by sentiment analysis will be automatically rejected and deleted without requiring manual approval."
+          }
+        }
+      },
+      "statusOptions": {
+        "open": "Open",
+        "resolved": "Resolved",
+        "pending": "Pending",
+        "snoozed": "Snoozed"
+      },
+      "errors": {
+        "loadError": "Error loading AI agents data",
+        "configureError": "Error configuring AI agent",
+        "disconnectError": "Error disconnecting AI agent",
+        "loadPostsError": "Error loading Facebook posts"
+      },
+      "success": {
+        "configured": "AI agent configured successfully!",
+        "disconnected": "AI agent disconnected successfully!"
+      },
+      "validation": {
+        "selectBot": "Select an AI agent before continuing"
+      }
+    },
+    "lockToSingleConversation": {
+      "title": "Lock to Single Conversation",
+      "description": "Limit customer to one active conversation at a time",
+      "enable": {
+        "label": "Enable single conversation lock",
+        "description": "When enabled, customers can only have one active conversation. New messages reopen the same conversation instead of creating new ones."
+      },
+      "info": {
+        "title": "Important Information:",
+        "enabled": {
+          "title": "When Enabled",
+          "description": "Customers will always reuse the same conversation. Ideal for continuous support contexts."
+        },
+        "disabled": {
+          "title": "When Disabled",
+          "description": "New conversations can be created freely. Ideal for transactional or multi-topic support."
+        },
+        "recommended": {
+          "title": "Recommended",
+          "description": "Enable for ongoing support channels. Disable for transactional or multi-department channels."
+        }
+      }
+    },
+    "defaultConversationStatus": {
+      "title": "Default Conversation Status",
+      "description": "Set the initial status for new conversations in this channel",
+      "selectLabel": "Initial Status",
+      "selectDescription": "Choose the default status that new conversations will have when created",
+      "placeholder": "Select default status",
+      "options": {
+        "open": "Open",
+        "pending": "Pending",
+        "resolved": "Resolved",
+        "snoozed": "Snoozed"
+      },
+      "info": {
+        "title": "How it works:",
+        "description": "If no status is selected, the system will use the default behavior: 'pending' for channels with active bots, 'open' for others. This setting overrides the default behavior."
+      }
+    },
+    "moderation": {
+      "title": "Comment Moderation",
+      "description": "Review and moderate Facebook comments that require approval",
+      "filters": {
+        "status": "Status",
+        "type": "Type",
+        "all": "All",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected",
+        "allTypes": "All Types"
+      },
+      "types": {
+        "explicitWords": "Explicit Words",
+        "offensiveSentiment": "Offensive Sentiment",
+        "responseApproval": "Response Approval"
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "actions": {
+        "approve": "Approve",
+        "reject": "Reject",
+        "regenerate": "Regenerate Response",
+        "deleteComment": "Delete Comment",
+        "blockUser": "Block User",
+        "sendResponse": "Send Response"
+      },
+      "commentId": "Comment ID",
+      "conversation": "Conversation",
+      "originalComment": "Original Comment",
+      "generatedResponse": "Generated Response",
+      "rejectionReason": "Rejection Reason",
+      "rejectionReasonLabel": "Rejection Reason (Optional)",
+      "rejectionReasonPlaceholder": "Enter reason for rejection...",
+      "approvedBy": "Approved by {{name}} on {{date}}",
+      "rejectedBy": "Rejected by {{name}} on {{date}}",
+      "totalCount": "Total: {{count}}",
+      "empty": {
+        "title": "No moderations found",
+        "description": "There are no moderation requests matching your filters."
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {{current}} of {{total}}"
+      },
+      "success": {
+        "approved": "Moderation approved successfully",
+        "rejected": "Moderation rejected successfully",
+        "regenerated": "Response regenerated successfully"
+      },
+      "errors": {
+        "loadError": "Error loading moderations",
+        "approveError": "Error approving moderation",
+        "rejectError": "Error rejecting moderation",
+        "regenerateError": "Error regenerating response"
+      }
+    },
+    "validation": {
+      "channelNameRequired": "Channel name is required",
+      "websiteUrlRequired": "Website URL is required",
+      "websiteUrlInvalid": "Website URL must be a valid URL (e.g: https://mysite.com)",
+      "accountSidRequired": "Account SID is required",
+      "authTokenRequired": "Auth Token is required",
+      "apiKeySidRequired": "API Key SID is required when using API Key",
+      "messagingServiceSidRequired": "Messaging Service SID is required",
+      "phoneRequired": "Phone is required",
+      "phoneInvalidFormat": "Phone must be in international format (+5511999999999)",
+      "apiTokenRequired": "API Token is required",
+      "channelIdRequired": "Channel ID is required",
+      "apiUrlRequired": "API URL is required",
+      "adminTokenRequired": "Admin Token is required"
+    },
+    "oauth": {
+      "errors": {
+        "googleNotConfigured": "Google OAuth is not configured",
+        "googleStartFailed": "Unable to start Google OAuth",
+        "microsoftNotConfigured": "Microsoft OAuth is not configured",
+        "microsoftStartFailed": "Unable to start Microsoft OAuth"
+      }
+    },
+    "general": {
+      "success": {
+        "channelCreated": "Channel created successfully"
+      }
+    }
+  },
+  "deleteDialog": {
+    "title": "Delete Channel",
+    "description": "Are you sure you want to delete the channel \"{{name}}\"? This action cannot be undone.",
+    "confirmLabel": "Type the channel name to confirm deletion",
+    "placeholder": "Channel name",
+    "cancel": "Cancel",
+    "confirm": "Delete Channel",
+    "deleting": "Deleting..."
+  }
+}

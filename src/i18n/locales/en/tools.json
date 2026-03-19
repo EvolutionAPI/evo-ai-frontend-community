@@ -1,0 +1,74 @@
+{
+  "title": "System Tools",
+  "subtitle": "Explore the tools available in the system",
+  "loading": "Loading tools...",
+  "card": {
+    "noDescription": "No description",
+    "input": "Input:",
+    "output": "Output:",
+    "examplesCount": "{{count}} example(s) available"
+  },
+  "details": {
+    "title": "Tool Details",
+    "basicInfo": {
+      "title": "Basic Information",
+      "name": "Name",
+      "description": "Description"
+    },
+    "tags": {
+      "title": "Tags",
+      "count": "Tags ({{count}})",
+      "empty": "No tag available"
+    },
+    "modes": {
+      "title": "Input and Output Modes",
+      "input": "Input Modes",
+      "output": "Output Modes",
+      "notSpecified": "Not specified"
+    },
+    "examples": {
+      "title": "Examples",
+      "count": "Examples ({{count}})",
+      "empty": "No example available"
+    },
+    "configuration": {
+      "title": "Configuration",
+      "requiredFields": "Required Fields",
+      "optionalFields": "Optional Fields",
+      "defaultValues": "Default Values"
+    }
+  },
+  "filter": {
+    "title": "Filter Tools",
+    "description": "Configure the filters to find the tools you are looking for",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "addFilter": "Add Filter"
+  },
+  "header": {
+    "searchPlaceholder": "Search by name, description or tags..."
+  },
+  "table": {
+    "columns": {
+      "tool": "Tool",
+      "tags": "Tags",
+      "examples": "Examples",
+      "input": "Input",
+      "output": "Output"
+    },
+    "noName": "No name",
+    "noDescription": "No description",
+    "noTags": "No tags",
+    "actions": {
+      "viewDetails": "View details"
+    },
+    "empty": {
+      "title": "No tools available",
+      "description": "No tools available in the system.",
+      "message": "No tools found"
+    }
+  },
+  "messages": {
+    "loadError": "Error loading tools"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "oauth": {
+    "login": {
+      "titles": {
+        "selectAccount": "Selecionar Conta para Autorização",
+        "redirecting": "Redirecionando para Autorização...",
+        "loginRequired": "Login Necessário para OAuth"
+      },
+      "descriptions": {
+        "selectAccount": "Selecione uma conta para autorizar esta aplicação.",
+        "redirecting": "Você será redirecionado para a página de autorização da aplicação.",
+        "loginRequired": "Faça login para autorizar a aplicação de terceiros."
+      },
+      "accounts": {
+        "available": "Contas Disponíveis:",
+        "noAccounts": "Nenhuma conta disponível para autorização OAuth"
+      },
+      "applicationDetails": {
+        "title": "Detalhes da Aplicação:",
+        "clientId": "ID do Cliente:",
+        "redirectUri": "URI de Redirecionamento:",
+        "scope": "Escopo:",
+        "oauthUrl": "URL OAuth:",
+        "returnUrl": "URL de Retorno:"
+      },
+      "buttons": {
+        "loginToAuthorize": "Fazer Login para Autorizar",
+        "continueToAuthorization": "Continuar para Autorização",
+        "redirecting": "Redirecionando..."
+      },
+      "loading": {
+        "processingAuthorization": "Processando autorização...",
+        "redirectingToAuthorization": "Redirecionando para autorização..."
+      },
+      "footer": {
+        "disclaimer": "Ao continuar, você autoriza a aplicação a acessar sua conta Evolution.",
+        "revoke": "Você pode revogar este acesso a qualquer momento nas configurações da sua conta."
+      },
+      "errors": {
+        "missingParameters": "Parâmetros OAuth obrigatórios ausentes",
+        "noAccounts": "Nenhuma conta disponível para autorização OAuth",
+        "failedToLoadAccounts": "Falha ao carregar contas:",
+        "missingOAuthUrl": "URL OAuth ausente. Reinicie o fluxo OAuth.",
+        "missingUrlForAuth": "URL OAuth ou de retorno ausente para autorização",
+        "failedToRedirect": "Falha ao redirecionar para a página de login",
+        "missingOAuthUrlDirect": "URL OAuth ausente",
+        "missingOAuthParams": "Parâmetros OAuth ausentes",
+        "failedToCreateApp": "Falha ao criar aplicação OAuth:"
+      }
+    },
+    "authorize": {
+      "titles": {
+        "authorizeApp": "Autorizar Aplicação",
+        "loginRequired": "Login Necessário",
+        "invalidRequest": "Solicitação Inválida"
+      },
+      "descriptions": {
+        "requestingAccess": "Uma aplicação está solicitando acesso à sua conta.",
+        "needLogin": "Você precisa fazer login para autorizar esta aplicação.",
+        "invalidParams": "Parâmetros OAuth ausentes ou inválidos"
+      },
+      "appInfo": {
+        "name": "Aplicação MCP",
+        "description": "Integração do Model Context Protocol",
+        "redirectUri": "URI de Redirecionamento:",
+        "requestedScope": "Escopo Solicitado:",
+        "user": "Usuário:"
+      },
+      "buttons": {
+        "authorize": "Autorizar",
+        "authorizing": "Autorizando...",
+        "deny": "Negar",
+        "goToLogin": "Ir para Login"
+      },
+      "footer": {
+        "disclaimer": "Ao autorizar, você permite que esta aplicação acesse sua conta Evolution com as permissões solicitadas.",
+        "revoke": "Você pode revogar este acesso a qualquer momento nas configurações da sua conta."
+      },
+      "errors": {
+        "missingParams": "Parâmetros OAuth obrigatórios ausentes",
+        "missingParamsOrAuth": "Parâmetros OAuth ausentes ou usuário não autenticado",
+        "authorizationFailed": "Falha na autorização:",
+        "userDenied": "Usuário negou autorização"
+      }
+    },
+    "callback": {
+      "title": "Autorização OAuth",
+      "loading": {
+        "processing": "Processando autorização..."
+      },
+      "success": {
+        "title": "Sucesso!",
+        "message": "Autorização realizada com sucesso! Você pode fechar esta janela."
+      },
+      "errors": {
+        "title": "Erro",
+        "oauthError": "Erro OAuth:",
+        "invalidCallback": "Callback OAuth inválido - código de autorização ausente"
+      },
+      "footer": {
+        "canClose": "Esta janela pode ser fechada com segurança após a autorização."
+      }
+    },
+    "common": {
+      "error": "Erro"
+    }
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "header": {
+    "defaultTitle": "EvoAI",
+    "defaultSubtitle": "Come possiamo aiutarti?",
+    "endConversation": "Termina conversazione",
+    "onlineNow": "Online ora",
+    "weAreResponding": "Stiamo rispondendo",
+    "replyTime": "Risposta: {{time}}"
+  },
+  "chat": {
+    "uploadingFiles": "Caricamento file...",
+    "retryMessage": "Riprova",
+    "replyTo": "Rispondi",
+    "you": "Tu",
+    "agent": "Operatore",
+    "user": "Utente",
+    "file": "File",
+    "fileSize": "{{size}} KB",
+    "loadMore": "Carica più messaggi"
+  },
+  "composer": {
+    "placeholder": "Scrivi il tuo messaggio...",
+    "send": "Invia"
+  },
+  "attachment": {
+    "attach": "Allega file",
+    "dropHere": "Rilascia il file qui",
+    "error": "Errore nel file: {{error}}"
+  },
+  "emoji": {
+    "addEmoji": "Aggiungi emoji"
+  },
+  "emailTranscript": {
+    "button": "Invia via email",
+    "sending": "Invio..."
+  },
+  "endConversation": {
+    "tooltip": "Termina conversazione",
+    "error": "Errore durante la chiusura della conversazione"
+  },
+  "replyTo": {
+    "replyingTo": "In risposta a {{name}}",
+    "cancelReply": "Annulla risposta",
+    "you": "Tu",
+    "agent": "Operatore"
+  },
+  "messageList": {
+    "loadingOld": "Caricamento messaggi precedenti...",
+    "loadOldMessages": "Carica messaggi precedenti",
+    "sending": "invio…",
+    "retry": "riprova",
+    "reply": "rispondi",
+    "now": "ora"
+  },
+  "startNewConversation": {
+    "button": "Inizia nuova conversazione",
+    "starting": "Avvio conversazione..."
+  },
+  "typing": {
+    "typing": "{{name}} sta scrivendo",
+    "now": "ora"
+  },
+  "toast": {
+    "emailTranscriptSuccess": "Cronologia della conversazione inviata via email con successo!",
+    "emailTranscriptError": "Impossibile inviare la cronologia via email. Riprova.",
+    "conversationEnded": "Conversazione terminata con successo!",
+    "newConversationStarted": "Nuova conversazione avviata!",
+    "uploadFailed": "Caricamento file fallito"
+  },
+  "buttons": {
+    "sendEmailTranscript": "Invia cronologia via email",
+    "startNewConversation": "Inizia nuova conversazione",
+    "send": "Invia",
+    "attach": "Allega file"
+  },
+  "input": {
+    "placeholder": "Digita il tuo messaggio...",
+    "replyingTo": "In risposta a"
+  },
+  "errors": {
+    "generic": "Si è verificato un errore. Riprova.",
+    "sendMessage": "Errore durante l'invio del messaggio",
+    "loadMessages": "Errore durante il caricamento dei messaggi",
+    "createConversation": "Errore durante la creazione della conversazione",
+    "connectionLost": "Connessione persa. Tentativo di riconnessione..."
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "sending": "Invio...",
+    "sent": "Inviato",
+    "failed": "Fallito",
+    "replyTime": "Tempo di risposta: {{time}}"
+  },
+  "pagination": {
+    "loadingMore": "Caricamento messaggi precedenti...",
+    "noMoreMessages": "Non ci sono più messaggi"
+  },
+  "preChat": {
+    "loading": "Preparazione conversazione..."
+  },
+  "system": {
+    "conversationCreated": "Conversazione avviata",
+    "conversationResolved": "Conversazione terminata",
+    "agentJoined": "{{name}} è entrato nella conversazione",
+    "agentLeft": "{{name}} ha lasciato la conversazione"
+  },
+  "replyTimeStatus": {
+    "inAFewMinutes": "Risponderemo in pochi minuti",
+    "inAFewHours": "Risponderemo in poche ore",
+    "inADay": "Risponderemo entro un giorno"
+  },
+  "businessHours": {
+    "backTomorrow": "Torneremo domani",
+    "backAt": "Torneremo alle {{time}}",
+    "offline": "Team offline"
+  },
+  "attachments": {
+    "uploading": "Caricamento file...",
+    "uploaded": "File caricato",
+    "failed": "Caricamento fallito",
+    "maxSizeExceeded": "File troppo grande. Dimensione massima: {{maxSize}}MB",
+    "unsupportedType": "Tipo di file non supportato"
+  },
+  "emailCollect": {
+    "placeholder": "Inserisci la tua email",
+    "button": "Invia",
+    "invalidEmail": "Per favore inserisci un'email valida",
+    "success": "Email salvata con successo!",
+    "error": "Errore nel salvataggio dell'email. Riprova."
+  }
+}

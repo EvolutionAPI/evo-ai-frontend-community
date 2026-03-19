@@ -1,0 +1,67 @@
+{
+  "title": "Gérer les Clés API",
+  "description": "Gérez vos clés API pour différents fournisseurs d'IA",
+  "providers": {
+    "openai": "OpenAI",
+    "anthropic": "Anthropic",
+    "google": "Google",
+    "azure": "Azure OpenAI",
+    "groq": "Groq",
+    "mistral": "Mistral AI",
+    "cohere": "Cohere"
+  },
+  "form": {
+    "title": {
+      "new": "Nouvelle Clé",
+      "edit": "Modifier la Clé"
+    },
+    "labels": {
+      "name": "Nom",
+      "provider": "Fournisseur",
+      "key": "Clé",
+      "status": "Statut",
+      "active": "Actif"
+    },
+    "placeholders": {
+      "name": "Ex : OpenAI Production",
+      "provider": "Sélectionnez un fournisseur",
+      "keyNew": "Collez votre clé API ici",
+      "keyEdit": "Entrez une nouvelle clé (laissez vide pour conserver l'actuelle)"
+    }
+  },
+  "actions": {
+    "add": "Nouvelle Clé",
+    "addFirst": "Ajouter la Première Clé",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "save": "Ajouter",
+    "update": "Mettre à Jour",
+    "close": "Fermer"
+  },
+  "list": {
+    "title": "Clés Disponibles",
+    "createdAt": "Créé le",
+    "inactive": "Inactif"
+  },
+  "empty": {
+    "title": "Aucune clé trouvée",
+    "description": "Ajoutez vos clés API pour commencer à utiliser les agents"
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des clés API",
+    "saveError": "Erreur lors de l'enregistrement de la clé API",
+    "deleteError": "Erreur lors de la suppression de la clé API",
+    "createSuccess": "Clé API créée avec succès !",
+    "updateSuccess": "Clé API mise à jour avec succès !",
+    "deleteSuccess": "Clé API supprimée avec succès !",
+    "requiredFields": "Tous les champs sont obligatoires",
+    "accountIdError": "ID de compte non disponible"
+  },
+  "deleteDialog": {
+    "title": "Supprimer la Clé API",
+    "description": "Êtes-vous sûr de vouloir supprimer la clé \"{{name}}\" ? Cette action ne peut pas être annulée.",
+    "cancel": "Annuler",
+    "confirm": "Supprimer"
+  }
+}

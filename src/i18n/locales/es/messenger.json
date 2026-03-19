@@ -1,0 +1,41 @@
+{
+  "title": "Messenger",
+  "name": "Messenger",
+  "description": "Conecte su página de Facebook para recibir mensajes",
+  "facebookAuth": "Autenticación con Facebook",
+  "authDescription": "Conecte su cuenta para acceder a las páginas de Messenger",
+  "connecting": "Conectando...",
+  "signInWithFacebook": "Iniciar sesión con Facebook",
+  "selectPage": "Seleccionar Página",
+  "selectPageDescription": "Elija la página que será conectada a Messenger",
+  "selected": "Seleccionado",
+  "channelConfiguration": "Configuración del Canal",
+  "channelConfigDescription": "Defina un nombre para identificar este canal",
+  "channelName": "Nombre del Canal",
+  "channelNamePlaceholder": "Canal Messenger",
+  "creating": "Creando...",
+  "createChannel": "Crear canal",
+  "validation": {
+    "pageRequired": "Seleccione una página de Facebook",
+    "nameRequired": "El nombre del canal es obligatorio"
+  },
+  "errors": {
+    "sdkNotLoaded": "Facebook SDK no cargado",
+    "authNotCompleted": "Autorización de Facebook no completada",
+    "fetchPagesError": "Falla al buscar páginas",
+    "createChannelError": "Falla al crear canal"
+  },
+  "success": {
+    "created": "¡Canal Messenger creado con éxito!"
+  },
+  "buttons": {
+    "cancel": "Cancelar",
+    "createChannel": "Crear canal"
+  },
+  "newChannel": {
+    "buttons": {
+      "cancel": "Cancelar",
+      "createChannel": "Crear canal"
+    }
+  }
+}

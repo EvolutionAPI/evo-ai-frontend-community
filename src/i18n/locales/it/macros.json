@@ -1,0 +1,128 @@
+{
+  "title": "Macro",
+  "loading": "Caricamento macro...",
+  "header": {
+    "title": "Macro",
+    "subtitle": "{{count}} macro in totale",
+    "searchPlaceholder": "Cerca macro...",
+    "newMacro": "Nuova Macro",
+    "bulkDelete": "Elimina",
+    "clearSelection": "Cancella Selezione",
+    "selected": "{{count}} selezionata/e",
+    "filter": "Filtra"
+  },
+  "empty": {
+    "title": "Nessuna macro trovata",
+    "description": "Crea la tua prima macro per automatizzare attività ripetitive.",
+    "action": "Nuova Macro"
+  },
+  "modal": {
+    "title": {
+      "create": "Nuova Macro",
+      "edit": "Modifica Macro"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Inserisci il nome della macro",
+      "visibility": "Visibilità",
+      "visibilityPersonal": "Privata",
+      "visibilityPersonalDesc": "Questa macro sarà privata e disponibile solo per te",
+      "visibilityGlobal": "Pubblica",
+      "visibilityGlobalDesc": "Questa macro sarà pubblica e disponibile per tutti gli agenti",
+      "actionsTitle": "Azioni",
+      "actionsSubtitle": "Le macro eseguiranno le azioni nell'ordine definito",
+      "addAction": "Aggiungi Azione",
+      "actionLabel": "Azione",
+      "configLabel": "Configurazione"
+    },
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "actionsRequired": "È necessaria almeno un'azione",
+      "actionTypeRequired": "Il tipo di azione è obbligatorio",
+      "selectAtLeastOne": "Seleziona almeno un'opzione",
+      "fieldRequired": "Questo campo è obbligatorio"
+    },
+    "buttons": {
+      "cancel": "Annulla",
+      "create": "Crea",
+      "update": "Aggiorna",
+      "saving": "Salvataggio..."
+    }
+  },
+  "actionRow": {
+    "selectPlaceholder": "Seleziona un'opzione",
+    "multiSelectPlaceholder": "Seleziona opzioni",
+    "loadingOptions": "Caricamento opzioni...",
+    "textareaPlaceholder": "Inserisci il messaggio o la nota",
+    "textPlaceholder": "Inserisci il valore",
+    "hoursPlaceholder": "Ore per il posticipo",
+    "emailPlaceholder": "Inserisci l'email",
+    "urlPlaceholder": "Inserisci l'URL del webhook",
+    "fileSelectButton": "Seleziona File",
+    "fileUploading": "Caricamento...",
+    "fileSelected": "File selezionato: {{filename}}",
+    "noConfig": "Questa azione non richiede configurazione aggiuntiva."
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "createdBy": "Creata da",
+      "updatedBy": "Aggiornata da",
+      "visibility": "Visibilità",
+      "createdAt": "Creata il",
+      "updatedAt": "Aggiornata il",
+      "id": "ID"
+    },
+    "actionCount": "{{count}} azione",
+    "actionCount_plural": "{{count}} azioni",
+    "visibility": {
+      "public": "Pubblica",
+      "private": "Privata"
+    },
+    "actions": {
+      "view": "Visualizza",
+      "execute": "Esegui",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    },
+    "noData": "-",
+    "noDate": "Data non disponibile"
+  },
+  "actions": {
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "execute": "Esegui",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "confirm": "Conferma"
+  },
+  "messages": {
+    "loadError": "Errore nel caricamento delle macro",
+    "createSuccess": "Macro creata con successo",
+    "createError": "Errore nella creazione della macro",
+    "updateSuccess": "Macro aggiornata con successo",
+    "updateError": "Errore nell'aggiornamento della macro",
+    "deleteSuccess": "Macro eliminata con successo",
+    "deleteError": "Errore nell'eliminazione della macro",
+    "bulkDeleteSuccess": "{{count}} macro eliminate con successo",
+    "bulkDeleteError": "Errore nell'eliminazione delle macro",
+    "executeSuccess": "Macro \"{{name}}\" eseguita con successo",
+    "executeError": "Errore nell'esecuzione della macro"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Elimina Macro",
+      "description": "Sei sicuro di voler eliminare la macro \"{{name}}\"? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina",
+      "deleting": "Eliminazione..."
+    },
+    "bulkDelete": {
+      "title": "Elimina Macro",
+      "description": "Sei sicuro di voler eliminare {{count}} macro selezionate? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina Tutte",
+      "deleting": "Eliminazione..."
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "title": "Outils du Système",
+  "subtitle": "Explorez les outils disponibles dans le système",
+  "loading": "Chargement des outils...",
+  "card": {
+    "noDescription": "Sans description",
+    "input": "Entrée :",
+    "output": "Sortie :",
+    "examplesCount": "{{count}} exemple(s) disponible(s)"
+  },
+  "details": {
+    "title": "Détails de l'Outil",
+    "basicInfo": {
+      "title": "Informations de Base",
+      "name": "Nom",
+      "description": "Description"
+    },
+    "tags": {
+      "title": "Tags",
+      "count": "Tags ({{count}})",
+      "empty": "Aucun tag disponible"
+    },
+    "modes": {
+      "title": "Modes d'Entrée et de Sortie",
+      "input": "Modes d'Entrée",
+      "output": "Modes de Sortie",
+      "notSpecified": "Non spécifié"
+    },
+    "examples": {
+      "title": "Exemples",
+      "count": "Exemples ({{count}})",
+      "empty": "Aucun exemple disponible"
+    },
+    "configuration": {
+      "title": "Configuration",
+      "requiredFields": "Champs Obligatoires",
+      "optionalFields": "Champs Optionnels",
+      "defaultValues": "Valeurs par Défaut"
+    }
+  },
+  "filter": {
+    "title": "Filtrer les Outils",
+    "description": "Configurez les filtres pour trouver les outils que vous recherchez",
+    "applyFilters": "Appliquer les Filtres",
+    "clearFilters": "Effacer les Filtres",
+    "addFilter": "Ajouter un Filtre"
+  },
+  "header": {
+    "searchPlaceholder": "Rechercher par nom, description ou tags..."
+  },
+  "table": {
+    "columns": {
+      "tool": "Outil",
+      "tags": "Tags",
+      "examples": "Exemples",
+      "input": "Entrée",
+      "output": "Sortie"
+    },
+    "noName": "Sans nom",
+    "noDescription": "Sans description",
+    "noTags": "Sans tags",
+    "actions": {
+      "viewDetails": "Voir les détails"
+    },
+    "empty": {
+      "title": "Aucun outil disponible",
+      "description": "Il n'y a pas d'outils disponibles dans le système.",
+      "message": "Aucun outil trouvé"
+    }
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des outils"
+  }
+}

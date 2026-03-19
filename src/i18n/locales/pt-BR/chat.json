@@ -1,0 +1,887 @@
+{
+  "messages": {
+    "noPermissionView": "Você não tem permissão para visualizar conversas",
+    "noPermissionSend": "Você não tem permissão para enviar mensagens",
+    "audioPlayer": {
+      "defaultFilename": "Áudio"
+    },
+    "messageAudio": {
+      "downloadStarted": "Download iniciado",
+      "audioFallback": "Áudio",
+      "playbackError": "Erro ao reproduzir áudio",
+      "playbackErrorDescription": "Não foi possível reproduzir este arquivo de áudio"
+    },
+    "messageBubble": {
+      "contextMenu": {
+        "reply": "Responder",
+        "copy": "Copiar mensagem",
+        "delete": "Excluir mensagem"
+      },
+      "userFallback": "Usuário",
+      "agent": {
+        "badge": "Atendente",
+        "fallback": "Atendente"
+      },
+      "bot": {
+        "badge": "🤖 Bot",
+        "fallback": "Bot"
+      },
+      "privateNote": {
+        "badge": "Nota Privada",
+        "description": "Visível apenas para atendentes"
+      },
+      "moderation": {
+        "pending": "Moderação Pendente",
+        "blocked": "Comentário Bloqueado"
+      },
+      "deleteDialog": {
+        "title": "Excluir mensagem",
+        "description": "Tem certeza de que deseja excluir esta mensagem? Esta ação não pode ser desfeita e a mensagem será permanentemente removida da conversa.",
+        "cancel": "Cancelar",
+        "confirm": "Excluir mensagem"
+      }
+    },
+    "moderation": {
+      "banner": {
+        "pendingApproval": "Aguardando Aprovação",
+        "responseReady": "Resposta gerada pela IA pronta para revisão",
+        "generatedResponse": "Resposta Gerada",
+        "approve": "Aprovar",
+        "reject": "Rejeitar",
+        "regenerate": "Regenerar",
+        "approved": "Resposta aprovada com sucesso",
+        "rejected": "Resposta rejeitada com sucesso",
+        "regenerated": "Resposta regenerada com sucesso",
+        "approveError": "Erro ao aprovar resposta",
+        "rejectError": "Erro ao rejeitar resposta",
+        "regenerateError": "Erro ao regenerar resposta"
+      }
+    },
+    "messageFile": {
+      "fileFallback": "arquivo",
+      "unknownSize": "Tamanho desconhecido",
+      "fileFallbackTitle": "Arquivo"
+    },
+    "messageImage": {
+      "downloadStarted": "Download iniciado",
+      "imageFallback": "Imagem",
+      "imageZoomedAlt": "Imagem ampliada"
+    },
+    "messageList": {
+      "loadingConversation": "Carregando conversa...",
+      "loadingPrevious": "Carregando mensagens anteriores...",
+      "conversationStart": "Início da conversa"
+    },
+    "messageLocation": {
+      "sharedLocation": "Localização compartilhada",
+      "openInMaps": "Abrir no Google Maps"
+    },
+    "messageStatus": {
+      "statusUnavailable": "Status da mensagem indisponível",
+      "statusUnavailableDescription": "A mensagem foi enviada, mas não conseguimos confirmar o status de entrega.",
+      "checkChannelConfig": "Verifique a configuração do canal",
+      "webhookIssue": "O webhook pode estar desatualizado ou inativo.",
+      "deliveryStatusUnavailable": "Status de entrega indisponível - Clique para mais detalhes",
+      "statusUnavailableText": "Status indisponível",
+      "retryInDevelopment": "Funcionalidade de reenvio em desenvolvimento",
+      "sendFailed": "Falha no envio - Clique para tentar novamente",
+      "tryAgain": "Tentar novamente"
+    },
+    "replyPreview": {
+      "imageAttachment": "📷 Imagem",
+      "audioAttachment": "🎵 Áudio",
+      "videoAttachment": "🎥 Vídeo",
+      "fileAttachment": "📎 Arquivo",
+      "locationAttachment": "📍 Localização",
+      "noContent": "Mensagem sem conteúdo",
+      "userFallback": "Usuário"
+    }
+  },
+  "assignment": {
+    "agent": {
+      "title": "Atribuir Atendente",
+      "description": "Selecione um atendente para a conversa com {{name}}",
+      "contactFallback": "este contato",
+      "searchPlaceholder": "Buscar atendentes..."
+    },
+    "team": {
+      "title": "Atribuir Time",
+      "description": "Selecione um time para a conversa com {{name}}",
+      "contactFallback": "este contato",
+      "searchPlaceholder": "Buscar times..."
+    },
+    "label": {
+      "title": "Atribuir Etiquetas",
+      "description": "Selecione etiquetas para a conversa com {{name}}",
+      "contactFallback": "este contato",
+      "searchPlaceholder": "Buscar etiquetas..."
+    }
+  },
+  "dashboardApp": {
+    "notFound": "App não encontrado ou sem conteúdo",
+    "urlNotConfigured": "URL do app não configurada"
+  },
+  "empty": {
+    "title": "Selecione uma conversa",
+    "description": "Escolha uma conversa da lista para começar a visualizar as mensagens"
+  },
+  "deleteDialog": {
+    "title": "Deletar conversa",
+    "description": "Tem certeza de que deseja deletar esta conversa com {{name}}? Esta ação não pode ser desfeita e todas as mensagens serão permanentemente removidas.",
+    "contactFallback": "este contato",
+    "cancel": "Cancelar",
+    "confirm": "Deletar conversa"
+  },
+  "aiAssistance": {
+    "title": "Assistência de IA",
+    "description": {
+      "withMessage": "Selecione uma ação para melhorar sua mensagem",
+      "withoutMessage": "Selecione uma ação para começar"
+    },
+    "actions": {
+      "rephrase": {
+        "label": "Reformular",
+        "description": "Reescrever a mensagem de forma diferente"
+      },
+      "fix_spelling_grammar": {
+        "label": "Corrigir ortografia",
+        "description": "Corrigir erros gramaticais e ortográficos"
+      },
+      "expand": {
+        "label": "Expandir",
+        "description": "Tornar a mensagem mais detalhada"
+      },
+      "shorten": {
+        "label": "Encurtar",
+        "description": "Resumir a mensagem"
+      },
+      "make_friendly": {
+        "label": "Tornar amigável",
+        "description": "Usar tom mais casual e amigável"
+      },
+      "make_formal": {
+        "label": "Tornar formal",
+        "description": "Usar tom mais profissional"
+      },
+      "simplify": {
+        "label": "Simplificar",
+        "description": "Tornar mais fácil de entender"
+      },
+      "reply_suggestion": {
+        "label": "Sugestão de resposta",
+        "description": "Gerar sugestão de resposta"
+      },
+      "summarize": {
+        "label": "Resumir conversa",
+        "description": "Criar resumo da conversa"
+      },
+      "analyze_sentiment": {
+        "label": "Analisar sentimento",
+        "description": "Verificar se a mensagem contém conteúdo ofensivo ou inadequado"
+      }
+    },
+    "button": {
+      "title": "Assistência de IA",
+      "fallbackLabel": "IA"
+    },
+    "errors": {
+      "accountIdNotFound": "ID da conta não encontrado",
+      "processError": "Erro ao processar ação de IA"
+    },
+    "messages": {
+      "textAppliedSuccess": "Texto aplicado com sucesso"
+    },
+    "resultModal": {
+      "title": "Resultado da {{actionLabel}}",
+      "description": {
+        "loading": "Gerando conteúdo...",
+        "ready": "Revise o resultado e aplique se desejar"
+      },
+      "originalMessage": "Mensagem original",
+      "generatedResult": "Resultado gerado",
+      "copy": {
+        "label": "Copiar",
+        "copied": "Copiado",
+        "success": "Copiado para área de transferência"
+      },
+      "processing": "Processando...",
+      "noContent": "Nenhum conteúdo gerado",
+      "actions": {
+        "cancel": "Cancelar",
+        "apply": "Aplicar"
+      }
+    }
+  },
+  "assignmentModal": {
+    "searchPlaceholder": "Buscar...",
+    "selected": "Selecionado:",
+    "loading": "Carregando...",
+    "noResults": "Nenhum resultado encontrado",
+    "noOptions": "Nenhuma opção disponível",
+    "cancel": "Cancelar",
+    "applying": "Aplicando...",
+    "apply": "Aplicar"
+  },
+  "audioRecorder": {
+    "notSupported": "Gravação de áudio não suportada neste navegador",
+    "record": "Gravar",
+    "paused": "(pausado)",
+    "send": "Enviar"
+  },
+  "cannedResponses": {
+    "loading": "Carregando respostas prontas...",
+    "noResults": "Nenhuma resposta encontrada",
+    "tryAnotherTerm": "Tente outro termo de busca ou crie uma nova resposta pronta",
+    "title": "Respostas Prontas",
+    "result": "resultado",
+    "results": "resultados",
+    "searchingFor": "Buscando por:",
+    "navigate": "Navegar",
+    "select": "Selecionar",
+    "close": "Fechar"
+  },
+  "chatArea": {
+    "selectConversation": {
+      "title": "Selecione uma conversa",
+      "description": "Escolha uma conversa da lista para começar a visualizar as mensagens"
+    },
+    "banner": {
+      "whatsappMessage": "Você só pode responder a esta conversa usando um modelo de mensagem devido a",
+      "cannotReply": "Você não pode responder porque",
+      "linkText": "Restrições de janela de mensagem de 24 horas",
+      "zapiDisconnected": "WhatsApp desconectado. Conecte o número para enviar mensagens."
+    },
+    "errors": {
+      "loadMessages": "Erro ao carregar mensagens",
+      "tryAgain": "Tentar novamente"
+    }
+  },
+  "chatHeader": {
+    "actions": {
+      "markAsRead": "Marcar como lida",
+      "markAsUnread": "Marcar como não lida",
+      "markAsOpen": "Marcar como aberta",
+      "markAsResolved": "Marcar como resolvida",
+      "markAsPending": "Marcar como pendente",
+      "pauseConversation": "Pausar conversa",
+      "priorityUrgent": "Prioridade Urgente",
+      "priorityHigh": "Prioridade Alta",
+      "priorityMedium": "Prioridade Média",
+      "priorityLow": "Prioridade Baixa",
+      "removePriority": "Remover Prioridade",
+      "assignAgent": "Atribuir Atendente",
+      "assignTeam": "Atribuir time",
+      "assignTag": "Atribuir etiqueta",
+      "deleteConversation": "Deletar conversa"
+    },
+    "contactNoName": "Contato sem nome",
+    "status": "Status:",
+    "openConversation": "Abrir Conversa",
+    "closeConversation": "Fechar conversa"
+  },
+  "chatSidebar": {
+    "searchPlaceholder": "Buscar conversas...",
+    "conversation": "conversa",
+    "conversations": "conversas",
+    "filter": "filtro",
+    "filters": "filtros",
+    "filtersButton": "Filtros",
+    "view": {
+      "active": "Ativas",
+      "archived": "Arquivadas"
+    },
+    "archivedNotice": "Mostrando apenas conversas arquivadas carregadas nesta lista. Use Carregar mais para ver as mais antigas.",
+    "errors": {
+      "loadConversations": "Erro ao carregar conversas",
+      "tryAgain": "Tentar novamente"
+    },
+    "empty": {
+      "title": "Nenhuma conversa encontrada",
+      "description": "Não há conversas disponíveis no momento."
+    },
+    "emptyArchived": {
+      "title": "Nenhuma conversa arquivada",
+      "description": "Não há conversas arquivadas no momento."
+    },
+    "lastMessage": {
+      "noMessages": "Sem mensagens",
+      "noContent": "Mensagem sem conteúdo"
+    },
+    "contactNoName": "Contato sem nome"
+  },
+  "chatTabs": {
+    "chat": "Chat"
+  },
+  "contactSidebar": {
+    "sections": {
+      "contactDetails": {
+        "title": "Informações do Contato",
+        "description": "Dados pessoais e atributos"
+      },
+      "macros": {
+        "title": "Macros",
+        "description": "Executar automações"
+      },
+      "pipeline": {
+        "title": "Pipeline",
+        "description": "Gerenciar funil de vendas"
+      },
+      "contactNotes": {
+        "title": "Notas do Contato",
+        "description": "Anotações importantes",
+        "noNotes": "Nenhuma nota adicionada ainda"
+      },
+      "previousConversations": {
+        "title": "Conversas Anteriores",
+        "description": "Histórico de conversas",
+        "loading": "Carregando conversas anteriores..."
+      },
+      "conversationInfo": {
+        "title": "Informações da Conversa",
+        "description": "Detalhes técnicos",
+        "status": "Status:",
+        "channel": "Canal:",
+        "assigned": "Atribuído:",
+        "assignedTo": "Atendente #{{id}}"
+      }
+    },
+    "contactHeader": {
+      "contactNoName": "Contato sem nome",
+      "online": "Online"
+    },
+    "contactDetails": {
+      "actions": {
+        "edit": "Editar",
+        "updateSuccess": "Contato atualizado com sucesso",
+        "updateError": "Erro ao atualizar contato"
+      },
+      "sections": {
+        "basicInfo": "Informações Básicas",
+        "customAttributes": "Atributos Personalizados",
+        "additionalInfo": "Informações Adicionais",
+        "history": "Histórico"
+      },
+      "fields": {
+        "name": "Nome",
+        "phone": "Telefone",
+        "identifier": "Identificador",
+        "email": "Email",
+        "location": "Localização",
+        "createdAt": "Criado em",
+        "lastActivity": "Última atividade"
+      },
+      "notInformed": "Não informado",
+      "copiedToClipboard": "Copiado para a área de transferência"
+    },
+    "conversationActions": {
+      "status": {
+        "title": "Status da Conversa",
+        "open": "Aberta",
+        "resolved": "Resolvida",
+        "pending": "Pendente",
+        "snoozed": "Pausada",
+        "changed": "Status alterado para: {{status}}",
+        "error": "Erro ao alterar status da conversa"
+      },
+      "assignment": {
+        "title": "Atribuição",
+        "assignedTo": "Atribuído ao atendente #{{id}}",
+        "notAssigned": "Conversa não atribuída",
+        "unassign": "Desatribuir conversa",
+        "assignedSuccess": "Conversa atribuída com sucesso",
+        "unassignedSuccess": "Conversa desatribuída",
+        "error": "Erro ao alterar atribuição"
+      },
+      "labels": {
+        "title": "Labels",
+        "noneApplied": "Nenhuma label aplicada",
+        "manage": "Gerenciar labels"
+      },
+      "priority": {
+        "title": "Prioridade",
+        "none": "Nenhuma prioridade definida",
+        "low": "Baixa",
+        "medium": "Média",
+        "high": "Alta",
+        "urgent": "Urgente",
+        "remove": "Remover prioridade"
+      }
+    },
+    "macros": {
+      "loading": "Erro ao carregar macros",
+      "noMacros": "Nenhuma macro disponível",
+      "action": "ação",
+      "actions": "ações",
+      "executeSuccess": "Macro \"{{name}}\" executada com sucesso",
+      "executeError": "Erro ao executar macro \"{{name}}\"",
+      "dialog": {
+        "title": "Executar Macro",
+        "description": "Você tem certeza que deseja executar a macro {{name}}? Esta ação aplicará {{count}} {{actionLabel}} nesta conversa.",
+        "cancel": "Cancelar",
+        "execute": "Executar Macro"
+      }
+    },
+    "pipeline": {
+      "loading": "Erro ao carregar dados do pipeline",
+      "noPipelines": "Nenhum pipeline configurado",
+      "current": "Pipeline Atual",
+      "label": "Pipeline",
+      "selectPipeline": "Selecione um pipeline",
+      "selectStage": "Selecione um estágio",
+      "stage": "Estágio",
+      "saving": "Salvando...",
+      "save": "Salvar",
+      "saveSuccess": "Pipeline atualizado com sucesso",
+      "saveError": "Erro ao atualizar pipeline",
+      "selectError": "Selecione um pipeline e um estágio",
+      "removeSuccess": "Conversa removida do pipeline",
+      "removeError": "Erro ao remover do pipeline",
+      "dialogs": {
+        "update": {
+          "title": "Atualizar Pipeline",
+          "description": "Você tem certeza que deseja mover esta conversa para {{pipelineName}} no estágio {{stageName}}?",
+          "confirm": "Atualizar"
+        },
+        "add": {
+          "title": "Adicionar ao Pipeline",
+          "description": "Você tem certeza que deseja adicionar esta conversa ao pipeline {{pipelineName}} no estágio {{stageName}}?",
+          "confirm": "Adicionar"
+        },
+        "remove": {
+          "title": "Remover do Pipeline",
+          "description": "Você tem certeza que deseja remover esta conversa do pipeline {{pipelineName}}? Esta ação não pode ser desfeita.",
+          "cancel": "Cancelar",
+          "confirm": "Remover"
+        }
+      }
+    },
+    "filters": {
+      "assignee": {
+        "title": "Atribuição de Conversa",
+        "options": {
+          "all": {
+            "label": "Todas as conversas",
+            "description": "Todas as conversas da equipe"
+          },
+          "me": {
+            "label": "Minhas conversas",
+            "description": "Apenas conversas atribuídas a mim"
+          },
+          "unassigned": {
+            "label": "Não atribuídas",
+            "description": "Conversas sem atendente atribuído"
+          }
+        },
+        "showAll": "Mostrar todas as conversas"
+      },
+      "inbox": {
+        "title": "Canais de Atendimento",
+        "options": {
+          "all": "Todos os canais",
+          "whatsapp": "WhatsApp Business",
+          "email": "Email Suporte",
+          "website": "Chat do Site",
+          "telegram": "Telegram"
+        },
+        "showAll": "Mostrar todos os canais"
+      },
+      "status": {
+        "title": "Status da Conversa",
+        "options": {
+          "all": "Todas",
+          "open": "Abertas",
+          "pending": "Pendentes",
+          "resolved": "Resolvidas",
+          "snoozed": "Adiadas"
+        },
+        "clearFilters": "Limpar filtros"
+      }
+    },
+    "richTextEditor": {
+      "toolbar": {
+        "bold": "Negrito (Ctrl+B)",
+        "italic": "Itálico (Ctrl+I)",
+        "code": "Código (Ctrl+`)",
+        "bulletList": "Lista com marcadores",
+        "undo": "Desfazer (Ctrl+Z)",
+        "redo": "Refazer (Ctrl+Y)"
+      }
+    },
+    "typingIndicator": {
+      "single": "{{name}} está digitando",
+      "two": "{{name1}} e {{name2}} estão digitando",
+      "multiple": "{{name}} e mais {{count}} pessoas estão digitando"
+    },
+    "webSocketStatus": {
+      "connected": "Tempo real ativo",
+      "reconnecting": "Reconectando..."
+    },
+    "channelDiagnostic": {
+      "title": "Diagnóstico de Canal",
+      "description": "As mensagens estão falhando, possivelmente devido à configuração do canal.",
+      "inboxId": "Inbox ID:",
+      "accountId": "Account ID:",
+      "possibleSolutions": "Possíveis Soluções:",
+      "solutions": {
+        "checkChannel": "Verificar se o canal WhatsApp/Telegram está configurado",
+        "confirmCredentials": "Confirmar credenciais API do provedor",
+        "testConnectivity": "Testar conectividade com o serviço externo",
+        "checkWebhooks": "Verificar webhooks configurados"
+      },
+      "settings": "Configurações",
+      "close": "Fechar"
+    }
+  },
+  "replyModeToggle": {
+    "reply": "Resposta",
+    "privateNote": "Nota Privada",
+    "visibleOnlyToAgents": "Visível apenas para atendentes"
+  },
+  "contexts": {
+    "conversations": {
+      "errors": {
+        "loadConversations": "Erro ao carregar conversas",
+        "loadConversation": "Erro ao carregar conversa",
+        "conversationNotFound": "Conversa não encontrada",
+        "updateStatus": "Erro ao atualizar status da conversa",
+        "updatePriority": "Erro ao atualizar prioridade da conversa",
+        "deleteConversation": "Erro ao deletar conversa",
+        "markAsRead": "Erro ao marcar como lida",
+        "markAsUnread": "Erro ao marcar como não lida",
+        "markAsResolved": "Erro ao marcar como resolvida",
+        "markAsPending": "Erro ao marcar como pendente",
+        "assignAgent": "Erro ao atribuir atendente",
+        "assignTeam": "Erro ao atribuir time",
+        "assignLabels": "Erro ao atribuir etiquetas"
+      },
+      "success": {
+        "statusChanged": "Status alterado para: {{status}}",
+        "priorityChanged": "Prioridade alterada para: {{priority}}",
+        "deleted": "Conversa deletada com sucesso",
+        "markedAsRead": "Conversa marcada como lida",
+        "markedAsUnread": "Conversa marcada como não lida",
+        "markedAsResolved": "Conversa marcada como resolvida",
+        "markedAsPending": "Conversa marcada como pendente",
+        "agentAssigned": "Atendente atribuído com sucesso",
+        "agentRemoved": "Atendente removido com sucesso",
+        "teamAssigned": "Time atribuído com sucesso",
+        "teamRemoved": "Time removido com sucesso",
+        "labelsAssigned": "Etiquetas atribuídas com sucesso"
+      },
+      "statusNames": {
+        "open": "Aberta",
+        "resolved": "Resolvida",
+        "pending": "Pendente",
+        "snoozed": "Pausada"
+      },
+      "priorityNames": {
+        "low": "Baixa",
+        "medium": "Média",
+        "high": "Alta",
+        "urgent": "Urgente",
+        "none": "Nenhuma"
+      },
+      "tryAgain": "Tentar novamente",
+      "tryAgainDescription": "Tente novamente"
+    },
+    "filters": {
+      "errors": {
+        "applyFilters": "Erro ao aplicar filtros",
+        "loadConversations": "Erro ao carregar conversas",
+        "search": "Erro na busca"
+      }
+    },
+    "messages": {
+      "errors": {
+        "loadMessages": "Erro ao carregar mensagens",
+        "loadMoreMessages": "Erro ao carregar mensagens antigas",
+        "sendMessage": "Erro ao enviar mensagem",
+        "sendMessageWithAttachments": "Erro ao enviar mensagem com anexos",
+        "deleteMessage": "Erro ao excluir mensagem",
+        "replyToPrivateNote": "Não é possível responder notas privadas"
+      },
+      "success": {
+        "messageCopied": "Mensagem copiada para a área de transferência!",
+        "messageDeleted": "Mensagem excluída com sucesso"
+      },
+      "tryAgain": "Tentar novamente"
+    },
+    "webSocket": {
+      "newConversation": {
+        "title": "Nova conversa iniciada",
+        "description": "{{name}} enviou uma mensagem",
+        "newContact": "Novo contato"
+      }
+    }
+  },
+  "messageInput": {
+    "pendingPlaceholder": "Esta conversa está pendente. Só é possível enviar notas privadas.",
+    "restrictedPlaceholder": "Não é possível enviar mensagens devido à janela de mensagem de 24 horas",
+    "defaultPlaceholder": "Digite sua mensagem...",
+    "emojiPicker": {
+      "searchPlaceholder": "Buscar emojis..."
+    },
+    "filePreview": {
+      "file": "arquivo",
+      "files": "arquivos",
+      "sending": "Enviando...",
+      "send": "Enviar"
+    },
+    "fileUpload": {
+      "attachFiles": "Anexar arquivos",
+      "dropFiles": "Solte os arquivos aqui",
+      "maxSize": "Máximo {{maxSize}}MB",
+      "fileTypes": {
+        "images": "imagens",
+        "pdf": "PDF",
+        "text": "texto",
+        "audio": "áudio",
+        "video": "vídeo",
+        "word": "Word"
+      },
+      "errors": {
+        "fileTooLarge": "Arquivo muito grande",
+        "fileTooLargeDescription": "{{fileName}} excede o limite de {{maxSize}}MB",
+        "fileTypeNotAllowed": "Tipo de arquivo não permitido",
+        "fileTypeNotAllowedDescription": "{{fileName}} não é um tipo de arquivo suportado"
+      },
+      "success": {
+        "fileAdded": "Arquivo adicionado",
+        "filesAdded": "{{count}} arquivos adicionados"
+      }
+    },
+    "audio": {
+      "sentSuccess": "Áudio enviado com sucesso!",
+      "sendError": "Erro ao enviar áudio",
+      "converting": "Convertendo áudio...",
+      "conversionWarning": "Aviso de conversão",
+      "conversionWarningDescription": "Não foi possível converter o áudio para MP3. Tentando enviar no formato original."
+    },
+    "templates": {
+      "inDevelopment": "Templates de mensagem em desenvolvimento 📝"
+    },
+    "cannedResponses": {
+      "tooltip": "Respostas Rápidas (ou digite /)"
+    },
+    "replyPreview": {
+      "replyingTo": "Respondendo {{name}}",
+      "userFallback": "Usuário",
+      "asPrivateNote": "(como nota privada)",
+      "fileAttachment": "📎 {{fileType}}",
+      "fileFallback": "Arquivo",
+      "noContent": "Mensagem sem conteúdo",
+      "imageAttachment": "📷 Imagem",
+      "audioAttachment": "🎵 Áudio",
+      "videoAttachment": "🎥 Vídeo",
+      "locationAttachment": "📍 Localização"
+    },
+    "signature": {
+      "enable": "Habilitar assinatura",
+      "disable": "Desabilitar assinatura"
+    },
+    "placeholders": {
+      "default": "Digite sua mensagem... (digite / para respostas prontas)",
+      "pendingNote": "Digite sua nota privada (conversa pendente)...",
+      "privateNote": "Digite sua nota privada... (digite / para respostas prontas)"
+    }
+  },
+  "conversationsFilter": {
+    "title": "Filtrar Conversas",
+    "description": "Configure os filtros para encontrar as conversas que você procura",
+    "applyFilters": "Aplicar Filtros",
+    "clearFilters": "Limpar Filtros",
+    "addFilter": "Adicionar Filtro",
+    "operators": {
+      "equal_to": "É igual a",
+      "not_equal_to": "É diferente de",
+      "contains": "Contém",
+      "is_present": "Tem labels",
+      "is_not_present": "Não tem labels",
+      "is_greater_than": "É posterior a",
+      "is_less_than": "É anterior a",
+      "days_before": "Dias atrás"
+    },
+    "attributes": {
+      "status": "Status",
+      "assignee_type": "Responsável",
+      "inbox_id": "Canal",
+      "channel_type": "Tipo de Canal",
+      "team_id": "Equipe",
+      "labels": "Labels",
+      "created_at": "Data de Criação",
+      "last_activity_at": "Última Atividade",
+      "priority": "Prioridade",
+      "pipeline_id": "Pipeline"
+    },
+    "options": {
+      "status": {
+        "all": "Todos",
+        "open": "Aberto",
+        "resolved": "Resolvido",
+        "pending": "Pendente",
+        "snoozed": "Adiado"
+      },
+      "assignee_type": {
+        "me": "Atribuído para mim",
+        "assigned": "Atribuído",
+        "unassigned": "Não atribuído",
+        "all": "Todos"
+      },
+      "priority": {
+        "low": "Baixa",
+        "medium": "Média",
+        "high": "Alta",
+        "urgent": "Urgente"
+      },
+      "channel_type": {
+        "whatsapp": "WhatsApp",
+        "email": "E-mail",
+        "web_widget": "Widget Web",
+        "facebook": "Facebook",
+        "instagram": "Instagram",
+        "telegram": "Telegram",
+        "line": "LINE",
+        "api": "API",
+        "sms": "SMS",
+        "twilio": "Twilio SMS",
+        "twitter": "Twitter"
+      }
+    }
+  },
+  "conversationStatusIcon": {
+    "open": {
+      "label": "Aberta",
+      "description": "Conversa ativa e em andamento"
+    },
+    "pending": {
+      "label": "Pendente",
+      "description": "Aguardando resposta do cliente"
+    },
+    "resolved": {
+      "label": "Resolvida",
+      "description": "Conversa finalizada com sucesso"
+    },
+    "snoozed": {
+      "label": "Pausada",
+      "description": "Conversa temporariamente pausada"
+    },
+    "unknown": {
+      "label": "Desconhecido",
+      "description": "Status não identificado"
+    }
+  },
+  "contactAvatar": {
+    "unknownChannel": "Canal desconhecido",
+    "avatarAlt": "Avatar do contato",
+    "communicationChannel": "Canal de comunicação"
+  },
+  "conversationActionsDropdown": {
+    "srOnly": "Ações da conversa",
+    "title": "Ações da Conversa",
+    "markAsRead": "Marcar como lida",
+    "markAsUnread": "Marcar como não lida",
+    "status": "Status",
+    "markAsOpen": "Marcar como aberta",
+    "markAsResolved": "Marcar como resolvida",
+    "markAsPending": "Marcar como pendente",
+    "pauseConversation": "Pausar conversa",
+    "priority": "Prioridade",
+    "priorityLabels": {
+      "low": "Baixa",
+      "medium": "Média",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "lowPriority": "Baixa prioridade",
+    "mediumPriority": "Média prioridade",
+    "highPriority": "Alta prioridade",
+    "removePriority": "Remover prioridade",
+    "assignment": "Atribuição",
+    "assignAgent": "Atribuir atendente",
+    "assignTeam": "Atribuir time",
+    "assignTag": "Atribuir etiqueta",
+    "deleteConversation": "Excluir conversa"
+  },
+  "conversationBadges": {
+    "priority": {
+      "urgent": {
+        "label": "Prioridade Urgente",
+        "description": "Requer atenção imediata"
+      },
+      "high": {
+        "label": "Prioridade Alta",
+        "description": "Importante, mas não urgente"
+      },
+      "medium": {
+        "label": "Prioridade Média",
+        "description": "Prioridade padrão"
+      },
+      "low": {
+        "label": "Prioridade Baixa",
+        "description": "Pode aguardar"
+      }
+    },
+    "otherLabels": "Outras etiquetas",
+    "timeAgo": "há",
+    "timeUnits": {
+      "day": "dia",
+      "days": "dias",
+      "week": "sem",
+      "weeks": "semanas",
+      "month": "mês",
+      "months": "meses"
+    }
+  },
+  "emptyStates": {
+    "noConversations": {
+      "title": {
+        "search": "Nenhuma conversa encontrada",
+        "default": "Nenhuma conversa ainda"
+      },
+      "description": {
+        "search": "Não encontramos conversas com \"{{searchTerm}}\". Tente ajustar sua busca.",
+        "default": "Quando você receber mensagens dos seus clientes, elas aparecerão aqui."
+      },
+      "createNew": "Iniciar nova conversa"
+    },
+    "noMessages": {
+      "title": "Conversa iniciada",
+      "description": "Esta conversa não tem mensagens ainda. Seja o primeiro a enviar uma mensagem!",
+      "hint": "Use o campo abaixo para enviar sua primeira mensagem"
+    }
+  },
+  "messageTemplates": {
+    "button": {
+      "title": "Templates de Mensagem"
+    },
+    "modal": {
+      "title": "Templates de Mensagem",
+      "subtitle": "Selecione o template de mensagem que você deseja enviar",
+      "templateSelectedSubtitle": "Processar {{templateName}}"
+    },
+    "picker": {
+      "searchPlaceholder": "Pesquisar templates",
+      "noTemplatesFound": "Não há templates encontrados para",
+      "labels": {
+        "language": "Idioma",
+        "templateBody": "Conteúdo do Template",
+        "category": "Categoria"
+      }
+    },
+    "parser": {
+      "variablesLabel": "Variáveis",
+      "variablePlaceholder": "Insira o valor para {{variable}}",
+      "goBackLabel": "Voltar",
+      "sendMessageLabel": "Enviar Mensagem",
+      "formErrorMessage": "Por favor, preencha todas as variáveis antes de enviar"
+    },
+    "noTemplates": "Nenhum modelo de mensagem disponível",
+    "errors": {
+      "loadError": "Erro ao carregar templates de mensagem",
+      "sendError": "Erro ao enviar template de mensagem"
+    },
+    "success": {
+      "sent": "Template enviado com sucesso!"
+    }
+  }
+}

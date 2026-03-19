@@ -1,0 +1,150 @@
+{
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "subtitle": "Aperçu de vos indicateurs et métriques clés",
+    "loading": "Chargement du tableau de bord...",
+    "error": "Échec du chargement du tableau de bord",
+    "filters": {
+      "title": "Filtres",
+      "subtitle": "Affinez les indicateurs par pipeline, équipe, canal et période",
+      "pipeline": "Pipeline",
+      "team": "Équipe",
+      "channel": "Canal",
+      "user": "Utilisateur",
+      "allPipelines": "Tous les pipelines",
+      "allTeams": "Toutes les équipes",
+      "allChannels": "Tous les canaux",
+      "allUsers": "Tous les utilisateurs",
+      "since": "De",
+      "until": "À",
+      "period": "Période",
+      "apply": "Appliquer les filtres",
+      "clear": "Réinitialiser les filtres"
+    },
+    "stats": {
+      "totalPipeline": "Total dans l'Entonnoir",
+      "followUpsPending": "Suivis en Attente",
+      "sent": "envoyés",
+      "avgResponseTime": "Temps de Réponse Moyen",
+      "improvement": "amélioration",
+      "recoveredValue": "Valeur Récupérée",
+      "incomingMessages": "Messages entrants",
+      "realData": "Données réelles",
+      "leads": "leads",
+      "activeConversations": "Conversations actives maintenant",
+      "unassignedConversations": "Conversations sans responsable"
+    },
+    "csat": {
+      "avg": "CSAT moyen",
+      "responses": "évaluations",
+      "positiveRate": "Taux positif (4-5)",
+      "negativeRate": "Taux négatif (1-2)",
+      "breakdown": "Répartition des notes",
+      "lowSampleHint": "Pas encore assez d’évaluations pour une lecture statistique fiable."
+    },
+    "aiVsHuman": {
+      "aiShare": "Part IA dans les réponses",
+      "humanShare": "Part humaine dans les réponses",
+      "aiFirstResponse": "1re réponse moyenne IA",
+      "humanFirstResponse": "1re réponse moyenne humaine",
+      "responses": "réponses IA",
+      "responsesHuman": "réponses humaines",
+      "conversations": "conversations avec IA",
+      "conversationsHuman": "conversations humaines",
+      "title": "IA vs Humain",
+      "noDataHint": "L’IA n’est pas encore active sur cette période, ou les réponses n’ont pas été classifiées."
+    },
+    "pipeline": {
+      "title": "Entonnoir par Étape",
+      "subtitle": "Suivez vos opportunités à travers l'entonnoir de vente",
+      "opportunities": "opportunités",
+      "insights": "Résumé de l’entonnoir",
+      "conversionRate": "Conversations dans l’entonnoir",
+      "avgTicket": "Ticket moyen de l’entonnoir",
+      "totalValue": "Valeur totale de l’entonnoir"
+    },
+    "responseTime": {
+      "title": "Vitesse de Réponse",
+      "subtitle": "Comparaison entre service IA et humain",
+      "ai": "Service IA",
+      "human": "Service Humain",
+      "average": "Temps moyen général"
+    },
+    "recovery": {
+      "title": "Argent Récupéré",
+      "subtitle": "Leads réactivés après suivi automatique",
+      "reactivated": "Leads Réactivés",
+      "conversion": "Taux de Conversion",
+      "totalRecovered": "Total récupéré",
+      "aiContribution": "Contribution de l'IA"
+    },
+    "channels": {
+      "title": "Performance par Canal",
+      "subtitle": "Performance de conversion sur les canaux de communication",
+      "conversations": "conversations",
+      "conversion": "conversion",
+      "insights": "Insights des canaux",
+      "topChannel": "Canal leader",
+      "concentration": "Concentration Top 3",
+      "activeCount": "Canaux actifs",
+      "totalValue": "Valeur totale par canaux",
+      "valueLeaders": "Canaux à plus forte valeur"
+    },
+    "agents": {
+      "title": "Performance des Agents",
+      "subtitle": "Métriques de performance individuelle des agents",
+      "conversations": "conversations",
+      "avgTime": "Temps Moyen",
+      "satisfaction": "Satisfaction"
+    },
+    "charts": {
+      "visitorsTrend": "Conversations par jour",
+      "visitorsDescription": "Tendance quotidienne des conversations sur la période",
+      "conversionRate": "Taux de Conversion",
+      "conversionDescription": "Taux de conversion par type",
+      "channelShare": "Part par canal",
+      "channelShareDescription": "Répartition en pourcentage des conversations par canal",
+      "sessionDuration": "Temps de 1re réponse par jour",
+      "sessionDescription": "Moyenne quotidienne du first response time (secondes)",
+      "heatmapTitle": "Carte de chaleur opérationnelle",
+      "heatmapDescription": "Volume de conversations par date et heure",
+      "heatmapPeakSlot": "Pic hebdomadaire",
+      "heatmapPeakWeekday": "Jour le plus fort",
+      "heatmapPeakHour": "Heure de pic",
+      "heatmapPeakPeriodDay": "Jour de pic sur la période",
+      "heatmapExpand": "Étendre la période complète",
+      "heatmapCollapse": "Afficher les 15 derniers jours",
+      "heatmapShowing": "Affichage {shown} sur {total} jours",
+      "timezone": "Fuseau",
+      "channelsLabel": "Canaux",
+      "shareLabel": "Part"
+    },
+    "sections": {
+      "statusNow": "État opérationnel actuel",
+      "statusNowSubtitle": "Indicateurs clés pour une lecture rapide de la santé opérationnelle",
+      "trends": "Tendances dans le temps",
+      "trendsSubtitle": "Évolution de l’opération sur la période filtrée",
+      "optimization": "Diagnostic et optimisation",
+      "optimizationSubtitle": "Où se trouvent les goulots et opportunités d’optimisation"
+    },
+    "status": {
+      "good": "Dans la cible",
+      "warning": "Attention",
+      "critical": "Critique",
+      "noSample": "Sans base",
+      "volume": "Volume de la période",
+      "overdue": "en retard",
+      "automationActive": "Automatisation active",
+      "noAutomation": "Pas d’automatisation sur la période",
+      "currentBacklog": "Backlog opérationnel actuel",
+      "monitor": "Surveiller",
+      "pendingNow": "en attente maintenant"
+    },
+    "empty": {
+      "pipeline": "Aucune opportunité sur la période sélectionnée.",
+      "agents": "Aucune donnée agent pour la période sélectionnée.",
+      "channels": "Aucune donnée canal pour la période sélectionnée.",
+      "pipelineInactive": "Entonnoir inactif sur la période sélectionnée."
+    }
+  }
+}

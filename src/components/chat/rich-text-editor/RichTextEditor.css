@@ -1,0 +1,110 @@
+/* CSS mínimo para ProseMirror - apenas o essencial */
+
+.prosemirror-editor {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Placeholder */
+.prosemirror-editor:empty:before {
+  content: attr(data-placeholder);
+  color: hsl(var(--muted-foreground));
+  position: absolute;
+  pointer-events: none;
+}
+
+.prosemirror-editor:focus:empty:before {
+  opacity: 0.5;
+}
+
+/* Formatação básica */
+.prosemirror-editor strong {
+  font-weight: 600;
+}
+
+.prosemirror-editor em {
+  font-style: italic;
+}
+
+.prosemirror-editor code {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+/* Parágrafos */
+.prosemirror-editor p {
+  margin: 0.5rem 0;
+}
+
+.prosemirror-editor p:first-child {
+  margin-top: 0;
+}
+
+.prosemirror-editor p:last-child {
+  margin-bottom: 0;
+}
+
+/* Listas */
+.prosemirror-editor ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin: 0.5rem 0;
+}
+
+.prosemirror-editor li {
+  margin-left: 0;
+  margin-bottom: 0.25rem;
+}
+
+.prosemirror-editor li p {
+  display: inline;
+}
+
+/* Estilos para conteúdo rico renderizado nas mensagens */
+.rich-content strong {
+  font-weight: 600;
+}
+
+.rich-content em {
+  font-style: italic;
+}
+
+.rich-content code {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: monospace;
+}
+
+.rich-content ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin: 0.5rem 0;
+}
+
+.rich-content li {
+  margin-left: 0;
+  margin-bottom: 0.25rem;
+}
+
+.rich-content li p {
+  display: inline;
+}
+
+.rich-content p {
+  margin: 0.25rem 0;
+}
+
+.rich-content p:first-child {
+  margin-top: 0;
+}
+
+.rich-content p:last-child {
+  margin-bottom: 0;
+}

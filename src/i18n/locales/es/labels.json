@@ -1,0 +1,112 @@
+{
+  "title": "Etiquetas",
+  "loading": "Cargando etiquetas...",
+  "header": {
+    "title": "Etiquetas",
+    "subtitle": "{{count}} etiqueta{{plural}} en total",
+    "searchPlaceholder": "Buscar etiquetas...",
+    "newLabel": "Nueva Etiqueta",
+    "bulkDelete": "Eliminar",
+    "clearSelection": "Limpiar Selección",
+    "selected": "{{count}} seleccionada(s)"
+  },
+  "empty": {
+    "title": "Ninguna etiqueta encontrada",
+    "description": "Cree una nueva etiqueta para organizar y categorizar sus conversaciones.",
+    "action": "Nueva Etiqueta"
+  },
+  "modal": {
+    "title": {
+      "create": "Nueva Etiqueta",
+      "edit": "Editar Etiqueta"
+    },
+    "description": {
+      "create": "Cree una nueva etiqueta para organizar sus conversaciones.",
+      "edit": "Edite la información de la etiqueta."
+    },
+    "labels": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "color": "Color",
+      "showOnSidebar": "Mostrar en la barra lateral"
+    },
+    "placeholders": {
+      "name": "Digite el nombre de la etiqueta",
+      "description": "Digite una descripción (opcional)",
+      "color": "#1f93ff"
+    },
+    "hints": {
+      "showOnSidebar": "Hace la etiqueta visible en la barra lateral de las conversaciones"
+    },
+    "validation": {
+      "nameRequired": "El nombre es obligatorio",
+      "nameMinLength": "El nombre debe tener al menos 2 caracteres",
+      "colorRequired": "El color es obligatorio",
+      "colorInvalid": "El color debe estar en formato hexadecimal (#RRGGBB)"
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "create": "Crear",
+      "update": "Actualizar",
+      "saving": "Guardando..."
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "color": "Color",
+      "sidebar": "Barra Lateral",
+      "createdAt": "Creado el"
+    },
+    "noDescription": "-",
+    "sidebar": {
+      "yes": "Sí",
+      "no": "No"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar"
+    }
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "confirm": "Confirmar"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "No tiene permiso para visualizar etiquetas",
+      "create": "No tiene permiso para crear etiquetas",
+      "update": "No tiene permiso para editar etiquetas",
+      "delete": "No tiene permiso para eliminar etiquetas"
+    },
+    "loadError": "Error al cargar etiquetas",
+    "createSuccess": "Etiqueta creada con éxito",
+    "createError": "Error al crear etiqueta",
+    "updateSuccess": "Etiqueta actualizada con éxito",
+    "updateError": "Error al actualizar etiqueta",
+    "deleteSuccess": "Etiqueta eliminada con éxito",
+    "deleteError": "Error al eliminar etiqueta",
+    "bulkDeleteSuccess": "{{count}} etiqueta(s) eliminada(s) con éxito",
+    "bulkDeleteError": "Error al eliminar etiquetas"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Eliminar Etiqueta",
+      "description": "¿Está seguro de que desea eliminar la etiqueta \"{{title}}\"? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando..."
+    },
+    "bulkDelete": {
+      "title": "Eliminar Etiquetas",
+      "description": "¿Está seguro de que desea eliminar {{count}} etiqueta(s) seleccionada(s)? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar Todas",
+      "deleting": "Eliminando..."
+    }
+  }
+}

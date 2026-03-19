@@ -1,0 +1,74 @@
+{
+  "title": "Ferramentas do Sistema",
+  "subtitle": "Explore as ferramentas disponíveis no sistema",
+  "loading": "Carregando ferramentas...",
+  "card": {
+    "noDescription": "Sem descrição",
+    "input": "Entrada:",
+    "output": "Saída:",
+    "examplesCount": "{{count}} exemplo(s) disponível(is)"
+  },
+  "details": {
+    "title": "Detalhes da Ferramenta",
+    "basicInfo": {
+      "title": "Informações Básicas",
+      "name": "Nome",
+      "description": "Descrição"
+    },
+    "tags": {
+      "title": "Tags",
+      "count": "Tags ({{count}})",
+      "empty": "Nenhuma tag disponível"
+    },
+    "modes": {
+      "title": "Modos de Entrada e Saída",
+      "input": "Modos de Entrada",
+      "output": "Modos de Saída",
+      "notSpecified": "Não especificado"
+    },
+    "examples": {
+      "title": "Exemplos",
+      "count": "Exemplos ({{count}})",
+      "empty": "Nenhum exemplo disponível"
+    },
+    "configuration": {
+      "title": "Configuração",
+      "requiredFields": "Campos Obrigatórios",
+      "optionalFields": "Campos Opcionais",
+      "defaultValues": "Valores Padrão"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Ferramentas",
+    "description": "Configure os filtros para encontrar as ferramentas que você procura",
+    "applyFilters": "Aplicar Filtros",
+    "clearFilters": "Limpar Filtros",
+    "addFilter": "Adicionar Filtro"
+  },
+  "header": {
+    "searchPlaceholder": "Buscar por nome, descrição ou tags..."
+  },
+  "table": {
+    "columns": {
+      "tool": "Ferramenta",
+      "tags": "Tags",
+      "examples": "Exemplos",
+      "input": "Entrada",
+      "output": "Saída"
+    },
+    "noName": "Sem nome",
+    "noDescription": "Sem descrição",
+    "noTags": "Sem tags",
+    "actions": {
+      "viewDetails": "Ver detalhes"
+    },
+    "empty": {
+      "title": "Nenhuma ferramenta disponível",
+      "description": "Não há ferramentas disponíveis no sistema.",
+      "message": "Nenhuma ferramenta encontrada"
+    }
+  },
+  "messages": {
+    "loadError": "Erro ao carregar ferramentas"
+  }
+}

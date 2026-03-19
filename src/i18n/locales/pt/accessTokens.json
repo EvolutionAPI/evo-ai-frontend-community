@@ -1,0 +1,139 @@
+{
+  "title": "Tokens de Acesso",
+  "description": "Gerir tokens de acesso para autenticação da API",
+  "header": {
+    "subtitle": "{{count}} token de acesso no total",
+    "subtitle_plural": "{{count}} tokens de acesso no total",
+    "searchPlaceholder": "Pesquisar tokens de acesso..."
+  },
+  "form": {
+    "title": {
+      "new": "Novo Token de Acesso",
+      "edit": "Editar Token de Acesso",
+      "view": "Visualizar Token"
+    },
+    "labels": {
+      "name": "Nome do Token",
+      "scopes": "Permissões (Escopos)",
+      "selectedCount": "{{count}} permissão selecionada",
+      "selectedCount_plural": "{{count}} permissões selecionadas",
+      "selectAll": "Selecionar Todas",
+      "clearAll": "Limpar Todas"
+    },
+    "placeholders": {
+      "name": "ex. O Meu Token da API",
+      "searchPermissions": "Pesquisar recursos e ações..."
+    },
+    "descriptions": {
+      "name": "Nome descritivo para identificar este token de acesso",
+      "scopes": "Selecione as permissões a que este token terá acesso"
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "scopes": "Escopos",
+      "owner": "Proprietário",
+      "createdAt": "Criado em"
+    }
+  },
+  "actions": {
+    "create": "Novo Token",
+    "view": "Visualizar Token",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleting": "A eliminar",
+    "regenerate": "Regenerar Token",
+    "copy": "Copiar Token",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "close": "Fechar"
+  },
+  "messages": {
+    "loading": "A carregar tokens de acesso...",
+    "loadError": "Erro ao carregar tokens de acesso",
+    "createSuccess": "Token de acesso criado com sucesso",
+    "updateSuccess": "Token de acesso atualizado com sucesso",
+    "deleteSuccess": "Token de acesso eliminado com sucesso",
+    "bulkDeleteSuccess": "{{count}} token de acesso eliminado com sucesso",
+    "bulkDeleteSuccess_plural": "{{count}} tokens de acesso eliminados com sucesso",
+    "regenerateSuccess": "Token regenerado com sucesso",
+    "copySuccess": "Token copiado para a área de transferência",
+    "createError": "Erro ao criar token de acesso",
+    "updateError": "Erro ao atualizar token de acesso",
+    "deleteError": "Erro ao eliminar token de acesso",
+    "regenerateError": "Erro ao regenerar token",
+    "copyError": "Erro ao copiar para a área de transferência",
+    "loadDetailsError": "Erro ao carregar detalhes do token",
+    "permissionDenied": "Não tem permissão para {{action}} tokens de acesso",
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
+      "scopesRequired": "Selecione pelo menos uma permissão"
+    }
+  },
+  "deleteDialog": {
+    "title": "Eliminar Token de Acesso",
+    "description": "Tem a certeza de que deseja eliminar o token \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar"
+  },
+  "bulkDeleteDialog": {
+    "title": "Eliminar Tokens Selecionados",
+    "description": "Tem a certeza de que deseja eliminar {{count}} token selecionado? Esta ação não pode ser desfeita.",
+    "description_plural": "Tem a certeza de que deseja eliminar {{count}} tokens selecionados? Esta ação não pode ser desfeita.",
+    "cancel": "Cancelar",
+    "confirm": "Eliminar Todos"
+  },
+  "viewModal": {
+    "title": "Token de Acesso",
+    "labels": {
+      "name": "Nome",
+      "owner": "Proprietário",
+      "token": "Token de Acesso",
+      "scopes": "Permissões (Escopos)",
+      "createdAt": "Criado em",
+      "updatedAt": "Atualizado em",
+      "ownerId": "ID do Proprietário",
+      "tokenId": "ID do Token"
+    },
+    "copyToken": "Token de Acesso",
+    "descriptions": {
+      "tokenId": "Identificador único para este token de acesso",
+      "tokenUsage": "Use este token no cabeçalho Authorization: Authorization: Bearer {token}...",
+      "scopes": "Permissões que este token tem acesso",
+      "noScopes": "Nenhum escopo configurado"
+    },
+    "sections": {
+      "tokenDetails": "Detalhes do Token",
+      "apiUsage": "Exemplo de Uso da API",
+      "security": "Importante - Segurança"
+    },
+    "examples": {
+      "curl": "Exemplo cURL",
+      "javascript": "Exemplo JavaScript"
+    },
+    "security": {
+      "title": "Importante - Segurança",
+      "tips": [
+        "Nunca exponha o token de acesso em código do lado do cliente ou repositórios públicos",
+        "Use HTTPS em produção para todas as comunicações da API",
+        "Regenere o token se suspeitar que foi comprometido",
+        "Monitore o uso do token regularmente",
+        "Armazene tokens com segurança usando variáveis de ambiente ou cofres seguros"
+      ]
+    },
+    "close": "Fechar",
+    "tokenCopied": "Token copiado!"
+  },
+  "empty": {
+    "title": "Nenhum token encontrado",
+    "description": "Crie o seu primeiro token de acesso para começar a usar a API"
+  },
+  "permissions": {
+    "loadingPermissions": "A carregar permissões...",
+    "noPermissionsAvailable": "Nenhuma permissão disponível",
+    "retryLoad": "Tentar Novamente",
+    "loadError": "Falha ao carregar permissões. Tente novamente."
+  }
+}

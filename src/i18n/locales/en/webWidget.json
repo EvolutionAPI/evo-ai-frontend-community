@@ -1,0 +1,69 @@
+{
+  "title": "Website Channel",
+  "description": "Connect your website with a live chat widget",
+  "basicInfo": {
+    "title": "Basic Information",
+    "description": "Configure the name and URL of your website"
+  },
+  "appearance": {
+    "title": "Widget Appearance",
+    "description": "Personalize the colors and messages of the widget"
+  },
+  "greeting": {
+    "title": "Greeting Message",
+    "description": "Configure automatic greeting messages",
+    "autoDescription": "Send a greeting message automatically when customers start a conversation"
+  },
+  "fields": {
+    "displayName": "Display Name",
+    "displayNamePlaceholder": "WhatsApp Support",
+    "channelName": "Channel Name",
+    "channelNamePlaceholder": "whatsapp-support",
+    "websiteUrl": "Website URL",
+    "websiteUrlPlaceholder": "https://meusite.com",
+    "widgetColor": "Widget Color",
+    "welcomeTitle": "Welcome Title",
+    "welcomeTitlePlaceholder": "Hello! How can we help you?",
+    "welcomeTagline": "Welcome Tagline",
+    "welcomeTaglinePlaceholder": "Normally we respond in a few minutes",
+    "welcomeTaglineHelp": "This message will be displayed in the widget header",
+    "greetingEnabled": "Enable automatic greeting message",
+    "greetingMessage": "Greeting Message",
+    "greetingMessagePlaceholder": "Hello! Welcome to our site. How can we help you today?"
+  },
+  "summary": {
+    "title": "Configuration Summary",
+    "name": "Name",
+    "url": "URL",
+    "color": "Color",
+    "greeting": "Greeting",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "notConfigured": "not configured"
+  },
+  "validation": {
+    "websiteNameRequired": "Website name is required",
+    "widgetColorRequired": "Widget color is required",
+    "replyTimeRequired": "Reply time is required"
+  },
+  "widgetHelpers": {
+    "positions": {
+      "left": "Left",
+      "right": "Right"
+    },
+    "bubbleTypes": {
+      "standard": "Standard",
+      "expanded": "Expanded"
+    },
+    "viewOptions": {
+      "preview": "Preview",
+      "script": "Script"
+    },
+    "replyTime": {
+      "fewMinutes": "In a few minutes",
+      "fewHours": "In a few hours",
+      "day": "In a day"
+    },
+    "defaultLauncherTitle": "Contact us"
+  }
+}

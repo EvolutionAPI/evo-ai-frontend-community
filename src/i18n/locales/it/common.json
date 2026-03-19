@@ -1,0 +1,136 @@
+{
+  "base": {
+    "pagination": {
+      "itemsPerPage": "Elementi per pagina:",
+      "showing": "Mostrando {{start}} a {{end}} di {{total}} elementi",
+      "page": "Pagina {{current}} di {{total}}"
+    },
+    "header": {
+      "searchPlaceholder": "Cerca...",
+      "filters": "Filtri",
+      "selected": "{{count}} elemento selezionato",
+      "selected_other": "{{count}} elementi selezionati",
+      "clear": "Cancella"
+    },
+    "table": {
+      "emptyMessage": "Nessun elemento trovato",
+      "loading": "Caricamento...",
+      "yes": "Sì",
+      "no": "No",
+      "selectAll": "Seleziona tutti",
+      "selectItem": "Seleziona elemento {{key}}",
+      "actions": "Azioni"
+    },
+    "buttons": {
+      "save": "Salva",
+      "cancel": "Annulla",
+      "delete": "Elimina",
+      "edit": "Modifica",
+      "create": "Crea",
+      "update": "Aggiorna",
+      "close": "Chiudi",
+      "confirm": "Conferma",
+      "back": "Indietro"
+    },
+    "messages": {
+      "success": "Operazione completata con successo",
+      "error": "Si è verificato un errore",
+      "loading": "Caricamento...",
+      "saving": "Salvataggio...",
+      "deleting": "Eliminazione...",
+      "updating": "Aggiornamento..."
+    },
+    "filter": {
+      "title": "Filtri",
+      "description": "Configura i filtri per trovare gli elementi che cerchi",
+      "applyFilters": "Applica Filtri",
+      "clearFilters": "Cancella Filtri",
+      "addFilter": "Aggiungi Filtro",
+      "cancel": "Annulla",
+      "and": "E",
+      "or": "O",
+      "selectDate": "Seleziona data",
+      "selectOption": "Seleziona opzione",
+      "enterNumber": "Inserisci un numero",
+      "enterValue": "Inserisci il valore"
+    },
+    "form": {
+      "required": "{{field}} è obbligatorio",
+      "minLength": "{{field}} deve avere almeno {{min}} caratteri",
+      "maxLength": "{{field}} deve avere al massimo {{max}} caratteri",
+      "invalidFormat": "{{field}} ha un formato non valido",
+      "minValue": "{{field}} deve essere almeno {{min}}",
+      "maxValue": "{{field}} deve essere al massimo {{max}}",
+      "saving": "Salvataggio...",
+      "requiredMark": "*"
+    },
+    "flow": {
+      "editor": {
+        "title": "Editor di Flow",
+        "unsaved": "• Non salvato",
+        "saving": "Salvataggio...",
+        "save": "Salva",
+        "execute": "Esegui",
+        "stop": "Ferma",
+        "reset": "Resetta",
+        "loading": "Caricamento flow...",
+        "errors": "{{count}} errore/i trovato/i"
+      },
+      "node": {
+        "nextStep": "Prossimo Passo",
+        "options": "Opzioni del Nodo",
+        "duplicate": "Duplica",
+        "edit": "Modifica",
+        "delete": "Elimina"
+      },
+      "panel": {
+        "title": "Componenti",
+        "subtitle": "Trascina i componenti sulla tela",
+        "search": "Cerca componenti...",
+        "searchAll": "Ricerca in tutti i componenti",
+        "noResults": "Nessun componente trovato per \"{{query}}\"",
+        "dragToAdd": "Trascina per aggiungere",
+        "allComponents": "Tutti",
+        "allDescription": "Tutti i componenti"
+      }
+    },
+    "status": {
+      "active": "Attivo",
+      "inactive": "Inattivo",
+      "blocked": "Bloccato",
+      "pending": "In attesa",
+      "success": "Successo",
+      "error": "Errore",
+      "warning": "Attenzione",
+      "expiring": "In scadenza",
+      "days": "giorni"
+    },
+    "appInitializer": {
+      "initializing": "Inizializzazione applicazione...",
+      "initError": "Errore di Inizializzazione",
+      "errorMessage": "Impossibile inizializzare l'applicazione",
+      "reload": "Ricarica Applicazione"
+    },
+    "errorBoundary": {
+      "title": "Ops! Qualcosa è andato storto",
+      "description": "Si è verificato un errore imprevisto. Il nostro team è stato notificato e sta lavorando per risolvere.",
+      "technicalDetails": "Dettagli tecnici (sviluppo)",
+      "retry": "Riprova"
+    },
+    "impersonation": {
+      "viewing": "Stai visualizzando come cliente:",
+      "exit": "Torna all'admin"
+    },
+    "theme": {
+      "toggle": "Cambia tema",
+      "light": "Modalità chiara",
+      "dark": "Modalità scura"
+    }
+  },
+  "cancel": "Annulla",
+  "delete": "Elimina",
+  "close": "Chiudi",
+  "table": {
+    "inUse": "In uso"
+  }
+}

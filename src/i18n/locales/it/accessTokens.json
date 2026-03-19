@@ -1,0 +1,101 @@
+{
+  "title": "Token di Accesso",
+  "description": "Gestisci i token di accesso per l'autenticazione API",
+  "form": {
+    "title": {
+      "new": "Nuovo Token di Accesso",
+      "edit": "Modifica Token di Accesso",
+      "view": "Visualizza Token"
+    },
+    "labels": {
+      "name": "Nome del Token",
+      "scopes": "Permessi (Ambiti)",
+      "selectedCount": "{{count}} permesso selezionato",
+      "selectedCount_plural": "{{count}} permessi selezionati",
+      "selectAll": "Seleziona Tutto",
+      "clearAll": "Cancella Tutto"
+    },
+    "placeholders": {
+      "name": "es. Il Mio Token API",
+      "searchPermissions": "Cerca risorse e azioni..."
+    },
+    "descriptions": {
+      "name": "Nome descrittivo per identificare questo token di accesso",
+      "scopes": "Seleziona i permessi a cui questo token avrà accesso"
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "scopes": "Ambiti",
+      "owner": "Proprietario",
+      "createdAt": "Creato il"
+    }
+  },
+  "actions": {
+    "create": "Nuovo Token",
+    "view": "Visualizza Token",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "regenerate": "Rigenera Token",
+    "copy": "Copia Token",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "close": "Chiudi"
+  },
+  "messages": {
+    "loadError": "Errore nel caricamento dei token di accesso",
+    "createSuccess": "Token di accesso creato con successo",
+    "updateSuccess": "Token di accesso aggiornato con successo",
+    "deleteSuccess": "Token di accesso eliminato con successo",
+    "regenerateSuccess": "Token rigenerato con successo",
+    "copySuccess": "Token copiato negli appunti",
+    "createError": "Errore nella creazione del token di accesso",
+    "updateError": "Errore nell'aggiornamento del token di accesso",
+    "deleteError": "Errore nell'eliminazione del token di accesso",
+    "regenerateError": "Errore nella rigenerazione del token",
+    "loadDetailsError": "Errore nel caricamento dei dettagli del token",
+    "permissionDenied": "Non hai il permesso di {{action}} i token di accesso",
+    "validation": {
+      "nameRequired": "Il nome è obbligatorio",
+      "nameMinLength": "Il nome deve essere di almeno 2 caratteri",
+      "scopesRequired": "Seleziona almeno un permesso"
+    }
+  },
+  "deleteDialog": {
+    "title": "Elimina Token di Accesso",
+    "description": "Sei sicuro di voler eliminare il token \"{{name}}\"? Questa azione non può essere annullata.",
+    "cancel": "Annulla",
+    "confirm": "Elimina"
+  },
+  "bulkDeleteDialog": {
+    "title": "Elimina Token Selezionati",
+    "description": "Sei sicuro di voler eliminare {{count}} token selezionato? Questa azione non può essere annullata.",
+    "description_plural": "Sei sicuro di voler eliminare {{count}} token selezionati? Questa azione non può essere annullata.",
+    "cancel": "Annulla",
+    "confirm": "Elimina Tutti"
+  },
+  "viewModal": {
+    "title": "Dettagli del Token",
+    "labels": {
+      "name": "Nome",
+      "token": "Token",
+      "scopes": "Ambiti",
+      "owner": "Proprietario",
+      "createdAt": "Creato il"
+    },
+    "copyToken": "Copia Token",
+    "close": "Chiudi",
+    "tokenCopied": "Token copiato!"
+  },
+  "empty": {
+    "title": "Nessun token trovato",
+    "description": "Crea il tuo primo token di accesso per iniziare a usare l'API"
+  },
+  "permissions": {
+    "loadingPermissions": "Caricamento permessi...",
+    "noPermissionsAvailable": "Nessun permesso disponibile",
+    "retryLoad": "Riprova",
+    "loadError": "Impossibile caricare i permessi. Riprova."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "title": "Telegram Bot",
+  "name": "Telegram",
+  "description": "Conecte su bot de Telegram para soporte automatizado",
+  "backButton": "Volver",
+  "createButton": "Crear Canal Telegram",
+  "creating": "Creando Canal...",
+  "fields": {
+    "basicInfo": "Información Básica",
+    "name": {
+      "label": "Nombre del Inbox",
+      "placeholder": "Ej: Telegram Soporte"
+    },
+    "botConfiguration": "Configuración del Bot",
+    "botToken": {
+      "label": "Token del Bot",
+      "placeholder": "123456789:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+      "helpText": "Obtenga el token conversando con @BotFather en Telegram"
+    }
+  },
+  "instructions": {
+    "title": "Cómo Crear un Bot en Telegram",
+    "step1": "1. Inicie una conversación con @BotFather en Telegram",
+    "step2": "2. Digite /newbot y siga las instrucciones para crear su bot",
+    "step3": "3. Defina un nombre para su bot (ej: \"Mi Bot de Soporte\")",
+    "step4": "4. Defina un username que termine con \"bot\" (ej: \"mi_bot_soporte\")",
+    "step5": "5. Copie el token que BotFather proporcionará",
+    "step6": "6. Pegue el token en el campo arriba y cree el canal"
+  },
+  "webhook": {
+    "title": "Configuración Automática",
+    "description": "El webhook será configurado automáticamente cuando cree el canal:",
+    "note": "¡No es necesario configurar manualmente en Telegram!"
+  },
+  "commands": {
+    "title": "Comandos Recomendados para el Bot",
+    "description": "Puede configurar estos comandos con @BotFather usando /setcommands:",
+    "list": "start - Iniciar conversación\nhelp - Obtener ayuda\nsupport - Hablar con soporte\nstatus - Verificar estado de la atención"
+  },
+  "validation": {
+    "nameRequired": "El nombre del inbox es obligatorio",
+    "botTokenRequired": "El token del bot es obligatorio",
+    "botTokenFormat": "Formato inválido. Use el formato: 123456789:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+    "fillAllFields": "Complete todos los campos obligatorios"
+  },
+  "success": {
+    "created": "¡Canal Telegram creado con éxito!"
+  },
+  "errors": {
+    "createError": "Error al crear canal Telegram. Verifique el token del bot."
+  },
+  "howToCreate": {
+    "title": "Cómo crear un bot Telegram",
+    "step1": "Abra Telegram y busque @BotFather",
+    "step2": "Envíe el comando /newbot",
+    "step3": "Elija un nombre para su bot",
+    "step4": "Elija un username que termine con \"bot\"",
+    "step5": "Copie el token proporcionado y péguelo arriba"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "title": "Labels",
+  "loading": "Loading labels...",
+  "header": {
+    "title": "Labels",
+    "subtitle": "{{count}} label{{plural}} in total",
+    "searchPlaceholder": "Search labels...",
+    "newLabel": "New Label",
+    "bulkDelete": "Delete",
+    "clearSelection": "Clear Selection",
+    "selected": "{{count}} selected"
+  },
+  "empty": {
+    "title": "No labels found",
+    "description": "Create a new label to organize and categorize your conversations.",
+    "action": "New Label"
+  },
+  "modal": {
+    "title": {
+      "create": "New Label",
+      "edit": "Edit Label"
+    },
+    "description": {
+      "create": "Create a new label to organize your conversations.",
+      "edit": "Edit the label information."
+    },
+    "labels": {
+      "name": "Name",
+      "description": "Description",
+      "color": "Color",
+      "showOnSidebar": "Show on sidebar"
+    },
+    "placeholders": {
+      "name": "Enter label name",
+      "description": "Enter a description (optional)",
+      "color": "#1f93ff"
+    },
+    "hints": {
+      "showOnSidebar": "Makes the label visible in the conversations sidebar"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "colorRequired": "Color is required",
+      "colorInvalid": "Color must be in hexadecimal format (#RRGGBB)"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "create": "Create",
+      "update": "Update",
+      "saving": "Saving..."
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Name",
+      "description": "Description",
+      "color": "Color",
+      "sidebar": "Sidebar",
+      "createdAt": "Created at"
+    },
+    "noDescription": "-",
+    "sidebar": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "confirm": "Confirm"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "You don't have permission to view labels",
+      "create": "You don't have permission to create labels",
+      "update": "You don't have permission to edit labels",
+      "delete": "You don't have permission to delete labels"
+    },
+    "loadError": "Error loading labels",
+    "createSuccess": "Label created successfully",
+    "createError": "Error creating label",
+    "updateSuccess": "Label updated successfully",
+    "updateError": "Error updating label",
+    "deleteSuccess": "Label deleted successfully",
+    "deleteError": "Error deleting label",
+    "bulkDeleteSuccess": "{{count}} label(s) deleted successfully",
+    "bulkDeleteError": "Error deleting labels"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Delete Label",
+      "description": "Are you sure you want to delete the label \"{{title}}\"? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "bulkDelete": {
+      "title": "Delete Labels",
+      "description": "Are you sure you want to delete {{count}} selected label(s)? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete All",
+      "deleting": "Deleting..."
+    }
+  }
+}

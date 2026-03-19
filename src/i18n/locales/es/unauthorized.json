@@ -1,0 +1,15 @@
+{
+  "title": "Acceso Denegado",
+  "subtitle": "No tiene permiso para acceder a esta página",
+  "description": "Esta página requiere permisos específicos que no están disponibles para su cuenta actual.",
+  "contactAdmin": {
+    "title": "¿Necesita acceso?",
+    "message": "Póngase en contacto con el administrador de su cuenta para solicitar los permisos necesarios."
+  },
+  "buttons": {
+    "back": "Volver",
+    "goHome": "Ir al Inicio"
+  },
+  "errorCode": "Código de error: 403 - Acceso Denegado"
+}
+

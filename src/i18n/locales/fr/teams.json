@@ -1,0 +1,184 @@
+{
+  "title": "Équipes",
+  "subtitle": "Organisez vos Agents en équipes pour une meilleure gestion et attribution automatique",
+  "loading": "Chargement des équipes...",
+  "card": {
+    "autoAssign": "Attribution automatique",
+    "id": "ID",
+    "members": "Membres",
+    "actions": {
+      "users": "Utilisateurs",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    }
+  },
+  "details": {
+    "autoAssignActive": "Attribution automatique active",
+    "autoAssignInactive": "Attribution automatique inactive",
+    "id": "ID",
+    "tabs": {
+      "overview": "Vue d'ensemble",
+      "members": "Membres",
+      "activity": "Activité",
+      "settings": "Paramètres"
+    },
+    "overview": {
+      "description": "Description",
+      "noDescription": "Aucune description fournie pour cette équipe.",
+      "totalMembers": "Total de Membres",
+      "autoAssign": "Attribution automatique",
+      "active": "Active",
+      "inactive": "Inactive",
+      "temporalInfo": "Informations Temporelles",
+      "created": "Créée :",
+      "lastUpdate": "Dernière mise à jour :"
+    },
+    "members": {
+      "placeholder": "La liste des membres sera implémentée prochainement.",
+      "manageUsers": "Gérer les Utilisateurs"
+    },
+    "activity": {
+      "placeholder": "L'historique des activités sera implémenté prochainement."
+    },
+    "settings": {
+      "title": "Paramètres de l'Équipe",
+      "autoAssignTitle": "Attribution automatique des conversations",
+      "autoAssignDescription": "Permet aux conversations d'être automatiquement attribuées aux membres de cette équipe",
+      "enabled": "Activée",
+      "disabled": "Désactivée",
+      "editSettings": "Modifier les Paramètres"
+    },
+    "actions": {
+      "manageUsers": "Gérer les Utilisateurs",
+      "edit": "Modifier"
+    }
+  },
+  "form": {
+    "basicInfo": "Informations de Base",
+    "name": {
+      "label": "Nom de l'Équipe *",
+      "placeholder": "Ex : Service VIP, Support Technique...",
+      "required": "Le nom de l'équipe est obligatoire",
+      "minLength": "Le nom doit contenir au moins 2 caractères"
+    },
+    "description": {
+      "label": "Description",
+      "placeholder": "Décrivez l'objectif et les responsabilités de cette équipe...",
+      "maxLength": "La description doit contenir au maximum 500 caractères",
+      "counter": "{{current}}/500 caractères"
+    },
+    "configuration": "Configuration",
+    "autoAssign": {
+      "label": "Attribution automatique des conversations",
+      "description": "Permet aux conversations d'être automatiquement attribuées aux membres de cette équipe"
+    },
+    "actions": {
+      "cancel": "Annuler",
+      "saving": "Enregistrement en cours...",
+      "create": "Créer l'Équipe",
+      "save": "Enregistrer les Modifications"
+    }
+  },
+  "modal": {
+    "create": "Créer une Nouvelle Équipe",
+    "edit": "Modifier {{name}}"
+  },
+  "header": {
+    "newTeam": "Nouvelle Équipe",
+    "export": "Exporter",
+    "import": "Importer",
+    "delete": "Supprimer",
+    "searchPlaceholder": "Rechercher par nom ou description..."
+  },
+  "table": {
+    "columns": {
+      "team": "Équipe",
+      "members": "Membres",
+      "autoAssign": "Attribution automatique",
+      "id": "ID",
+      "enabled": "Activée",
+      "disabled": "Désactivée"
+    },
+    "actions": {
+      "manageUsers": "Gérer les Utilisateurs",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    }
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des équipes",
+    "loadDataError": "Erreur lors du chargement des données",
+    "createSuccess": "Équipe créée avec succès !",
+    "updateSuccess": "Équipe mise à jour avec succès !",
+    "deleteSuccess": "Équipe supprimée avec succès !",
+    "bulkDeleteSuccess": "{{count}} équipes supprimées avec succès !",
+    "createError": "Erreur lors de la création de l'équipe",
+    "updateError": "Erreur lors de la mise à jour de l'équipe",
+    "deleteError": "Erreur lors de la suppression de l'équipe",
+    "bulkDeleteError": "Erreur lors de la suppression des équipes sélectionnées",
+    "selectAtLeastOne": "Sélectionnez au moins un utilisateur",
+    "usersAddedSuccess": "Utilisateurs ajoutés avec succès !",
+    "addUsersError": "Erreur lors de l'ajout des utilisateurs",
+    "permissionDenied": {
+      "read": "Pas de permission pour visualiser les équipes",
+      "create": "Pas de permission pour créer des équipes",
+      "update": "Pas de permission pour modifier les équipes",
+      "delete": "Pas de permission pour supprimer les équipes"
+    },
+    "importInfo": "Fonctionnalité d'importation en développement",
+    "exportInfo": "Fonctionnalité d'exportation en développement",
+    "filterInfo": "Fonctionnalité de filtres en développement"
+  },
+  "empty": {
+    "title": "Aucune équipe trouvée",
+    "description": "Créez votre première équipe pour organiser vos Agents.",
+    "action": "Nouvelle Équipe"
+  },
+  "addUsers": {
+    "title": "Ajouter des Utilisateurs - {{name}}",
+    "subtitle": "Sélectionnez les utilisateurs que vous souhaitez ajouter à l'équipe",
+    "summary": "{{selected}} sur {{total}} utilisateurs sélectionnés",
+    "table": {
+      "select": "Sélectionner",
+      "user": "Utilisateur",
+      "email": "E-mail",
+      "status": {
+        "online": "En ligne",
+        "busy": "Occupé",
+        "offline": "Hors ligne"
+      }
+    },
+    "empty": {
+      "title": "Aucun utilisateur disponible",
+      "description": "Tous les utilisateurs font déjà partie de cette équipe ou il n'y a pas d'utilisateurs disponibles."
+    },
+    "notFound": {
+      "title": "Équipe introuvable",
+      "description": "L'équipe que vous recherchez n'a pas été trouvée.",
+      "action": "Retour aux équipes"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "title": "Supprimer l'Équipe",
+      "description": "Êtes-vous sûr de vouloir supprimer l'équipe \"{{name}}\" ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "deleting": "Suppression en cours..."
+    },
+    "bulkDelete": {
+      "title": "Supprimer les Équipes",
+      "description": "Êtes-vous sûr de vouloir supprimer {{count}} équipes sélectionnées ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer Toutes",
+      "deleting": "Suppression en cours..."
+    }
+  },
+  "actions": {
+    "back": "Retour",
+    "selectAll": "Tout Sélectionner",
+    "deselectAll": "Tout Désélectionner",
+    "saving": "Enregistrement en cours...",
+    "addUsers": "Ajouter des Utilisateurs"
+  }
+}

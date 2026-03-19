@@ -1,0 +1,191 @@
+{
+  "title": "Custom MCP Servers",
+  "permissions": {
+    "viewDenied": "You don't have permission to view custom MCP servers",
+    "createDenied": "You don't have permission to create custom MCP servers",
+    "editDenied": "You don't have permission to edit custom MCP servers",
+    "deleteDenied": "You don't have permission to delete custom MCP servers"
+  },
+  "errors": {
+    "accountNotFound": "Account not found",
+    "accountIdNotAvailable": "Account ID not available",
+    "loadError": "Error loading custom MCP servers",
+    "applyFiltersError": "Error applying filters",
+    "deleteError": "Error deleting custom MCP server",
+    "saveError": "Error saving custom MCP server",
+    "updateError": "Error updating custom MCP server",
+    "testError": "Error testing custom MCP server"
+  },
+  "success": {
+    "testSuccess": "Test executed successfully! Tools discovered: {{count}}",
+    "deleteSuccess": "Custom MCP server deleted successfully",
+    "updateSuccess": "Custom MCP server updated successfully",
+    "createSuccess": "Custom MCP server created successfully"
+  },
+  "test": {
+    "failed": "Test failed: {{error}}",
+    "unknownError": "Unknown error"
+  },
+  "loading": {
+    "servers": "Loading custom MCP servers...",
+    "deleting": "Deleting...",
+    "delete": "Delete"
+  },
+  "emptyState": {
+    "title": "No custom MCP server found",
+    "description": "Create a new custom MCP server to expand the capabilities of agents.",
+    "action": "New Custom MCP Server"
+  },
+  "deleteDialog": {
+    "title": "Delete Custom MCP Server",
+    "description": "Are you sure you want to delete the custom MCP server \"{{name}}\"? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "viewMode": {
+    "cards": "Cards View",
+    "table": "Table View"
+  },
+  "header": {
+    "title": "Custom MCP Servers",
+    "subtitle": "Configure custom MCP servers to expand the capabilities of agents",
+    "searchPlaceholder": "Search by name, URL or description...",
+    "newServer": "New Server",
+    "filter": "Filter",
+    "clearSelection": "Clear Selection",
+    "totalCount": "{{count}} server(s)",
+    "selectedCount": "{{count}} selected(s)"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "test": "Test",
+    "view": "View",
+    "create": "Create",
+    "cancel": "Cancel",
+    "save": "Save Changes",
+    "createServer": "Create MCP Server"
+  },
+  "card": {
+    "custom": "Custom",
+    "noDescription": "No description",
+    "noName": "No name",
+    "tools": "tools",
+    "timeout": "Timeout: {{timeout}}s",
+    "retries": "Retries: {{count}}",
+    "createdAt": "Created at {{date}}",
+    "moreTools": "+{{count}}"
+  },
+  "details": {
+    "title": "Basic Information",
+    "test": "Test",
+    "edit": "Edit",
+    "labels": {
+      "name": "Name",
+      "description": "Description",
+      "url": "URL",
+      "timeout": "Timeout",
+      "retries": "Retries",
+      "createdAt": "Created at"
+    },
+    "tools": {
+      "title": "Tools ({{count}})",
+      "inputModes": "Input Modes:",
+      "outputModes": "Output Modes:",
+      "tags": "Tags:",
+      "noTools": "No tools discovered",
+      "noToolsDescription": "Execute a test to discover the available tools"
+    },
+    "headers": {
+      "title": "Headers HTTP",
+      "noHeaders": "No header HTTP configured"
+    },
+    "tags": {
+      "title": "Tags"
+    }
+  },
+  "form": {
+    "sections": {
+      "basicInfo": "Basic Information",
+      "connection": "Connection Configuration",
+      "advanced": "Advanced Settings",
+      "tools": "Tools"
+    },
+    "labels": {
+      "name": "Name",
+      "description": "Description",
+      "url": "URL Server",
+      "headers": "Headers HTTP (JSON)",
+      "timeout": "Timeout (seconds)",
+      "retries": "Retries",
+      "tags": "Tags"
+    },
+    "placeholders": {
+      "name": "Custom MCP Server Name",
+      "description": "Custom MCP Server Description...",
+      "url": "https://example.com/mcp",
+      "headers": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+      "tags": "api, search, database"
+    },
+    "hints": {
+      "headers": "Configure the HTTP headers required for authentication and communication",
+      "tags": "Separate the tags with commas to organize and categorize the server"
+    },
+    "toolsInfo": {
+      "configured": "{{count}} tool(s) configured",
+      "notConfigured": "No tool configured",
+      "autoDiscovery": "The tools will be discovered automatically after testing the server"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "urlRequired": "URL is required",
+      "urlInvalid": "URL is invalid",
+      "timeoutRange": "Timeout must be between 1 and 300 seconds",
+      "retriesRange": "Retries must be between 0 and 10",
+      "headersInvalid": "Invalid JSON headers"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "create": "Create MCP Server",
+      "update": "Save Changes"
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Create New Custom MCP Server",
+      "edit": "Edit {{name}}",
+      "editFallback": "Edit Custom MCP Server",
+      "view": "View {{name}}",
+      "viewFallback": "View Custom MCP Server"
+    }
+  },
+  "filter": {
+    "title": "Filter Custom MCP Servers",
+    "description": "Configure the filters to find the custom MCP servers you're looking for",
+    "apply": "Apply Filters",
+    "clear": "Clear Filters",
+    "add": "Add Filter"
+  },
+  "table": {
+    "columns": {
+      "server": "Server",
+      "description": "Description",
+      "url": "URL",
+      "tools": "Tools",
+      "timeout": "Timeout",
+      "createdAt": "Created at",
+      "actions": "Test"
+    },
+    "custom": "Custom",
+    "noDescription": "No description",
+    "noName": "No name",
+    "test": "Test",
+    "editServer": "Edit server",
+    "deleteServer": "Delete server",
+    "emptyMessage": "No custom MCP server found",
+    "emptyTitle": "No custom MCP server created",
+    "emptyDescription": "Create custom MCP servers to expand the capabilities of agents.",
+    "emptyAction": "Create custom MCP server"
+  }
+}

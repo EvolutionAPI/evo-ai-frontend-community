@@ -1,0 +1,61 @@
+{
+  "title": "Canale Email",
+  "name": "Email",
+  "description": "Connetti la tua casella email per il supporto via email",
+  "connect": "Connetti",
+  "connectGmail": "Connetti il tuo account Gmail tramite OAuth",
+  "connectOutlook": "Connetti il tuo account Outlook tramite OAuth",
+  "configureImap": "Configura la tua email tramite IMAP/SMTP",
+  "emailFrom": "Email di {{provider}}",
+  "oauthDescription": "Clicca sul pulsante Accedi con {{provider}} per iniziare. Ti verrà chiesto di accettare i permessi richiesti, verrai reindirizzato al pannello.",
+  "emailPlaceholder": "Inserisci l'indirizzo email",
+  "connecting": "Connessione in corso...",
+  "signInWith": "Accedi con {{provider}}",
+  "emailChannel": "Canale Email",
+  "emailChannelDescription": "Configura un canale semplice per inoltrare le email ricevute.",
+  "channelName": "Nome del Canale",
+  "channelNamePlaceholder": "Canale Email",
+  "email": "Email",
+  "emailAddressPlaceholder": "supporto@azienda.com",
+  "forwardDescription": "I messaggi ricevuti verranno inoltrati a questo indirizzo email.",
+  "creating": "Creazione in corso...",
+  "createEmailChannel": "Crea Canale Email",
+  "fields": {
+    "basicInfo": "Informazioni di Base",
+    "name": {
+      "label": "Nome del Canale",
+      "placeholder": "Canale Email"
+    },
+    "emailAddress": {
+      "label": "Indirizzo Email",
+      "placeholder": "supporto@azienda.com"
+    }
+  },
+  "providers": {
+    "gmail": {
+      "name": "Gmail",
+      "description": "Configura usando il tuo account Gmail"
+    },
+    "outlook": {
+      "name": "Outlook",
+      "description": "Configura usando il tuo account Microsoft/Outlook"
+    },
+    "imap": {
+      "name": "IMAP/SMTP",
+      "description": "Configura manualmente usando il server IMAP/SMTP"
+    }
+  },
+  "validation": {
+    "emailRequired": "Inserisci l'indirizzo email",
+    "nameRequired": "Il nome dell'inbox è obbligatorio",
+    "fillAllFields": "Compila tutti i campi obbligatori"
+  },
+  "errors": {
+    "authError": "Errore durante l'avvio dell'autenticazione. Verifica le impostazioni OAuth.",
+    "connectError": "Errore di connessione con {{provider}}",
+    "createError": "Errore durante la creazione del canale email"
+  },
+  "success": {
+    "created": "Canale email creato con successo!"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "title": "Messenger",
+  "name": "Messenger",
+  "description": "Connect your Facebook page to receive messages",
+  "facebookAuth": "Facebook Authentication",
+  "authDescription": "Connect your account to access Messenger pages",
+  "connecting": "Connecting...",
+  "signInWithFacebook": "Sign in with Facebook",
+  "selectPage": "Select Page",
+  "selectPageDescription": "Choose the page that will be connected to Messenger",
+  "selected": "Selected",
+  "channelConfiguration": "Channel Configuration",
+  "channelConfigDescription": "Define a name to identify this channel",
+  "channelName": "Channel Name",
+  "channelNamePlaceholder": "Messenger Channel",
+  "creating": "Creating...",
+  "createChannel": "Create Channel",
+  "loadingFacebookSDK": "Loading Facebook SDK...",
+  "validation": {
+    "pageRequired": "Select a Facebook page",
+    "nameRequired": "Channel name is required"
+  },
+  "connectWithFacebook": "Connect with Facebook",
+  "connectWithFacebookDescription": "Connect your Facebook page to start using Messenger",
+  "redirectToAuthorize": "You will be redirected to authorize the application",
+  "mustBePageAdmin": "Make sure you are an administrator of the page",
+  "connectingToFacebook": "Connecting to Facebook...",
+  "fetchingPages": "Fetching Facebook pages...",
+  "tryAgain": "Try Again",
+  "errors": {
+    "sdkNotLoaded": "Facebook SDK not loaded",
+    "authNotCompleted": "Facebook authorization not completed",
+    "fetchPagesError": "Failed to fetch pages",
+    "createChannelError": "Failed to create channel",
+    "facebookNotConfigured": "Facebook not configured",
+    "facebookConfigMessage": "The FB_APP_ID environment variable has not been configured.",
+    "appNotAuthorized": "You need to authorize the application to continue",
+    "loginCancelled": "Login cancelled or authentication error",
+    "connectionError": "Connection Error",
+    "noPagesAvailable": "No Pages Available",
+    "noPagesAvailableMessage": "All your pages are already connected or you don't have permission to manage them."
+  },
+  "success": {
+    "created": "Messenger channel created successfully!"
+  },
+  "buttons": {
+    "cancel": "Cancel",
+    "createChannel": "Create Channel"
+  },
+  "newChannel": {
+    "buttons": {
+      "cancel": "Cancel",
+      "createChannel": "Create Channel"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "title": "Réponses Rapides",
+  "loading": "Chargement des réponses automatiques...",
+  "header": {
+    "title": "Réponses Automatiques",
+    "searchPlaceholder": "Rechercher par code ou contenu...",
+    "newResponse": "Nouvelle Réponse",
+    "bulkDelete": "Supprimer",
+    "clearSelection": "Effacer la Sélection",
+    "selected": "{{count}} sélectionné",
+    "selected_other": "{{count}} sélectionnés"
+  },
+  "empty": {
+    "title": "Aucune réponse rapide trouvée",
+    "description": "Créez une nouvelle réponse rapide pour accélérer le service client.",
+    "action": "Nouvelle Réponse"
+  },
+  "table": {
+    "columns": {
+      "shortCode": "Code",
+      "content": "Contenu",
+      "createdAt": "Créé le",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "create": "Créer",
+    "update": "Mettre à Jour",
+    "confirm": "Confirmer"
+  },
+  "modal": {
+    "new": {
+      "title": "Nouvelle Réponse Rapide",
+      "description": "Créez une nouvelle réponse rapide pour accélérer votre service."
+    },
+    "edit": {
+      "title": "Modifier la Réponse Rapide",
+      "description": "Modifiez les informations de la réponse rapide."
+    },
+    "fields": {
+      "shortCode": {
+        "label": "Code",
+        "placeholder": "Ex : salutation, remerciement, au_revoir",
+        "hint": "Code unique pour identifier cette réponse. Utilisez uniquement des lettres, des chiffres, des tirets bas et des tirets."
+      },
+      "content": {
+        "label": "Contenu",
+        "placeholder": "Entrez le contenu de la réponse rapide...",
+        "hint": "Contenu de la réponse qui sera envoyé automatiquement."
+      }
+    },
+    "variables": {
+      "title": "Variables Disponibles :",
+      "contactName": "Nom du contact",
+      "agentName": "Nom de l'agent",
+      "conversationId": "ID de la conversation",
+      "accountName": "Nom de l'entreprise",
+      "clickToInsert": "Cliquez sur une variable pour l'insérer dans le contenu.",
+      "insertAction": "Insérer"
+    },
+    "saving": "Enregistrement...",
+    "validation": {
+      "shortCodeRequired": "Le code est obligatoire",
+      "shortCodeMinLength": "Le code doit contenir au moins 2 caractères",
+      "shortCodeInvalid": "Le code ne doit contenir que des lettres, des chiffres, des tirets bas et des tirets",
+      "contentRequired": "Le contenu est obligatoire",
+      "contentMinLength": "Le contenu doit contenir au moins 10 caractères"
+    }
+  },
+  "messages": {
+    "loadError": "Erreur lors du chargement des réponses automatiques",
+    "createSuccess": "Réponse rapide créée avec succès",
+    "createError": "Erreur lors de la création de la réponse rapide",
+    "updateSuccess": "Réponse rapide mise à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour de la réponse rapide",
+    "deleteSuccess": "Réponse rapide supprimée avec succès",
+    "deleteError": "Erreur lors de la suppression de la réponse rapide",
+    "bulkDeleteSuccess": "{{count}} réponse(s) automatique(s) supprimée(s) avec succès",
+    "bulkDeleteError": "Erreur lors de la suppression des réponses automatiques"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Supprimer la Réponse Rapide",
+      "description": "Êtes-vous sûr de vouloir supprimer la réponse rapide \"{{shortCode}}\" ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "deleting": "Suppression..."
+    },
+    "bulkDelete": {
+      "title": "Supprimer les Réponses Automatiques",
+      "description": "Êtes-vous sûr de vouloir supprimer {{count}} réponse(s) automatique(s) sélectionnée(s) ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer Tout",
+      "deleting": "Suppression..."
+    }
+  }
+}

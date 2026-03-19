@@ -1,0 +1,38 @@
+{
+  "audio": {
+    "title": "Audio",
+    "notAvailable": "Audio non disponibile",
+    "download": "Scarica audio",
+    "downloadStarted": "Download iniziato: {{filename}}",
+    "loadError": "Errore durante il caricamento dell'audio"
+  },
+  "file": {
+    "title": "File",
+    "download": "Scarica file",
+    "downloadStarted": "Download iniziato: {{filename}}",
+    "size": {
+      "bytes": "B",
+      "kilobytes": "KB",
+      "megabytes": "MB",
+      "gigabytes": "GB"
+    }
+  },
+  "image": {
+    "title": "Immagine",
+    "view": "Visualizza immagine",
+    "download": "Scarica immagine",
+    "downloadStarted": "Download iniziato: {{filename}}",
+    "close": "Chiudi",
+    "zoomIn": "Aumenta zoom",
+    "zoomOut": "Riduci zoom"
+  },
+  "video": {
+    "title": "Video",
+    "notAvailable": "Video non disponibile",
+    "download": "Scarica video",
+    "downloadStarted": "Download iniziato: {{filename}}",
+    "fullscreen": "Schermo intero",
+    "mute": "Disattiva audio",
+    "unmute": "Attiva audio"
+  }
+}

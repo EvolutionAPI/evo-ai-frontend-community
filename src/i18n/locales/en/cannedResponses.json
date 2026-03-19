@@ -1,0 +1,108 @@
+{
+  "title": "Canned Responses",
+  "loading": "Loading canned responses...",
+  "header": {
+    "title": "Canned Responses",
+    "searchPlaceholder": "Search by code or content...",
+    "newResponse": "New Response",
+    "bulkDelete": "Delete",
+    "clearSelection": "Clear Selection",
+    "selected": "{{count}} selected",
+    "selected_other": "{{count}} selected"
+  },
+  "empty": {
+    "title": "No canned responses found",
+    "description": "Create a new canned response to accelerate your customer's response.",
+    "action": "New Response"
+  },
+  "table": {
+    "columns": {
+      "shortCode": "Code",
+      "content": "Content",
+      "createdAt": "Created at",
+      "actions": "Actions"
+    }
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "create": "Create",
+    "update": "Update",
+    "confirm": "Confirm"
+  },
+  "modal": {
+    "new": {
+      "title": "New Canned Response",
+      "description": "Create a new canned response to accelerate your customer's response."
+    },
+    "edit": {
+      "title": "Edit Canned Response",
+      "description": "Edit the information of the canned response."
+    },
+    "fields": {
+      "shortCode": {
+        "label": "Code",
+        "placeholder": "Ex: greeting, thank you, goodbye",
+        "hint": "Unique code to identify this response. Use only letters, numbers, underscores and hyphens."
+      },
+      "content": {
+        "label": "Content",
+        "placeholder": "Enter the content of the canned response...",
+        "hint": "Content of the response that will be sent automatically."
+      },
+      "attachments": {
+        "label": "Attachments (Images, Audios, Videos, Documents)",
+        "addButton": "Add File",
+        "hint": "Maximum 10MB per file. Formats: images, audios, videos, PDF, DOC",
+        "existing": "Existing attachments:",
+        "new": "New attachments:"
+      }
+    },
+    "variables": {
+      "title": "Available Variables:",
+      "contactName": "Contact Name",
+      "agentName": "Agent Name",
+      "conversationId": "Conversation ID",
+      "accountName": "Account Name",
+      "clickToInsert": "Click a variable to insert it into the content.",
+      "insertAction": "Insert"
+    },
+    "saving": "Saving...",
+    "validation": {
+      "shortCodeRequired": "Code is required",
+      "shortCodeMinLength": "Code must be at least 2 characters",
+      "shortCodeInvalid": "Code must contain only letters, numbers, underscores and hyphens",
+      "contentRequired": "Content is required",
+      "contentMinLength": "Content must be at least 10 characters"
+    }
+  },
+  "messages": {
+    "loadError": "Error loading canned responses",
+    "createSuccess": "Canned response created successfully",
+    "createError": "Error creating canned response",
+    "updateSuccess": "Canned response updated successfully",
+    "updateError": "Error updating canned response",
+    "deleteSuccess": "Canned response deleted successfully",
+    "deleteError": "Error deleting canned response",
+    "bulkDeleteSuccess": "{{count}} canned response(s) deleted successfully",
+    "bulkDeleteError": "Error deleting canned responses"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Delete Canned Response",
+      "description": "Are you sure you want to delete the canned response \"{{shortCode}}\"? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "deleting": "Deleting..."
+    },
+    "bulkDelete": {
+      "title": "Delete Canned Responses",
+      "description": "Are you sure you want to delete {{count}} canned response(s) selected? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete All",
+      "deleting": "Deleting..."
+    }
+  }
+}

@@ -1,0 +1,1525 @@
+{
+  "title": "Canali",
+  "subtitle": "Gestisci i tuoi canali di comunicazione",
+  "common": {
+    "channel": "Canale",
+    "notAvailable": "N/D"
+  },
+  "card": {
+    "channelId": "ID Canale",
+    "type": "Tipo"
+  },
+  "table": {
+    "channels": "Canali",
+    "id": "ID",
+    "empty": {
+      "title": "Nessun canale trovato",
+      "description": "Crea un nuovo canale per iniziare a ricevere messaggi dai tuoi clienti."
+    }
+  },
+  "navigation": {
+    "channels": "Canali",
+    "createChannel": "Crea canale"
+  },
+  "provider": {
+    "chooseProvider": "Scegli un provider",
+    "selectProviderDescription": "Seleziona il provider che desideri utilizzare per questo canale."
+  },
+  "permissions": {
+    "viewDenied": "Non hai il permesso di visualizzare i canali",
+    "createDenied": "Non hai il permesso di creare canali",
+    "deleteDenied": "Non hai il permesso di eliminare canali"
+  },
+  "errors": {
+    "removeError": "Errore durante la rimozione del canale",
+    "loadError": "Errore durante il caricamento dei canali"
+  },
+  "success": {
+    "removeSuccess": "Canale rimosso con successo"
+  },
+  "emptyState": {
+    "title": "Nessun canale trovato",
+    "description": "Crea un nuovo canale per iniziare a ricevere messaggi dai tuoi clienti.",
+    "action": "Nuovo canale"
+  },
+  "search": {
+    "placeholder": "Cerca canali..."
+  },
+  "actions": {
+    "newChannel": "Nuovo Canale",
+    "settings": "Impostazioni",
+    "view": "Visualizza",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "enable": "Abilita",
+    "disable": "Disabilita",
+    "disconnect": "Disconnetti",
+    "reconnect": "Riconnetti",
+    "configure": "Configura"
+  },
+  "confirmDialog": {
+    "title": "Elimina canale \"{{name}}\"",
+    "description": "Questa azione non può essere annullata. Eliminerà permanentemente il canale \"{{name}}\" e tutte le sue configurazioni.",
+    "confirmButton": "Elimina canale",
+    "cancelButton": "Annulla"
+  },
+  "filters": {
+    "all": "Tutti",
+    "active": "Attivo",
+    "inactive": "Inattivo"
+  },
+  "status": {
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "connected": "Connesso",
+    "disconnected": "Disconnesso",
+    "error": "Errore",
+    "pending": "In attesa",
+    "configuring": "Configurazione in corso"
+  },
+  "types": {
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "messenger": "Messenger",
+    "sms": "SMS",
+    "email": "Email",
+    "api": "API",
+    "webWidget": "Widget Web"
+  },
+  "labels": {
+    "provider": "Provider",
+    "phoneNumber": "Numero di Telefono",
+    "email": "Email",
+    "webhook": "Webhook",
+    "apiKey": "API Key",
+    "token": "Token",
+    "lastMessage": "Ultimo Messaggio",
+    "conversations": "Conversazioni",
+    "createdAt": "Creato il"
+  },
+  "newChannel": {
+    "title": "Nuovo Canale",
+    "subtitle": "Aggiungi un nuovo canale per comunicare con i tuoi clienti",
+    "selectChannelType": "Seleziona il tipo di canale",
+    "selectProvider": "Seleziona un provider",
+    "configureChannel": "Configura il canale",
+    "configureTitle": "Configura Canale",
+    "description": "Configura il tuo nuovo canale per iniziare a ricevere messaggi",
+    "review": "Rivedi e crea",
+    "stepper": {
+      "selectType": "Tipo di Canale",
+      "selectProvider": "Provider",
+      "configure": "Configura",
+      "review": "Rivedi"
+    },
+    "breadcrumb": {
+      "channels": "Canali",
+      "createChannel": "Crea Canale"
+    },
+    "channelGrid": {
+      "title": "Seleziona un tipo di canale",
+      "subtitle": "Scegli il canale che meglio soddisfa le tue esigenze di comunicazione",
+      "searchPlaceholder": "Cerca canali..."
+    },
+    "channelTypes": {
+      "website": {
+        "name": "Widget Web",
+        "description": "Widget di chat per il tuo sito web"
+      },
+      "whatsapp": {
+        "name": "WhatsApp",
+        "description": "Canale WhatsApp per il servizio clienti"
+      },
+      "telegram": {
+        "name": "Telegram",
+        "description": "Agente IA Telegram per supporto automatizzato"
+      },
+      "instagram": {
+        "name": "Instagram",
+        "description": "Messaggi diretti di Instagram"
+      },
+      "facebook": {
+        "name": "Facebook Messenger",
+        "description": "Chat di Facebook Messenger"
+      },
+      "sms": {
+        "name": "SMS",
+        "description": "Messaggi di testo SMS"
+      },
+      "email": {
+        "name": "Email",
+        "description": "Supporto via email"
+      },
+      "api": {
+        "name": "API",
+        "description": "Integrazione tramite API personalizzata"
+      }
+    },
+    "providers": {
+      "badges": {
+        "recommended": "Consigliato",
+        "popular": "Popolare"
+      },
+      "whatsappCloud": {
+        "name": "WhatsApp Business API (Cloud)",
+        "description": "API ufficiale di WhatsApp con integrazione diretta"
+      },
+      "evolution": {
+        "name": "Evolution API",
+        "description": "API WhatsApp Evolution - soluzione robusta"
+      },
+      "evolutionGo": {
+        "name": "Evolution Go",
+        "description": "API WhatsApp Evolution Go - prestazioni ottimizzate"
+      },
+      "notificame": {
+        "name": "Notificame",
+        "description": "Provider WhatsApp brasiliano"
+      },
+      "zapi": {
+        "name": "Z-API",
+        "description": "API WhatsApp Z-API"
+      },
+      "twilio": {
+        "name": "Twilio",
+        "description": "Twilio WhatsApp Business API"
+      },
+      "twilioSms": {
+        "name": "Twilio SMS",
+        "description": "Invio SMS tramite Twilio"
+      },
+      "bandwidth": {
+        "name": "Bandwidth",
+        "description": "Invio SMS tramite Bandwidth"
+      },
+      "gmail": {
+        "name": "Gmail",
+        "description": "Integrazione con Gmail tramite OAuth"
+      },
+      "outlook": {
+        "name": "Outlook",
+        "description": "Integrazione con Outlook/Microsoft 365"
+      },
+      "otherEmail": {
+        "name": "Altra Email (IMAP)",
+        "description": "Configura manualmente tramite IMAP/SMTP"
+      }
+    },
+    "messages": {
+      "facebookConfigMissing": "Configurazione Facebook non trovata",
+      "instagramConfigMissing": "Configurazione Instagram non trovata",
+      "whatsappCloudConfigMissing": "Configurazione WhatsApp Cloud non trovata",
+      "googleOAuthNotConfigured": "OAuth di Google non configurato",
+      "microsoftOAuthNotConfigured": "OAuth di Microsoft non configurato",
+      "selectProvider": "Seleziona un provider per continuare",
+      "selectEmailProvider": "Seleziona un provider email per continuare",
+      "selectSmsProvider": "Seleziona un provider SMS per continuare",
+      "testConnectionFirst": "È necessario testare la connessione prima di salvare"
+    },
+    "success": {
+      "channelCreated": "Canale creato con successo!",
+      "emailChannelCreated": "Canale email creato con successo!"
+    },
+    "buttons": {
+      "cancel": "Annulla",
+      "createChannel": "Crea Canale",
+      "back": "Indietro",
+      "next": "Avanti",
+      "save": "Salva",
+      "testConnection": "Testa Connessione",
+      "creating": "Creazione in corso...",
+      "testing": "Test in corso..."
+    },
+    "providerSelection": {
+      "channelOf": "Canale di {{channelName}}",
+      "connectDescription": "Connettiti per offrire supporto ai tuoi clienti tramite {{channelName}}",
+      "apiProvider": "Provider API",
+      "facebookIntegrationDescription": "Collega il tuo account Facebook per compilare automaticamente le informazioni di WhatsApp Business"
+    }
+  },
+  "settings": {
+    "loading": "Caricamento impostazioni...",
+    "saving": "Salvataggio...",
+    "save": "Salva",
+    "description": "Configura le impostazioni del tuo canale",
+    "reauthorize": {
+      "action": "Riautorizza {{provider}}",
+      "redirecting": "Reindirizzamento a {{provider}}..."
+    },
+    "authorizationBanners": {
+      "success": {
+        "connectedWith": "Connesso con {{provider}}",
+        "active": "Attivo",
+        "lastConnection": "Ultima connessione: {{date}}",
+        "reconnect": "Riconnetti",
+        "reconnected": "Riconnesso con successo!",
+        "reconnectingWhatsApp": "Riconnessione di WhatsApp...",
+        "whatsappReconnectNotImplemented": "La riconnessione di WhatsApp non è ancora implementata per questo provider",
+        "reconnectError": "Errore durante la riconnessione. Riprova.",
+        "facebookNotConfigured": "Facebook non è configurato",
+        "instagramNotConfigured": "Instagram non è configurato",
+        "whatsappNotConfigured": "WhatsApp non è configurato",
+        "sdkNotLoaded": "SDK di Facebook non caricato",
+        "loginCancelled": "Accesso annullato",
+        "pageNotFound": "Pagina non trovata",
+        "emailRequired": "L'email è obbligatoria per la riconnessione"
+      }
+    },
+    "breadcrumb": {
+      "channels": "Canali",
+      "settings": "Impostazioni"
+    },
+    "tabs": {
+      "inbox_settings": "Impostazioni del Canale",
+      "collaborators": "Collaboratori",
+      "businesshours": "Orari di Lavoro",
+      "csat": "Sondaggio di Soddisfazione",
+      "preChatForm": "Modulo Pre-Chat",
+      "widgetBuilder": "Builder del Widget",
+      "configuration": "Configurazione",
+      "botConfiguration": "Configurazione Agente IA",
+      "moderation": "Moderazione",
+      "messageTemplates": "Modelli di Messaggio"
+    },
+    "basicSettings": {
+      "title": "Impostazioni di Base",
+      "description": "Configura le informazioni di base del tuo canale",
+      "avatar": {
+        "label": "Avatar del Canale",
+        "upload": "Carica Avatar",
+        "remove": "Rimuovi Avatar",
+        "uploading": "Caricamento...",
+        "help": "Questo avatar verrà visualizzato nel widget di chat"
+      },
+      "name": {
+        "websiteLabel": "Nome del Canale",
+        "channelLabel": "Nome del Canale",
+        "placeholder": "Inserisci il nome del canale"
+      },
+      "whatsappProvider": {
+        "label": "Provider WhatsApp"
+      },
+      "websiteUrl": {
+        "label": "URL del Sito Web",
+        "placeholder": "https://esempio.com"
+      },
+      "welcomeTitle": {
+        "label": "Titolo di Benvenuto",
+        "placeholder": "Ciao! Come possiamo aiutarti?"
+      },
+      "welcomeTagline": {
+        "label": "Messaggio di Benvenuto",
+        "placeholder": "Siamo qui per aiutarti"
+      },
+      "widgetColor": {
+        "label": "Colore del Widget",
+        "help": "Questo colore verrà utilizzato nel widget di chat"
+      },
+      "webhook": {
+        "label": "URL Webhook",
+        "placeholder": "L'URL webhook verrà generato dopo la creazione del canale",
+        "copied": "URL Webhook copiato negli appunti!",
+        "noUrl": "Nessun URL webhook disponibile da copiare"
+      }
+    },
+    "collaborators": {
+      "agents": {
+        "title": "Agenti",
+        "description": "Gestisci gli Agenti che possono gestire le conversazioni su questo canale",
+        "selectedCount": "{{count}} Agente selezionato",
+        "selectedCount_other": "{{count}} Agenti selezionati",
+        "noAgentsSelected": "Nessun Agente selezionato",
+        "allAgentsSelected": "Tutti gli Agenti selezionati",
+        "buttons": {
+          "selectFirst": "Seleziona Primo",
+          "selectAll": "Seleziona Tutti",
+          "deselectAll": "Deseleziona Tutti",
+          "update": "Aggiorna",
+          "updating": "Aggiornamento..."
+        },
+        "roles": {
+          "agent": "Agente",
+          "administrator": "Amministratore"
+        }
+      },
+      "status": {
+        "online": "Online",
+        "busy": "Occupato",
+        "offline": "Offline",
+        "unknown": "Sconosciuto"
+      },
+      "table": {
+        "name": "Nome",
+        "email": "Email",
+        "role": "Ruolo",
+        "status": "Stato"
+      },
+      "autoAssignment": {
+        "title": "Assegnazione Automatica",
+        "description": "Configura come le conversazioni vengono assegnate automaticamente agli Agenti",
+        "enable": {
+          "label": "Abilita assegnazione automatica",
+          "description": "Le nuove conversazioni verranno assegnate automaticamente agli Agenti disponibili"
+        },
+        "maxLimit": {
+          "title": "Limite Massimo di Conversazioni",
+          "label": "Massimo conversazioni per Agente",
+          "placeholder": "Inserisci il numero massimo",
+          "help": "Numero massimo di conversazioni che un Agente può gestire simultaneamente"
+        },
+        "buttons": {
+          "updateLimit": "Aggiorna Limite"
+        },
+        "info": {
+          "title": "Informazioni Importanti:",
+          "point1": "L'assegnazione automatica distribuisce le conversazioni tra gli Agenti disponibili",
+          "point2": "Considera il carico di lavoro attuale di ciascun Agente",
+          "point3": "Gli Agenti offline non ricevono nuove conversazioni automaticamente",
+          "point4": "Puoi impostare un limite massimo di conversazioni per Agente"
+        },
+        "success": {
+          "updated": "Assegnazione automatica aggiornata con successo!",
+          "limitUpdated": "Limite di conversazioni aggiornato con successo!"
+        },
+        "errors": {
+          "updateError": "Errore durante l'aggiornamento dell'assegnazione automatica",
+          "limitUpdateError": "Errore durante l'aggiornamento del limite di conversazioni"
+        },
+        "validation": {
+          "limitPositive": "Il limite deve essere un numero positivo"
+        }
+      },
+      "errors": {
+        "loadError": "Errore durante il caricamento dei dati dei collaboratori",
+        "updateError": "Errore durante l'aggiornamento degli Agenti"
+      },
+      "success": {
+        "updated": "Collaboratori aggiornati con successo!"
+      },
+      "validation": {
+        "selectAtLeastOne": "Seleziona almeno un Agente"
+      }
+    },
+    "businessHours": {
+      "title": "Orari di Lavoro",
+      "description": "Configura gli orari in cui il tuo team è disponibile",
+      "enable": {
+        "label": "Abilita orari di lavoro",
+        "description": "Verrà inviata una risposta automatica al di fuori degli orari di lavoro"
+      },
+      "unavailableMessage": {
+        "label": "Messaggio di Non Disponibilità",
+        "placeholder": "Siamo spiacenti, siamo al di fuori degli orari di lavoro...",
+        "help": "Questo messaggio verrà inviato al di fuori degli orari di lavoro"
+      },
+      "timezone": {
+        "label": "Fuso Orario",
+        "placeholder": "Seleziona il fuso orario"
+      },
+      "weekSchedule": {
+        "label": "Programmazione Settimanale"
+      },
+      "days": {
+        "sunday": "Domenica",
+        "monday": "Lunedì",
+        "tuesday": "Martedì",
+        "wednesday": "Mercoledì",
+        "thursday": "Giovedì",
+        "friday": "Venerdì",
+        "saturday": "Sabato"
+      },
+      "timezones": {
+        "brasilia": "Brasilia (GMT-3)",
+        "acre": "Acre (GMT-5)",
+        "manaus": "Manaus (GMT-4)",
+        "fernandoDeNoronha": "Fernando de Noronha (GMT-2)",
+        "utc": "UTC",
+        "easternTime": "Ora Orientale (GMT-5)",
+        "centralTime": "Ora Centrale (GMT-6)",
+        "mountainTime": "Ora di Montagna (GMT-7)",
+        "pacificTime": "Ora del Pacifico (GMT-8)",
+        "london": "Londra (GMT+0)",
+        "paris": "Parigi (GMT+1)",
+        "tokyo": "Tokyo (GMT+9)"
+      },
+      "validation": {
+        "fixErrors": "Correggi gli errori prima di salvare",
+        "hasErrors": "Ci sono errori negli orari"
+      },
+      "success": {
+        "updated": "Orari di lavoro aggiornati con successo"
+      },
+      "info": {
+        "title": "Informazioni Importanti:",
+        "point1": "Gli orari si basano sul fuso orario selezionato",
+        "point2": "I messaggi ricevuti al di fuori degli orari riceveranno una risposta automatica",
+        "point3": "Gli Agenti possono comunque rispondere manualmente al di fuori degli orari",
+        "point4": "Le impostazioni si applicano solo a questo canale"
+      },
+      "buttons": {
+        "updating": "Aggiornamento...",
+        "update": "Aggiorna Impostazioni"
+      },
+      "disabled": {
+        "title": "Orari di Lavoro Disabilitati",
+        "description": "Gli orari di lavoro sono disabilitati. Tutti i messaggi verranno elaborati normalmente."
+      }
+    },
+    "businessDay": {
+      "unavailable": "Non disponibile",
+      "twentyFourHours": "24 ore",
+      "enableDay": "Abilita {{day}}",
+      "open24Hours": "Aperto 24 ore",
+      "startPlaceholder": "Inizio"
+    },
+    "csat": {
+      "title": "Sondaggio di Soddisfazione (CSAT)",
+      "description": "Configura i sondaggi di soddisfazione per raccogliere feedback dai clienti",
+      "displayType": {
+        "label": "Tipo di Visualizzazione",
+        "help": "Come verrà presentato il sondaggio al cliente"
+      },
+      "message": {
+        "label": "Messaggio del Sondaggio",
+        "placeholder": "Come valuti il nostro servizio?",
+        "help": "Messaggio che verrà visualizzato insieme al sondaggio"
+      },
+      "surveyRules": {
+        "label": "Regole del Sondaggio",
+        "description1": "Il sondaggio verrà inviato automaticamente quando:",
+        "description2": "Solo le conversazioni con queste etichette riceveranno il sondaggio:",
+        "addLabel": "Seleziona etichetta",
+        "noLabelsSelected": "Nessuna etichetta selezionata - il sondaggio verrà inviato per tutte le conversazioni"
+      },
+      "addTrigger": "Aggiungi Trigger",
+      "noTriggers": "Nessun trigger configurato. Aggiungi un trigger per iniziare.",
+      "allTriggersAdded": "Tutti i tipi di trigger sono stati aggiunti",
+      "triggerTypes": {
+        "label": "Etichetta",
+        "stage": "Fase del Pipeline",
+        "regex": "Pattern Regex",
+        "inactivity": "Inattività"
+      },
+      "ratings": {
+        "poor": "Scarso",
+        "fair": "Discreto",
+        "average": "Medio",
+        "good": "Buono",
+        "excellent": "Eccellente"
+      },
+      "operators": {
+        "contains": "contiene",
+        "doesNotContain": "non contiene"
+      },
+      "stageTrigger": {
+        "label": "Trigger di Fase del Pipeline",
+        "selectPipeline": "Seleziona Pipeline",
+        "selectStages": "Seleziona Fasi",
+        "loadingStages": "Caricamento fasi...",
+        "noStagesSelected": "Nessuna fase selezionata",
+        "noStagesAvailable": "Nessuna fase disponibile per questo pipeline"
+      },
+      "regexTrigger": {
+        "label": "Trigger di Pattern Regex",
+        "field": "Campo",
+        "fieldMessageContent": "Contenuto del Messaggio",
+        "pattern": "Pattern",
+        "patternPlaceholder": "Inserisci il pattern regex (max 200 caratteri)",
+        "help": "Pattern di espressione regolare per corrispondere al contenuto del messaggio"
+      },
+      "inactivityTrigger": {
+        "label": "Trigger di Inattività",
+        "minutes": "Minuti di Inattività",
+        "placeholder": "es. 30",
+        "help": "Attiva il sondaggio CSAT dopo che la conversazione è inattiva per i minuti specificati"
+      },
+      "errors": {
+        "loadLabelsError": "Errore durante il caricamento delle etichette",
+        "loadStagesError": "Errore durante il caricamento delle fasi del pipeline",
+        "updateError": "Errore durante l'aggiornamento delle impostazioni CSAT"
+      },
+      "success": {
+        "updated": "Impostazioni CSAT aggiornate con successo"
+      },
+      "info": {
+        "title": "Come funziona:",
+        "point1": "Il sondaggio viene inviato automaticamente dopo la risoluzione della conversazione",
+        "point2": "I clienti possono valutare da 1 a 5 stelle",
+        "point3": "Le risposte vengono memorizzate per analisi successive",
+        "point4": "I report CSAT sono disponibili nella sezione report"
+      },
+      "buttons": {
+        "saving": "Salvataggio...",
+        "save": "Salva Impostazioni"
+      },
+      "disabled": {
+        "title": "CSAT Disabilitato",
+        "description": "Il sondaggio di soddisfazione è disabilitato per questo canale."
+      }
+    },
+    "success": {
+      "saveSuccess": "Impostazioni salvate con successo",
+      "avatarDeleteSuccess": "Avatar rimosso con successo",
+      "senderUpdateSuccess": "Impostazioni del mittente aggiornate",
+      "configUpdateSuccess": "Configurazione aggiornata con successo"
+    },
+    "errors": {
+      "loadError": "Errore durante il caricamento delle impostazioni",
+      "saveError": "Errore durante il salvataggio delle impostazioni",
+      "useTabUpdate": "Usa il pulsante di aggiornamento nella scheda corrente",
+      "avatarDeleteError": "Errore durante la rimozione dell'avatar",
+      "senderUpdateError": "Errore durante l'aggiornamento delle impostazioni del mittente",
+      "configUpdateError": "Errore durante l'aggiornamento della configurazione"
+    },
+    "info": {
+      "tabSpecificSave": "Usa l'azione di aggiornamento in questa scheda."
+    },
+    "messageTemplates": {
+      "title": "Modelli di Messaggio - {{channel}}",
+      "description": "Gestisci i modelli di messaggio per questo canale",
+      "searchPlaceholder": "Cerca modelli...",
+      "actions": {
+        "sync": "Sincronizza",
+        "newTemplate": "Nuovo Modello",
+        "createTemplate": "Crea Modello",
+        "editTemplate": "Modifica Modello",
+        "cancel": "Annulla"
+      },
+      "newTemplate": "Nuovo Modello di Messaggio",
+      "table": {
+        "name": "Nome",
+        "category": "Categoria",
+        "status": "Stato",
+        "language": "Lingua",
+        "createdAt": "Creato il",
+        "actions": "Azioni"
+      },
+      "noTemplatesFound": {
+        "_": "Nessun modello trovato",
+        "create": "Crea il tuo primo modello di messaggio",
+        "search": "Nessun modello corrisponde alla tua ricerca"
+      },
+      "form": {
+        "createTitle": "Crea Modello di Messaggio",
+        "editTitle": "Modifica Modello di Messaggio",
+        "description": "Configura il tuo modello di messaggio",
+        "name": "Nome del Modello",
+        "namePlaceholder": "Inserisci il nome del modello",
+        "category": "Categoria",
+        "language": "Lingua",
+        "templateType": "Tipo di Modello",
+        "templateTypes": {
+          "text": "Testo",
+          "image": "Immagine",
+          "video": "Video",
+          "document": "Documento",
+          "audio": "Audio",
+          "location": "Posizione",
+          "contact": "Contatto"
+        },
+        "categories": {
+          "marketing": "Marketing",
+          "utility": "Utilità",
+          "authentication": "Autenticazione",
+          "transactional": "Transazionale"
+        },
+        "headerFormat": "Formato Intestazione",
+        "headerFormats": {
+          "text": "Testo",
+          "image": "Immagine",
+          "video": "Video",
+          "document": "Documento"
+        },
+        "headerText": "Testo Intestazione",
+        "headerTextPlaceholder": "Inserisci il testo dell'intestazione",
+        "bodyText": "Testo del Corpo",
+        "bodyTextPlaceholder": "Inserisci il testo del corpo del messaggio",
+        "footerText": "Testo del Piè di Pagina",
+        "footerTextPlaceholder": "Inserisci il testo del piè di pagina (facoltativo)",
+        "variablesHelp": "Usa la sintassi {{variabile}} per valori dinamici",
+        "buttons": "Pulsanti",
+        "addButton": "Aggiungi Pulsante",
+        "buttonTypes": {
+          "quickReply": "Risposta Rapida",
+          "url": "URL",
+          "phone": "Numero di Telefono"
+        },
+        "buttonTextPlaceholder": "Testo del pulsante",
+        "urlPlaceholder": "https://esempio.it",
+        "phonePlaceholder": "+39123456789",
+        "content": "Contenuto",
+        "contentPlaceholder": "Inserisci il contenuto del modello",
+        "liquidHelp": "Usa la sintassi Liquid per valori dinamici: {{ contact.name }}",
+        "subject": "Oggetto",
+        "subjectPlaceholder": "Oggetto dell'email",
+        "active": "Attivo",
+        "activeHelp": "I modelli inattivi non saranno disponibili per l'uso",
+        "create": "Crea Modello",
+        "save": "Salva Modifiche",
+        "cancel": "Annulla",
+        "requiredFields": "Compila tutti i campi obbligatori"
+      },
+      "categories": {
+        "marketing": "Marketing",
+        "utility": "Utilità",
+        "authentication": "Autenticazione",
+        "transactional": "Transazionale"
+      },
+      "status": {
+        "approved": "Approvato",
+        "pending": "In Attesa",
+        "rejected": "Rifiutato",
+        "paused": "In Pausa",
+        "active": "Attivo",
+        "inactive": "Inattivo"
+      },
+      "preview": {
+        "title": "Anteprima",
+        "modalTitle": "Anteprima del Modello",
+        "whatsappPreview": "Anteprima",
+        "apiDescription": "I modelli del canale API utilizzano una formattazione personalizzata",
+        "liquidDescription": "I modelli email supportano la sintassi Liquid per contenuti dinamici",
+        "bodyPlaceholder": "Il contenuto del messaggio apparirà qui",
+        "today": "Oggi",
+        "description": "Questa è un'anteprima approssimativa del modello"
+      },
+      "emptyState": {
+        "title": "Nessun modello trovato",
+        "description": "Crea il tuo primo modello di messaggio per iniziare",
+        "searchEmpty": "Nessun modello corrisponde alla tua ricerca"
+      },
+      "deleteDialog": {
+        "title": "Elimina Modello",
+        "message": "Sei sicuro di voler eliminare il modello \"{{templateName}}\"?",
+        "warning": "Questa azione non può essere annullata.",
+        "cancel": "Annulla",
+        "confirm": "Elimina"
+      },
+      "errors": {
+        "loadError": "Errore durante il caricamento dei template",
+        "syncError": "Errore durante la sincronizzazione dei template",
+        "createError": "Errore durante la creazione del template",
+        "updateError": "Errore durante la modifica del template",
+        "deleteError": "Errore durante l'eliminazione del template",
+        "requiredFields": "Compila tutti i campi obbligatori"
+      },
+      "success": {
+        "syncSuccess": "Template sincronizzati con successo!",
+        "createSuccess": "Template creato con successo!",
+        "updateSuccess": "Template aggiornato con successo!",
+        "deleteSuccess": "Template eliminato con successo!"
+      }
+    },
+    "configuration": {
+      "api": {
+        "hmac": {
+          "title": "Autenticazione HMAC",
+          "description": "Abilita l'autenticazione HMAC per proteggere le tue richieste API",
+          "enabled": "Autenticazione HMAC abilitata",
+          "disabled": "Autenticazione HMAC disabilitata",
+          "active": "L'autenticazione HMAC è attiva",
+          "activeDescription": "Tutte le richieste API devono includere una firma HMAC valida",
+          "success": {
+            "updated": "HMAC configurato con successo!"
+          },
+          "errors": {
+            "updateError": "Errore durante l'aggiornamento di HMAC"
+          }
+        },
+        "keys": {
+          "title": "Chiave API Corrente",
+          "description": "La tua chiave API corrente per la comunicazione con WhatsApp",
+          "updateTitle": "Aggiorna Chiave API",
+          "updateDescription": "Incolla qui la tua nuova chiave API di WhatsApp",
+          "placeholder": "Incolla qui la tua nuova chiave API",
+          "show": "Mostra",
+          "hide": "Nascondi",
+          "update": "Aggiorna",
+          "success": {
+            "updated": "API Key aggiornata con successo!",
+            "copied": "API Key copiata negli appunti!"
+          },
+          "errors": {
+            "updateError": "Errore durante l'aggiornamento dell'API Key"
+          }
+        },
+        "provider": {
+          "success": {
+            "updated": "URL del provider aggiornato con successo!"
+          },
+          "errors": {
+            "updateError": "Errore durante l'aggiornamento dell'URL del provider"
+          }
+        },
+        "markAsRead": {
+          "title": "Segna come Letto",
+          "description": "Segna automaticamente i messaggi come letti su WhatsApp",
+          "enabled": "Segna i messaggi come letti",
+          "disabled": "Non segnare come letti",
+          "success": {
+            "updated": "Configurazione \"segna come letto\" aggiornata!"
+          },
+          "errors": {
+            "updateError": "Errore durante l'aggiornamento della configurazione"
+          }
+        }
+      },
+      "whatsapp": {
+        "instance": {
+          "statusTitle": "Stato dell'Istanza",
+          "statusConnected": "Connesso",
+          "statusDisconnected": "Disconnesso",
+          "statusConnecting": "Connessione in corso",
+          "connectDevice": "Connetti Dispositivo",
+          "qrCodeInstructions": "Scansiona questo codice QR con il tuo WhatsApp",
+          "settingsTitle": "Impostazioni dell'Istanza",
+          "settingsDescription": "Configura il comportamento della tua istanza WhatsApp",
+          "rejectCall": "Rifiuta chiamate",
+          "alwaysOnline": "Sempre online",
+          "readMessages": "Leggi messaggi",
+          "ignoreGroups": "Ignora gruppi",
+          "syncFullHistory": "Sincronizza cronologia completa",
+          "readStatus": "Stato di lettura",
+          "callRejectionMessage": "Messaggio di rifiuto chiamata",
+          "callRejectionPlaceholder": "Messaggio quando si rifiutano le chiamate",
+          "saveSettings": "Salva Impostazioni",
+          "errors": {
+            "nameNotFound": "Nome dell'istanza non trovato",
+            "qrCodeError": "Errore durante la generazione del codice QR",
+            "updateError": "Errore durante l'aggiornamento delle impostazioni dell'istanza"
+          },
+          "success": {
+            "qrCodeGenerated": "Codice QR generato con successo!",
+            "updated": "Impostazioni dell'istanza aggiornate con successo!",
+            "connected": "Dispositivo connesso con successo!"
+          },
+          "qrCodeTitle": "Connetti WhatsApp",
+          "waitingConnection": "In attesa di connessione...",
+          "generatingQrCode": "Generazione codice QR...",
+          "profile": {
+            "title": "Impostazioni del Profilo",
+            "description": "Gestisci le informazioni del tuo profilo WhatsApp",
+            "name": "Nome del Profilo",
+            "namePlaceholder": "Nome del profilo",
+            "status": "Stato (Informazioni)",
+            "statusPlaceholder": "Stato del profilo",
+            "picture": "Foto del Profilo (URL)",
+            "picturePlaceholder": "https://esempio.com/foto.jpg",
+            "pictureHelp": "Inserisci l'URL dell'immagine che desideri usare come foto del profilo",
+            "update": "Aggiorna",
+            "remove": "Rimuovi",
+            "success": {
+              "nameUpdated": "Nome del profilo aggiornato con successo!",
+              "statusUpdated": "Stato del profilo aggiornato con successo!",
+              "pictureUpdated": "Foto del profilo aggiornata con successo!",
+              "pictureRemoved": "Foto del profilo rimossa con successo!"
+            },
+            "errors": {
+              "nameNotFound": "Nome dell'istanza non trovato",
+              "nameUpdateError": "Errore durante l'aggiornamento del nome del profilo",
+              "statusUpdateError": "Errore durante l'aggiornamento dello stato del profilo",
+              "pictureUpdateError": "Errore durante l'aggiornamento della foto del profilo",
+              "pictureRemoveError": "Errore durante la rimozione della foto del profilo"
+            },
+            "confirmRemovePicture": "Sei sicuro di voler rimuovere la foto del profilo?"
+          },
+          "privacy": {
+            "title": "Impostazioni di Privacy",
+            "description": "Configura le impostazioni di privacy di WhatsApp",
+            "readReceipts": "Conferme di lettura",
+            "profilePicture": "Visibilità della foto del profilo",
+            "status": "Visibilità dello stato",
+            "online": "Visibilità online",
+            "lastSeen": "Visto l'ultima volta",
+            "groupAdd": "Permesso di aggiunta nei gruppi",
+            "options": {
+              "all": "Tutti",
+              "contacts": "Contatti",
+              "contactBlacklist": "Lista nera contatti",
+              "none": "Nessuno",
+              "matchLastSeen": "Uguale a visto l'ultima volta"
+            },
+            "success": {
+              "updated": "Impostazioni di privacy aggiornate"
+            },
+            "errors": {
+              "loadError": "Errore durante il caricamento delle impostazioni di privacy",
+              "updateError": "Errore durante l'aggiornamento di {{setting}}"
+            }
+          },
+          "actions": {
+            "title": "Azioni dell'Istanza",
+            "disconnect": "Disconnetti Istanza",
+            "confirmDisconnect": "Sei sicuro di voler disconnettere l'istanza?",
+            "success": {
+              "disconnected": "Istanza disconnessa con successo!"
+            },
+            "errors": {
+              "disconnectError": "Errore durante la disconnessione dell'istanza"
+            }
+          }
+        },
+        "zapi": {
+          "privacy": {
+            "readReceipts": "Conferme di lettura",
+            "profilePicture": "Visibilità della foto del profilo",
+            "status": "Visibilità dello stato",
+            "online": "Visibilità online",
+            "lastSeen": "Visto l'ultima volta",
+            "groupAdd": "Permesso di aggiunta nei gruppi",
+            "messagesDuration": "Durata dei messaggi (secondi)",
+            "messagesDurationPlaceholder": "0 = disabilitato",
+            "messagesDurationHelp": "Configura per quanto tempo i messaggi rimangono visibili (0 = disabilitato)",
+            "options": {
+              "all": "Tutti",
+              "contacts": "Contatti",
+              "contactBlacklist": "Lista nera contatti",
+              "nobody": "Nessuno"
+            },
+            "success": {
+              "lastSeenUpdated": "Impostazione \"Visto l'ultima volta\" aggiornata",
+              "photoVisualizationUpdated": "Impostazione di visibilità della foto aggiornata",
+              "descriptionUpdated": "Impostazione di descrizione aggiornata",
+              "groupAddUpdated": "Impostazione di permesso gruppo aggiornata",
+              "onlineUpdated": "Impostazione di visibilità online aggiornata",
+              "readReceiptsUpdated": "Impostazione di conferme di lettura aggiornata",
+              "messagesDurationUpdated": "Durata dei messaggi aggiornata"
+            },
+            "errors": {
+              "updateError": "Errore durante l'aggiornamento di {{setting}}",
+              "messagesDurationError": "Errore durante l'aggiornamento della durata dei messaggi",
+              "durationMustBePositive": "La durata deve essere maggiore o uguale a 0"
+            }
+          },
+          "profile": {
+            "title": "Impostazioni del Profilo",
+            "name": "Nome del Profilo",
+            "namePlaceholder": "Nome del profilo",
+            "description": "Descrizione del Profilo",
+            "descriptionPlaceholder": "Descrizione del profilo",
+            "update": "Aggiorna",
+            "success": {
+              "nameUpdated": "Nome del profilo aggiornato con successo!",
+              "descriptionUpdated": "Descrizione del profilo aggiornata con successo!"
+            },
+            "errors": {
+              "nameUpdateError": "Errore durante l'aggiornamento del nome del profilo",
+              "descriptionUpdateError": "Errore durante l'aggiornamento della descrizione del profilo"
+            }
+          },
+          "calls": {
+            "title": "Impostazioni Chiamate",
+            "rejectAuto": "Rifiuta Chiamate Automaticamente",
+            "rejectAutoDescription": "Rifiuta automaticamente tutte le chiamate in arrivo",
+            "rejectMessage": "Messaggio di Rifiuto",
+            "rejectMessagePlaceholder": "Messaggio inviato quando si rifiutano le chiamate",
+            "update": "Aggiorna",
+            "success": {
+              "rejectUpdated": "Impostazioni di rifiuto chiamate aggiornate!",
+              "messageUpdated": "Messaggio di rifiuto aggiornato!"
+            },
+            "errors": {
+              "rejectUpdateError": "Errore durante l'aggiornamento delle impostazioni di rifiuto chiamate",
+              "messageUpdateError": "Errore durante l'aggiornamento del messaggio"
+            }
+          },
+          "qrCode": {
+            "title": "Codice QR per la Connessione",
+            "description": "Scansiona il codice QR con il tuo WhatsApp per connettere l'istanza",
+            "getQRCode": "Ottieni Codice QR",
+            "refreshQRCode": "Aggiorna Codice QR",
+            "instructions": "Scansiona questo codice QR con il tuo WhatsApp per connettere l'istanza",
+            "generating": "Generazione codice QR...",
+            "notAvailable": "Codice QR non disponibile. Clicca su \"Aggiorna Codice QR\" per generarne uno nuovo.",
+            "close": "Chiudi",
+            "success": {
+              "qrCodeRefreshed": "Codice QR aggiornato con successo!",
+              "connected": "Istanza connessa con successo!"
+            },
+            "errors": {
+              "qrCodeNotFound": "Codice QR non trovato",
+              "getError": "Errore durante l'ottenimento del codice QR",
+              "refreshError": "Errore durante l'aggiornamento del codice QR"
+            }
+          },
+          "actions": {
+            "title": "Azioni dell'Istanza",
+            "restart": "Riavvia Istanza",
+            "disconnect": "Disconnetti Istanza",
+            "confirmRestart": "Sei sicuro di voler riavviare l'istanza?",
+            "confirmDisconnect": "Sei sicuro di voler disconnettere l'istanza?",
+            "success": {
+              "restarted": "Istanza riavviata con successo!",
+              "disconnected": "Istanza disconnessa con successo!"
+            },
+            "errors": {
+              "restartError": "Errore durante il riavvio dell'istanza",
+              "disconnectError": "Errore durante la disconnessione dell'istanza"
+            }
+          },
+          "privacyTitle": "Impostazioni di Privacy",
+          "privacyDescription": "Configura le impostazioni di privacy di WhatsApp"
+        }
+      },
+      "email": {
+        "imap": {
+          "title": "Impostazioni IMAP",
+          "description": "Configura il server IMAP per ricevere email",
+          "server": "Server IMAP",
+          "serverPlaceholder": "imap.gmail.com",
+          "port": "Porta",
+          "portPlaceholder": "993",
+          "login": "Login",
+          "loginPlaceholder": "tua@email.com",
+          "password": "Password",
+          "passwordPlaceholder": "••••••••",
+          "enableSsl": "Abilita SSL"
+        },
+        "smtp": {
+          "title": "Impostazioni SMTP",
+          "description": "Configura il server SMTP per inviare email",
+          "server": "Server SMTP",
+          "serverPlaceholder": "smtp.gmail.com",
+          "port": "Porta",
+          "portPlaceholder": "587",
+          "login": "Login",
+          "loginPlaceholder": "tua@email.com",
+          "password": "Password",
+          "passwordPlaceholder": "••••••••",
+          "authentication": "Autenticazione",
+          "authOptions": {
+            "login": "Login",
+            "plain": "Plain",
+            "cramMd5": "CRAM-MD5"
+          },
+          "enableStarttls": "Abilita STARTTLS"
+        },
+        "signature": {
+          "title": "Firma Email",
+          "description": "Configura una firma predefinita aggiunta a tutte le email in uscita da questo canale",
+          "placeholder": "Inserisci la tua firma email (HTML supportato)...",
+          "save": "Salva Firma"
+        },
+        "saveButton": "Salva Impostazioni Email",
+        "success": {
+          "updated": "Impostazioni email aggiornate con successo!"
+        },
+        "errors": {
+          "updateError": "Errore durante l'aggiornamento delle impostazioni email"
+        }
+      },
+      "twilio": {
+        "title": "Configurazione Twilio SMS",
+        "description": "Le impostazioni Twilio sono gestite durante la creazione del canale"
+      },
+      "fallback": {
+        "title": "Impostazioni Specifiche",
+        "description": "Questo tipo di canale ({{channelType}}) non ha impostazioni specifiche disponibili"
+      }
+    },
+    "preChatForm": {
+      "success": {
+        "updated": "Impostazioni del modulo pre-chat aggiornate con successo!"
+      },
+      "errors": {
+        "updateError": "Errore durante l'aggiornamento delle impostazioni del modulo pre-chat"
+      }
+    },
+    "greeting": {
+      "title": "Messaggio di Saluto",
+      "description": "Configura messaggi di benvenuto automatici",
+      "enable": {
+        "label": "Abilita messaggio di saluto",
+        "description": "Invia messaggio automatico all'inizio di una nuova conversazione"
+      },
+      "message": {
+        "label": "Messaggio di Saluto",
+        "placeholder": "Inserisci qui il messaggio di benvenuto..."
+      }
+    },
+    "webWidgetAdvanced": {
+      "title": "Impostazioni Avanzate",
+      "description": "Configura le opzioni avanzate per il widget web",
+      "replyTime": {
+        "label": "Tempo di Risposta",
+        "options": {
+          "fewMinutes": "Alcuni minuti",
+          "fewHours": "Alcune ore",
+          "day": "Un giorno"
+        },
+        "helpText": "Tempo di risposta stimato che verrà visualizzato nel widget"
+      },
+      "emailCollection": {
+        "label": "Raccolta Email",
+        "description": "Richiedi l'email del visitatore prima di iniziare la conversazione"
+      },
+      "allowMessagesAfterResolved": {
+        "label": "Consenti messaggi dopo la risoluzione",
+        "description": "Consenti ai clienti di inviare messaggi anche dopo la risoluzione della conversazione"
+      },
+      "continuityViaEmail": {
+        "label": "Continuità via Email",
+        "description": "Continua la conversazione via email quando l'Agente è offline"
+      },
+      "featureFlags": {
+        "title": "Funzionalità del Widget",
+        "description": "Abilita o disabilita funzionalità specifiche del widget",
+        "attachments": {
+          "title": "Allegati",
+          "description": "Consenti l'invio di file nel widget"
+        },
+        "emojiPicker": {
+          "title": "Selettore Emoji",
+          "description": "Consenti l'uso di emoji nei messaggi"
+        },
+        "endConversation": {
+          "title": "Termina Conversazione",
+          "description": "Mostra il pulsante per terminare la conversazione"
+        },
+        "botAvatar": {
+          "title": "Avatar dell'Agente IA",
+          "description": "Visualizza l'avatar dell'Agente IA nei messaggi automatici"
+        }
+      }
+    },
+    "senderSettings": {
+      "title": "Impostazioni del Mittente",
+      "description": "Configura come appariranno i messaggi ai clienti",
+      "friendly": {
+        "title": "Amichevole",
+        "description": "I messaggi appaiono con il nome dell'Agente",
+        "format": "{{name}}"
+      },
+      "professional": {
+        "title": "Professionale",
+        "description": "I messaggi appaiono con il nome dell'azienda"
+      },
+      "preview": {
+        "example": "Esempio di anteprima"
+      },
+      "businessName": {
+        "set": "Imposta nome azienda",
+        "label": "Nome dell'Azienda",
+        "placeholder": "Inserisci il nome della tua azienda",
+        "save": "Salva"
+      }
+    },
+    "widgetHelpers": {
+      "positions": {
+        "left": "Sinistra",
+        "right": "Destra"
+      },
+      "bubbleTypes": {
+        "standard": "Standard",
+        "expanded": "Espanso"
+      },
+      "viewOptions": {
+        "preview": "Anteprima",
+        "script": "Script"
+      },
+      "replyTime": {
+        "fewMinutes": "Alcuni minuti",
+        "fewHours": "Alcune ore",
+        "day": "Un giorno"
+      },
+      "defaultLauncherTitle": "Ciao! Hai bisogno di aiuto?",
+      "validation": {
+        "websiteNameRequired": "Il nome del sito web è obbligatorio",
+        "widgetColorRequired": "Il colore del widget è obbligatorio",
+        "replyTimeRequired": "Il tempo di risposta è obbligatorio"
+      }
+    },
+    "preChatHelpers": {
+      "standardFields": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Inserisci la tua email"
+        },
+        "fullName": {
+          "label": "Nome Completo",
+          "placeholder": "Inserisci il tuo nome completo"
+        },
+        "phoneNumber": {
+          "label": "Numero di Telefono",
+          "placeholder": "Inserisci il tuo telefono"
+        }
+      },
+      "fieldTypes": {
+        "text": "Testo",
+        "email": "Email",
+        "number": "Numero",
+        "url": "URL",
+        "date": "Data",
+        "checkbox": "Checkbox",
+        "select": "Selezione",
+        "textarea": "Area di testo"
+      },
+      "validation": {
+        "fieldNameRequired": "Il nome del campo è obbligatorio",
+        "labelRequired": "L'etichetta è obbligatoria",
+        "selectFieldOptionsRequired": "Le opzioni di selezione sono obbligatorie"
+      }
+    },
+    "preChatFields": {
+      "table": {
+        "active": "Attivo",
+        "field": "Campo",
+        "type": "Tipo",
+        "required": "Obbligatorio",
+        "label": "Etichetta",
+        "placeholder": "Placeholder"
+      },
+      "emptyState": "Nessun campo configurato",
+      "instructions": {
+        "dragDrop": "Trascina e rilascia per riordinare",
+        "active": {
+          "title": "Campo Attivo",
+          "description": "Questo campo verrà visualizzato nel modulo pre-chat"
+        },
+        "required": {
+          "title": "Campo Obbligatorio",
+          "description": "Questo campo deve essere compilato obbligatoriamente"
+        },
+        "label": {
+          "title": "Etichetta del Campo",
+          "description": "Testo che verrà visualizzato come etichetta del campo"
+        },
+        "placeholder": {
+          "title": "Placeholder",
+          "description": "Testo di esempio che appare nel campo vuoto"
+        }
+      },
+      "placeholders": {
+        "label": "Inserisci l'etichetta del campo",
+        "placeholder": "Inserisci il placeholder del campo"
+      }
+    },
+    "agentBot": {
+      "providers": {
+        "webhook": {
+          "label": "Webhook",
+          "description": "Integrazione tramite webhook personalizzato"
+        },
+        "dialogflow": {
+          "label": "Dialogflow",
+          "description": "Integrazione con Google Dialogflow"
+        },
+        "rasa": {
+          "label": "Rasa",
+          "description": "Integrazione con Rasa Open Source"
+        }
+      },
+      "types": {
+        "webhook": {
+          "label": "Webhook",
+          "description": "Agente IA tramite webhook"
+        },
+        "csml": {
+          "label": "CSML",
+          "description": "Agente IA CSML"
+        }
+      },
+      "status": {
+        "connected": "Connesso",
+        "disconnected": "Disconnesso"
+      },
+      "validation": {
+        "nameRequired": "Il nome è obbligatorio",
+        "descriptionRequired": "La descrizione è obbligatoria",
+        "webhookUrlRequired": "L'URL del webhook è obbligatorio",
+        "webhookUrlInvalid": "URL del webhook non valido",
+        "segmentationLimitMinimum": "Il limite di segmentazione deve essere maggiore di 0",
+        "segmentationMinSizeMinimum": "La dimensione minima di segmentazione deve essere maggiore di 0",
+        "segmentationMinSizeSmallerThanLimit": "La dimensione minima deve essere inferiore al limite",
+        "delayPerCharacterNonNegative": "Il ritardo per carattere deve essere non negativo",
+        "debounceTimeNonNegative": "Il tempo di debounce deve essere non negativo"
+      }
+    },
+    "widgetBuilder": {
+      "title": "Builder del Widget",
+      "description": "Personalizza l'aspetto e il comportamento del tuo widget di chat",
+      "avatar": {
+        "label": "Avatar del Widget",
+        "upload": "Carica Avatar",
+        "change": "Cambia Avatar"
+      },
+      "websiteName": {
+        "label": "Nome del Sito Web",
+        "placeholder": "Inserisci il nome del tuo sito web (es: Acme Inc)"
+      },
+      "welcomeHeading": {
+        "label": "Titolo di Benvenuto",
+        "placeholder": "Ciao! Come possiamo aiutarti?"
+      },
+      "welcomeTagline": {
+        "label": "Messaggio di Benvenuto",
+        "placeholder": "Siamo qui per aiutarti"
+      },
+      "replyTime": {
+        "label": "Tempo di Risposta",
+        "placeholder": "Seleziona il tempo di risposta"
+      },
+      "widgetColor": {
+        "label": "Colore del Widget"
+      },
+      "position": {
+        "label": "Posizione del Widget"
+      },
+      "bubbleType": {
+        "label": "Tipo di Bolla"
+      },
+      "launcherTitle": {
+        "label": "Titolo del Launcher",
+        "placeholder": "Chatta con il nostro team"
+      },
+      "defaultLauncherTitle": "Chatta con il team",
+      "saveSettings": "Salva Impostazioni",
+      "saving": "Salvataggio...",
+      "widgetCode": {
+        "title": "Codice del Widget",
+        "copyCode": "Copia Codice",
+        "copySuccess": "Codice copiato negli appunti!",
+        "copyError": "Errore durante la copia del codice",
+        "noScriptError": "Nessuno script disponibile da copiare",
+        "placeholder": "Il codice verrà generato automaticamente...",
+        "instructions": {
+          "title": "Come utilizzare questo codice:",
+          "step1": "Copia il codice sopra",
+          "step2": "Incollalo nell'HTML della tua pagina, prima della chiusura del tag </body>",
+          "step3": "Il widget apparirà automaticamente sul tuo sito"
+        }
+      },
+      "success": {
+        "updateSuccess": "Widget aggiornato con successo!"
+      },
+      "errors": {
+        "updateError": "Errore durante l'aggiornamento del widget"
+      }
+    },
+    "widget": {
+      "preview": {
+        "screenDefault": "Schermata Predefinita",
+        "screenChat": "Schermata di Chat",
+        "sentMessageExample": "Esempio di messaggio inviato",
+        "sampleSentMessage": "Ciao! Vorrei parlare con il supporto."
+      },
+      "footer": {
+        "teamOnline": "Team Online",
+        "startConversation": "Inizia Conversazione"
+      },
+      "container": {
+        "poweredBy": "Sviluppato da"
+      }
+    },
+    "timestamp": {
+      "unavailable": "Non disponibile"
+    },
+    "agentBotConfiguration": {
+      "title": "Configurazione Agente IA",
+      "description": "Configura gli Agenti IA di assistenza per automatizzare le risposte",
+      "fields": {
+        "selectBot": "Seleziona Agente IA",
+        "provider": "Fornitore",
+        "type": "Tipo"
+      },
+      "placeholders": {
+        "selectBot": "Seleziona un Agente IA"
+      },
+      "status": {
+        "disconnected": "Disconnesso",
+        "connected": "Connesso",
+        "active": "Attivo"
+      },
+      "noBots": {
+        "title": "Nessun Agente IA Disponibile",
+        "description": "Non hai ancora Agenti IA configurati per questo canale."
+      },
+      "buttons": {
+        "manageBots": "Gestisci Agenti IA",
+        "configure": "Configura Agente IA",
+        "configuring": "Configurazione...",
+        "disconnect": "Disconnetti Agente IA",
+        "disconnecting": "Disconnessione...",
+        "advancedSettings": "Impostazioni Avanzate"
+      },
+      "info": {
+        "title": "Come Funziona:",
+        "point1": "Gli Agenti IA possono rispondere automaticamente ai messaggi dei clienti",
+        "point2": "Configura parole chiave e risposte automatiche",
+        "point3": "Gli Agenti IA possono trasferire le conversazioni ad Agenti umani",
+        "point4": "Le statistiche sulle prestazioni degli Agenti IA sono disponibili"
+      },
+      "advanced": {
+        "title": "Configurazione Avanzata",
+        "description": "Configura comportamenti e impostazioni avanzate dell'Agente IA",
+        "conversationStatus": {
+          "title": "Stato della Conversazione",
+          "description": "Seleziona quali stati della conversazione consentono all'Agente IA di eseguirsi. Se nessuno è selezionato, l'Agente IA si eseguirà per tutti gli stati.",
+          "emptyHint": "Se nessuno stato è selezionato, l'Agente IA si eseguirà per tutti gli stati della conversazione."
+        },
+        "labels": {
+          "title": "Etichette",
+          "description": "Seleziona quali etichette consentono all'Agente IA di eseguirsi. Se nessuna è selezionata, l'Agente IA si eseguirà per tutte le conversazioni indipendentemente dalle etichette.",
+          "emptyHint": "Se nessuna etichetta è selezionata, l'Agente IA si eseguirà per tutte le conversazioni indipendentemente dalle etichette.",
+          "noLabels": "Nessuna etichetta disponibile. Crea etichette nella sezione Etichette per utilizzare questa funzionalità.",
+          "addLabel": "Aggiungi Etichetta"
+        },
+        "ignoredLabels": {
+          "title": "Etichette Ignorate",
+          "description": "Seleziona le etichette che impediranno all'Agente IA di rispondere. Le conversazioni con queste etichette saranno ignorate dall'Agente IA.",
+          "addLabel": "Aggiungi Etichetta Ignorata",
+          "noAvailableLabels": "Nessuna etichetta disponibile da ignorare. Tutte le etichette sono già ignorate o nell'elenco consentito."
+        },
+        "facebookMessenger": {
+          "title": "Configurazione di Facebook Messenger",
+          "description": "Configura come l'Agente IA interagisce con messaggi diretti e commenti su Facebook",
+          "interactionType": "Tipo di Interazione",
+          "interactionTypes": {
+            "both": "Commenti e Messaggi Diretti",
+            "commentsOnly": "Solo Commenti",
+            "messagesOnly": "Solo Messaggi Diretti"
+          },
+          "enableCommentReplies": "Abilita Risposte ai Commenti",
+          "enableCommentRepliesDescription": "Quando abilitato, l'Agente IA risponderà ai commenti sui post di Facebook",
+          "commentAgentBot": "Agente IA per Commenti",
+          "commentAgentBotDescription": "Seleziona quale Agente IA deve gestire le risposte ai commenti. Scegli 'Usa Stesso Agente' per usare l'Agente IA principale, o seleziona un Agente IA diverso specificamente per i commenti.",
+          "useSameAgent": "Usa Stesso Agente (Agente IA Principale)",
+          "noOtherBots": "Nessun altro Agente IA disponibile. L'Agente IA principale verrà utilizzato per i commenti.",
+          "postSelection": "Selezione Post",
+          "postSelectionDescription": "Scegli se l'Agente IA deve rispondere a tutti i post o solo a post specifici",
+          "allPosts": "Tutti i Post",
+          "specificPosts": "Post Specifici",
+          "postIdPlaceholder": "Inserisci l'ID del post (es: 123456789_987654321)",
+          "addPostId": "Aggiungi",
+          "selectedPosts": "Post Selezionati",
+          "noPostsFound": "Nessun post trovato. Verifica che la pagina Facebook sia collegata correttamente.",
+          "viewOnFacebook": "Vedi su Facebook"
+        },
+        "moderation": {
+          "title": "Moderazione dei Messaggi",
+          "description": "Configura la moderazione automatica per i messaggi ricevuti",
+          "enableModeration": "Abilita Moderazione",
+          "enableModerationDescription": "Quando abilitata, i messaggi verranno filtrati e moderati automaticamente prima che le risposte vengano inviate",
+          "explicitWords": {
+            "title": "Filtro Parole Esplicite",
+            "description": "Inserisci parole o pattern regex (uno per riga) per filtrare contenuti espliciti. I messaggi contenenti queste parole saranno segnalati per moderazione.",
+            "placeholder": "Inserisci parole o pattern regex, uno per riga\nesempio:\nparolaccia\n\\bprofanità\\b\n^spam"
+          },
+          "sentimentAnalysis": {
+            "title": "Analisi del Sentimento",
+            "description": "Usa l'IA per rilevare messaggi offensivi o inappropriati. I messaggi segnalati come offensivi saranno inviati alla moderazione."
+          },
+          "autoApproveResponses": {
+            "title": "Approvazione Automatica delle Risposte",
+            "description": "Quando abilitata, le risposte generate dall'IA verranno inviate automaticamente senza richiedere approvazione. Quando disabilitata, tutte le risposte devono essere approvate prima di essere inviate."
+          },
+          "autoRejectExplicitWords": {
+            "title": "Rifiuto Automatico - Parole Esplicite",
+            "description": "Quando abilitato, i messaggi contenenti parole esplicite saranno automaticamente rifiutati ed eliminati senza richiedere approvazione manuale."
+          },
+          "autoRejectOffensiveSentiment": {
+            "title": "Rifiuto Automatico - Sentimento Offensivo",
+            "description": "Quando abilitato, i messaggi rilevati come offensivi dall'analisi del sentimento saranno automaticamente rifiutati ed eliminati senza richiedere approvazione manuale."
+          }
+        }
+      },
+      "statusOptions": {
+        "open": "Aperto",
+        "resolved": "Risolto",
+        "pending": "In attesa",
+        "snoozed": "Rinviato"
+      },
+      "errors": {
+        "loadError": "Errore durante il caricamento dei dati degli Agenti IA",
+        "configureError": "Errore durante la configurazione dell'Agente IA",
+        "disconnectError": "Errore durante la disconnessione dell'Agente IA",
+        "loadPostsError": "Errore durante il caricamento dei post di Facebook"
+      },
+      "success": {
+        "configured": "Agente IA configurato con successo!",
+        "disconnected": "Agente IA disconnesso con successo!"
+      },
+      "validation": {
+        "selectBot": "Seleziona un Agente IA prima di continuare"
+      }
+    },
+    "lockToSingleConversation": {
+      "title": "Blocca a Conversazione Singola",
+      "description": "Limitare il cliente a una conversazione attiva alla volta",
+      "enable": {
+        "label": "Attiva blocco conversazione singola",
+        "description": "Quando attivato, i clienti possono avere solo una conversazione attiva. I nuovi messaggi riaprono la stessa conversazione invece di crearne di nuove."
+      },
+      "info": {
+        "title": "Informazioni Importanti:",
+        "enabled": {
+          "title": "Quando Attivato",
+          "description": "I clienti riutilizzeranno sempre la stessa conversazione. Ideale per contesti di supporto continuo."
+        },
+        "disabled": {
+          "title": "Quando Disattivato",
+          "description": "Nuove conversazioni possono essere create liberamente. Ideale per supporto transazionale o multi-argomento."
+        },
+        "recommended": {
+          "title": "Consigliato",
+          "description": "Attiva per canali di supporto continuo. Disattiva per canali transazionali o multi-dipartimento."
+        }
+      }
+    },
+    "defaultConversationStatus": {
+      "title": "Stato Predefinito della Conversazione",
+      "description": "Impostare lo stato iniziale per le nuove conversazioni in questo canale",
+      "selectLabel": "Stato Iniziale",
+      "selectDescription": "Scegli lo stato predefinito che le nuove conversazioni avranno quando vengono create",
+      "placeholder": "Seleziona stato predefinito",
+      "options": {
+        "open": "Aperto",
+        "pending": "In attesa",
+        "resolved": "Risolto",
+        "snoozed": "Rinviato"
+      },
+      "info": {
+        "title": "Come funziona:",
+        "description": "Se non viene selezionato alcuno stato, il sistema utilizzerà il comportamento predefinito: 'in attesa' per i canali con Agenti IA attivi, 'aperto' per gli altri. Questa impostazione sovrascrive il comportamento predefinito."
+      }
+    },
+    "validation": {
+      "channelNameRequired": "Il nome del canale è obbligatorio",
+      "websiteUrlRequired": "L'URL del sito web è obbligatorio",
+      "websiteUrlInvalid": "L'URL del sito web deve essere un URL valido (es: https://miosito.com)",
+      "accountSidRequired": "L'Account SID è obbligatorio",
+      "authTokenRequired": "L'Auth Token è obbligatorio",
+      "apiKeySidRequired": "L'API Key SID è obbligatorio quando si utilizza l'API Key",
+      "messagingServiceSidRequired": "Il Messaging Service SID è obbligatorio",
+      "phoneRequired": "Il telefono è obbligatorio",
+      "phoneInvalidFormat": "Il telefono deve essere in formato internazionale (+5511999999999)",
+      "apiTokenRequired": "L'API Token è obbligatorio",
+      "channelIdRequired": "Il Channel ID è obbligatorio",
+      "apiUrlRequired": "L'API URL è obbligatorio",
+      "adminTokenRequired": "L'Admin Token è obbligatorio"
+    },
+    "oauth": {
+      "errors": {
+        "googleNotConfigured": "L'OAuth di Google non è configurato",
+        "googleStartFailed": "Impossibile avviare l'OAuth di Google",
+        "microsoftNotConfigured": "L'OAuth di Microsoft non è configurato",
+        "microsoftStartFailed": "Impossibile avviare l'OAuth di Microsoft"
+      }
+    },
+    "general": {
+      "success": {
+        "channelCreated": "Canale creato con successo"
+      }
+    }
+  },
+  "deleteDialog": {
+    "title": "Elimina Canale",
+    "description": "Sei sicuro di voler eliminare il canale \"{{name}}\"? Questa azione non può essere annullata.",
+    "confirmLabel": "Digita il nome del canale per confermare l'eliminazione",
+    "placeholder": "Nome del canale",
+    "cancel": "Annulla",
+    "confirm": "Elimina Canale",
+    "deleting": "Eliminazione..."
+  }
+}

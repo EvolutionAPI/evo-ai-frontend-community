@@ -1,0 +1,129 @@
+{
+  "title": "SMS via {{provider}}",
+  "name": "SMS",
+  "description": "Send and receive SMS messages",
+  "backButton": "Back",
+  "createButton": "Create SMS Channel",
+  "creating": "Creating Channel...",
+  "fields": {
+    "basicInfo": "Basic Information",
+    "name": {
+      "label": "Channel Name",
+      "placeholder": "SMS {{provider}}",
+      "required": true
+    },
+    "phoneNumber": {
+      "label": "Phone Number",
+      "placeholder": "+5511999999999",
+      "helpText": "International number format",
+      "required": true
+    },
+    "configuration": "Configuration for {{provider}}",
+    "advancedAuth": {
+      "title": "Advanced Authentication",
+      "description": "Configure API Key as alternative to Auth Token",
+      "useApiKey": "Use API Key (instead of Auth Token)",
+      "apiKeySid": {
+        "label": "API Key SID",
+        "placeholder": "SK...",
+        "helpText": "API Key generated in Twilio"
+      },
+      "apiKeySecret": {
+        "label": "API Key Secret",
+        "placeholder": "...",
+        "helpText": "API Key Secret"
+      }
+    },
+    "twilio": {
+      "channelName": {
+        "label": "Channel Name",
+        "placeholder": "Ex: sms-support",
+        "helpText": "Name to identify the SMS channel"
+      },
+      "displayName": {
+        "label": "Display Name",
+        "placeholder": "Ex: SMS Support",
+        "helpText": "Friendly name for identification"
+      },
+      "accountSid": {
+        "label": "Account SID",
+        "placeholder": "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "helpText": "Your Twilio Account SID"
+      },
+      "authToken": {
+        "label": "Auth Token",
+        "placeholder": "Auth Token of Twilio",
+        "helpText": "API Key generated in Twilio"
+      }
+    },
+    "phoneConfig": {
+      "title": "Phone Configuration",
+      "description": "Configure the number or messaging service",
+      "useMessagingService": "Use Messaging Service",
+      "messagingServiceSid": {
+        "label": "Messaging Service SID",
+        "placeholder": "MGxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "helpText": "If you use Messaging Service in Twilio"
+      }
+    },
+    "bandwidth": {
+      "displayName": {
+        "label": "Display Name",
+        "placeholder": "SMS Bandwidth",
+        "helpText": "Friendly name for identification"
+      },
+      "channelName": {
+        "label": "Channel Name",
+        "placeholder": "sms-bandwidth",
+        "helpText": "Automatically generated from display name"
+      },
+      "phoneNumber": {
+        "label": "Phone Number",
+        "placeholder": "+5511999999999",
+        "helpText": "International number format"
+      },
+      "apiToken": {
+        "label": "API Token",
+        "placeholder": "Bandwidth API Token"
+      },
+      "apiSecret": {
+        "label": "API Secret",
+        "placeholder": "Bandwidth API Secret"
+      },
+      "applicationId": {
+        "label": "Application ID",
+        "placeholder": "Bandwidth Application ID"
+      },
+      "accountId": {
+        "label": "Account ID",
+        "placeholder": "Bandwidth Account ID"
+      },
+      "info": {
+        "title": "Help - Bandwidth",
+        "apiKeyInfo": "Find in your Bandwidth dashboard",
+        "applicationIdInfo": "Application ID configured in Bandwidth",
+        "accountIdInfo": "Account ID in Bandwidth"
+      }
+    }
+  },
+  "providers": {
+    "twilio": {
+      "name": "Twilio",
+      "description": "Configure SMS using Twilio"
+    }
+  },
+  "validation": {
+    "nameRequired": "Channel name is required",
+    "phoneRequired": "Phone number is required",
+    "accountSidRequired": "Account SID is required",
+    "authTokenRequired": "Auth Token is required",
+    "fillAllFields": "Fill all required fields"
+  },
+  "success": {
+    "created": "SMS Channel created successfully!"
+  },
+  "errors": {
+    "createError": "Error creating SMS Channel {{provider}}",
+    "providerNotImplemented": "Provider {{provider}} not implemented yet."
+  }
+}

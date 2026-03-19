@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "language": "Language",
+    "myProfile": "My Profile",
+    "logout": "Sign Out",
+    "userInitial": "U",
+    "defaultUser": "User"
+  },
+  "logout": {
+    "title": "Logout Confirmation",
+    "description": "Are you sure you want to sign out of your account?",
+    "cancel": "Cancel",
+    "confirm": "Sign Out",
+    "loggingOut": "Signing out...",
+    "success": "Successfully signed out!",
+    "error": "Error signing out"
+  },
+  "notifications": {
+    "bell": {
+      "ariaLabel": "Notifications"
+    },
+    "item": {
+      "someTimeAgo": "Some time ago",
+      "noAssignee": "NA",
+      "noContent": "No content"
+    },
+    "panel": {
+      "title": "Unread notifications",
+      "markAllAsRead": "Mark all as read",
+      "loading": "Loading notifications...",
+      "emptyTitle": "You're all caught up!",
+      "emptyDescription": "You don't have any unread notifications at the moment.",
+      "pagination": {
+        "separator": " - "
+      },
+      "types": {
+        "conversation_assignment": "Assignment",
+        "conversation_mention": "Mention",
+        "conversation_creation": "New Conversation",
+        "conversation_status_changed": "Status Changed",
+        "message_created": "New Message",
+        "assigned_conversation_new_message": "New Message in Assigned Conversation",
+        "conversation_assigned": "Conversation Assigned",
+        "conversation_unassigned": "Conversation Unassigned",
+        "conversation_resolved": "Conversation Resolved",
+        "conversation_opened": "Conversation Opened",
+        "conversation_closed": "Conversation Closed",
+        "message_updated": "Message Updated",
+        "message_deleted": "Message Deleted"
+      }
+    }
+  },
+  "organizationSwitcher": {
+    "selectOrganization": "Select organization",
+    "searchPlaceholder": "Search organizations...",
+    "noResults": "No organization found",
+    "noOrganizations": "No organization available",
+    "roles": {
+      "administrator": "Administrator",
+      "agent": "Agent"
+    }
+  },
+  "sidebar": {
+    "openMenu": "Open menu",
+    "navigationMenu": "Navigation menu",
+    "organization": "Organization",
+    "expand": "Expand sidebar",
+    "collapse": "Collapse sidebar",
+    "closeSubmenu": "Close submenu",
+    "footer": {
+      "brand": "Evo AI",
+      "copyright": "© {{year}} Evo AI",
+      "documentation": "Documentation",
+      "support": "I need support"
+    }
+  },
+  "menu": {
+    "customer": {
+      "dashboard": "Dashboard",
+      "conversations": "Conversations",
+      "contacts": "Contacts",
+      "pipelines": "Pipelines",
+      "agents": "AI Agents",
+      "channels": "Channels",
+      "settings": "Settings"
+    },
+    "contacts": {
+      "list": "Contacts",
+      "scheduledActions": "Scheduled Actions"
+    },
+    "agents": {
+      "list": "AI Agents",
+      "customTools": "Custom Tools",
+      "customMcps": "Custom MCPs"
+    },
+    "settings": {
+      "account": "Account",
+      "users": "Agents",
+      "teams": "Teams",
+      "labels": "Labels",
+      "customAttributes": "Custom Attributes",
+      "cannedResponses": "Canned Responses",
+      "macros": "Macros",
+      "integrations": "Integrations",
+      "accessTokens": "Access Tokens"
+    }
+  }
+}

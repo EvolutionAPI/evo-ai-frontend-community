@@ -1,0 +1,236 @@
+{
+  "title": "Atendentes",
+  "subtitle": "Gerencie sua equipe e configure permissões de acesso",
+  "loading": "Carregando atendentes...",
+  "card": {
+    "id": "ID",
+    "role": "Função",
+    "customRole": "Função Personalizada",
+    "actions": {
+      "chat": "Conversar",
+      "edit": "Editar",
+      "delete": "Deletar"
+    }
+  },
+  "details": {
+    "tabs": {
+      "overview": "Visão Geral",
+      "activity": "Atividade",
+      "settings": "Configurações"
+    },
+    "status": {
+      "online": "Online",
+      "busy": "Ocupado",
+      "offline": "Offline",
+      "confirmed": "Confirmado",
+      "pending": "Pendente"
+    },
+    "id": "ID",
+    "edit": "Editar",
+    "contactInfo": {
+      "title": "Informações de Contato",
+      "email": "Email:"
+    },
+    "rolePermissions": {
+      "title": "Função e Permissões",
+      "role": "Função:",
+      "availability": "Status de Disponibilidade:"
+    },
+    "accountStatus": {
+      "title": "Status da Conta",
+      "confirmation": "Confirmação:",
+      "confirmed": "Conta Confirmada",
+      "pending": "Confirmação Pendente",
+      "accountId": "ID da Conta:"
+    },
+    "timestamps": {
+      "title": "Informações Temporais",
+      "created": "Criado:",
+      "lastUpdate": "Última atualização:"
+    },
+    "activity": {
+      "placeholder": "Histórico de atividades será implementado em breve."
+    },
+    "settingsTab": {
+      "title": "Configurações do Atendente",
+      "systemRole": {
+        "title": "Função no Sistema",
+        "description": "Define as permissões e acessos do atendente"
+      },
+      "availabilityStatus": {
+        "title": "Status de Disponibilidade",
+        "description": "Indica se o atendente está disponível para receber conversas"
+      },
+      "emailConfirmation": {
+        "title": "Confirmação de Email",
+        "description": "Status de verificação do endereço de email",
+        "verified": "Verificado",
+        "pending": "Pendente"
+      },
+      "editSettings": "Editar Configurações"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Novo Atendente",
+      "edit": "Editar Atendente"
+    },
+    "fields": {
+      "name": {
+        "label": "Nome *",
+        "placeholder": "Nome do atendente"
+      },
+      "email": {
+        "label": "Email *",
+        "placeholder": "email@exemplo.com",
+        "cannotChange": "O email não pode ser alterado após a criação"
+      },
+      "role": {
+        "label": "Função *"
+      },
+      "availability": {
+        "label": "Status de Disponibilidade",
+        "online": "Online",
+        "busy": "Ocupado",
+        "offline": "Offline"
+      },
+      "password": {
+        "label": "Senha *",
+        "labelOptional": "Nova Senha (opcional)",
+        "placeholder": "••••••••"
+      },
+      "confirmPassword": {
+        "label": "Confirmar Senha *",
+        "labelOptional": "Confirmar Nova Senha",
+        "placeholder": "••••••••"
+      }
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Email inválido",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordMinLength": "Senha deve ter pelo menos 6 caracteres",
+      "passwordMismatch": "As senhas não coincidem"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "saving": "Salvando...",
+      "save": "Salvar",
+      "create": "Criar Atendente"
+    },
+    "messages": {
+      "createSuccess": "Atendente criado com sucesso",
+      "updateSuccess": "Atendente atualizado com sucesso",
+      "saveError": "Erro ao salvar atendente"
+    }
+  },
+  "bulkInvite": {
+    "title": "Convite em Massa",
+    "resultTitle": "Resultado dos Convites",
+    "howToUse": {
+      "title": "Como usar:",
+      "step1": "Digite ou cole uma lista de emails",
+      "step2": "Um email por linha ou separados por vírgula",
+      "step3": "Emails duplicados serão automaticamente removidos",
+      "step4": "Os usuários receberão um email de convite para criar sua conta"
+    },
+    "fields": {
+      "emails": {
+        "label": "Emails dos Atendentes",
+        "placeholder": "atendente1@exemplo.com\natendente2@exemplo.com, atendente3@exemplo.com\natendente4@exemplo.com",
+        "hint": "Cole uma lista de emails, um por linha ou separados por vírgula"
+      }
+    },
+    "results": {
+      "invited": "Convites Enviados ({{count}})",
+      "failed": "Falhas nos Convites ({{count}})"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "sendInvites": "Enviar Convites",
+      "sending": "Enviando Convites...",
+      "sendMore": "Enviar Mais Convites",
+      "finish": "Concluir"
+    },
+    "messages": {
+      "enterEmail": "Digite pelo menos um email",
+      "noValidEmail": "Nenhum email válido encontrado",
+      "allSuccess": "{{count}} convite(s) enviado(s) com sucesso",
+      "partialSuccess": "{{successCount}} convite(s) enviado(s), {{failedCount}} falhou(ram)",
+      "allFailed": "Falha ao enviar {{count}} convite(s)",
+      "sendError": "Erro ao enviar convites"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Atendentes",
+    "description": "Configure os filtros para encontrar os atendentes que você procura",
+    "applyFilters": "Aplicar Filtros",
+    "clearFilters": "Limpar Filtros",
+    "addFilter": "Adicionar Filtro"
+  },
+  "header": {
+    "newUser": "Novo Atendente",
+    "bulkInvite": "Convidar em Massa",
+    "export": "Exportar",
+    "delete": "Deletar",
+    "searchPlaceholder": "Buscar por nome, email ou função..."
+  },
+  "table": {
+    "columns": {
+      "user": "Atendente",
+      "role": "Função",
+      "status": "Status",
+      "confirmation": "Confirmação",
+      "id": "ID",
+      "confirmed": "Confirmado",
+      "pending": "Pendente"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Deletar"
+    },
+    "empty": {
+      "title": "Nenhum atendente encontrado",
+      "description": "Crie seu primeiro atendente para começar a gerenciar sua equipe.",
+      "action": "Novo Atendente"
+    }
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Você não tem permissão para visualizar atendentes",
+      "create": "Você não tem permissão para criar atendentes",
+      "update": "Você não tem permissão para editar atendentes",
+      "delete": "Você não tem permissão para deletar atendentes",
+      "invite": "Você não tem permissão para convidar atendentes"
+    },
+    "loadError": "Erro ao carregar atendentes",
+    "filterError": "Erro ao aplicar filtros",
+    "deleteSuccess": "Atendente deletado com sucesso",
+    "deleteError": "Erro ao deletar atendente",
+    "bulkDeleteSuccess": "{{count}} atendente(s) deletado(s) com sucesso",
+    "bulkDeleteError": "Erro ao deletar atendentes",
+    "availabilityUpdated": "Status de disponibilidade atualizado"
+  },
+  "empty": {
+    "title": "Nenhum atendente encontrado",
+    "description": "Crie seu primeiro atendente para começar a gerenciar sua equipe.",
+    "action": "Novo Atendente"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Deletar Atendente",
+      "description": "Tem certeza de que deseja deletar o atendente \"{{name}}\"? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "deleting": "Deletando...",
+      "confirm": "Deletar"
+    },
+    "bulkDelete": {
+      "title": "Deletar Atendentes",
+      "description": "Tem certeza de que deseja deletar {{count}} atendente(s) selecionado(s)? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "deleting": "Deletando...",
+      "confirm": "Deletar Todos"
+    }
+  }
+}

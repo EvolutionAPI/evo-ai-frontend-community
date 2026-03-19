@@ -1,0 +1,1454 @@
+{
+  "tabs": {
+    "basic": "Informazioni di Base",
+    "configuration": "Configurazione",
+    "subagents": "Sotto-agenti",
+    "tools": "Strumenti",
+    "advanced": "Avanzato"
+  },
+  "header": {
+    "createAgent": "Crea Agente IA",
+    "agent": "Agente IA",
+    "loading": "Caricamento...",
+    "createSubtitle": "Configura il tuo nuovo agente IA per automatizzare le attività",
+    "editSubtitle": "Modifica le impostazioni del tuo agente IA",
+    "viewSubtitle": "Visualizza le impostazioni e le informazioni dell'agente IA",
+    "agents": "Agenti IA",
+    "new": "Nuovo",
+    "edit": "Modifica",
+    "editing": "Modifica",
+    "viewing": "Visualizzazione",
+    "modified": "Modificato"
+  },
+  "types": {
+    "llm": "Agente IA LLM",
+    "a2a": "A2A",
+    "sequential": "Agente IA Sequenziale",
+    "parallel": "Agente IA Parallelo",
+    "loop": "Agente IA Loop",
+    "workflow": "Workflow",
+    "task": "Attività",
+    "external": "Integrazione Esterna"
+  },
+  "agentTypeDescriptions": {
+    "llm": "Agente IA basato su modello linguistico",
+    "a2a": "Agente IA per comunicazione agente-ad-agente",
+    "sequential": "Sequenziale",
+    "sequentialDescription": "Esegue agenti in sequenza",
+    "parallel": "Parallelo",
+    "parallelDescription": "Esegue agenti simultaneamente",
+    "loop": "Loop",
+    "loopDescription": "Esegue agenti in loop",
+    "workflow": "Workflow",
+    "workflowDescription": "Flusso di lavoro personalizzato",
+    "task": "Attività",
+    "taskDescription": "Agente IA per attività specifiche",
+    "external": "Integrazione Esterna",
+    "externalDescription": "Agente IA che si integra con fornitori esterni (Flowise, N8N, Typebot, Dify, OpenAI)",
+    "unknownType": "Agente IA di tipo {{type}}"
+  },
+  "basicInfo": {
+    "title": "Informazioni di Base",
+    "name": "Nome Agente IA",
+    "namePlaceholder": "Inserisci il nome dell'agente IA",
+    "description": "Descrizione",
+    "descriptionPlaceholder": "Descrivi lo scopo e le funzionalità dell'agente IA",
+    "type": "Tipo di Agente IA",
+    "role": "Ruolo",
+    "rolePlaceholder": "Es: Assistente Vendite, Supporto Tecnico",
+    "goal": "Obiettivo",
+    "goalPlaceholder": "Descrivi l'obiettivo principale di questo agente IA",
+    "types": {
+      "llm": "LLM (Modello Linguistico)",
+      "a2a": "Agent-to-Agent",
+      "workflow": "Workflow",
+      "task": "Attività",
+      "sequential": "Sequenziale",
+      "parallel": "Parallelo",
+      "loop": "Loop",
+      "external": "Integrazione Esterna",
+      "externalDescription": "Agente IA che si integra con fornitori esterni"
+    }
+  },
+  "llmConfig": {
+    "title": "Configurazione LLM",
+    "model": "Modello Linguistico",
+    "selectModel": "Seleziona un modello",
+    "searchOrSelectModel": "Cerca o seleziona un modello...",
+    "searchModels": "Cerca modelli...",
+    "noModelFound": "Nessun modello trovato.",
+    "modelFilteredDescription": "Modelli {{provider}} compatibili con la tua chiave API",
+    "modelAllDescription": "Tutti i modelli disponibili - seleziona una chiave API per filtrare",
+    "apiKey": "Chiave API",
+    "selectApiKey": "Seleziona una chiave API",
+    "apiKeyDescription": "Seleziona la chiave di autenticazione - filtrerà i modelli disponibili",
+    "manageApiKeys": "Gestisci",
+    "activeApiKey": "Attiva",
+    "inactiveApiKey": "Inattiva",
+    "instruction": "Istruzioni di Sistema",
+    "instructionDescription": "Definisci il comportamento e la personalità del tuo agente IA",
+    "instructionPlaceholder": "Sei un assistente specializzato in...",
+    "instructionHelp": "Definisci come l'agente IA deve comportarsi e rispondere",
+    "advancedSettings": "Impostazioni Avanzate",
+    "advancedDescription": "Identificatore per uso in workflow e integrazioni",
+    "outputKey": "Chiave di Output",
+    "outputKeyPlaceholder": "nome_agente",
+    "outputKeyDescription": "Identificatore univoco utilizzato per referenziare questo agente IA nei workflow",
+    "temperature": "Temperatura",
+    "maxTokens": "Token Massimi",
+    "topP": "Top P",
+    "frequencyPenalty": "Penalità di Frequenza",
+    "presencePenalty": "Penalità di Presenza"
+  },
+  "a2aConfig": {
+    "title": "Configurazione Agent-to-Agent",
+    "description": "Configura l'URL dell'agent card per connetterti con agenti esterni",
+    "agentCardUrl": "URL Agent Card",
+    "agentCardUrlPlaceholder": "https://example.com/agent-card.json",
+    "urlDescription": "URL che punta al file JSON di configurazione dell'agente esterno",
+    "advancedTitle": "Impostazioni Avanzate",
+    "advancedDescription": "Identificatore per uso in workflow e integrazioni",
+    "outputKey": "Chiave di Output",
+    "outputKeyPlaceholder": "nome_agente",
+    "outputKeyDescription": "Identificatore univoco utilizzato per referenziare questo agente IA nei workflow",
+    "timeout": "Timeout (secondi)",
+    "retries": "Tentativi",
+    "headers": "Intestazioni HTTP",
+    "addHeader": "Aggiungi Intestazione"
+  },
+  "advancedBot": {
+    "title": "Impostazioni Avanzate",
+    "description": "Impostazioni di memoria, conoscenza e pianificazione",
+    "messageHandling": "Gestione Messaggi",
+    "messageHandlingDescription": "Configura il tempo di attesa e la firma dei messaggi",
+    "messageWaitTime": "Tempo di attesa messaggi (secondi)",
+    "messageWaitTimeDescription": "Tempo che l'agente IA attende prima di elaborare i messaggi",
+    "messageSignature": "Firma del Messaggio",
+    "messageSignaturePlaceholder": "Aggiungi una firma personalizzata per i messaggi di questo agente IA...",
+    "messageSignatureDescription": "Testo che verrà aggiunto alla fine di ogni messaggio dell'agente IA",
+    "textSegmentation": "Impostazioni di Segmentazione del Testo",
+    "textSegmentationDescription": "Configura come i messaggi lunghi verranno divisi e inviati",
+    "enableTextSegmentation": "Abilita segmentazione del testo",
+    "maxCharactersPerSegment": "Massimo caratteri per segmento",
+    "maxCharactersDescription": "Numero massimo di caratteri per messaggio segmentato",
+    "minSegmentSize": "Dimensione minima del segmento",
+    "minSegmentDescription": "Dimensione minima che un segmento può avere",
+    "characterDelayMs": "Ritardo per carattere (millisecondi)",
+    "characterDelayDescription": "Tempo di ritardo per carattere per simulare la digitazione naturale",
+    "typingIndicator": "Indicatore di Digitazione",
+    "enableTyping": "Mostra indicatore di digitazione",
+    "errorHandling": "Gestione Errori",
+    "fallbackMessage": "Messaggio di Fallback",
+    "fallbackMessagePlaceholder": "Mi dispiace, non sono riuscito a elaborare la tua richiesta",
+    "active": "Attivo",
+    "inactive": "Inattivo",
+    "enabled": "Abilitato",
+    "disabled": "Disabilitato",
+    "optimization": "Ottimizzazione"
+  },
+  "subAgents": {
+    "title": "Sotto-Agenti",
+    "description": "Configura altri agenti IA da eseguire tramite questo agente IA",
+    "complexCompositions": "I sotto-agenti consentono di creare composizioni complesse di funzionalità",
+    "selectedCount": "{{count}} selezionato",
+    "selectedCount_other": "{{count}} selezionati",
+    "selectedSubAgents": "Sotto-Agenti Selezionati",
+    "noSubAgentsSelected": "Nessun sotto-agente selezionato",
+    "noSubAgentsUsed": "Questo agente non utilizza sotto-agenti",
+    "addFromListBelow": "Aggiungi agenti dall'elenco sottostante",
+    "availableAgents": "Agenti Disponibili",
+    "selectToAdd": "Seleziona agenti da aggiungere come sotto-agenti",
+    "searchAgents": "Cerca Agenti",
+    "searchPlaceholder": "Inserisci il nome dell'agente...",
+    "loadingAgents": "Caricamento agenti...",
+    "loadError": "Errore durante il caricamento degli agenti disponibili",
+    "noAgentsFound": "Nessun agente trovato",
+    "adjustSearch": "Prova a modificare il termine di ricerca",
+    "noAvailableAgents": "Nessun agente disponibile",
+    "noOtherAgentsInFolder": "Non ci sono altri agenti in questa cartella",
+    "createOtherAgentsFirst": "Crea prima altri agenti",
+    "howItWorks": {
+      "title": "Come Funzionano i Sotto-Agenti",
+      "composition": {
+        "title": "Composizione",
+        "description": "I sotto-agenti consentono di creare workflow complessi combinando diverse specializzazioni"
+      },
+      "execution": {
+        "title": "Esecuzione",
+        "description": "I sotto-agenti vengono eseguiti in base al tipo dell'agente principale (sequenziale, parallelo, ecc.)"
+      },
+      "context": {
+        "title": "Contesto",
+        "description": "Ogni sotto-agente può passare informazioni al successivo nella catena di esecuzione"
+      },
+      "flexibility": {
+        "title": "Flessibilità",
+        "description": "Puoi combinare diversi tipi di agenti (LLM, A2A, ecc.) come sotto-agenti"
+      }
+    }
+  },
+  "subagents": {
+    "title": "Sotto-agenti",
+    "description": "Configura i sotto-agenti che questo agente IA può invocare",
+    "addSubagent": "Aggiungi Sotto-agente",
+    "selectSubagent": "Seleziona Sotto-agente",
+    "noSubagents": "Nessun sotto-agente configurato",
+    "name": "Nome",
+    "type": "Tipo",
+    "role": "Ruolo",
+    "actions": "Azioni",
+    "remove": "Rimuovi",
+    "configure": "Configura",
+    "maxDepth": "Profondità Massima",
+    "maxDepthHelp": "Numero massimo di livelli di sotto-agenti"
+  },
+  "tools": {
+    "title": "Strumenti",
+    "systemTools": {
+      "title": "Strumenti di Sistema",
+      "description": "Strumenti integrati disponibili per l'agente IA",
+      "addTool": "Aggiungi Strumento",
+      "noTools": "Nessuno strumento configurato",
+      "addToExtend": "Aggiungi strumenti per estendere le capacità dell'agente IA",
+      "search": "Cerca strumenti...",
+      "selectAll": "Seleziona Tutti",
+      "deselectAll": "Deseleziona Tutti",
+      "selected": "{{count}} selezionati"
+    },
+    "customTools": {
+      "title": "Strumenti Personalizzati",
+      "subtitle": "Strumenti HTTP personalizzati e API esterne",
+      "add": "Aggiungi Strumento",
+      "addTool": "Aggiungi Strumento HTTP",
+      "create": "Crea",
+      "noTools": "Nessuno strumento personalizzato",
+      "createDescription": "Crea strumenti HTTP personalizzati per integrare API esterne",
+      "defaultDescription": "Strumento HTTP personalizzato",
+      "description": "Crea strumenti HTTP personalizzati per integrare API esterne ed espandere le capacità del tuo agente IA",
+      "name": "Nome",
+      "endpoint": "Endpoint",
+      "method": "Metodo",
+      "actions": "Azioni"
+    },
+    "agentTools": {
+      "title": "Agenti come Strumenti",
+      "subtitle": "Altri agenti che possono essere invocati come strumenti",
+      "selectAgents": "Seleziona Agenti",
+      "noAgents": "Nessun agente selezionato",
+      "addAgent": "Aggiungi Agente"
+    },
+    "mcpServers": {
+      "title": "Server MCP",
+      "subtitle": "Server Model Context Protocol disponibili",
+      "checkingIntegrations": "Verifica integrazioni disponibili...",
+      "preDefinedDescription": "Integrazioni predefinite con servizi esterni (GitHub, Slack, ecc.)",
+      "preDefinedInfo": "I server MCP sono integrazioni predefinite con servizi esterni come GitHub, Slack, ecc. Seleziona e configura i servizi che desideri utilizzare",
+      "addForIntegration": "Aggiungi server MCP per integrare con servizi esterni",
+      "loadingServerInfo": "Caricamento informazioni server...",
+      "description": "Connetti server MCP creati nella pagina di gestione o configura MCP inline per integrazioni specifiche",
+      "add": "Aggiungi Server MCP",
+      "addCustom": "Aggiungi MCP Personalizzato",
+      "configure": "Configura",
+      "noServers": "Nessun server MCP configurato",
+      "noCustomConfigured": "Nessun MCP personalizzato configurato",
+      "connectFromManagement": "Connetti server MCP creati nella pagina di gestione",
+      "referenced": "Referenziato",
+      "externallyManaged": "Server MCP gestito esternamente",
+      "name": "Nome",
+      "url": "URL",
+      "status": "Stato",
+      "connected": "Connesso",
+      "disconnected": "Disconnesso"
+    },
+    "aboutTools": {
+      "title": "Informazioni sugli Strumenti",
+      "description": "Gli strumenti consentono all'agente IA di eseguire azioni specifiche, accedere ad API esterne e interagire con altri sistemi. Tutti gli strumenti sono opzionali e possono essere configurati secondo necessità."
+    }
+  },
+  "outputSchema": {
+    "title": "Schema di Output",
+    "subtitle": "Definisce il formato previsto della risposta dell'agente IA",
+    "structuredSchema": "Schema Strutturato",
+    "structuredDescription": "Definisce campi obbligatori e tipi di dati per l'output dell'agente IA, garantendo risposte strutturate e coerenti",
+    "noSchema": "Nessuno schema definito",
+    "addFieldsToStructure": "Aggiungi campi per strutturare l'output dell'agente IA",
+    "firstField": "Primo Campo",
+    "enableSchema": "Abilita Schema di Output",
+    "schemaType": "Tipo di Schema",
+    "types": {
+      "object": "Oggetto",
+      "array": "Array",
+      "string": "Stringa",
+      "number": "Numero",
+      "boolean": "Booleano"
+    },
+    "addField": "Aggiungi Campo",
+    "fieldName": "Nome Campo",
+    "fieldNamePlaceholder": "nome_campo",
+    "fieldType": "Tipo",
+    "required": "Obbligatorio",
+    "description": "Descrizione",
+    "descriptionPlaceholder": "Descrivi lo scopo di questo campo...",
+    "defaultValue": "Valore Predefinito",
+    "properties": "Proprietà",
+    "items": "Elementi",
+    "validation": "Validazione",
+    "minLength": "Lunghezza Minima",
+    "maxLength": "Lunghezza Massima",
+    "minimum": "Valore Minimo",
+    "maximum": "Valore Massimo",
+    "pattern": "Pattern (Regex)",
+    "enum": "Valori Consentiti",
+    "format": "Formato",
+    "formats": {
+      "email": "Email",
+      "uri": "URI",
+      "date": "Data",
+      "datetime": "Data e Ora",
+      "uuid": "UUID"
+    }
+  },
+  "memory": {
+    "title": "Configurazione Memoria",
+    "loadMemory": "Carica Memoria",
+    "loadMemoryDescription": "Consente all'agente IA di accedere e utilizzare memorie di conversazioni precedenti",
+    "preloadMemory": "Pre-carica Memoria",
+    "preloadMemoryDescription": "Carica automaticamente la memoria all'inizio della conversazione per migliori prestazioni",
+    "preloadMemoryWarning": "Attenzione: Il precaricamento consuma più token, aumentando il costo di ogni conversazione.",
+    "preloadMemoryToolInfo": "Se non è selezionato, la ricerca di memoria sarà disponibile come strumento per l'agente IA da utilizzare quando necessario.",
+    "sharedMemoryInfo": "La memoria attiva è condivisa tra tutte le conversazioni. Per impostazione predefinita, la cronologia è mantenuta per sessione.",
+    "shortTermMaxMessages": {
+      "label": "Massimo di Messaggi nella Memoria a Breve Termine",
+      "description": "Numero massimo di messaggi nella memoria a breve termine prima della compressione nella memoria a medio termine. Predefinito: 50, Minimo: 10, Massimo: 500."
+    },
+    "compressionInterval": {
+      "label": "Intervallo di Compressione per Memoria a Medio Termine",
+      "description": "Comprimi ogni N messaggi nella memoria a medio termine. Predefinito: 10, Minimo: 5, Massimo: 100."
+    },
+    "baseConfig": {
+      "label": "Base di Memoria",
+      "selectPlaceholder": "Seleziona una configurazione di memoria...",
+      "useDefault": "Usa configurazione predefinita dell'account",
+      "configDescription": "Se nessuna configurazione è selezionata, l'agente IA userà la configurazione predefinita attiva dell'account.",
+      "selectedConfig": "Configurazione selezionata"
+    },
+    "clearAll": "Cancella Tutta la Memoria",
+    "clearing": "Cancellazione...",
+    "clearAllTitle": "Cancellare tutta la memoria dell'agente IA?",
+    "clearAllDescription": "Questa azione eliminerà permanentemente tutte le memorie memorizzate per questo agente IA, incluse le memorie a breve termine e i riassunti a medio termine. Questa azione non può essere annullata.",
+    "cancel": "Annulla",
+    "confirmClear": "Sì, cancella memoria",
+    "clearSuccess": "Memoria cancellata con successo",
+    "clearError": "Errore durante la cancellazione della memoria",
+    "memoryType": "Tipo di Memoria",
+    "types": {
+      "conversation": "Conversazione",
+      "summary": "Riepilogo",
+      "buffer": "Buffer",
+      "windowBuffer": "Buffer con Finestra"
+    },
+    "maxMessages": "Massimo Messaggi",
+    "tokenLimit": "Limite Token",
+    "summarizationModel": "Modello di Riepilogo"
+  },
+  "knowledge": {
+    "title": "Base di Conoscenza",
+    "loadKnowledge": "Carica Base di Conoscenza",
+    "loadKnowledgeDescription": "Consente l'accesso a documenti e basi di conoscenza per risposte più precise",
+    "knowledgeTags": "Tag Conoscenza",
+    "knowledgeTagsDescription": "Specifica i tag per filtrare la conoscenza pertinente",
+    "addTag": "Aggiungi Tag",
+    "tagPlaceholder": "Inserisci un tag...",
+    "sources": "Fonti",
+    "addSource": "Aggiungi Fonte",
+    "sourceTypes": {
+      "document": "Documento",
+      "url": "URL",
+      "database": "Database",
+      "api": "API"
+    }
+  },
+  "planner": {
+    "title": "Pianificatore",
+    "description": "Consente all'agente IA di creare piani dettagliati prima di eseguire attività complesse",
+    "enablePlanner": "Abilita Pianificatore",
+    "plannerType": "Tipo di Pianificatore",
+    "types": {
+      "sequential": "Sequenziale",
+      "parallel": "Parallelo",
+      "adaptive": "Adattivo"
+    },
+    "maxSteps": "Massimo Passaggi",
+    "timeout": "Timeout (secondi)",
+    "retryOnFailure": "Riprova in Caso di Errore",
+    "maxRetries": "Massimo Tentativi"
+  },
+  "dialogs": {
+    "mcpConfig": {
+      "title": "Configura Server MCP",
+      "serverName": "Nome Server",
+      "serverUrl": "URL Server",
+      "authentication": "Autenticazione",
+      "authType": "Tipo di Autenticazione",
+      "apiKey": "Chiave API",
+      "username": "Utente",
+      "password": "Password",
+      "testConnection": "Testa Connessione",
+      "save": "Salva Configurazione",
+      "cancel": "Annulla",
+      "of": "di",
+      "notEditable": "(non modificabile)",
+      "requiredConfig": "Configurazione necessaria",
+      "variables": "variabili",
+      "enterValue": "Inserisci il valore per {{key}}",
+      "availableTools": "Strumenti disponibili",
+      "skip": "Salta"
+    },
+    "customMcp": {
+      "title": "Seleziona MCP Personalizzati",
+      "name": "Nome",
+      "namePlaceholder": "Es: Server Dati",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Descrivi il server MCP",
+      "endpoint": "Endpoint",
+      "endpointPlaceholder": "https://api.esempio.com/mcp",
+      "searchPlaceholder": "Cerca per nome, descrizione, URL o tag...",
+      "timeout": "timeout",
+      "retries": "tentativi",
+      "more": "altro",
+      "createFirst": "Crea il tuo primo server MCP personalizzato",
+      "serversSelected": "{{count}} server selezionato/i",
+      "selectServers": "Seleziona Server",
+      "addSelected": "Aggiungi Selezionati ({{count}})",
+      "save": "Aggiungi",
+      "cancel": "Annulla"
+    },
+    "customTools": {
+      "title": "Seleziona Strumenti Personalizzati",
+      "searchPlaceholder": "Cerca per nome, descrizione, endpoint o tag...",
+      "more": "più",
+      "createFirst": "Crea il tuo primo strumento personalizzato",
+      "toolsSelected": "{{count}} strumento/i selezionato/i",
+      "selectTools": "Seleziona Strumenti",
+      "addSelected": "Aggiungi Selezionati ({{count}})"
+    },
+    "mcpServers": {
+      "title": "Seleziona Server MCP",
+      "checkingIntegrations": "Verifica integrazioni disponibili...",
+      "searchPlaceholder": "Cerca per nome, descrizione, tipo o strumenti...",
+      "availableTools": "Strumenti disponibili",
+      "continue": "Continua"
+    },
+    "agentTools": {
+      "title": "Seleziona Agenti come Strumenti",
+      "search": "Cerca agenti...",
+      "selectAll": "Seleziona Tutti",
+      "deselectAll": "Deseleziona Tutti",
+      "selected": "{{count}} agenti selezionati",
+      "confirm": "Conferma",
+      "cancel": "Annulla"
+    },
+    "toolsDialog": {
+      "title": "Configura Strumenti",
+      "configureTool": "Configura {{name}}",
+      "configureDescription": "Configura le opzioni dello strumento {{name}}",
+      "name": "Nome Strumento",
+      "description": "Descrizione",
+      "endpoint": "Endpoint",
+      "method": "Metodo HTTP",
+      "headers": "Intestazioni",
+      "addHeader": "Aggiungi Intestazione",
+      "parameters": "Parametri",
+      "addParameter": "Aggiungi Parametro",
+      "save": "Salva",
+      "cancel": "Annulla",
+      "requiredFields": "Campi Obbligatori",
+      "optionalFields": "Campi Opzionali",
+      "selectField": "Seleziona {{field}}",
+      "enterField": "Inserisci {{field}}",
+      "enabled": "Abilitato",
+      "disabled": "Disabilitato",
+      "saveChanges": "Salva Modifiche",
+      "addTool": "Aggiungi Strumento",
+      "configuredTools": "Strumenti Configurati ({{count}})",
+      "configured": "Configurato",
+      "searchTools": "Cerca Strumenti",
+      "searchPlaceholder": "Digita per cercare strumenti...",
+      "filterByCategory": "Filtra per Categoria",
+      "allCategories": "Tutte le categorie",
+      "tryAgain": "Riprova",
+      "examples": "Esempi",
+      "input": "Input",
+      "output": "Output",
+      "noToolsFound": "Nessuno strumento trovato",
+      "adjustFilters": "Prova a modificare i filtri di ricerca",
+      "noToolsAvailable": "Nessuno strumento disponibile",
+      "contactAdmin": "Contatta l'amministratore per configurare gli strumenti",
+      "addTools": "Aggiungi {{count}} strumento",
+      "addTools_other": "Aggiungi {{count}} strumenti"
+    }
+  },
+  "validation": {
+    "nameRequired": "Il nome è obbligatorio",
+    "descriptionRequired": "La descrizione è obbligatoria",
+    "typeRequired": "Il tipo è obbligatorio",
+    "modelRequired": "Il modello è obbligatorio",
+    "apiKeyRequired": "La chiave API è obbligatoria",
+    "instructionRequired": "L'istruzione è obbligatoria",
+    "urlRequired": "L'URL è obbligatorio",
+    "invalidUrl": "URL non valido",
+    "invalidEmail": "Email non valida",
+    "minLength": "Minimo {{min}} caratteri",
+    "maxLength": "Massimo {{max}} caratteri",
+    "minValue": "Il valore minimo è {{min}}",
+    "maxValue": "Il valore massimo è {{max}}",
+    "required": "Questo campo è obbligatorio",
+    "invalidApiKey": "Chiave API non valida"
+  },
+  "messages": {
+    "saveSuccess": "Agente IA salvato con successo",
+    "saveError": "Errore durante il salvataggio dell'agente IA",
+    "deleteSuccess": "Agente IA rimosso con successo",
+    "deleteError": "Errore durante la rimozione dell'agente IA",
+    "testSuccess": "Test eseguito con successo",
+    "testError": "Errore durante il test della connessione",
+    "connectionSuccess": "Connessione stabilita con successo",
+    "connectionError": "Errore durante la connessione",
+    "loadingTools": "Caricamento strumenti...",
+    "loadingAgents": "Caricamento agenti...",
+    "noResults": "Nessun risultato trovato",
+    "formUnderConstruction": "Modulo {{form}} in costruzione...",
+    "mode": "Modalità",
+    "loadError": "Errore durante il caricamento dell'agente IA",
+    "saving": "Salvataggio...",
+    "creating": "Creazione agente IA...",
+    "createError": "Errore durante la creazione dell'agente IA",
+    "providerRequired": "Il fornitore è obbligatorio per gli agenti IA esterni",
+    "providerConfigError": "Errore durante il salvataggio della configurazione del fornitore. Puoi configurarlo successivamente nella pagina di modifica.",
+    "loadAgentTypesError": "Errore durante il caricamento dei tipi di agente IA"
+  },
+  "edit": {
+    "menu": {
+      "profile": "Profilo",
+      "subAgents": "Sotto-agenti",
+      "configuration": "Configurazione",
+      "knowledge": "Conoscenza",
+      "tools": "Strumenti",
+      "integrations": "Integrazioni",
+      "mcpServers": "Server MCP",
+      "channels": "Canali",
+      "settings": "Impostazioni"
+    },
+    "agentOf": "Agente personale di",
+    "agentType": "{{type}}",
+    "testAI": "Testa la tua IA",
+    "profile": {
+      "title": "Informazioni personali",
+      "subtitle": "Configura le informazioni di base del tuo agente",
+      "name": "Nome dell'agente",
+      "namePlaceholder": "Inserisci il nome dell'agente",
+      "description": "Descrizione",
+      "descriptionPlaceholder": "Descrivi lo scopo dell'agente",
+      "descriptionHelp": "Una breve descrizione di ciò che fa l'agente",
+      "communication": "Comunicazione",
+      "communicationStyles": {
+        "formal": "FORMALE",
+        "normal": "NORMALE",
+        "relaxed": "RILASSATO"
+      },
+      "role": "Ruolo",
+      "rolePlaceholder": "Es: Specialista del supporto tecnico",
+      "roleHelp": "Il ruolo che l'agente svolge nella conversazione",
+      "goal": "Obiettivo",
+      "goalPlaceholder": "Es: Aiutare gli utenti con domande tecniche",
+      "goalHelp": "L'obiettivo principale dell'agente",
+      "instructions": "Comportamento",
+      "instructionsPlaceholder": "Descrivi come l'agente deve comportarsi durante la conversazione...",
+      "instructionsHelp": "Es. Sii estroverso, nella prima interazione cerca di conoscere il nome dell'utente."
+    },
+    "configuration": {
+      "title": "Configurazione",
+      "subtitle": "Configura il modello e le opzioni avanzate",
+      "comingSoon": "Prossimamente...",
+      "tabs": {
+        "general": "Generale",
+        "system": "Sistema",
+        "inactivityActions": "Azioni di inattività",
+        "transferRules": "Regole di trasferimento"
+      },
+      "sections": {
+        "modelAndApi": {
+          "title": "Modello e API",
+          "subtitle": "Configura il modello linguistico e la chiave API"
+        },
+        "behavior": {
+          "title": "Comportamento nella Conversazione",
+          "subtitle": "Configura come l'agente interagisce con gli utenti"
+        },
+        "messageHandling": {
+          "title": "Gestione dei Messaggi",
+          "subtitle": "Configura come i messaggi vengono elaborati e inviati"
+        },
+        "capabilities": {
+          "title": "Capacità dell'Agente",
+          "subtitle": "Funzionalità avanzate di memoria e pianificazione"
+        },
+        "outputFormat": {
+          "title": "Formato di Output",
+          "subtitle": "Configura la struttura e l'identificatore delle risposte"
+        },
+        "externalIntegration": {
+          "title": "Integrazione Esterna",
+          "subtitle": "Configura l'integrazione con il provider esterno",
+          "securityAlert": {
+            "title": "Sicurezza delle Configurazioni",
+            "description": "Per motivi di sicurezza, le informazioni sensibili (come token, chiavi API e password) non vengono visualizzate dopo il salvataggio. Se è necessario aggiornare queste informazioni, inserirle nuovamente e salvare la configurazione."
+          },
+          "providerConfig": {
+            "title": "Configurazione del Provider",
+            "subtitle": "Configura le credenziali e i parametri del provider selezionato",
+            "selectProvider": "Seleziona un provider da configurare",
+            "saving": "Salvataggio...",
+            "save": "Salva Configurazione"
+          },
+          "errors": {
+            "providerRequired": "Il provider è obbligatorio",
+            "apiUrlRequired": "L'URL dell'API è obbligatoria",
+            "webhookUrlRequired": "L'URL del webhook è obbligatoria",
+            "apiKeyRequired": "La chiave API è obbligatoria",
+            "assistantIdRequired": "L'ID dell'assistente è obbligatorio per il tipo assistant",
+            "modelRequired": "Il modello è obbligatorio per il tipo chatCompletion",
+            "urlRequired": "L'URL è obbligatoria",
+            "typebotIdRequired": "L'ID di Typebot è obbligatorio"
+          },
+          "providerSelector": {
+            "title": "Provider di Integrazione",
+            "subtitle": "Seleziona il provider esterno che questo agente utilizzerà",
+            "label": "Provider",
+            "placeholder": "Seleziona un provider",
+            "providers": {
+              "flowise": {
+                "label": "Flowise",
+                "description": "Integrazione con agenti Flowise"
+              },
+              "n8n": {
+                "label": "N8N",
+                "description": "Integrazione con workflow N8N"
+              },
+              "typebot": {
+                "label": "Typebot",
+                "description": "Integrazione con bot Typebot"
+              },
+              "dify": {
+                "label": "Dify",
+                "description": "Connetti con agenti Dify"
+              },
+              "openai": {
+                "label": "OpenAI",
+                "description": "Integrazione diretta con assistenti OpenAI"
+              }
+            }
+          },
+          "forms": {
+            "flowise": {
+              "apiUrl": "URL dell'API *",
+              "apiKey": "Chiave API (opzionale)"
+            },
+            "n8n": {
+              "webhookUrl": "URL del Webhook *",
+              "basicAuthUser": "Utente Basic Auth (opzionale)",
+              "basicAuthPass": "Password Basic Auth (opzionale)"
+            },
+            "dify": {
+              "apiUrl": "URL dell'API *",
+              "apiKey": "Chiave API *",
+              "botType": "Tipo di Bot",
+              "botTypes": {
+                "chatBot": "Chat Bot",
+                "textGenerator": "Generatore di Testo",
+                "agent": "Agente"
+              }
+            },
+            "openai": {
+              "apiKey": "Chiave API *",
+              "botType": "Tipo di Bot",
+              "botTypes": {
+                "assistant": "API Assistant",
+                "chatCompletion": "API Completamento Chat"
+              },
+              "assistantId": "ID dell'Assistente *",
+              "model": "Modello *",
+              "maxTokens": "Token Massimi"
+            },
+            "typebot": {
+              "url": "URL *",
+              "typebotId": "ID di Typebot *",
+              "apiVersion": "Versione dell'API",
+              "apiVersions": {
+                "latest": "Ultima",
+                "legacy": "Legacy"
+              }
+            }
+          },
+          "wizard": {
+            "back": "Indietro",
+            "createAgent": "Crea Agente"
+          }
+        }
+      },
+      "behavior": {
+        "transferToHuman": "Trasferire a umano",
+        "transferToHumanDescription": "Consente all'agente di trasferire la conversazione a un agente umano quando necessario",
+        "useEmojis": "Usare Emoji nelle Risposte",
+        "useEmojisDescription": "Consente all'agente di usare emoji nelle risposte per rendere la comunicazione più amichevole",
+        "allowReminders": "Permettere di registrare promemoria",
+        "allowRemindersDescription": "Consente all'agente di registrare promemoria e attività per l'utente",
+        "allowContactEdit": "Permettere di modificare i contatti",
+        "allowContactEditDescription": "Consente all'agente di modificare le informazioni di contatto durante la conversazione",
+        "allowPipelineManipulation": "Consentire di manipolare le pipeline",
+        "allowPipelineManipulationDescription": "Consente all'agente di spostare le conversazioni tra pipeline e fasi in base alle regole configurate",
+        "configureRules": "Configura regole",
+        "configureAutomation": "Automazione",
+        "timezone": "Fuso orario dell'agente",
+        "timezoneDescription": "Definisce il fuso orario utilizzato dall'agente per la pianificazione e i promemoria",
+        "sendAsReply": "Invia messaggio come risposta nella conversazione",
+        "sendAsReplyDescription": "Consente all'agente di inviare messaggi come risposta a un messaggio specifico nella conversazione"
+      },
+      "inactivityActions": {
+        "description": "Configura le azioni che l'agente deve eseguire quando il cliente smette di rispondere.",
+        "ifNotRespondIn": "Se non risponde in",
+        "theAgentShould": "l'agente deve",
+        "minute": "minuto",
+        "minutes": "minuti",
+        "interactWithClient": "Interagire con il cliente",
+        "finalizeService": "Finalizzare il servizio",
+        "whatShouldAgentSay": "Cosa dovrebbe dire l'agente?",
+        "messagePlaceholder": "Chiedere se il cliente è ancora interessato",
+        "addAction": "+ Aggiungi azione precedente"
+      },
+      "transferRules": {
+        "description": "Configura le istruzioni per l'agente per trasferire il servizio.",
+        "modalTitle": "Regole di Trasferimento",
+        "modalDescription": "Configura quando e come l'agente deve trasferire conversazioni a umani, altri agenti o team",
+        "transferTo": "Trasferisci a:",
+        "aHuman": "Umano",
+        "anAgent": "Agente",
+        "aTeam": "Team",
+        "selectAgent": "Seleziona l'agente:",
+        "selectAgentPlaceholder": "Seleziona un agente",
+        "selectUser": "Seleziona l'utente:",
+        "selectUserPlaceholder": "Seleziona un utente",
+        "selectTeam": "Seleziona il team:",
+        "selectTeamPlaceholder": "Seleziona un team",
+        "returnOnFinish": "Restituisci al termine",
+        "instructions": "Istruzioni:",
+        "instructionsPlaceholder": "Quando il cliente vuole parlare di tale argomento...",
+        "addRule": "+ Aggiungi regola di trasferimento"
+      },
+      "pipelineRules": {
+        "description": "Configura quando e come l'agente deve spostare le conversazioni tra pipeline e fasi.",
+        "selectPipeline": "Seleziona Pipeline",
+        "selectPipelinePlaceholder": "Scegli una pipeline",
+        "selectStage": "Seleziona Fase",
+        "selectStagePlaceholder": "Scegli una fase",
+        "instructions": "Istruzioni per l'assegnazione",
+        "instructionsPlaceholder": "Quando il cliente dimostra interesse per il prodotto...",
+        "allowTasks": "Crea/gestisci attività",
+        "allowServices": "Crea/gestisci servizi",
+        "generalInstructions": "Istruzioni generali (quando e cosa fare):",
+        "generalInstructionsPlaceholder": "Definisci quando l'agente deve creare attività, aggiungere servizi o eseguire altre azioni in questa pipeline...",
+        "addRule": "+ Aggiungi regola di pipeline",
+        "addStage": "+ Aggiungi fase",
+        "addPipeline": "+ Aggiungi pipeline",
+        "selectPipelineFirst": "Seleziona una pipeline per aggiungere fasi",
+        "modalTitle": "Regole di Pipeline",
+        "modalDescription": "Configura quando e come l'agente deve spostare le conversazioni tra pipeline e fasi in base al contesto della conversazione"
+      },
+      "contactEditRules": {
+        "description": "Consente all'agente di modificare le informazioni di contatto durante la conversazione. Configura quali campi possono essere modificati e quando questo deve avvenire.",
+        "enableEditing": "Permettere modifica dei contatti",
+        "editableFields": "Campi modificabili",
+        "selectAll": "Seleziona tutti",
+        "deselectAll": "Deseleziona tutti",
+        "basicFields": "Campi di Base",
+        "additionalFields": "Campi Aggiuntivi",
+        "fieldsSelected": "campi selezionati",
+        "instructions": "Istruzioni",
+        "instructionsPlaceholder": "Es: Aggiorna il nome del contatto quando si presenta. Aggiungi l'email quando il cliente la fornisce. Aggiorna la città quando il cliente menziona la sua posizione..."
+      },
+      "pipelineAutomation": {
+        "description": "Configura automazioni avanzate per ogni fase della pipeline. Crea attività automatiche, notifica i team e definisci azioni quando le conversazioni si spostano tra le fasi.",
+        "addPipeline": "Aggiungi Pipeline",
+        "selectPipeline": "Seleziona la pipeline",
+        "selectPipelinePlaceholder": "Seleziona una pipeline da automatizzare",
+        "removePipeline": "Rimuovi Pipeline",
+        "noPipelines": "Nessuna pipeline configurata",
+        "addPipelineToStart": "Aggiungi una pipeline per iniziare a configurare le automazioni",
+        "stageAutomations": "Automazioni di Fase",
+        "noStagesSelected": "Seleziona una pipeline per vedere le fasi disponibili",
+        "addStageAutomation": "Aggiungi Fase",
+        "selectStage": "Seleziona la fase",
+        "selectStagePlaceholder": "Seleziona una fase",
+        "instructions": "Istruzioni",
+        "instructionsPlaceholder": "Es: Quando la conversazione arriva a questa fase, l'agente deve...",
+        "createTasks": "Creare Attività Automaticamente",
+        "taskTitle": "Titolo dell'Attività",
+        "taskTitlePlaceholder": "Es: Effettuare chiamata di follow-up",
+        "taskType": "Tipo di Attività",
+        "taskTypes": {
+          "call": "Chiamata",
+          "email": "Email",
+          "meeting": "Riunione",
+          "follow_up": "Follow-up",
+          "note": "Nota",
+          "other": "Altro"
+        },
+        "priority": "Priorità",
+        "priorities": {
+          "low": "Bassa",
+          "medium": "Media",
+          "high": "Alta",
+          "urgent": "Urgente"
+        },
+        "dueDays": "Scadenza (giorni)",
+        "dueDaysPlaceholder": "Es: 2",
+        "description": "Descrizione dell'Attività",
+        "descriptionPlaceholder": "Dettagli su cosa deve essere fatto...",
+        "addTask": "Aggiungi Attività",
+        "removeTask": "Rimuovi Attività",
+        "notifyTeam": "Notifica il team quando arriva a questa fase",
+        "removeStageAutomation": "Rimuovi Fase"
+      }
+    },
+    "knowledge": {
+      "title": "Configurazione Base di Conoscenza",
+      "subtitle": "Seleziona quale base di conoscenza questo agente utilizzerà per cercare conoscenza",
+      "selectConfig": "Base di Conoscenza",
+      "configDescription": "Se nessuna configurazione è selezionata, l'agente utilizzerà la configurazione predefinita attiva dell'account.",
+      "selectedConfig": "Configurazione selezionata",
+      "useDefault": "Usa configurazione predefinita dell'account",
+      "loadingConfigs": "Caricamento configurazioni...",
+      "noConfigsAvailable": "Nessuna configurazione disponibile",
+      "noConfigsDescription": "Devi creare almeno una configurazione attiva della base di conoscenza. Vai a Configurazioni Base di Conoscenza per crearne una.",
+      "howItWorks": "Come funziona?",
+      "howItWorksDescription": "Quando l'agente dovrà cercare conoscenza, utilizzerà la base di conoscenza selezionata sopra. Se non viene scelta alcuna configurazione specifica, verrà utilizzata la configurazione predefinita attiva del tuo account. Puoi gestire tutte le configurazioni in Configurazioni Base di Conoscenza.",
+      "maxResults": {
+        "label": "Risultati Massimi",
+        "description": "Numero massimo di risultati che l'agente restituirà durante la ricerca di conoscenza. Predefinito: 5, Massimo: 20."
+      },
+      "preload": {
+        "label": "Precarica Conoscenza",
+        "description": "Carica automaticamente la conoscenza all'inizio della conversazione per migliori prestazioni",
+        "warning": "Attenzione: Il precaricamento consuma più token, aumentando il costo di ogni conversazione.",
+        "toolInfo": "Se non è selezionato, la ricerca di conoscenza sarà disponibile come strumento per l'agente da utilizzare quando necessario."
+      },
+      "tags": {
+        "label": "Tag di Conoscenza",
+        "description": "Seleziona tag per filtrare quali voci di conoscenza questo agente utilizzerà. Se nessun tag è selezionato, l'agente avrà accesso a tutta la conoscenza.",
+        "placeholder": "Digita un tag e premi Invio...",
+        "selectPlaceholder": "O seleziona un tag...",
+        "noMoreTags": "Nessun tag disponibile"
+      },
+      "comingSoon": "Prossimamente..."
+    },
+    "tools": {
+      "title": "Strumenti",
+      "subtitle": "Configura gli strumenti disponibili per l'agente",
+      "comingSoon": "Prossimamente..."
+    },
+    "integrations": {
+      "title": "Integrazioni",
+      "subtitle": "Collega il tuo agente ad altre applicazioni, questo gli permette di ottenere informazioni più precise o programmare riunioni per te.",
+      "comingSoon": "Prossimamente...",
+      "activate": "ATTIVA",
+      "active": "ATTIVO",
+      "configure": "CONFIGURA",
+      "notAvailable": "NON DISPONIBILE",
+      "elevenlabs": {
+        "description": "Con ElevenLabs dai al tuo agente la capacità di rispondere ai tuoi clienti in audio, rendendolo ancora più umanizzato."
+      },
+      "googleCalendar": {
+        "description": "Con Google Calendar il tuo agente sarà in grado di programmare riunioni, creare link di chiamata e inviare inviti.",
+        "configTitle": "Configura Google Calendar",
+        "connectTitle": "Connetti a Google Calendar",
+        "connectDescription": "Consenti all'agente di accedere e gestire appuntamenti nel tuo calendario Google",
+        "email": "Email Google",
+        "connecting": "Connessione...",
+        "connectButton": "Connetti con Google",
+        "applyConfig": "APPLICA CONFIGURAZIONI",
+        "disconnect": "Disconnetti",
+        "saving": "Salvataggio...",
+        "tabs": {
+          "general": "Generale",
+          "schedule": "Orari",
+          "settings": "Impostazioni"
+        },
+        "calendar": {
+          "title": "Calendario",
+          "selectCalendar": "Seleziona il calendario"
+        },
+        "minAdvanceTime": {
+          "title": "Tempo Minimo di Anticipo",
+          "enabled": "Abilita tempo minimo",
+          "description": "Non permettere appuntamenti dell'ultimo minuto"
+        },
+        "maxDistance": {
+          "title": "Distanza Massima Consentita",
+          "enabled": "Abilita distanza massima",
+          "description": "Limite massimo di giorni consentito"
+        },
+        "maxDuration": {
+          "title": "Durata Massima dell'Appuntamento",
+          "description": "Limite di tempo per ogni appuntamento"
+        },
+        "simultaneousBookings": {
+          "title": "Prenotazioni Simultanee",
+          "enabled": "Abilita prenotazioni simultanee",
+          "limit": "Limite di prenotazioni allo stesso orario"
+        },
+        "alwaysOpen": {
+          "title": "Sempre Aperto",
+          "enabled": "Consenti appuntamenti in qualsiasi momento"
+        },
+        "businessHours": {
+          "title": "Orari di Apertura",
+          "days": {
+            "monday": "Lunedì",
+            "tuesday": "Martedì",
+            "wednesday": "Mercoledì",
+            "thursday": "Giovedì",
+            "friday": "Venerdì",
+            "saturday": "Sabato",
+            "sunday": "Domenica"
+          }
+        },
+        "meetIntegration": {
+          "title": "Integrazione Google Meet",
+          "enabled": "Genera link Meet durante la pianificazione"
+        },
+        "allowAvailabilityCheck": {
+          "title": "Consulta Orari",
+          "enabled": "L'agente può consultare gli orari disponibili"
+        },
+        "restrictedHours": {
+          "title": "Orari Limitati",
+          "enabled": "Abilita orari limitati"
+        },
+        "distributionMode": {
+          "title": "Modalità di Distribuzione",
+          "sequential": "Distribuzione Sequenziale",
+          "sequentialDescription": "Le prenotazioni sono distribuite tra i calendari alternandoli in modo sequenziale",
+          "intelligent": "Distribuzione Intelligente",
+          "intelligentDescription": "Seleziona automaticamente il calendario più appropriato in base alla conversazione con il cliente"
+        },
+        "bookingFields": {
+          "title": "Campi di Prenotazione",
+          "name": "Nome",
+          "nameDescription": "Richiedi il nome dell'utente",
+          "company": "Azienda",
+          "companyDescription": "Richiedi il nome dell'azienda",
+          "subject": "Oggetto",
+          "subjectDescription": "Richiedi l'oggetto",
+          "duration": "Durata",
+          "durationDescription": "Quanto tempo durerà",
+          "email": "Email",
+          "emailDescription": "Richiedi l'email per inviare l'invito al calendario",
+          "summary": "Riepilogo",
+          "summaryDescription": "Allega un riepilogo della conversazione all'appuntamento"
+        },
+        "units": {
+          "hours": "Ore",
+          "days": "Giorni",
+          "weeks": "Settimane",
+          "months": "Mesi",
+          "minutes": "Minuti"
+        }
+      },
+      "gmail": {
+        "description": "Collega il tuo agente a Gmail per inviare e ricevere email automaticamente."
+      },
+      "hubspot": {
+        "description": "Integra il tuo agente con HubSpot per gestire contatti e opportunità di business."
+      },
+      "notion": {
+        "description": "Con Notion il tuo agente sarà in grado di accedere a pagine, database e contenuti di Notion.",
+        "configTitle": "Configura Notion",
+        "connectTitle": "Connetti con Notion",
+        "connectDescription": "Connetti il tuo account Notion per consentire all'agente di accedere a pagine, database e contenuti",
+        "connectButton": "Connetti con Notion",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Notion è connesso e l'agente può accedere alle tue pagine e database.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Notion l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "stripe": {
+        "description": "Con Stripe il tuo agente sarà in grado di gestire pagamenti, abbonamenti e informazioni sui clienti.",
+        "configTitle": "Configura Stripe",
+        "connectTitle": "Connetti con Stripe",
+        "connectDescription": "Connetti il tuo account Stripe per consentire all'agente di accedere a pagamenti, abbonamenti e informazioni sui clienti",
+        "connectButton": "Connetti con Stripe",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Stripe è connesso e l'agente può accedere a pagamenti, abbonamenti e altre informazioni.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Stripe l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "linear": {
+        "description": "Con Linear il tuo agente sarà in grado di creare e gestire issue, progetti e roadmaps.",
+        "configTitle": "Configura Linear",
+        "connectTitle": "Connetti con Linear",
+        "connectDescription": "Connetti il tuo account Linear per consentire all'agente di accedere a issue, progetti e roadmaps",
+        "connectButton": "Connetti con Linear",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Linear è connesso e l'agente può accedere a issue, progetti e roadmaps.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Linear l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "monday": {
+        "description": "Con Monday.com il tuo agente sarà in grado di gestire board, elementi e automazioni.",
+        "configTitle": "Configura Monday.com",
+        "connectTitle": "Connetti con Monday.com",
+        "connectDescription": "Connetti il tuo account Monday.com per consentire all'agente di accedere a board, elementi e automazioni",
+        "connectButton": "Connetti con Monday.com",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Monday.com è connesso e l'agente può accedere a board, elementi e automazioni.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Monday.com l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "atlassian": {
+        "description": "Accedi a Jira, Confluence e altri strumenti Atlassian con il tuo agente.",
+        "configTitle": "Configura Atlassian",
+        "connectTitle": "Connetti con Atlassian",
+        "connectDescription": "Connetti il tuo account Atlassian per consentire all'agente di accedere a Jira, Confluence e altri strumenti Atlassian",
+        "connectButton": "Connetti con Atlassian",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Atlassian è connesso e l'agente può accedere a Jira, Confluence e altri strumenti Atlassian.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Atlassian l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "asana": {
+        "description": "Gestisci progetti, attività e team in Asana con il tuo agente.",
+        "configTitle": "Configura Asana",
+        "connectTitle": "Connetti con Asana",
+        "connectDescription": "Connetti il tuo account Asana per consentire all'agente di accedere a progetti, attività e team",
+        "connectButton": "Connetti con Asana",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Asana è connesso e l'agente può accedere a progetti, attività e team.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Asana l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "github": {
+        "description": "Con GitHub il tuo agente sarà in grado di accedere a repository, issue, pull request e altre informazioni GitHub.",
+        "configTitle": "Configura GitHub",
+        "connectTitle": "Connetti con GitHub",
+        "connectDescription": "Connetti il tuo account GitHub per consentire all'agente di accedere a repository e informazioni sul codice",
+        "connectButton": "Connetti con GitHub",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account GitHub è connesso e l'agente può accedere ai tuoi repository.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti GitHub l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "canva": {
+        "description": "Con Canva il tuo agente sarà in grado di creare e modificare design, presentazioni e materiali visivi.",
+        "configTitle": "Configura Canva",
+        "connectTitle": "Connetti con Canva",
+        "connectDescription": "Connetti il tuo account Canva per consentire all'agente di creare e modificare design e presentazioni",
+        "connectButton": "Connetti con Canva",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Canva è connesso e l'agente può creare e modificare design.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Canva l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      },
+      "supabase": {
+        "description": "Con Supabase il tuo agente sarà in grado di accedere e gestire progetti, database e API.",
+        "configTitle": "Configura Supabase",
+        "connectTitle": "Connetti con Supabase",
+        "connectDescription": "Connetti il tuo account Supabase per consentire all'agente di accedere e gestire progetti e database",
+        "connectButton": "Connetti con Supabase",
+        "connecting": "Connessione...",
+        "connected": "Connesso",
+        "connectedAs": "Connesso come",
+        "connectedDescription": "Il tuo account Supabase è connesso e l'agente può accedere e gestire i tuoi progetti e database.",
+        "toolsTitle": "Strumenti Disponibili",
+        "toolsDescription": "Seleziona quali strumenti Supabase l'agente potrà utilizzare",
+        "selectAll": "Seleziona tutti",
+        "noTools": "Nessuno strumento disponibile",
+        "saveConfig": "SALVA CONFIGURAZIONI",
+        "disconnect": "Disconnetti"
+      }
+    },
+    "mcpServers": {
+      "title": "Server MCP",
+      "checkingIntegrations": "Verifica integrazioni disponibili...",
+      "subtitle": "Configura i server MCP per l'agente",
+      "comingSoon": "Prossimamente..."
+    },
+    "channels": {
+      "title": "Canali",
+      "subtitle": "Configura i canali di comunicazione dell'agente",
+      "comingSoon": "Prossimamente..."
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "subtitle": "Impostazioni avanzate dell'agente",
+      "comingSoon": "Prossimamente..."
+    }
+  },
+  "actions": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "test": "Testa",
+    "testAgent": "Testa il tuo agente",
+    "connect": "Connetti",
+    "disconnect": "Disconnetti",
+    "add": "Aggiungi",
+    "remove": "Rimuovi",
+    "select": "Seleziona",
+    "configure": "Configura",
+    "back": "Indietro",
+    "next": "Successivo",
+    "finish": "Termina",
+    "added": "Aggiunto",
+    "tryAgain": "Riprova",
+    "duplicate": "Duplica",
+    "backToList": "Torna all'elenco",
+    "view": "Visualizza",
+    "saving": "Salvataggio...",
+    "continue": "Continua",
+    "skip": "Salta"
+  },
+  "wizardActions": {
+    "back": "Indietro",
+    "next": "Successivo"
+  },
+  "wizard": {
+    "title": "Crea Nuovo Agente",
+    "subtitle": "Configurazione rapida in pochi passaggi",
+    "progress": {
+      "name": "Nome",
+      "type": "Tipo",
+      "role": "Ruolo",
+      "instructions": "Istruzioni",
+      "model": "Modello",
+      "subAgents": "Sotto-agenti",
+      "taskConfig": "Configurazione",
+      "provider": "Fornitore",
+      "configuration": "Configurazione",
+      "completed": "Completato"
+    },
+    "step1": {
+      "title": "Crea un nuovo agente",
+      "subtitle": "Sii creativo, scegli il nome che il tuo agente userà per presentarsi",
+      "nameLabel": "Qual è il nome del tuo agente?",
+      "namePlaceholder": "Es: Assistente Vendite",
+      "descriptionLabel": "Descrizione",
+      "descriptionPlaceholder": "Descrivi lo scopo dell'agente",
+      "descriptionHelp": "Una breve descrizione di ciò che fa l'agente",
+      "required": "Obbligatorio"
+    },
+    "step2": {
+      "title": "Tipo di Agente",
+      "subtitle": "Scegli il tipo che meglio si adatta al tuo caso d'uso",
+      "types": {
+        "llm": {
+          "label": "LLM (Modello Linguistico)",
+          "description": "Assistente intelligente con IA generativa"
+        },
+        "task": {
+          "label": "Attività",
+          "description": "Automazione di attività specifiche"
+        },
+        "sequential": {
+          "label": "Sequential",
+          "description": "Esegue agenti in sequenza"
+        },
+        "parallel": {
+          "label": "Parallel",
+          "description": "Esegue agenti in parallelo"
+        },
+        "loop": {
+          "label": "Loop",
+          "description": "Esegue agenti in ciclo"
+        },
+        "external": {
+          "label": "Integrazioni Esterne",
+          "description": "Connette ed esegue integrazioni esterne"
+        }
+      },
+      "badges": {
+        "mostPopular": "Più Popolare"
+      }
+    },
+    "step3": {
+      "titles": {
+        "sequential": "Agenti in Sequenza",
+        "parallel": "Agenti in Parallelo",
+        "loop": "Agenti in Ciclo",
+        "task": "Sotto-agenti dell'Attività",
+        "default": "Sotto-agenti"
+      },
+      "descriptions": {
+        "sequential": "Definisci l'ordine degli agenti che verranno eseguiti in sequenza",
+        "parallel": "Seleziona gli agenti che verranno eseguiti in parallelo",
+        "loop": "Scegli gli agenti che verranno eseguiti in ciclo",
+        "task": "Aggiungi sotto-agenti che aiuteranno nell'esecuzione dell'attività",
+        "default": "Configura i sotto-agenti"
+      },
+      "optionalNote": "Opzionale - puoi saltare e configurare più tardi",
+      "taskConfig": {
+        "title": "Configurazione Attività",
+        "subtitle": "Configura le attività che questo agente eseguirà",
+        "tasks": "Attività Configurate",
+        "noTasks": "Nessuna attività configurata",
+        "addTasksHint": "Aggiungi attività utilizzando il modulo sottostante",
+        "addNewTask": "Aggiungi Nuova Attività",
+        "editTask": "Modifica Attività",
+        "cancel": "Annulla",
+        "agentLabel": "Agente",
+        "selectAgent": "Seleziona un agente",
+        "searchAgents": "Cerca agenti...",
+        "noAgentsFound": "Nessun agente trovato",
+        "descriptionLabel": "Descrizione Attività",
+        "descriptionPlaceholder": "Descrivi cosa deve fare questa attività...",
+        "contentPlaceholder": "Clicca per espandere e modificare",
+        "expectedOutput": "Output Atteso",
+        "expectedOutputLabel": "Output Atteso",
+        "expectedOutputPlaceholder": "Es: report_data, analysis_result",
+        "enabledTools": "Strumenti Abilitati",
+        "selectedTools": "Strumenti Selezionati",
+        "configureTools": "Configura Strumenti",
+        "updateTask": "Aggiorna Attività",
+        "addTask": "Aggiungi Attività",
+        "taskDescription": "Descrizione Attività",
+        "saveDescription": "Salva Descrizione",
+        "availableTools": "Strumenti Disponibili",
+        "searchTools": "Cerca strumenti...",
+        "noToolsAvailable": "Nessuno strumento disponibile",
+        "toolsFromAgents": "Gli strumenti degli agenti LLM selezionati appariranno qui",
+        "saveSettings": "Salva Impostazioni"
+      }
+    },
+    "step4": {
+      "title": "Ruolo e Obiettivo",
+      "subtitle": "Definisci il ruolo e l'obiettivo principale del tuo agente (opzionale)",
+      "roleLabel": "Ruolo dell'Agente",
+      "rolePlaceholder": "Es: Assistente Supporto Clienti",
+      "roleHelp": "Qual è il ruolo o la funzione di questo agente?",
+      "goalLabel": "Obiettivo Principale",
+      "goalPlaceholder": "Es: Risolvere domande e problemi dei clienti in modo efficiente",
+      "goalHelp": "Qual è l'obiettivo principale che questo agente deve raggiungere?"
+    },
+    "step5": {
+      "title": "Istruzioni dell'Agente",
+      "subtitle": "Descrivi come il tuo agente deve comportarsi e rispondere",
+      "instructionLabel": "Cosa fa il tuo agente?",
+      "instructionPlaceholder": "Es: Sei un assistente specializzato in vendite. Aiuti i clienti a trovare prodotti e rispondi a domande sugli ordini. Sii sempre cordiale, proattivo e concentrato sull'offrire la migliore esperienza al cliente.",
+      "minCharacters": "Minimo 10 caratteri - sii specifico sul comportamento atteso",
+      "characterCount": "{{count}}/2000",
+      "validationError": "Descrivi brevemente cosa fa il tuo agente (minimo 10 caratteri)",
+      "tip": "Consiglio:",
+      "tipContent": "Sii chiaro e specifico. Più dettagli fornisci, meglio l'agente comprenderà il suo ruolo e risponderà di conseguenza.",
+      "generateWithAI": "Genera con IA"
+    },
+    "promptGenerator": {
+      "title": "Generatore di Prompt con IA",
+      "subtitle": "Rispondi alle domande qui sotto per generare un prompt personalizzato",
+      "questions": {
+        "contexto": {
+          "label": "1. Qual è il Contesto del compito?",
+          "placeholder": "Spiega la situazione, lo scenario, il problema, l'obiettivo principale o perché questo viene fatto."
+        },
+        "objetivo": {
+          "label": "2. Qual è l'Obiettivo esatto del contenuto che vuoi generare?",
+          "placeholder": "Cosa vuoi che il modello produca? (es.: testo, email, script, copy, analisi, codice, strategia, ecc.)"
+        },
+        "estilo": {
+          "label": "3. Qual è lo Stile desiderato?",
+          "placeholder": "Come vuoi che il contenuto sia scritto? (es.: professionale, tecnico, semplice, storytelling, creativo, accademico, ecc.)"
+        },
+        "tom": {
+          "label": "4. Quale dovrebbe essere il Tono della risposta?",
+          "placeholder": "Tonalità emotiva e comunicativa (es.: amichevole, formale, ispiratore, diretto, motivazionale, umorismo leggero...)"
+        },
+        "audiencia": {
+          "label": "5. Chi è il Pubblico?",
+          "placeholder": "A chi sarà diretto questo contenuto? (es.: clienti, studenti, programmatori, leader, HR, pubblico generale...)"
+        },
+        "formato": {
+          "label": "6. Quale dovrebbe essere il Formato della Risposta?",
+          "placeholder": "Come dovrebbe venire il risultato? (es.: lista, testo continuo, tabella, codice, passaggi, elenchi puntati, struttura finale pronta...)"
+        },
+        "exemplo": {
+          "label": "7. C'è qualche esempio (few-shot) che vuoi usare come riferimento?",
+          "placeholder": "Se sì, incollalo qui (testo, modello, script, estratto...)."
+        },
+        "regras": {
+          "label": "8. Ci sono regole specifiche che il modello deve seguire?",
+          "placeholder": "(es.: evitare certi termini, seguire linee guida, mantenere limite di parole, usare tag, ecc.)"
+        },
+        "pontosCriticos": {
+          "label": "9. C'è qualche punto critico che non può mancare?",
+          "placeholder": "Elementi obbligatori, osservazioni importanti, restrizioni rigide."
+        },
+        "instrucoesExtras": {
+          "label": "10. Vuoi includere qualche istruzione extra?",
+          "placeholder": "Qualsiasi dettaglio aggiuntivo che non si adattava alle domande precedenti."
+        }
+      },
+      "buttons": {
+        "cancel": "Annulla",
+        "generate": "Genera Prompt",
+        "generating": "Generazione..."
+      },
+      "messages": {
+        "accountIdNotFound": "ID account non trovato",
+        "fillAtLeastOne": "Compila almeno un campo per generare il prompt",
+        "success": "Prompt generato con successo!",
+        "error": "Errore nella generazione del prompt"
+      }
+    },
+    "step6": {
+      "title": "Modello di IA",
+      "subtitle": "Scegli quale intelligenza artificiale alimenterà il tuo agente",
+      "apiKeyLabel": "Chiave API",
+      "apiKeyDescription": "Chiave di autenticazione - filtra i modelli disponibili",
+      "apiKeyPlaceholder": "Seleziona una chiave API",
+      "manageButton": "Gestisci",
+      "modelLabel": "Modello di IA",
+      "modelDescriptionWithProvider": "Modelli {{provider}} disponibili",
+      "modelDescriptionDefault": "Seleziona prima una chiave API",
+      "modelPlaceholder": "Cerca o seleziona modello...",
+      "searchPlaceholder": "Cerca modello...",
+      "noModelFound": "Nessun modello trovato",
+      "recommendedGroup": "✨ Consigliati",
+      "othersGroup": "Altri modelli"
+    },
+    "success": {
+      "title": "Agente creato con successo!",
+      "agentReady": "{{name}} è pronto all'uso",
+      "whatNext": "Cosa vuoi fare ora?",
+      "advancedSettings": {
+        "title": "Regola impostazioni avanzate",
+        "description": "Aggiungi Ruolo, Obiettivo, istruzioni dettagliate, strumenti e altro"
+      },
+      "testChat": {
+        "title": "Testa l'agente in chat",
+        "description": "Prova a conversare con il tuo agente e vedi come risponde"
+      },
+      "addTools": {
+        "title": "Aggiungi strumenti",
+        "description": "Configura strumenti e integrazioni per espandere le capacità"
+      },
+      "viewAllAgents": "Visualizza tutti gli agenti"
+    }
+  },
+  "chat": {
+    "newConversation": "Nuova Conversazione",
+    "searchConversations": "Cerca conversazioni...",
+    "noConversations": "Nessuna conversazione",
+    "loading": "Caricamento conversazione...",
+    "chatWithAgent": "Chat con {{name}}",
+    "startConversation": "Digita il tuo messaggio qui sotto per iniziare la conversazione.",
+    "selectConversation": "Seleziona una conversazione",
+    "chooseOrStart": "Scegli una conversazione esistente o iniziane una nuova.",
+    "selectOrCreateSession": "Seleziona una conversazione o creane una nuova",
+    "selectSessionMessage": "Scegli una conversazione esistente dall'elenco sul lato o fai clic su \"Nuova Conversazione\" per iniziare.",
+    "typeMessage": "Digita il tuo messaggio...",
+    "deleteSession": "Elimina Sessione",
+    "deleteSessionConfirm": "Sei sicuro di voler eliminare questa sessione? Questa azione non può essere annullata.",
+    "session": "Sessione"
+  },
+  "mcpServers": {
+    "title": "Server MCP",
+    "checkingIntegrations": "Verifica integrazioni disponibili...",
+    "subtitle": "Configura i server MCP (Model Context Protocol) per espandere le capacità dell'agente",
+    "comingSoon": "Prossimamente",
+    "github": {
+      "description": "Integrazione con repository, issue, pull request e azioni GitHub."
+    },
+    "notion": {
+      "description": "Accedi e aggiorna pagine, database e blocchi in Notion."
+    },
+    "stripe": {
+      "description": "Gestisci pagamenti, abbonamenti e informazioni clienti in Stripe."
+    },
+    "linear": {
+      "description": "Crea e gestisci issue, progetti e roadmap in Linear."
+    },
+    "paypal": {
+      "description": "Gestisci pagamenti, transazioni e informazioni clienti in PayPal."
+    },
+    "monday": {
+      "description": "Gestisci board, elementi e automazioni in Monday.com."
+    },
+    "atlassian": {
+      "description": "Accedi a Jira, Confluence e altri strumenti Atlassian."
+    },
+    "asana": {
+      "description": "Gestisci progetti, attività e team in Asana."
+    },
+    "canva": {
+      "description": "Crea e modifica design, presentazioni e materiali visivi con Canva."
+    },
+    "supabase": {
+      "description": "Accedi e gestisci progetti, database e API Supabase."
+    }
+  },
+  "integrations": {
+    "checking": "Verifica integrazioni..."
+  },
+  "customMCPServers": {
+    "title": "MCP Personalizzati",
+    "subtitle": "Configura i server MCP personalizzati creati da te",
+    "add": "Aggiungi MCP Personalizzato"
+  }
+}

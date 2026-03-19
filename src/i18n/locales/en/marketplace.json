@@ -1,0 +1,45 @@
+{
+  "header": {
+    "title": "Marketplace",
+    "productsCount": "{{count}} products",
+    "subtitle": "Discover and install agents, tools and resources to expand your capabilities"
+  },
+  "search": {
+    "title": "Search and Filter",
+    "placeholder": "Search products...",
+    "clearFilters": "Clear Filters",
+    "tagsLabel": "Tags:"
+  },
+  "product": {
+    "install": "Install",
+    "free": "Free",
+    "version": "v{{version}}"
+  },
+  "empty": {
+    "title": "No products found",
+    "description": "Try adjusting the search filters or explore other categories.",
+    "action": "Clear Filters"
+  },
+  "pagination": {
+    "pageInfo": "Page {{current}} of {{total}} - {{count}} products",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "messages": {
+    "loadError": "Error loading products from marketplace"
+  },
+  "mockProducts": {
+    "aiAssistant": {
+      "name": "AI Assistant Agent",
+      "description": "A versatile AI assistant agent with search and analysis capabilities."
+    },
+    "customerSupport": {
+      "name": "Customer Support Bot",
+      "description": "Specialized agent for customer support with automatic responses and intelligent escalation."
+    },
+    "dataAnalysis": {
+      "name": "Data Analysis Agent",
+      "description": "Specialized agent for data analysis with capabilities to generate reports and insights."
+    }
+  }
+}

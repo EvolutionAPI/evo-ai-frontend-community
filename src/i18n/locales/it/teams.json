@@ -1,0 +1,184 @@
+{
+  "title": "Team",
+  "subtitle": "Organizza i tuoi Agenti in team per una migliore gestione e assegnazione automatica",
+  "loading": "Caricamento team...",
+  "card": {
+    "autoAssign": "Assegnazione automatica",
+    "id": "ID",
+    "members": "Membri",
+    "actions": {
+      "users": "Utenti",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    }
+  },
+  "details": {
+    "autoAssignActive": "Assegnazione automatica attiva",
+    "autoAssignInactive": "Assegnazione automatica inattiva",
+    "id": "ID",
+    "tabs": {
+      "overview": "Panoramica",
+      "members": "Membri",
+      "activity": "Attività",
+      "settings": "Impostazioni"
+    },
+    "overview": {
+      "description": "Descrizione",
+      "noDescription": "Nessuna descrizione fornita per questo team.",
+      "totalMembers": "Totale Membri",
+      "autoAssign": "Assegnazione automatica",
+      "active": "Attiva",
+      "inactive": "Inattiva",
+      "temporalInfo": "Informazioni Temporali",
+      "created": "Creato:",
+      "lastUpdate": "Ultimo aggiornamento:"
+    },
+    "members": {
+      "placeholder": "L'elenco dei membri sarà implementato a breve.",
+      "manageUsers": "Gestisci Utenti"
+    },
+    "activity": {
+      "placeholder": "La cronologia delle attività sarà implementata a breve."
+    },
+    "settings": {
+      "title": "Impostazioni del Team",
+      "autoAssignTitle": "Assegnazione automatica delle conversazioni",
+      "autoAssignDescription": "Consente alle conversazioni di essere assegnate automaticamente ai membri di questo team",
+      "enabled": "Abilitata",
+      "disabled": "Disabilitata",
+      "editSettings": "Modifica Impostazioni"
+    },
+    "actions": {
+      "manageUsers": "Gestisci Utenti",
+      "edit": "Modifica"
+    }
+  },
+  "form": {
+    "basicInfo": "Informazioni Base",
+    "name": {
+      "label": "Nome del Team *",
+      "placeholder": "Es: Assistenza VIP, Supporto Tecnico...",
+      "required": "Il nome del team è obbligatorio",
+      "minLength": "Il nome deve contenere almeno 2 caratteri"
+    },
+    "description": {
+      "label": "Descrizione",
+      "placeholder": "Descrivi lo scopo e le responsabilità di questo team...",
+      "maxLength": "La descrizione deve contenere al massimo 500 caratteri",
+      "counter": "{{current}}/500 caratteri"
+    },
+    "configuration": "Configurazioni",
+    "autoAssign": {
+      "label": "Assegnazione automatica delle conversazioni",
+      "description": "Consente alle conversazioni di essere assegnate automaticamente ai membri di questo team"
+    },
+    "actions": {
+      "cancel": "Annulla",
+      "saving": "Salvataggio...",
+      "create": "Crea Team",
+      "save": "Salva Modifiche"
+    }
+  },
+  "modal": {
+    "create": "Crea Nuovo Team",
+    "edit": "Modifica {{name}}"
+  },
+  "header": {
+    "newTeam": "Nuovo Team",
+    "export": "Esporta",
+    "import": "Importa",
+    "delete": "Elimina",
+    "searchPlaceholder": "Cerca per nome o descrizione..."
+  },
+  "table": {
+    "columns": {
+      "team": "Team",
+      "members": "Membri",
+      "autoAssign": "Assegnazione automatica",
+      "id": "ID",
+      "enabled": "Abilitata",
+      "disabled": "Disabilitata"
+    },
+    "actions": {
+      "manageUsers": "Gestisci Utenti",
+      "edit": "Modifica",
+      "delete": "Elimina"
+    }
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento dei team",
+    "loadDataError": "Errore durante il caricamento dei dati",
+    "createSuccess": "Team creato con successo!",
+    "updateSuccess": "Team aggiornato con successo!",
+    "deleteSuccess": "Team eliminato con successo!",
+    "bulkDeleteSuccess": "{{count}} team eliminati con successo!",
+    "createError": "Errore durante la creazione del team",
+    "updateError": "Errore durante l'aggiornamento del team",
+    "deleteError": "Errore durante l'eliminazione del team",
+    "bulkDeleteError": "Errore durante l'eliminazione dei team selezionati",
+    "selectAtLeastOne": "Seleziona almeno un utente",
+    "usersAddedSuccess": "Utenti aggiunti con successo!",
+    "addUsersError": "Errore durante l'aggiunta degli utenti",
+    "permissionDenied": {
+      "read": "Permesso negato per visualizzare i team",
+      "create": "Permesso negato per creare team",
+      "update": "Permesso negato per modificare team",
+      "delete": "Permesso negato per eliminare team"
+    },
+    "importInfo": "Funzionalità di importazione in sviluppo",
+    "exportInfo": "Funzionalità di esportazione in sviluppo",
+    "filterInfo": "Funzionalità di filtri in sviluppo"
+  },
+  "empty": {
+    "title": "Nessun team trovato",
+    "description": "Crea il tuo primo team per organizzare i tuoi Agenti.",
+    "action": "Nuovo Team"
+  },
+  "addUsers": {
+    "title": "Aggiungi Utenti - {{name}}",
+    "subtitle": "Seleziona gli utenti che desideri aggiungere al team",
+    "summary": "{{selected}} di {{total}} utenti selezionati",
+    "table": {
+      "select": "Seleziona",
+      "user": "Utente",
+      "email": "E-mail",
+      "status": {
+        "online": "Online",
+        "busy": "Occupato",
+        "offline": "Offline"
+      }
+    },
+    "empty": {
+      "title": "Nessun utente disponibile",
+      "description": "Tutti gli utenti fanno già parte di questo team o non ci sono utenti disponibili."
+    },
+    "notFound": {
+      "title": "Team non trovato",
+      "description": "Il team che stai cercando non è stato trovato.",
+      "action": "Torna ai team"
+    }
+  },
+  "dialog": {
+    "delete": {
+      "title": "Elimina Team",
+      "description": "Sei sicuro di voler eliminare il team \"{{name}}\"? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina",
+      "deleting": "Eliminazione..."
+    },
+    "bulkDelete": {
+      "title": "Elimina Team",
+      "description": "Sei sicuro di voler eliminare {{count}} team selezionati? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina Tutti",
+      "deleting": "Eliminazione..."
+    }
+  },
+  "actions": {
+    "back": "Indietro",
+    "selectAll": "Seleziona Tutti",
+    "deselectAll": "Deseleziona Tutti",
+    "saving": "Salvataggio...",
+    "addUsers": "Aggiungi Utenti"
+  }
+}

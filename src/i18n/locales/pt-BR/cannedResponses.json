@@ -1,0 +1,108 @@
+{
+  "title": "Respostas Rápidas",
+  "loading": "Carregando respostas automáticas...",
+  "header": {
+    "title": "Respostas Automáticas",
+    "searchPlaceholder": "Buscar por código ou conteúdo...",
+    "newResponse": "Nova Resposta",
+    "bulkDelete": "Deletar",
+    "clearSelection": "Limpar Seleção",
+    "selected": "{{count}} selecionado",
+    "selected_other": "{{count}} selecionados"
+  },
+  "empty": {
+    "title": "Nenhuma resposta rápida encontrada",
+    "description": "Crie uma nova resposta rápida para acelerar o atendimento aos seus clientes.",
+    "action": "Nova Resposta"
+  },
+  "table": {
+    "columns": {
+      "shortCode": "Código",
+      "content": "Conteúdo",
+      "createdAt": "Criado em",
+      "actions": "Ações"
+    }
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Deletar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "create": "Criar",
+    "update": "Atualizar",
+    "confirm": "Confirmar"
+  },
+  "modal": {
+    "new": {
+      "title": "Nova Resposta Rápida",
+      "description": "Crie uma nova resposta rápida para acelerar seu atendimento."
+    },
+    "edit": {
+      "title": "Editar Resposta Rápida",
+      "description": "Edite as informações da resposta rápida."
+    },
+    "fields": {
+      "shortCode": {
+        "label": "Código",
+        "placeholder": "Ex: saudacao, agradecimento, despedida",
+        "hint": "Código único para identificar esta resposta. Use apenas letras, números, sublinhados e hífens."
+      },
+      "content": {
+        "label": "Conteúdo",
+        "placeholder": "Digite o conteúdo da resposta rápida...",
+        "hint": "Conteúdo da resposta que será enviada automaticamente."
+      },
+      "attachments": {
+        "label": "Anexos (Imagens, Áudios, Vídeos, Documentos)",
+        "addButton": "Adicionar Arquivo",
+        "hint": "Máximo 10MB por arquivo. Formatos: imagens, áudios, vídeos, PDF, DOC",
+        "existing": "Anexos existentes:",
+        "new": "Novos anexos:"
+      }
+    },
+    "variables": {
+      "title": "Variáveis Disponíveis:",
+      "contactName": "Nome do contato",
+      "agentName": "Nome do agente",
+      "conversationId": "ID da conversa",
+      "accountName": "Nome da empresa",
+      "clickToInsert": "Clique em uma variável para inserir no conteúdo.",
+      "insertAction": "Inserir"
+    },
+    "saving": "Salvando...",
+    "validation": {
+      "shortCodeRequired": "Código é obrigatório",
+      "shortCodeMinLength": "Código deve ter pelo menos 2 caracteres",
+      "shortCodeInvalid": "Código deve conter apenas letras, números, sublinhados e hífens",
+      "contentRequired": "Conteúdo é obrigatório",
+      "contentMinLength": "Conteúdo deve ter pelo menos 10 caracteres"
+    }
+  },
+  "messages": {
+    "loadError": "Erro ao carregar respostas automáticas",
+    "createSuccess": "Resposta rápida criada com sucesso",
+    "createError": "Erro ao criar resposta rápida",
+    "updateSuccess": "Resposta rápida atualizada com sucesso",
+    "updateError": "Erro ao atualizar resposta rápida",
+    "deleteSuccess": "Resposta rápida deletada com sucesso",
+    "deleteError": "Erro ao deletar resposta rápida",
+    "bulkDeleteSuccess": "{{count}} resposta(s) automática(s) deletada(s) com sucesso",
+    "bulkDeleteError": "Erro ao deletar respostas automáticas"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Deletar Resposta Rápida",
+      "description": "Tem certeza de que deseja deletar a resposta rápida \"{{shortCode}}\"? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar",
+      "deleting": "Deletando..."
+    },
+    "bulkDelete": {
+      "title": "Deletar Respostas Automáticas",
+      "description": "Tem certeza de que deseja deletar {{count}} resposta(s) automática(s) selecionada(s)? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar Todos",
+      "deleting": "Deletando..."
+    }
+  }
+}

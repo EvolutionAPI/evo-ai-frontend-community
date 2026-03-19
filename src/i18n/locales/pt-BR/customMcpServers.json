@@ -1,0 +1,191 @@
+{
+  "title": "Servidores MCP Personalizados",
+  "permissions": {
+    "viewDenied": "Você não tem permissão para visualizar servidores MCP personalizados",
+    "createDenied": "Você não tem permissão para criar servidores MCP personalizados",
+    "editDenied": "Você não tem permissão para editar servidores MCP personalizados",
+    "deleteDenied": "Você não tem permissão para excluir servidores MCP personalizados"
+  },
+  "errors": {
+    "accountNotFound": "Conta não encontrada",
+    "accountIdNotAvailable": "Account ID not available",
+    "loadError": "Erro ao carregar servidores MCP personalizados",
+    "applyFiltersError": "Erro ao aplicar filtros",
+    "deleteError": "Erro ao deletar servidor MCP personalizado",
+    "saveError": "Erro ao salvar servidor MCP personalizado",
+    "updateError": "Erro ao atualizar servidor MCP personalizado",
+    "testError": "Erro ao testar servidor MCP personalizado"
+  },
+  "success": {
+    "testSuccess": "Teste executado com sucesso! Ferramentas descobertas: {{count}}",
+    "deleteSuccess": "Servidor MCP personalizado deletado com sucesso",
+    "updateSuccess": "Servidor MCP personalizado atualizado com sucesso",
+    "createSuccess": "Servidor MCP personalizado criado com sucesso"
+  },
+  "test": {
+    "failed": "Teste falhou: {{error}}",
+    "unknownError": "Erro desconhecido"
+  },
+  "loading": {
+    "servers": "Carregando servidores MCP personalizados...",
+    "deleting": "Deletando...",
+    "delete": "Deletar"
+  },
+  "emptyState": {
+    "title": "Nenhum servidor MCP personalizado encontrado",
+    "description": "Crie um novo servidor MCP personalizado para expandir as capacidades dos agentes.",
+    "action": "Novo Servidor MCP Personalizado"
+  },
+  "deleteDialog": {
+    "title": "Deletar Servidor MCP Personalizado",
+    "description": "Tem certeza de que deseja deletar o servidor MCP personalizado \"{{name}}\"? Esta ação não pode ser desfeita.",
+    "cancel": "Cancelar",
+    "confirm": "Deletar"
+  },
+  "viewMode": {
+    "cards": "Visualização em Cards",
+    "table": "Visualização em Tabela"
+  },
+  "header": {
+    "title": "Servidores MCP Personalizados",
+    "subtitle": "Configure servidores MCP personalizados para expandir as capacidades dos agentes",
+    "searchPlaceholder": "Buscar por nome, URL ou descrição...",
+    "newServer": "Novo Servidor MCP Personalizado",
+    "filter": "Filtrar",
+    "clearSelection": "Limpar Seleção",
+    "totalCount": "{{count}} servidor(es)",
+    "selectedCount": "{{count}} selecionado(s)"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Excluir",
+    "test": "Testar",
+    "view": "Visualizar",
+    "create": "Criar",
+    "cancel": "Cancelar",
+    "save": "Salvar Alterações",
+    "createServer": "Criar Servidor MCP"
+  },
+  "card": {
+    "custom": "Personalizado",
+    "noDescription": "Sem descrição",
+    "noName": "Sem nome",
+    "tools": "ferramentas",
+    "timeout": "Timeout: {{timeout}}s",
+    "retries": "Tentativas: {{count}}",
+    "createdAt": "Criado em {{date}}",
+    "moreTools": "+{{count}}"
+  },
+  "details": {
+    "title": "Informações Básicas",
+    "test": "Testar",
+    "edit": "Editar",
+    "labels": {
+      "name": "Nome",
+      "description": "Descrição",
+      "url": "URL",
+      "timeout": "Timeout",
+      "retries": "Tentativas",
+      "createdAt": "Criado em"
+    },
+    "tools": {
+      "title": "Ferramentas ({{count}})",
+      "inputModes": "Modos de Entrada:",
+      "outputModes": "Modos de Saída:",
+      "tags": "Tags:",
+      "noTools": "Nenhuma ferramenta descoberta",
+      "noToolsDescription": "Execute um teste para descobrir as ferramentas disponíveis"
+    },
+    "headers": {
+      "title": "Headers HTTP",
+      "noHeaders": "Nenhum header HTTP configurado"
+    },
+    "tags": {
+      "title": "Tags"
+    }
+  },
+  "form": {
+    "sections": {
+      "basicInfo": "Informações Básicas",
+      "connection": "Configuração de Conexão",
+      "advanced": "Configurações Avançadas",
+      "tools": "Ferramentas"
+    },
+    "labels": {
+      "name": "Nome",
+      "description": "Descrição",
+      "url": "URL do Servidor",
+      "headers": "Headers HTTP (JSON)",
+      "timeout": "Timeout (segundos)",
+      "retries": "Tentativas",
+      "tags": "Tags"
+    },
+    "placeholders": {
+      "name": "Nome do servidor MCP personalizado",
+      "description": "Descrição do servidor MCP personalizado...",
+      "url": "https://example.com/mcp",
+      "headers": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+      "tags": "api, search, database"
+    },
+    "hints": {
+      "headers": "Configure os headers HTTP necessários para autenticação e comunicação",
+      "tags": "Separe as tags com vírgulas para organizar e categorizar o servidor"
+    },
+    "toolsInfo": {
+      "configured": "{{count}} ferramenta(s) configurada(s)",
+      "notConfigured": "Nenhuma ferramenta configurada",
+      "autoDiscovery": "As ferramentas serão descobertas automaticamente após testar o servidor"
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "urlRequired": "URL é obrigatória",
+      "urlInvalid": "URL inválida",
+      "timeoutRange": "Timeout deve estar entre 1 e 300 segundos",
+      "retriesRange": "Tentativas devem estar entre 0 e 10",
+      "headersInvalid": "JSON de headers inválido"
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "saving": "Salvando...",
+      "create": "Criar Servidor MCP",
+      "update": "Salvar Alterações"
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Criar Novo Servidor MCP Personalizado",
+      "edit": "Editar {{name}}",
+      "editFallback": "Editar Servidor MCP Personalizado",
+      "view": "Visualizar {{name}}",
+      "viewFallback": "Visualizar Servidor MCP Personalizado"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Servidores MCP Personalizados",
+    "description": "Configure os filtros para encontrar os servidores MCP personalizados que você procura",
+    "apply": "Aplicar Filtros",
+    "clear": "Limpar Filtros",
+    "add": "Adicionar Filtro"
+  },
+  "table": {
+    "columns": {
+      "server": "Servidor",
+      "description": "Descrição",
+      "url": "URL",
+      "tools": "Ferramentas",
+      "timeout": "Timeout",
+      "createdAt": "Criado em",
+      "actions": "Teste"
+    },
+    "custom": "Personalizado",
+    "noDescription": "Sem descrição",
+    "noName": "Sem nome",
+    "test": "Testar",
+    "editServer": "Editar servidor",
+    "deleteServer": "Deletar servidor",
+    "emptyMessage": "Nenhum servidor MCP personalizado encontrado",
+    "emptyTitle": "Nenhum servidor MCP personalizado criado",
+    "emptyDescription": "Crie servidores MCP personalizados para expandir as capacidades dos agentes.",
+    "emptyAction": "Criar servidor MCP personalizado"
+  }
+}

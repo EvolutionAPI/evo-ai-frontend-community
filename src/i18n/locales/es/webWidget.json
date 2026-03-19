@@ -1,0 +1,67 @@
+{
+  "title": "Canal Website",
+  "description": "Conecte su sitio con un widget de chat en vivo",
+  "basicInfo": {
+    "title": "Información Básica",
+    "description": "Configure el nombre y URL de su website"
+  },
+  "appearance": {
+    "title": "Apariencia del Widget",
+    "description": "Personalice los colores y mensajes del widget"
+  },
+  "greeting": {
+    "title": "Mensaje de Saludo",
+    "description": "Configure mensajes automáticos de bienvenida",
+    "autoDescription": "Enviar automáticamente un mensaje de saludo cuando los clientes inician una conversación"
+  },
+  "fields": {
+    "channelName": "Nombre del Canal",
+    "channelNamePlaceholder": "Website",
+    "websiteUrl": "Website URL",
+    "websiteUrlPlaceholder": "https://misitio.com",
+    "widgetColor": "Color del Widget",
+    "welcomeTitle": "Título de Bienvenida",
+    "welcomeTitlePlaceholder": "¡Hola! ¿Cómo podemos ayudar?",
+    "welcomeTagline": "Tagline de Bienvenida",
+    "welcomeTaglinePlaceholder": "Normalmente respondemos en algunos minutos",
+    "welcomeTaglineHelp": "Este mensaje se mostrará en el encabezado del widget",
+    "greetingEnabled": "Habilitar mensaje de saludo automático",
+    "greetingMessage": "Mensaje de Saludo",
+    "greetingMessagePlaceholder": "¡Hola! Bienvenido a nuestro sitio. ¿Cómo podemos ayudarlo hoy?"
+  },
+  "summary": {
+    "title": "Resumen de la Configuración",
+    "name": "Nombre",
+    "url": "URL",
+    "color": "Color",
+    "greeting": "Saludo",
+    "enabled": "Habilitado",
+    "disabled": "Deshabilitado",
+    "notConfigured": "no configurado"
+  },
+  "validation": {
+    "websiteNameRequired": "El nombre del sitio es obligatorio",
+    "widgetColorRequired": "El color del widget es obligatorio",
+    "replyTimeRequired": "El tiempo de respuesta es obligatorio"
+  },
+  "widgetHelpers": {
+    "positions": {
+      "left": "Izquierda",
+      "right": "Derecha"
+    },
+    "bubbleTypes": {
+      "standard": "Estándar",
+      "expanded": "Expandido"
+    },
+    "viewOptions": {
+      "preview": "Vista Previa",
+      "script": "Código"
+    },
+    "replyTime": {
+      "fewMinutes": "En algunos minutos",
+      "fewHours": "En algunas horas",
+      "day": "En un día"
+    },
+    "defaultLauncherTitle": "Hable con nosotros"
+  }
+}

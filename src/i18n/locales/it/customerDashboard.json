@@ -1,0 +1,150 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Panoramica dei tuoi indicatori e metriche chiave",
+    "loading": "Caricamento dashboard...",
+    "error": "Errore nel caricamento della dashboard",
+    "filters": {
+      "title": "Filtri",
+      "subtitle": "Affina gli indicatori per pipeline, team, canale e periodo",
+      "pipeline": "Pipeline",
+      "team": "Team",
+      "channel": "Canale",
+      "user": "Utente",
+      "allPipelines": "Tutte le pipeline",
+      "allTeams": "Tutti i team",
+      "allChannels": "Tutti i canali",
+      "allUsers": "Tutti gli utenti",
+      "since": "Da",
+      "until": "A",
+      "period": "Periodo",
+      "apply": "Applica filtri",
+      "clear": "Pulisci filtri"
+    },
+    "stats": {
+      "totalPipeline": "Totale nella Canalizzazione",
+      "followUpsPending": "Follow-up in Sospeso",
+      "sent": "inviati",
+      "avgResponseTime": "Tempo di Risposta Medio",
+      "improvement": "miglioramento",
+      "recoveredValue": "Valore Recuperato",
+      "incomingMessages": "Messaggi in entrata",
+      "realData": "Dati reali",
+      "leads": "lead",
+      "activeConversations": "Conversazioni attive ora",
+      "unassignedConversations": "Conversazioni senza responsabile"
+    },
+    "csat": {
+      "avg": "CSAT medio",
+      "responses": "valutazioni",
+      "positiveRate": "Tasso positivo (4-5)",
+      "negativeRate": "Tasso negativo (1-2)",
+      "breakdown": "Distribuzione dei voti",
+      "lowSampleHint": "Ancora non ci sono valutazioni sufficienti per una lettura statistica affidabile."
+    },
+    "aiVsHuman": {
+      "aiShare": "Quota IA nelle risposte",
+      "humanShare": "Quota umana nelle risposte",
+      "aiFirstResponse": "1ª risposta media IA",
+      "humanFirstResponse": "1ª risposta media umana",
+      "responses": "risposte IA",
+      "responsesHuman": "risposte umane",
+      "conversations": "conversazioni con IA",
+      "conversationsHuman": "conversazioni umane",
+      "title": "IA vs Umano",
+      "noDataHint": "L’IA non è ancora attiva in questo periodo, oppure le risposte non sono state classificate."
+    },
+    "pipeline": {
+      "title": "Canalizzazione per Fase",
+      "subtitle": "Monitora le tue opportunità attraverso la canalizzazione di vendita",
+      "opportunities": "opportunità",
+      "insights": "Riepilogo pipeline",
+      "conversionRate": "Conversazioni in pipeline",
+      "avgTicket": "Ticket medio pipeline",
+      "totalValue": "Valore totale pipeline"
+    },
+    "responseTime": {
+      "title": "Velocità di Risposta",
+      "subtitle": "Confronto tra servizio IA e umano",
+      "ai": "Servizio IA",
+      "human": "Servizio Umano",
+      "average": "Tempo medio generale"
+    },
+    "recovery": {
+      "title": "Denaro Recuperato",
+      "subtitle": "Lead riattivati dopo follow-up automatico",
+      "reactivated": "Lead Riattivati",
+      "conversion": "Tasso di Conversione",
+      "totalRecovered": "Totale recuperato",
+      "aiContribution": "Contributo dell'IA"
+    },
+    "channels": {
+      "title": "Performance per Canale",
+      "subtitle": "Performance di conversione sui canali di comunicazione",
+      "conversations": "conversazioni",
+      "conversion": "conversione",
+      "insights": "Insight dei canali",
+      "topChannel": "Canale leader",
+      "concentration": "Concentrazione Top 3",
+      "activeCount": "Canali attivi",
+      "totalValue": "Valore totale per canali",
+      "valueLeaders": "Canali con maggior valore"
+    },
+    "agents": {
+      "title": "Performance degli Agenti",
+      "subtitle": "Metriche di performance individuale degli agenti",
+      "conversations": "conversazioni",
+      "avgTime": "Tempo Medio",
+      "satisfaction": "Soddisfazione"
+    },
+    "charts": {
+      "visitorsTrend": "Conversazioni per giorno",
+      "visitorsDescription": "Andamento giornaliero delle conversazioni nel periodo",
+      "conversionRate": "Tasso di Conversione",
+      "conversionDescription": "Tasso di conversione per tipo",
+      "channelShare": "Quota per canale",
+      "channelShareDescription": "Distribuzione percentuale delle conversazioni per canale",
+      "sessionDuration": "Tempo di 1ª risposta per giorno",
+      "sessionDescription": "Media giornaliera del first response time (secondi)",
+      "heatmapTitle": "Mappa di calore operativa",
+      "heatmapDescription": "Volume conversazioni per data e ora",
+      "heatmapPeakSlot": "Picco settimanale",
+      "heatmapPeakWeekday": "Giorno più forte",
+      "heatmapPeakHour": "Ora di picco",
+      "heatmapPeakPeriodDay": "Giorno di picco nel periodo",
+      "heatmapExpand": "Espandi periodo completo",
+      "heatmapCollapse": "Mostra ultimi 15 giorni",
+      "heatmapShowing": "Mostrando {shown} di {total} giorni",
+      "timezone": "Fuso orario",
+      "channelsLabel": "Canali",
+      "shareLabel": "Quota"
+    },
+    "sections": {
+      "statusNow": "Stato operativo attuale",
+      "statusNowSubtitle": "Indicatori chiave per una lettura rapida della salute operativa",
+      "trends": "Tendenze nel tempo",
+      "trendsSubtitle": "Evoluzione dell’operazione nel periodo filtrato",
+      "optimization": "Diagnosi e ottimizzazione",
+      "optimizationSubtitle": "Dove sono i colli di bottiglia e le opportunità di miglioramento"
+    },
+    "status": {
+      "good": "In linea",
+      "warning": "Attenzione",
+      "critical": "Critico",
+      "noSample": "Senza base",
+      "volume": "Volume del periodo",
+      "overdue": "in ritardo",
+      "automationActive": "Automazione attiva",
+      "noAutomation": "Nessuna automazione nel periodo",
+      "currentBacklog": "Backlog operativo attuale",
+      "monitor": "Monitorare",
+      "pendingNow": "in sospeso ora"
+    },
+    "empty": {
+      "pipeline": "Nessuna opportunità nel periodo selezionato.",
+      "agents": "Nessun dato agenti per il periodo selezionato.",
+      "channels": "Nessun dato canali per il periodo selezionato.",
+      "pipelineInactive": "Pipeline inattiva nel periodo selezionato."
+    }
+  }
+}

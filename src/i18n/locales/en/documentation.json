@@ -1,0 +1,101 @@
+{
+  "header": {
+    "title": "Documentation",
+    "subtitle": "Guides, tutorials and references to use the platform",
+    "downloadPdf": "Download PDF"
+  },
+  "search": {
+    "placeholder": "Search in documentation..."
+  },
+  "sections": {
+    "quickStart": {
+      "title": "Quick Start",
+      "items": {
+        "introduction": "Introduction to EvoCloud",
+        "firstSteps": "First Steps",
+        "initialSetup": "Initial Setup",
+        "basicTutorial": "Basic Tutorial"
+      }
+    },
+    "guides": {
+      "title": "Guides",
+      "items": {
+        "managingAgents": "Managing Agents",
+        "chatSettings": "Chat Settings",
+        "apiIntegration": "API Integration",
+        "backupRestore": "Backup and Restore"
+      }
+    },
+    "apiReference": {
+      "title": "API Reference",
+      "items": {
+        "authentication": "Authentication",
+        "agentEndpoints": "Agent Endpoints",
+        "chatApi": "Chat API",
+        "webhooks": "Webhooks",
+        "errorCodes": "Error Codes"
+      }
+    },
+    "videoTutorials": {
+      "title": "Video Tutorials",
+      "items": {
+        "initialSetup": "Initial Setup",
+        "firstAgent": "Creating your First Agent",
+        "advancedChat": "Advanced Chat",
+        "bestPractices": "Best Practices"
+      }
+    }
+  },
+  "content": {
+    "title": "Introduction to EvoCloud",
+    "lastUpdated": "Last updated: {{date}}",
+    "edit": "Edit",
+    "share": "Share",
+    "welcome": {
+      "title": "🚀 Welcome to EvoCloud!",
+      "description": "This documentation will guide you through all the resources and features of our AI platform."
+    },
+    "whatIs": {
+      "title": "What is EvoCloud?",
+      "description": "EvoCloud is an advanced AI platform that allows you to create, manage and interact with custom AI agents. Our platform offers an intuitive interface to configure intelligent agents that can help with various tasks."
+    },
+    "mainFeatures": {
+      "title": "Main Features",
+      "customAgents": {
+        "title": "Custom Agents:",
+        "description": "Create specialized AI agents for your needs"
+      },
+      "smartChat": {
+        "title": "Smart Chat:",
+        "description": "Natural chat interface with your agents"
+      },
+      "advancedSettings": {
+        "title": "Advanced Settings:",
+        "description": "Control total over the behavior of agents"
+      }
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "To get started with EvoCloud, follow these simple steps:",
+      "steps": {
+        "step1": "Configure your profile in the <strong>Settings</strong> area",
+        "step2": "Create your first agent in the <strong>Agents</strong> section",
+        "step4": "Start chatting with your agent in the <strong>Chat</strong>"
+      }
+    },
+    "tip": {
+      "title": "💡 Tip",
+      "description": "We recommend starting with a simple agent and gradually adding complexity as you become familiar with the platform."
+    },
+    "support": {
+      "title": "Support",
+      "description": "If you have any questions or need help, contact our support team:",
+      "email": "Email: support@evocloud.com",
+      "chat": "Chat: Available 24/7 on the platform",
+      "documentation": "Documentation: This section contains detailed guides"
+    },
+    "demo": {
+      "message": "This is a demo version of the documentation. The complete content will be implemented here."
+    }
+  }
+}

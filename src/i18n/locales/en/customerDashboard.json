@@ -1,0 +1,150 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Overview of your key indicators and metrics",
+    "loading": "Loading dashboard...",
+    "error": "Failed to load dashboard",
+    "filters": {
+      "title": "Filters",
+      "subtitle": "Refine indicators by pipeline, team, channel, and period",
+      "pipeline": "Pipeline",
+      "team": "Team",
+      "channel": "Channel",
+      "user": "User",
+      "allPipelines": "All pipelines",
+      "allTeams": "All teams",
+      "allChannels": "All channels",
+      "allUsers": "All users",
+      "since": "From",
+      "until": "To",
+      "period": "Period",
+      "apply": "Apply filters",
+      "clear": "Clear filters"
+    },
+    "stats": {
+      "totalPipeline": "Total Pipeline",
+      "followUpsPending": "Pending Follow-ups",
+      "sent": "sent",
+      "avgResponseTime": "Avg. Response Time",
+      "improvement": "improvement",
+      "recoveredValue": "Recovered Value",
+      "incomingMessages": "Incoming messages",
+      "realData": "Real data",
+      "leads": "leads",
+      "activeConversations": "Active conversations now",
+      "unassignedConversations": "Unassigned conversations"
+    },
+    "csat": {
+      "avg": "Avg. CSAT",
+      "responses": "ratings",
+      "positiveRate": "Positive rate (4-5)",
+      "negativeRate": "Negative rate (1-2)",
+      "breakdown": "Rating distribution",
+      "lowSampleHint": "Still not enough ratings for a statistically reliable reading."
+    },
+    "aiVsHuman": {
+      "aiShare": "AI share in responses",
+      "humanShare": "Human share in responses",
+      "aiFirstResponse": "Avg. AI first response",
+      "humanFirstResponse": "Avg. human first response",
+      "responses": "AI responses",
+      "responsesHuman": "Human responses",
+      "conversations": "AI-assisted conversations",
+      "conversationsHuman": "Human conversations",
+      "title": "AI vs Human",
+      "noDataHint": "AI is not active in this period yet, or responses were not classified."
+    },
+    "pipeline": {
+      "title": "Pipeline by Stage",
+      "subtitle": "Track your opportunities through the sales funnel",
+      "opportunities": "opportunities",
+      "insights": "Pipeline summary",
+      "conversionRate": "Conversations in pipeline",
+      "avgTicket": "Average pipeline ticket",
+      "totalValue": "Total pipeline value"
+    },
+    "responseTime": {
+      "title": "Response Speed",
+      "subtitle": "Comparison between AI and human service",
+      "ai": "AI Service",
+      "human": "Human Service",
+      "average": "Overall average time"
+    },
+    "recovery": {
+      "title": "Recovered Revenue",
+      "subtitle": "Leads reactivated after automated follow-up",
+      "reactivated": "Reactivated Leads",
+      "conversion": "Conversion Rate",
+      "totalRecovered": "Total recovered",
+      "aiContribution": "AI Contribution"
+    },
+    "channels": {
+      "title": "Performance by Channel",
+      "subtitle": "Conversion performance across communication channels",
+      "conversations": "conversations",
+      "conversion": "conversion",
+      "insights": "Channel insights",
+      "topChannel": "Top channel",
+      "concentration": "Top 3 concentration",
+      "activeCount": "Active channels",
+      "totalValue": "Total value by channels",
+      "valueLeaders": "Highest value channels"
+    },
+    "agents": {
+      "title": "Agent Performance",
+      "subtitle": "Individual agent performance metrics",
+      "conversations": "conversations",
+      "avgTime": "Avg. Time",
+      "satisfaction": "Satisfaction"
+    },
+    "charts": {
+      "visitorsTrend": "Conversations per day",
+      "visitorsDescription": "Daily conversation trend in selected period",
+      "conversionRate": "Conversion Rate",
+      "conversionDescription": "Conversion rate by type",
+      "channelShare": "Channel share",
+      "channelShareDescription": "Percentage distribution of conversations by channel",
+      "sessionDuration": "First response time per day",
+      "sessionDescription": "Daily average first response time (seconds)",
+      "heatmapTitle": "Operations heatmap",
+      "heatmapDescription": "Conversation volume by date and hour",
+      "heatmapPeakSlot": "Peak slot",
+      "heatmapPeakWeekday": "Strongest weekday",
+      "heatmapPeakHour": "Peak hour",
+      "heatmapPeakPeriodDay": "Peak day in period",
+      "heatmapExpand": "Expand full period",
+      "heatmapCollapse": "Show last 15 days",
+      "heatmapShowing": "Showing {shown} of {total} days",
+      "timezone": "Timezone",
+      "channelsLabel": "Channels",
+      "shareLabel": "Share"
+    },
+    "sections": {
+      "statusNow": "Operational status now",
+      "statusNowSubtitle": "Key indicators for quick operational health reading",
+      "trends": "Trends over time",
+      "trendsSubtitle": "Operation evolution across the selected period",
+      "optimization": "Diagnosis and optimization",
+      "optimizationSubtitle": "Where bottlenecks and optimization opportunities are in the operation"
+    },
+    "status": {
+      "good": "On track",
+      "warning": "Attention",
+      "critical": "Critical",
+      "noSample": "No sample",
+      "volume": "Period volume",
+      "overdue": "overdue",
+      "automationActive": "Automation active",
+      "noAutomation": "No automation in period",
+      "currentBacklog": "Current operational backlog",
+      "monitor": "Monitor",
+      "pendingNow": "pending now"
+    },
+    "empty": {
+      "pipeline": "No opportunities in the selected period.",
+      "agents": "No agent data for the selected period.",
+      "channels": "No channel data for the selected period.",
+      "pipelineInactive": "Pipeline inactive in the selected period."
+    }
+  }
+}

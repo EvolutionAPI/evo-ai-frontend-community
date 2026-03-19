@@ -1,0 +1,176 @@
+import type { PaginationMeta } from '@/types/core';
+
+export interface CustomTool {
+  account_id: string;
+  body_params: Record<string, unknown>;
+  created_at: string;
+  description: string;
+  endpoint: string;
+  error_handling: Record<string, unknown>;
+  examples: string[];
+  headers: Record<string, unknown>;
+  id: string;
+  input_modes: string[];
+  method: string;
+  name: string;
+  output_modes: string[];
+  path_params: Record<string, unknown>;
+  query_params: Record<string, unknown>;
+  tags: string[];
+  updated_at: string;
+  values: Record<string, unknown>;
+}
+
+export interface CustomToolCreate {
+  body_params: Record<string, unknown>;
+  description: string;
+  endpoint: string;
+  error_handling: Record<string, unknown>;
+  examples: string[];
+  headers: Record<string, unknown>;
+  input_modes: string[];
+  method: string;
+  name: string;
+  output_modes: string[];
+  path_params: Record<string, unknown>;
+  query_params: Record<string, unknown>;
+  tags: string[];
+  values: Record<string, unknown>;
+}
+
+export interface CustomToolUpdate {
+  body_params?: Record<string, unknown>;
+  description?: string;
+  endpoint?: string;
+  error_handling?: Record<string, unknown>;
+  examples?: string[];
+  headers?: Record<string, unknown>;
+  input_modes?: string[];
+  method?: string;
+  name?: string;
+  output_modes?: string[];
+  path_params?: Record<string, unknown>;
+  query_params?: Record<string, unknown>;
+  tags?: string[];
+  values?: Record<string, unknown>;
+}
+
+export interface CustomToolTestResponse {
+  test_result: {
+    error: string;
+    headers: Record<string, string>;
+    response_time: number;
+    status_code: number;
+    success: boolean;
+  };
+  tools: {
+    account_id: string;
+    body_params: Record<string, unknown>;
+    created_at: string;
+    description: string;
+    endpoint: string;
+    error_handling: Record<string, unknown>;
+    examples: string[];
+    headers: Record<string, string>;
+    id: string;
+    input_modes: string[];
+    method: string;
+    name: string;
+    output_modes: string[];
+    path_params: Record<string, string>;
+    query_params: Record<string, unknown>;  
+    tags: string[];
+    updated_at: string;
+    values: Record<string, string>;
+  };
+}
+
+export interface ListCustomToolsParams {
+  skip?: number;
+  limit?: number;
+  active?: boolean;
+  search?: string;
+  tags?: string;
+}
+
+// UI State Types
+export interface CustomToolsState {
+  tools: CustomTool[];
+  selectedToolIds: string[];
+  meta: {
+    pagination: PaginationMeta;
+  };
+  loading: {
+    list: boolean;
+    create: boolean;
+    update: boolean;
+    delete: boolean;
+    test: boolean;
+  };
+  filters: unknown[];
+  searchQuery: string;
+}
+
+export interface CustomToolsListParams {
+  page?: number;
+  pageSize?: number;
+  skip?: number;
+  limit?: number;
+  search?: string;
+  tags?: string;
+}
+
+export interface CustomToolsListResponse {
+  items: CustomTool[];
+  count: number;
+  total_count: number;
+  current_page: number;
+  per_page: number;
+  total_pages: number;
+}
+
+export interface CustomToolTestResponse {
+  test_result: {
+    error: string;
+    headers: Record<string, string>;
+    response_time: number;
+    status_code: number;
+    success: boolean;
+  };
+  tools: {
+    account_id: string;
+    body_params: Record<string, unknown>;
+    created_at: string;
+    description: string;
+    endpoint: string;
+    error_handling: Record<string, unknown>;
+    examples: string[];
+    headers: Record<string, string>;
+    id: string;
+    input_modes: string[];
+    method: string;
+    name: string;
+    output_modes: string[];
+    path_params: Record<string, string>;
+    query_params: Record<string, unknown>;
+    tags: string[];
+    updated_at: string;
+    values: Record<string, string>;
+  };
+}
+
+export interface CustomToolFormData extends CustomToolCreate {
+  // Additional form-specific fields can be added here
+}
+
+export interface AgentTool {
+  id: string;
+  toolId: string;
+  name: string;
+  description: string;
+  tags: string[];
+  examples: string[];
+  inputModes: string[];
+  outputModes: string[];
+  config: Record<string, unknown>;
+}

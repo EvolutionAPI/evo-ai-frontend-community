@@ -1,0 +1,139 @@
+{
+  "title": "Jetons d'Accès",
+  "description": "Gérer les jetons d'accès pour l'authentification API",
+  "header": {
+    "subtitle": "{{count}} jeton d'accès au total",
+    "subtitle_plural": "{{count}} jetons d'accès au total",
+    "searchPlaceholder": "Rechercher jetons d'accès..."
+  },
+  "form": {
+    "title": {
+      "new": "Nouveau Jeton d'Accès",
+      "edit": "Modifier le Jeton d'Accès",
+      "view": "Voir le Jeton"
+    },
+    "labels": {
+      "name": "Nom du Jeton",
+      "scopes": "Permissions (Portées)",
+      "selectedCount": "{{count}} permission sélectionnée",
+      "selectedCount_plural": "{{count}} permissions sélectionnées",
+      "selectAll": "Tout Sélectionner",
+      "clearAll": "Tout Effacer"
+    },
+    "placeholders": {
+      "name": "ex. Mon Jeton API",
+      "searchPermissions": "Rechercher ressources et actions..."
+    },
+    "descriptions": {
+      "name": "Nom descriptif pour identifier ce jeton d'accès",
+      "scopes": "Sélectionnez les permissions auxquelles ce jeton aura accès"
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nom",
+      "scopes": "Portées",
+      "owner": "Propriétaire",
+      "createdAt": "Créé le"
+    }
+  },
+  "actions": {
+    "create": "Nouveau Jeton",
+    "view": "Voir le Jeton",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "deleting": "Suppression",
+    "regenerate": "Régénérer le Jeton",
+    "copy": "Copier le Jeton",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "close": "Fermer"
+  },
+  "messages": {
+    "loading": "Chargement des jetons d'accès...",
+    "loadError": "Erreur lors du chargement des jetons d'accès",
+    "createSuccess": "Jeton d'accès créé avec succès",
+    "updateSuccess": "Jeton d'accès mis à jour avec succès",
+    "deleteSuccess": "Jeton d'accès supprimé avec succès",
+    "bulkDeleteSuccess": "{{count}} jeton d'accès supprimé avec succès",
+    "bulkDeleteSuccess_plural": "{{count}} jetons d'accès supprimés avec succès",
+    "regenerateSuccess": "Jeton régénéré avec succès",
+    "copySuccess": "Jeton copié dans le presse-papiers",
+    "createError": "Erreur lors de la création du jeton d'accès",
+    "updateError": "Erreur lors de la mise à jour du jeton d'accès",
+    "deleteError": "Erreur lors de la suppression du jeton d'accès",
+    "regenerateError": "Erreur lors de la régénération du jeton",
+    "copyError": "Erreur lors de la copie dans le presse-papiers",
+    "loadDetailsError": "Erreur lors du chargement des détails du jeton",
+    "permissionDenied": "Vous n'avez pas la permission de {{action}} les jetons d'accès",
+    "validation": {
+      "nameRequired": "Le nom est obligatoire",
+      "nameMinLength": "Le nom doit contenir au moins 2 caractères",
+      "scopesRequired": "Sélectionnez au moins une permission"
+    }
+  },
+  "deleteDialog": {
+    "title": "Supprimer le Jeton d'Accès",
+    "description": "Êtes-vous sûr de vouloir supprimer le jeton \"{{name}}\" ? Cette action ne peut pas être annulée.",
+    "cancel": "Annuler",
+    "confirm": "Supprimer"
+  },
+  "bulkDeleteDialog": {
+    "title": "Supprimer les Jetons Sélectionnés",
+    "description": "Êtes-vous sûr de vouloir supprimer {{count}} jeton sélectionné ? Cette action ne peut pas être annulée.",
+    "description_plural": "Êtes-vous sûr de vouloir supprimer {{count}} jetons sélectionnés ? Cette action ne peut pas être annulée.",
+    "cancel": "Annuler",
+    "confirm": "Tout Supprimer"
+  },
+  "viewModal": {
+    "title": "Jeton d'Accès",
+    "labels": {
+      "name": "Nom",
+      "owner": "Propriétaire",
+      "token": "Jeton d'Accès",
+      "scopes": "Permissions (Portées)",
+      "createdAt": "Créé le",
+      "updatedAt": "Dernière mise à jour",
+      "ownerId": "ID du Propriétaire",
+      "tokenId": "ID du Jeton"
+    },
+    "copyToken": "Jeton d'Accès",
+    "descriptions": {
+      "tokenId": "Identifiant unique pour ce jeton d'accès",
+      "tokenUsage": "Utilisez ce jeton dans l'en-tête Authorization: Authorization: Bearer {token}...",
+      "scopes": "Permissions auxquelles ce jeton a accès",
+      "noScopes": "Aucune portée configurée"
+    },
+    "sections": {
+      "tokenDetails": "Détails du Jeton",
+      "apiUsage": "Exemple d'Utilisation de l'API",
+      "security": "Important - Sécurité"
+    },
+    "examples": {
+      "curl": "Exemple cURL",
+      "javascript": "Exemple JavaScript"
+    },
+    "security": {
+      "title": "Important - Sécurité",
+      "tips": [
+        "Ne jamais exposer le jeton d'accès dans le code côté client ou les dépôts publics",
+        "Utiliser HTTPS en production pour toutes les communications API",
+        "Régénérer le jeton si vous soupçonnez qu'il a été compromis",
+        "Surveiller l'utilisation du jeton régulièrement",
+        "Stocker les jetons de manière sécurisée en utilisant des variables d'environnement ou des coffres-forts sécurisés"
+      ]
+    },
+    "close": "Fermer",
+    "tokenCopied": "Jeton copié !"
+  },
+  "empty": {
+    "title": "Aucun jeton trouvé",
+    "description": "Créez votre premier jeton d'accès pour commencer à utiliser l'API"
+  },
+  "permissions": {
+    "loadingPermissions": "Chargement des permissions...",
+    "noPermissionsAvailable": "Aucune permission disponible",
+    "retryLoad": "Réessayer",
+    "loadError": "Échec du chargement des permissions. Veuillez réessayer."
+  }
+}

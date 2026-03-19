@@ -1,0 +1,74 @@
+{
+  "title": "Strumenti di Sistema",
+  "subtitle": "Esplora gli strumenti disponibili nel sistema",
+  "loading": "Caricamento strumenti...",
+  "card": {
+    "noDescription": "Nessuna descrizione",
+    "input": "Input:",
+    "output": "Output:",
+    "examplesCount": "{{count}} esempio/i disponibile/i"
+  },
+  "details": {
+    "title": "Dettagli Strumento",
+    "basicInfo": {
+      "title": "Informazioni di Base",
+      "name": "Nome",
+      "description": "Descrizione"
+    },
+    "tags": {
+      "title": "Tag",
+      "count": "Tag ({{count}})",
+      "empty": "Nessun tag disponibile"
+    },
+    "modes": {
+      "title": "Modalità Input e Output",
+      "input": "Modalità Input",
+      "output": "Modalità Output",
+      "notSpecified": "Non specificato"
+    },
+    "examples": {
+      "title": "Esempi",
+      "count": "Esempi ({{count}})",
+      "empty": "Nessun esempio disponibile"
+    },
+    "configuration": {
+      "title": "Configurazione",
+      "requiredFields": "Campi Obbligatori",
+      "optionalFields": "Campi Opzionali",
+      "defaultValues": "Valori Predefiniti"
+    }
+  },
+  "filter": {
+    "title": "Filtra Strumenti",
+    "description": "Configura i filtri per trovare gli strumenti che cerchi",
+    "applyFilters": "Applica Filtri",
+    "clearFilters": "Cancella Filtri",
+    "addFilter": "Aggiungi Filtro"
+  },
+  "header": {
+    "searchPlaceholder": "Cerca per nome, descrizione o tag..."
+  },
+  "table": {
+    "columns": {
+      "tool": "Strumento",
+      "tags": "Tag",
+      "examples": "Esempi",
+      "input": "Input",
+      "output": "Output"
+    },
+    "noName": "Nessun nome",
+    "noDescription": "Nessuna descrizione",
+    "noTags": "Nessun tag",
+    "actions": {
+      "viewDetails": "Vedi dettagli"
+    },
+    "empty": {
+      "title": "Nessuno strumento disponibile",
+      "description": "Non ci sono strumenti disponibili nel sistema.",
+      "message": "Nessuno strumento trovato"
+    }
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento degli strumenti"
+  }
+}

@@ -1,0 +1,300 @@
+import { createConsumer, Consumer, Subscription } from '@rails/actioncable';
+
+const PRESENCE_INTERVAL = 20000; // 20 segundos
+const RECONNECT_INTERVAL = 1000; // 1 segundo
+
+export interface WebSocketEvent {
+  event: string;
+  data: unknown;
+}
+
+export interface ConnectionParams {
+  channel: string;
+  pubsub_token: string;
+  account_id: string;
+  user_id: string;
+}
+
+export interface EventHandlers {
+  [key: string]: (data: unknown) => void;
+}
+
+/**
+ * BaseActionCableConnector
+ * Classe base para conexão WebSocket com Evolution usando ActionCable
+ * Baseada em: evolution/app/javascript/shared/helpers/BaseActionCableConnector.js
+ */
+export class BaseActionCableConnector {
+  protected consumer: Consumer;
+  protected subscription: Subscription | null = null;
+  protected events: EventHandlers = {};
+  protected reconnectTimer: NodeJS.Timeout | null = null;
+  protected presenceTimer: NodeJS.Timeout | null = null;
+  protected connectionParams: ConnectionParams;
+  protected websocketURL?: string;
+
+  static isDisconnected = false;
+
+  constructor(connectionParams: ConnectionParams, websocketHost?: string) {
+    this.connectionParams = connectionParams;
+
+    // Convert HTTP/HTTPS URL to WS/WSS WebSocket URL
+    if (websocketHost) {
+      const wsProtocol = websocketHost.includes('https') ? 'wss:' : 'ws:';
+      const wsUrl = websocketHost.replace(/^https?:/, wsProtocol);
+      this.websocketURL = `${wsUrl}/cable`;
+    } else {
+      this.websocketURL = undefined;
+    }
+
+    // Criar consumer ActionCable
+    this.consumer = createConsumer(this.websocketURL || '/cable');
+
+    this.connect();
+  }
+
+  /**
+   * Conectar ao canal WebSocket
+   */
+  protected connect(): void {
+    try {
+      this.subscription = this.consumer.subscriptions.create(
+        {
+          channel: this.connectionParams.channel,
+          pubsub_token: this.connectionParams.pubsub_token,
+          account_id: this.connectionParams.account_id,
+          user_id: this.connectionParams.user_id,
+        },
+        {
+          // Receber mensagens do WebSocket
+          received: (data: unknown) => this.onReceived(data as WebSocketEvent),
+
+          // Conectado com sucesso
+          connected: () => {
+            BaseActionCableConnector.isDisconnected = false;
+            this.onConnected();
+            this.startPresenceInterval();
+            this.clearReconnectTimer();
+          },
+
+          // Desconectado
+          disconnected: () => {
+            BaseActionCableConnector.isDisconnected = true;
+            this.onDisconnected();
+            this.stopPresenceInterval();
+            this.initReconnectTimer();
+          },
+
+          // Note: 'rejected' callback não é suportado na tipagem do ActionCable
+          // mas pode ser chamado em runtime. Implementar manualmente se necessário.
+        },
+      );
+    } catch (error) {
+      console.error('❌ Erro ao criar subscription:', error);
+      this.initReconnectTimer();
+    }
+  }
+
+  /**
+   * Verificar se o evento é válido para este cliente
+   */
+  protected isAValidEvent(data: unknown): boolean {
+    // Implementação padrão - pode ser sobrescrita
+    if (typeof data === 'object' && data !== null && 'account_id' in data) {
+      const eventAccountId = (data as { account_id: unknown }).account_id;
+      const currentAccountId = this.connectionParams.account_id;
+
+      // Comparar convertendo ambos para string para evitar problemas de tipo
+      return String(eventAccountId) === String(currentAccountId);
+    }
+
+    return false;
+  }
+
+  /**
+   * Processar mensagem recebida do WebSocket
+   */
+  protected onReceived = (payload: WebSocketEvent): void => {
+    const { event, data } = payload || {};
+
+    if (this.isAValidEvent(data)) {
+      if (this.events[event] && typeof this.events[event] === 'function') {
+        try {
+          this.events[event](data);
+        } catch (error) {
+          console.error(`❌ Erro ao processar evento ${event}:`, error);
+        }
+      }
+    } else {
+      const eventAccountId =
+        typeof data === 'object' && data !== null && 'account_id' in data
+          ? (data as { account_id: unknown }).account_id
+          : 'N/A';
+      console.warn(`⚠️ Evento inválido ignorado:`, {
+        event,
+        eventAccountId,
+        expectedAccountId: this.connectionParams.account_id,
+        data,
+      });
+    }
+  };
+
+  /**
+   * Callback quando conectado
+   */
+  protected onConnected(): void {
+    // Implementação padrão - pode ser sobrescrita
+  }
+
+  /**
+   * Callback quando desconectado
+   */
+  protected onDisconnected(): void {
+    // Implementação padrão - pode ser sobrescrita
+  }
+
+  /**
+   * Callback quando reconectado
+   */
+  protected onReconnected(): void {
+    // Implementação padrão - pode ser sobrescrita
+  }
+
+  /**
+   * Callback quando conexão rejeitada
+   */
+  protected onRejected(): void {
+    // Implementação padrão - pode ser sobrescrita
+  }
+
+  /**
+   * Verificar status da conexão e tentar reconectar
+   */
+  protected checkConnection(): void {
+    if (!this.consumer) {
+      console.warn('⚠️ Consumer não disponível');
+      this.initReconnectTimer();
+      return;
+    }
+
+    const isReconnected = BaseActionCableConnector.isDisconnected && this.subscription;
+
+    if (isReconnected) {
+      this.clearReconnectTimer();
+      this.onReconnected();
+      BaseActionCableConnector.isDisconnected = false;
+    } else if (BaseActionCableConnector.isDisconnected) {
+      this.initReconnectTimer();
+    }
+  }
+
+  /**
+   * Iniciar timer de reconexão
+   */
+  protected initReconnectTimer(): void {
+    this.clearReconnectTimer();
+
+    this.reconnectTimer = setTimeout(() => {
+      this.checkConnection();
+    }, RECONNECT_INTERVAL);
+  }
+
+  /**
+   * Limpar timer de reconexão
+   */
+  protected clearReconnectTimer(): void {
+    if (this.reconnectTimer) {
+      clearTimeout(this.reconnectTimer);
+      this.reconnectTimer = null;
+    }
+  }
+
+  /**
+   * Iniciar interval de presença
+   */
+  protected startPresenceInterval(): void {
+    this.stopPresenceInterval();
+
+    const updatePresence = () => {
+      if (this.subscription && !BaseActionCableConnector.isDisconnected) {
+        this.perform('update_presence');
+      }
+
+      this.presenceTimer = setTimeout(updatePresence, PRESENCE_INTERVAL);
+    };
+
+    // Primeira atualização
+    updatePresence();
+  }
+
+  /**
+   * Parar interval de presença
+   */
+  protected stopPresenceInterval(): void {
+    if (this.presenceTimer) {
+      clearTimeout(this.presenceTimer);
+      this.presenceTimer = null;
+    }
+  }
+
+  /**
+   * Registrar event handler
+   */
+  public onEvent(event: string, handler: (data: unknown) => void): void {
+    this.events[event] = handler;
+  }
+
+  /**
+   * Remover event handler
+   */
+  public offEvent(event: string): void {
+    delete this.events[event];
+  }
+
+  /**
+   * Enviar ação para o servidor
+   */
+  public perform(action: string, data?: unknown): void {
+    if (this.subscription) {
+      this.subscription.perform(action, data);
+    } else {
+      console.warn('⚠️ Não é possível performar action - subscription não disponível');
+    }
+  }
+
+  /**
+   * Verificar se está conectado
+   */
+  public isConnected(): boolean {
+    return !!this.subscription && !BaseActionCableConnector.isDisconnected;
+  }
+
+  /**
+   * Desconectar do WebSocket
+   */
+  public disconnect(): void {
+    this.clearReconnectTimer();
+    this.stopPresenceInterval();
+
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+
+    if (this.consumer) {
+      this.consumer.disconnect();
+    }
+
+    BaseActionCableConnector.isDisconnected = true;
+  }
+
+  /**
+   * Cleanup na destruição
+   */
+  public destroy(): void {
+    this.disconnect();
+    this.events = {};
+  }
+}
+
+export default BaseActionCableConnector;

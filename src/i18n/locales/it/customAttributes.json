@@ -1,0 +1,237 @@
+{
+  "title": "Attributi Personalizzati",
+  "loading": "Caricamento attributi personalizzati...",
+  "sections": {
+    "defined": "Attributi Personalizzati Definiti",
+    "additional": "Attributi Aggiuntivi",
+    "newAttribute": "Nuovo Attributo Personalizzato"
+  },
+  "tabs": {
+    "conversation": "Conversazioni",
+    "contact": "Contatti",
+    "pipeline_attribute": "Pipeline"
+  },
+  "header": {
+    "title": "Attributi Personalizzati",
+    "subtitle": "{{count}} attributo/i {{tabName}} in totale",
+    "subtitleSingular": "{{count}} attributo {{tabName}} in totale",
+    "searchPlaceholder": "Cerca attributi personalizzati...",
+    "newAttribute": "Nuovo Attributo",
+    "bulkDelete": "Elimina",
+    "clearSelection": "Cancella Selezione",
+    "selected": "{{count}} selezionato/i"
+  },
+  "modal": {
+    "title": {
+      "new": "Nuovo Attributo Personalizzato",
+      "edit": "Modifica Attributo Personalizzato"
+    },
+    "description": {
+      "new": "Crea un nuovo attributo personalizzato per raccogliere informazioni specifiche.",
+      "edit": "Modifica le informazioni dell'attributo personalizzato."
+    },
+    "fields": {
+      "attributeModel": {
+        "label": "Applica a",
+        "required": true
+      },
+      "displayName": {
+        "label": "Nome visualizzato",
+        "placeholder": "Es: Priorità Cliente",
+        "required": true,
+        "errors": {
+          "required": "Il nome visualizzato è obbligatorio",
+          "minLength": "Il nome visualizzato deve contenere almeno 2 caratteri"
+        }
+      },
+      "attributeKey": {
+        "label": "Chiave dell'attributo",
+        "placeholder": "Es: customer_priority",
+        "required": true,
+        "hint": "La chiave verrà utilizzata per identificare questo attributo nell'API. Usa solo lettere minuscole, numeri e trattini bassi.",
+        "errors": {
+          "required": "La chiave dell'attributo è obbligatoria",
+          "invalid": "La chiave deve contenere solo lettere minuscole, numeri e trattini bassi"
+        }
+      },
+      "description": {
+        "label": "Descrizione",
+        "placeholder": "Descrivi lo scopo di questo attributo",
+        "required": true,
+        "errors": {
+          "required": "La descrizione è obbligatoria"
+        }
+      },
+      "displayType": {
+        "label": "Tipo",
+        "required": true
+      },
+      "listValues": {
+        "label": "Valori dell'elenco",
+        "placeholder": "Inserisci un valore e premi Invio",
+        "required": true,
+        "errors": {
+          "required": "L'elenco deve avere almeno un valore"
+        }
+      },
+      "regexEnabled": {
+        "label": "Validazione con Regex",
+        "description": "Aggiungi un pattern regex per validare i valori di questo attributo"
+      },
+      "regexPattern": {
+        "label": "Pattern Regex",
+        "placeholder": "Es: ^[0-9]{3}-[0-9]{3}-[0-9]{4}$",
+        "errors": {
+          "invalid": "Pattern regex non valido"
+        }
+      },
+      "regexCue": {
+        "label": "Suggerimento per l'utente",
+        "placeholder": "Es: Formato: 123-456-7890",
+        "hint": "Questo suggerimento verrà mostrato agli utenti quando compileranno il campo"
+      },
+      "pipelineType": {
+        "label": "Tipo di Pipeline",
+        "placeholder": "Seleziona il tipo di pipeline",
+        "hint": "Seleziona se questo attributo si applica al pipeline, alla fase o all'elemento",
+        "errors": {
+          "required": "Il tipo di pipeline è obbligatorio per gli attributi del pipeline"
+        }
+      }
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "key": "Chiave",
+      "type": "Tipo",
+      "description": "Descrizione",
+      "values": "Valori",
+      "regex": "Regex",
+      "createdAt": "Creato il",
+      "actions": "Azioni",
+      "model": {
+        "label": "Modello",
+        "pipeline_attribute": "Pipeline",
+        "pipeline_stage_attribute": "Fase",
+        "pipeline_item_attribute": "Elemento"
+      }
+    },
+    "regexBadge": {
+      "yes": "Sì"
+    },
+    "noDescription": "-",
+    "noValues": "-",
+    "noRegex": "-",
+    "moreValues": "+{{count}}"
+  },
+  "fields": {
+    "attributeKey": {
+      "label": "Nome dell'Attributo",
+      "placeholder": "Es: cliente_vip, settore, posizione"
+    },
+    "attributeValue": {
+      "label": "Valore",
+      "placeholder": "Valore dell'attributo"
+    },
+    "attributeScope": {
+      "label": "Ambito dell'Attributo",
+      "placeholder": "Seleziona per chi è questo attributo",
+      "options": {
+        "pipeline": {
+          "label": "Per questa Pipeline",
+          "description": "Attributo specifico per questa pipeline"
+        },
+        "stages": {
+          "label": "Per le Fasi",
+          "description": "Attributo condiviso con tutte le fasi di questa pipeline"
+        },
+        "stage": {
+          "label": "Per questa Fase",
+          "description": "Attributo specifico per questa fase"
+        },
+        "items": {
+          "label": "Per le Cards",
+          "description": "Attributo condiviso con tutte le cards"
+        },
+        "item": {
+          "label": "Per questa Card",
+          "description": "Attributo specifico per questa card"
+        }
+      },
+      "sharedMessage": {
+        "label": "Condiviso con le cards",
+        "labelStages": "Condiviso con le fasi",
+        "pipeline": "Questo attributo sarà compilato direttamente nella scheda.",
+        "stage": "Questo attributo sarà compilato direttamente nella scheda.",
+        "descriptionStages": "Il valore sarà definito dalle fasi",
+        "descriptionCards": "Il valore sarà definito dalle cards"
+      },
+      "attributeOrigin": {
+        "pipeline": "Attributo del Pipeline",
+        "stage": "Attributo della Fase",
+        "item": "Attributo della Card"
+      }
+    }
+  },
+  "placeholders": {
+    "text": "Inserisci {{name}}",
+    "number": "Inserisci {{name}}",
+    "link": "https://esempio.com",
+    "select": "Seleziona {{name}}",
+    "textarea": "Inserisci {{name}}"
+  },
+  "actions": {
+    "add": "Aggiungi",
+    "cancel": "Annulla",
+    "remove": "Rimuovi",
+    "addAttribute": "Aggiungi Attributo Personalizzato",
+    "edit": "Modifica",
+    "delete": "Elimina",
+    "save": "Salva",
+    "create": "Crea",
+    "update": "Aggiorna",
+    "saving": "Salvataggio...",
+    "confirm": "Conferma"
+  },
+  "checkbox": {
+    "yes": "Sì",
+    "no": "No"
+  },
+  "empty": {
+    "title": "Nessun attributo personalizzato trovato",
+    "description": "Definisci attributi personalizzati nelle impostazioni o aggiungi un attributo ad-hoc di seguito",
+    "descriptionReadOnly": "Configura attributi personalizzati nelle impostazioni dell'account",
+    "descriptionConversation": "Crea un nuovo attributo personalizzato per le conversazioni per iniziare a raccogliere informazioni specifiche.",
+    "descriptionContact": "Crea un nuovo attributo personalizzato per i contatti per iniziare a raccogliere informazioni specifiche.",
+    "descriptionPipeline": "Crea un nuovo attributo personalizzato per pipeline, fasi o elementi per iniziare a raccogliere informazioni specifiche.",
+    "action": "Nuovo Attributo"
+  },
+  "messages": {
+    "loadError": "Errore durante il caricamento degli attributi personalizzati",
+    "createSuccess": "Attributo personalizzato creato con successo",
+    "createError": "Errore durante la creazione dell'attributo personalizzato",
+    "updateSuccess": "Attributo personalizzato aggiornato con successo",
+    "updateError": "Errore durante l'aggiornamento dell'attributo personalizzato",
+    "deleteSuccess": "Attributo personalizzato eliminato con successo",
+    "deleteError": "Errore durante l'eliminazione dell'attributo personalizzato",
+    "bulkDeleteSuccess": "{{count}} attributo/i personalizzato/i eliminato/i con successo",
+    "bulkDeleteError": "Errore durante l'eliminazione degli attributi personalizzati"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Elimina Attributo Personalizzato",
+      "description": "Sei sicuro di voler eliminare l'attributo personalizzato \"{{name}}\"? Questa azione non può essere annullata e rimuoverà tutti i dati associati.",
+      "cancel": "Annulla",
+      "confirm": "Elimina",
+      "deleting": "Eliminazione..."
+    },
+    "bulkDelete": {
+      "title": "Elimina Attributi Personalizzati",
+      "description": "Sei sicuro di voler eliminare {{count}} attributo/i personalizzato/i selezionato/i? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina Tutti",
+      "deleting": "Eliminazione..."
+    }
+  }
+}

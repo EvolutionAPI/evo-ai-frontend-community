@@ -1,0 +1,154 @@
+{
+  "title": "MCP Servers",
+  "subtitle": "Manage Model Context Protocol servers",
+  "stats": {
+    "total": "Total Servers",
+    "official": "Official Servers",
+    "community": "Community Servers",
+    "withTools": "With Tools",
+    "newThisMonth": "{{count}} new this month",
+    "noNewThisMonth": "No new this month",
+    "percentOfTotal": "{{percent}}% of total"
+  },
+  "header": {
+    "title": "MCP Servers",
+    "subtitle": "Explore available MCP servers in the system",
+    "searchPlaceholder": "Search by name, type or description..."
+  },
+  "card": {
+    "noDescription": "No description",
+    "toolsCount": "{{count}} tools",
+    "toolsCount_plural": "{{count}} tools"
+  },
+  "details": {
+    "sections": {
+      "basicInfo": "Basic Information",
+      "tools": "Tools",
+      "environments": "Environment Variables",
+      "configJson": "JSON Configuration"
+    },
+    "labels": {
+      "name": "Name",
+      "type": "Type",
+      "description": "Description",
+      "configType": "Configuration Type"
+    },
+    "buttons": {
+      "edit": "Edit"
+    },
+    "empty": {
+      "tools": "No tools configured",
+      "environments": "No environment variables configured"
+    },
+    "environment": {
+      "configured": "Configured"
+    }
+  },
+  "form": {
+    "sections": {
+      "basicInfo": "Basic Information",
+      "configuration": "Configuration",
+      "tools": "Tools"
+    },
+    "labels": {
+      "name": "Name",
+      "type": "Type",
+      "description": "Description",
+      "configType": "Configuration Type"
+    },
+    "placeholders": {
+      "name": "MCP server name",
+      "description": "MCP server description..."
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "configTypeRequired": "Configuration type is required",
+      "typeRequired": "Server type is required"
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "create": "Create MCP Server",
+      "update": "Save Changes"
+    },
+    "toolsInfo": {
+      "configured": "{{count}} tool(s) configured",
+      "noTools": "No tools configured",
+      "autoLoad": "Tools will be loaded automatically from the MCP server"
+    },
+    "types": {
+      "official": "Official",
+      "community": "Community"
+    },
+    "configTypes": {
+      "sse": "SSE (Server-Sent Events)",
+      "studio": "Studio"
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Create New MCP Server",
+      "edit": "Edit {{name}}",
+      "view": "View {{name}}"
+    }
+  },
+  "filter": {
+    "title": "Filter MCP Servers",
+    "description": "Configure filters to find the MCP servers you're looking for",
+    "buttons": {
+      "apply": "Apply Filters",
+      "clear": "Clear Filters",
+      "addFilter": "Add Filter"
+    }
+  },
+  "table": {
+    "title": "Server List",
+    "description": "View and manage all configured MCP servers",
+    "headers": {
+      "name": "Name",
+      "description": "Description",
+      "type": "Type",
+      "configuration": "Configuration",
+      "tools": "Tools",
+      "createdAt": "Created at",
+      "actions": "Actions"
+    },
+    "columns": {
+      "server": "Server",
+      "description": "Description",
+      "tools": "Tools"
+    },
+    "noName": "No name",
+    "noDescription": "No description",
+    "actions": {
+      "viewDetails": "View details",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "empty": {
+      "title": "No MCP servers created",
+      "description": "Create MCP servers to integrate with external services.",
+      "message": "No MCP servers found"
+    }
+  },
+  "emptyState": {
+    "title": "No servers found",
+    "description": "You don't have any MCP servers configured yet. Add your first server to get started.",
+    "addFirst": "Add first server"
+  },
+  "fields": {
+    "noDescription": "No description"
+  },
+  "types": {
+    "official": "Official",
+    "community": "Community"
+  },
+  "buttons": {
+    "newServer": "New Server",
+    "tryAgain": "Try Again"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "loadError": "Error loading MCP servers"
+  }
+}

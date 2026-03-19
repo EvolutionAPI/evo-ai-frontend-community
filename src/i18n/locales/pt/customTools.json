@@ -1,0 +1,197 @@
+{
+  "title": "Ferramentas Personalizadas",
+  "header": {
+    "title": "Ferramentas Personalizadas",
+    "subtitle": "Crie e gerencie ferramentas HTTP personalizadas para seus agentes",
+    "newTool": "Nova Ferramenta Personalizada",
+    "searchPlaceholder": "Buscar por nome, método ou endpoint..."
+  },
+  "card": {
+    "noDescription": "Sem descrição",
+    "examples": "{{count}} exemplo(s)",
+    "createdAt": "Criado em",
+    "actions": {
+      "test": "Testar",
+      "edit": "Editar",
+      "delete": "Deletar"
+    }
+  },
+  "details": {
+    "title": "Detalhes da Ferramenta",
+    "sections": {
+      "basicInfo": "Informações Básicas",
+      "tags": "Tags",
+      "examples": "Exemplos",
+      "headers": "Headers HTTP",
+      "inputOutput": "Modos de Entrada e Saída"
+    },
+    "fields": {
+      "name": "Nome",
+      "description": "Descrição",
+      "method": "Método HTTP",
+      "createdAt": "Criado em",
+      "endpoint": "Endpoint",
+      "inputModes": "Modos de Entrada",
+      "outputModes": "Modos de Saída",
+      "notSpecified": "Não especificado"
+    },
+    "empty": {
+      "tags": "Nenhuma tag configurada",
+      "examples": "Nenhum exemplo disponível",
+      "headers": "Nenhum header HTTP configurado"
+    },
+    "actions": {
+      "test": "Testar",
+      "edit": "Editar"
+    }
+  },
+  "form": {
+    "title": {
+      "create": "Criar Nova Ferramenta Personalizada",
+      "edit": "Editar {{name}}",
+      "view": "Visualizar {{name}}"
+    },
+    "sections": {
+      "basicInfo": "Informações Básicas",
+      "httpConfig": "Configuração HTTP",
+      "tags": "Tags",
+      "examples": "Exemplos"
+    },
+    "fields": {
+      "name": {
+        "label": "Nome",
+        "placeholder": "Nome da ferramenta personalizada",
+        "required": true
+      },
+      "description": {
+        "label": "Descrição",
+        "placeholder": "Descrição da ferramenta personalizada..."
+      },
+      "method": {
+        "label": "Método HTTP",
+        "placeholder": "Selecione o método",
+        "required": true
+      },
+      "endpoint": {
+        "label": "Endpoint",
+        "placeholder": "https://api.example.com/endpoint",
+        "required": true
+      },
+      "headers": {
+        "label": "Headers HTTP (JSON)",
+        "placeholder": "{\"Authorization\": \"Bearer token\", \"Content-Type\": \"application/json\"}",
+        "hint": "Configure os headers HTTP necessários para autenticação e comunicação"
+      },
+      "bodyParams": {
+        "label": "Parâmetros do Body (JSON)",
+        "placeholder": "{\"key\": \"value\", \"nested\": {\"field\": \"data\"}}",
+        "hint": "Configure os parâmetros do corpo da requisição enviados com requisições POST/PUT/PATCH"
+      },
+      "queryParams": {
+        "label": "Parâmetros de Query (JSON)",
+        "placeholder": "{\"param1\": \"value1\", \"param2\": \"value2\"}",
+        "hint": "Configure os parâmetros da query string da URL anexados ao endpoint"
+      },
+      "pathParams": {
+        "label": "Parâmetros de Path (JSON)",
+        "placeholder": "{\"user_id\": \"{user_id}\", \"resource_id\": \"{resource_id}\"}",
+        "hint": "Configure os parâmetros de path que serão substituídos na URL do endpoint (ex: /users/{user_id})"
+      },
+      "values": {
+        "label": "Valores Padrão (JSON)",
+        "placeholder": "{\"default_key\": \"default_value\"}",
+        "hint": "Configure valores padrão usados como fallback quando parâmetros não são fornecidos em tempo de execução"
+      },
+      "errorHandling": {
+        "label": "Tratamento de Erros (JSON)",
+        "placeholder": "{\"timeout\": 30, \"retry_count\": 3, \"fallback_response\": \"{}\"}",
+        "hint": "Configure as configurações de tratamento de erros: timeout (segundos), retry_count e fallback_response"
+      },
+      "tags": {
+        "label": "Tags",
+        "placeholder": "api, http, webhook",
+        "hint": "Separe as tags com vírgulas para organizar e categorizar a ferramenta"
+      },
+      "examples": {
+        "label": "Exemplos",
+        "placeholder": "Adicionar exemplo de uso..."
+      }
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "endpointRequired": "Endpoint é obrigatório",
+      "endpointInvalid": "Endpoint deve ser uma URL válida",
+      "methodRequired": "Método HTTP é obrigatório",
+      "headersInvalid": "JSON de headers inválido",
+      "bodyParamsInvalid": "JSON inválido para parâmetros do body",
+      "queryParamsInvalid": "JSON inválido para parâmetros de query",
+      "pathParamsInvalid": "JSON inválido para parâmetros de path",
+      "valuesInvalid": "JSON inválido para valores padrão",
+      "errorHandlingInvalid": "JSON inválido para tratamento de erros"
+    },
+    "actions": {
+      "cancel": "Cancelar",
+      "save": "Salvar Alterações",
+      "create": "Criar Ferramenta",
+      "saving": "Salvando..."
+    }
+  },
+  "modal": {
+    "title": {
+      "create": "Criar Nova Ferramenta Personalizada",
+      "edit": "Editar {{name}}",
+      "view": "Visualizar {{name}}",
+      "editFallback": "Editar Ferramenta Personalizada",
+      "viewFallback": "Visualizar Ferramenta Personalizada"
+    }
+  },
+  "filter": {
+    "title": "Filtrar Ferramentas Personalizadas",
+    "description": "Configure os filtros para encontrar as ferramentas personalizadas que você procura",
+    "apply": "Aplicar Filtros",
+    "clear": "Limpar Filtros",
+    "addFilter": "Adicionar Filtro"
+  },
+  "table": {
+    "columns": {
+      "tool": "Ferramenta",
+      "description": "Descrição",
+      "endpoint": "Endpoint",
+      "tags": "Tags",
+      "createdAt": "Criado em",
+      "test": "Teste"
+    },
+    "noName": "Sem nome",
+    "noDescription": "Sem descrição",
+    "noTags": "-",
+    "actions": {
+      "test": "Testar",
+      "edit": "Editar ferramenta",
+      "delete": "Deletar ferramenta",
+      "create": "Criar ferramenta personalizada"
+    },
+    "empty": {
+      "title": "Nenhuma ferramenta personalizada criada",
+      "description": "Crie ferramentas personalizadas para expandir as capacidades dos agentes.",
+      "noResults": "Nenhuma ferramenta personalizada encontrada"
+    }
+  },
+  "loading": {
+    "tools": "Carregando ferramentas...",
+    "creating": "Criando...",
+    "updating": "Atualizando...",
+    "deleting": "Deletando...",
+    "testing": "Testando..."
+  },
+  "messages": {
+    "loadError": "Erro ao carregar ferramentas personalizadas",
+    "createSuccess": "Ferramenta personalizada criada com sucesso",
+    "createError": "Erro ao criar ferramenta personalizada",
+    "updateSuccess": "Ferramenta personalizada atualizada com sucesso",
+    "updateError": "Erro ao atualizar ferramenta personalizada",
+    "deleteSuccess": "Ferramenta personalizada deletada com sucesso",
+    "deleteError": "Erro ao deletar ferramenta personalizada",
+    "testSuccess": "Teste executado com sucesso",
+    "testError": "Erro ao testar ferramenta personalizada"
+  }
+}

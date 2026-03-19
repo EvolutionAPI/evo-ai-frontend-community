@@ -1,0 +1,181 @@
+import React from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { useWhitelabelConfig } from '@/hooks/useWhitelabelConfig';
+import { Link, useLocation } from 'react-router-dom';
+import { X } from 'lucide-react';
+import {
+  Button,
+  TooltipProvider,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@evoapi/design-system';
+import MenuItem from './MenuItem';
+import { MenuItem as MenuItemType } from '../config/menuItems';
+
+// Utility function for className merging
+function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(' ');
+}
+
+interface SidebarProps {
+  isCollapsed: boolean;
+  menuItems: MenuItemType[];
+  activeSubmenu: MenuItemType | null;
+  activeMenu: string | null;
+  isMenuWithSubItemsActive: (item: MenuItemType) => boolean;
+  handleMenuClick: (item: MenuItemType, e: React.MouseEvent) => void;
+  setActiveSubmenu: (item: MenuItemType | null) => void;
+}
+
+export default function Sidebar({
+  isCollapsed,
+  menuItems,
+  activeSubmenu,
+  activeMenu,
+  isMenuWithSubItemsActive,
+  handleMenuClick,
+  setActiveSubmenu,
+}: SidebarProps) {
+  const location = useLocation();
+  const pathname = location.pathname;
+  const { t } = useLanguage('layout');
+  const { config: whitelabelConfig } = useWhitelabelConfig();
+  const currentYear = new Date().getFullYear();
+
+  // Usa o nome da empresa do whitelabel se disponível, senão usa o padrão
+  const companyName = whitelabelConfig.enabled && whitelabelConfig.companyName
+    ? whitelabelConfig.companyName
+    : t('sidebar.footer.brand');
+  const supportWhatsappUrl = 'https://api.whatsapp.com/send/?phone=553175038350&text=Ol%C3%A1%21+Preciso+de+suporte.&type=phone_number&app_absent=0';
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <div
+        className={cn(
+          'hidden md:flex bg-sidebar text-sidebar-foreground flex-col border-r border-sidebar-border',
+          isCollapsed ? 'w-16' : 'w-56',
+        )}
+      >
+        <TooltipProvider delayDuration={300}>
+          {/* Navigation Menu */}
+          <nav className="space-y-1.5 flex-1 px-2 py-4">
+            {menuItems.map(item => (
+              <MenuItem
+                key={item.id || item.href}
+                item={item}
+                isCollapsed={isCollapsed}
+                isActive={isMenuWithSubItemsActive(item)}
+                activeMenu={activeMenu}
+                onClick={(e) => handleMenuClick(item, e)}
+              />
+            ))}
+          </nav>
+
+          {/* Sidebar Footer */}
+          <div className="mt-auto p-4 border-t border-sidebar-border">
+            {isCollapsed ? (
+              <div className="flex flex-col items-center">
+                <div className="text-xs text-muted-foreground text-center">© {currentYear}</div>
+              </div>
+            ) : (
+              <>
+                <div className="text-sm text-primary font-medium">{companyName}</div>
+                <div className="text-xs text-muted-foreground mt-1">
+                  {t('sidebar.footer.copyright', { year: currentYear })}
+                </div>
+                <div className="mt-2 flex flex-col gap-1 text-xs">
+                  <a
+                    href="https://docs.evofoundation.com.br/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t('sidebar.footer.documentation')}
+                  </a>
+                  <a
+                    href={supportWhatsappUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t('sidebar.footer.support')}
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+        </TooltipProvider>
+      </div>
+
+      {/* Second Sidebar for Submenus */}
+      {activeSubmenu && !isCollapsed && (
+        <div className="hidden md:flex w-64 bg-sidebar text-sidebar-foreground flex-col border-r border-sidebar-border">
+          {/* Submenu Header */}
+          <div className="flex items-center gap-3 p-4 border-b border-sidebar-border">
+            <activeSubmenu.icon className="h-5 w-5 text-primary" />
+            <div className="flex-1">
+              <h3 className="font-semibold text-sidebar-foreground">{activeSubmenu.name}</h3>
+            </div>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setActiveSubmenu(null);
+                  }}
+                  className="h-8 w-8 p-0 hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="left">
+                <p>{t('sidebar.closeSubmenu')}</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+
+          {/* Submenu Items */}
+          <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+            {activeSubmenu.subItems?.map(subItem => {
+              // For submenu items, check exact match first, then startsWith
+              // But if another subitem has a more specific match (longer path), prefer that one
+              const exactMatch = pathname === subItem.href;
+              const startsWithMatch = pathname.startsWith(subItem.href + '/');
+
+              // Check if any other subitem has a more specific match
+              const hasMoreSpecificMatch = activeSubmenu.subItems?.some(otherSubItem =>
+                otherSubItem.href !== subItem.href &&
+                (pathname === otherSubItem.href || pathname.startsWith(otherSubItem.href + '/')) &&
+                otherSubItem.href.length > subItem.href.length
+              );
+
+              const isSubActive = exactMatch || (startsWithMatch && !hasMoreSpecificMatch);
+              return (
+                <Link
+                  key={subItem.href}
+                  to={subItem.href}
+                  className={cn(
+                    'flex items-center gap-3 px-3 py-2.5 rounded-md transition-all text-sm',
+                    isSubActive
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-accent',
+                  )}
+                >
+                  <subItem.icon className={cn('flex-shrink-0 h-4 w-4', isSubActive && 'text-primary')} />
+                  <div className="flex items-center gap-2 flex-1">
+                    <span className="font-medium">{subItem.name}</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      )}
+    </>
+  );
+}

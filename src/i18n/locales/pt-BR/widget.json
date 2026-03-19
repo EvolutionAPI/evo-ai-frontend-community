@@ -1,0 +1,132 @@
+{
+  "header": {
+    "defaultTitle": "EvoAI",
+    "defaultSubtitle": "Como podemos ajudar?",
+    "endConversation": "Encerrar conversa",
+    "onlineNow": "Online agora",
+    "weAreResponding": "Estamos respondendo",
+    "replyTime": "Resposta: {{time}}"
+  },
+  "chat": {
+    "uploadingFiles": "Enviando arquivos...",
+    "retryMessage": "Tentar novamente",
+    "replyTo": "Responder",
+    "you": "Você",
+    "agent": "Atendente",
+    "user": "Usuário",
+    "file": "Arquivo",
+    "fileSize": "{{size}} KB",
+    "loadMore": "Carregar mais mensagens"
+  },
+  "composer": {
+    "placeholder": "Escreva sua mensagem...",
+    "send": "Enviar"
+  },
+  "attachment": {
+    "attach": "Anexar arquivo",
+    "dropHere": "Solte o arquivo aqui",
+    "error": "Erro no arquivo: {{error}}"
+  },
+  "emoji": {
+    "addEmoji": "Adicionar emoji"
+  },
+  "emailTranscript": {
+    "button": "Enviar por email",
+    "sending": "Enviando..."
+  },
+  "endConversation": {
+    "tooltip": "Encerrar conversa",
+    "error": "Erro ao encerrar conversa"
+  },
+  "replyTo": {
+    "replyingTo": "Respondendo a {{name}}",
+    "cancelReply": "Cancelar resposta",
+    "you": "Você",
+    "agent": "Atendente"
+  },
+  "messageList": {
+    "loadingOld": "Carregando mensagens antigas...",
+    "loadOldMessages": "Carregar mensagens antigas",
+    "sending": "enviando…",
+    "retry": "reenviar",
+    "reply": "responder",
+    "now": "agora"
+  },
+  "startNewConversation": {
+    "button": "Iniciar nova conversa",
+    "starting": "Iniciando conversa..."
+  },
+  "typing": {
+    "typing": "{{name}} está digitando",
+    "now": "agora"
+  },
+  "toast": {
+    "emailTranscriptSuccess": "Histórico da conversa enviado por email com sucesso!",
+    "emailTranscriptError": "Falha ao enviar histórico por email. Tente novamente.",
+    "conversationEnded": "Conversa encerrada com sucesso!",
+    "newConversationStarted": "Nova conversa iniciada!",
+    "uploadFailed": "Falha no envio do arquivo"
+  },
+  "buttons": {
+    "sendEmailTranscript": "Enviar histórico por email",
+    "startNewConversation": "Iniciar nova conversa",
+    "send": "Enviar",
+    "attach": "Anexar arquivo"
+  },
+  "input": {
+    "placeholder": "Digite sua mensagem...",
+    "replyingTo": "Respondendo a"
+  },
+  "errors": {
+    "generic": "Ocorreu um erro. Por favor, tente novamente.",
+    "sendMessage": "Erro ao enviar mensagem",
+    "loadMessages": "Erro ao carregar mensagens",
+    "createConversation": "Erro ao criar conversa",
+    "connectionLost": "Conexão perdida. Tentando reconectar..."
+  },
+  "status": {
+    "online": "Online",
+    "offline": "Offline",
+    "sending": "Enviando...",
+    "sent": "Enviado",
+    "failed": "Falhou",
+    "replyTime": "Tempo de resposta: {{time}}"
+  },
+  "pagination": {
+    "loadingMore": "Carregando mensagens anteriores...",
+    "noMoreMessages": "Não há mais mensagens"
+  },
+  "preChat": {
+    "loading": "Preparando conversa..."
+  },
+  "system": {
+    "conversationCreated": "Conversa iniciada",
+    "conversationResolved": "Conversa encerrada",
+    "agentJoined": "{{name}} entrou na conversa",
+    "agentLeft": "{{name}} saiu da conversa"
+  },
+  "replyTimeStatus": {
+    "inAFewMinutes": "Responderemos em alguns minutos",
+    "inAFewHours": "Responderemos em algumas horas",
+    "inADay": "Responderemos em um dia"
+  },
+  "businessHours": {
+    "backTomorrow": "Voltaremos amanhã",
+    "backAt": "Voltaremos às {{time}}",
+    "offline": "Equipe offline"
+  },
+  "attachments": {
+    "uploading": "Enviando arquivo...",
+    "uploaded": "Arquivo enviado",
+    "failed": "Falha no envio",
+    "maxSizeExceeded": "Arquivo muito grande. Tamanho máximo: {{maxSize}}MB",
+    "unsupportedType": "Tipo de arquivo não suportado"
+  },
+  "emailCollect": {
+    "placeholder": "Digite seu email",
+    "button": "Enviar",
+    "invalidEmail": "Por favor, insira um email válido",
+    "success": "Email salvo com sucesso!",
+    "error": "Erro ao salvar email. Tente novamente."
+  }
+}

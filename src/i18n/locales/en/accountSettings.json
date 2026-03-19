@@ -1,0 +1,104 @@
+{
+  "title": "Account Settings",
+  "subtitle": "Manage your account settings and preferences",
+  "loading": "Loading...",
+  "sections": {
+    "general": {
+      "title": "General Settings",
+      "description": "Configure your account's basic information"
+    },
+    "autoResolve": {
+      "title": "Conversation Auto-Resolution",
+      "description": "Configure automatic resolution of inactive conversations"
+    },
+    "audioTranscription": {
+      "title": "Audio Transcription",
+      "description": "Enable automatic transcription of audio messages"
+    },
+    "accountId": {
+      "title": "Account ID",
+      "description": "Unique identifier for your account integrations"
+    },
+    "accountDeletion": {
+      "title": "Account Deletion",
+      "description": "Permanently delete your account and all data"
+    }
+  },
+  "fields": {
+    "name": {
+      "label": "Account Name *",
+      "placeholder": "Your account name"
+    },
+    "locale": {
+      "label": "Language *"
+    },
+    "domain": {
+      "label": "Custom Domain",
+      "placeholder": "example.com",
+      "description": "Configure a custom domain for reply emails"
+    },
+    "supportEmail": {
+      "label": "Support Email",
+      "placeholder": "support@example.com"
+    },
+    "autoResolveTime": {
+      "label": "Auto-Resolution Time (minutes)",
+      "unit": "minutes",
+      "description": "Inactive conversations will be automatically resolved after this period"
+    },
+    "autoResolveMessage": {
+      "label": "Auto-Resolution Message",
+      "placeholder": "Optional message sent when conversation is automatically resolved"
+    },
+    "ignoreWaiting": {
+      "label": "Ignore conversations waiting for response"
+    },
+    "applyLabel": {
+      "label": "Apply label",
+      "placeholder": "Select label",
+      "none": "No label"
+    }
+  },
+  "buttons": {
+    "save": "Save Settings",
+    "saving": "Saving...",
+    "updateAutoResolve": "Update Auto-Resolution",
+    "deleteAccount": "Delete Account",
+    "cancelDeletion": "Cancel Deletion"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "You don't have permission to view account settings",
+      "update": "You don't have permission to update account settings",
+      "delete": "You don't have permission to delete the account"
+    },
+    "success": {
+      "generalUpdated": "General settings updated successfully",
+      "autoResolveDisabled": "Auto-resolution disabled",
+      "autoResolveUpdated": "Auto-resolution settings updated",
+      "audioTranscriptionEnabled": "Audio transcription enabled",
+      "audioTranscriptionDisabled": "Audio transcription disabled",
+      "accountDeleted": "Account marked for deletion",
+      "deletionCancelled": "Account deletion cancelled",
+      "accountIdCopied": "Account ID copied to clipboard"
+    },
+    "error": {
+      "loadFailed": "Failed to load account data",
+      "saveFailed": "Error saving settings",
+      "autoResolveDisableFailed": "Error disabling auto-resolution",
+      "autoResolveSaveFailed": "Error saving auto-resolution",
+      "audioTranscriptionFailed": "Error changing audio transcription",
+      "deleteFailed": "Error marking account for deletion",
+      "cancelDeletionFailed": "Error cancelling deletion",
+      "minTime": "Minimum time is 10 minutes"
+    }
+  },
+  "validation": {
+    "nameRequired": "Account name is required",
+    "localeRequired": "Language is required",
+    "minAutoResolveTime": "Minimum time is 10 minutes"
+  },
+  "deletion": {
+    "scheduledMessage": "This account is scheduled for deletion on {{date}}"
+  }
+}

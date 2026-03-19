@@ -1,0 +1,112 @@
+{
+  "title": "Étiquettes",
+  "loading": "Chargement des étiquettes...",
+  "header": {
+    "title": "Étiquettes",
+    "subtitle": "{{count}} étiquette{{plural}} au total",
+    "searchPlaceholder": "Rechercher des étiquettes...",
+    "newLabel": "Nouvelle Étiquette",
+    "bulkDelete": "Supprimer",
+    "clearSelection": "Effacer la Sélection",
+    "selected": "{{count}} sélectionnée(s)"
+  },
+  "empty": {
+    "title": "Aucune étiquette trouvée",
+    "description": "Créez une nouvelle étiquette pour organiser et catégoriser vos conversations.",
+    "action": "Nouvelle Étiquette"
+  },
+  "modal": {
+    "title": {
+      "create": "Nouvelle Étiquette",
+      "edit": "Modifier l'Étiquette"
+    },
+    "description": {
+      "create": "Créez une nouvelle étiquette pour organiser vos conversations.",
+      "edit": "Modifiez les informations de l'étiquette."
+    },
+    "labels": {
+      "name": "Nom",
+      "description": "Description",
+      "color": "Couleur",
+      "showOnSidebar": "Afficher dans la barre latérale"
+    },
+    "placeholders": {
+      "name": "Saisissez le nom de l'étiquette",
+      "description": "Saisissez une description (facultatif)",
+      "color": "#1f93ff"
+    },
+    "hints": {
+      "showOnSidebar": "Rend l'étiquette visible dans la barre latérale des conversations"
+    },
+    "validation": {
+      "nameRequired": "Le nom est obligatoire",
+      "nameMinLength": "Le nom doit contenir au moins 2 caractères",
+      "colorRequired": "La couleur est obligatoire",
+      "colorInvalid": "La couleur doit être au format hexadécimal (#RRGGBB)"
+    },
+    "buttons": {
+      "cancel": "Annuler",
+      "create": "Créer",
+      "update": "Mettre à jour",
+      "saving": "Enregistrement..."
+    }
+  },
+  "table": {
+    "columns": {
+      "name": "Nom",
+      "description": "Description",
+      "color": "Couleur",
+      "sidebar": "Barre Latérale",
+      "createdAt": "Créé le"
+    },
+    "noDescription": "-",
+    "sidebar": {
+      "yes": "Oui",
+      "no": "Non"
+    },
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    }
+  },
+  "actions": {
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "confirm": "Confirmer"
+  },
+  "messages": {
+    "permissionDenied": {
+      "read": "Vous n'avez pas la permission de visualiser les étiquettes",
+      "create": "Vous n'avez pas la permission de créer des étiquettes",
+      "update": "Vous n'avez pas la permission de modifier les étiquettes",
+      "delete": "Vous n'avez pas la permission de supprimer les étiquettes"
+    },
+    "loadError": "Erreur lors du chargement des étiquettes",
+    "createSuccess": "Étiquette créée avec succès",
+    "createError": "Erreur lors de la création de l'étiquette",
+    "updateSuccess": "Étiquette mise à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour de l'étiquette",
+    "deleteSuccess": "Étiquette supprimée avec succès",
+    "deleteError": "Erreur lors de la suppression de l'étiquette",
+    "bulkDeleteSuccess": "{{count}} étiquette(s) supprimée(s) avec succès",
+    "bulkDeleteError": "Erreur lors de la suppression des étiquettes"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Supprimer l'Étiquette",
+      "description": "Êtes-vous sûr de vouloir supprimer l'étiquette \"{{title}}\" ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "deleting": "Suppression..."
+    },
+    "bulkDelete": {
+      "title": "Supprimer les Étiquettes",
+      "description": "Êtes-vous sûr de vouloir supprimer {{count}} étiquette(s) sélectionnée(s) ? Cette action ne peut pas être annulée.",
+      "cancel": "Annuler",
+      "confirm": "Tout Supprimer",
+      "deleting": "Suppression..."
+    }
+  }
+}

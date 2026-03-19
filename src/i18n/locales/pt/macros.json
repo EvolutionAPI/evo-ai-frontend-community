@@ -1,0 +1,128 @@
+{
+  "title": "Macros",
+  "loading": "Carregando macros...",
+  "header": {
+    "title": "Macros",
+    "subtitle": "{{count}} macros no total",
+    "searchPlaceholder": "Buscar macros...",
+    "newMacro": "Nova Macro",
+    "bulkDelete": "Deletar",
+    "clearSelection": "Limpar Seleção",
+    "selected": "{{count}} selecionada(s)",
+    "filter": "Filtrar"
+  },
+  "empty": {
+    "title": "Nenhuma macro encontrada",
+    "description": "Crie sua primeira macro para automatizar tarefas repetitivas.",
+    "action": "Nova Macro"
+  },
+  "modal": {
+    "title": {
+      "create": "Nova Macro",
+      "edit": "Editar Macro"
+    },
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Digite o nome da macro",
+      "visibility": "Visibilidade",
+      "visibilityPersonal": "Privada",
+      "visibilityPersonalDesc": "Esta macro será privada e disponível apenas para você",
+      "visibilityGlobal": "Pública",
+      "visibilityGlobalDesc": "Esta macro será pública e disponível para todos os agentes",
+      "actionsTitle": "Ações",
+      "actionsSubtitle": "As macros executarão as ações na ordem definida",
+      "addAction": "Adicionar Ação",
+      "actionLabel": "Ação",
+      "configLabel": "Configuração"
+    },
+    "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "actionsRequired": "Pelo menos uma ação é obrigatória",
+      "actionTypeRequired": "Tipo de ação é obrigatório",
+      "selectAtLeastOne": "Selecione pelo menos uma opção",
+      "fieldRequired": "Este campo é obrigatório"
+    },
+    "buttons": {
+      "cancel": "Cancelar",
+      "create": "Criar",
+      "update": "Atualizar",
+      "saving": "Salvando..."
+    }
+  },
+  "actionRow": {
+    "selectPlaceholder": "Selecione uma opção",
+    "multiSelectPlaceholder": "Selecione opções",
+    "loadingOptions": "Carregando opções...",
+    "textareaPlaceholder": "Digite a mensagem ou nota",
+    "textPlaceholder": "Digite o valor",
+    "hoursPlaceholder": "Horas para adiamento",
+    "emailPlaceholder": "Digite o email",
+    "urlPlaceholder": "Digite a URL do webhook",
+    "fileSelectButton": "Selecionar Arquivo",
+    "fileUploading": "Carregando...",
+    "fileSelected": "Arquivo selecionado: {{filename}}",
+    "noConfig": "Esta ação não requer configuração adicional."
+  },
+  "table": {
+    "columns": {
+      "name": "Nome",
+      "createdBy": "Criado por",
+      "updatedBy": "Atualizado por",
+      "visibility": "Visibilidade",
+      "createdAt": "Criado em",
+      "updatedAt": "Atualizado em",
+      "id": "ID"
+    },
+    "actionCount": "{{count}} ação",
+    "actionCount_plural": "{{count}} ações",
+    "visibility": {
+      "public": "Pública",
+      "private": "Privada"
+    },
+    "actions": {
+      "view": "Visualizar",
+      "execute": "Executar",
+      "edit": "Editar",
+      "delete": "Deletar"
+    },
+    "noData": "-",
+    "noDate": "Data não disponível"
+  },
+  "actions": {
+    "edit": "Editar",
+    "delete": "Deletar",
+    "execute": "Executar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "confirm": "Confirmar"
+  },
+  "messages": {
+    "loadError": "Erro ao carregar macros",
+    "createSuccess": "Macro criada com sucesso",
+    "createError": "Erro ao criar macro",
+    "updateSuccess": "Macro atualizada com sucesso",
+    "updateError": "Erro ao atualizar macro",
+    "deleteSuccess": "Macro deletada com sucesso",
+    "deleteError": "Erro ao deletar macro",
+    "bulkDeleteSuccess": "{{count}} macro(s) deletada(s) com sucesso",
+    "bulkDeleteError": "Erro ao deletar macros",
+    "executeSuccess": "Macro \"{{name}}\" executada com sucesso",
+    "executeError": "Erro ao executar macro"
+  },
+  "dialog": {
+    "delete": {
+      "title": "Deletar Macro",
+      "description": "Tem certeza de que deseja deletar a macro \"{{name}}\"? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar",
+      "deleting": "Deletando..."
+    },
+    "bulkDelete": {
+      "title": "Deletar Macros",
+      "description": "Tem certeza de que deseja deletar {{count}} macro(s) selecionada(s)? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Deletar Todos",
+      "deleting": "Deletando..."
+    }
+  }
+}
