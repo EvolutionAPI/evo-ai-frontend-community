@@ -213,8 +213,6 @@ export const useAccountStore = create<AccountState>((set, get) => ({
   },
 
   initializeAccountMinimal: async accountId => {
-    // Bootstrap must not depend on `/accounts/:id` because some gateways
-    // do not expose this endpoint consistently.
     set(state => ({
       lastFetchedAccountId: accountId,
       isLoadingAccount: false,
