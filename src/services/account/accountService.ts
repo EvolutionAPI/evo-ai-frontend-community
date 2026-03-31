@@ -81,21 +81,11 @@ class AccountService {
       // Reutilizar o cache do GlobalConfigContext (evita chamada duplicada)
       const globalConfig = await fetchGlobalConfig();
 
-      // Buscar apenas informações adicionais do sistema (se necessário)
-      let systemStatus: { version?: string; gitSha?: string } = {};
-      try {
-        const res = await api.get('/internal/system/status');
-        systemStatus = res?.data || {};
-      } catch {
-        // Endpoint pode não estar disponível, não é crítico
-      }
-
-      // Extrair informações do whitelabel se disponível
       const whitelabel = globalConfig.whitelabel;
 
       return {
-        appVersion: systemStatus.version || import.meta.env.VITE_APP_VERSION || '3.0.0',
-        gitSha: systemStatus.gitSha || import.meta.env.VITE_GIT_SHA || 'unknown',
+        appVersion: import.meta.env.VITE_APP_VERSION || '3.0.0',
+        gitSha: import.meta.env.VITE_GIT_SHA || 'unknown',
         isOnEvolutionCloud: globalConfig.hasEvolutionConfig === true || globalConfig.hasEvolutionGoConfig === true || false,
         deploymentEnv: import.meta.env.MODE || 'development',
         brandName: whitelabel?.companyName || 'Evolution',
