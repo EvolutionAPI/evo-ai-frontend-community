@@ -1,0 +1,67 @@
+{
+  "title": "Setup your instance",
+  "subtitle": "Create the admin account to get started",
+  "form": {
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "John",
+      "errors": {
+        "required": "First name is required",
+        "minLength": "Must be at least 2 characters"
+      }
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Doe",
+      "errors": {
+        "required": "Last name is required",
+        "minLength": "Must be at least 2 characters"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "admin@yourcompany.com",
+      "errors": {
+        "required": "Email is required",
+        "invalid": "Invalid email address"
+      }
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Password",
+      "errors": {
+        "required": "Password is required",
+        "minLength": "Must be at least 8 characters",
+        "complexity": "Must contain uppercase, lowercase, number and special character"
+      }
+    },
+    "confirmPassword": {
+      "label": "Confirm Password",
+      "placeholder": "Confirm password",
+      "errors": {
+        "required": "Please confirm your password",
+        "mismatch": "Passwords do not match"
+      }
+    },
+    "submit": {
+      "idle": "Create account and continue",
+      "loading": "Setting up..."
+    }
+  },
+  "success": {
+    "title": "Setup complete!",
+    "description": "You can now sign in with your credentials."
+  },
+  "error": {
+    "generic": "An error occurred during setup. Please try again.",
+    "alreadySetup": "This instance has already been set up."
+  },
+  "footer": "This will create the administrator account for your EVO CRM instance.",
+  "language": {
+    "portuguese": "Portugues",
+    "english": "English",
+    "spanish": "Espanol",
+    "french": "Francais",
+    "italian": "Italiano"
+  }
+}

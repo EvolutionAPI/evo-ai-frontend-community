@@ -31,16 +31,13 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircle, Globe } from 'lucide-react';
 
-import { useDarkMode } from '@/hooks/useDarkMode';
 import { ApiError } from '@/types/auth';
 import { type Locale } from '@/i18n/config';
 import { useGlobalConfig } from '@/contexts/GlobalConfigContext';
 
-import logoWhite from '@/assets/evoai-white.svg';
-import logoBlack from '@/assets/evoai-dark.svg';
+import logo from '@/assets/EVO_CRM.png';
 
 export const Auth: React.FC = () => {
-  const { theme } = useDarkMode();
   const { login: authLogin, mfaState, verifyMfaCode, clearMfaState, setMfaRequired } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -438,8 +435,8 @@ export const Auth: React.FC = () => {
           {/* Logo */}
           <div className="text-center">
             <img
-              src={theme === 'dark' ? logoWhite : logoBlack}
-              alt="Logo"
+              src={logo}
+              alt="EVO CRM"
               className="h-10 mx-auto"
             />
           </div>

@@ -73,8 +73,8 @@ import Documentation from '@/pages/Shared/Documentation';
 import Marketplace from '@/pages/Shared/Marketplace';
 import Profile from '@/pages/Shared/Profile';
 
-// Páginas de onboarding
-import CreateAccount from '@/pages/Onboarding/CreateAccount';
+// Página de setup inicial
+import Setup from '@/pages/Setup/Setup';
 
 // Outras páginas
 import NotFound from '@/pages/NotFound';
@@ -346,15 +346,8 @@ const AppRouter = () => {
             }
           />
 
-          {/* Rotas de Onboarding */}
-          <Route
-            path="/onboarding/create-account"
-            element={
-              <PrivateRoute>
-                <CreateAccount />
-              </PrivateRoute>
-            }
-          />
+          {/* Rota de Setup Inicial */}
+          <Route path="/setup" element={<Setup />} />
 
           <Route
             path="/contacts"

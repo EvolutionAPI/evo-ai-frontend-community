@@ -8,14 +8,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useDarkMode } from '@/hooks/useDarkMode';
 import { useLanguage } from '@/hooks/useLanguage';
 
-import logoWhite from '@/assets/evolution-logo-white.svg';
-import logoBlack from '@/assets/evolution-logo.svg';
+import logo from '@/assets/EVO_CRM.png';
 
 const ChangePassword = () => {
-  const { theme } = useDarkMode();
   const { t } = useLanguage('changePassword');
 
   const loginSchema = useMemo(
@@ -88,8 +85,8 @@ const ChangePassword = () => {
         {/* Logo */}
         <div className="mb-4">
           <img
-            src={theme === 'dark' ? logoWhite : logoBlack}
-            alt="Logo"
+            src={logo}
+            alt="EVO CRM"
             className="h-16"
           />
           {/* Se não tiver o logo, usar texto */}

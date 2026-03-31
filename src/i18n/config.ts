@@ -15,6 +15,7 @@ import ptBRUnauthorized from './locales/pt-BR/unauthorized.json';
 import ptBROAuth from './locales/pt-BR/oauth.json';
 import ptBRProfile from './locales/pt-BR/profile.json';
 import ptBROnboarding from './locales/pt-BR/onboarding.json';
+import ptBRSetup from './locales/pt-BR/setup.json';
 import ptBRWidget from './locales/pt-BR/widget.json';
 import ptBRPipelines from './locales/pt-BR/pipelines.json';
 import ptBRContacts from './locales/pt-BR/contacts.json';
@@ -101,6 +102,7 @@ import enUnauthorized from './locales/en/unauthorized.json';
 import enOAuth from './locales/en/oauth.json';
 import enProfile from './locales/en/profile.json';
 import enOnboarding from './locales/en/onboarding.json';
+import enSetup from './locales/en/setup.json';
 import enWidget from './locales/en/widget.json';
 import enPipelines from './locales/en/pipelines.json';
 import enContacts from './locales/en/contacts.json';
@@ -309,6 +311,7 @@ const resources = {
     oauth: ptBROAuth,
     profile: ptBRProfile,
     onboarding: ptBROnboarding,
+    setup: ptBRSetup,
     widget: ptBRWidget,
     pipelines: ptBRPipelines,
     contacts: ptBRContacts,
@@ -399,6 +402,7 @@ const resources = {
     oauth: enOAuth,
     profile: enProfile,
     onboarding: enOnboarding,
+    setup: enSetup,
     widget: enWidget,
     pipelines: enPipelines,
     contacts: enContacts,

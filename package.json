@@ -45,6 +45,7 @@
     "react-phone-number-input": "^3.4.14",
     "react-router-dom": "^7.6.0",
     "recharts": "^3.6.0",
+    "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.11",
     "uuid": "^11.1.0",

@@ -3,14 +3,11 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Loader2, CheckCircle, AlertTriangle, Instagram } from 'lucide-react';
 import { toast } from 'sonner';
 import oauthCallbackService from '@/services/channels/oauthCallbackService';
-import { useDarkMode } from '@/hooks/useDarkMode';
 import { useLanguage } from '@/hooks/useLanguage';
 
-import logoWhite from '@/assets/evoai-white.svg';
-import logoBlack from '@/assets/evoai-dark.svg';
+import logo from '@/assets/EVO_CRM.png';
 
 export default function InstagramCallback() {
-  const { theme } = useDarkMode();
   const { t } = useLanguage('instagram');
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -113,8 +110,8 @@ export default function InstagramCallback() {
         {/* Logo */}
         <div className="text-center">
           <img
-            src={theme === 'dark' ? logoWhite : logoBlack}
-            alt="Logo"
+            src={logo}
+            alt="EVO CRM"
             className="h-10 mx-auto"
           />
         </div>

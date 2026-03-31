@@ -9,12 +9,7 @@ const SmartRedirect = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Se o usuário não tem contas, redirecionar para onboarding
-  if (!user.accounts || user.accounts.length === 0) {
-    return <Navigate to="/onboarding/create-account" replace />;
-  }
-
-  // Se tem contas, redirecionar para conversas (página principal do Evolution)
+  // Redirecionar para conversas (página principal do Evolution)
   return <Navigate to="/conversations" replace />;
 };
 

@@ -28,8 +28,7 @@ import MenuItem from './MenuItem';
 import { MenuItem as MenuItemType } from '../config/menuItems';
 import { ThemeToggle } from '../../ThemeToggle';
 
-import logoWhite from '../../../assets/evoai-white.svg';
-import logoBlack from '../../../assets/evoai-dark.svg';
+import logo from '../../../assets/EVO_CRM.png';
 
 // Utility function for className merging
 function cn(...classes: (string | undefined | null | false)[]) {
@@ -92,15 +91,10 @@ export default function Header({
   const { config: whitelabelConfig } = useWhitelabelConfig();
   const [expandedMobileMenus, setExpandedMobileMenus] = useState<Set<string>>(new Set());
 
-  const lightLogo =
+  const displayLogo =
     whitelabelConfig.enabled && whitelabelConfig.logo?.light
       ? whitelabelConfig.logo.light
-      : logoBlack;
-
-  const darkLogo =
-    whitelabelConfig.enabled && whitelabelConfig.logo?.dark
-      ? whitelabelConfig.logo.dark
-      : logoWhite;
+      : logo;
 
   return (
     <div className="flex-shrink-0 bg-sidebar border-b border-sidebar-border px-0 py-3 flex items-center shadow-sm">
@@ -242,23 +236,13 @@ export default function Header({
         <div className="flex-1 flex justify-center">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2">
-              {/* Logo light */}
               <img
-                src={lightLogo}
+                src={displayLogo}
                 onError={e => {
-                  (e.target as HTMLImageElement).src = logoBlack;
+                  (e.target as HTMLImageElement).src = logo;
                 }}
-                alt="EvoCloud"
-                className="h-8 max-w-32 dark:hidden"
-              />
-              {/* Logo dark */}
-              <img
-                src={darkLogo}
-                onError={e => {
-                  (e.target as HTMLImageElement).src = logoWhite;
-                }}
-                alt="EvoCloud"
-                className="h-8 max-w-32 hidden dark:block"
+                alt="EVO CRM"
+                className="h-8 max-w-32"
               />
             </div>
 
@@ -297,22 +281,12 @@ export default function Header({
           {/* App Logo - only show when not collapsed */}
           {!isCollapsed && (
             <div className="flex-shrink-0 flex items-center gap-2">
-              {/* Logo light */}
               <img
-                src={lightLogo}
-                alt="EvoCloud"
-                className="h-8 max-w-32 dark:hidden"
+                src={displayLogo}
+                alt="EVO CRM"
+                className="h-8 max-w-32"
                 onError={e => {
-                  (e.target as HTMLImageElement).src = logoBlack;
-                }}
-              />
-              {/* Logo dark */}
-              <img
-                src={darkLogo}
-                alt="EvoCloud"
-                className="h-8 max-w-32 hidden dark:block"
-                onError={e => {
-                  (e.target as HTMLImageElement).src = logoWhite;
+                  (e.target as HTMLImageElement).src = logo;
                 }}
               />
             </div>

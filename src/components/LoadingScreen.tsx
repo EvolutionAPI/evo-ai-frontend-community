@@ -2,8 +2,7 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useWhitelabelConfig } from '@/hooks/useWhitelabelConfig';
 
-import logoWhite from '@/assets/evoai-white.svg';
-import logoBlack from '@/assets/evoai-dark.svg';
+import logo from '@/assets/EVO_CRM.png';
 
 interface LoadingScreenProps {
   fullScreen?: boolean;
@@ -14,15 +13,10 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ fullScreen = false, showLogo = false, className }: LoadingScreenProps) => {
   const { config: whitelabelConfig } = useWhitelabelConfig();
 
-  const lightLogo =
+  const displayLogo =
     whitelabelConfig.enabled && whitelabelConfig.logo?.light
       ? whitelabelConfig.logo.light
-      : logoBlack;
-
-  const darkLogo =
-    whitelabelConfig.enabled && whitelabelConfig.logo?.dark
-      ? whitelabelConfig.logo.dark
-      : logoWhite;
+      : logo;
 
   return (
     <div
@@ -33,26 +27,14 @@ const LoadingScreen = ({ fullScreen = false, showLogo = false, className }: Load
       )}
     >
       {showLogo && (
-        <>
-          {/* Logo light mode */}
-          <img
-            src={lightLogo}
-            alt="Logo"
-            className="w-1/4 mb-4 dark:hidden"
+        <img
+            src={displayLogo}
+            alt="EVO CRM"
+            className="w-1/4 mb-4"
             onError={e => {
-              (e.target as HTMLImageElement).src = logoBlack;
+              (e.target as HTMLImageElement).src = logo;
             }}
           />
-          {/* Logo dark mode */}
-          <img
-            src={darkLogo}
-            alt="Logo"
-            className="w-1/4 mb-4 hidden dark:block"
-            onError={e => {
-              (e.target as HTMLImageElement).src = logoWhite;
-            }}
-          />
-        </>
       )}
       <Loader2
         className={cn(

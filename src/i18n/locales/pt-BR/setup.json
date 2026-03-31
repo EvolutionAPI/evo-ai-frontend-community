@@ -1,0 +1,67 @@
+{
+  "title": "Configure sua instância",
+  "subtitle": "Crie a conta de administrador para começar",
+  "form": {
+    "firstName": {
+      "label": "Nome",
+      "placeholder": "João",
+      "errors": {
+        "required": "Nome é obrigatório",
+        "minLength": "Deve ter pelo menos 2 caracteres"
+      }
+    },
+    "lastName": {
+      "label": "Sobrenome",
+      "placeholder": "Silva",
+      "errors": {
+        "required": "Sobrenome é obrigatório",
+        "minLength": "Deve ter pelo menos 2 caracteres"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "admin@suaempresa.com",
+      "errors": {
+        "required": "Email é obrigatório",
+        "invalid": "Endereço de email inválido"
+      }
+    },
+    "password": {
+      "label": "Senha",
+      "placeholder": "Senha",
+      "errors": {
+        "required": "Senha é obrigatória",
+        "minLength": "Deve ter pelo menos 8 caracteres",
+        "complexity": "Deve conter maiúscula, minúscula, número e caractere especial"
+      }
+    },
+    "confirmPassword": {
+      "label": "Confirmar Senha",
+      "placeholder": "Confirme a senha",
+      "errors": {
+        "required": "Por favor confirme sua senha",
+        "mismatch": "As senhas não coincidem"
+      }
+    },
+    "submit": {
+      "idle": "Criar conta e continuar",
+      "loading": "Configurando..."
+    }
+  },
+  "success": {
+    "title": "Configuração concluída!",
+    "description": "Agora você pode entrar com suas credenciais."
+  },
+  "error": {
+    "generic": "Ocorreu um erro durante a configuração. Tente novamente.",
+    "alreadySetup": "Esta instância já foi configurada."
+  },
+  "footer": "Isso criará a conta de administrador da sua instância EVO CRM.",
+  "language": {
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "italian": "Italiano"
+  }
+}

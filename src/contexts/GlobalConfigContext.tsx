@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { api } from '@/services/core';
+import { setupService } from '@/services/setup/setupService';
 
 export interface WhitelabelConfig {
   enabled: boolean;
@@ -42,11 +43,20 @@ export interface GlobalConfig {
   whitelabel?: WhitelabelConfig;
 }
 
-const GlobalConfigContext = createContext<GlobalConfig>({});
+interface GlobalConfigContextValue extends GlobalConfig {
+  setupRequired: boolean;
+  setupLoading: boolean;
+}
+
+const GlobalConfigContext = createContext<GlobalConfigContextValue>({
+  setupRequired: false,
+  setupLoading: true,
+});
 
 // Cache global para evitar múltiplas chamadas
 let globalConfigCache: GlobalConfig | null = null;
 let globalConfigPromise: Promise<GlobalConfig> | null = null;
+let setupRequiredCache: boolean | null = null;
 
 // Exportar função para reutilização (com cache)
 export const fetchGlobalConfig = async (): Promise<GlobalConfig> => {
@@ -79,15 +89,38 @@ export const fetchGlobalConfig = async (): Promise<GlobalConfig> => {
   return globalConfigPromise;
 };
 
+export const fetchSetupStatus = async (): Promise<boolean> => {
+  if (setupRequiredCache !== null) {
+    return setupRequiredCache;
+  }
+
+  try {
+    const status = await setupService.getStatus();
+    setupRequiredCache = status.status === 'inactive';
+    return setupRequiredCache;
+  } catch {
+    setupRequiredCache = false;
+    return false;
+  }
+};
+
+export const clearSetupCache = () => {
+  setupRequiredCache = null;
+};
+
 export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [config, setConfig] = useState<GlobalConfig>(globalConfigCache || {});
+  const [setupRequired, setSetupRequired] = useState<boolean>(setupRequiredCache ?? false);
+  const [setupLoading, setSetupLoading] = useState<boolean>(setupRequiredCache === null);
 
   useEffect(() => {
     let mounted = true;
 
-    fetchGlobalConfig().then(data => {
+    Promise.all([fetchGlobalConfig(), fetchSetupStatus()]).then(([configData, isSetupRequired]) => {
       if (mounted) {
-        setConfig(data);
+        setConfig(configData);
+        setSetupRequired(isSetupRequired);
+        setSetupLoading(false);
       }
     });
 
@@ -96,9 +129,12 @@ export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ 
     };
   }, []);
 
-  const value = useMemo(() => config, [config]);
+  const value = useMemo(
+    () => ({ ...config, setupRequired, setupLoading }),
+    [config, setupRequired, setupLoading],
+  );
 
   return <GlobalConfigContext.Provider value={value}>{children}</GlobalConfigContext.Provider>;
 };
 
-export const useGlobalConfig = (): GlobalConfig => useContext(GlobalConfigContext);
+export const useGlobalConfig = (): GlobalConfigContextValue => useContext(GlobalConfigContext);
