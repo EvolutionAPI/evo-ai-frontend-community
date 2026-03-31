@@ -84,7 +84,7 @@ class PermissionsService {
     // Criar nova Promise e armazenar
     this.userPermissionsPromise = (async () => {
     try {
-      const response = await apiAuth.get('/users/permissions');
+      const response = await apiAuth.get('/permissions');
 
       const responseData = extractData<{ permissions: string[] }>(response);
       this.userPermissionsCache = responseData.permissions || [];
