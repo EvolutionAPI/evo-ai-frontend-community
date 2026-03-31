@@ -7,8 +7,6 @@ import {
   MCPServersListParams
 } from '@/types/ai';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do apiEvoAI.ts já adiciona o header automaticamente
 
 // Create MCP server
 export const createMCPServer = async (server: MCPServerCreate) => {

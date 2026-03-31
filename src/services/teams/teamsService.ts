@@ -10,8 +10,6 @@ import type {
   TeamsListParams,
 } from '@/types/users';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 const TeamsService = {
   /**
    * Get teams with pagination support

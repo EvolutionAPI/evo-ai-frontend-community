@@ -21,7 +21,6 @@ import {
 class ReportsService {
   // Get conversation metrics (overview stats) - Using live_reports API v2
   async getConversationMetrics(params: ConversationMetricsParams = {}): Promise<ConversationMetric> {
-    // Usar placeholder 'current' na URL - o backend usa o header account-id
     const response = await api.get(`/api/v2/accounts/current/live_reports/conversation_metrics`, {
       params,
     });

@@ -49,8 +49,6 @@ export const useAuthStore = create<AuthState>((set, get) => {
 
   return {
     currentUser: null,
-    // 🔒 FIX: Não carregar accountId do localStorage na inicialização
-    // Será validado e definido no validityCheck para evitar usar accountId inválido
     currentAccountId: null,
     accessToken: localStorage.getItem('access_token'),
     isLoggedIn: false,
@@ -159,29 +157,21 @@ export const useAuthStore = create<AuthState>((set, get) => {
         let activeAccountId: string | null = null;
         const savedAccountId = localStorage.getItem('currentAccountId');
 
-        // 🔒 FIX: Verificar se o account salvo ainda está disponível para o usuário
-        // Se não estiver disponível, limpar imediatamente do localStorage
         if (savedAccountId && userData.accounts?.some((acc) => acc.id === savedAccountId)) {
           activeAccountId = savedAccountId;
           set({ currentAccountId: savedAccountId });
         } else {
-          // 🔒 FIX: Se o accountId salvo não está disponível, limpar do localStorage
           if (savedAccountId) {
             console.warn(`AccountId ${savedAccountId} do localStorage não está disponível para o usuário. Limpando.`);
             localStorage.removeItem('currentAccountId');
           }
 
-          // 🔒 FIX: Usar APENAS o primeiro account do validate response
-          // O validate retorna apenas os accounts que o usuário tem permissão
-          // Não usar userData.account_id pois pode não estar presente ou ser incorreto
           if (userData.accounts && userData.accounts.length > 0) {
-            // Sempre usar o primeiro account do validate response (são os accounts corretos)
             const firstAccountId = userData.accounts[0].id;
             activeAccountId = firstAccountId;
             set({ currentAccountId: firstAccountId });
             localStorage.setItem('currentAccountId', firstAccountId);
           } else {
-            // Não há accounts disponíveis
             set({ currentAccountId: null });
             localStorage.removeItem('currentAccountId');
           }

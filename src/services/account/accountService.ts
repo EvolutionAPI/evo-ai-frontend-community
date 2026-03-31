@@ -50,7 +50,6 @@ class AccountService {
   // Buscar dados necessários para os formulários
   async getFormData(): Promise<FormDataOptions> {
     try {
-      // Padrão: accountId deve estar apenas no header account-id, não na rota
       const [inboxesRes, agentsRes, teamsRes, labelsRes] = await Promise.allSettled([
         api.get('/inboxes'),
         authApi.get('/users'),

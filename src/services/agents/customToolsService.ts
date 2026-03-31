@@ -10,8 +10,6 @@ import {
 } from '@/types/ai';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do apiEvoAI.ts já adiciona o header automaticamente
 
 // Lista ferramentas personalizadas
 export const listCustomTools = async (params?: CustomToolsListParams): Promise<CustomTool[]> => {

@@ -5,8 +5,6 @@ import type {
   EvolutionAuthorizationResponse
 } from '@/types/channels/inbox';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 // Evolution API service aligned with Evolution Evolution integration
 // Follows the same pattern as the original evolutionClient.js
 const EvolutionService = {

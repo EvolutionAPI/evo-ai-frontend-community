@@ -4,8 +4,6 @@ import type { AgentChannel } from '@/types/channels/inbox';
 import type { AgentDeleteResponse } from '@/types/agents';
 import type { UsersUserResponse } from '@/types/users';
 
-// Agents Service following Evolution patterns
-// Padrão: accountId deve estar apenas no header account-id, não na rota
 const AgentsService = {
   /**
    * Get all agents for an account

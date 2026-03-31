@@ -135,7 +135,6 @@ class PermissionsService {
     // Criar nova Promise e armazenar
     const promise = (async () => {
       try {
-        // Padrão: accountId deve estar apenas no header account-id, não na rota
         const response = await apiAuth.get('/permissions');
 
         const responseData = extractData<{ permissions: string[] }>(response);
