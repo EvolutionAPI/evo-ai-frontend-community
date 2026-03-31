@@ -31,11 +31,6 @@ const appendFormDataValue = (formData: FormData, key: string, value: unknown): v
   formData.append(key, String(value));
 };
 
-// Inbox service aligned with Evolution API (/api/v1/accounts/:account_id/inboxes)
-// Only endpoints needed for the Channels page are implemented initially.
-
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 const InboxesService = {
   async list(): Promise<InboxesResponse> {
     const response = await api.get('/inboxes');
