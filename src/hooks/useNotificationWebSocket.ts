@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useOrganizations } from '@/contexts/OrganizationsContext';
 import { useAuthStore } from '@/store/authStore';
 
 interface WebSocketMessage {
@@ -18,7 +17,6 @@ interface NotificationWebSocketProps {
 
 export const useNotificationWebSocket = (callbacks: NotificationWebSocketProps) => {
   const { user } = useAuth();
-  const { organizationSelected } = useOrganizations();
   const websocketRef = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const reconnectAttempts = useRef(0);
@@ -33,24 +31,12 @@ export const useNotificationWebSocket = (callbacks: NotificationWebSocketProps) 
     const accessToken = useAuthStore.getState().accessToken;
     const token = accessToken || '';
 
-    // Get accountId from organizationSelected or authStore
-    const accountId = organizationSelected?.id || useAuthStore.getState().currentAccountId;
-
-    return `${wsUrl}/cable?token=${token}&account_id=${accountId}`;
+    return `${wsUrl}/cable?token=${token}`;
   };
 
   const handleWebSocketMessage = (event: MessageEvent) => {
     try {
       const message: WebSocketMessage = JSON.parse(event.data);
-
-      // Verify this message is for the current account
-      if (
-        message.account_id &&
-        organizationSelected?.id &&
-        message.account_id !== organizationSelected.id.toString()
-      ) {
-        return;
-      }
 
       switch (message.event) {
         case 'notification.created':
@@ -79,7 +65,7 @@ export const useNotificationWebSocket = (callbacks: NotificationWebSocketProps) 
   };
 
   const connectWebSocket = () => {
-    if (!user || !organizationSelected) {
+    if (!user) {
       return;
     }
 
@@ -96,7 +82,6 @@ export const useNotificationWebSocket = (callbacks: NotificationWebSocketProps) 
           identifier: JSON.stringify({
             channel: 'RoomChannel',
             pubsub_token: user.pubsub_token,
-            account_id: organizationSelected.id,
             user_id: user.id,
           }),
         };
@@ -138,14 +123,14 @@ export const useNotificationWebSocket = (callbacks: NotificationWebSocketProps) 
     }
   };
 
-  // Connect when user and organization are available
+  // Connect when user is available
   useEffect(() => {
-    if (user && organizationSelected) {
+    if (user) {
       connectWebSocket();
     }
 
     return disconnectWebSocket;
-  }, [user, organizationSelected?.id]);
+  }, [user]);
 
   // Cleanup on unmount
   useEffect(() => {

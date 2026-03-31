@@ -1,7 +1,6 @@
 import type { PaginationMeta } from '@/types/core';
 
 export interface CustomMcpServer {
-  account_id: string;
   client_id: string;
   description: string;
   headers: Record<string, unknown>;
@@ -38,7 +37,6 @@ export interface CustomMcpServerUpdate {
 
 export interface CustomMcpServerTestResponse {
   server: {
-    account_id: string;
     created_at: string;
     description: string;
     headers: Record<string, unknown>;

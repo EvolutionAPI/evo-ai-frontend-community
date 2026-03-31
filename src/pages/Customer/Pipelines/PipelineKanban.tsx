@@ -2,7 +2,6 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAccountId } from '@/hooks/useAccountId';
 import {
   Button,
   DropdownMenu,
@@ -55,7 +54,6 @@ export default function PipelineKanban() {
   const { t } = useLanguage('pipelines');
   const { pipelineId } = useParams<{ pipelineId: string }>();
   const navigate = useNavigate();
-  const accountId = useAccountId();
 
   const [loading, setLoading] = useState(true);
   const [pipeline, setPipeline] = useState<Pipeline | null>(null);
@@ -1050,7 +1048,7 @@ export default function PipelineKanban() {
       />
 
       {/* Schedule Action Modal */}
-      {selectedConversationForSchedule && scheduleActionContactId && accountId && (
+      {selectedConversationForSchedule && scheduleActionContactId && (
         <ScheduleActionModal
           open={scheduleActionOpen}
           onClose={() => {
@@ -1058,7 +1056,6 @@ export default function PipelineKanban() {
             setSelectedConversationForSchedule(null);
           }}
           contactId={scheduleActionContactId}
-          accountId={accountId}
         />
       )}
     </div>

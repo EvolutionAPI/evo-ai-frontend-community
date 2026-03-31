@@ -38,7 +38,6 @@ export interface HeatmapData {
 // Raw API response types
 export interface AgentReport {
   id: string;
-  account_id: string;
   availability_status: 'online' | 'busy' | 'offline';
   auto_offline: boolean;
   confirmed: boolean;

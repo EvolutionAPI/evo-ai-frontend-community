@@ -75,9 +75,6 @@ export interface BaseFlowCanvasProps {
   // Cores do MiniMap por tipo de node
   miniMapNodeColors?: Record<string, string>;
 
-  // ID da conta (para contexto)
-  accountId?: string;
-
   // Renderização de painéis customizados
   renderCustomPanels?: () => React.ReactNode;
 
@@ -119,7 +116,6 @@ export interface BaseFlowCanvasProps {
     nodeId: string,
     onUpdate: (nodeId: string, data: any) => void,
     onClose: () => void,
-    accountId?: string,
   ) => React.ReactNode;
 
   // 🆕 Configurações específicas do ReactFlow (compatibilidade com automação)
@@ -158,7 +154,6 @@ export function BaseFlowCanvas({
   snapToGrid = false,
   snapGrid = [15, 15],
   miniMapNodeColors = {},
-  accountId,
   renderCustomPanels,
   ContextMenuComponent,
   HelperLinesComponent,
@@ -604,7 +599,6 @@ export function BaseFlowCanvas({
                 setConfigNodeData(null);
                 setConfigPanelType('');
               },
-              accountId,
             )}
           </div>
         )}

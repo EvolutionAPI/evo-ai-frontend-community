@@ -66,7 +66,6 @@ class MacrosService {
   }> {
     try {
       // Buscar dados necessários para o formulário em paralelo
-      // Padrão: accountId deve estar apenas no header account-id, não na rota
       const [inboxesRes, agentsRes, teamsRes, labelsRes] = await Promise.allSettled([
         api.get('/inboxes'),
         authApi.get('/users'),

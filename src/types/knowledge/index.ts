@@ -16,7 +16,6 @@ export interface CannedResponse {
   id: string;
   short_code: string;
   content: string;
-  account_id?: string;
   created_at: string;
   updated_at?: string;
   attachments?: CannedResponseAttachment[];

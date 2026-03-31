@@ -2,7 +2,6 @@ import React, { createContext, useContext, useReducer, useEffect, useCallback } 
 import type { AxiosError } from 'axios';
 import notificationsService, { Notification } from '@/services/notifications/NotificationsService';
 import { useAuth } from '@/contexts/AuthContext';
-import { useOrganizations } from '@/contexts/OrganizationsContext';
 import { useGlobalWebSocket } from '@/hooks/useGlobalWebSocket';
 import { playNotificationSound, getAudioSettings } from '@/utils/audioNotificationUtils';
 
@@ -229,7 +228,6 @@ interface NotificationsProviderProps {
 const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(notificationsReducer, initialState);
   const { user } = useAuth();
-  const { organizationSelected } = useOrganizations();
   const unreadCountRequestInFlightRef = React.useRef(false);
   const unreadCountBlockedUntilRef = React.useRef(0);
 
@@ -528,12 +526,12 @@ const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ chil
     },
   });
 
-  // Fetch unread count on mount and when organization changes
+  // Fetch unread count on mount
   useEffect(() => {
-    if (user && organizationSelected) {
+    if (user) {
       actions.fetchUnreadCount();
     }
-  }, [user?.id, organizationSelected?.id]); // Usar IDs específicos para evitar re-renders
+  }, [user?.id]);
 
   const value = {
     state: {

@@ -5,8 +5,7 @@ import { useChatContext } from '@/contexts/chat/ChatContext';
 
 import { useLanguage } from '@/hooks/useLanguage';
 import { useConversationModerations } from '@/hooks/chat/useConversationModerations';
-import { useAccountStore } from '@/store/accountStore';
-import { useAuthStore } from '@/store/authStore';
+import { useAppDataStore } from '@/store/appDataStore';
 
 import { MessageCircle } from 'lucide-react';
 
@@ -166,8 +165,7 @@ const ChatArea = ({
   const isMessengerChannel = channelType === 'Channel::FacebookPage';
 
   // Buscar inbox para obter informações do canal (provider)
-  const { inboxes, fetchInboxes, isLoadingInboxes } = useAccountStore();
-  const { currentAccountId } = useAuthStore();
+  const { inboxes, fetchInboxes, isLoadingInboxes } = useAppDataStore();
   const inboxesById = useMemo(() => new Map(inboxes.map(item => [item.id, item])), [inboxes]);
   const inbox = selectedConversation?.inbox_id
     ? inboxesById.get(selectedConversation.inbox_id) || null
@@ -190,7 +188,6 @@ const ChatArea = ({
       isWhatsAppChannel &&
       channelProvider &&
       ['zapi', 'evolution', 'evolution_go'].includes(channelProvider.toLowerCase()) &&
-      currentAccountId &&
       inbox &&
       !(inbox as any)?.provider_connection;
 
@@ -214,7 +211,6 @@ const ChatArea = ({
     selectedConversation?.inbox_id,
     isWhatsAppChannel,
     channelProvider,
-    currentAccountId,
     inbox,
     isLoadingInboxes,
     fetchInboxes,

@@ -10,7 +10,7 @@ import type { Inbox } from '@/types/channels/inbox';
 import type { Label } from '@/types/settings';
 import type { Team } from '@/types/users';
 
-interface AccountState {
+interface AppDataState {
   // Data
   account: Account | null;
   agents: User[];
@@ -25,8 +25,8 @@ interface AccountState {
   isLoadingLabels: boolean;
   isLoadingTeams: boolean;
 
-  // ⚡ Cache timestamps para evitar requisições duplicadas
-  lastFetchedAccountId: string | null;
+  // Cache timestamps
+  initialized: boolean;
   lastFetchTimestamps: {
     account: number;
     agents: number;
@@ -36,14 +36,13 @@ interface AccountState {
   };
 
   // Actions
-  fetchAccount: (accountId: string, forceRefresh?: boolean) => Promise<void>;
+  fetchAccount: (forceRefresh?: boolean) => Promise<void>;
   fetchAgents: (forceRefresh?: boolean) => Promise<void>;
   fetchInboxes: (forceRefresh?: boolean) => Promise<void>;
   fetchLabels: (forceRefresh?: boolean) => Promise<void>;
   fetchTeams: (forceRefresh?: boolean) => Promise<void>;
-  initializeAccountMinimal: (accountId: string) => Promise<void>;
-  initializeAccountDeferred: (
-    accountId: string,
+  initializeAppData: () => Promise<void>;
+  initializeAppDataDeferred: (
     options?: {
       agents?: boolean;
       inboxes?: boolean;
@@ -52,18 +51,15 @@ interface AccountState {
       forceRefresh?: boolean;
     },
   ) => Promise<void>;
-  initializeAccount: (accountId: string) => Promise<void>;
   removeInbox: (inboxId: string) => void;
   addInbox: (inbox: Inbox) => void;
-  clearAccountData: () => void;
+  clearAppData: () => void;
 }
 
-// ⚡ OTIMIZAÇÃO: Cache duration - 15 minutos
-// Dados como agents, inboxes, labels, teams mudam raramente
-const CACHE_DURATION = 15 * 60 * 1000; // 15 minutos
+// Cache duration - 15 minutes
+const CACHE_DURATION = 15 * 60 * 1000;
 
-export const useAccountStore = create<AccountState>((set, get) => ({
-  // Initial state
+export const useAppDataStore = create<AppDataState>((set, get) => ({
   account: null,
   agents: [],
   inboxes: [],
@@ -76,7 +72,7 @@ export const useAccountStore = create<AccountState>((set, get) => ({
   isLoadingLabels: false,
   isLoadingTeams: false,
 
-  lastFetchedAccountId: null,
+  initialized: false,
   lastFetchTimestamps: {
     account: 0,
     agents: 0,
@@ -85,14 +81,12 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     teams: 0,
   },
 
-  // Actions
-  fetchAccount: async (accountId, forceRefresh = false) => {
+  fetchAccount: async (forceRefresh = false) => {
     const state = get();
     const now = Date.now();
     const timeSinceLastFetch = now - state.lastFetchTimestamps.account;
-    const isSameAccount = state.lastFetchedAccountId === accountId;
 
-    if (!forceRefresh && isSameAccount && state.account && timeSinceLastFetch < CACHE_DURATION) {
+    if (!forceRefresh && state.account && timeSinceLastFetch < CACHE_DURATION) {
       return;
     }
 
@@ -102,7 +96,6 @@ export const useAccountStore = create<AccountState>((set, get) => ({
       set({
         account: result,
         isLoadingAccount: false,
-        lastFetchedAccountId: accountId,
         lastFetchTimestamps: { ...state.lastFetchTimestamps, account: now }
       });
     } catch (error) {
@@ -116,9 +109,8 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     const state = get();
     const now = Date.now();
     const timeSinceLastFetch = now - state.lastFetchTimestamps.agents;
-    const hasAccountId = !!state.lastFetchedAccountId;
 
-    if (!forceRefresh && hasAccountId && state.agents.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
+    if (!forceRefresh && state.agents.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
       return;
     }
 
@@ -141,9 +133,8 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     const state = get();
     const now = Date.now();
     const timeSinceLastFetch = now - state.lastFetchTimestamps.inboxes;
-    const hasAccountId = !!state.lastFetchedAccountId;
 
-    if (!forceRefresh && hasAccountId && state.inboxes.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
+    if (!forceRefresh && state.inboxes.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
       return;
     }
 
@@ -166,9 +157,8 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     const state = get();
     const now = Date.now();
     const timeSinceLastFetch = now - state.lastFetchTimestamps.labels;
-    const hasAccountId = !!state.lastFetchedAccountId;
 
-    if (!forceRefresh && hasAccountId && state.labels.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
+    if (!forceRefresh && state.labels.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
       return;
     }
 
@@ -191,9 +181,8 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     const state = get();
     const now = Date.now();
     const timeSinceLastFetch = now - state.lastFetchTimestamps.teams;
-    const hasAccountId = !!state.lastFetchedAccountId;
 
-    if (!forceRefresh && hasAccountId && state.teams.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
+    if (!forceRefresh && state.teams.length > 0 && timeSinceLastFetch < CACHE_DURATION) {
       return;
     }
 
@@ -212,42 +201,26 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     }
   },
 
-  initializeAccountMinimal: async accountId => {
-    // Bootstrap must not depend on `/accounts/:id` because some gateways
-    // do not expose this endpoint consistently.
-    set(state => ({
-      lastFetchedAccountId: accountId,
-      isLoadingAccount: false,
-      lastFetchTimestamps: { ...state.lastFetchTimestamps, account: Date.now() },
-    }));
+  initializeAppData: async () => {
+    set({ initialized: true });
+    await get().initializeAppDataDeferred();
   },
 
-  initializeAccountDeferred: async (accountId, options = {}) => {
-    const state = get();
+  initializeAppDataDeferred: async (options = {}) => {
     const forceRefresh = options.forceRefresh ?? false;
     const shouldLoadAgents = options.agents ?? true;
     const shouldLoadInboxes = options.inboxes ?? true;
     const shouldLoadLabels = options.labels ?? true;
     const shouldLoadTeams = options.teams ?? true;
 
-    // Keep account context consistent before loading deferred datasets.
-    if (state.lastFetchedAccountId !== accountId) {
-      await get().fetchAccount(accountId, forceRefresh);
-    }
-
     const tasks: Promise<void>[] = [];
+    tasks.push(get().fetchAccount(forceRefresh));
     if (shouldLoadAgents) tasks.push(get().fetchAgents(forceRefresh));
     if (shouldLoadInboxes) tasks.push(get().fetchInboxes(forceRefresh));
     if (shouldLoadLabels) tasks.push(get().fetchLabels(forceRefresh));
     if (shouldLoadTeams) tasks.push(get().fetchTeams(forceRefresh));
 
-    // Non-blocking account datasets. Each request is isolated to avoid all-or-nothing failures.
     await Promise.allSettled(tasks);
-  },
-
-  initializeAccount: async accountId => {
-    await get().initializeAccountMinimal(accountId);
-    await get().initializeAccountDeferred(accountId);
   },
 
   removeInbox: inboxId => {
@@ -262,14 +235,14 @@ export const useAccountStore = create<AccountState>((set, get) => ({
     }));
   },
 
-  clearAccountData: () => {
+  clearAppData: () => {
     set({
       account: null,
       agents: [],
       inboxes: [],
       labels: [],
       teams: [],
-      lastFetchedAccountId: null,
+      initialized: false,
       lastFetchTimestamps: {
         account: 0,
         agents: 0,

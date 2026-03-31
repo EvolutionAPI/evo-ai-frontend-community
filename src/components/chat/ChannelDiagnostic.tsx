@@ -8,13 +8,11 @@ import { useLanguage } from '@/hooks/useLanguage';
 
 interface ChannelDiagnosticProps {
   inboxId: string;
-  accountId: string;
   onClose: () => void;
 }
 
 export const ChannelDiagnostic: React.FC<ChannelDiagnosticProps> = ({
   inboxId,
-  accountId,
   onClose,
 }) => {
   const { t } = useLanguage('chat');
@@ -39,10 +37,6 @@ export const ChannelDiagnostic: React.FC<ChannelDiagnosticProps> = ({
               <span className="font-medium">{t('channelDiagnostic.inboxId')}</span>
               <span className="text-orange-600">#{inboxId}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="font-medium">{t('channelDiagnostic.accountId')}</span>
-              <span className="text-orange-600">#{accountId}</span>
-            </div>
           </div>
         </div>
 
@@ -63,7 +57,7 @@ export const ChannelDiagnostic: React.FC<ChannelDiagnosticProps> = ({
             className="flex-1"
             onClick={() => {
               // Abrir configurações em nova aba
-              window.open(`/app/accounts/${accountId}/settings/inboxes/${inboxId}`, '_blank');
+              window.open(`/settings/inboxes/${inboxId}`, '_blank');
             }}
           >
             <Settings className="h-4 w-4 mr-1" />

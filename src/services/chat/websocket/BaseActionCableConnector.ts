@@ -11,7 +11,6 @@ export interface WebSocketEvent {
 export interface ConnectionParams {
   channel: string;
   pubsub_token: string;
-  account_id: string;
   user_id: string;
 }
 
@@ -62,7 +61,6 @@ export class BaseActionCableConnector {
         {
           channel: this.connectionParams.channel,
           pubsub_token: this.connectionParams.pubsub_token,
-          account_id: this.connectionParams.account_id,
           user_id: this.connectionParams.user_id,
         },
         {
@@ -98,17 +96,9 @@ export class BaseActionCableConnector {
   /**
    * Verificar se o evento é válido para este cliente
    */
-  protected isAValidEvent(data: unknown): boolean {
-    // Implementação padrão - pode ser sobrescrita
-    if (typeof data === 'object' && data !== null && 'account_id' in data) {
-      const eventAccountId = (data as { account_id: unknown }).account_id;
-      const currentAccountId = this.connectionParams.account_id;
-
-      // Comparar convertendo ambos para string para evitar problemas de tipo
-      return String(eventAccountId) === String(currentAccountId);
-    }
-
-    return false;
+  protected isAValidEvent(_data: unknown): boolean {
+    // In single-tenant mode, all events are valid
+    return true;
   }
 
   /**
@@ -117,25 +107,12 @@ export class BaseActionCableConnector {
   protected onReceived = (payload: WebSocketEvent): void => {
     const { event, data } = payload || {};
 
-    if (this.isAValidEvent(data)) {
-      if (this.events[event] && typeof this.events[event] === 'function') {
-        try {
-          this.events[event](data);
-        } catch (error) {
-          console.error(`❌ Erro ao processar evento ${event}:`, error);
-        }
+    if (this.events[event] && typeof this.events[event] === 'function') {
+      try {
+        this.events[event](data);
+      } catch (error) {
+        console.error(`❌ Erro ao processar evento ${event}:`, error);
       }
-    } else {
-      const eventAccountId =
-        typeof data === 'object' && data !== null && 'account_id' in data
-          ? (data as { account_id: unknown }).account_id
-          : 'N/A';
-      console.warn(`⚠️ Evento inválido ignorado:`, {
-        event,
-        eventAccountId,
-        expectedAccountId: this.connectionParams.account_id,
-        data,
-      });
     }
   };
 

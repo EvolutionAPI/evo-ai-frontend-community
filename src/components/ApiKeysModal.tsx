@@ -22,7 +22,6 @@ import { Edit, Eye, Key, Plus, Trash2, X, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { ApiKey, ApiKeyCreate, ApiKeyUpdate } from '@/types/agents';
 import { createApiKey, listApiKeys, updateApiKey, deleteApiKey } from '@/services/agents';
-import { useAccountId } from '@/hooks/useAccountId';
 
 interface ApiKeysModalProps {
   open: boolean;
@@ -53,7 +52,6 @@ const availableProviders = [
 
 export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysModalProps) {
   const { t } = useLanguage('apiKeys');
-  const accountId = useAccountId();
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [loading, setLoading] = useState(false);
   const [isAddingKey, setIsAddingKey] = useState(false);
@@ -70,12 +68,6 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
   };
 
   const loadApiKeys = useCallback(async () => {
-    if (!accountId) {
-      console.error('Account ID not available');
-      toast.error(t('messages.accountIdError'));
-      return;
-    }
-
     try {
       setLoading(true);
       const keys = await listApiKeys();
@@ -86,13 +78,13 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
     } finally {
       setLoading(false);
     }
-  }, [accountId, t]);
+  }, [t]);
 
   useEffect(() => {
-    if (open && accountId) {
+    if (open) {
       loadApiKeys();
     }
-  }, [open, accountId, loadApiKeys]);
+  }, [open, loadApiKeys]);
 
   const handleAddClick = () => {
     setCurrentApiKey({});
@@ -121,11 +113,6 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
       (!isCustomProvider && !isEditingKey && !currentApiKey.key_value)
     ) {
       toast.error(t('messages.requiredFields'));
-      return;
-    }
-
-    if (!accountId) {
-      toast.error(t('messages.accountIdError'));
       return;
     }
 
@@ -176,8 +163,7 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
   };
 
   const handleDeleteConfirm = async () => {
-    if (!keyToDelete || !accountId) {
-      if (!accountId) toast.error(t('messages.accountIdError'));
+    if (!keyToDelete) {
       return;
     }
 

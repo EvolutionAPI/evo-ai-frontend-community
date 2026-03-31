@@ -11,16 +11,13 @@ import {
   SelectValue,
   Button,
   Switch,
-  Alert,
-  AlertDescription,
 } from '@evoapi/design-system';
 import { toast } from 'sonner';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import BaseHeader from '@/components/base/BaseHeader';
-import { useAccountId } from '@/hooks/useAccountId';
 import { accountService } from '@/services/account/accountService';
 import type { Account, FormDataOptions } from '@/types/settings';
-import { Trash2, AlertTriangle, Copy } from 'lucide-react';
+import { Copy } from 'lucide-react';
 import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
 
 // Componente para seção
@@ -56,7 +53,6 @@ function SectionLayout({
 export default function AccountSettings() {
   const { t } = useLanguage('accountSettings');
   const { can, isReady: permissionsReady } = useUserPermissions();
-  const accountId = useAccountId();
   const normalizeAccountLocale = (locale?: string | null): string => {
     if (!locale) return 'pt-BR';
     const normalized = locale.replace('_', '-');
@@ -108,18 +104,14 @@ export default function AccountSettings() {
       return;
     }
 
-    if (accountId) {
-      loadAccountData();
-    }
-  }, [accountId, permissionsReady]);
+    loadAccountData();
+  }, [permissionsReady]);
 
   const loadAccountData = async () => {
     if (!can('accounts', 'read')) {
       toast.error(t('messages.permissionDenied.read'));
       return;
     }
-    if (!accountId) return;
-
     try {
       setLoading(true);
       const [accountData, formDataRes, configRes] = await Promise.all([
@@ -195,7 +187,7 @@ export default function AccountSettings() {
       toast.error(t('messages.permissionDenied.update'));
       return;
     }
-    if (!validateForm() || !accountId) return;
+    if (!validateForm()) return;
 
     setSaving(true);
     try {
@@ -217,8 +209,6 @@ export default function AccountSettings() {
   };
 
   const handleAutoResolveSubmit = async () => {
-    if (!accountId) return;
-
     if (!formData.autoResolveEnabled) {
       // Desabilitar auto-resolve
       try {
@@ -262,8 +252,6 @@ export default function AccountSettings() {
   };
 
   const handleAudioTranscriptionToggle = async (enabled: boolean) => {
-    if (!accountId) return;
-
     try {
       await accountService.updateAccount({
         audio_transcriptions: enabled,
@@ -279,34 +267,6 @@ export default function AccountSettings() {
     }
   };
 
-  const handleAccountDelete = async () => {
-    if (!can('accounts', 'delete')) {
-      toast.error(t('messages.permissionDenied.delete'));
-      return;
-    }
-    if (!accountId || !account) return;
-
-    try {
-      await accountService.deleteAccount();
-      toast.success(t('messages.success.accountDeleted'));
-      await loadAccountData();
-    } catch (error: unknown) {
-      toast.error((error as Error).message || t('messages.error.deleteFailed'));
-    }
-  };
-
-  const handleUndeleAccount = async () => {
-    if (!accountId || !account) return;
-
-    try {
-      await accountService.undeleteAccount();
-      toast.success(t('messages.success.deletionCancelled'));
-      await loadAccountData();
-    } catch (error: unknown) {
-      toast.error((error as Error).message || t('messages.error.cancelDeletionFailed'));
-    }
-  };
-
   const copyAccountId = () => {
     if (account?.id) {
       navigator.clipboard.writeText(account.id.toString());
@@ -314,8 +274,8 @@ export default function AccountSettings() {
     }
   };
 
-  const isMarkedForDeletion = !!account?.custom_attributes?.marked_for_deletion_at;
   const isOnEvolutionCloud = globalConfig.isOnEvolutionCloud;
+
 
   if (loading) {
     return (
@@ -555,48 +515,6 @@ export default function AccountSettings() {
               </Button>
             </div>
           </SectionLayout>
-
-          {/* Exclusão da Conta */}
-          {isOnEvolutionCloud && (
-            <SectionLayout
-              title={t('sections.accountDeletion.title')}
-              description={t('sections.accountDeletion.description')}
-              withBorder
-            >
-              {isMarkedForDeletion ? (
-                <Alert className="border-red-200 bg-red-50 dark:bg-red-900/20">
-                  <AlertTriangle className="h-4 w-4 text-red-600" />
-                  <AlertDescription>
-                    <p className="mb-4">
-                      {t('deletion.scheduledMessage', {
-                        date:
-                          account?.custom_attributes?.marked_for_deletion_at &&
-                          new Date(account.custom_attributes.marked_for_deletion_at).toLocaleString(
-                            'pt-BR',
-                          ),
-                      })}
-                    </p>
-                    <Button
-                      variant="destructive"
-                      onClick={handleUndeleAccount}
-                      className="bg-red-600 hover:bg-red-700"
-                    >
-                      {t('buttons.cancelDeletion')}
-                    </Button>
-                  </AlertDescription>
-                </Alert>
-              ) : (
-                <Button
-                  variant="destructive"
-                  onClick={handleAccountDelete}
-                  className="bg-red-600 hover:bg-red-700"
-                >
-                  <Trash2 className="h-4 w-4 mr-2" />
-                  {t('buttons.deleteAccount')}
-                </Button>
-              )}
-            </SectionLayout>
-          )}
 
           {/* Informações de Build */}
           <div className="text-center py-4 text-sm text-sidebar-foreground/60 border-t border-sidebar-border">

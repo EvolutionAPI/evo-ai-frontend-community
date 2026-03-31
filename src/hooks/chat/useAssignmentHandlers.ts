@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { toast } from 'sonner';
 import { useChatContext } from '@/contexts/chat/ChatContext';
 import { usePermissions } from '@/contexts/PermissionsContext';
-import { useAccountStore } from '@/store/accountStore';
+import { useAppDataStore } from '@/store/appDataStore';
 import { Conversation } from '@/types/chat/api';
 import type { AssignmentType } from '@/components/chat/assignment';
 
@@ -19,7 +19,7 @@ export const useAssignmentHandlers = () => {
     isLoadingAgents,
     isLoadingTeams,
     isLoadingLabels,
-  } = useAccountStore();
+  } = useAppDataStore();
 
   const [isLoadingAssignmentData, setIsLoadingAssignmentData] = useState(false);
 

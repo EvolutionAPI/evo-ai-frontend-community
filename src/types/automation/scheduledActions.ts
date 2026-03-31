@@ -1,7 +1,6 @@
 // Scheduled action entity
 export interface ScheduledAction {
   id: string;
-  account_id: string;
   deal_id?: string;
   contact_id?: string;
   conversation_id?: string;

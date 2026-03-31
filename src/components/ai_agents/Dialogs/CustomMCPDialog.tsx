@@ -62,7 +62,7 @@ const CustomMCPDialog = ({
 
   // Load all servers when dialog opens (we'll filter locally)
   useEffect(() => {
-    // Only load if dialog is open, we have a valid accountId, and we haven't loaded yet for this accountId
+    // Only load if dialog is open and we haven't loaded yet
     if (!open || hasLoadedRef.current) {
       return;
     }

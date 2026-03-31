@@ -6,7 +6,6 @@ export interface Team {
   name: string;
   description?: string;
   allow_auto_assign: boolean;
-  account_id: string;
   is_member?: boolean; // Calculated field: if current user is a member
   members_count?: number;
   created_at?: string;

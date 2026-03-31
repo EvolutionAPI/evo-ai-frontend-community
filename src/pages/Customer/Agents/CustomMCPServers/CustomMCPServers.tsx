@@ -13,8 +13,6 @@ import {
 } from '@evoapi/design-system';
 import { Grid3X3, List, TestTube } from 'lucide-react';
 import EmptyState from '@/components/base/EmptyState';
-import { useAccountId } from '@/hooks/useAccountId';
-
 import {
   CustomMcpServer,
   CustomMcpServersState,
@@ -63,7 +61,6 @@ const INITIAL_STATE: CustomMcpServersState = {
 
 export default function CustomMCPServers() {
   const { can, isReady: permissionsReady } = useUserPermissions();
-  const accountId = useAccountId();
   const { t } = useLanguage('customMcpServers');
   const [state, setState] = useState<CustomMcpServersState>(INITIAL_STATE);
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
@@ -87,11 +84,6 @@ export default function CustomMCPServers() {
         toast.error(t('permissions.viewDenied'));
         return;
       }
-      if (!accountId) {
-        console.error(t('errors.accountIdNotAvailable'));
-        return;
-      }
-
       setState(prev => ({ ...prev, loading: { ...prev.loading, list: true } }));
 
       try {
@@ -122,7 +114,7 @@ export default function CustomMCPServers() {
         setState(prev => ({ ...prev, loading: { ...prev.loading, list: false } }));
       }
     },
-    [accountId, can, t],
+    [can, t],
   );
 
   // Initial load
@@ -256,11 +248,6 @@ export default function CustomMCPServers() {
     setState(prev => ({ ...prev, loading: { ...prev.loading, test: true } }));
 
     try {
-      if (!accountId) {
-        toast.error(t('errors.accountNotFound'));
-        return;
-      }
-
       const result = await testCustomMcpServer(server.id);
       if (result.test_result.success) {
         toast.success(t('success.testSuccess', { count: result.server.tools.length || 0 }));
@@ -287,10 +274,7 @@ export default function CustomMCPServers() {
 
   // Confirm delete single server
   const confirmDeleteServer = async () => {
-    if (!serverToDelete || !accountId) {
-      if (!accountId) toast.error(t('errors.accountNotFound'));
-      return;
-    }
+    if (!serverToDelete) return;
 
     setState(prev => ({ ...prev, loading: { ...prev.loading, delete: true } }));
 
@@ -313,11 +297,6 @@ export default function CustomMCPServers() {
 
   // Handle server form submission
   const handleServerFormSubmit = async (data: CustomMcpServerFormData) => {
-    if (!accountId) {
-      toast.error(t('errors.accountNotFound'));
-      return;
-    }
-
     setState(prev => ({
       ...prev,
       loading: { ...prev.loading, [editingServer ? 'update' : 'create']: true },

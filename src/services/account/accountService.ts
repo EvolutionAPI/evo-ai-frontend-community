@@ -1,7 +1,7 @@
 import authApi from '@/services/core/apiAuth';
 import api from '@/services/core/api';
 import { extractData } from '@/utils/apiHelpers';
-import type { Account, UpdateAccount, FormDataOptions, AccountDeleteResponse, AccountUpdateResponse } from '@/types/settings';
+import type { Account, UpdateAccount, FormDataOptions, AccountUpdateResponse } from '@/types/settings';
 import { extractError } from '@/utils/apiHelpers';
 import { fetchGlobalConfig } from '@/contexts/GlobalConfigContext';
 
@@ -27,30 +27,9 @@ class AccountService {
     }
   }
 
-  async deleteAccount(): Promise<AccountDeleteResponse> {
-    try {
-      const response = await authApi.post('/account/toggle_deletion', { action_type: 'delete' });
-      return extractData<AccountDeleteResponse>(response);
-    } catch (error: any) {
-      console.error('Erro ao marcar conta para exclusão:', error);
-      throw new Error(error?.response?.data?.message || 'Erro ao marcar conta para exclusão');
-    }
-  }
-
-  async undeleteAccount(): Promise<AccountDeleteResponse> {
-    try {
-      const response = await authApi.post('/account/toggle_deletion', { action_type: 'undelete' });
-      return extractData<AccountDeleteResponse>(response);
-    } catch (error: any) {
-      console.error('Erro ao cancelar exclusão da conta:', error);
-      throw new Error(error?.response?.data?.message || 'Erro ao cancelar exclusão da conta');
-    }
-  }
-
   // Buscar dados necessários para os formulários
   async getFormData(): Promise<FormDataOptions> {
     try {
-      // Padrão: accountId deve estar apenas no header account-id, não na rota
       const [inboxesRes, agentsRes, teamsRes, labelsRes] = await Promise.allSettled([
         api.get('/inboxes'),
         authApi.get('/users'),

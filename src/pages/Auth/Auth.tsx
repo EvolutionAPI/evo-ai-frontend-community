@@ -227,10 +227,8 @@ export const Auth: React.FC = () => {
       }
       
       // Normal login without MFA
-      await authLogin(result.response.data.user, result.response.data);
+      await authLogin(result.response.data.user, { access_token: result.response.data.token?.access_token || result.response.data.token?.token?.access_token });
 
-      // 🔒 FIX: Chamar validityCheck após o login para validar o token e definir accountId corretamente
-      // Isso garante que o token seja validado e o accountId esteja disponível antes de navegar
       const { validityCheck } = useAuthStore.getState();
       await validityCheck();
 

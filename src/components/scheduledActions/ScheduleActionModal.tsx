@@ -34,7 +34,6 @@ interface ScheduleActionModalProps {
   open: boolean;
   onClose: () => void;
   contactId?: string;
-  accountId: string;
   action?: ScheduledAction | null;
 }
 
@@ -42,7 +41,6 @@ export function ScheduleActionModal({
   open,
   onClose,
   contactId: initialContactId,
-  accountId,
   action,
 }: ScheduleActionModalProps) {
   const { t } = useLanguage('contacts');
@@ -91,7 +89,7 @@ export function ScheduleActionModal({
     };
 
     fetchInboxes();
-  }, [accountId, open]);
+  }, [open]);
 
   useEffect(() => {
     if (!open || action || formData.channel || channelOptions.length === 0) {

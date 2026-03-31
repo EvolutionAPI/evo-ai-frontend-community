@@ -27,7 +27,6 @@ export type MessageTypeValue = 'incoming' | 'outgoing' | 'activity' | 'template'
 export interface Conversation {
   id: string;
   uuid?: string;
-  account_id: string;
   inbox_id: string;
   inbox_name?: string;
   status: 'open' | 'resolved' | 'pending' | 'snoozed';
@@ -173,7 +172,6 @@ export interface Attachment {
   id: string;
   message_id: string;
   file_type: 'image' | 'video' | 'audio' | 'file' | 'location';
-  account_id: string;
   extension: string | null;
   data_url: string;
   thumb_url: string | null;

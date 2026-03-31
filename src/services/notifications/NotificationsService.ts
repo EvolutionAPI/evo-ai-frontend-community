@@ -6,7 +6,6 @@ export type { Notification, NotificationsResponse, UnreadCountResponse, Notifica
 
 class NotificationsService {
   private get baseUrl(): string {
-    // Padrão: accountId deve estar apenas no header account-id, não na rota
     return '/notifications';
   }
 

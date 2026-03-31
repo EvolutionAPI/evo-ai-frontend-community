@@ -10,15 +10,12 @@ import type {
   TeamsListParams,
 } from '@/types/users';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 const TeamsService = {
   /**
    * Get teams with pagination support
    */
   async getTeams(params?: TeamsListParams): Promise<TeamsResponse> {
     try {
-      // accountId é passado apenas para garantir que o header está correto
       const response = await api.get('/teams', {
         params,
       });

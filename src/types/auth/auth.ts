@@ -1,5 +1,3 @@
-import type { Account } from '@/types/settings';
-export type { Account };
 import { Role } from "./rbac";
 
 
@@ -27,7 +25,6 @@ export interface LoginData {
     confirmed?: boolean;
     role?: Role;
   };
-  accounts: Account[];
   token: {
     access_token?: string;
     token?: {
@@ -107,8 +104,6 @@ export interface UserResponse {
   email: string;
   name: string;
   display_name?: string | null;
-  account_id?: string;
-  accounts?: Account[];
   access_token?: string; // Legacy field for backward compatibility
   api_access_token?: string; // New field from evo-auth-service
   available_name?: string;

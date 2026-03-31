@@ -14,8 +14,6 @@ import {
   ProfileUpdateData,
   PasswordChangeData,
 } from '@/types/auth';
-import i18n from '@/i18n/config';
-
 import { useAuthStore } from '@/store/authStore';
 
 const processApiResponse = (response: any): LoginResponse => {
@@ -28,29 +26,6 @@ const processApiResponse = (response: any): LoginResponse => {
 
   if (token) {
     useAuthStore.getState().setAccessToken(token);
-  }
-
-  // Set language based on the first account's locale after login
-  if (loginData?.accounts && loginData.accounts.length > 0) {
-    const firstAccount = loginData.accounts[0];
-    if (firstAccount?.locale) {
-      const locale = firstAccount.locale;
-      // Map account locale to i18n locale
-      let i18nLocale = locale;
-      if (locale === 'pt' || locale === 'pt_BR') {
-        i18nLocale = 'pt-BR';
-      } else if (locale === 'es' || locale.startsWith('es_')) {
-        i18nLocale = 'es';
-      } else if (locale === 'en' || locale.startsWith('en_')) {
-        i18nLocale = 'en';
-      }
-
-      // Only change language if different from current
-      if (i18n.language !== i18nLocale) {
-        i18n.changeLanguage(i18nLocale);
-        localStorage.setItem('i18nextLng', i18nLocale);
-      }
-    }
   }
 
   // Backend retorna formato padrão: { success: true, data: {...}, meta: {...}, message: "..." }
@@ -173,13 +148,7 @@ export const validateToken = async (): Promise<UserResponse> => {
     throw new Error('Invalid user data received from token validation');
   }
 
-  // Merge accounts into user data (similar to login flow)
-  const userWithAccounts: UserResponse = {
-    ...processedResponse.data.user,
-    accounts: processedResponse.data.accounts || [],
-  };
-
-  return userWithAccounts as UserResponse;
+  return processedResponse.data.user as UserResponse;
 };
 
 export const getUser = async (): Promise<UserResponse> => {

@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { useAccountId } from '@/hooks/useAccountId';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Dialog, DialogContent } from '@evoapi/design-system';
 import { X } from 'lucide-react';
@@ -62,7 +61,6 @@ interface AgentWizardModalProps {
 
 const AgentWizardModal = ({ open, onOpenChange, onAgentCreated, embedded = false }: AgentWizardModalProps) => {
   const { t } = useLanguage('aiAgents');
-  const accountId = useAccountId();
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isCreating, setIsCreating] = useState(false);
@@ -116,18 +114,13 @@ const AgentWizardModal = ({ open, onOpenChange, onAgentCreated, embedded = false
 
   // Carregar API Keys
   const loadApiKeys = useCallback(async () => {
-    if (!accountId) {
-      console.error('Account ID not available');
-      return;
-    }
-
     try {
       const apiKeysData = await listApiKeys();
       setApiKeys(apiKeysData);
     } catch (error) {
       console.error(t('messages.apiKeysError'), error);
     }
-  }, [accountId, t]);
+  }, [t]);
 
   useEffect(() => {
     if (open) {

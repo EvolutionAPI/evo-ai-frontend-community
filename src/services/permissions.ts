@@ -21,12 +21,12 @@ class PermissionsService {
   private userPermissionsCache: string[] | null = null;
   private permissionsCacheExpiry: number = 0;
 
-  // Cache para permissões de account (específicas por account)
-  private accountPermissionsCache: Map<string, { permissions: string[]; expiry: number }> = new Map();
+  // Cache para permissões de account
+  private accountPermissionsData: { permissions: string[]; expiry: number } | null = null;
 
   // ⚡ Proteção: Promise em cache para evitar múltiplas requisições simultâneas
   private userPermissionsPromise: Promise<string[]> | null = null;
-  private accountPermissionsPromises: Map<string, Promise<string[]>> = new Map();
+  private accountPermissionsPromise: Promise<string[]> | null = null;
 
   /**
    * Busca todas as configurações de recursos e permissões do backend
@@ -114,58 +114,54 @@ class PermissionsService {
   }
 
   /**
-   * Busca permissões do usuário para um account específico
-   * Usa o endpoint específico da conta que retorna permissões baseadas no AccountUser role
+   * Busca permissões do usuário para o account atual
    */
-  async getAccountPermissions(accountId: string, forceRefresh = false): Promise<string[]> {
+  async getAccountPermissions(forceRefresh = false): Promise<string[]> {
     const now = Date.now();
 
-    // Verificar cache específico da account
-    const cached = this.accountPermissionsCache.get(accountId);
-    if (!forceRefresh && cached && now < cached.expiry) {
-      return cached.permissions;
+    // Verificar cache
+    if (!forceRefresh && this.accountPermissionsData && now < this.accountPermissionsData.expiry) {
+      return this.accountPermissionsData.permissions;
     }
 
-    // ⚡ Proteção: Se já existe uma requisição em andamento para esta account, aguardar ela
-    const existingPromise = this.accountPermissionsPromises.get(accountId);
-    if (existingPromise && !forceRefresh) {
-      return existingPromise;
+    // ⚡ Proteção: Se já existe uma requisição em andamento, aguardar ela
+    if (this.accountPermissionsPromise && !forceRefresh) {
+      return this.accountPermissionsPromise;
     }
 
     // Criar nova Promise e armazenar
     const promise = (async () => {
       try {
-        // Padrão: accountId deve estar apenas no header account-id, não na rota
         const response = await apiAuth.get('/permissions');
 
         const responseData = extractData<{ permissions: string[] }>(response);
         const permissions = responseData.permissions || [];
-        this.accountPermissionsCache.set(accountId, {
+        this.accountPermissionsData = {
           permissions,
           expiry: now + this.CACHE_DURATION
-        });
+        };
 
         // Limpar Promise após sucesso
-        this.accountPermissionsPromises.delete(accountId);
+        this.accountPermissionsPromise = null;
 
         return permissions;
       } catch (error) {
         // Limpar Promise em caso de erro
-        this.accountPermissionsPromises.delete(accountId);
+        this.accountPermissionsPromise = null;
 
         console.error('Erro ao buscar permissões do account:', error);
 
-        // Se tiver cache antigo para esta account, usar como fallback
-        if (cached) {
+        // Se tiver cache antigo, usar como fallback
+        if (this.accountPermissionsData) {
           console.warn('Usando cache antigo de permissões do account');
-          return cached.permissions;
+          return this.accountPermissionsData.permissions;
         }
 
         return [];
       }
     })();
 
-    this.accountPermissionsPromises.set(accountId, promise);
+    this.accountPermissionsPromise = promise;
     return promise;
   }
 
@@ -250,8 +246,8 @@ class PermissionsService {
     this.userPermissionsCache = null;
     this.permissionsCacheExpiry = 0;
     this.userPermissionsPromise = null;
-    this.accountPermissionsCache.clear();
-    this.accountPermissionsPromises.clear();
+    this.accountPermissionsData = null;
+    this.accountPermissionsPromise = null;
   }
 
   /**
@@ -261,8 +257,8 @@ class PermissionsService {
     this.userPermissionsCache = null;
     this.permissionsCacheExpiry = 0;
     this.userPermissionsPromise = null;
-    this.accountPermissionsCache.clear();
-    this.accountPermissionsPromises.clear();
+    this.accountPermissionsData = null;
+    this.accountPermissionsPromise = null;
   }
 
   /**

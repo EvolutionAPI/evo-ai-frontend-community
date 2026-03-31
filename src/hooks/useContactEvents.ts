@@ -105,7 +105,7 @@ export function useContactEvents() {
   // Load contact event statistics
   const loadContactEventStats = useCallback(async (contactId: string, days: number = 30) => {
     if (!contactId) {
-      console.warn('Missing accountId or contactId for loading stats');
+      console.warn('Missing contactId for loading stats');
       return null;
     }
 

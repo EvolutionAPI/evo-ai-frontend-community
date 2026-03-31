@@ -3,7 +3,6 @@ import type { Node, Edge } from '@xyflow/react';
 // Basic automation rule interface (existing)
 export interface AutomationRule {
   id: string;
-  account_id: string;
   name: string;
   description?: string;
   event_name: string;
@@ -36,7 +35,6 @@ export interface AutomationFile {
   id: string;
   automation_rule_id: string;
   file_type: string;
-  account_id: string;
   file_url: string;
   blob_id: string;
   filename: string;

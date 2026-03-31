@@ -28,7 +28,6 @@ export interface UserProfile {
 
 export interface AvailabilityUpdateData {
   availability: 'online' | 'offline' | 'busy';
-  account_id: string;
 }
 
 // Two-Factor Authentication interfaces

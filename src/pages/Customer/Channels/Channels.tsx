@@ -14,7 +14,7 @@ import { Trash2, Grid3X3, List, Layers } from 'lucide-react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 
-import { useAccountStore } from '@/store/accountStore';
+import { useAppDataStore } from '@/store/appDataStore';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import InboxesService from '@/services/channels/inboxesService';
 import { Inbox } from '@/types/channels/inbox';
@@ -32,7 +32,7 @@ export default function Channels() {
   const { can, isReady: permissionsReady, loading: permissionsLoading } = useUserPermissions();
   const { t } = useLanguage('channels');
 
-  const { inboxes, isLoadingInboxes, fetchInboxes, removeInbox } = useAccountStore();
+  const { inboxes, isLoadingInboxes, fetchInboxes, removeInbox } = useAppDataStore();
   const [query, setQuery] = useState('');
 
   // Pagination states

@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { useAccountId } from '@/hooks/useAccountId';
 import { listSessions, getSessionMessages, createSession, deleteSession } from '@/services/agents/sessionService';
 import { sendChatMessage } from '@/services/agents/chatService';
 import { toast } from 'sonner';
@@ -32,10 +31,6 @@ interface AgentChatProviderProps {
 }
 
 export function AgentChatProvider({ children, agentId }: AgentChatProviderProps) {
-  const accountId = useAccountId();
-  // Use accountId as userId for test sessions (consistent with backend behavior)
-  const userId = accountId || undefined;
-
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(null);
@@ -44,7 +39,7 @@ export function AgentChatProvider({ children, agentId }: AgentChatProviderProps)
 
   // Load sessions
   const loadSessions = useCallback(async () => {
-    if (!accountId || !agentId) return;
+    if (!agentId) return;
     try {
       setIsLoading(true);
       // Backend já filtra por user_id e agent_id, então não precisamos filtrar novamente
@@ -62,7 +57,7 @@ export function AgentChatProvider({ children, agentId }: AgentChatProviderProps)
     } finally {
       setIsLoading(false);
     }
-  }, [agentId, accountId]);
+  }, [agentId]);
 
   // Select session and load messages
   const selectSession = useCallback(async (sessionId: string | null) => {
@@ -115,8 +110,7 @@ export function AgentChatProvider({ children, agentId }: AgentChatProviderProps)
     if (!agentId) return;
     try {
       setIsLoading(true);
-      // Pass userId explicitly to ensure consistency with session listing
-      const response = await createSession(agentId, userId);
+      const response = await createSession(agentId);
       // Use the session_id returned by the backend
       const sessionId = response?.session_id || response?.id;
       if (sessionId) {
@@ -135,7 +129,7 @@ export function AgentChatProvider({ children, agentId }: AgentChatProviderProps)
     } finally {
       setIsLoading(false);
     }
-  }, [agentId, userId, loadSessions]);
+  }, [agentId, loadSessions]);
 
   // Delete session
   const deleteSessionHandler = useCallback(async (sessionId: string) => {
@@ -256,13 +250,13 @@ export function AgentChatProvider({ children, agentId }: AgentChatProviderProps)
 
   // Load sessions on mount and reset selected session
   useEffect(() => {
-    if (accountId && agentId) {
+    if (agentId) {
       // Reset selected session when component mounts (modal opens)
       setSelectedSessionId(null);
       setMessages([]);
       loadSessions();
     }
-  }, [accountId, agentId, loadSessions]);
+  }, [agentId, loadSessions]);
 
   const value: AgentChatContextValue = {
     sessions,

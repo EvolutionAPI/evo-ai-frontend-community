@@ -2,9 +2,7 @@ import api from '@/services/core/api';
 import { extractData } from '@/utils/apiHelpers';
 import type { InboxMembersUpdateResponse, AgentChannel } from '@/types/channels/inbox';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
-// Inbox Members Service following Evolution patterns (inbox_members with accountScoped: true)
+// Inbox Members Service following Evolution patterns
 const InboxMembersService = {
   /**
    * Get all agents assigned to an inbox
