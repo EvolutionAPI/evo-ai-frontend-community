@@ -1,6 +1,4 @@
 // CannedResponses Types
-// Note: KnowledgeBase feature was removed in community version.
-// CannedResponse types remain here as they are a core CRM feature.
 
 export interface CannedResponseAttachment {
   id: string;

@@ -104,8 +104,13 @@ export const fetchSetupStatus = async (): Promise<boolean> => {
   }
 };
 
+// Listeners para notificar componentes React quando o cache é limpo
+const setupCacheListeners: Set<() => void> = new Set();
+
 export const clearSetupCache = () => {
   setupRequiredCache = null;
+  // Notificar todos os listeners para re-fetch
+  setupCacheListeners.forEach(listener => listener());
 };
 
 export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -116,16 +121,30 @@ export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ 
   useEffect(() => {
     let mounted = true;
 
-    Promise.all([fetchGlobalConfig(), fetchSetupStatus()]).then(([configData, isSetupRequired]) => {
+    const loadConfig = () => {
+      Promise.all([fetchGlobalConfig(), fetchSetupStatus()]).then(([configData, isSetupRequired]) => {
+        if (mounted) {
+          setConfig(configData);
+          setSetupRequired(isSetupRequired);
+          setSetupLoading(false);
+        }
+      });
+    };
+
+    loadConfig();
+
+    // Re-fetch when setup cache is cleared (after bootstrap)
+    const onCacheCleared = () => {
       if (mounted) {
-        setConfig(configData);
-        setSetupRequired(isSetupRequired);
-        setSetupLoading(false);
+        setSetupLoading(true);
+        loadConfig();
       }
-    });
+    };
+    setupCacheListeners.add(onCacheCleared);
 
     return () => {
       mounted = false;
+      setupCacheListeners.delete(onCacheCleared);
     };
   }, []);
 
