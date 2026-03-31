@@ -123,7 +123,7 @@ export default function AccountSettings() {
     try {
       setLoading(true);
       const [accountData, formDataRes, configRes] = await Promise.all([
-        accountService.getAccount(accountId),
+        accountService.getAccount(),
         accountService.getFormData(),
         accountService.getGlobalConfig(),
       ]);
@@ -199,7 +199,7 @@ export default function AccountSettings() {
 
     setSaving(true);
     try {
-      await accountService.updateAccount(accountId, {
+      await accountService.updateAccount({
         name: formData.name,
         locale: normalizeAccountLocale(formData.locale),
         domain: formData.domain,
@@ -223,7 +223,7 @@ export default function AccountSettings() {
       // Desabilitar auto-resolve
       try {
         setSaving(true);
-        await accountService.updateAccount(accountId, {
+        await accountService.updateAccount({
           auto_resolve_after: null,
           auto_resolve_message: '',
           auto_resolve_ignore_waiting: false,
@@ -246,7 +246,7 @@ export default function AccountSettings() {
 
     try {
       setSaving(true);
-      await accountService.updateAccount(accountId, {
+      await accountService.updateAccount({
         auto_resolve_after: formData.autoResolveAfter,
         auto_resolve_message: formData.autoResolveMessage,
         auto_resolve_ignore_waiting: formData.autoResolveIgnoreWaiting,
@@ -265,7 +265,7 @@ export default function AccountSettings() {
     if (!accountId) return;
 
     try {
-      await accountService.updateAccount(accountId, {
+      await accountService.updateAccount({
         audio_transcriptions: enabled,
       });
       setFormData(prev => ({ ...prev, audioTranscriptions: enabled }));
@@ -287,7 +287,7 @@ export default function AccountSettings() {
     if (!accountId || !account) return;
 
     try {
-      await accountService.deleteAccount(accountId);
+      await accountService.deleteAccount();
       toast.success(t('messages.success.accountDeleted'));
       await loadAccountData();
     } catch (error: unknown) {
@@ -299,7 +299,7 @@ export default function AccountSettings() {
     if (!accountId || !account) return;
 
     try {
-      await accountService.undeleteAccount(accountId);
+      await accountService.undeleteAccount();
       toast.success(t('messages.success.deletionCancelled'));
       await loadAccountData();
     } catch (error: unknown) {

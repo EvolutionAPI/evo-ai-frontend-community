@@ -98,7 +98,7 @@ export const useAccountStore = create<AccountState>((set, get) => ({
 
     set({ isLoadingAccount: true });
     try {
-      const result = await accountService.getAccount(accountId);
+      const result = await accountService.getAccount();
       set({
         account: result,
         isLoadingAccount: false,

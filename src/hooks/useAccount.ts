@@ -74,10 +74,8 @@ export function useAccount(): UseAccountReturn {
   }, [account?.features]);
 
   // Account operations
-  const fetchAccount = async (id: string, forceApi = false) => {
-    if (!id) return;
-
-    const cached = getCachedAccount(id);
+  const fetchAccount = async (forceApi = false) => {
+    const cached = accountId ? getCachedAccount(accountId) : null;
     if (!forceApi && cached) {
       setAccount(cached);
       setError(null);
@@ -87,10 +85,9 @@ export function useAccount(): UseAccountReturn {
     try {
       setLoading(true);
       setError(null);
-      const response = await accountService.getAccount(id);
+      const response = await accountService.getAccount();
       setAccount(response);
     } catch (err) {
-      // Graceful fallback for environments where account endpoints are unavailable in gateway.
       if (cached) {
         setAccount(cached);
         setError(null);
@@ -105,41 +102,33 @@ export function useAccount(): UseAccountReturn {
   };
 
   const updateAccount = async (data: Partial<Account>) => {
-    if (!accountId) return;
-
     try {
       setLoading(true);
       setError(null);
-      const updatedAccount = await accountService.updateAccount(accountId, data);
+      const updatedAccount = await accountService.updateAccount(data);
       setAccount(updatedAccount);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Erro ao atualizar conta';
       setError(errorMessage);
-      throw err; // Re-throw para permitir tratamento pelo componente
+      throw err;
     } finally {
       setLoading(false);
     }
   };
 
   const refreshAccount = async () => {
-    if (accountId) {
-      await fetchAccount(accountId, true);
-    }
+    await fetchAccount(true);
   };
 
   // URL utilities
   const accountScopedUrl = (path: string): string => {
-    if (!accountId) return path;
-
-    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-    return `/accounts/${accountId}/${cleanPath}`;
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    return cleanPath;
   };
 
-  // Load account data when accountId changes
+  // Load account data when user changes
   useEffect(() => {
-    if (accountId) {
-      fetchAccount(accountId);
-    }
+    fetchAccount();
   }, [accountId, currentUser?.id]);
 
   return {

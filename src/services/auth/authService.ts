@@ -206,13 +206,13 @@ export const verifyMfa = async (data: {
 
 // New functions for accounts and profile management
 export const getUserAccounts = async () => {
-  const response = await apiAuth.get('/accounts');
+  const response = await apiAuth.get('/account');
 
   return extractData<any>(response);
 };
 
 export const getCurrentAccount = async () => {
-  const response = await apiAuth.get('/accounts/current');
+  const response = await apiAuth.get('/account');
 
   return extractData<any>(response);
 };
