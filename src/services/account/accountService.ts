@@ -1,68 +1,24 @@
 import authApi from '@/services/core/apiAuth';
 import api from '@/services/core/api';
 import { extractData } from '@/utils/apiHelpers';
-import type { Account, CreateAccount, UpdateAccount, FormDataOptions, AccountDeleteResponse, AccountUpdateResponse } from '@/types/settings';
+import type { Account, UpdateAccount, FormDataOptions, AccountDeleteResponse, AccountUpdateResponse } from '@/types/settings';
 import { extractError } from '@/utils/apiHelpers';
 import { fetchGlobalConfig } from '@/contexts/GlobalConfigContext';
 
 class AccountService {
-  private getAccountPath(accountId: string) {
-    return `/accounts/${accountId}`;
-  }
-
-  async createAccount(payload: CreateAccount): Promise<{ data: any }> {
+  async getAccount(): Promise<Account> {
     try {
-      const response = await authApi.post('/accounts', payload);
-      const data = extractData(response);
-      return { data };
-    } catch (error: any) {
-      console.error('Erro ao criar conta:', error);
-
-      const errorInfo = extractError(error);
-      throw new Error(errorInfo.message || 'Erro ao criar conta');
-    }
-  }
-
-  async getAccount(accountId: string): Promise<Account> {
-    try {
-      const response = await authApi.get<{ account: Account }>(this.getAccountPath(accountId));
+      const response = await authApi.get<{ account: Account }>('/account');
       return extractData<Account>(response);
     } catch (error: any) {
-      const status = error?.response?.status;
-
-      // Fallback para ambientes onde `/accounts/:id` pode falhar no gateway.
-      // Usamos `/accounts/current` para não quebrar o bootstrap após login.
-      if (status >= 500 || status === 404) {
-        try {
-          const fallbackResponse = await authApi.get('/accounts/current');
-          const fallbackAccount = extractData<Account>(fallbackResponse);
-
-          if (!fallbackAccount?.id) {
-            throw new Error('Conta atual inválida no fallback');
-          }
-
-          return fallbackAccount;
-        } catch (fallbackError: any) {
-          console.error('Erro ao buscar conta (fallback /accounts/current):', fallbackError);
-          throw new Error(
-            fallbackError?.response?.data?.message ||
-              error?.response?.data?.message ||
-              'Erro ao buscar conta',
-          );
-        }
-      }
-
       console.error('Erro ao buscar conta:', error);
       throw new Error(error?.response?.data?.message || 'Erro ao buscar conta');
     }
   }
 
-  async updateAccount(
-    accountId: string,
-    payload: UpdateAccount,
-  ): Promise<Account> {
+  async updateAccount(payload: UpdateAccount): Promise<Account> {
     try {
-      const response = await authApi.patch<AccountUpdateResponse>(this.getAccountPath(accountId), payload);
+      const response = await authApi.patch<AccountUpdateResponse>('/account', { account: payload });
       return extractData<Account>(response);
     } catch (error: any) {
       console.error('Erro ao atualizar conta:', error);
@@ -71,11 +27,9 @@ class AccountService {
     }
   }
 
-  async deleteAccount(accountId: string): Promise<AccountDeleteResponse> {
+  async deleteAccount(): Promise<AccountDeleteResponse> {
     try {
-      const response = await authApi.post(`${this.getAccountPath(accountId)}/toggle_deletion`, {
-        action_type: 'delete',
-      });
+      const response = await authApi.post('/account/toggle_deletion', { action_type: 'delete' });
       return extractData<AccountDeleteResponse>(response);
     } catch (error: any) {
       console.error('Erro ao marcar conta para exclusão:', error);
@@ -83,11 +37,9 @@ class AccountService {
     }
   }
 
-  async undeleteAccount(accountId: string): Promise<AccountDeleteResponse> {
+  async undeleteAccount(): Promise<AccountDeleteResponse> {
     try {
-      const response = await authApi.post(`${this.getAccountPath(accountId)}/toggle_deletion`, {
-        action_type: 'undelete',
-      });
+      const response = await authApi.post('/account/toggle_deletion', { action_type: 'undelete' });
       return extractData<AccountDeleteResponse>(response);
     } catch (error: any) {
       console.error('Erro ao cancelar exclusão da conta:', error);
