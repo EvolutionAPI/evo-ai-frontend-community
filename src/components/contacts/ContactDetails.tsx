@@ -422,10 +422,9 @@ export default function ContactDetails({
 
               {/* Scheduled Actions tab temporarily disabled - feature is in development */}
               {/* <TabsContent value="scheduled-actions" className="py-6 mt-0">
-                {contact && accountId && (
+                {contact && (
                   <ScheduledActionsList
                     contactId={contact.id}
-                    accountId={accountId}
                   />
                 )}
               </TabsContent> */}

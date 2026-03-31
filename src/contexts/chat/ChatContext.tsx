@@ -18,7 +18,7 @@ import {
   MESSAGE_TYPE,
 } from '@/types/chat/api';
 import { ConversationsContextValue } from '@/types/chat/conversations';
-import { useAccountStore } from '@/store/accountStore';
+import { useAppDataStore } from '@/store/appDataStore';
 import { useAuth } from '@/contexts/AuthContext';
 import { playNotificationSound, getAudioSettings } from '@/utils/audioNotificationUtils';
 import { normalizeToUnixSeconds } from '@/utils/time/timeHelpers';
@@ -570,7 +570,7 @@ function useChatIntegration() {
 
         if (isZapiChannel) {
           // Recarregar inboxes para obter provider_connection atualizado
-          const { fetchInboxes } = useAccountStore.getState();
+          const { fetchInboxes } = useAppDataStore.getState();
           fetchInboxes(true).catch(console.error);
         }
       },

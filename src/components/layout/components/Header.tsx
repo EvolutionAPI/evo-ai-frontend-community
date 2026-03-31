@@ -21,7 +21,6 @@ import {
 } from '@evoapi/design-system';
 import { useLanguage } from '../../../hooks/useLanguage';
 import { useWhitelabelConfig } from '../../../hooks/useWhitelabelConfig';
-import OrganizationSwitcher from '../OrganizationSwitcher';
 import NotificationBell from '../NotificationBell';
 import ProfileMenu from './ProfileMenu';
 import MenuItem from './MenuItem';
@@ -44,27 +43,15 @@ interface User {
   avatar_url?: string;
 }
 
-interface Organization {
-  id: string;
-  name: string;
-  status: string;
-  role: string;
-  availability: string;
-  auto_offline: boolean;
-}
-
 interface HeaderProps {
   user: User;
   isCollapsed: boolean;
   isMobileMenuOpen: boolean;
-  organizations: Organization[];
-  organizationSelected: Organization | null;
   menuItems: MenuItemType[];
   activeMenu: string | null;
   pathname: string;
   toggleSidebar: () => void;
   setIsMobileMenuOpen: (open: boolean) => void;
-  switchAccount: (accountId: string) => Promise<void>;
   setLogoutDialogOpen: (open: boolean) => void;
   isMenuItemActive: (href: string) => boolean;
   isMenuWithSubItemsActive: (item: MenuItemType) => boolean;
@@ -75,14 +62,11 @@ export default function Header({
   user,
   isCollapsed,
   isMobileMenuOpen,
-  organizations,
-  organizationSelected,
   menuItems,
   activeMenu,
   pathname,
   toggleSidebar,
   setIsMobileMenuOpen,
-  switchAccount,
   setLogoutDialogOpen,
   isMenuWithSubItemsActive,
   handleMenuClick,
@@ -119,21 +103,6 @@ export default function Header({
               </SheetHeader>
 
               <ScrollArea className="flex-1 min-h-0 overflow-hidden p-4">
-                {/* Mobile Organization Selector */}
-                {organizations.length > 0 && (
-                  <div className="mb-4 p-3 rounded-lg bg-sidebar-accent/50">
-                    <div className="text-sm font-medium text-sidebar-foreground mb-2">
-                      {t('sidebar.organization')}
-                    </div>
-                    <OrganizationSwitcher
-                      organizations={organizations}
-                      selectedOrganization={organizationSelected || undefined}
-                      onSwitchOrganization={switchAccount}
-                      className="w-full"
-                    />
-                  </div>
-                )}
-
                 <nav className="space-y-1">
                   {menuItems.map(item => {
                     const hasSubItems = item.subItems && item.subItems.length > 0;
@@ -232,30 +201,17 @@ export default function Header({
           </Sheet>
         </div>
 
-        {/* Center: Logo and Organization Selector */}
+        {/* Center: Logo */}
         <div className="flex-1 flex justify-center">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <img
-                src={displayLogo}
-                onError={e => {
-                  (e.target as HTMLImageElement).src = logo;
-                }}
-                alt="EVO CRM"
-                className="h-8 max-w-32"
-              />
-            </div>
-
-            {/* Mobile Organization Selector */}
-            {organizations.length > 0 && organizationSelected && (
-              <div className="flex items-center gap-1 ml-2">
-                <div className="w-px h-4 bg-sidebar-border" />
-                <div className="flex items-center gap-1 text-sm text-sidebar-foreground">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="truncate max-w-24">{organizationSelected.name}</span>
-                </div>
-              </div>
-            )}
+            <img
+              src={displayLogo}
+              onError={e => {
+                (e.target as HTMLImageElement).src = logo;
+              }}
+              alt="EVO CRM"
+              className="h-8 max-w-32"
+            />
           </div>
         </div>
 
@@ -316,22 +272,8 @@ export default function Header({
           </div>
         </div>
 
-        {/* Organization Selector - positioned after sidebar area */}
-        <div className="flex items-center flex-1">
-          {organizations.length > 0 && (
-            <>
-              <div className="w-px h-6 bg-sidebar-border" />
-              <div className="flex items-center gap-3 px-4">
-                <OrganizationSwitcher
-                  organizations={organizations}
-                  selectedOrganization={organizationSelected || undefined}
-                  onSwitchOrganization={switchAccount}
-                  className="min-w-[200px]"
-                />
-              </div>
-            </>
-          )}
-        </div>
+        {/* Spacer */}
+        <div className="flex-1" />
 
         {/* Right side */}
         <div className="flex items-center gap-2 px-4">

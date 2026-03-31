@@ -21,12 +21,9 @@ import type {
 } from '@/types/analytics';
 import { Contact } from '@/types';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 class PipelinesService {
   // List all pipelines
   async getPipelines(params?: PipelinesListParams): Promise<PipelinesResponse> {
-    // accountId é passado apenas para garantir que o header está correto
     const response = await api.get('/pipelines', {
       params,
     });

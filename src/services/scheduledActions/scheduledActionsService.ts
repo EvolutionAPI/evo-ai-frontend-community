@@ -2,11 +2,8 @@ import api from '@/services/core/api';
 import { extractData } from '@/utils/apiHelpers';
 import type { ScheduledAction, CreateScheduledAction } from '@/types/automation';
 
-// Padrão: accountId deve estar apenas no header account-id, não na rota
-// O interceptor do api.ts já adiciona o header automaticamente
 class ScheduledActionsService {
   async list(params?: Record<string, any>): Promise<ScheduledAction[]> {
-    // accountId é passado apenas para garantir que o header está correto
     const response = await api.get('/scheduled_actions', { params });
     return extractData<any>(response);
   }

@@ -2,7 +2,6 @@ import CallbackPage from '@/components/integrations/CallbackPage';
 
 interface IntegrationService {
   completeAuthorization: (
-    accountId: string,
     agentId: string,
     code: string,
     state: string
@@ -14,7 +13,7 @@ interface CallbackConfig {
   service: IntegrationService;
   iconPath?: string;
   iconPathDark?: string;
-  onSuccess?: (response: any, accountId: string, agentId: string) => Promise<void> | void;
+  onSuccess?: (response: any, agentId: string) => Promise<void> | void;
   redirectPath?: string | ((agentId: string) => string);
 }
 
@@ -27,12 +26,12 @@ export function createCallbackPage({ integrationName, service, iconPath, iconPat
     return (
       <CallbackPage
         integrationName={integrationName}
-        onCallback={async (code, state, accountId, agentId) => {
-          // MCP integrations require both accountId and agentId
-          if (!accountId || !agentId) {
-            throw new Error('Account ID and Agent ID are required for MCP integrations');
+        onCallback={async (code, state, agentId) => {
+          // MCP integrations require agentId
+          if (!agentId) {
+            throw new Error('Agent ID is required for MCP integrations');
           }
-          return await service.completeAuthorization(accountId, agentId, code, state);
+          return await service.completeAuthorization(agentId, code, state);
         }}
         onSuccess={onSuccess}
         redirectPath={redirectPath}

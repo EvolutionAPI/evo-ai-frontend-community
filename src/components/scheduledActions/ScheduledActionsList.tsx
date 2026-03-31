@@ -4,7 +4,6 @@ import { CalendarClock, Plus, Edit, X, Clock, AlertCircle } from 'lucide-react';
 import { scheduledActionsService } from '@/services/scheduledActions/scheduledActionsService';
 import { ScheduleActionModal } from './ScheduleActionModal';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAccountId } from '@/hooks/useAccountId';
 import { ScheduledAction } from '@/types/automation';
 
 interface ScheduledActionsListProps {
@@ -13,7 +12,6 @@ interface ScheduledActionsListProps {
 
 export function ScheduledActionsList({ contactId }: ScheduledActionsListProps) {
   const { t } = useLanguage('contacts');
-  const accountId = useAccountId();
   const [actions, setActions] = useState<ScheduledAction[]>([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
@@ -297,12 +295,11 @@ export function ScheduledActionsList({ contactId }: ScheduledActionsListProps) {
         </div>
       )}
 
-      {modalOpen && accountId && (
+      {modalOpen && (
         <ScheduleActionModal
           open={modalOpen}
           onClose={handleModalClose}
           contactId={contactId}
-          accountId={accountId}
           action={editingAction}
         />
       )}

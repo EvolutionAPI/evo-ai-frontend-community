@@ -13,11 +13,8 @@ export const useHasValidRole = (): boolean => {
 
   if (!user) return false;
 
-  return (
-    user.accounts?.some(account =>
-      account.role && ['administrator', 'agent', 'user'].includes(account.role.key),
-    ) || false
-  );
+  // In single-tenant mode, check user's role directly
+  return !!user.role && ['administrator', 'agent', 'user'].includes(user.role.key);
 };
 
 /**

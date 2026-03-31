@@ -12,7 +12,6 @@ export enum EventType {
 
 export interface ContactEvent {
   id: string;
-  accountId: string;
   contactId: string;
   eventType: EventType;
   eventName: string;

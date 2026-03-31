@@ -5,8 +5,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, Button } from '@evoapi/design-system';
 import { Grid3X3, List, Wand } from 'lucide-react';
 import EmptyState from '@/components/base/EmptyState';
-import { useAccountId } from '@/hooks/useAccountId';
-
 import { CustomTool, CustomToolsState, CustomToolFormData, CustomToolsListParams } from '@/types/ai';
 import { BaseFilter, AppliedFilter } from '@/types/core';
 import {
@@ -33,7 +31,6 @@ const INITIAL_STATE: CustomToolsState = initialCustomToolsState;
 
 export default function CustomTools() {
   const { can, isReady: permissionsReady } = useUserPermissions();
-  const accountId = useAccountId();
   const { t } = useLanguage('customTools');
   const [state, setState] = useState<CustomToolsState>(INITIAL_STATE);
   const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
@@ -57,11 +54,6 @@ export default function CustomTools() {
         toast.error(t('permissions.viewDenied'));
         return;
       }
-      if (!accountId) {
-        console.error(t('errors.accountNotFound'));
-        return;
-      }
-
       setState(prev => ({ ...prev, loading: { ...prev.loading, list: true } }));
 
       try {
@@ -95,7 +87,7 @@ export default function CustomTools() {
         setState(prev => ({ ...prev, loading: { ...prev.loading, list: false } }));
       }
     },
-    [accountId, can, t],
+    [can, t],
   );
 
   // Initial load
@@ -222,11 +214,6 @@ export default function CustomTools() {
   };
 
   const handleTestTool = async (tool: CustomTool) => {
-    if (!accountId) {
-      toast.error(t('errors.accountNotFound'));
-      return;
-    }
-
     setTestingTool(tool.id);
     setState(prev => ({ ...prev, loading: { ...prev.loading, test: true } }));
 
@@ -256,10 +243,7 @@ export default function CustomTools() {
 
   // Confirm delete single tool
   const confirmDeleteTool = async () => {
-    if (!toolToDelete || !accountId) {
-      if (!accountId) toast.error(t('errors.accountNotFound'));
-      return;
-    }
+    if (!toolToDelete) return;
 
     setState(prev => ({ ...prev, loading: { ...prev.loading, delete: true } }));
 
@@ -284,11 +268,6 @@ export default function CustomTools() {
 
   // Handle tool form submission
   const handleToolFormSubmit = async (data: CustomToolFormData) => {
-    if (!accountId) {
-      toast.error(t('errors.accountNotFound'));
-      return;
-    }
-
     setState(prev => ({
       ...prev,
       loading: { ...prev.loading, [editingTool ? 'update' : 'create']: true },

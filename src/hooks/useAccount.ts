@@ -1,13 +1,10 @@
 import { useState, useEffect, useMemo } from 'react';
 import { accountService } from '../services/account/accountService';
 import type { Account, AccountFeatures } from '@/types/settings';
-import { useAccountId } from '@/hooks/useAccountId';
 import { useAuthStore } from '@/store/authStore';
 
 interface UseAccountReturn {
-  // Account data
   account: Account | null;
-  accountId: string | null;
   loading: boolean;
   error: string | null;
 
@@ -21,31 +18,18 @@ interface UseAccountReturn {
   // Account operations
   updateAccount: (data: Partial<Account>) => Promise<void>;
   refreshAccount: () => Promise<void>;
-
-  // URL utilities
-  accountScopedUrl: (path: string) => string;
 }
 
 export function useAccount(): UseAccountReturn {
-  const accountId = useAccountId(); // Usar o hook existente
   const currentUser = useAuthStore(state => state.currentUser);
 
   const [account, setAccount] = useState<Account | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getCachedAccount = (id: string): Account | null => {
-    const cached = currentUser?.accounts?.find(acc => String(acc.id) === String(id));
-    return (cached as unknown as Account) || null;
-  };
-
-  // Feature checking functions
   const isFeatureEnabled = (featureName: keyof AccountFeatures): boolean => {
     if (!account?.features) return false;
-
-    // Always enable V4 interface by default (matching original logic)
     if (featureName === 'evolution_v4') return true;
-
     return account.features[featureName] || false;
   };
 
@@ -59,7 +43,6 @@ export function useAccount(): UseAccountReturn {
 
   const enabledFeatures = useMemo(() => {
     if (!account?.features) return [];
-
     return Object.entries(account.features)
       .filter(([_, enabled]) => enabled === true)
       .map(([feature, _]) => feature);
@@ -67,32 +50,18 @@ export function useAccount(): UseAccountReturn {
 
   const disabledFeatures = useMemo(() => {
     if (!account?.features) return [];
-
     return Object.entries(account.features)
       .filter(([_, enabled]) => enabled === false)
       .map(([feature, _]) => feature);
   }, [account?.features]);
 
-  // Account operations
-  const fetchAccount = async (forceApi = false) => {
-    const cached = accountId ? getCachedAccount(accountId) : null;
-    if (!forceApi && cached) {
-      setAccount(cached);
-      setError(null);
-      return;
-    }
-
+  const fetchAccount = async () => {
     try {
       setLoading(true);
       setError(null);
       const response = await accountService.getAccount();
       setAccount(response);
     } catch (err) {
-      if (cached) {
-        setAccount(cached);
-        setError(null);
-        return;
-      }
       const errorMessage = err instanceof Error ? err.message : 'Erro ao carregar conta';
       setError(errorMessage);
       console.error('Erro ao carregar conta:', err);
@@ -117,40 +86,26 @@ export function useAccount(): UseAccountReturn {
   };
 
   const refreshAccount = async () => {
-    await fetchAccount(true);
+    await fetchAccount();
   };
 
-  // URL utilities
-  const accountScopedUrl = (path: string): string => {
-    const cleanPath = path.startsWith('/') ? path : `/${path}`;
-    return cleanPath;
-  };
-
-  // Load account data when user changes
   useEffect(() => {
-    fetchAccount();
-  }, [accountId, currentUser?.id]);
+    if (currentUser?.id) {
+      fetchAccount();
+    }
+  }, [currentUser?.id]);
 
   return {
-    // Account data
     account,
-    accountId,
     loading,
     error,
-
-    // Feature checking
     isFeatureEnabled,
     hasAllFeatures,
     hasAnyFeature,
     enabledFeatures,
     disabledFeatures,
-
-    // Account operations
     updateAccount,
     refreshAccount,
-
-    // URL utilities
-    accountScopedUrl,
   };
 }
 

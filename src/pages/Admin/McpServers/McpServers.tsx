@@ -30,11 +30,8 @@ import { toast } from 'sonner';
 import { MCPServer } from '@/types/ai';
 import { listMCPServers } from '@/services/agents/mcpServerService';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAccountId } from '@/hooks/useAccountId';
-
 const McpServers = () => {
   const { t } = useLanguage('mcpServers');
-  const accountId = useAccountId();
   const [servers, setServers] = useState<MCPServer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,8 +41,6 @@ const McpServers = () => {
 
   useEffect(() => {
     const fetchServers = async () => {
-      if (!accountId) return;
-
       setIsLoading(true);
       setError(null);
 
@@ -63,7 +58,7 @@ const McpServers = () => {
     };
 
     fetchServers();
-  }, [accountId, page, limit, t]);
+  }, [page, limit, t]);
 
   const stats = {
     total: servers.length,

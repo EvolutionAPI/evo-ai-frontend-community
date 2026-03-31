@@ -82,9 +82,9 @@ export class ReconnectService {
       // }
 
       // Get updated state after validation
-      const { currentUser: updatedUser, currentAccountId } = useAuthStore.getState();
+      const { currentUser: updatedUser } = useAuthStore.getState();
 
-      if (!updatedUser || !currentAccountId || !updatedUser.pubsub_token) {
+      if (!updatedUser || !updatedUser.pubsub_token) {
         return;
       }
 
@@ -92,7 +92,6 @@ export class ReconnectService {
       if (!actionCableService.isConnected()) {
         actionCableService.init(
           updatedUser.pubsub_token,
-          currentAccountId,
           updatedUser.id
         );
       }

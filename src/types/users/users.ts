@@ -15,12 +15,6 @@ export interface User {
   availability_status?: 'online' | 'busy' | 'offline'; // Alias for availability
   role?: Role;
   confirmed: boolean;
-  accounts: Array<{
-    id: string;
-    name: string;
-    role: string;
-  }>;
-  account_id: string;
   created_at: string;
   updated_at: string;
   permissions: string[];

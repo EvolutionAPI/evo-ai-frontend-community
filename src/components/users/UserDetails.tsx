@@ -204,10 +204,6 @@ export default function UserDetails({
                       {user.confirmed ? t('details.accountStatus.confirmed') : t('details.accountStatus.pending')}
                     </Badge>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">{t('details.accountStatus.accountId')}</span>
-                    <span className="font-mono text-sm">{user.account_id}</span>
-                  </div>
                 </div>
               </div>
 

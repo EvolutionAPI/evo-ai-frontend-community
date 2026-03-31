@@ -365,7 +365,6 @@ const Profile = () => {
           ...user,
           ...updatedUser,
           avatar_url: normalizeAvatarUrl(updatedUser.avatar_url) || user.avatar_url,
-          accounts: user.accounts, // Manter as contas do usuário atual
         };
 
         useAuthStore.getState().setUser(mergedUser);

@@ -108,7 +108,6 @@ export interface Pipeline {
     name: string;
     avatar_url?: string;
   };
-  account_id?: string;
   team_ids?: string[];
 }
 
@@ -293,7 +292,6 @@ export interface MovePipelineItemData {
 export interface PipelineTask {
   id: string;
   pipeline_item_id: string;
-  account_id: string;
   created_by_id: string;
   assigned_to_id?: string;
   title: string;
@@ -411,7 +409,6 @@ export interface PipelineTaskStatistics {
 export interface PipelineServiceDefinition {
   id: string;
   pipeline_id: string;
-  account_id: string;
   name: string;
   default_value: number;
   currency: 'BRL' | 'USD' | 'EUR';

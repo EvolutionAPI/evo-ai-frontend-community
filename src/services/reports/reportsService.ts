@@ -19,14 +19,8 @@ import {
 } from '@/types/analytics';
 
 class ReportsService {
-  // Padrão: accountId deve estar apenas no header account-id, não na rota
-  // O interceptor do api.ts já adiciona o header automaticamente
-  // Nota: As rotas v2 ainda têm account_id na URL por limitação do Rails nested resources,
-  // mas o backend usa o header account-id como fonte primária
-
   // Get conversation metrics (overview stats) - Using live_reports API v2
   async getConversationMetrics(params: ConversationMetricsParams = {}): Promise<ConversationMetric> {
-    // Usar placeholder 'current' na URL - o backend usa o header account-id
     const response = await api.get(`/api/v2/accounts/current/live_reports/conversation_metrics`, {
       params,
     });

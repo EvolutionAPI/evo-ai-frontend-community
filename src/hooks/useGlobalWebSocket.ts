@@ -1,6 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useOrganizations } from '@/contexts/OrganizationsContext';
 import { ChatActionCableConnector, type ChatEventHandlers, type ConnectionParams } from '@/services/chat';
 
 interface GlobalWebSocketHandlers {
@@ -13,7 +12,6 @@ interface GlobalWebSocketHandlers {
 
 export const useGlobalWebSocket = (handlers: GlobalWebSocketHandlers) => {
   const { user } = useAuth();
-  const { organizationSelected } = useOrganizations();
   const connectorRef = useRef<ChatActionCableConnector | null>(null);
   const handlersRef = useRef<GlobalWebSocketHandlers>(handlers);
 
@@ -23,7 +21,7 @@ export const useGlobalWebSocket = (handlers: GlobalWebSocketHandlers) => {
   }, [handlers]);
 
   const connect = useCallback(() => {
-    if (!user?.id || !user?.pubsub_token || !organizationSelected?.id) {
+    if (!user?.id || !user?.pubsub_token) {
       return;
     }
 
@@ -37,7 +35,6 @@ export const useGlobalWebSocket = (handlers: GlobalWebSocketHandlers) => {
       const connectionParams: ConnectionParams = {
         channel: 'RoomChannel',
         pubsub_token: user.pubsub_token,
-        account_id: organizationSelected.id,
         user_id: user.id,
       };
 
@@ -74,7 +71,7 @@ export const useGlobalWebSocket = (handlers: GlobalWebSocketHandlers) => {
     } catch (error) {
       console.error('❌ Global WebSocket: Error connecting', error);
     }
-  }, [user?.id, user?.pubsub_token, organizationSelected?.id]);
+  }, [user?.id, user?.pubsub_token]);
 
   const disconnect = useCallback(() => {
     if (connectorRef.current) {
@@ -85,14 +82,14 @@ export const useGlobalWebSocket = (handlers: GlobalWebSocketHandlers) => {
 
   // Connect when user and organization are available
   useEffect(() => {
-    if (user?.id && user?.pubsub_token && organizationSelected?.id) {
+    if (user?.id && user?.pubsub_token) {
       connect();
     }
 
     return () => {
       disconnect();
     };
-  }, [user?.id, user?.pubsub_token, organizationSelected?.id, connect, disconnect]);
+  }, [user?.id, user?.pubsub_token, connect, disconnect]);
 
   useEffect(() => {
     const handleAuthLost = () => {

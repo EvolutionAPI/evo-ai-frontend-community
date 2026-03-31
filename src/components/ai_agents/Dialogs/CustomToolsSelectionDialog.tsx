@@ -15,7 +15,6 @@ import { Search, Code, Tag, Plus, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { listCustomTools } from '@/services/agents/customToolsService';
 import { CustomTool } from '@/types/ai';
-import { useAccountId } from '@/hooks/useAccountId';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface CustomToolsSelectionDialogProps {
@@ -33,14 +32,12 @@ const CustomToolsSelectionDialog = ({
 }: CustomToolsSelectionDialogProps) => {
   const { t } = useLanguage('aiAgents');
   const navigate = useNavigate();
-  const accountId = useAccountId();
   const [customTools, setCustomTools] = useState<CustomTool[]>([]);
   const [selectedTools, setSelectedTools] = useState<CustomTool[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(false);
 
   const hasLoadedRef = useRef(false);
-  const lastAccountIdRef = useRef<string>('');
   const initialSelectionSetRef = useRef(false);
 
   // Initialize selected tools when dialog opens
@@ -59,7 +56,6 @@ const CustomToolsSelectionDialog = ({
       setSearchTerm('');
       setLoading(false);
       hasLoadedRef.current = false;
-      lastAccountIdRef.current = '';
       initialSelectionSetRef.current = false;
     }
   }, [open]);
@@ -68,9 +64,7 @@ const CustomToolsSelectionDialog = ({
   useEffect(() => {
     if (
       !open ||
-      !accountId ||
-      accountId.trim() === '' ||
-      (hasLoadedRef.current && lastAccountIdRef.current === accountId)
+      hasLoadedRef.current
     ) {
       return;
     }
@@ -79,7 +73,6 @@ const CustomToolsSelectionDialog = ({
       try {
         setLoading(true);
         hasLoadedRef.current = true;
-        lastAccountIdRef.current = accountId;
 
         const tools = await listCustomTools({ skip: 0, limit: 100 });
         setCustomTools(tools);
@@ -93,7 +86,7 @@ const CustomToolsSelectionDialog = ({
     };
 
     loadTools();
-  }, [open, accountId]);
+  }, [open]);
 
   const toggleTool = (tool: CustomTool) => {
     const isSelected = selectedTools.some(t => t.id === tool.id);

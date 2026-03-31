@@ -3,7 +3,6 @@ import { AuthProvider } from './contexts/AuthContext';
 import { DarkModeProvider } from './contexts/ThemeContext';
 import ImpersonationBar from './components/ImpersonationBar';
 import AppInitializer from './components/AppInitializer';
-import { OrganizationsProvider } from './contexts/OrganizationsContext';
 import { GlobalConfigProvider } from './contexts/GlobalConfigContext';
 import { NotificationsProvider } from './contexts/NotificationsContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
@@ -36,17 +35,15 @@ function App() {
         <GlobalConfigProvider>
           <WhitelabelApplier />
           <UISettingsApplier />
-          <OrganizationsProvider>
-            <PermissionsProvider>
-            <NotificationsProvider>
-              <AppInitializer>
-                <ImpersonationBar />
-                <AppRouter />
-                <ThemedToaster />
-              </AppInitializer>
-            </NotificationsProvider>
-            </PermissionsProvider>
-          </OrganizationsProvider>
+          <PermissionsProvider>
+          <NotificationsProvider>
+            <AppInitializer>
+              <ImpersonationBar />
+              <AppRouter />
+              <ThemedToaster />
+            </AppInitializer>
+          </NotificationsProvider>
+          </PermissionsProvider>
         </GlobalConfigProvider>
       </DarkModeProvider>
     </AuthProvider>

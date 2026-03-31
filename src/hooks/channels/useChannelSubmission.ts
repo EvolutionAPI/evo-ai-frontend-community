@@ -26,12 +26,12 @@ import TwilioService from '@/services/channels/twilioService';
 import NotificameService from '@/services/channels/notificameService';
 import { ChannelType, FormData } from '@/hooks/channels/useChannelForm';
 import { useChannelValidation } from '@/hooks/channels/useChannelValidation';
-import { useAccountStore } from '@/store/accountStore';
+import { useAppDataStore } from '@/store/appDataStore';
 
 export const useChannelSubmission = (form?: FormData) => {
   const navigate = useNavigate();
   const { validateByChannelAndProvider, getStr } = useChannelValidation();
-  const { addInbox } = useAccountStore();
+  const { addInbox } = useAppDataStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isTesting, setIsTesting] = useState(false);
   const [healthCheckPassed, setHealthCheckPassed] = useState<boolean | null>(null);

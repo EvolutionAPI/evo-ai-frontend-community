@@ -139,7 +139,6 @@ describe('ScheduleActionModal', () => {
       <ScheduleActionModal
         open
         onClose={vi.fn()}
-        accountId="acc-1"
       />
     );
 

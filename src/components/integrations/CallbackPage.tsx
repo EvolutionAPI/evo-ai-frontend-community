@@ -10,8 +10,8 @@ import { cn } from '@/lib/utils';
 
 interface CallbackPageProps {
   integrationName: string;
-  onCallback: (code: string, state: string, accountId?: string, agentId?: string) => Promise<{ success: boolean; error?: string; username?: string;[key: string]: any }>;
-  onSuccess?: (response: any, accountId: string, agentId: string) => Promise<void> | void;
+  onCallback: (code: string, state: string, agentId?: string) => Promise<{ success: boolean; error?: string; username?: string;[key: string]: any }>;
+  onSuccess?: (response: any, agentId: string) => Promise<void> | void;
   redirectPath?: string | ((agentId: string) => string);
   iconPath?: string;
   iconPathDark?: string;
@@ -62,14 +62,12 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
 
       setMessage(t('callback.processing.message', { name: integrationName }));
 
-      // Decode the base64url state to get account_id and agent_id (if available)
-      let accountIdFromState: string | undefined;
+      // Decode the base64url state to get agent_id (if available)
       let agentIdFromState: string | undefined;
 
       try {
         const decodedState = atob(state.replace(/-/g, '+').replace(/_/g, '/'));
         const payload = JSON.parse(decodedState);
-        accountIdFromState = payload.account_id;
         agentIdFromState = payload.agent_id;
       } catch (e) {
         // Some integrations use different state structures - let onCallback handle it
@@ -78,7 +76,7 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
 
       // Call the provided callback function
       // Pass empty strings if not found - callback can decode state itself if needed
-      const response = await onCallback(code, state, accountIdFromState || '', agentIdFromState || '');
+      const response = await onCallback(code, state, agentIdFromState || '');
 
       if (response.success) {
         setStatus('success');
@@ -88,8 +86,8 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
         toast.success(t('callback.success.message', { name: integrationName, username: '' }));
 
         // Execute custom success callback if provided
-        if (onSuccess && accountIdFromState && agentIdFromState) {
-          await onSuccess(response, accountIdFromState, agentIdFromState);
+        if (onSuccess && agentIdFromState) {
+          await onSuccess(response, agentIdFromState);
         }
 
         // Redirect after success

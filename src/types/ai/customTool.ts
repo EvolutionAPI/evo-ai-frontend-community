@@ -1,7 +1,6 @@
 import type { PaginationMeta } from '@/types/core';
 
 export interface CustomTool {
-  account_id: string;
   body_params: Record<string, unknown>;
   created_at: string;
   description: string;
@@ -64,7 +63,6 @@ export interface CustomToolTestResponse {
     success: boolean;
   };
   tools: {
-    account_id: string;
     body_params: Record<string, unknown>;
     created_at: string;
     description: string;
@@ -78,7 +76,7 @@ export interface CustomToolTestResponse {
     name: string;
     output_modes: string[];
     path_params: Record<string, string>;
-    query_params: Record<string, unknown>;  
+    query_params: Record<string, unknown>;
     tags: string[];
     updated_at: string;
     values: Record<string, string>;
@@ -138,7 +136,6 @@ export interface CustomToolTestResponse {
     success: boolean;
   };
   tools: {
-    account_id: string;
     body_params: Record<string, unknown>;
     created_at: string;
     description: string;

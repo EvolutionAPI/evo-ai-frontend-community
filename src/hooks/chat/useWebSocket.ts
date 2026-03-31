@@ -4,7 +4,6 @@ import {
   ChatEventHandlers,
 } from '@/services/chat/websocket/ChatActionCableConnector';
 import { ConnectionParams } from '@/services/chat/websocket/BaseActionCableConnector';
-import { useAccountId } from '@/hooks/useAccountId';
 
 export interface UseWebSocketOptions {
   enabled?: boolean;
@@ -49,7 +48,6 @@ export const useWebSocket = (
 ): UseWebSocketReturn => {
   const { enabled = true, websocketHost, handlers = {}, autoConnect = true } = options;
 
-  const accountId = useAccountId();
   const connectorRef = useRef<ChatActionCableConnector | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const handlersRef = useRef(handlers);
@@ -66,12 +64,11 @@ export const useWebSocket = (
    * Conectar ao WebSocket
    */
   const connect = useCallback(() => {
-    if (!enabled || !userId || !pubsubToken || !accountId) {
+    if (!enabled || !userId || !pubsubToken) {
       console.warn('⚠️ WebSocket não pode conectar - parâmetros insuficientes:', {
         enabled,
         userId: !!userId,
         pubsubToken: !!pubsubToken,
-        accountId: !!accountId,
       });
       return;
     }
@@ -85,7 +82,6 @@ export const useWebSocket = (
       const connectionParams: ConnectionParams = {
         channel: 'RoomChannel', // Canal padrão do Evolution
         pubsub_token: pubsubToken,
-        account_id: accountId,
         user_id: userId,
       };
 
@@ -118,7 +114,7 @@ export const useWebSocket = (
       console.error('❌ Erro ao conectar WebSocket:', error);
       setIsConnected(false);
     }
-  }, [enabled, userId, pubsubToken, accountId, websocketHost]);
+  }, [enabled, userId, pubsubToken, websocketHost]);
 
   /**
    * Desconectar do WebSocket
@@ -181,7 +177,7 @@ export const useWebSocket = (
    * Conectar automaticamente quando parâmetros estiverem disponíveis
    */
   useEffect(() => {
-    if (autoConnect && enabled && userId && pubsubToken && accountId) {
+    if (autoConnect && enabled && userId && pubsubToken) {
       connect();
     }
 
@@ -192,7 +188,7 @@ export const useWebSocket = (
         connectorRef.current = null;
       }
     };
-  }, [autoConnect, enabled, userId, pubsubToken, accountId, connect]);
+  }, [autoConnect, enabled, userId, pubsubToken, connect]);
 
   /**
    * Verificar conexão periodicamente

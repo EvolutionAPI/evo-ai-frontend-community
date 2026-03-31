@@ -19,7 +19,6 @@ export interface Integration {
 export interface IntegrationHook {
   id: string;
   app_id: string;
-  account_id: string;
   inbox_id?: string;
   settings?: Record<string, any>;
   status?: boolean;

@@ -19,7 +19,6 @@ import {
 
 import { useLanguage } from '../../hooks/useLanguage';
 import { useAuth } from '../../contexts/AuthContext';
-import { useOrganizations } from '../../contexts/OrganizationsContext';
 import { usePermissions } from '@/contexts/PermissionsContext';
 import { useMenuState } from '@/hooks/useMenuState';
 import { useDashboardApps } from '@/hooks/useDashboardApps';
@@ -32,8 +31,6 @@ interface MainLayoutProps {
 export default function MainLayout({ children }: MainLayoutProps) {
   const { t } = useLanguage('layout');
   const { user, logout } = useAuth();
-  const { organizations, organizationSelected, switchAccount, loadAccountsFromUser } =
-    useOrganizations();
   const { can, canAny, canAll } = usePermissions();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,13 +48,6 @@ export default function MainLayout({ children }: MainLayoutProps) {
     autoLoad: false, // Não carregar automaticamente
     loadDelay: 0
   });
-
-  // Carregar contas do usuário quando ele estiver logado
-  useEffect(() => {
-    if (user && user.accounts && user.accounts.length > 0) {
-      loadAccountsFromUser(user.accounts);
-    }
-  }, [user, loadAccountsFromUser]);
 
   // Load saved sidebar state
   useEffect(() => {
@@ -125,14 +115,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
         user={user}
         isCollapsed={isCollapsed}
         isMobileMenuOpen={isMobileMenuOpen}
-        organizations={organizations}
-        organizationSelected={organizationSelected || null}
         menuItems={menuItems}
         activeMenu={menuState.activeMenu}
         pathname={pathname}
         toggleSidebar={toggleSidebar}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
-        switchAccount={switchAccount}
         setLogoutDialogOpen={setLogoutDialogOpen}
         isMenuItemActive={menuState.isMenuItemActive}
         isMenuWithSubItemsActive={menuState.isMenuWithSubItemsActive}

@@ -4,15 +4,13 @@ class ActionCableService {
   private consumer: Consumer | null = null;
   private subscriptions: Map<string, Subscription> = new Map();
   private pubsubToken: string | null = null;
-  private accountId: string | null = null;
   private userId: string | null = null;
   private reconnectAttempts = 0;
   private maxReconnectAttempts = 5;
   private reconnectDelay = 1000; // Start with 1 second
 
-  init(pubsubToken: string, accountId: string, userId: string) {
+  init(pubsubToken: string, userId: string) {
     this.pubsubToken = pubsubToken;
-    this.accountId = accountId;
     this.userId = userId;
 
     // Create WebSocket connection
@@ -37,7 +35,6 @@ class ActionCableService {
       {
         channel: 'RoomChannel',
         pubsub_token: this.pubsubToken,
-        account_id: this.accountId,
         user_id: this.userId,
       },
       {
@@ -148,12 +145,12 @@ class ActionCableService {
   }
 
   private reconnect() {
-    if (this.pubsubToken && this.accountId && this.userId) {
+    if (this.pubsubToken && this.userId) {
       console.error(
         `Reconnection attempt ${this.reconnectAttempts + 1}/${this.maxReconnectAttempts}`,
       );
       this.disconnect();
-      this.init(this.pubsubToken, this.accountId, this.userId);
+      this.init(this.pubsubToken, this.userId);
     }
   }
 

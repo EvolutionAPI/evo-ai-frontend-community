@@ -8,7 +8,6 @@ import type { PaginatedResponse, PaginationMeta, StandardResponse } from '@/type
 
 export interface Channel {
   id: string;
-  account_id: string;
   phone_number: string;
   provider: string;
   provider_config: Record<string, unknown>;
@@ -18,7 +17,6 @@ export interface Channel {
 export interface Inbox {
   id: string;
   name: string;
-  account_id: string;
   channel_id: string;
   display_name?: string;
   channel_type: string;
@@ -370,7 +368,6 @@ export interface AgentChannel {
   role: Role;
   availability_status: string;
   confirmed: boolean;
-  account_id: string;
   ui_flags: {
     is_creating: boolean;
     is_fetching: boolean;
@@ -775,7 +772,6 @@ export type MessageTemplateDeleteResponse = StandardResponse<{ message: string }
 
 export interface FacebookCommentModeration {
   id: string;
-  account_id: string;
   conversation_id: string;
   message_id: string;
   comment_id: string;

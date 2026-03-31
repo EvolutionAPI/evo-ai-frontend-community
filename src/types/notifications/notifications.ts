@@ -39,7 +39,6 @@ export interface UnreadCountResponse {
 export interface NotificationSettings {
   id: string;
   user_id: string;
-  account_id: string;
   all_email_flags: string[];
   selected_email_flags: string[];
   all_push_flags: string[];

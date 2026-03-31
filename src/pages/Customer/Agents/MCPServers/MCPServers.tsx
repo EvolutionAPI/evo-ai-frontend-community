@@ -5,8 +5,6 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { Grid3X3, List, Server } from 'lucide-react';
 import EmptyState from '@/components/base/EmptyState';
-import { useAccountId } from '@/hooks/useAccountId';
-
 import { MCPServer, MCPServersState, MCPServersListParams } from '@/types/ai';
 import { MCPServerCard } from '@/components/mcpServers';
 
@@ -39,7 +37,6 @@ const INITIAL_STATE: MCPServersState = {
 };
 
 export default function MCPServers() {
-  const accountId = useAccountId();
   const { t } = useLanguage('customerMcpServers');
   const { can, isReady: permissionsReady } = useUserPermissions();
   const [state, setState] = useState<MCPServersState>(INITIAL_STATE);
@@ -55,11 +52,6 @@ export default function MCPServers() {
         toast.error(t('errors.permissionDenied'));
         return;
       }
-      if (!accountId) {
-        console.error(t('errors.accountNotFound'));
-        return;
-      }
-
       setState(prev => ({ ...prev, loading: { ...prev.loading, list: true } }));
 
       try {
@@ -90,7 +82,7 @@ export default function MCPServers() {
         setState(prev => ({ ...prev, loading: { ...prev.loading, list: false } }));
       }
     },
-    [accountId, can, t],
+    [can, t],
   );
 
   // Initial load

@@ -2,7 +2,6 @@ import React, { createContext, useContext, useReducer, useCallback, useEffect } 
 import { toast } from 'sonner';
 import { useWebSocket } from '@/hooks/chat/useWebSocket';
 import { useAuth } from '@/contexts/AuthContext';
-import { useOrganizations } from '@/contexts/OrganizationsContext';
 import { Message, Conversation, MessageSender, MessageTypeValue, Attachment } from '@/types/chat/api';
 import { useLanguage } from '@/hooks/useLanguage';
 import {
@@ -87,7 +86,6 @@ function mapAttachments(
         id: wsAttachment.id,
         message_id: wsAttachment.message_id,
         file_type: mapFileType(wsAttachment.file_type),
-        account_id: wsAttachment.account_id,
         extension: wsAttachment.extension || null,
         data_url: dataUrl, // 🔒 GARANTIR: sempre string válida, preservando URL quando existir
         thumb_url: thumbUrl, // 🔒 GARANTIR: preservar thumb_url quando existir
@@ -214,7 +212,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
 
   // Obter dados do usuário atual
   const { user } = useAuth();
-  const { organizationSelected } = useOrganizations();
 
   // Handlers externos (será registrado pelos outros contextos)
   const handlersRef = React.useRef<WebSocketHandlers>({});
@@ -228,7 +225,7 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
     user?.id || '', // ✅ ID real do usuário
     user?.pubsub_token || '', // ✅ Token real do usuário
     {
-      enabled: !!(user?.id && user?.pubsub_token && organizationSelected?.id), // ✅ Habilitado condicionalmente
+      enabled: !!(user?.id && user?.pubsub_token), // ✅ Habilitado condicionalmente
       websocketHost: import.meta.env.VITE_API_URL, // ✅ Host correto da API
       handlers: {
         onMessageCreated: useCallback((data: MessageCreatedEvent) => {
@@ -366,7 +363,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
               pipeline_id: null,
               updated_at: data.updated_at,
               last_activity_at: data.last_activity_at,
-              account_id: data.account_id,
               inbox_id: data.inbox_id,
               assignee_id: data.assignee_id,
               team_id: data.team_id,
@@ -412,8 +408,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                     email: '',
                     role: undefined,
                     confirmed: false,
-                    accounts: [],
-                    account_id: data.account_id,
                     created_at: data.created_at,
                     updated_at: data.updated_at,
                     permissions: [],
@@ -425,7 +419,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                     name: data.meta.team.name,
                     description: '',
                     allow_auto_assign: true,
-                    account_id: data.account_id,
                     is_member: false,
                   }
                 : null,
@@ -440,7 +433,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                 enable_email_collect: false,
                 csat_survey_enabled: false,
                 enable_auto_assignment: false,
-                account_id: data.account_id,
                 avatar_url: undefined,
                 provider: data.meta.provider || '',
               },
@@ -450,7 +442,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                 description: '',
                 color: '#000000',
                 show_on_sidebar: false,
-                account_id: data.account_id,
                 created_at: data.created_at,
                 updated_at: data.updated_at,
               })),
@@ -536,7 +527,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
             created_at: data.created_at,
             updated_at: data.updated_at,
             last_activity_at: data.last_activity_at,
-            account_id: data.account_id,
             inbox_id: data.inbox_id,
             assignee_id: data.assignee_id,
             team_id: data.team_id,
@@ -568,8 +558,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                     email: '',
                     role: undefined,
                     confirmed: false,
-                    accounts: [],
-                    account_id: data.account_id,
                     created_at: data.created_at,
                     updated_at: data.updated_at,
                     permissions: [],
@@ -583,7 +571,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                     name: data.meta.team.name,
                     description: '',
                     allow_auto_assign: true,
-                    account_id: data.account_id,
                     is_member: false,
                   },
                 }
@@ -597,7 +584,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                     description: '',
                     color: '',
                     show_on_sidebar: false,
-                    account_id: data.account_id,
                     created_at: data.created_at,
                     updated_at: data.updated_at,
                   };
@@ -608,7 +594,6 @@ export function WebSocketProvider({ children }: { children: React.ReactNode }) {
                   description: String(label.description || ''),
                   color: String(label.color || ''),
                   show_on_sidebar: Boolean(label.show_on_sidebar),
-                  account_id: data.account_id,
                   created_at: String(label.created_at || data.created_at),
                   updated_at: String(label.updated_at || data.updated_at),
                 };

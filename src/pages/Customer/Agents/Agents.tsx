@@ -9,7 +9,6 @@ import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { getAccessibleAgents, deleteAgent } from '@/services/agents';
 import { Agent } from '@/types/agents';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAccountId } from '@/hooks/useAccountId';
 import { ApiKeysModal } from '@/components/ApiKeysModal';
 import { exportAsJson, generateExportFilename } from '@/utils/exportUtils';
 import { useDarkMode } from '@/hooks/useDarkMode';
@@ -43,7 +42,6 @@ const Agentes = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useLanguage('agents');
-  const accountId = useAccountId();
   const { can, isReady: permissionsReady, loading: permissionsLoading } = useUserPermissions();
   useDarkMode();
 
@@ -64,7 +62,7 @@ const Agentes = () => {
 
   const loadAgents = useCallback(
     async (params?: { page?: number; per_page?: number }) => {
-      if (!accountId || loadingRef.current || permissionsLoading || !permissionsReady) {
+      if (loadingRef.current || permissionsLoading || !permissionsReady) {
         return;
       }
 
@@ -113,7 +111,7 @@ const Agentes = () => {
         loadingRef.current = false;
       }
     },
-    [accountId, permissionsReady, permissionsLoading, can, t],
+    [permissionsReady, permissionsLoading, can, t],
   );
 
   useEffect(() => {
@@ -121,14 +119,14 @@ const Agentes = () => {
   }, [loadAgents]);
 
   useEffect(() => {
-    if (!permissionsReady || !accountId) {
+    if (!permissionsReady) {
       return;
     }
 
     if (loadAgentsRef.current) {
       loadAgentsRef.current();
     }
-  }, [permissionsReady, permissionsLoading, accountId]);
+  }, [permissionsReady, permissionsLoading]);
 
   const handleExportAllAgents = () => {
     try {
@@ -180,7 +178,6 @@ const Agentes = () => {
 
     try {
       setIsDeleting(true);
-      if (!accountId) return;
       await deleteAgent(agentToDelete.id);
 
       setState(prev => ({

@@ -34,7 +34,6 @@ interface PermissionsProviderProps {
 
 export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ children }) => {
   const { user } = useAuth();
-  const { currentAccountId } = useAuthStore();
 
   const [userPermissions, setUserPermissions] = useState<string[]>([]);
   const [accountPermissions, setAccountPermissions] = useState<string[]>([]);
@@ -66,22 +65,9 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
     loadConfig();
   }, []);
 
-  // ⚡ OTIMIZAÇÃO: Se há currentAccountId, não carregar userPermissions separadamente
-  // accountPermissions já contém as mesmas permissões, então reutilizamos
-  // Load user permissions apenas se NÃO há currentAccountId
+  // Load user permissions
   useEffect(() => {
-    // Se há currentAccountId, não carregar userPermissions (será reutilizado de accountPermissions)
-    if (currentAccountId) {
-      return;
-    }
-
     if (!user?.id) {
-      setUserPermissions([]);
-      return;
-    }
-
-    // Usuário sem accounts ainda — não há permissões a carregar
-    if (!user.accounts || user.accounts.length === 0) {
       setUserPermissions([]);
       return;
     }
@@ -108,7 +94,7 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
     };
 
     loadUserPermissions();
-  }, [user?.id, currentAccountId]);
+  }, [user?.id]);
 
   // Load account permissions (específicas do account baseadas no AccountUser role)
   useEffect(() => {
@@ -119,21 +105,12 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
       return;
     }
 
-    if (!currentAccountId) {
-      setAccountPermissions([]);
-      return;
-    }
-
     // ⚡ Proteção: não carregar se já tem permissões (evita recarregar desnecessariamente)
     if (accountPermissions.length > 0) {
       return;
     }
 
-
     const loadAccountPermissions = async () => {
-      // Capturar currentAccountId no início para evitar problemas de closure
-      const accountIdToLoad = currentAccountId;
-
       try {
         const isAuthenticated = useAuthStore.getState().isLoggedIn;
 
@@ -144,15 +121,9 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
 
         setLoading(true);
         setError(null);
-        const permissions = await permissionsService.getAccountPermissions(accountIdToLoad);
+        const permissions = await permissionsService.getAccountPermissions();
 
         setAccountPermissions(permissions);
-
-        // ⚡ OTIMIZAÇÃO: Se há currentAccountId, reutilizar accountPermissions como userPermissions
-        // Isso evita fazer uma segunda chamada, já que ambas retornam as mesmas permissões
-        if (currentAccountId === accountIdToLoad) {
-          setUserPermissions(permissions);
-        }
       } catch (error) {
         console.error('Erro ao carregar permissões do account:', error);
         setError('Erro ao carregar permissões do account');
@@ -163,7 +134,7 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
     };
 
     loadAccountPermissions();
-  }, [currentAccountId, user, accountPermissions.length]);
+  }, [user, accountPermissions.length]);
 
   const createPermission = useCallback((resource: string, action: string): string => {
     return `${resource}.${action}`;
@@ -250,12 +221,9 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
       const userPerms = await permissionsService.getUserPermissions(true);
       setUserPermissions(userPerms);
 
-      // Carregar account permissions se houver currentAccountId
-      const currentAccountId = useAuthStore.getState().currentAccountId;
-      if (currentAccountId) {
-        const accountPerms = await permissionsService.getAccountPermissions(currentAccountId, true);
-        setAccountPermissions(accountPerms);
-      }
+      // Carregar account permissions
+      const accountPerms = await permissionsService.getAccountPermissions(true);
+      setAccountPermissions(accountPerms);
     } catch {
       setError('Erro ao recarregar permissões');
     } finally {

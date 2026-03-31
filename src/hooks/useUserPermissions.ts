@@ -4,7 +4,6 @@ import { useAuthStore } from '@/store/authStore';
 import { usePermissionsConfig } from '@/hooks/usePermissionsConfig';
 import { permissionsService } from '@/services/permissions';
 import { PermissionsContext } from '@/contexts/PermissionsContext';
-import { useAccountId } from '@/hooks/useAccountId';
 
 /**
  * Hook para verificar permissões do usuário logado
@@ -16,7 +15,6 @@ import { useAccountId } from '@/hooks/useAccountId';
  */
 export const useUserPermissions = () => {
   const { user } = useAuth();
-  const accountId = useAccountId();
   const {
     isValidPermission,
     createPermission,
@@ -105,12 +103,7 @@ export const useUserPermissions = () => {
 
         setPermissionsLoading(true);
         setPermissionsError(null);
-        if (!accountId) {
-          setAccountPermissions([]);
-          setPermissionsLoading(false);
-          return;
-        }
-        const permissions = await permissionsService.getAccountPermissions(accountId);
+        const permissions = await permissionsService.getAccountPermissions();
         setAccountPermissions(permissions);
       } catch (err) {
         console.error('Erro ao carregar permissões do account:', err);
@@ -122,7 +115,7 @@ export const useUserPermissions = () => {
     };
 
     loadAccountPermissions();
-  }, [user?.id, accountId, permissionsContextValue]);
+  }, [user?.id, permissionsContextValue]);
 
   // Estados combinados
   const loading = configLoading || effectiveLoading;
@@ -229,7 +222,7 @@ export const useUserPermissions = () => {
    * Estado que indica se as permissões estão prontas para uso
    * Super admin está sempre pronto
    * Usuários comuns precisam:
-   * 1. Ter permissões carregadas (accountPermissions quando há currentAccountId, senão userPermissions)
+   * 1. Ter permissões carregadas (accountPermissions ou userPermissions)
    * 2. Ter configs de permissões carregadas (!configLoading)
    * 3. Não estar mais carregando (!permissionsLoading)
    * Isso garante que isValidPermission() funcione corretamente
@@ -252,13 +245,9 @@ export const useUserPermissions = () => {
         const userPerms = await permissionsService.getUserPermissions(true);
         setUserPermissions(userPerms);
 
-        // Carregar permissões de account se houver account atual
-        if (accountId) {
-          const accountPerms = await permissionsService.getAccountPermissions(accountId, true);
-          setAccountPermissions(accountPerms);
-        } else {
-          setAccountPermissions([]);
-        }
+        // Carregar permissões de account
+        const accountPerms = await permissionsService.getAccountPermissions(true);
+        setAccountPermissions(accountPerms);
       } catch (err) {
         console.error('Erro ao recarregar permissões:', err);
         setPermissionsError('Erro ao recarregar permissões');

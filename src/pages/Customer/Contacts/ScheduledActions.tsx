@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
-import { useAccountId } from '@/hooks/useAccountId';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { scheduledActionsService } from '@/services/scheduledActions/scheduledActionsService';
 import { ScheduledAction } from '@/types/automation';
@@ -49,7 +48,6 @@ const INITIAL_STATE: ScheduledActionsState = {
 export default function ScheduledActions() {
   const { t } = useLanguage('contacts');
   const navigate = useNavigate();
-  const accountId = useAccountId();
   const { can, isReady: permissionsReady } = useUserPermissions();
   const [state, setState] = useState<ScheduledActionsState>(INITIAL_STATE);
   const [modalOpen, setModalOpen] = useState(false);
@@ -60,7 +58,6 @@ export default function ScheduledActions() {
   // Load scheduled actions
   const loadActions = useCallback(
     async (params?: { page?: number; per_page?: number; status?: string; search?: string }) => {
-      if (!accountId) return;
 
       setState(prev => ({ ...prev, loading: { ...prev.loading, list: true } }));
 
@@ -102,14 +99,14 @@ export default function ScheduledActions() {
         setState(prev => ({ ...prev, loading: { ...prev.loading, list: false } }));
       }
     },
-    [accountId, state.meta.current_page, state.meta.per_page, state.statusFilter, state.searchQuery, t],
+    [state.meta.current_page, state.meta.per_page, state.statusFilter, state.searchQuery, t],
   );
 
   // Initial load
   useEffect(() => {
     if (!permissionsReady) return;
 
-    if (accountId && !hasLoaded.current) {
+    if (!hasLoaded.current) {
       if (!can('contacts', 'read')) {
         toast.error('Você não tem permissão para visualizar ações agendadas');
         return;
@@ -117,7 +114,7 @@ export default function ScheduledActions() {
       hasLoaded.current = true;
       loadActions();
     }
-  }, [accountId, permissionsReady, can, loadActions]);
+  }, [permissionsReady, can, loadActions]);
 
   // Set up interval to update countdown every second
   useEffect(() => {
@@ -161,8 +158,6 @@ export default function ScheduledActions() {
   };
 
   const handleCancel = async (actionId: string) => {
-    if (!accountId) return;
-
     try {
       await scheduledActionsService.cancel(actionId);
       toast.success(t('scheduledActions.messages.cancelled'));
@@ -198,7 +193,7 @@ export default function ScheduledActions() {
   };
 
   const handleBulkCancel = async () => {
-    if (!accountId || state.selectedActionIds.length === 0) return;
+    if (state.selectedActionIds.length === 0) return;
 
     try {
       await Promise.all(
@@ -281,11 +276,10 @@ export default function ScheduledActions() {
         </>
       )}
 
-      {modalOpen && accountId && (
+      {modalOpen && (
         <ScheduleActionModal
           open={modalOpen}
           onClose={handleModalClose}
-          accountId={accountId}
           contactId={editingAction?.contact_id}
           action={editingAction}
         />

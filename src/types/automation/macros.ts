@@ -10,7 +10,6 @@ export interface Macro {
   id: string;
   name: string;
   visibility: 'personal' | 'global';
-  account_id: string;
   actions: MacroAction[];
   created_by?: User;
   updated_by?: User;
@@ -23,7 +22,6 @@ export interface MacroFile {
   id: string;
   macro_id: string;
   file_type: string;
-  account_id: string;
   file_url: string;
   blob_id: string;
   filename: string;
