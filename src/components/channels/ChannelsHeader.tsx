@@ -27,6 +27,7 @@ export default function ChannelsHeader({
     label: t('actions.newChannel'),
     icon: <Plus className="h-4 w-4" />,
     onClick: onNewChannel,
+    dataTour: 'channels-new-button',
   } : undefined;
 
   return (

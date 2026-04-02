@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { SettingsAgentsTour } from '@/tours';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -389,23 +390,26 @@ export default function Users() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <UsersHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedUserIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewUser={handleCreateUser}
-        onBulkInvite={handleBulkInvite}
-        onFilter={handleOpenFilter}
-        onBulkDelete={handleBulkDelete}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedUserIds: [] }))}
-        activeFilters={appliedFilters}
-        showFilters={true}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-agents-page">
+      <SettingsAgentsTour />
+      <div data-tour="settings-agents-header">
+        <UsersHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedUserIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewUser={handleCreateUser}
+          onBulkInvite={handleBulkInvite}
+          onFilter={handleOpenFilter}
+          onBulkDelete={handleBulkDelete}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedUserIds: [] }))}
+          activeFilters={appliedFilters}
+          showFilters={true}
+        />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="settings-agents-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -427,7 +431,7 @@ export default function Users() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="settings-agents-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading')}</div>
@@ -485,7 +489,7 @@ export default function Users() {
 
       {/* Pagination */}
       {state.meta.pagination.total > 0 && (
-        <div className="mt-auto pt-4 border-t border-sidebar-border">
+        <div className="mt-auto pt-4 border-t border-sidebar-border" data-tour="settings-agents-pagination">
           <UsersPagination
             currentPage={state.meta.pagination.page}
             totalPages={state.meta.pagination.total_pages}

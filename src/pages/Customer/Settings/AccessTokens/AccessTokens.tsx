@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
+import { SettingsAccessTokensTour } from '@/tours';
 import {
   Dialog,
   DialogContent,
@@ -383,20 +384,23 @@ export default function AccessTokens() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <AccessTokensHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedTokenIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewToken={handleCreateToken}
-        onBulkDelete={handleBulkDelete}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedTokenIds: [] }))}
-        showBulkActions={state.selectedTokenIds.length > 0}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-access-tokens-page">
+      <SettingsAccessTokensTour />
+      <div data-tour="settings-access-tokens-header">
+        <AccessTokensHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedTokenIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewToken={handleCreateToken}
+          onBulkDelete={handleBulkDelete}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedTokenIds: [] }))}
+          showBulkActions={state.selectedTokenIds.length > 0}
+        />
+      </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto mt-6">
+      <div className="flex-1 overflow-auto mt-6" data-tour="settings-access-tokens-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('messages.loading')}</div>

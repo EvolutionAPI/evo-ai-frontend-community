@@ -261,6 +261,12 @@ import itApi from './locales/it/api.json';
 import itInstagram from './locales/it/instagram.json';
 import itMessenger from './locales/it/messenger.json';
 import itCustomerDashboard from './locales/it/customerDashboard.json';
+import ptBRTours from './locales/pt-BR/tours.json';
+import ptTours from './locales/pt/tours.json';
+import enTours from './locales/en/tours.json';
+import esTours from './locales/es/tours.json';
+import frTours from './locales/fr/tours.json';
+import itTours from './locales/it/tours.json';
 export const locales = ['en', 'pt-BR', 'pt', 'fr', 'it', 'es'] as const;
 export const defaultLocale = 'en' as const;
 
@@ -341,6 +347,7 @@ const resources = {
     instagram: ptBRInstagram,
     messenger: ptBRMessenger,
     customerDashboard: ptBRCustomerDashboard,
+    tours: ptBRTours,
   },
   pt: {
     auth: ptAuth,
@@ -386,6 +393,7 @@ const resources = {
     instagram: ptInstagram,
     messenger: ptMessenger,
     customerDashboard: ptCustomerDashboard,
+    tours: ptTours,
   },
   en: {
     auth: enAuth,
@@ -432,6 +440,7 @@ const resources = {
     instagram: enInstagram,
     messenger: enMessenger,
     customerDashboard: enCustomerDashboard,
+    tours: enTours,
   },
   es: {
     auth: esAuth,
@@ -477,6 +486,7 @@ const resources = {
     instagram: esInstagram,
     messenger: esMessenger,
     customerDashboard: esCustomerDashboard,
+    tours: esTours,
   },
   fr: {
     auth: frAuth,
@@ -522,6 +532,7 @@ const resources = {
     instagram: frInstagram,
     messenger: frMessenger,
     customerDashboard: frCustomerDashboard,
+    tours: frTours,
   },
   it: {
     auth: itAuth,
@@ -567,6 +578,7 @@ const resources = {
     instagram: itInstagram,
     messenger: itMessenger,
     customerDashboard: itCustomerDashboard,
+    tours: itTours,
   },
 };
 

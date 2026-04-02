@@ -1,0 +1,203 @@
+{
+  "welcome": {
+    "title": "¡Bienvenido a EvoAI!",
+    "description": "¿Te gustaría hacer un tour guiado para conocer las funcionalidades de la plataforma?",
+    "startButton": "Iniciar tour guiado",
+    "skipButton": "Prefiero explorar por mi cuenta"
+  },
+  "stepOf": "{{current}} de {{total}}",
+  "next": "Siguiente",
+  "back": "Anterior",
+  "finish": "Finalizar",
+  "close": "Cerrar",
+  "dashboard": {
+    "step1": {
+      "title": "¡Bienvenido al Dashboard!",
+      "content": "Este es el panel principal de la plataforma. Aquí puedes seguir las métricas más importantes de tu negocio en tiempo real."
+    },
+    "step2": {
+      "title": "Filtros",
+      "content": "Usa los filtros para segmentar los datos por canal, agente, equipo u otros criterios."
+    },
+    "step3": {
+      "title": "Período de Análisis",
+      "content": "Selecciona el período que deseas analizar: hoy, últimos 7 días, 30 días o un intervalo personalizado."
+    },
+    "step4": {
+      "title": "Métricas Principales",
+      "content": "Ve los indicadores clave: total de conversaciones, mensajes enviados, tasa de resolución y tiempo promedio de respuesta."
+    },
+    "step5": {
+      "title": "Tendencias",
+      "content": "Los gráficos de tendencia muestran la evolución de las métricas a lo largo del tiempo para identificar patrones."
+    },
+    "step6": {
+      "title": "Rendimiento",
+      "content": "Sigue el rendimiento de tu equipo con clasificaciones, tasas de satisfacción y distribución de atenciones."
+    }
+  },
+  "conversations": {
+    "step1": {
+      "title": "Tus Conversaciones",
+      "content": "Aquí están todas las conversaciones de tu equipo. Selecciona una para comenzar a atender."
+    },
+    "step2": {
+      "title": "Buscar Conversaciones",
+      "content": "Busca conversaciones por el nombre del contacto o por el contenido del mensaje."
+    },
+    "step3": {
+      "title": "Filtros de Conversación",
+      "content": "Filtra las conversaciones por estado (abierta, resuelta, pendiente), agente asignado, equipo o canal de atención."
+    },
+    "step4": {
+      "title": "Lista de Conversaciones",
+      "content": "Haz clic en cualquier conversación para abrirla. El punto azul indica mensajes no leídos. Haz clic derecho para acciones rápidas."
+    },
+    "step5": {
+      "title": "Área de Atención",
+      "content": "Al seleccionar una conversación, el historial de mensajes aparece aquí. En la parte superior encontrarás información del contacto y acciones como resolver, pausar y transferir."
+    }
+  },
+  "contacts": {
+    "step1": {
+      "title": "Gestión de Contactos",
+      "content": "Aquí gestionas todos los contactos de tu base de datos. Usa la búsqueda para encontrar un contacto rápidamente."
+    },
+    "step2": {
+      "title": "Crear Contacto",
+      "content": "Haz clic aquí para agregar un nuevo contacto manualmente. También puedes importar una lista en CSV o exportar tu base de datos."
+    },
+    "step3": {
+      "title": "Filtros Avanzados",
+      "content": "Filtra tu base por atributos como correo electrónico, teléfono, etiqueta, pipeline o cualquier campo personalizado."
+    },
+    "step4": {
+      "title": "Modo de Visualización",
+      "content": "Alterna entre visualización en tarjetas (cuadrícula) o tabla según tu preferencia."
+    },
+    "step5": {
+      "title": "Lista de Contactos",
+      "content": "Haz clic en un contacto para ver detalles, iniciar una conversación, editar o eliminar. Selecciona múltiples para acciones en lote."
+    },
+    "step6": {
+      "title": "Navegación entre Páginas",
+      "content": "Navega entre las páginas de tu base de contactos y ajusta cuántos registros se muestran por página."
+    }
+  },
+  "agents": {
+    "step1": {
+      "title": "Gestión de Agentes",
+      "content": "Aquí gestionas todos tus agentes de IA. Usa la búsqueda para encontrar un agente rápidamente."
+    },
+    "step2": {
+      "title": "Crear Agente",
+      "content": "Haz clic aquí para crear un nuevo agente de IA. El asistente te guiará paso a paso en la configuración."
+    },
+    "step3": {
+      "title": "Claves de API",
+      "content": "Gestiona las claves de API para integrar tus agentes con otros sistemas y plataformas."
+    },
+    "step4": {
+      "title": "Modo de Visualización",
+      "content": "Alterna entre visualización en tarjetas (cuadrícula) o tabla según tu preferencia."
+    },
+    "step5": {
+      "title": "Lista de Agentes",
+      "content": "Ve todos tus agentes aquí. Haz clic en editar para configurar comportamientos, integraciones y la personalidad del agente."
+    }
+  },
+  "channels": {
+    "step1": {
+      "title": "Gestión de Canales",
+      "content": "Aquí gestionas todos los canales de comunicación conectados. Usa la búsqueda para encontrar un canal rápidamente."
+    },
+    "step2": {
+      "title": "Crear Canal",
+      "content": "Haz clic aquí para conectar un nuevo canal. Soportamos WhatsApp, correo electrónico, Instagram y otros medios de comunicación."
+    },
+    "step3": {
+      "title": "Modo de Visualización",
+      "content": "Alterna entre visualización en tarjetas (cuadrícula) o tabla según tu preferencia."
+    },
+    "step4": {
+      "title": "Lista de Canales",
+      "content": "Ve todos los canales conectados aquí. Haz clic en configuración para ajustar cada canal individualmente o elimina canales que ya no son necesarios."
+    },
+    "step5": {
+      "title": "Navegación entre Páginas",
+      "content": "Navega entre las páginas de tus canales y ajusta cuántos registros se muestran por página."
+    }
+  },
+  "pipelines": {
+    "step1": {
+      "title": "Gestión de Pipelines",
+      "content": "Aquí organizas el flujo de atención de tus contactos en etapas. Usa la búsqueda para encontrar un pipeline rápidamente."
+    },
+    "step2": {
+      "title": "Crear Pipeline",
+      "content": "Haz clic aquí para crear un nuevo pipeline. Define etapas personalizadas para organizar el embudo de atención de tu equipo."
+    },
+    "step3": {
+      "title": "Modo de Visualización",
+      "content": "Alterna entre visualización en tarjetas (cuadrícula) o tabla según tu preferencia."
+    },
+    "step4": {
+      "title": "Lista de Pipelines",
+      "content": "Ve todos tus pipelines aquí. Haz clic en un pipeline para abrir el kanban con las etapas y contactos. También puedes editar, duplicar o eliminar pipelines desde el menú de acciones."
+    }
+  },
+  "settings": {
+    "step1": {
+      "title": "Configuración de la Cuenta",
+      "content": "Aquí gestionas toda la configuración de tu cuenta, como nombre, idioma, usuarios, equipos e integraciones. Usa el menú lateral para navegar entre las secciones."
+    },
+    "step2": {
+      "title": "Configuración General",
+      "content": "Define el nombre de tu cuenta, el idioma predeterminado de la interfaz y otras preferencias básicas. Recuerda guardar después de hacer cambios."
+    },
+    "step3": {
+      "title": "Resolución Automática",
+      "content": "Configura el tiempo para que las conversaciones inactivas se resuelvan automáticamente. Puedes definir un mensaje de cierre y aplicar una etiqueta al finalizar."
+    },
+    "step4": {
+      "title": "ID de la Cuenta",
+      "content": "Este es el identificador único de tu cuenta. Puede que lo necesites al contactar con el soporte o al configurar integraciones externas."
+    }
+  },
+  "campaigns": {
+    "step1": {
+      "title": "Gestión de Campañas",
+      "content": "Aquí creas y haces seguimiento de todas las campañas de comunicación. Usa la búsqueda para encontrar una campaña rápidamente."
+    },
+    "step2": {
+      "title": "Crear Campaña",
+      "content": "Haz clic aquí para crear una nueva campaña. El asistente te guiará por los pasos de configuración de audiencia, contenido y programación."
+    },
+    "step3": {
+      "title": "Filtros",
+      "content": "Filtra tus campañas por estado, tipo, canal y otros criterios para encontrar exactamente lo que necesitas."
+    },
+    "step4": {
+      "title": "Lista de Campañas",
+      "content": "Ve todas tus campañas aquí. Sigue el estado en tiempo real, inicia, pausa, reanuda o elimina campañas según sea necesario."
+    },
+    "step5": {
+      "title": "Navegación entre Páginas",
+      "content": "Navega entre las páginas de tus campañas y ajusta cuántos registros se muestran por página."
+    }
+  },
+  "journey": {
+    "step1": {
+      "title": "Automatizaciones de Journey",
+      "content": "Aquí creas y gestionas journeys automatizados para involucrar a tus contactos con flujos de mensajes inteligentes."
+    },
+    "step2": {
+      "title": "Crear Journey",
+      "content": "Haz clic aquí para crear un nuevo journey. Define el nombre, descripción y luego configura los disparadores y acciones en el editor de flujo."
+    },
+    "step3": {
+      "title": "Lista de Journeys",
+      "content": "Ve todos tus journeys aquí. Activa o desactiva cada journey con el interruptor de estado, abre el editor de flujo para personalizar los pasos o duplica journeys existentes para agilizar la creación."
+    }
+  }
+}

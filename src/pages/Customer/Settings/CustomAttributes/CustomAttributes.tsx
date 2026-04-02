@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { SettingsCustomAttributesTour } from '@/tours';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -299,20 +300,24 @@ export default function CustomAttributes() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <CustomAttributesHeader
-        totalCount={searchFilteredAttributes.length}
-        selectedCount={state.selectedAttributeIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewAttribute={handleCreateAttribute}
-        onBulkDelete={handleBulkDelete}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedAttributeIds: [] }))}
-        showBulkActions={state.selectedAttributeIds.length > 0}
-        activeTab={state.activeTab}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-custom-attributes-page">
+      <SettingsCustomAttributesTour />
+      <div data-tour="settings-custom-attributes-header">
+        <CustomAttributesHeader
+          totalCount={searchFilteredAttributes.length}
+          selectedCount={state.selectedAttributeIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewAttribute={handleCreateAttribute}
+          onBulkDelete={handleBulkDelete}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedAttributeIds: [] }))}
+          showBulkActions={state.selectedAttributeIds.length > 0}
+          activeTab={state.activeTab}
+        />
+      </div>
 
       {/* Tabs */}
+      <div data-tour="settings-custom-attributes-tabs">
       <Tabs value={state.activeTab} onValueChange={handleTabChange} className="mt-6">
         <TabsList className="mb-4">
           {ATTRIBUTE_TABS.map(tab => (
@@ -381,6 +386,7 @@ export default function CustomAttributes() {
           </TabsContent>
         ))}
       </Tabs>
+      </div>
 
       {/* Pagination fixa em baixo */}
       {searchFilteredAttributes.length > 0 && (

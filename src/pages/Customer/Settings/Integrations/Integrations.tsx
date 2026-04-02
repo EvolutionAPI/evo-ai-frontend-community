@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useNavigate } from 'react-router-dom';
+import { SettingsIntegrationsTour } from '@/tours';
 import {
   Card,
   Badge,
@@ -229,11 +230,14 @@ export default function Integrations() {
   }
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <BaseHeader title={t('title')} subtitle={t('subtitle')} />
+    <div className="h-full flex flex-col p-4" data-tour="settings-integrations-page">
+      <SettingsIntegrationsTour />
+      <div data-tour="settings-integrations-header">
+        <BaseHeader title={t('title')} subtitle={t('subtitle')} />
+      </div>
 
       {/* Search */}
-      <div className="flex flex-col sm:flex-row gap-4 mt-6">
+      <div className="flex flex-col sm:flex-row gap-4 mt-6" data-tour="settings-integrations-search">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
           <Input
@@ -246,6 +250,7 @@ export default function Integrations() {
       </div>
 
       {/* Category Tabs */}
+      <div data-tour="settings-integrations-categories">
       <Tabs
         value={selectedCategory}
         onValueChange={setSelectedCategory}
@@ -298,6 +303,7 @@ export default function Integrations() {
           )}
         </TabsContent>
       </Tabs>
+      </div>
     </div>
   );
 }

@@ -23,6 +23,7 @@ import { usePermissions } from '@/contexts/PermissionsContext';
 import { useMenuState } from '@/hooks/useMenuState';
 import { useDashboardApps } from '@/hooks/useDashboardApps';
 import { injectDashboardAppsIntoMenu } from '@/utils/injectDashboardApps';
+import { WelcomeTourModal } from '@/components/WelcomeTourModal';
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -145,6 +146,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </main>
 
       </div>
+
+      {/* Tour */}
+      <WelcomeTourModal />
 
       {/* Logout Dialog */}
       <Dialog open={logoutDialogOpen} onOpenChange={setLogoutDialogOpen}>
