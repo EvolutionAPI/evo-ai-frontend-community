@@ -1,0 +1,59 @@
+{
+  "title": "Parametres Admin",
+  "navigation": {
+    "email": "E-mail"
+  },
+  "email": {
+    "title": "Configuration E-mail",
+    "description": "Configurez le fournisseur de messagerie et les identifiants utilises pour l'envoi d'e-mails transactionnels.",
+    "provider": {
+      "label": "Fournisseur de Messagerie",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Adresse du Serveur",
+      "port": "Port",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "authentication": "Type d'Authentification",
+      "domain": "Domaine",
+      "starttls": "Activer STARTTLS",
+      "sslVerifyMode": "Mode de Verification SSL",
+      "senderEmail": "E-mail de l'Expediteur",
+      "apiKey": "Cle API",
+      "ipPool": "Pool IP"
+    },
+    "placeholders": {
+      "host": "smtp.exemple.com",
+      "port": "587",
+      "username": "utilisateur@exemple.com",
+      "password": "Entrez le nouveau mot de passe",
+      "domain": "exemple.com",
+      "senderEmail": "noreply@exemple.com",
+      "apiKey": "Entrez la nouvelle cle API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "L'adresse du serveur est obligatoire",
+      "portMin": "Le port doit etre au minimum 1",
+      "portMax": "Le port doit etre au maximum 65535",
+      "emailRequired": "Un e-mail d'expediteur valide est requis"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration e-mail enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration e-mail",
+      "loadError": "Echec du chargement de la configuration e-mail"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "testConnection": "Tester la Connexion",
+    "testing": "Test en cours...",
+    "testFailed": "Le test de connexion a echoue",
+    "testError": "Impossible d'executer le test de connexion"
+  }
+}

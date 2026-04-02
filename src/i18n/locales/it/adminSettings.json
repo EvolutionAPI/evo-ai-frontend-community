@@ -1,0 +1,59 @@
+{
+  "title": "Impostazioni Admin",
+  "navigation": {
+    "email": "E-mail"
+  },
+  "email": {
+    "title": "Configurazione E-mail",
+    "description": "Configura il provider di posta elettronica e le credenziali utilizzate per l'invio di e-mail transazionali.",
+    "provider": {
+      "label": "Provider E-mail",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Indirizzo del Server",
+      "port": "Porta",
+      "username": "Nome utente",
+      "password": "Password",
+      "authentication": "Tipo di Autenticazione",
+      "domain": "Dominio",
+      "starttls": "Abilita STARTTLS",
+      "sslVerifyMode": "Modalita Verifica SSL",
+      "senderEmail": "E-mail del Mittente",
+      "apiKey": "Chiave API",
+      "ipPool": "Pool IP"
+    },
+    "placeholders": {
+      "host": "smtp.esempio.com",
+      "port": "587",
+      "username": "utente@esempio.com",
+      "password": "Inserisci la nuova password",
+      "domain": "esempio.com",
+      "senderEmail": "noreply@esempio.com",
+      "apiKey": "Inserisci la nuova chiave API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "L'indirizzo del server e obbligatorio",
+      "portMin": "La porta deve essere almeno 1",
+      "portMax": "La porta deve essere al massimo 65535",
+      "emailRequired": "E richiesta un'e-mail del mittente valida"
+    },
+    "secretConfigured": "Configurato",
+    "secretNotConfigured": "Non configurato",
+    "clearSecret": "Cancella valore salvato",
+    "messages": {
+      "saveSuccess": "Configurazione e-mail salvata con successo",
+      "saveError": "Salvataggio della configurazione e-mail non riuscito",
+      "loadError": "Caricamento della configurazione e-mail non riuscito"
+    },
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio...",
+    "testConnection": "Testa Connessione",
+    "testing": "Test in corso...",
+    "testFailed": "Test di connessione fallito",
+    "testError": "Impossibile eseguire il test di connessione"
+  }
+}

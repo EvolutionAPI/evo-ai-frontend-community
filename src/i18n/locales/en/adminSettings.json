@@ -1,0 +1,59 @@
+{
+  "title": "Admin Settings",
+  "navigation": {
+    "email": "Email"
+  },
+  "email": {
+    "title": "Email Configuration",
+    "description": "Configure the email provider and credentials used for sending transactional emails.",
+    "provider": {
+      "label": "Email Provider",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Server Address",
+      "port": "Port",
+      "username": "Username",
+      "password": "Password",
+      "authentication": "Authentication Type",
+      "domain": "Domain",
+      "starttls": "Enable STARTTLS",
+      "sslVerifyMode": "SSL Verify Mode",
+      "senderEmail": "Sender Email",
+      "apiKey": "API Key",
+      "ipPool": "IP Pool"
+    },
+    "placeholders": {
+      "host": "smtp.example.com",
+      "port": "587",
+      "username": "user@example.com",
+      "password": "Enter new password",
+      "domain": "example.com",
+      "senderEmail": "noreply@example.com",
+      "apiKey": "Enter new API key",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "Server address is required",
+      "portMin": "Port must be at least 1",
+      "portMax": "Port must be at most 65535",
+      "emailRequired": "A valid sender email is required"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Email configuration saved successfully",
+      "saveError": "Failed to save email configuration",
+      "loadError": "Failed to load email configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "testFailed": "Connection test failed",
+    "testError": "Failed to run connection test"
+  }
+}

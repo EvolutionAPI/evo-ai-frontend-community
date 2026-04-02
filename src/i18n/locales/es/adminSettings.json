@@ -1,0 +1,59 @@
+{
+  "title": "Configuracion de Admin",
+  "navigation": {
+    "email": "Correo electronico"
+  },
+  "email": {
+    "title": "Configuracion de Correo Electronico",
+    "description": "Configure el proveedor de correo electronico y las credenciales utilizadas para enviar correos transaccionales.",
+    "provider": {
+      "label": "Proveedor de Correo",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Direccion del Servidor",
+      "port": "Puerto",
+      "username": "Usuario",
+      "password": "Contrasena",
+      "authentication": "Tipo de Autenticacion",
+      "domain": "Dominio",
+      "starttls": "Habilitar STARTTLS",
+      "sslVerifyMode": "Modo de Verificacion SSL",
+      "senderEmail": "Correo del Remitente",
+      "apiKey": "Clave de API",
+      "ipPool": "Pool de IP"
+    },
+    "placeholders": {
+      "host": "smtp.ejemplo.com",
+      "port": "587",
+      "username": "usuario@ejemplo.com",
+      "password": "Ingrese la nueva contrasena",
+      "domain": "ejemplo.com",
+      "senderEmail": "noreply@ejemplo.com",
+      "apiKey": "Ingrese la nueva clave de API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "La direccion del servidor es obligatoria",
+      "portMin": "El puerto debe ser al menos 1",
+      "portMax": "El puerto debe ser como maximo 65535",
+      "emailRequired": "Se requiere un correo de remitente valido"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de correo guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de correo",
+      "loadError": "Error al cargar la configuracion de correo"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "testConnection": "Probar Conexion",
+    "testing": "Probando...",
+    "testFailed": "La prueba de conexion fallo",
+    "testError": "Error al ejecutar la prueba de conexion"
+  }
+}

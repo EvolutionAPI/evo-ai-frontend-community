@@ -1,0 +1,59 @@
+{
+  "title": "Configuracoes do Admin",
+  "navigation": {
+    "email": "E-mail"
+  },
+  "email": {
+    "title": "Configuracao de E-mail",
+    "description": "Configure o provedor de e-mail e as credenciais usadas para envio de e-mails transacionais.",
+    "provider": {
+      "label": "Provedor de E-mail",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Endereco do Servidor",
+      "port": "Porta",
+      "username": "Usuario",
+      "password": "Senha",
+      "authentication": "Tipo de Autenticacao",
+      "domain": "Dominio",
+      "starttls": "Habilitar STARTTLS",
+      "sslVerifyMode": "Modo de Verificacao SSL",
+      "senderEmail": "E-mail do Remetente",
+      "apiKey": "Chave da API",
+      "ipPool": "Pool de IP"
+    },
+    "placeholders": {
+      "host": "smtp.exemplo.com",
+      "port": "587",
+      "username": "usuario@exemplo.com",
+      "password": "Digite a nova senha",
+      "domain": "exemplo.com",
+      "senderEmail": "noreply@exemplo.com",
+      "apiKey": "Digite a nova chave da API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "Endereco do servidor e obrigatorio",
+      "portMin": "A porta deve ser no minimo 1",
+      "portMax": "A porta deve ser no maximo 65535",
+      "emailRequired": "Um e-mail de remetente valido e obrigatorio"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "Nao configurado",
+    "clearSecret": "Limpar valor salvo",
+    "messages": {
+      "saveSuccess": "Configuracao de e-mail salva com sucesso",
+      "saveError": "Falha ao salvar configuracao de e-mail",
+      "loadError": "Falha ao carregar configuracao de e-mail"
+    },
+    "save": "Salvar Configuracao",
+    "saving": "Salvando...",
+    "testConnection": "Testar Conexao",
+    "testing": "Testando...",
+    "testFailed": "Teste de conexao falhou",
+    "testError": "Falha ao executar teste de conexao"
+  }
+}
