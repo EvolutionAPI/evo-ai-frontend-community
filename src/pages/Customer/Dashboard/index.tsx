@@ -15,6 +15,7 @@ import DashboardMetricsSection from './components/DashboardMetricsSection';
 import DashboardTrendsSection from './components/DashboardTrendsSection';
 import DashboardPerformanceSection from './components/DashboardPerformanceSection';
 import type { DashboardFilterState, DashboardOption } from './components/types';
+import { DashboardTour } from '@/tours';
 
 const ALL_FILTER_VALUE = '__all__';
 
@@ -270,23 +271,33 @@ const CustomerDashboardPage = () => {
 
   return (
     <div className="h-full flex flex-col p-4 gap-6">
-      <BaseHeader
-        title={t('dashboard.title')}
-        subtitle={t('dashboard.subtitle')}
-        filters={appliedHeaderFilters}
-        onFilterClick={handleOpenFilter}
-        showFilters
-      />
+      <DashboardTour />
+      <div data-tour="dashboard-header">
+        <BaseHeader
+          title={t('dashboard.title')}
+          subtitle={t('dashboard.subtitle')}
+          filters={appliedHeaderFilters}
+          onFilterClick={handleOpenFilter}
+          showFilters
+          filterButtonDataTour="dashboard-filter-button"
+        />
+      </div>
 
-      <div className="-mt-3 flex justify-end">
+      <div className="-mt-3 flex justify-end" data-tour="dashboard-period-badge">
         <Badge variant="secondary">
           {currentPeriodLabel} ({data.period.days} dias)
         </Badge>
       </div>
 
-      <DashboardMetricsSection data={data} t={t} />
-      <DashboardTrendsSection data={data} t={t} channelShareData={channelShareData} />
-      <DashboardPerformanceSection data={data} t={t} />
+      <div data-tour="dashboard-metrics">
+        <DashboardMetricsSection data={data} t={t} />
+      </div>
+      <div data-tour="dashboard-trends">
+        <DashboardTrendsSection data={data} t={t} channelShareData={channelShareData} />
+      </div>
+      <div data-tour="dashboard-performance">
+        <DashboardPerformanceSection data={data} t={t} />
+      </div>
 
       <DashboardFiltersDialog
         open={filterModalOpen}

@@ -30,6 +30,7 @@ import {
 } from '@evoapi/design-system/alert-dialog';
 
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import { ChatTour } from '@/tours';
 
 // Novos componentes refatorados
 import ChatSidebar from '@/components/chat/chat-sidebar/ChatSidebar';
@@ -678,6 +679,7 @@ const Chat = () => {
 
   return (
     <ErrorBoundary>
+      <ChatTour />
       <div className="h-full w-full flex flex-col md:flex-row overflow-hidden">
         {/* Chat List Sidebar */}
         <ChatSidebar
@@ -706,6 +708,7 @@ const Chat = () => {
 
         {/* Chat Area */}
         <div
+          data-tour="chat-main-area"
           className={`
           ${mobileView === 'chat' ? 'flex' : 'hidden'} md:flex
           flex-1 flex-col h-full min-h-0 max-h-full overflow-hidden

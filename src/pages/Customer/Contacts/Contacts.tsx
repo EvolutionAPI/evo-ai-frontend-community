@@ -34,6 +34,7 @@ import ContactExportModal from '@/components/contacts/ContactExportModal';
 import ContactEventsModal from '@/components/contacts/ContactEventsModal';
 import ContactMergeModal from '@/components/contacts/ContactMergeModal';
 import { AxiosError } from 'axios';
+import { ContactsTour } from '@/tours';
 
 const INITIAL_STATE: ContactsState = {
   contacts: [],
@@ -757,6 +758,8 @@ export default function Contacts() {
 
   return (
     <div className="h-full flex flex-col p-4">
+      <ContactsTour />
+      <div data-tour="contacts-header">
       <ContactsHeader
         totalCount={state.meta.pagination.total}
         selectedCount={state.selectedContactIds.length}
@@ -772,9 +775,10 @@ export default function Contacts() {
         activeFilters={appliedFilters}
         showFilters={true}
       />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="contacts-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -796,7 +800,7 @@ export default function Contacts() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="contacts-list">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading.contacts')}</div>
@@ -867,15 +871,17 @@ export default function Contacts() {
 
       {/* Pagination */}
       {state.meta.pagination.total > 0 && (
-        <ContactsPagination
-          currentPage={state.meta.pagination.page}
-          totalPages={state.meta.pagination.total_pages}
-          totalCount={state.meta.pagination.total}
-          perPage={state.meta.pagination.page_size}
-          onPageChange={handlePageChange}
-          onPerPageChange={handlePerPageChange}
-          loading={state.loading.list}
-        />
+        <div data-tour="contacts-pagination">
+          <ContactsPagination
+            currentPage={state.meta.pagination.page}
+            totalPages={state.meta.pagination.total_pages}
+            totalCount={state.meta.pagination.total}
+            perPage={state.meta.pagination.page_size}
+            onPageChange={handlePageChange}
+            onPerPageChange={handlePerPageChange}
+            loading={state.loading.list}
+          />
+        </div>
       )}
 
       {/* Delete Contact Dialog */}

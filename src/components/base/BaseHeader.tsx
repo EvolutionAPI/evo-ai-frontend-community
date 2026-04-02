@@ -26,6 +26,7 @@ export interface HeaderAction {
   className?: string;
   disabled?: boolean;
   tooltip?: string;
+  dataTour?: string;
 }
 
 export interface HeaderFilter {
@@ -46,6 +47,8 @@ export interface BaseHeaderProps {
   filters?: HeaderFilter[];
   onFilterClick?: () => void;
   showFilters?: boolean;
+  filterButtonDataTour?: string;
+  searchDataTour?: string;
   totalCount?: number;
   selectedCount?: number;
   onClearSelection?: () => void;
@@ -66,6 +69,8 @@ export default function BaseHeader({
   filters = [],
   onFilterClick,
   showFilters = false,
+  filterButtonDataTour,
+  searchDataTour,
   selectedCount = 0,
   onClearSelection,
   bulkActions = [],
@@ -91,7 +96,7 @@ export default function BaseHeader({
 
         {/* Primary Action */}
         {primaryAction && primaryAction.show !== false && (
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0" data-tour={primaryAction.dataTour}>
             <PrimaryActionButton
               label={primaryAction.label}
               icon={primaryAction.icon}
@@ -111,7 +116,7 @@ export default function BaseHeader({
         <div className="flex items-center gap-3 flex-1">
           {/* Search */}
           {onSearchChange && (
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 max-w-md" data-tour={searchDataTour}>
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sidebar-foreground/60" />
               <Input
                 type="search"
@@ -130,6 +135,7 @@ export default function BaseHeader({
               size="sm"
               onClick={onFilterClick}
               className="bg-sidebar border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent whitespace-nowrap"
+              data-tour={filterButtonDataTour}
             >
               <Filter className="h-4 w-4 mr-2" />
               {t('base.header.filters')}
@@ -170,6 +176,7 @@ export default function BaseHeader({
                 size="sm"
                 onClick={action.onClick}
                 className="bg-sidebar border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent"
+                data-tour={action.dataTour}
               >
                 {renderIcon()}
                 {action.label}

@@ -506,6 +506,7 @@ const ChatSidebar = ({
 
   return (
     <div
+      data-tour="chat-sidebar"
       className={`
         ${mobileView === 'list' ? 'flex' : 'hidden'} md:flex
         w-full md:w-80 border-r bg-card/50 flex-col h-full
@@ -514,7 +515,7 @@ const ChatSidebar = ({
       {/* Search and Filter Header */}
       <div className="p-4 border-b space-y-3">
         {/* Search */}
-        <div className="relative">
+        <div className="relative" data-tour="chat-search">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground z-10" />
           <Input
             type="text"
@@ -567,13 +568,14 @@ const ChatSidebar = ({
               </Badge>
             )}
 
-            {/* BotÃ£o de filtros */}
+            {/* Botão de filtros */}
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setFilterModalOpen(true)}
               disabled={filters.state.isApplyingFilters}
               className="h-8 px-2 cursor-pointer"
+              data-tour="chat-filter-button"
             >
               <Filter className="h-4 w-4" />
               {t('chatSidebar.filtersButton')}
@@ -590,6 +592,7 @@ const ChatSidebar = ({
         ref={sidebarScrollRef}
         className="flex-1 overflow-y-auto"
         onScroll={handleSidebarScroll}
+        data-tour="chat-conversations-list"
       >
         {!conversations ? (
           <ConversationSkeleton count={8} />

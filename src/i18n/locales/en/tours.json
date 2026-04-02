@@ -1,0 +1,203 @@
+{
+  "welcome": {
+    "title": "Welcome to EvoAI!",
+    "description": "Would you like a guided tour to discover the platform's features?",
+    "startButton": "Start guided tour",
+    "skipButton": "I prefer to explore on my own"
+  },
+  "stepOf": "{{current}} of {{total}}",
+  "next": "Next",
+  "back": "Back",
+  "finish": "Finish",
+  "close": "Close",
+  "dashboard": {
+    "step1": {
+      "title": "Welcome to the Dashboard!",
+      "content": "This is the main panel of the platform. Here you can track the most important metrics of your business in real time."
+    },
+    "step2": {
+      "title": "Filters",
+      "content": "Use filters to segment data by channel, agent, team, or other criteria."
+    },
+    "step3": {
+      "title": "Analysis Period",
+      "content": "Select the period you want to analyze: today, last 7 days, 30 days, or a custom range."
+    },
+    "step4": {
+      "title": "Key Metrics",
+      "content": "View key indicators: total conversations, messages sent, resolution rate, and average response time."
+    },
+    "step5": {
+      "title": "Trends",
+      "content": "Trend charts show the evolution of metrics over time to help you identify patterns."
+    },
+    "step6": {
+      "title": "Performance",
+      "content": "Track your team's performance with rankings, satisfaction rates, and service distribution."
+    }
+  },
+  "conversations": {
+    "step1": {
+      "title": "Your Conversations",
+      "content": "All your team's conversations are here. Select one to start responding."
+    },
+    "step2": {
+      "title": "Search Conversations",
+      "content": "Search conversations by contact name or message content."
+    },
+    "step3": {
+      "title": "Conversation Filters",
+      "content": "Filter conversations by status (open, resolved, pending), assigned agent, team, or service channel."
+    },
+    "step4": {
+      "title": "Conversation List",
+      "content": "Click any conversation to open it. The blue dot indicates unread messages. Right-click for quick actions."
+    },
+    "step5": {
+      "title": "Service Area",
+      "content": "When you select a conversation, the message history appears here. At the top you'll find contact info and actions like resolve, pause, and transfer."
+    }
+  },
+  "contacts": {
+    "step1": {
+      "title": "Contact Management",
+      "content": "Here you manage all contacts in your database. Use search to find a contact quickly."
+    },
+    "step2": {
+      "title": "Create Contact",
+      "content": "Click here to manually add a new contact. You can also import a CSV list or export your database."
+    },
+    "step3": {
+      "title": "Advanced Filters",
+      "content": "Filter your database by attributes such as email, phone, tag, pipeline, or any custom field."
+    },
+    "step4": {
+      "title": "View Mode",
+      "content": "Switch between card (grid) and table view according to your preference."
+    },
+    "step5": {
+      "title": "Contact List",
+      "content": "Click a contact to view details, start a conversation, edit, or delete. Select multiple for bulk actions."
+    },
+    "step6": {
+      "title": "Page Navigation",
+      "content": "Navigate between pages of your contact database and adjust how many records are displayed per page."
+    }
+  },
+  "agents": {
+    "step1": {
+      "title": "Agent Management",
+      "content": "Here you manage all your AI agents. Use search to find an agent quickly."
+    },
+    "step2": {
+      "title": "Create Agent",
+      "content": "Click here to create a new AI agent. The wizard will guide you step by step through the configuration."
+    },
+    "step3": {
+      "title": "API Keys",
+      "content": "Manage API keys to integrate your agents with other systems and platforms."
+    },
+    "step4": {
+      "title": "View Mode",
+      "content": "Switch between card (grid) and table view according to your preference."
+    },
+    "step5": {
+      "title": "Agent List",
+      "content": "See all your agents here. Click edit to configure behaviors, integrations, and the agent's personality."
+    }
+  },
+  "channels": {
+    "step1": {
+      "title": "Channel Management",
+      "content": "Here you manage all connected communication channels. Use search to find a channel quickly."
+    },
+    "step2": {
+      "title": "Create Channel",
+      "content": "Click here to connect a new channel. We support WhatsApp, email, Instagram, and other communication channels."
+    },
+    "step3": {
+      "title": "View Mode",
+      "content": "Switch between card (grid) and table view according to your preference."
+    },
+    "step4": {
+      "title": "Channel List",
+      "content": "See all connected channels here. Click settings to adjust each channel individually or delete channels that are no longer needed."
+    },
+    "step5": {
+      "title": "Page Navigation",
+      "content": "Navigate between pages of your channels and adjust how many records are displayed per page."
+    }
+  },
+  "pipelines": {
+    "step1": {
+      "title": "Pipeline Management",
+      "content": "Here you organize the service flow of your contacts in stages. Use search to find a pipeline quickly."
+    },
+    "step2": {
+      "title": "Create Pipeline",
+      "content": "Click here to create a new pipeline. Define custom stages to organize your team's service funnel."
+    },
+    "step3": {
+      "title": "View Mode",
+      "content": "Switch between card (grid) and table view according to your preference."
+    },
+    "step4": {
+      "title": "Pipeline List",
+      "content": "See all your pipelines here. Click a pipeline to open the kanban with stages and contacts. You can also edit, duplicate, or delete pipelines via the actions menu."
+    }
+  },
+  "settings": {
+    "step1": {
+      "title": "Account Settings",
+      "content": "Here you manage all your account settings, such as name, language, users, teams, and integrations. Use the side menu to navigate between sections."
+    },
+    "step2": {
+      "title": "General Settings",
+      "content": "Set your account name, default interface language, and other basic preferences. Remember to save after making changes."
+    },
+    "step3": {
+      "title": "Auto Resolution",
+      "content": "Set the time for inactive conversations to be automatically resolved. You can define a closing message and apply a label when finishing."
+    },
+    "step4": {
+      "title": "Account ID",
+      "content": "This is your account's unique identifier. You may need it when contacting support or configuring external integrations."
+    }
+  },
+  "campaigns": {
+    "step1": {
+      "title": "Campaign Management",
+      "content": "Here you create and track all communication campaigns. Use search to find a campaign quickly."
+    },
+    "step2": {
+      "title": "Create Campaign",
+      "content": "Click here to create a new campaign. The wizard will guide you through the steps of configuring audience, content, and scheduling."
+    },
+    "step3": {
+      "title": "Filters",
+      "content": "Filter your campaigns by status, type, channel, and other criteria to find exactly what you need."
+    },
+    "step4": {
+      "title": "Campaign List",
+      "content": "See all your campaigns here. Track status in real time, start, pause, resume, or delete campaigns as needed."
+    },
+    "step5": {
+      "title": "Page Navigation",
+      "content": "Navigate between pages of your campaigns and adjust how many records are displayed per page."
+    }
+  },
+  "journey": {
+    "step1": {
+      "title": "Journey Automations",
+      "content": "Here you create and manage automated journeys to engage your contacts with intelligent message flows."
+    },
+    "step2": {
+      "title": "Create Journey",
+      "content": "Click here to create a new journey. Set the name, description, and then configure the triggers and actions in the flow editor."
+    },
+    "step3": {
+      "title": "Journey List",
+      "content": "See all your journeys here. Enable or disable each journey via the status toggle, open the flow editor to customize the steps, or duplicate existing journeys to speed up creation."
+    }
+  }
+}

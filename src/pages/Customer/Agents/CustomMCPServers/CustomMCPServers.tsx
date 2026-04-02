@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { useLanguage } from '@/hooks/useLanguage';
+import { AgentsCustomMCPsTour } from '@/tours';
 import {
   Dialog,
   DialogContent,
@@ -354,21 +355,24 @@ export default function CustomMCPServers() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <CustomMCPServersHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedServerIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewServer={handleCreateServer}
-        onFilter={handleOpenFilter}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedServerIds: [] }))}
-        activeFilters={appliedFilters}
-        showFilters={true}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="agents-custom-mcps-page">
+      <AgentsCustomMCPsTour />
+      <div data-tour="agents-custom-mcps-header">
+        <CustomMCPServersHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedServerIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewServer={handleCreateServer}
+          onFilter={handleOpenFilter}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedServerIds: [] }))}
+          activeFilters={appliedFilters}
+          showFilters={true}
+        />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="agents-custom-mcps-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -390,7 +394,7 @@ export default function CustomMCPServers() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="agents-custom-mcps-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading.servers')}</div>
