@@ -19,6 +19,7 @@ import {
   Wand,
   Settings,
   List,
+  GraduationCap,
 } from 'lucide-react';
 
 export interface MenuItem {
@@ -133,6 +134,11 @@ export const getCustomerMenuItems = (t: (key: string) => string): MenuItem[] => 
     icon: Layers,
     resource: 'channels',
     action: 'read',
+  },
+  {
+    name: t('menu.customer.tutorials'),
+    href: '/tutorials',
+    icon: GraduationCap,
   },
   {
     id: 'customer-settings',

@@ -68,6 +68,9 @@ import DashboardAppPage from '../pages/Customer/DashboardApp';
 // import { Overview, Conversations } from '../pages/Customer/Reports';
 // import * as Reports from '../pages/Customer/Reports';
 
+// Página de tutoriais
+import Tutorials from '@/pages/Customer/Tutorials';
+
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
 import Marketplace from '@/pages/Shared/Marketplace';
@@ -1096,6 +1099,20 @@ const AppRouter = () => {
           <Route path="/conversations" element={ChatRouteElement} />
 
           <Route path="/conversations/:conversationId" element={ChatRouteElement} />
+
+          {/* Tutoriais */}
+          <Route
+            path="/tutorials"
+            element={
+              <PrivateRoute>
+                <CustomerRoute>
+                  <MainLayout>
+                    <Tutorials />
+                  </MainLayout>
+                </CustomerRoute>
+              </PrivateRoute>
+            }
+          />
 
           {/* Rotas específicas de canais foram integradas no fluxo unificado do NewChannel */}
           {/* Meta e WhatsApp Cloud agora são parte do componente NewChannel */}

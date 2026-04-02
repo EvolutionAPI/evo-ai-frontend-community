@@ -45,6 +45,7 @@ import ptBRApi from './locales/pt-BR/api.json';
 import ptBRInstagram from './locales/pt-BR/instagram.json';
 import ptBRMessenger from './locales/pt-BR/messenger.json';
 import ptBRCustomerDashboard from './locales/pt-BR/customerDashboard.json';
+import ptBRTutorials from './locales/pt-BR/tutorials.json';
 import ptAuth from './locales/pt/auth.json';
 import ptChangePassword from './locales/pt/changePassword.json';
 import ptMcpServers from './locales/pt/mcpServers.json';
@@ -88,6 +89,7 @@ import ptApi from './locales/pt/api.json';
 import ptInstagram from './locales/pt/instagram.json';
 import ptMessenger from './locales/pt/messenger.json';
 import ptCustomerDashboard from './locales/pt/customerDashboard.json';
+import ptTutorials from './locales/pt/tutorials.json';
 import enAuth from './locales/en/auth.json';
 import enChangePassword from './locales/en/changePassword.json';
 import enMcpServers from './locales/en/mcpServers.json';
@@ -132,6 +134,7 @@ import enApi from './locales/en/api.json';
 import enInstagram from './locales/en/instagram.json';
 import enMessenger from './locales/en/messenger.json';
 import enCustomerDashboard from './locales/en/customerDashboard.json';
+import enTutorials from './locales/en/tutorials.json';
 import esAuth from './locales/es/auth.json';
 import esChangePassword from './locales/es/changePassword.json';
 import esMcpServers from './locales/es/mcpServers.json';
@@ -175,6 +178,7 @@ import esApi from './locales/es/api.json';
 import esInstagram from './locales/es/instagram.json';
 import esMessenger from './locales/es/messenger.json';
 import esCustomerDashboard from './locales/es/customerDashboard.json';
+import esTutorials from './locales/es/tutorials.json';
 import frAuth from './locales/fr/auth.json';
 import frChangePassword from './locales/fr/changePassword.json';
 import frMcpServers from './locales/fr/mcpServers.json';
@@ -218,6 +222,7 @@ import frApi from './locales/fr/api.json';
 import frInstagram from './locales/fr/instagram.json';
 import frMessenger from './locales/fr/messenger.json';
 import frCustomerDashboard from './locales/fr/customerDashboard.json';
+import frTutorials from './locales/fr/tutorials.json';
 import itAuth from './locales/it/auth.json';
 import itChangePassword from './locales/it/changePassword.json';
 import itMcpServers from './locales/it/mcpServers.json';
@@ -261,6 +266,7 @@ import itApi from './locales/it/api.json';
 import itInstagram from './locales/it/instagram.json';
 import itMessenger from './locales/it/messenger.json';
 import itCustomerDashboard from './locales/it/customerDashboard.json';
+import itTutorials from './locales/it/tutorials.json';
 export const locales = ['en', 'pt-BR', 'pt', 'fr', 'it', 'es'] as const;
 export const defaultLocale = 'en' as const;
 
@@ -341,6 +347,7 @@ const resources = {
     instagram: ptBRInstagram,
     messenger: ptBRMessenger,
     customerDashboard: ptBRCustomerDashboard,
+    tutorials: ptBRTutorials,
   },
   pt: {
     auth: ptAuth,
@@ -386,6 +393,7 @@ const resources = {
     instagram: ptInstagram,
     messenger: ptMessenger,
     customerDashboard: ptCustomerDashboard,
+    tutorials: ptTutorials,
   },
   en: {
     auth: enAuth,
@@ -432,6 +440,7 @@ const resources = {
     instagram: enInstagram,
     messenger: enMessenger,
     customerDashboard: enCustomerDashboard,
+    tutorials: enTutorials,
   },
   es: {
     auth: esAuth,
@@ -477,6 +486,7 @@ const resources = {
     instagram: esInstagram,
     messenger: esMessenger,
     customerDashboard: esCustomerDashboard,
+    tutorials: esTutorials,
   },
   fr: {
     auth: frAuth,
@@ -522,6 +532,7 @@ const resources = {
     instagram: frInstagram,
     messenger: frMessenger,
     customerDashboard: frCustomerDashboard,
+    tutorials: frTutorials,
   },
   it: {
     auth: itAuth,
@@ -567,6 +578,7 @@ const resources = {
     instagram: itInstagram,
     messenger: itMessenger,
     customerDashboard: itCustomerDashboard,
+    tutorials: itTutorials,
   },
 };
 
