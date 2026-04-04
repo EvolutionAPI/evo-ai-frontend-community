@@ -1,7 +1,8 @@
 {
   "title": "Impostazioni Admin",
   "navigation": {
-    "email": "E-mail"
+    "email": "E-mail",
+    "storage": "Archiviazione"
   },
   "email": {
     "title": "Configurazione E-mail",
@@ -48,6 +49,50 @@
       "saveSuccess": "Configurazione e-mail salvata con successo",
       "saveError": "Salvataggio della configurazione e-mail non riuscito",
       "loadError": "Caricamento della configurazione e-mail non riuscito"
+    },
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio...",
+    "testConnection": "Testa Connessione",
+    "testing": "Test in corso...",
+    "testFailed": "Test di connessione fallito",
+    "testError": "Impossibile eseguire il test di connessione"
+  },
+  "storage": {
+    "title": "Configurazione Archiviazione",
+    "description": "Configura il provider di archiviazione file utilizzato per allegati e caricamenti.",
+    "provider": {
+      "label": "Provider di Archiviazione",
+      "local": "Archiviazione Locale",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compatibile con S3"
+    },
+    "fields": {
+      "bucketName": "Nome del Bucket",
+      "accessKeyId": "ID Chiave di Accesso",
+      "accessSecret": "Chiave di Accesso Segreta",
+      "region": "Regione",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "mio-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Inserisci la nuova chiave di accesso segreta",
+      "region": "us-east-1",
+      "endpoint": "https://s3.esempio.com"
+    },
+    "validation": {
+      "bucketRequired": "Il nome del bucket e obbligatorio",
+      "accessKeyRequired": "L'ID della chiave di accesso e obbligatorio",
+      "regionRequired": "La regione e obbligatoria",
+      "endpointRequired": "L'endpoint e obbligatorio per i provider compatibili con S3"
+    },
+    "secretConfigured": "Configurato",
+    "secretNotConfigured": "Non configurato",
+    "clearSecret": "Cancella valore salvato",
+    "messages": {
+      "saveSuccess": "Configurazione archiviazione salvata con successo",
+      "saveError": "Salvataggio della configurazione archiviazione non riuscito",
+      "loadError": "Caricamento della configurazione archiviazione non riuscito"
     },
     "save": "Salva Configurazione",
     "saving": "Salvataggio...",

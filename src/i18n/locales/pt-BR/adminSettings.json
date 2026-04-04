@@ -1,7 +1,8 @@
 {
   "title": "Configuracoes do Admin",
   "navigation": {
-    "email": "E-mail"
+    "email": "E-mail",
+    "storage": "Armazenamento"
   },
   "email": {
     "title": "Configuracao de E-mail",
@@ -48,6 +49,50 @@
       "saveSuccess": "Configuracao de e-mail salva com sucesso",
       "saveError": "Falha ao salvar configuracao de e-mail",
       "loadError": "Falha ao carregar configuracao de e-mail"
+    },
+    "save": "Salvar Configuracao",
+    "saving": "Salvando...",
+    "testConnection": "Testar Conexao",
+    "testing": "Testando...",
+    "testFailed": "Teste de conexao falhou",
+    "testError": "Falha ao executar teste de conexao"
+  },
+  "storage": {
+    "title": "Configuracao de Armazenamento",
+    "description": "Configure o provedor de armazenamento de arquivos usado para anexos e uploads.",
+    "provider": {
+      "label": "Provedor de Armazenamento",
+      "local": "Armazenamento Local",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compativel com S3"
+    },
+    "fields": {
+      "bucketName": "Nome do Bucket",
+      "accessKeyId": "ID da Chave de Acesso",
+      "accessSecret": "Chave de Acesso Secreta",
+      "region": "Regiao",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "meu-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Digite a nova chave de acesso secreta",
+      "region": "us-east-1",
+      "endpoint": "https://s3.exemplo.com"
+    },
+    "validation": {
+      "bucketRequired": "Nome do bucket e obrigatorio",
+      "accessKeyRequired": "ID da chave de acesso e obrigatorio",
+      "regionRequired": "Regiao e obrigatoria",
+      "endpointRequired": "Endpoint e obrigatorio para provedores compativeis com S3"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "Nao configurado",
+    "clearSecret": "Limpar valor salvo",
+    "messages": {
+      "saveSuccess": "Configuracao de armazenamento salva com sucesso",
+      "saveError": "Falha ao salvar configuracao de armazenamento",
+      "loadError": "Falha ao carregar configuracao de armazenamento"
     },
     "save": "Salvar Configuracao",
     "saving": "Salvando...",

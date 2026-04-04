@@ -68,6 +68,11 @@ import DashboardAppPage from '../pages/Customer/DashboardApp';
 // import { Overview, Conversations } from '../pages/Customer/Reports';
 // import * as Reports from '../pages/Customer/Reports';
 
+// Páginas admin
+import AdminSettingsLayout from '@/pages/Admin/Settings';
+const SmtpConfig = React.lazy(() => import('@/pages/Admin/Settings/SmtpConfig'));
+const StorageConfig = React.lazy(() => import('@/pages/Admin/Settings/StorageConfig'));
+
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
 import Marketplace from '@/pages/Shared/Marketplace';
@@ -1099,6 +1104,39 @@ const AppRouter = () => {
 
           {/* Rotas específicas de canais foram integradas no fluxo unificado do NewChannel */}
           {/* Meta e WhatsApp Cloud agora são parte do componente NewChannel */}
+
+          {/* Admin Settings Routes */}
+          <Route
+            path="/settings/admin"
+            element={
+              <PrivateRoute>
+                <CustomerRoute>
+                  <MainLayout>
+                    <PermissionRoute resource="installation_configs" action="manage">
+                      <AdminSettingsLayout />
+                    </PermissionRoute>
+                  </MainLayout>
+                </CustomerRoute>
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path="email"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <SmtpConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="storage"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <StorageConfig />
+                </Suspense>
+              }
+            />
+          </Route>
 
           {/* Rotas Compartilhadas */}
           <Route
