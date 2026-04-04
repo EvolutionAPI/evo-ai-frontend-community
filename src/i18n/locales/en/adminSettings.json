@@ -2,7 +2,8 @@
   "title": "Admin Settings",
   "navigation": {
     "email": "Email",
-    "storage": "Storage"
+    "storage": "Storage",
+    "payments": "Payments"
   },
   "email": {
     "title": "Email Configuration",
@@ -100,5 +101,33 @@
     "testing": "Testing...",
     "testFailed": "Connection test failed",
     "testError": "Failed to run connection test"
+  },
+  "payments": {
+    "title": "Payments Configuration",
+    "description": "Configure Stripe payment credentials for processing payments on the platform.",
+    "fields": {
+      "cardTitle": "Stripe Credentials",
+      "publishableKey": "Publishable Key",
+      "secretKey": "Secret Key",
+      "webhookSecret": "Webhook Secret"
+    },
+    "placeholders": {
+      "publishableKey": "pk_test_...",
+      "secretKey": "Enter new secret key",
+      "webhookSecret": "Enter new webhook secret"
+    },
+    "validation": {
+      "publishableKeyRequired": "Publishable key is required"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Payments configuration saved successfully",
+      "saveError": "Failed to save payments configuration",
+      "loadError": "Failed to load payments configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
   }
 }

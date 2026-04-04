@@ -2,7 +2,8 @@
   "title": "Configuracoes do Admin",
   "navigation": {
     "email": "E-mail",
-    "storage": "Armazenamento"
+    "storage": "Armazenamento",
+    "payments": "Pagamentos"
   },
   "email": {
     "title": "Configuracao de E-mail",
@@ -100,5 +101,33 @@
     "testing": "A testar...",
     "testFailed": "Teste de ligacao falhou",
     "testError": "Falha ao executar teste de ligacao"
+  },
+  "payments": {
+    "title": "Configuracao de Pagamentos",
+    "description": "Configure as credenciais do Stripe para processar pagamentos na plataforma.",
+    "fields": {
+      "cardTitle": "Credenciais do Stripe",
+      "publishableKey": "Chave Publicavel",
+      "secretKey": "Chave Secreta",
+      "webhookSecret": "Segredo do Webhook"
+    },
+    "placeholders": {
+      "publishableKey": "pk_test_...",
+      "secretKey": "Introduza a nova chave secreta",
+      "webhookSecret": "Introduza o novo segredo do webhook"
+    },
+    "validation": {
+      "publishableKeyRequired": "Chave publicavel e obrigatoria"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "Nao configurado",
+    "clearSecret": "Limpar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracao de pagamentos guardada com sucesso",
+      "saveError": "Falha ao guardar configuracao de pagamentos",
+      "loadError": "Falha ao carregar configuracao de pagamentos"
+    },
+    "save": "Guardar Configuracao",
+    "saving": "A guardar..."
   }
 }
