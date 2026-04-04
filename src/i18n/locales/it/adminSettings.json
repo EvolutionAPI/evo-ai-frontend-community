@@ -4,7 +4,8 @@
     "email": "E-mail",
     "storage": "Archiviazione",
     "payments": "Pagamenti",
-    "socialLogin": "Login Sociale"
+    "socialLogin": "Login Sociale",
+    "channels": "Canali"
   },
   "email": {
     "title": "Configurazione E-mail",
@@ -178,5 +179,73 @@
     },
     "save": "Salva Configurazione",
     "saving": "Salvataggio..."
+  },
+  "channels": {
+    "title": "Integrazioni Canali",
+    "description": "Configura le credenziali per i canali di messaggistica Facebook, WhatsApp e Instagram.",
+    "secretConfigured": "Configurato",
+    "secretNotConfigured": "Non configurato",
+    "clearSecret": "Cancella valore salvato",
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio...",
+    "facebook": {
+      "tabTitle": "Facebook",
+      "fields": {
+        "appId": "ID App",
+        "verifyToken": "Token di Verifica",
+        "appSecret": "Segreto App",
+        "apiVersion": "Versione API",
+        "humanAgent": "Abilita Agente Umano",
+        "feedComments": "Abilita Commenti del Feed"
+      },
+      "placeholders": {
+        "appId": "Il tuo Facebook App ID",
+        "verifyToken": "Inserisci il token di verifica",
+        "appSecret": "Inserisci il nuovo segreto app",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configurazione Facebook salvata con successo",
+      "saveError": "Salvataggio della configurazione Facebook non riuscito"
+    },
+    "whatsapp": {
+      "tabTitle": "WhatsApp",
+      "fields": {
+        "appId": "ID App",
+        "verifyToken": "Token di Verifica",
+        "appSecret": "Segreto App",
+        "configId": "ID Configurazione WhatsApp",
+        "apiVersion": "Versione API"
+      },
+      "placeholders": {
+        "appId": "Il tuo WhatsApp App ID",
+        "verifyToken": "Inserisci il token di verifica",
+        "appSecret": "Inserisci il nuovo segreto app",
+        "configId": "Il tuo WhatsApp Config ID",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configurazione WhatsApp salvata con successo",
+      "saveError": "Salvataggio della configurazione WhatsApp non riuscito"
+    },
+    "instagram": {
+      "tabTitle": "Instagram",
+      "fields": {
+        "appId": "ID App",
+        "appSecret": "Segreto App",
+        "verifyToken": "Token di Verifica",
+        "apiVersion": "Versione API",
+        "humanAgent": "Abilita Agente Umano"
+      },
+      "placeholders": {
+        "appId": "Il tuo Instagram App ID",
+        "appSecret": "Inserisci il nuovo segreto app",
+        "verifyToken": "Inserisci il token di verifica",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configurazione Instagram salvata con successo",
+      "saveError": "Salvataggio della configurazione Instagram non riuscito"
+    },
+    "messages": {
+      "loadError": "Caricamento della configurazione dei canali non riuscito"
+    }
   }
 }

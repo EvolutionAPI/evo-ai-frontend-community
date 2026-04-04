@@ -4,7 +4,8 @@
     "email": "Email",
     "storage": "Storage",
     "payments": "Payments",
-    "socialLogin": "Social Login"
+    "socialLogin": "Social Login",
+    "channels": "Channels"
   },
   "email": {
     "title": "Email Configuration",
@@ -178,5 +179,73 @@
     },
     "save": "Save Configuration",
     "saving": "Saving..."
+  },
+  "channels": {
+    "title": "Channel Integrations",
+    "description": "Configure credentials for Facebook, WhatsApp, and Instagram messaging channels.",
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "facebook": {
+      "tabTitle": "Facebook",
+      "fields": {
+        "appId": "App ID",
+        "verifyToken": "Verify Token",
+        "appSecret": "App Secret",
+        "apiVersion": "API Version",
+        "humanAgent": "Enable Human Agent",
+        "feedComments": "Enable Feed Comments"
+      },
+      "placeholders": {
+        "appId": "Your Facebook App ID",
+        "verifyToken": "Enter verify token",
+        "appSecret": "Enter new app secret",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Facebook configuration saved successfully",
+      "saveError": "Failed to save Facebook configuration"
+    },
+    "whatsapp": {
+      "tabTitle": "WhatsApp",
+      "fields": {
+        "appId": "App ID",
+        "verifyToken": "Verify Token",
+        "appSecret": "App Secret",
+        "configId": "WhatsApp Config ID",
+        "apiVersion": "API Version"
+      },
+      "placeholders": {
+        "appId": "Your WhatsApp App ID",
+        "verifyToken": "Enter verify token",
+        "appSecret": "Enter new app secret",
+        "configId": "Your WhatsApp Config ID",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "WhatsApp configuration saved successfully",
+      "saveError": "Failed to save WhatsApp configuration"
+    },
+    "instagram": {
+      "tabTitle": "Instagram",
+      "fields": {
+        "appId": "App ID",
+        "appSecret": "App Secret",
+        "verifyToken": "Verify Token",
+        "apiVersion": "API Version",
+        "humanAgent": "Enable Human Agent"
+      },
+      "placeholders": {
+        "appId": "Your Instagram App ID",
+        "appSecret": "Enter new app secret",
+        "verifyToken": "Enter verify token",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Instagram configuration saved successfully",
+      "saveError": "Failed to save Instagram configuration"
+    },
+    "messages": {
+      "loadError": "Failed to load channel configuration"
+    }
   }
 }
