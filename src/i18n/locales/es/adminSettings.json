@@ -3,7 +3,8 @@
   "navigation": {
     "email": "Correo electronico",
     "storage": "Almacenamiento",
-    "payments": "Pagos"
+    "payments": "Pagos",
+    "socialLogin": "Inicio de Sesion Social"
   },
   "email": {
     "title": "Configuracion de Correo Electronico",
@@ -126,6 +127,54 @@
       "saveSuccess": "Configuracion de pagos guardada exitosamente",
       "saveError": "Error al guardar la configuracion de pagos",
       "loadError": "Error al cargar la configuracion de pagos"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando..."
+  },
+  "socialLogin": {
+    "title": "Configuracion de Inicio de Sesion Social",
+    "description": "Configure las credenciales OAuth de los proveedores de inicio de sesion social para que los usuarios puedan iniciar sesion con Google o Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente",
+        "callbackUrl": "URL de Callback"
+      },
+      "placeholders": {
+        "clientId": "su-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Ingrese el nuevo secreto de cliente",
+        "callbackUrl": "https://su-dominio.com/auth/google/callback"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "No configurado",
+      "clearSecret": "Borrar valor guardado",
+      "saveSuccess": "Configuracion de Google OAuth guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Google OAuth"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID de Aplicacion",
+        "appSecret": "Secreto de Aplicacion"
+      },
+      "placeholders": {
+        "appId": "su-azure-application-id",
+        "appSecret": "Ingrese el nuevo secreto de aplicacion"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "No configurado",
+      "clearSecret": "Borrar valor guardado",
+      "saveSuccess": "Configuracion de Microsoft guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Microsoft"
+    },
+    "validation": {
+      "clientIdRequired": "El ID de cliente es obligatorio",
+      "callbackUrlInvalid": "La URL de callback debe ser una URL valida",
+      "appIdRequired": "El ID de aplicacion es obligatorio"
+    },
+    "messages": {
+      "loadError": "Error al cargar la configuracion de inicio de sesion social"
     },
     "save": "Guardar Configuracion",
     "saving": "Guardando..."

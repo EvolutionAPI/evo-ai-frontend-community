@@ -3,7 +3,8 @@
   "navigation": {
     "email": "E-mail",
     "storage": "Archiviazione",
-    "payments": "Pagamenti"
+    "payments": "Pagamenti",
+    "socialLogin": "Login Sociale"
   },
   "email": {
     "title": "Configurazione E-mail",
@@ -126,6 +127,54 @@
       "saveSuccess": "Configurazione pagamenti salvata con successo",
       "saveError": "Salvataggio della configurazione pagamenti non riuscito",
       "loadError": "Caricamento della configurazione pagamenti non riuscito"
+    },
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio..."
+  },
+  "socialLogin": {
+    "title": "Configurazione Login Sociale",
+    "description": "Configura le credenziali OAuth dei provider di login sociale per consentire agli utenti di accedere con Google o Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID Cliente",
+        "clientSecret": "Segreto Cliente",
+        "callbackUrl": "URL di Callback"
+      },
+      "placeholders": {
+        "clientId": "tuo-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Inserisci il nuovo segreto cliente",
+        "callbackUrl": "https://tuo-dominio.com/auth/google/callback"
+      },
+      "secretConfigured": "Configurato",
+      "secretNotConfigured": "Non configurato",
+      "clearSecret": "Cancella valore salvato",
+      "saveSuccess": "Configurazione Google OAuth salvata con successo",
+      "saveError": "Salvataggio della configurazione Google OAuth non riuscito"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID Applicazione",
+        "appSecret": "Segreto Applicazione"
+      },
+      "placeholders": {
+        "appId": "tuo-azure-application-id",
+        "appSecret": "Inserisci il nuovo segreto applicazione"
+      },
+      "secretConfigured": "Configurato",
+      "secretNotConfigured": "Non configurato",
+      "clearSecret": "Cancella valore salvato",
+      "saveSuccess": "Configurazione Microsoft salvata con successo",
+      "saveError": "Salvataggio della configurazione Microsoft non riuscito"
+    },
+    "validation": {
+      "clientIdRequired": "L'ID cliente e obbligatorio",
+      "callbackUrlInvalid": "L'URL di callback deve essere un URL valido",
+      "appIdRequired": "L'ID applicazione e obbligatorio"
+    },
+    "messages": {
+      "loadError": "Caricamento della configurazione di login sociale non riuscito"
     },
     "save": "Salva Configurazione",
     "saving": "Salvataggio..."

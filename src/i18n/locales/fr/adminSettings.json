@@ -3,7 +3,8 @@
   "navigation": {
     "email": "E-mail",
     "storage": "Stockage",
-    "payments": "Paiements"
+    "payments": "Paiements",
+    "socialLogin": "Connexion Sociale"
   },
   "email": {
     "title": "Configuration E-mail",
@@ -126,6 +127,54 @@
       "saveSuccess": "Configuration des paiements enregistree avec succes",
       "saveError": "Echec de l'enregistrement de la configuration des paiements",
       "loadError": "Echec du chargement de la configuration des paiements"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  },
+  "socialLogin": {
+    "title": "Configuration de Connexion Sociale",
+    "description": "Configurez les identifiants OAuth des fournisseurs de connexion sociale pour que les utilisateurs puissent se connecter avec Google ou Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID Client",
+        "clientSecret": "Secret Client",
+        "callbackUrl": "URL de Callback"
+      },
+      "placeholders": {
+        "clientId": "votre-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Entrez le nouveau secret client",
+        "callbackUrl": "https://votre-domaine.com/auth/google/callback"
+      },
+      "secretConfigured": "Configure",
+      "secretNotConfigured": "Non configure",
+      "clearSecret": "Effacer la valeur enregistree",
+      "saveSuccess": "Configuration Google OAuth enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Google OAuth"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID d'Application",
+        "appSecret": "Secret d'Application"
+      },
+      "placeholders": {
+        "appId": "votre-azure-application-id",
+        "appSecret": "Entrez le nouveau secret d'application"
+      },
+      "secretConfigured": "Configure",
+      "secretNotConfigured": "Non configure",
+      "clearSecret": "Effacer la valeur enregistree",
+      "saveSuccess": "Configuration Microsoft enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Microsoft"
+    },
+    "validation": {
+      "clientIdRequired": "L'ID client est obligatoire",
+      "callbackUrlInvalid": "L'URL de callback doit etre une URL valide",
+      "appIdRequired": "L'ID d'application est obligatoire"
+    },
+    "messages": {
+      "loadError": "Echec du chargement de la configuration de connexion sociale"
     },
     "save": "Enregistrer la Configuration",
     "saving": "Enregistrement..."

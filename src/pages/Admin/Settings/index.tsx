@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink, Outlet, Navigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
-import { Mail, HardDrive, CreditCard } from 'lucide-react';
+import { Mail, HardDrive, CreditCard, KeyRound } from 'lucide-react';
 
 const navItems = [
   { key: 'email', path: '/settings/admin/email', icon: Mail },
   { key: 'storage', path: '/settings/admin/storage', icon: HardDrive },
   { key: 'payments', path: '/settings/admin/payments', icon: CreditCard },
+  { key: 'socialLogin', path: '/settings/admin/social-login', icon: KeyRound },
 ] as const;
 
 export default function AdminSettingsLayout() {

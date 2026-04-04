@@ -3,7 +3,8 @@
   "navigation": {
     "email": "Email",
     "storage": "Storage",
-    "payments": "Payments"
+    "payments": "Payments",
+    "socialLogin": "Social Login"
   },
   "email": {
     "title": "Email Configuration",
@@ -126,6 +127,54 @@
       "saveSuccess": "Payments configuration saved successfully",
       "saveError": "Failed to save payments configuration",
       "loadError": "Failed to load payments configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  },
+  "socialLogin": {
+    "title": "Social Login Configuration",
+    "description": "Configure OAuth credentials for social login providers so users can sign in with Google or Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret",
+        "callbackUrl": "Callback URL"
+      },
+      "placeholders": {
+        "clientId": "your-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Enter new client secret",
+        "callbackUrl": "https://your-domain.com/auth/google/callback"
+      },
+      "secretConfigured": "Configured",
+      "secretNotConfigured": "Not configured",
+      "clearSecret": "Clear saved value",
+      "saveSuccess": "Google OAuth configuration saved successfully",
+      "saveError": "Failed to save Google OAuth configuration"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "Application ID",
+        "appSecret": "Application Secret"
+      },
+      "placeholders": {
+        "appId": "your-azure-application-id",
+        "appSecret": "Enter new application secret"
+      },
+      "secretConfigured": "Configured",
+      "secretNotConfigured": "Not configured",
+      "clearSecret": "Clear saved value",
+      "saveSuccess": "Microsoft configuration saved successfully",
+      "saveError": "Failed to save Microsoft configuration"
+    },
+    "validation": {
+      "clientIdRequired": "Client ID is required",
+      "callbackUrlInvalid": "Callback URL must be a valid URL",
+      "appIdRequired": "Application ID is required"
+    },
+    "messages": {
+      "loadError": "Failed to load social login configuration"
     },
     "save": "Save Configuration",
     "saving": "Saving..."

@@ -3,7 +3,8 @@
   "navigation": {
     "email": "E-mail",
     "storage": "Armazenamento",
-    "payments": "Pagamentos"
+    "payments": "Pagamentos",
+    "socialLogin": "Login Social"
   },
   "email": {
     "title": "Configuracao de E-mail",
@@ -126,6 +127,54 @@
       "saveSuccess": "Configuracao de pagamentos salva com sucesso",
       "saveError": "Falha ao salvar configuracao de pagamentos",
       "loadError": "Falha ao carregar configuracao de pagamentos"
+    },
+    "save": "Salvar Configuracao",
+    "saving": "Salvando..."
+  },
+  "socialLogin": {
+    "title": "Configuracao de Login Social",
+    "description": "Configure as credenciais OAuth dos provedores de login social para que os usuarios possam entrar com Google ou Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID do Cliente",
+        "clientSecret": "Segredo do Cliente",
+        "callbackUrl": "URL de Callback"
+      },
+      "placeholders": {
+        "clientId": "seu-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Digite o novo segredo do cliente",
+        "callbackUrl": "https://seu-dominio.com/auth/google/callback"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "Nao configurado",
+      "clearSecret": "Limpar valor salvo",
+      "saveSuccess": "Configuracao do Google OAuth salva com sucesso",
+      "saveError": "Falha ao salvar configuracao do Google OAuth"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID da Aplicacao",
+        "appSecret": "Segredo da Aplicacao"
+      },
+      "placeholders": {
+        "appId": "seu-azure-application-id",
+        "appSecret": "Digite o novo segredo da aplicacao"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "Nao configurado",
+      "clearSecret": "Limpar valor salvo",
+      "saveSuccess": "Configuracao da Microsoft salva com sucesso",
+      "saveError": "Falha ao salvar configuracao da Microsoft"
+    },
+    "validation": {
+      "clientIdRequired": "ID do cliente e obrigatorio",
+      "callbackUrlInvalid": "URL de callback deve ser uma URL valida",
+      "appIdRequired": "ID da aplicacao e obrigatorio"
+    },
+    "messages": {
+      "loadError": "Falha ao carregar configuracao de login social"
     },
     "save": "Salvar Configuracao",
     "saving": "Salvando..."

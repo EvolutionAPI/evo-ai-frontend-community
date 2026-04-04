@@ -73,6 +73,7 @@ import AdminSettingsLayout from '@/pages/Admin/Settings';
 const SmtpConfig = React.lazy(() => import('@/pages/Admin/Settings/SmtpConfig'));
 const StorageConfig = React.lazy(() => import('@/pages/Admin/Settings/StorageConfig'));
 const PaymentsConfig = React.lazy(() => import('@/pages/Admin/Settings/PaymentsConfig'));
+const SocialLoginConfig = React.lazy(() => import('@/pages/Admin/Settings/SocialLoginConfig'));
 
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
@@ -1142,6 +1143,14 @@ const AppRouter = () => {
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
                   <PaymentsConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="social-login"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <SocialLoginConfig />
                 </Suspense>
               }
             />
