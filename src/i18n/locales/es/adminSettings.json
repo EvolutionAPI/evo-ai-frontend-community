@@ -1,7 +1,8 @@
 {
   "title": "Configuracion de Admin",
   "navigation": {
-    "email": "Correo electronico"
+    "email": "Correo electronico",
+    "storage": "Almacenamiento"
   },
   "email": {
     "title": "Configuracion de Correo Electronico",
@@ -48,6 +49,50 @@
       "saveSuccess": "Configuracion de correo guardada exitosamente",
       "saveError": "Error al guardar la configuracion de correo",
       "loadError": "Error al cargar la configuracion de correo"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "testConnection": "Probar Conexion",
+    "testing": "Probando...",
+    "testFailed": "La prueba de conexion fallo",
+    "testError": "Error al ejecutar la prueba de conexion"
+  },
+  "storage": {
+    "title": "Configuracion de Almacenamiento",
+    "description": "Configure el proveedor de almacenamiento de archivos utilizado para adjuntos y cargas.",
+    "provider": {
+      "label": "Proveedor de Almacenamiento",
+      "local": "Almacenamiento Local",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compatible con S3"
+    },
+    "fields": {
+      "bucketName": "Nombre del Bucket",
+      "accessKeyId": "ID de Clave de Acceso",
+      "accessSecret": "Clave de Acceso Secreta",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "mi-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Ingrese la nueva clave de acceso secreta",
+      "region": "us-east-1",
+      "endpoint": "https://s3.ejemplo.com"
+    },
+    "validation": {
+      "bucketRequired": "El nombre del bucket es obligatorio",
+      "accessKeyRequired": "El ID de clave de acceso es obligatorio",
+      "regionRequired": "La region es obligatoria",
+      "endpointRequired": "El endpoint es obligatorio para proveedores compatibles con S3"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de almacenamiento guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de almacenamiento",
+      "loadError": "Error al cargar la configuracion de almacenamiento"
     },
     "save": "Guardar Configuracion",
     "saving": "Guardando...",

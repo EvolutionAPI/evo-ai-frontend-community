@@ -1,7 +1,8 @@
 {
   "title": "Parametres Admin",
   "navigation": {
-    "email": "E-mail"
+    "email": "E-mail",
+    "storage": "Stockage"
   },
   "email": {
     "title": "Configuration E-mail",
@@ -48,6 +49,50 @@
       "saveSuccess": "Configuration e-mail enregistree avec succes",
       "saveError": "Echec de l'enregistrement de la configuration e-mail",
       "loadError": "Echec du chargement de la configuration e-mail"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "testConnection": "Tester la Connexion",
+    "testing": "Test en cours...",
+    "testFailed": "Le test de connexion a echoue",
+    "testError": "Impossible d'executer le test de connexion"
+  },
+  "storage": {
+    "title": "Configuration du Stockage",
+    "description": "Configurez le fournisseur de stockage de fichiers utilise pour les pieces jointes et les telechargements.",
+    "provider": {
+      "label": "Fournisseur de Stockage",
+      "local": "Stockage Local",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compatible S3"
+    },
+    "fields": {
+      "bucketName": "Nom du Bucket",
+      "accessKeyId": "ID de Cle d'Acces",
+      "accessSecret": "Cle d'Acces Secrete",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "mon-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Entrez la nouvelle cle d'acces secrete",
+      "region": "us-east-1",
+      "endpoint": "https://s3.exemple.com"
+    },
+    "validation": {
+      "bucketRequired": "Le nom du bucket est obligatoire",
+      "accessKeyRequired": "L'ID de cle d'acces est obligatoire",
+      "regionRequired": "La region est obligatoire",
+      "endpointRequired": "L'endpoint est obligatoire pour les fournisseurs compatibles S3"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration de stockage enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration de stockage",
+      "loadError": "Echec du chargement de la configuration de stockage"
     },
     "save": "Enregistrer la Configuration",
     "saving": "Enregistrement...",

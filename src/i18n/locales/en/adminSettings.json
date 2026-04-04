@@ -1,7 +1,8 @@
 {
   "title": "Admin Settings",
   "navigation": {
-    "email": "Email"
+    "email": "Email",
+    "storage": "Storage"
   },
   "email": {
     "title": "Email Configuration",
@@ -48,6 +49,50 @@
       "saveSuccess": "Email configuration saved successfully",
       "saveError": "Failed to save email configuration",
       "loadError": "Failed to load email configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "testFailed": "Connection test failed",
+    "testError": "Failed to run connection test"
+  },
+  "storage": {
+    "title": "Storage Configuration",
+    "description": "Configure the file storage provider used for attachments and uploads.",
+    "provider": {
+      "label": "Storage Provider",
+      "local": "Local Storage",
+      "amazon": "Amazon S3",
+      "s3Compatible": "S3-Compatible"
+    },
+    "fields": {
+      "bucketName": "Bucket Name",
+      "accessKeyId": "Access Key ID",
+      "accessSecret": "Secret Access Key",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "my-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Enter new secret access key",
+      "region": "us-east-1",
+      "endpoint": "https://s3.example.com"
+    },
+    "validation": {
+      "bucketRequired": "Bucket name is required",
+      "accessKeyRequired": "Access key ID is required",
+      "regionRequired": "Region is required",
+      "endpointRequired": "Endpoint is required for S3-compatible providers"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Storage configuration saved successfully",
+      "saveError": "Failed to save storage configuration",
+      "loadError": "Failed to load storage configuration"
     },
     "save": "Save Configuration",
     "saving": "Saving...",
