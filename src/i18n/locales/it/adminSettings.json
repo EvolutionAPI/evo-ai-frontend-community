@@ -5,7 +5,8 @@
     "storage": "Archiviazione",
     "payments": "Pagamenti",
     "socialLogin": "Login Sociale",
-    "channels": "Canali"
+    "channels": "Canali",
+    "openai": "OpenAI"
   },
   "email": {
     "title": "Configurazione E-mail",
@@ -294,5 +295,58 @@
     "messages": {
       "loadError": "Caricamento della configurazione dei canali non riuscito"
     }
+  },
+  "openai": {
+    "title": "Configurazione OpenAI",
+    "description": "Configura la connessione all'API OpenAI e i modelli di prompt IA utilizzati per suggerimenti di risposta, riassunti e trasformazioni di testo.",
+    "connection": {
+      "cardTitle": "Impostazioni di Connessione",
+      "fields": {
+        "apiUrl": "URL dell'API",
+        "apiSecret": "Chiave API",
+        "model": "Modello",
+        "audioTranscription": "Abilita Trascrizione Audio"
+      },
+      "placeholders": {
+        "apiUrl": "https://api.openai.com/v1",
+        "apiSecret": "Inserisci la nuova chiave API",
+        "model": "gpt-4o"
+      }
+    },
+    "prompts": {
+      "cardTitle": "Modelli di Prompt IA",
+      "fields": {
+        "OPENAI_PROMPT_REPLY": "Suggerimento di Risposta",
+        "OPENAI_PROMPT_SUMMARY": "Riassunto della Conversazione",
+        "OPENAI_PROMPT_REPHRASE": "Riformula Messaggio",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Correggi Grammatica",
+        "OPENAI_PROMPT_SHORTEN": "Accorcia Testo",
+        "OPENAI_PROMPT_EXPAND": "Espandi Testo",
+        "OPENAI_PROMPT_FRIENDLY": "Tono Amichevole",
+        "OPENAI_PROMPT_FORMAL": "Tono Formale",
+        "OPENAI_PROMPT_SIMPLIFY": "Semplifica Testo"
+      },
+      "placeholders": {
+        "OPENAI_PROMPT_REPLY": "Inserisci il prompt per suggerimenti di risposta...",
+        "OPENAI_PROMPT_SUMMARY": "Inserisci il prompt per riassunti delle conversazioni...",
+        "OPENAI_PROMPT_REPHRASE": "Inserisci il prompt per riformulare i messaggi...",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Inserisci il prompt per correzioni grammaticali...",
+        "OPENAI_PROMPT_SHORTEN": "Inserisci il prompt per accorciare il testo...",
+        "OPENAI_PROMPT_EXPAND": "Inserisci il prompt per espandere il testo...",
+        "OPENAI_PROMPT_FRIENDLY": "Inserisci il prompt per un tono amichevole...",
+        "OPENAI_PROMPT_FORMAL": "Inserisci il prompt per un tono formale...",
+        "OPENAI_PROMPT_SIMPLIFY": "Inserisci il prompt per semplificare il testo..."
+      }
+    },
+    "secretConfigured": "Configurato",
+    "secretNotConfigured": "Non configurato",
+    "clearSecret": "Cancella valore salvato",
+    "messages": {
+      "saveSuccess": "Configurazione OpenAI salvata con successo",
+      "saveError": "Errore nel salvataggio della configurazione OpenAI",
+      "loadError": "Errore nel caricamento della configurazione OpenAI"
+    },
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio..."
   }
 }

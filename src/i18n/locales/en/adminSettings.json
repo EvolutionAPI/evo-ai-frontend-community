@@ -5,7 +5,8 @@
     "storage": "Storage",
     "payments": "Payments",
     "socialLogin": "Social Login",
-    "channels": "Channels"
+    "channels": "Channels",
+    "openai": "OpenAI"
   },
   "email": {
     "title": "Email Configuration",
@@ -294,5 +295,58 @@
     "messages": {
       "loadError": "Failed to load channel configuration"
     }
+  },
+  "openai": {
+    "title": "OpenAI Configuration",
+    "description": "Configure the OpenAI API connection and AI prompt templates used for reply suggestions, summaries, and text transformations.",
+    "connection": {
+      "cardTitle": "Connection Settings",
+      "fields": {
+        "apiUrl": "API URL",
+        "apiSecret": "API Key",
+        "model": "Model",
+        "audioTranscription": "Enable Audio Transcription"
+      },
+      "placeholders": {
+        "apiUrl": "https://api.openai.com/v1",
+        "apiSecret": "Enter new API key",
+        "model": "gpt-4o"
+      }
+    },
+    "prompts": {
+      "cardTitle": "AI Prompt Templates",
+      "fields": {
+        "OPENAI_PROMPT_REPLY": "Reply Suggestion",
+        "OPENAI_PROMPT_SUMMARY": "Conversation Summary",
+        "OPENAI_PROMPT_REPHRASE": "Rephrase Message",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Fix Grammar",
+        "OPENAI_PROMPT_SHORTEN": "Shorten Text",
+        "OPENAI_PROMPT_EXPAND": "Expand Text",
+        "OPENAI_PROMPT_FRIENDLY": "Make Friendly",
+        "OPENAI_PROMPT_FORMAL": "Make Formal",
+        "OPENAI_PROMPT_SIMPLIFY": "Simplify Text"
+      },
+      "placeholders": {
+        "OPENAI_PROMPT_REPLY": "Enter prompt for reply suggestions...",
+        "OPENAI_PROMPT_SUMMARY": "Enter prompt for conversation summaries...",
+        "OPENAI_PROMPT_REPHRASE": "Enter prompt for rephrasing messages...",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Enter prompt for grammar fixes...",
+        "OPENAI_PROMPT_SHORTEN": "Enter prompt for shortening text...",
+        "OPENAI_PROMPT_EXPAND": "Enter prompt for expanding text...",
+        "OPENAI_PROMPT_FRIENDLY": "Enter prompt for friendly tone...",
+        "OPENAI_PROMPT_FORMAL": "Enter prompt for formal tone...",
+        "OPENAI_PROMPT_SIMPLIFY": "Enter prompt for simplifying text..."
+      }
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "OpenAI configuration saved successfully",
+      "saveError": "Failed to save OpenAI configuration",
+      "loadError": "Failed to load OpenAI configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
   }
 }
