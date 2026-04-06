@@ -182,7 +182,7 @@
   },
   "channels": {
     "title": "Channel Integrations",
-    "description": "Configure credentials for Facebook, WhatsApp, and Instagram messaging channels.",
+    "description": "Configure credentials for messaging channels and integrations.",
     "secretConfigured": "Configured",
     "secretNotConfigured": "Not configured",
     "clearSecret": "Clear saved value",
@@ -243,6 +243,53 @@
       },
       "saveSuccess": "Instagram configuration saved successfully",
       "saveError": "Failed to save Instagram configuration"
+    },
+    "evolution": {
+      "tabTitle": "Evolution",
+      "fields": {
+        "apiUrl": "API URL",
+        "adminSecret": "Admin Secret"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-api.example.com",
+        "adminSecret": "Enter new admin secret"
+      },
+      "saveSuccess": "Evolution configuration saved successfully",
+      "saveError": "Failed to save Evolution configuration"
+    },
+    "evolutionGo": {
+      "tabTitle": "Evolution Go",
+      "fields": {
+        "apiUrl": "API URL",
+        "adminSecret": "Admin Secret",
+        "instanceId": "Instance ID",
+        "instanceSecret": "Instance Secret"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-go.example.com",
+        "adminSecret": "Enter new admin secret",
+        "instanceId": "Your Evolution Go Instance ID",
+        "instanceSecret": "Enter new instance secret"
+      },
+      "saveSuccess": "Evolution Go configuration saved successfully",
+      "saveError": "Failed to save Evolution Go configuration"
+    },
+    "twitter": {
+      "tabTitle": "Twitter",
+      "fields": {
+        "appId": "App ID",
+        "consumerKey": "Consumer Key",
+        "consumerSecret": "Consumer Secret",
+        "environment": "Environment"
+      },
+      "placeholders": {
+        "appId": "Your Twitter App ID",
+        "consumerKey": "Your Twitter Consumer Key",
+        "consumerSecret": "Enter new consumer secret",
+        "environment": "production"
+      },
+      "saveSuccess": "Twitter configuration saved successfully",
+      "saveError": "Failed to save Twitter configuration"
     },
     "messages": {
       "loadError": "Failed to load channel configuration"

@@ -182,7 +182,7 @@
   },
   "channels": {
     "title": "Integrations de Canaux",
-    "description": "Configurez les identifiants pour les canaux de messagerie Facebook, WhatsApp et Instagram.",
+    "description": "Configurez les identifiants pour les canaux de messagerie et integrations.",
     "secretConfigured": "Configure",
     "secretNotConfigured": "Non configure",
     "clearSecret": "Effacer la valeur enregistree",
@@ -243,6 +243,53 @@
       },
       "saveSuccess": "Configuration Instagram enregistree avec succes",
       "saveError": "Echec de l'enregistrement de la configuration Instagram"
+    },
+    "evolution": {
+      "tabTitle": "Evolution",
+      "fields": {
+        "apiUrl": "URL de l'API",
+        "adminSecret": "Secret Admin"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-api.exemple.com",
+        "adminSecret": "Entrez le nouveau secret admin"
+      },
+      "saveSuccess": "Configuration Evolution enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Evolution"
+    },
+    "evolutionGo": {
+      "tabTitle": "Evolution Go",
+      "fields": {
+        "apiUrl": "URL de l'API",
+        "adminSecret": "Secret Admin",
+        "instanceId": "ID d'Instance",
+        "instanceSecret": "Secret d'Instance"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-go.exemple.com",
+        "adminSecret": "Entrez le nouveau secret admin",
+        "instanceId": "Votre Evolution Go Instance ID",
+        "instanceSecret": "Entrez le nouveau secret d'instance"
+      },
+      "saveSuccess": "Configuration Evolution Go enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Evolution Go"
+    },
+    "twitter": {
+      "tabTitle": "Twitter",
+      "fields": {
+        "appId": "ID de l'App",
+        "consumerKey": "Cle Consommateur",
+        "consumerSecret": "Secret Consommateur",
+        "environment": "Environnement"
+      },
+      "placeholders": {
+        "appId": "Votre Twitter App ID",
+        "consumerKey": "Votre cle consommateur Twitter",
+        "consumerSecret": "Entrez le nouveau secret consommateur",
+        "environment": "production"
+      },
+      "saveSuccess": "Configuration Twitter enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Twitter"
     },
     "messages": {
       "loadError": "Echec du chargement de la configuration des canaux"
