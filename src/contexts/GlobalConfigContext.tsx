@@ -110,6 +110,11 @@ export const fetchSetupStatus = async (): Promise<boolean> => {
 // Listeners para notificar componentes React quando o cache é limpo
 const setupCacheListeners: Set<() => void> = new Set();
 
+export const clearGlobalConfigCache = () => {
+  globalConfigCache = null;
+  globalConfigPromise = null;
+};
+
 export const clearSetupCache = () => {
   setupRequiredCache = null;
   // Notificar todos os listeners para re-fetch
