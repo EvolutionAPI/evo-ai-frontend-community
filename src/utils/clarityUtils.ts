@@ -2,7 +2,8 @@
  * Microsoft Clarity Analytics Integration
  *
  * Initializes Microsoft Clarity for user behavior analytics.
- * Only runs in production when VITE_CLARITY_PROJECT_ID is configured.
+ * Reads project ID from backend API (via GlobalConfigContext) with VITE_CLARITY_PROJECT_ID as fallback.
+ * Only runs in production with a valid project ID.
  */
 
 declare global {
@@ -11,11 +12,16 @@ declare global {
   }
 }
 
-export const initClarity = (): void => {
-  const projectId = import.meta.env.VITE_CLARITY_PROJECT_ID;
+export const initClarity = (configProjectId?: string | null): void => {
+  const projectId = configProjectId || import.meta.env.VITE_CLARITY_PROJECT_ID;
 
   // Only initialize in production with valid project ID
   if (!projectId || import.meta.env.DEV) {
+    return;
+  }
+
+  // Skip if Clarity is already initialized
+  if (window.clarity) {
     return;
   }
 

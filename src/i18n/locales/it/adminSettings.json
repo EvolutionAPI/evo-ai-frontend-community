@@ -10,7 +10,8 @@
     "integrations": "Integrazioni",
     "inboundEmail": "E-mail in Entrata",
     "pushNotifications": "Notifiche Push",
-    "whitelabel": "Whitelabel"
+    "whitelabel": "Whitelabel",
+    "frontendRuntime": "Frontend Runtime"
   },
   "email": {
     "title": "Configurazione E-mail",
@@ -495,6 +496,26 @@
       "saveSuccess": "Configurazione whitelabel salvata con successo",
       "saveError": "Errore nel salvataggio della configurazione whitelabel",
       "loadError": "Errore nel caricamento della configurazione whitelabel"
+    },
+    "save": "Salva Configurazione",
+    "saving": "Salvataggio..."
+  },
+  "frontendRuntime": {
+    "title": "Configurazione Frontend Runtime",
+    "description": "Configura le chiavi reCAPTCHA e Clarity caricate dal frontend all'avvio.",
+    "fields": {
+      "cardTitle": "Chiavi Runtime",
+      "recaptchaSiteKey": "Chiave del Sito reCAPTCHA",
+      "clarityProjectId": "ID del Progetto Clarity"
+    },
+    "placeholders": {
+      "recaptchaSiteKey": "6Lc...",
+      "clarityProjectId": "abc123xyz"
+    },
+    "messages": {
+      "saveSuccess": "Configurazione frontend runtime salvata con successo",
+      "saveError": "Errore nel salvataggio della configurazione frontend runtime",
+      "loadError": "Errore nel caricamento della configurazione frontend runtime"
     },
     "save": "Salva Configurazione",
     "saving": "Salvataggio..."

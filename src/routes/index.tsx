@@ -80,6 +80,7 @@ const IntegrationsConfig = React.lazy(() => import('@/pages/Admin/Settings/Integ
 const InboundEmailConfig = React.lazy(() => import('@/pages/Admin/Settings/InboundEmailConfig'));
 const PushNotificationsConfig = React.lazy(() => import('@/pages/Admin/Settings/PushNotificationsConfig'));
 const WhitelabelConfig = React.lazy(() => import('@/pages/Admin/Settings/WhitelabelConfig'));
+const FrontendRuntimeConfig = React.lazy(() => import('@/pages/Admin/Settings/FrontendRuntimeConfig'));
 
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
@@ -1205,6 +1206,14 @@ const AppRouter = () => {
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
                   <WhitelabelConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="frontend-runtime"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <FrontendRuntimeConfig />
                 </Suspense>
               }
             />

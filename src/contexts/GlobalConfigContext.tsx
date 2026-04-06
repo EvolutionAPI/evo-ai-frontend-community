@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { api } from '@/services/core';
 import { setupService } from '@/services/setup/setupService';
+import { initClarity } from '@/utils/clarityUtils';
 
 export interface WhitelabelConfig {
   enabled: boolean;
@@ -40,6 +41,8 @@ export interface GlobalConfig {
   hasEvolutionGoConfig?: boolean;
   openaiConfigured?: boolean;
   enableAccountSignup?: boolean;
+  recaptchaSiteKey?: string;
+  clarityProjectId?: string;
   whitelabel?: WhitelabelConfig;
 }
 
@@ -127,6 +130,10 @@ export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ 
           setConfig(configData);
           setSetupRequired(isSetupRequired);
           setSetupLoading(false);
+          // Initialize Clarity with backend-provided project ID
+          if (configData.clarityProjectId) {
+            initClarity(configData.clarityProjectId);
+          }
         }
       });
     };
