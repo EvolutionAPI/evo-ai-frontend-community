@@ -54,9 +54,37 @@ function createInstagramSchema() {
   });
 }
 
+function createEvolutionSchema() {
+  return z.object({
+    EVOLUTION_API_URL: z.string().optional(),
+    EVOLUTION_ADMIN_SECRET: z.string().optional().nullable(),
+  });
+}
+
+function createEvolutionGoSchema() {
+  return z.object({
+    EVOLUTION_GO_API_URL: z.string().optional(),
+    EVOLUTION_GO_ADMIN_SECRET: z.string().optional().nullable(),
+    EVOLUTION_GO_INSTANCE_ID: z.string().optional(),
+    EVOLUTION_GO_INSTANCE_SECRET: z.string().optional().nullable(),
+  });
+}
+
+function createTwitterSchema() {
+  return z.object({
+    TWITTER_APP_ID: z.string().optional(),
+    TWITTER_CONSUMER_KEY: z.string().optional(),
+    TWITTER_CONSUMER_SECRET: z.string().optional().nullable(),
+    TWITTER_ENVIRONMENT: z.string().optional(),
+  });
+}
+
 type FacebookFormData = z.infer<ReturnType<typeof createFacebookSchema>>;
 type WhatsAppFormData = z.infer<ReturnType<typeof createWhatsappSchema>>;
 type InstagramFormData = z.infer<ReturnType<typeof createInstagramSchema>>;
+type EvolutionFormData = z.infer<ReturnType<typeof createEvolutionSchema>>;
+type EvolutionGoFormData = z.infer<ReturnType<typeof createEvolutionGoSchema>>;
+type TwitterFormData = z.infer<ReturnType<typeof createTwitterSchema>>;
 
 const FACEBOOK_DEFAULTS: FacebookFormData = {
   FB_APP_ID: '',
@@ -83,10 +111,32 @@ const INSTAGRAM_DEFAULTS: InstagramFormData = {
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: false,
 };
 
+const EVOLUTION_DEFAULTS: EvolutionFormData = {
+  EVOLUTION_API_URL: '',
+  EVOLUTION_ADMIN_SECRET: null,
+};
+
+const EVOLUTION_GO_DEFAULTS: EvolutionGoFormData = {
+  EVOLUTION_GO_API_URL: '',
+  EVOLUTION_GO_ADMIN_SECRET: null,
+  EVOLUTION_GO_INSTANCE_ID: '',
+  EVOLUTION_GO_INSTANCE_SECRET: null,
+};
+
+const TWITTER_DEFAULTS: TwitterFormData = {
+  TWITTER_APP_ID: '',
+  TWITTER_CONSUMER_KEY: '',
+  TWITTER_CONSUMER_SECRET: null,
+  TWITTER_ENVIRONMENT: '',
+};
+
 // Keys with _SECRET suffix are Fernet-encrypted; API returns masked_value
 const FACEBOOK_SECRET_FIELDS = ['FB_APP_SECRET'];
 const WHATSAPP_SECRET_FIELDS = ['WP_APP_SECRET'];
 const INSTAGRAM_SECRET_FIELDS = ['INSTAGRAM_APP_SECRET'];
+const EVOLUTION_SECRET_FIELDS = ['EVOLUTION_ADMIN_SECRET'];
+const EVOLUTION_GO_SECRET_FIELDS = ['EVOLUTION_GO_ADMIN_SECRET', 'EVOLUTION_GO_INSTANCE_SECRET'];
+const TWITTER_SECRET_FIELDS = ['TWITTER_CONSUMER_SECRET'];
 
 const FACEBOOK_BOOLEAN_FIELDS = ['ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT', 'FB_FEED_COMMENTS_ENABLED'];
 const INSTAGRAM_BOOLEAN_FIELDS = ['ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT'];
@@ -218,6 +268,63 @@ function SecretField<T extends Record<string, unknown>>({
   );
 }
 
+// --- TextField subcomponent ---
+
+interface TextFieldProps {
+  id: string;
+  label: string;
+  placeholder: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: any;
+  error?: { message?: string };
+  type?: string;
+  readOnly?: boolean;
+}
+
+function TextField({ id, label, placeholder, register, error, type, readOnly }: TextFieldProps) {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        id={id}
+        placeholder={placeholder}
+        type={type}
+        readOnly={readOnly}
+        className={readOnly ? 'bg-muted cursor-not-allowed' : undefined}
+        {...register}
+      />
+      {error && <p className="text-xs text-destructive">{error.message}</p>}
+    </div>
+  );
+}
+
+// --- ChannelFormCard subcomponent ---
+
+interface ChannelFormCardProps {
+  onSubmit: () => void;
+  saving: boolean;
+  t: (key: string) => string;
+  children: React.ReactNode;
+}
+
+function ChannelFormCard({ onSubmit, saving, t, children }: ChannelFormCardProps) {
+  return (
+    <Card>
+      <CardContent className="pt-6">
+        <form onSubmit={onSubmit} className="space-y-5">
+          {children}
+          <div className="pt-2">
+            <Button type="submit" disabled={saving}>
+              {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              {saving ? t('channels.saving') : t('channels.save')}
+            </Button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+
 // --- Toggle field subcomponent ---
 
 interface ToggleFieldProps {
@@ -254,6 +361,9 @@ export default function ChannelConfig() {
   const [savingFacebook, setSavingFacebook] = useState(false);
   const [savingWhatsapp, setSavingWhatsapp] = useState(false);
   const [savingInstagram, setSavingInstagram] = useState(false);
+  const [savingEvolution, setSavingEvolution] = useState(false);
+  const [savingEvolutionGo, setSavingEvolutionGo] = useState(false);
+  const [savingTwitter, setSavingTwitter] = useState(false);
 
   const [fbSecretModified, setFbSecretModified] = useState<Record<string, boolean>>({});
   const [fbSecretConfigured, setFbSecretConfigured] = useState<Record<string, boolean>>({});
@@ -261,10 +371,19 @@ export default function ChannelConfig() {
   const [wpSecretConfigured, setWpSecretConfigured] = useState<Record<string, boolean>>({});
   const [igSecretModified, setIgSecretModified] = useState<Record<string, boolean>>({});
   const [igSecretConfigured, setIgSecretConfigured] = useState<Record<string, boolean>>({});
+  const [evoSecretModified, setEvoSecretModified] = useState<Record<string, boolean>>({});
+  const [evoSecretConfigured, setEvoSecretConfigured] = useState<Record<string, boolean>>({});
+  const [evoGoSecretModified, setEvoGoSecretModified] = useState<Record<string, boolean>>({});
+  const [evoGoSecretConfigured, setEvoGoSecretConfigured] = useState<Record<string, boolean>>({});
+  const [twSecretModified, setTwSecretModified] = useState<Record<string, boolean>>({});
+  const [twSecretConfigured, setTwSecretConfigured] = useState<Record<string, boolean>>({});
 
   const facebookSchema = useMemo(() => createFacebookSchema(), []);
   const whatsappSchema = useMemo(() => createWhatsappSchema(), []);
   const instagramSchema = useMemo(() => createInstagramSchema(), []);
+  const evolutionSchema = useMemo(() => createEvolutionSchema(), []);
+  const evolutionGoSchema = useMemo(() => createEvolutionGoSchema(), []);
+  const twitterSchema = useMemo(() => createTwitterSchema(), []);
 
   const facebookForm = useForm<FacebookFormData>({
     resolver: zodResolver(facebookSchema),
@@ -281,13 +400,31 @@ export default function ChannelConfig() {
     defaultValues: INSTAGRAM_DEFAULTS,
   });
 
+  const evolutionForm = useForm<EvolutionFormData>({
+    resolver: zodResolver(evolutionSchema),
+    defaultValues: EVOLUTION_DEFAULTS,
+  });
+
+  const evolutionGoForm = useForm<EvolutionGoFormData>({
+    resolver: zodResolver(evolutionGoSchema),
+    defaultValues: EVOLUTION_GO_DEFAULTS,
+  });
+
+  const twitterForm = useForm<TwitterFormData>({
+    resolver: zodResolver(twitterSchema),
+    defaultValues: TWITTER_DEFAULTS,
+  });
+
   const loadConfig = useCallback(async () => {
     setLoading(true);
     try {
-      const [fbData, wpData, igData] = await Promise.all([
+      const [fbData, wpData, igData, evoData, evoGoData, twData] = await Promise.all([
         adminConfigService.getConfig('facebook'),
         adminConfigService.getConfig('whatsapp'),
         adminConfigService.getConfig('instagram'),
+        adminConfigService.getConfig('evolution'),
+        adminConfigService.getConfig('evolution_go'),
+        adminConfigService.getConfig('twitter'),
       ]);
 
       setFbSecretConfigured(updateSecretStatus(fbData, FACEBOOK_SECRET_FIELDS));
@@ -301,12 +438,24 @@ export default function ChannelConfig() {
       setIgSecretConfigured(updateSecretStatus(igData, INSTAGRAM_SECRET_FIELDS));
       setIgSecretModified({});
       instagramForm.reset(buildFormValues(igData, INSTAGRAM_DEFAULTS, INSTAGRAM_SECRET_FIELDS, INSTAGRAM_BOOLEAN_FIELDS));
+
+      setEvoSecretConfigured(updateSecretStatus(evoData, EVOLUTION_SECRET_FIELDS));
+      setEvoSecretModified({});
+      evolutionForm.reset(buildFormValues(evoData, EVOLUTION_DEFAULTS, EVOLUTION_SECRET_FIELDS, []));
+
+      setEvoGoSecretConfigured(updateSecretStatus(evoGoData, EVOLUTION_GO_SECRET_FIELDS));
+      setEvoGoSecretModified({});
+      evolutionGoForm.reset(buildFormValues(evoGoData, EVOLUTION_GO_DEFAULTS, EVOLUTION_GO_SECRET_FIELDS, []));
+
+      setTwSecretConfigured(updateSecretStatus(twData, TWITTER_SECRET_FIELDS));
+      setTwSecretModified({});
+      twitterForm.reset(buildFormValues(twData, TWITTER_DEFAULTS, TWITTER_SECRET_FIELDS, []));
     } catch {
       toast.error(t('channels.messages.loadError'));
     } finally {
       setLoading(false);
     }
-  }, [facebookForm, whatsappForm, instagramForm, t]);
+  }, [facebookForm, whatsappForm, instagramForm, evolutionForm, evolutionGoForm, twitterForm, t]);
 
   useEffect(() => {
     loadConfig();
@@ -363,6 +512,57 @@ export default function ChannelConfig() {
     }
   };
 
+  const onSubmitEvolution = async (formData: EvolutionFormData) => {
+    setSavingEvolution(true);
+    try {
+      const payload = buildPayload(formData as Record<string, unknown>, EVOLUTION_SECRET_FIELDS, evoSecretModified);
+      const data = await adminConfigService.saveConfig('evolution', payload as AdminConfigData);
+      setEvoSecretConfigured(updateSecretStatus(data, EVOLUTION_SECRET_FIELDS));
+      setEvoSecretModified({});
+      evolutionForm.reset(buildFormValues(data, EVOLUTION_DEFAULTS, EVOLUTION_SECRET_FIELDS, []));
+      toast.success(t('channels.evolution.saveSuccess'));
+    } catch (error) {
+      const errorInfo = extractError(error);
+      toast.error(t('channels.evolution.saveError'), { description: errorInfo.message });
+    } finally {
+      setSavingEvolution(false);
+    }
+  };
+
+  const onSubmitEvolutionGo = async (formData: EvolutionGoFormData) => {
+    setSavingEvolutionGo(true);
+    try {
+      const payload = buildPayload(formData as Record<string, unknown>, EVOLUTION_GO_SECRET_FIELDS, evoGoSecretModified);
+      const data = await adminConfigService.saveConfig('evolution_go', payload as AdminConfigData);
+      setEvoGoSecretConfigured(updateSecretStatus(data, EVOLUTION_GO_SECRET_FIELDS));
+      setEvoGoSecretModified({});
+      evolutionGoForm.reset(buildFormValues(data, EVOLUTION_GO_DEFAULTS, EVOLUTION_GO_SECRET_FIELDS, []));
+      toast.success(t('channels.evolutionGo.saveSuccess'));
+    } catch (error) {
+      const errorInfo = extractError(error);
+      toast.error(t('channels.evolutionGo.saveError'), { description: errorInfo.message });
+    } finally {
+      setSavingEvolutionGo(false);
+    }
+  };
+
+  const onSubmitTwitter = async (formData: TwitterFormData) => {
+    setSavingTwitter(true);
+    try {
+      const payload = buildPayload(formData as Record<string, unknown>, TWITTER_SECRET_FIELDS, twSecretModified);
+      const data = await adminConfigService.saveConfig('twitter', payload as AdminConfigData);
+      setTwSecretConfigured(updateSecretStatus(data, TWITTER_SECRET_FIELDS));
+      setTwSecretModified({});
+      twitterForm.reset(buildFormValues(data, TWITTER_DEFAULTS, TWITTER_SECRET_FIELDS, []));
+      toast.success(t('channels.twitter.saveSuccess'));
+    } catch (error) {
+      const errorInfo = extractError(error);
+      toast.error(t('channels.twitter.saveError'), { description: errorInfo.message });
+    } finally {
+      setSavingTwitter(false);
+    }
+  };
+
   const handleClearFbSecret = (fieldName: keyof FacebookFormData) => {
     facebookForm.setValue(fieldName, '');
     setFbSecretModified((prev) => ({ ...prev, [fieldName]: true }));
@@ -376,6 +576,21 @@ export default function ChannelConfig() {
   const handleClearIgSecret = (fieldName: keyof InstagramFormData) => {
     instagramForm.setValue(fieldName, '');
     setIgSecretModified((prev) => ({ ...prev, [fieldName]: true }));
+  };
+
+  const handleClearEvoSecret = (fieldName: keyof EvolutionFormData) => {
+    evolutionForm.setValue(fieldName, '');
+    setEvoSecretModified((prev) => ({ ...prev, [fieldName]: true }));
+  };
+
+  const handleClearEvoGoSecret = (fieldName: keyof EvolutionGoFormData) => {
+    evolutionGoForm.setValue(fieldName, '');
+    setEvoGoSecretModified((prev) => ({ ...prev, [fieldName]: true }));
+  };
+
+  const handleClearTwSecret = (fieldName: keyof TwitterFormData) => {
+    twitterForm.setValue(fieldName, '');
+    setTwSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   if (loading) {
@@ -394,240 +609,260 @@ export default function ChannelConfig() {
       </div>
 
       <Tabs defaultValue="facebook">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="flex w-full flex-wrap gap-1">
           <TabsTrigger value="facebook">{t('channels.facebook.tabTitle')}</TabsTrigger>
           <TabsTrigger value="whatsapp">{t('channels.whatsapp.tabTitle')}</TabsTrigger>
           <TabsTrigger value="instagram">{t('channels.instagram.tabTitle')}</TabsTrigger>
+          <TabsTrigger value="evolution">{t('channels.evolution.tabTitle')}</TabsTrigger>
+          <TabsTrigger value="evolution_go">{t('channels.evolutionGo.tabTitle')}</TabsTrigger>
+          <TabsTrigger value="twitter">{t('channels.twitter.tabTitle')}</TabsTrigger>
         </TabsList>
 
         {/* Facebook Tab */}
         <TabsContent value="facebook" className="mt-4">
-          <Card>
-            <CardContent className="pt-6">
-              <form onSubmit={facebookForm.handleSubmit(onSubmitFacebook)} className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="FB_APP_ID">{t('channels.facebook.fields.appId')}</Label>
-                  <Input
-                    id="FB_APP_ID"
-                    placeholder={t('channels.facebook.placeholders.appId')}
-                    {...facebookForm.register('FB_APP_ID')}
-                  />
-                  {facebookForm.formState.errors.FB_APP_ID && (
-                    <p className="text-xs text-destructive">{facebookForm.formState.errors.FB_APP_ID.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="FB_VERIFY_TOKEN">{t('channels.facebook.fields.verifyToken')}</Label>
-                  <Input
-                    id="FB_VERIFY_TOKEN"
-                    type="password"
-                    autoComplete="off"
-                    placeholder={t('channels.facebook.placeholders.verifyToken')}
-                    {...facebookForm.register('FB_VERIFY_TOKEN')}
-                  />
-                  {facebookForm.formState.errors.FB_VERIFY_TOKEN && (
-                    <p className="text-xs text-destructive">{facebookForm.formState.errors.FB_VERIFY_TOKEN.message}</p>
-                  )}
-                </div>
-
-                <SecretField<FacebookFormData>
-                  fieldName="FB_APP_SECRET"
-                  label={t('channels.facebook.fields.appSecret')}
-                  placeholder={t('channels.facebook.placeholders.appSecret')}
-                  register={facebookForm.register}
-                  secretModified={fbSecretModified}
-                  onSecretModifiedChange={setFbSecretModified}
-                  secretConfigured={fbSecretConfigured}
-                  onClear={() => handleClearFbSecret('FB_APP_SECRET')}
-                  t={t}
-                />
-
-                <div className="space-y-2">
-                  <Label htmlFor="FACEBOOK_API_VERSION">{t('channels.facebook.fields.apiVersion')}</Label>
-                  <Input
-                    id="FACEBOOK_API_VERSION"
-                    placeholder={t('channels.facebook.placeholders.apiVersion')}
-                    {...facebookForm.register('FACEBOOK_API_VERSION')}
-                  />
-                  {facebookForm.formState.errors.FACEBOOK_API_VERSION && (
-                    <p className="text-xs text-destructive">{facebookForm.formState.errors.FACEBOOK_API_VERSION.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-3 rounded-md border p-4">
-                  <ToggleField
-                    name="ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT"
-                    label={t('channels.facebook.fields.humanAgent')}
-                    control={facebookForm.control}
-                  />
-                  <ToggleField
-                    name="FB_FEED_COMMENTS_ENABLED"
-                    label={t('channels.facebook.fields.feedComments')}
-                    control={facebookForm.control}
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <Button type="submit" disabled={savingFacebook}>
-                    {savingFacebook && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {savingFacebook ? t('channels.saving') : t('channels.save')}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+          <ChannelFormCard onSubmit={facebookForm.handleSubmit(onSubmitFacebook)} saving={savingFacebook} t={t}>
+            <TextField
+              id="FB_APP_ID"
+              label={t('channels.facebook.fields.appId')}
+              placeholder={t('channels.facebook.placeholders.appId')}
+              register={facebookForm.register('FB_APP_ID')}
+              error={facebookForm.formState.errors.FB_APP_ID}
+            />
+            <TextField
+              id="FB_VERIFY_TOKEN"
+              label={t('channels.facebook.fields.verifyToken')}
+              placeholder={t('channels.facebook.placeholders.verifyToken')}
+              type="password"
+              register={facebookForm.register('FB_VERIFY_TOKEN')}
+              error={facebookForm.formState.errors.FB_VERIFY_TOKEN}
+            />
+            <SecretField<FacebookFormData>
+              fieldName="FB_APP_SECRET"
+              label={t('channels.facebook.fields.appSecret')}
+              placeholder={t('channels.facebook.placeholders.appSecret')}
+              register={facebookForm.register}
+              secretModified={fbSecretModified}
+              onSecretModifiedChange={setFbSecretModified}
+              secretConfigured={fbSecretConfigured}
+              onClear={() => handleClearFbSecret('FB_APP_SECRET')}
+              t={t}
+            />
+            <TextField
+              id="FACEBOOK_API_VERSION"
+              label={t('channels.facebook.fields.apiVersion')}
+              placeholder={t('channels.facebook.placeholders.apiVersion')}
+              register={facebookForm.register('FACEBOOK_API_VERSION')}
+              error={facebookForm.formState.errors.FACEBOOK_API_VERSION}
+            />
+            <div className="space-y-3 rounded-md border p-4">
+              <ToggleField
+                name="ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT"
+                label={t('channels.facebook.fields.humanAgent')}
+                control={facebookForm.control}
+              />
+              <ToggleField
+                name="FB_FEED_COMMENTS_ENABLED"
+                label={t('channels.facebook.fields.feedComments')}
+                control={facebookForm.control}
+              />
+            </div>
+          </ChannelFormCard>
         </TabsContent>
 
         {/* WhatsApp Tab */}
         <TabsContent value="whatsapp" className="mt-4">
-          <Card>
-            <CardContent className="pt-6">
-              <form onSubmit={whatsappForm.handleSubmit(onSubmitWhatsapp)} className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="WP_APP_ID">{t('channels.whatsapp.fields.appId')}</Label>
-                  <Input
-                    id="WP_APP_ID"
-                    placeholder={t('channels.whatsapp.placeholders.appId')}
-                    {...whatsappForm.register('WP_APP_ID')}
-                  />
-                  {whatsappForm.formState.errors.WP_APP_ID && (
-                    <p className="text-xs text-destructive">{whatsappForm.formState.errors.WP_APP_ID.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="WP_VERIFY_TOKEN">{t('channels.whatsapp.fields.verifyToken')}</Label>
-                  <Input
-                    id="WP_VERIFY_TOKEN"
-                    type="password"
-                    autoComplete="off"
-                    placeholder={t('channels.whatsapp.placeholders.verifyToken')}
-                    {...whatsappForm.register('WP_VERIFY_TOKEN')}
-                  />
-                  {whatsappForm.formState.errors.WP_VERIFY_TOKEN && (
-                    <p className="text-xs text-destructive">{whatsappForm.formState.errors.WP_VERIFY_TOKEN.message}</p>
-                  )}
-                </div>
-
-                <SecretField<WhatsAppFormData>
-                  fieldName="WP_APP_SECRET"
-                  label={t('channels.whatsapp.fields.appSecret')}
-                  placeholder={t('channels.whatsapp.placeholders.appSecret')}
-                  register={whatsappForm.register}
-                  secretModified={wpSecretModified}
-                  onSecretModifiedChange={setWpSecretModified}
-                  secretConfigured={wpSecretConfigured}
-                  onClear={() => handleClearWpSecret('WP_APP_SECRET')}
-                  t={t}
-                />
-
-                <div className="space-y-2">
-                  <Label htmlFor="WP_WHATSAPP_CONFIG_ID">{t('channels.whatsapp.fields.configId')}</Label>
-                  <Input
-                    id="WP_WHATSAPP_CONFIG_ID"
-                    placeholder={t('channels.whatsapp.placeholders.configId')}
-                    {...whatsappForm.register('WP_WHATSAPP_CONFIG_ID')}
-                  />
-                  {whatsappForm.formState.errors.WP_WHATSAPP_CONFIG_ID && (
-                    <p className="text-xs text-destructive">{whatsappForm.formState.errors.WP_WHATSAPP_CONFIG_ID.message}</p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="WP_API_VERSION">{t('channels.whatsapp.fields.apiVersion')}</Label>
-                  <Input
-                    id="WP_API_VERSION"
-                    placeholder={t('channels.whatsapp.placeholders.apiVersion')}
-                    {...whatsappForm.register('WP_API_VERSION')}
-                  />
-                  {whatsappForm.formState.errors.WP_API_VERSION && (
-                    <p className="text-xs text-destructive">{whatsappForm.formState.errors.WP_API_VERSION.message}</p>
-                  )}
-                </div>
-
-                <div className="pt-2">
-                  <Button type="submit" disabled={savingWhatsapp}>
-                    {savingWhatsapp && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {savingWhatsapp ? t('channels.saving') : t('channels.save')}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+          <ChannelFormCard onSubmit={whatsappForm.handleSubmit(onSubmitWhatsapp)} saving={savingWhatsapp} t={t}>
+            <TextField
+              id="WP_APP_ID"
+              label={t('channels.whatsapp.fields.appId')}
+              placeholder={t('channels.whatsapp.placeholders.appId')}
+              register={whatsappForm.register('WP_APP_ID')}
+              error={whatsappForm.formState.errors.WP_APP_ID}
+            />
+            <TextField
+              id="WP_VERIFY_TOKEN"
+              label={t('channels.whatsapp.fields.verifyToken')}
+              placeholder={t('channels.whatsapp.placeholders.verifyToken')}
+              type="password"
+              register={whatsappForm.register('WP_VERIFY_TOKEN')}
+              error={whatsappForm.formState.errors.WP_VERIFY_TOKEN}
+            />
+            <SecretField<WhatsAppFormData>
+              fieldName="WP_APP_SECRET"
+              label={t('channels.whatsapp.fields.appSecret')}
+              placeholder={t('channels.whatsapp.placeholders.appSecret')}
+              register={whatsappForm.register}
+              secretModified={wpSecretModified}
+              onSecretModifiedChange={setWpSecretModified}
+              secretConfigured={wpSecretConfigured}
+              onClear={() => handleClearWpSecret('WP_APP_SECRET')}
+              t={t}
+            />
+            <TextField
+              id="WP_WHATSAPP_CONFIG_ID"
+              label={t('channels.whatsapp.fields.configId')}
+              placeholder={t('channels.whatsapp.placeholders.configId')}
+              register={whatsappForm.register('WP_WHATSAPP_CONFIG_ID')}
+              error={whatsappForm.formState.errors.WP_WHATSAPP_CONFIG_ID}
+            />
+            <TextField
+              id="WP_API_VERSION"
+              label={t('channels.whatsapp.fields.apiVersion')}
+              placeholder={t('channels.whatsapp.placeholders.apiVersion')}
+              register={whatsappForm.register('WP_API_VERSION')}
+              error={whatsappForm.formState.errors.WP_API_VERSION}
+            />
+          </ChannelFormCard>
         </TabsContent>
 
         {/* Instagram Tab */}
         <TabsContent value="instagram" className="mt-4">
-          <Card>
-            <CardContent className="pt-6">
-              <form onSubmit={instagramForm.handleSubmit(onSubmitInstagram)} className="space-y-5">
-                <div className="space-y-2">
-                  <Label htmlFor="INSTAGRAM_APP_ID">{t('channels.instagram.fields.appId')}</Label>
-                  <Input
-                    id="INSTAGRAM_APP_ID"
-                    placeholder={t('channels.instagram.placeholders.appId')}
-                    {...instagramForm.register('INSTAGRAM_APP_ID')}
-                  />
-                  {instagramForm.formState.errors.INSTAGRAM_APP_ID && (
-                    <p className="text-xs text-destructive">{instagramForm.formState.errors.INSTAGRAM_APP_ID.message}</p>
-                  )}
-                </div>
+          <ChannelFormCard onSubmit={instagramForm.handleSubmit(onSubmitInstagram)} saving={savingInstagram} t={t}>
+            <TextField
+              id="INSTAGRAM_APP_ID"
+              label={t('channels.instagram.fields.appId')}
+              placeholder={t('channels.instagram.placeholders.appId')}
+              register={instagramForm.register('INSTAGRAM_APP_ID')}
+              error={instagramForm.formState.errors.INSTAGRAM_APP_ID}
+            />
+            <SecretField<InstagramFormData>
+              fieldName="INSTAGRAM_APP_SECRET"
+              label={t('channels.instagram.fields.appSecret')}
+              placeholder={t('channels.instagram.placeholders.appSecret')}
+              register={instagramForm.register}
+              secretModified={igSecretModified}
+              onSecretModifiedChange={setIgSecretModified}
+              secretConfigured={igSecretConfigured}
+              onClear={() => handleClearIgSecret('INSTAGRAM_APP_SECRET')}
+              t={t}
+            />
+            <TextField
+              id="INSTAGRAM_VERIFY_TOKEN"
+              label={t('channels.instagram.fields.verifyToken')}
+              placeholder={t('channels.instagram.placeholders.verifyToken')}
+              type="password"
+              register={instagramForm.register('INSTAGRAM_VERIFY_TOKEN')}
+              error={instagramForm.formState.errors.INSTAGRAM_VERIFY_TOKEN}
+            />
+            <TextField
+              id="INSTAGRAM_API_VERSION"
+              label={t('channels.instagram.fields.apiVersion')}
+              placeholder={t('channels.instagram.placeholders.apiVersion')}
+              register={instagramForm.register('INSTAGRAM_API_VERSION')}
+              readOnly
+            />
+            <div className="space-y-3 rounded-md border p-4">
+              <ToggleField
+                name="ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT"
+                label={t('channels.instagram.fields.humanAgent')}
+                control={instagramForm.control}
+              />
+            </div>
+          </ChannelFormCard>
+        </TabsContent>
 
-                <SecretField<InstagramFormData>
-                  fieldName="INSTAGRAM_APP_SECRET"
-                  label={t('channels.instagram.fields.appSecret')}
-                  placeholder={t('channels.instagram.placeholders.appSecret')}
-                  register={instagramForm.register}
-                  secretModified={igSecretModified}
-                  onSecretModifiedChange={setIgSecretModified}
-                  secretConfigured={igSecretConfigured}
-                  onClear={() => handleClearIgSecret('INSTAGRAM_APP_SECRET')}
-                  t={t}
-                />
+        {/* Evolution Tab */}
+        <TabsContent value="evolution" className="mt-4">
+          <ChannelFormCard onSubmit={evolutionForm.handleSubmit(onSubmitEvolution)} saving={savingEvolution} t={t}>
+            <TextField
+              id="EVOLUTION_API_URL"
+              label={t('channels.evolution.fields.apiUrl')}
+              placeholder={t('channels.evolution.placeholders.apiUrl')}
+              register={evolutionForm.register('EVOLUTION_API_URL')}
+              error={evolutionForm.formState.errors.EVOLUTION_API_URL}
+            />
+            <SecretField<EvolutionFormData>
+              fieldName="EVOLUTION_ADMIN_SECRET"
+              label={t('channels.evolution.fields.adminSecret')}
+              placeholder={t('channels.evolution.placeholders.adminSecret')}
+              register={evolutionForm.register}
+              secretModified={evoSecretModified}
+              onSecretModifiedChange={setEvoSecretModified}
+              secretConfigured={evoSecretConfigured}
+              onClear={() => handleClearEvoSecret('EVOLUTION_ADMIN_SECRET')}
+              t={t}
+            />
+          </ChannelFormCard>
+        </TabsContent>
 
-                <div className="space-y-2">
-                  <Label htmlFor="INSTAGRAM_VERIFY_TOKEN">{t('channels.instagram.fields.verifyToken')}</Label>
-                  <Input
-                    id="INSTAGRAM_VERIFY_TOKEN"
-                    type="password"
-                    autoComplete="off"
-                    placeholder={t('channels.instagram.placeholders.verifyToken')}
-                    {...instagramForm.register('INSTAGRAM_VERIFY_TOKEN')}
-                  />
-                  {instagramForm.formState.errors.INSTAGRAM_VERIFY_TOKEN && (
-                    <p className="text-xs text-destructive">{instagramForm.formState.errors.INSTAGRAM_VERIFY_TOKEN.message}</p>
-                  )}
-                </div>
+        {/* Evolution Go Tab */}
+        <TabsContent value="evolution_go" className="mt-4">
+          <ChannelFormCard onSubmit={evolutionGoForm.handleSubmit(onSubmitEvolutionGo)} saving={savingEvolutionGo} t={t}>
+            <TextField
+              id="EVOLUTION_GO_API_URL"
+              label={t('channels.evolutionGo.fields.apiUrl')}
+              placeholder={t('channels.evolutionGo.placeholders.apiUrl')}
+              register={evolutionGoForm.register('EVOLUTION_GO_API_URL')}
+              error={evolutionGoForm.formState.errors.EVOLUTION_GO_API_URL}
+            />
+            <SecretField<EvolutionGoFormData>
+              fieldName="EVOLUTION_GO_ADMIN_SECRET"
+              label={t('channels.evolutionGo.fields.adminSecret')}
+              placeholder={t('channels.evolutionGo.placeholders.adminSecret')}
+              register={evolutionGoForm.register}
+              secretModified={evoGoSecretModified}
+              onSecretModifiedChange={setEvoGoSecretModified}
+              secretConfigured={evoGoSecretConfigured}
+              onClear={() => handleClearEvoGoSecret('EVOLUTION_GO_ADMIN_SECRET')}
+              t={t}
+            />
+            <TextField
+              id="EVOLUTION_GO_INSTANCE_ID"
+              label={t('channels.evolutionGo.fields.instanceId')}
+              placeholder={t('channels.evolutionGo.placeholders.instanceId')}
+              register={evolutionGoForm.register('EVOLUTION_GO_INSTANCE_ID')}
+              error={evolutionGoForm.formState.errors.EVOLUTION_GO_INSTANCE_ID}
+            />
+            <SecretField<EvolutionGoFormData>
+              fieldName="EVOLUTION_GO_INSTANCE_SECRET"
+              label={t('channels.evolutionGo.fields.instanceSecret')}
+              placeholder={t('channels.evolutionGo.placeholders.instanceSecret')}
+              register={evolutionGoForm.register}
+              secretModified={evoGoSecretModified}
+              onSecretModifiedChange={setEvoGoSecretModified}
+              secretConfigured={evoGoSecretConfigured}
+              onClear={() => handleClearEvoGoSecret('EVOLUTION_GO_INSTANCE_SECRET')}
+              t={t}
+            />
+          </ChannelFormCard>
+        </TabsContent>
 
-                <div className="space-y-2">
-                  <Label htmlFor="INSTAGRAM_API_VERSION">{t('channels.instagram.fields.apiVersion')}</Label>
-                  <Input
-                    id="INSTAGRAM_API_VERSION"
-                    placeholder={t('channels.instagram.placeholders.apiVersion')}
-                    readOnly
-                    className="bg-muted cursor-not-allowed"
-                    {...instagramForm.register('INSTAGRAM_API_VERSION')}
-                  />
-                </div>
-
-                <div className="space-y-3 rounded-md border p-4">
-                  <ToggleField
-                    name="ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT"
-                    label={t('channels.instagram.fields.humanAgent')}
-                    control={instagramForm.control}
-                  />
-                </div>
-
-                <div className="pt-2">
-                  <Button type="submit" disabled={savingInstagram}>
-                    {savingInstagram && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {savingInstagram ? t('channels.saving') : t('channels.save')}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+        {/* Twitter Tab */}
+        <TabsContent value="twitter" className="mt-4">
+          <ChannelFormCard onSubmit={twitterForm.handleSubmit(onSubmitTwitter)} saving={savingTwitter} t={t}>
+            <TextField
+              id="TWITTER_APP_ID"
+              label={t('channels.twitter.fields.appId')}
+              placeholder={t('channels.twitter.placeholders.appId')}
+              register={twitterForm.register('TWITTER_APP_ID')}
+              error={twitterForm.formState.errors.TWITTER_APP_ID}
+            />
+            <TextField
+              id="TWITTER_CONSUMER_KEY"
+              label={t('channels.twitter.fields.consumerKey')}
+              placeholder={t('channels.twitter.placeholders.consumerKey')}
+              register={twitterForm.register('TWITTER_CONSUMER_KEY')}
+              error={twitterForm.formState.errors.TWITTER_CONSUMER_KEY}
+            />
+            <SecretField<TwitterFormData>
+              fieldName="TWITTER_CONSUMER_SECRET"
+              label={t('channels.twitter.fields.consumerSecret')}
+              placeholder={t('channels.twitter.placeholders.consumerSecret')}
+              register={twitterForm.register}
+              secretModified={twSecretModified}
+              onSecretModifiedChange={setTwSecretModified}
+              secretConfigured={twSecretConfigured}
+              onClear={() => handleClearTwSecret('TWITTER_CONSUMER_SECRET')}
+              t={t}
+            />
+            <TextField
+              id="TWITTER_ENVIRONMENT"
+              label={t('channels.twitter.fields.environment')}
+              placeholder={t('channels.twitter.placeholders.environment')}
+              register={twitterForm.register('TWITTER_ENVIRONMENT')}
+              error={twitterForm.formState.errors.TWITTER_ENVIRONMENT}
+            />
+          </ChannelFormCard>
         </TabsContent>
       </Tabs>
     </div>

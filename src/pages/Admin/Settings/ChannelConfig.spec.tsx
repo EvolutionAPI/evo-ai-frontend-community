@@ -92,15 +92,69 @@ const CONFIGURED_INSTAGRAM = {
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: 'false',
 };
 
-async function renderAndWait(
-  fbData: Record<string, unknown> = EMPTY_FACEBOOK,
-  wpData: Record<string, unknown> = EMPTY_WHATSAPP,
-  igData: Record<string, unknown> = EMPTY_INSTAGRAM,
-) {
+const EMPTY_EVOLUTION = {
+  EVOLUTION_API_URL: '',
+  EVOLUTION_ADMIN_SECRET: null,
+};
+
+const EMPTY_EVOLUTION_GO = {
+  EVOLUTION_GO_API_URL: '',
+  EVOLUTION_GO_ADMIN_SECRET: null,
+  EVOLUTION_GO_INSTANCE_ID: '',
+  EVOLUTION_GO_INSTANCE_SECRET: null,
+};
+
+const EMPTY_TWITTER = {
+  TWITTER_APP_ID: '',
+  TWITTER_CONSUMER_KEY: '',
+  TWITTER_CONSUMER_SECRET: null,
+  TWITTER_ENVIRONMENT: '',
+};
+
+const CONFIGURED_EVOLUTION = {
+  EVOLUTION_API_URL: 'https://evo-api.test.com',
+  EVOLUTION_ADMIN_SECRET: '••••masked',
+};
+
+const CONFIGURED_EVOLUTION_GO = {
+  EVOLUTION_GO_API_URL: 'https://evo-go.test.com',
+  EVOLUTION_GO_ADMIN_SECRET: '••••masked',
+  EVOLUTION_GO_INSTANCE_ID: 'test-instance-id',
+  EVOLUTION_GO_INSTANCE_SECRET: '••••masked',
+};
+
+const CONFIGURED_TWITTER = {
+  TWITTER_APP_ID: 'test-twitter-app-id',
+  TWITTER_CONSUMER_KEY: 'test-consumer-key',
+  TWITTER_CONSUMER_SECRET: '••••masked',
+  TWITTER_ENVIRONMENT: 'production',
+};
+
+interface RenderOptions {
+  fbData?: Record<string, unknown>;
+  wpData?: Record<string, unknown>;
+  igData?: Record<string, unknown>;
+  evoData?: Record<string, unknown>;
+  evoGoData?: Record<string, unknown>;
+  twData?: Record<string, unknown>;
+}
+
+async function renderAndWait(options: RenderOptions = {}) {
+  const {
+    fbData = EMPTY_FACEBOOK,
+    wpData = EMPTY_WHATSAPP,
+    igData = EMPTY_INSTAGRAM,
+    evoData = EMPTY_EVOLUTION,
+    evoGoData = EMPTY_EVOLUTION_GO,
+    twData = EMPTY_TWITTER,
+  } = options;
   mockGetConfig.mockImplementation((type: string) => {
     if (type === 'facebook') return Promise.resolve(fbData);
     if (type === 'whatsapp') return Promise.resolve(wpData);
     if (type === 'instagram') return Promise.resolve(igData);
+    if (type === 'evolution') return Promise.resolve(evoData);
+    if (type === 'evolution_go') return Promise.resolve(evoGoData);
+    if (type === 'twitter') return Promise.resolve(twData);
     return Promise.resolve({});
   });
   await act(async () => {
@@ -119,12 +173,15 @@ describe('ChannelConfig', () => {
     expect(container.querySelector('.animate-spin')).toBeInTheDocument();
   });
 
-  it('loads config from facebook, whatsapp, and instagram endpoints', async () => {
+  it('loads config from all 6 channel endpoints', async () => {
     await renderAndWait();
 
     expect(mockGetConfig).toHaveBeenCalledWith('facebook');
     expect(mockGetConfig).toHaveBeenCalledWith('whatsapp');
     expect(mockGetConfig).toHaveBeenCalledWith('instagram');
+    expect(mockGetConfig).toHaveBeenCalledWith('evolution');
+    expect(mockGetConfig).toHaveBeenCalledWith('evolution_go');
+    expect(mockGetConfig).toHaveBeenCalledWith('twitter');
   });
 
   it('renders title and description', async () => {
@@ -134,12 +191,15 @@ describe('ChannelConfig', () => {
     expect(screen.getByText('channels.description')).toBeInTheDocument();
   });
 
-  it('renders all 3 tab triggers', async () => {
+  it('renders all 6 tab triggers', async () => {
     await renderAndWait();
 
     expect(screen.getByText('channels.facebook.tabTitle')).toBeInTheDocument();
     expect(screen.getByText('channels.whatsapp.tabTitle')).toBeInTheDocument();
     expect(screen.getByText('channels.instagram.tabTitle')).toBeInTheDocument();
+    expect(screen.getByText('channels.evolution.tabTitle')).toBeInTheDocument();
+    expect(screen.getByText('channels.evolutionGo.tabTitle')).toBeInTheDocument();
+    expect(screen.getByText('channels.twitter.tabTitle')).toBeInTheDocument();
   });
 
   it('renders Facebook tab fields by default', async () => {
@@ -184,7 +244,7 @@ describe('ChannelConfig', () => {
   });
 
   it('shows secret configured status for masked Facebook secret', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
 
     const configured = screen.getAllByText('channels.secretConfigured');
     expect(configured.length).toBeGreaterThanOrEqual(1);
@@ -198,7 +258,7 @@ describe('ChannelConfig', () => {
   });
 
   it('saves Facebook tab independently via facebook config type', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_FACEBOOK);
 
     const saveButton = screen.getByText('channels.save');
@@ -215,7 +275,7 @@ describe('ChannelConfig', () => {
   });
 
   it('saves WhatsApp tab independently via whatsapp config type', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_WHATSAPP);
     const user = userEvent.setup();
 
@@ -235,7 +295,7 @@ describe('ChannelConfig', () => {
   });
 
   it('saves Instagram tab independently via instagram config type', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_INSTAGRAM);
     const user = userEvent.setup();
 
@@ -255,7 +315,7 @@ describe('ChannelConfig', () => {
   });
 
   it('sends null for unmodified secrets on Facebook save', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_FACEBOOK);
 
     const saveButton = screen.getByText('channels.save');
@@ -272,7 +332,7 @@ describe('ChannelConfig', () => {
   });
 
   it('shows error toast when Facebook save fails', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockRejectedValue(new Error('Network error'));
 
     const saveButton = screen.getByText('channels.save');
@@ -300,7 +360,7 @@ describe('ChannelConfig', () => {
   });
 
   it('sends modified secret value on save after typing', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_FACEBOOK);
 
     const secretInput = screen.getByLabelText('channels.facebook.fields.appSecret');
@@ -323,7 +383,7 @@ describe('ChannelConfig', () => {
   });
 
   it('clear secret button marks secret as modified', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
 
     const clearButtons = screen.getAllByTitle('channels.clearSecret');
     expect(clearButtons.length).toBeGreaterThanOrEqual(1);
@@ -339,7 +399,7 @@ describe('ChannelConfig', () => {
   });
 
   it('renders toggle fields as switches for boolean values', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
 
     // Facebook has 2 toggle fields
     expect(screen.getByText('channels.facebook.fields.humanAgent')).toBeInTheDocument();
@@ -351,7 +411,7 @@ describe('ChannelConfig', () => {
   });
 
   it('sends boolean values on Facebook save with toggles', async () => {
-    await renderAndWait(CONFIGURED_FACEBOOK, CONFIGURED_WHATSAPP, CONFIGURED_INSTAGRAM);
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
     mockSaveConfig.mockResolvedValue(CONFIGURED_FACEBOOK);
 
     const saveButton = screen.getByText('channels.save');
@@ -366,5 +426,253 @@ describe('ChannelConfig', () => {
         FB_FEED_COMMENTS_ENABLED: false,
       }));
     });
+  });
+
+  // --- Evolution Tab Tests ---
+
+  it('renders Evolution tab fields when tab is clicked', async () => {
+    await renderAndWait();
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolution.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolution.fields.apiUrl')).toBeInTheDocument();
+    });
+    expect(screen.getByLabelText('channels.evolution.fields.adminSecret')).toBeInTheDocument();
+  });
+
+  it('saves Evolution tab independently via evolution config type', async () => {
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
+    mockSaveConfig.mockResolvedValue(CONFIGURED_EVOLUTION);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolution.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolution.fields.apiUrl')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(mockSaveConfig).toHaveBeenCalledWith('evolution', expect.objectContaining({
+        EVOLUTION_API_URL: 'https://evo-api.test.com',
+      }));
+    });
+  });
+
+  // --- Evolution Go Tab Tests ---
+
+  it('renders Evolution Go tab fields when tab is clicked', async () => {
+    await renderAndWait();
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolutionGo.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolutionGo.fields.apiUrl')).toBeInTheDocument();
+    });
+    expect(screen.getByLabelText('channels.evolutionGo.fields.adminSecret')).toBeInTheDocument();
+    expect(screen.getByLabelText('channels.evolutionGo.fields.instanceId')).toBeInTheDocument();
+    expect(screen.getByLabelText('channels.evolutionGo.fields.instanceSecret')).toBeInTheDocument();
+  });
+
+  it('saves Evolution Go tab independently via evolution_go config type', async () => {
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
+    mockSaveConfig.mockResolvedValue(CONFIGURED_EVOLUTION_GO);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolutionGo.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolutionGo.fields.apiUrl')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(mockSaveConfig).toHaveBeenCalledWith('evolution_go', expect.objectContaining({
+        EVOLUTION_GO_API_URL: 'https://evo-go.test.com',
+        EVOLUTION_GO_INSTANCE_ID: 'test-instance-id',
+      }));
+    });
+  });
+
+  // --- Twitter Tab Tests ---
+
+  it('renders Twitter tab fields when tab is clicked', async () => {
+    await renderAndWait();
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.twitter.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.twitter.fields.appId')).toBeInTheDocument();
+    });
+    expect(screen.getByLabelText('channels.twitter.fields.consumerKey')).toBeInTheDocument();
+    expect(screen.getByLabelText('channels.twitter.fields.consumerSecret')).toBeInTheDocument();
+    expect(screen.getByLabelText('channels.twitter.fields.environment')).toBeInTheDocument();
+  });
+
+  it('saves Twitter tab independently via twitter config type', async () => {
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
+    mockSaveConfig.mockResolvedValue(CONFIGURED_TWITTER);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.twitter.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.twitter.fields.appId')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(mockSaveConfig).toHaveBeenCalledWith('twitter', expect.objectContaining({
+        TWITTER_APP_ID: 'test-twitter-app-id',
+        TWITTER_CONSUMER_KEY: 'test-consumer-key',
+      }));
+    });
+  });
+
+  it('sends null for unmodified secrets on Evolution Go save', async () => {
+    await renderAndWait({ fbData: CONFIGURED_FACEBOOK, wpData: CONFIGURED_WHATSAPP, igData: CONFIGURED_INSTAGRAM, evoData: CONFIGURED_EVOLUTION, evoGoData: CONFIGURED_EVOLUTION_GO, twData: CONFIGURED_TWITTER });
+    mockSaveConfig.mockResolvedValue(CONFIGURED_EVOLUTION_GO);
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolutionGo.tabTitle'));
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolutionGo.fields.apiUrl')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(mockSaveConfig).toHaveBeenCalledWith('evolution_go', expect.objectContaining({
+        EVOLUTION_GO_ADMIN_SECRET: null,
+        EVOLUTION_GO_INSTANCE_SECRET: null,
+      }));
+    });
+  });
+
+  // --- Error toast tests for new tabs ---
+
+  it('shows error toast when Evolution save fails', async () => {
+    await renderAndWait({ evoData: CONFIGURED_EVOLUTION });
+    mockSaveConfig.mockRejectedValue(new Error('Network error'));
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolution.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolution.fields.apiUrl')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('channels.evolution.saveError', { description: 'Test error' });
+    });
+  });
+
+  it('shows error toast when Evolution Go save fails', async () => {
+    await renderAndWait({ evoGoData: CONFIGURED_EVOLUTION_GO });
+    mockSaveConfig.mockRejectedValue(new Error('Network error'));
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolutionGo.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolutionGo.fields.apiUrl')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('channels.evolutionGo.saveError', { description: 'Test error' });
+    });
+  });
+
+  it('shows error toast when Twitter save fails', async () => {
+    await renderAndWait({ twData: CONFIGURED_TWITTER });
+    mockSaveConfig.mockRejectedValue(new Error('Network error'));
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.twitter.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.twitter.fields.appId')).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByText('channels.save'));
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('channels.twitter.saveError', { description: 'Test error' });
+    });
+  });
+
+  // --- Clear secret tests for new tabs ---
+
+  it('clear secret on Evolution tab marks secret as modified', async () => {
+    await renderAndWait({ evoData: CONFIGURED_EVOLUTION });
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolution.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolution.fields.adminSecret')).toBeInTheDocument();
+    });
+
+    const clearButtons = screen.getAllByTitle('channels.clearSecret');
+    expect(clearButtons.length).toBeGreaterThanOrEqual(1);
+
+    await act(async () => {
+      fireEvent.click(clearButtons[0]);
+    });
+
+    // After clearing, configured status should disappear
+    const remaining = screen.queryAllByText('channels.secretConfigured');
+    expect(remaining.length).toBe(0);
+  });
+
+  it('clear secret on Evolution Go tab marks secret as modified', async () => {
+    await renderAndWait({ evoGoData: CONFIGURED_EVOLUTION_GO });
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.evolutionGo.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.evolutionGo.fields.adminSecret')).toBeInTheDocument();
+    });
+
+    // Evolution Go has 2 configured secrets
+    const configuredBefore = screen.getAllByText('channels.secretConfigured');
+    expect(configuredBefore.length).toBe(2);
+
+    const clearButtons = screen.getAllByTitle('channels.clearSecret');
+    await act(async () => {
+      fireEvent.click(clearButtons[0]);
+    });
+
+    // One fewer configured indicator
+    const configuredAfter = screen.getAllByText('channels.secretConfigured');
+    expect(configuredAfter.length).toBe(1);
+  });
+
+  it('clear secret on Twitter tab marks secret as modified', async () => {
+    await renderAndWait({ twData: CONFIGURED_TWITTER });
+    const user = userEvent.setup();
+
+    await user.click(screen.getByText('channels.twitter.tabTitle'));
+    await waitFor(() => {
+      expect(screen.getByLabelText('channels.twitter.fields.consumerSecret')).toBeInTheDocument();
+    });
+
+    const clearButtons = screen.getAllByTitle('channels.clearSecret');
+    expect(clearButtons.length).toBeGreaterThanOrEqual(1);
+
+    await act(async () => {
+      fireEvent.click(clearButtons[0]);
+    });
+
+    const remaining = screen.queryAllByText('channels.secretConfigured');
+    expect(remaining.length).toBe(0);
   });
 });
