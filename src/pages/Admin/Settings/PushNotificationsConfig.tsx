@@ -63,6 +63,7 @@ export default function PushNotificationsConfig() {
   const { t } = useLanguage('adminSettings');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [testing, setTesting] = useState(false);
   const [secretModified, setSecretModified] = useState<Record<string, boolean>>({});
   const [secretConfigured, setSecretConfigured] = useState<Record<string, boolean>>({});
 
@@ -138,6 +139,23 @@ export default function PushNotificationsConfig() {
 
   const handleSecretChange = (fieldName: string, value: string) => {
     setSecretModified((prev) => ({ ...prev, [fieldName]: value.length > 0 }));
+  };
+
+  const handleTestConnection = async () => {
+    setTesting(true);
+    try {
+      const result = await adminConfigService.testConnection('push_notifications');
+      if (result.success) {
+        toast.success(result.message);
+      } else {
+        toast.error(t('pushNotifications.messages.testFailed'), { description: result.message });
+      }
+    } catch (error) {
+      const errorInfo = extractError(error);
+      toast.error(t('pushNotifications.messages.testFailed'), { description: errorInfo.message });
+    } finally {
+      setTesting(false);
+    }
   };
 
   const handleClearSecret = (fieldName: string) => {
@@ -239,10 +257,14 @@ export default function PushNotificationsConfig() {
               />
             </div>
 
-            <div className="pt-2">
-              <Button type="submit" disabled={saving}>
+            <div className="pt-2 flex gap-3">
+              <Button type="submit" disabled={saving || testing}>
                 {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {saving ? t('pushNotifications.saving') : t('pushNotifications.save')}
+              </Button>
+              <Button type="button" variant="outline" onClick={handleTestConnection} disabled={saving || testing}>
+                {testing && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {testing ? t('pushNotifications.testing') : t('pushNotifications.testConnection')}
               </Button>
             </div>
           </form>

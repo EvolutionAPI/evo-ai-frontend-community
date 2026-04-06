@@ -444,18 +444,18 @@
       "iosAppId": "com.ejemplo.app",
       "androidBundleId": "com.ejemplo.app"
     },
-    "validation": {
-      "projectIdRequired": "El ID del Proyecto Firebase es obligatorio"
-    },
     "secretConfigured": "Configurado",
     "secretNotConfigured": "No configurado",
     "clearSecret": "Borrar valor guardado",
     "messages": {
       "saveSuccess": "Configuracion de notificaciones push guardada exitosamente",
       "saveError": "Error al guardar la configuracion de notificaciones push",
-      "loadError": "Error al cargar la configuracion de notificaciones push"
+      "loadError": "Error al cargar la configuracion de notificaciones push",
+      "testFailed": "Prueba de conexion Firebase fallida"
     },
     "save": "Guardar Configuracion",
-    "saving": "Guardando..."
+    "saving": "Guardando...",
+    "testConnection": "Probar Conexion",
+    "testing": "Probando..."
   }
 }

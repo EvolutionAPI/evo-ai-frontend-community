@@ -468,18 +468,18 @@
       "iosAppId": "com.example.app",
       "androidBundleId": "com.example.app"
     },
-    "validation": {
-      "projectIdRequired": "Firebase Project ID is required"
-    },
     "secretConfigured": "Configured",
     "secretNotConfigured": "Not configured",
     "clearSecret": "Clear saved value",
     "messages": {
       "saveSuccess": "Push notifications configuration saved successfully",
       "saveError": "Failed to save push notifications configuration",
-      "loadError": "Failed to load push notifications configuration"
+      "loadError": "Failed to load push notifications configuration",
+      "testFailed": "Firebase connection test failed"
     },
     "save": "Save Configuration",
-    "saving": "Saving..."
+    "saving": "Saving...",
+    "testConnection": "Test Connection",
+    "testing": "Testing..."
   }
 }
