@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { SettingsLabelsTour } from '@/tours';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -304,20 +305,23 @@ export default function Labels() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <LabelsHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedLabelIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewLabel={handleCreateLabel}
-        onBulkDelete={handleBulkDelete}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedLabelIds: [] }))}
-        showBulkActions={state.selectedLabelIds.length > 0}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-labels-page">
+      <SettingsLabelsTour />
+      <div data-tour="settings-labels-header">
+        <LabelsHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedLabelIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewLabel={handleCreateLabel}
+          onBulkDelete={handleBulkDelete}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedLabelIds: [] }))}
+          showBulkActions={state.selectedLabelIds.length > 0}
+        />
+      </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto mt-6">
+      <div className="flex-1 overflow-auto mt-6" data-tour="settings-labels-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading')}</div>

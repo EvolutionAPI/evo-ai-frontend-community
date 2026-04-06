@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { SettingsMacrosTour } from '@/tours';
 import { toast } from 'sonner';
 import {
   Dialog,
@@ -290,22 +291,25 @@ export default function Macros() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <MacrosHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedMacroIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewMacro={handleCreateMacro}
-        onBulkDelete={handleBulkDelete}
-        onFilter={() => setFilterModalOpen(true)}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedMacroIds: [] }))}
-        activeFilters={appliedFilters}
-        showFilters={false} // Disable filters for now
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-macros-page">
+      <SettingsMacrosTour />
+      <div data-tour="settings-macros-header">
+        <MacrosHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedMacroIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewMacro={handleCreateMacro}
+          onBulkDelete={handleBulkDelete}
+          onFilter={() => setFilterModalOpen(true)}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedMacroIds: [] }))}
+          activeFilters={appliedFilters}
+          showFilters={false} // Disable filters for now
+        />
+      </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto mt-6">
+      <div className="flex-1 overflow-auto mt-6" data-tour="settings-macros-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading')}</div>

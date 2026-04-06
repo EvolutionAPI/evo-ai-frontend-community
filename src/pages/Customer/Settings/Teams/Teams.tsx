@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { SettingsTeamsTour } from '@/tours';
 import { toast } from 'sonner';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, Button } from '@evoapi/design-system';
 import { Grid3X3, List, Users } from 'lucide-react';
@@ -328,24 +329,27 @@ export default function Teams() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <TeamsHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedTeamIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewTeam={handleCreateTeam}
-        onImport={handleImportTeams}
-        onExport={handleExportTeams}
-        onFilter={handleFilterTeams}
-        onBulkDelete={handleBulkDelete}
-        onClearSelection={() => setState(prev => ({ ...prev, selectedTeamIds: [] }))}
-        activeFilters={[]}
-        showFilters={false}
-      />
+    <div className="h-full flex flex-col p-4" data-tour="settings-teams-page">
+      <SettingsTeamsTour />
+      <div data-tour="settings-teams-header">
+        <TeamsHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedTeamIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewTeam={handleCreateTeam}
+          onImport={handleImportTeams}
+          onExport={handleExportTeams}
+          onFilter={handleFilterTeams}
+          onBulkDelete={handleBulkDelete}
+          onClearSelection={() => setState(prev => ({ ...prev, selectedTeamIds: [] }))}
+          activeFilters={[]}
+          showFilters={false}
+        />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="settings-teams-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -367,7 +371,7 @@ export default function Teams() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="settings-teams-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading')}</div>

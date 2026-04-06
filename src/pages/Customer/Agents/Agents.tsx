@@ -10,6 +10,7 @@ import { getAccessibleAgents, deleteAgent } from '@/services/agents';
 import { Agent } from '@/types/agents';
 import { useLanguage } from '@/hooks/useLanguage';
 import { ApiKeysModal } from '@/components/ApiKeysModal';
+import { AgentsTour } from '@/tours';
 import { exportAsJson, generateExportFilename } from '@/utils/exportUtils';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import type { PaginationMeta } from '@/types/core';
@@ -265,7 +266,9 @@ const Agentes = () => {
         </div>
       ) : (
         <div className="animate-fadeIn h-full flex flex-col">
+          <AgentsTour />
           <div className="flex-1 space-y-6 p-6">
+            <div data-tour="agents-header">
             <AgentsHeader
               totalCount={state.meta.pagination.total}
               selectedCount={state.selectedAgents.length}
@@ -279,8 +282,9 @@ const Agentes = () => {
               activeFilters={[]}
               showFilters={true}
             />
+            </div>
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end" data-tour="agents-view-toggle">
               <div className="flex items-center border rounded-lg">
                 <Button
                   variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -301,6 +305,7 @@ const Agentes = () => {
               </div>
             </div>
 
+            <div data-tour="agents-list">
             {state.loading ? (
               <div className="flex items-center justify-center h-48">
                 <Bot className="h-8 w-8 animate-pulse" />
@@ -356,6 +361,7 @@ const Agentes = () => {
                 onSort={handleSort}
               />
             )}
+            </div>
           </div>
 
           <div className="p-6 pt-0">

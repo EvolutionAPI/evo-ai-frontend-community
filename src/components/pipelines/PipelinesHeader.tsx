@@ -41,7 +41,7 @@ export default function PipelinesHeader({
           />
         </div>
 
-        <Button onClick={onNewPipeline}>
+        <Button onClick={onNewPipeline} data-tour="pipelines-new-button">
           <Plus className="h-4 w-4 mr-2" />
           {t('pipelinesHeader.newPipeline')}
         </Button>

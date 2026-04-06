@@ -33,6 +33,7 @@ import {
   EditPipelineModal,
   DuplicatePipelineModal,
 } from '@/components/pipelines/index';
+import { PipelinesTour } from '@/tours';
 
 const INITIAL_STATE: PipelinesState = {
   pipelines: [],
@@ -305,15 +306,18 @@ export default function Pipelines() {
 
   return (
     <div className="h-full flex flex-col p-4">
-      <PipelinesHeader
-        totalCount={state.meta.pagination.total}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewPipeline={handleCreatePipeline}
-      />
+      <PipelinesTour />
+      <div data-tour="pipelines-header">
+        <PipelinesHeader
+          totalCount={state.meta.pagination.total}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewPipeline={handleCreatePipeline}
+        />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="pipelines-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -335,7 +339,7 @@ export default function Pipelines() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="pipelines-list">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading.pipelines')}</div>
