@@ -6,7 +6,8 @@
     "payments": "Pagos",
     "socialLogin": "Inicio de Sesion Social",
     "channels": "Canales",
-    "openai": "OpenAI"
+    "openai": "OpenAI",
+    "integrations": "Integraciones"
   },
   "email": {
     "title": "Configuracion de Correo Electronico",
@@ -348,5 +349,45 @@
     },
     "save": "Guardar Configuracion",
     "saving": "Guardando..."
+  },
+  "integrations": {
+    "title": "Configuracion de Integraciones",
+    "description": "Configure credenciales OAuth para integraciones de terceros como Linear, HubSpot, Shopify y Slack.",
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "linear": {
+      "cardTitle": "Linear",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Linear Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Linear guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Linear"
+    },
+    "hubspot": {
+      "cardTitle": "HubSpot",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su HubSpot Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de HubSpot guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de HubSpot"
+    },
+    "shopify": {
+      "cardTitle": "Shopify",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Shopify Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Shopify guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Shopify"
+    },
+    "slack": {
+      "cardTitle": "Slack",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Slack Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Slack guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Slack"
+    },
+    "messages": {
+      "loadError": "Error al cargar la configuracion de integraciones"
+    }
   }
 }
