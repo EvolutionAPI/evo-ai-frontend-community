@@ -76,6 +76,7 @@ const PaymentsConfig = React.lazy(() => import('@/pages/Admin/Settings/PaymentsC
 const SocialLoginConfig = React.lazy(() => import('@/pages/Admin/Settings/SocialLoginConfig'));
 const ChannelConfig = React.lazy(() => import('@/pages/Admin/Settings/ChannelConfig'));
 const OpenAIConfig = React.lazy(() => import('@/pages/Admin/Settings/OpenAIConfig'));
+const IntegrationsConfig = React.lazy(() => import('@/pages/Admin/Settings/IntegrationsConfig'));
 
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
@@ -1169,6 +1170,14 @@ const AppRouter = () => {
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
                   <OpenAIConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="integrations"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <IntegrationsConfig />
                 </Suspense>
               }
             />
