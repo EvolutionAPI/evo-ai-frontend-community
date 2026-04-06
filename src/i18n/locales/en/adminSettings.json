@@ -9,7 +9,8 @@
     "openai": "OpenAI",
     "integrations": "Integrations",
     "inboundEmail": "Inbound Email",
-    "pushNotifications": "Push Notifications"
+    "pushNotifications": "Push Notifications",
+    "whitelabel": "Whitelabel"
   },
   "email": {
     "title": "Email Configuration",
@@ -481,5 +482,45 @@
     "saving": "Saving...",
     "testConnection": "Test Connection",
     "testing": "Testing..."
+  },
+  "whitelabel": {
+    "title": "Whitelabel Configuration",
+    "description": "Customize branding, logos, colors, and legal URLs for your platform.",
+    "sections": {
+      "logos": "Logos",
+      "colors": "Colors",
+      "branding": "Branding",
+      "legal": "Legal URLs"
+    },
+    "fields": {
+      "enabled": "Enable Whitelabel",
+      "enabledDescription": "Enable custom branding for this installation",
+      "logoLight": "Logo (Light Mode)",
+      "logoDark": "Logo (Dark Mode)",
+      "primaryColorLight": "Primary Color (Light)",
+      "primaryColorDark": "Primary Color (Dark)",
+      "foregroundLight": "Foreground Color (Light)",
+      "foregroundDark": "Foreground Color (Dark)",
+      "companyName": "Company Name",
+      "systemName": "System Name",
+      "termsUrl": "Terms of Service URL",
+      "privacyUrl": "Privacy Policy URL"
+    },
+    "placeholders": {
+      "logoLight": "https://example.com/logo-light.svg",
+      "logoDark": "https://example.com/logo-dark.svg",
+      "companyName": "Your Company",
+      "systemName": "Your Platform"
+    },
+    "validation": {
+      "invalidUrl": "Please enter a valid URL"
+    },
+    "messages": {
+      "saveSuccess": "Whitelabel configuration saved successfully",
+      "saveError": "Failed to save whitelabel configuration",
+      "loadError": "Failed to load whitelabel configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
   }
 }

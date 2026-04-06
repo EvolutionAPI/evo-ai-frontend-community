@@ -9,7 +9,8 @@
     "openai": "OpenAI",
     "integrations": "Integracoes",
     "inboundEmail": "E-mail de Entrada",
-    "pushNotifications": "Notificacoes Push"
+    "pushNotifications": "Notificacoes Push",
+    "whitelabel": "Whitelabel"
   },
   "email": {
     "title": "Configuracao de E-mail",
@@ -457,5 +458,45 @@
     "saving": "A guardar...",
     "testConnection": "Testar Conexão",
     "testing": "A testar..."
+  },
+  "whitelabel": {
+    "title": "Configuração de Whitelabel",
+    "description": "Personalize a marca, logótipos, cores e URLs legais da sua plataforma.",
+    "sections": {
+      "logos": "Logótipos",
+      "colors": "Cores",
+      "branding": "Marca",
+      "legal": "URLs Legais"
+    },
+    "fields": {
+      "enabled": "Ativar Whitelabel",
+      "enabledDescription": "Ativar personalização de marca para esta instalação",
+      "logoLight": "Logótipo (Modo Claro)",
+      "logoDark": "Logótipo (Modo Escuro)",
+      "primaryColorLight": "Cor Primária (Claro)",
+      "primaryColorDark": "Cor Primária (Escuro)",
+      "foregroundLight": "Cor do Texto (Claro)",
+      "foregroundDark": "Cor do Texto (Escuro)",
+      "companyName": "Nome da Empresa",
+      "systemName": "Nome do Sistema",
+      "termsUrl": "URL dos Termos de Serviço",
+      "privacyUrl": "URL da Política de Privacidade"
+    },
+    "placeholders": {
+      "logoLight": "https://exemplo.com/logo-claro.svg",
+      "logoDark": "https://exemplo.com/logo-escuro.svg",
+      "companyName": "A Sua Empresa",
+      "systemName": "A Sua Plataforma"
+    },
+    "validation": {
+      "invalidUrl": "Introduza um URL válido"
+    },
+    "messages": {
+      "saveSuccess": "Configuração de whitelabel guardada com sucesso",
+      "saveError": "Falha ao guardar configuração de whitelabel",
+      "loadError": "Falha ao carregar configuração de whitelabel"
+    },
+    "save": "Guardar Configuração",
+    "saving": "A guardar..."
   }
 }

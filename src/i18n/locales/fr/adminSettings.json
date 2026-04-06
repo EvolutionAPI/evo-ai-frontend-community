@@ -9,7 +9,8 @@
     "openai": "OpenAI",
     "integrations": "Integrations",
     "inboundEmail": "E-mail Entrant",
-    "pushNotifications": "Notifications Push"
+    "pushNotifications": "Notifications Push",
+    "whitelabel": "Whitelabel"
   },
   "email": {
     "title": "Configuration E-mail",
@@ -457,5 +458,45 @@
     "saving": "Enregistrement...",
     "testConnection": "Tester la Connexion",
     "testing": "Test en cours..."
+  },
+  "whitelabel": {
+    "title": "Configuration Whitelabel",
+    "description": "Personnalisez la marque, les logos, les couleurs et les URLs légales de votre plateforme.",
+    "sections": {
+      "logos": "Logos",
+      "colors": "Couleurs",
+      "branding": "Marque",
+      "legal": "URLs Légales"
+    },
+    "fields": {
+      "enabled": "Activer Whitelabel",
+      "enabledDescription": "Activer la personnalisation de marque pour cette installation",
+      "logoLight": "Logo (Mode Clair)",
+      "logoDark": "Logo (Mode Sombre)",
+      "primaryColorLight": "Couleur Primaire (Clair)",
+      "primaryColorDark": "Couleur Primaire (Sombre)",
+      "foregroundLight": "Couleur du Texte (Clair)",
+      "foregroundDark": "Couleur du Texte (Sombre)",
+      "companyName": "Nom de l'Entreprise",
+      "systemName": "Nom du Système",
+      "termsUrl": "URL des Conditions d'Utilisation",
+      "privacyUrl": "URL de la Politique de Confidentialité"
+    },
+    "placeholders": {
+      "logoLight": "https://exemple.com/logo-clair.svg",
+      "logoDark": "https://exemple.com/logo-sombre.svg",
+      "companyName": "Votre Entreprise",
+      "systemName": "Votre Plateforme"
+    },
+    "validation": {
+      "invalidUrl": "Veuillez entrer une URL valide"
+    },
+    "messages": {
+      "saveSuccess": "Configuration whitelabel enregistrée avec succès",
+      "saveError": "Échec de l'enregistrement de la configuration whitelabel",
+      "loadError": "Échec du chargement de la configuration whitelabel"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
   }
 }
