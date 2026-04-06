@@ -8,7 +8,8 @@
     "channels": "Canais",
     "openai": "OpenAI",
     "integrations": "Integracoes",
-    "inboundEmail": "E-mail de Entrada"
+    "inboundEmail": "E-mail de Entrada",
+    "pushNotifications": "Notificacoes Push"
   },
   "email": {
     "title": "Configuracao de E-mail",
@@ -425,6 +426,36 @@
       "loadError": "Falha ao carregar configuracao de e-mail de entrada"
     },
     "save": "Guardar Configuracao",
+    "saving": "A guardar..."
+  },
+  "pushNotifications": {
+    "title": "Configuração de Notificações Push",
+    "description": "Configure as credenciais do Firebase e os identificadores de aplicações móveis para notificações push.",
+    "fields": {
+      "cardTitle": "Firebase e Configurações Mobile",
+      "projectId": "ID do Projeto Firebase",
+      "credentialsJson": "JSON de Credenciais",
+      "iosAppId": "ID da App iOS",
+      "androidBundleId": "Bundle ID Android"
+    },
+    "placeholders": {
+      "projectId": "meu-projeto-firebase",
+      "credentialsJson": "Cole o JSON da conta de serviço do Firebase aqui...",
+      "iosAppId": "com.exemplo.app",
+      "androidBundleId": "com.exemplo.app"
+    },
+    "validation": {
+      "projectIdRequired": "ID do Projeto Firebase é obrigatório"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "Não configurado",
+    "clearSecret": "Limpar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuração de notificações push guardada com sucesso",
+      "saveError": "Falha ao guardar configuração de notificações push",
+      "loadError": "Falha ao carregar configuração de notificações push"
+    },
+    "save": "Guardar Configuração",
     "saving": "A guardar..."
   }
 }

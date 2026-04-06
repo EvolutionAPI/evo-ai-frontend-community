@@ -8,7 +8,8 @@
     "channels": "Channels",
     "openai": "OpenAI",
     "integrations": "Integrations",
-    "inboundEmail": "Inbound Email"
+    "inboundEmail": "Inbound Email",
+    "pushNotifications": "Push Notifications"
   },
   "email": {
     "title": "Email Configuration",
@@ -447,6 +448,36 @@
       "saveSuccess": "Inbound email configuration saved successfully",
       "saveError": "Failed to save inbound email configuration",
       "loadError": "Failed to load inbound email configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  },
+  "pushNotifications": {
+    "title": "Push Notifications Configuration",
+    "description": "Configure Firebase credentials and mobile app identifiers for push notifications.",
+    "fields": {
+      "cardTitle": "Firebase & Mobile Settings",
+      "projectId": "Firebase Project ID",
+      "credentialsJson": "Credentials JSON",
+      "iosAppId": "iOS App ID",
+      "androidBundleId": "Android Bundle ID"
+    },
+    "placeholders": {
+      "projectId": "my-firebase-project",
+      "credentialsJson": "Paste your Firebase service account JSON here...",
+      "iosAppId": "com.example.app",
+      "androidBundleId": "com.example.app"
+    },
+    "validation": {
+      "projectIdRequired": "Firebase Project ID is required"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Push notifications configuration saved successfully",
+      "saveError": "Failed to save push notifications configuration",
+      "loadError": "Failed to load push notifications configuration"
     },
     "save": "Save Configuration",
     "saving": "Saving..."

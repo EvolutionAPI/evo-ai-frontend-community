@@ -8,7 +8,8 @@
     "channels": "Canaux",
     "openai": "OpenAI",
     "integrations": "Integrations",
-    "inboundEmail": "E-mail Entrant"
+    "inboundEmail": "E-mail Entrant",
+    "pushNotifications": "Notifications Push"
   },
   "email": {
     "title": "Configuration E-mail",
@@ -423,6 +424,36 @@
       "saveSuccess": "Configuration d'e-mail entrant enregistree avec succes",
       "saveError": "Echec de l'enregistrement de la configuration d'e-mail entrant",
       "loadError": "Echec du chargement de la configuration d'e-mail entrant"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  },
+  "pushNotifications": {
+    "title": "Configuration des Notifications Push",
+    "description": "Configurez les identifiants Firebase et les identifiants d'applications mobiles pour les notifications push.",
+    "fields": {
+      "cardTitle": "Firebase et Parametres Mobile",
+      "projectId": "ID du Projet Firebase",
+      "credentialsJson": "JSON des Identifiants",
+      "iosAppId": "ID de l'App iOS",
+      "androidBundleId": "Bundle ID Android"
+    },
+    "placeholders": {
+      "projectId": "mon-projet-firebase",
+      "credentialsJson": "Collez le JSON du compte de service Firebase ici...",
+      "iosAppId": "com.exemple.app",
+      "androidBundleId": "com.exemple.app"
+    },
+    "validation": {
+      "projectIdRequired": "L'ID du Projet Firebase est requis"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration des notifications push enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration des notifications push",
+      "loadError": "Echec du chargement de la configuration des notifications push"
     },
     "save": "Enregistrer la Configuration",
     "saving": "Enregistrement..."
