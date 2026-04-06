@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { useLanguage } from '@/hooks/useLanguage';
+import { AgentsCustomToolsTour } from '@/tours';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, Button } from '@evoapi/design-system';
 import { Grid3X3, List, Wand } from 'lucide-react';
 import EmptyState from '@/components/base/EmptyState';
@@ -327,22 +328,25 @@ export default function CustomTools() {
   };
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <CustomToolsHeader
-        totalCount={state.meta.pagination.total}
-        selectedCount={state.selectedToolIds.length}
-        searchValue={state.searchQuery}
-        onSearchChange={handleSearchChange}
-        onNewTool={handleCreateTool}
-        onFilter={handleOpenFilter}
+    <div className="h-full flex flex-col p-4" data-tour="agents-custom-tools-page">
+      <AgentsCustomToolsTour />
+      <div data-tour="agents-custom-tools-header">
+        <CustomToolsHeader
+          totalCount={state.meta.pagination.total}
+          selectedCount={state.selectedToolIds.length}
+          searchValue={state.searchQuery}
+          onSearchChange={handleSearchChange}
+          onNewTool={handleCreateTool}
+          onFilter={handleOpenFilter}
 
-        onClearSelection={() => setState(prev => ({ ...prev, selectedToolIds: [] }))}
-        activeFilters={appliedFilters}
-        showFilters={true}
-      />
+          onClearSelection={() => setState(prev => ({ ...prev, selectedToolIds: [] }))}
+          activeFilters={appliedFilters}
+          showFilters={true}
+        />
+      </div>
 
       {/* View Mode Toggle */}
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="agents-custom-tools-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -364,7 +368,7 @@ export default function CustomTools() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="agents-custom-tools-content">
         {state.loading.list ? (
           <div className="flex items-center justify-center py-16">
             <div className="text-muted-foreground">{t('loading.tools')}</div>

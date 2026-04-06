@@ -32,6 +32,7 @@ export default function ScheduledActionsHeader({
     label: t('scheduledActions.newAction'),
     icon: <Plus className="h-4 w-4" />,
     onClick: onNewAction,
+    dataTour: 'scheduled-actions-new-button',
   } : undefined;
 
   const bulkActions: HeaderAction[] = isReady && can('contacts', 'update') ? [
@@ -52,6 +53,7 @@ export default function ScheduledActionsHeader({
       searchValue={searchValue}
       onSearchChange={onSearchChange}
       searchPlaceholder={t('scheduledActions.searchPlaceholder')}
+      searchDataTour="scheduled-actions-search"
       primaryAction={primaryAction}
       bulkActions={bulkActions}
       onClearSelection={onClearSelection}

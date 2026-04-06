@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { toast } from 'sonner';
+import { ScheduledActionsTour } from '@/tours';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { scheduledActionsService } from '@/services/scheduledActions/scheduledActionsService';
@@ -219,7 +220,9 @@ export default function ScheduledActions() {
   const filteredActions = getFilteredActions();
 
   return (
-    <div className="h-full flex flex-col p-6">
+    <div className="h-full flex flex-col p-6" data-tour="scheduled-actions-page">
+      <ScheduledActionsTour />
+      <div data-tour="scheduled-actions-header">
       <ScheduledActionsHeader
         totalCount={state.meta.total_count}
         selectedCount={state.selectedActionIds.length}
@@ -229,7 +232,9 @@ export default function ScheduledActions() {
         onBulkCancel={handleBulkCancel}
         onClearSelection={handleClearSelection}
       />
+      </div>
 
+      <div data-tour="scheduled-actions-content">
       {state.loading.list && state.actions.length === 0 ? (
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
@@ -275,6 +280,8 @@ export default function ScheduledActions() {
           )}
         </>
       )}
+
+      </div>
 
       {modalOpen && (
         <ScheduleActionModal

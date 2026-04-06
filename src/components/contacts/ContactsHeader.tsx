@@ -47,6 +47,7 @@ export default function ContactsHeader({
     label: t('header.newContact'),
     icon: <Plus className="h-4 w-4" />,
     onClick: onNewContact,
+    dataTour: 'contacts-new-button',
   } : undefined;
 
   const secondaryActions: HeaderAction[] = [
@@ -98,6 +99,7 @@ export default function ContactsHeader({
       filters={activeFilters}
       onFilterClick={onFilter}
       showFilters={showFilters}
+      filterButtonDataTour="contacts-filter-button"
       onClearSelection={onClearSelection}
     />
   );

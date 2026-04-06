@@ -42,6 +42,7 @@ export default function AgentsHeader({
     label: t('createAgent'),
     icon: <Plus className="h-4 w-4" />,
     onClick: onNewAgent,
+    dataTour: 'agents-new-button',
   } : undefined;
 
   const secondaryActions: HeaderAction[] = [
@@ -50,6 +51,7 @@ export default function AgentsHeader({
       icon: <Key className="h-4 w-4" />,
       onClick: onManageApiKeys,
       variant: 'outline' as const,
+      dataTour: 'agents-api-keys',
     },
     {
       label: t('export.all'),

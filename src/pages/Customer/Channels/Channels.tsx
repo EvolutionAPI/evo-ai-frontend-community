@@ -27,6 +27,7 @@ import {
 import EmptyState from '@/components/base/EmptyState';
 // table types imported where needed in ChannelsTable
 import { useNavigate } from 'react-router-dom';
+import { ChannelsTour } from '@/tours';
 
 export default function Channels() {
   const { can, isReady: permissionsReady, loading: permissionsLoading } = useUserPermissions();
@@ -169,16 +170,19 @@ export default function Channels() {
 
   return (
     <div className="h-full flex flex-col p-4">
-      <ChannelsHeader
-        totalCount={totalCount}
-        selectedCount={0}
-        searchValue={query}
-        onSearchChange={setQuery}
-        onNewChannel={handleNewChannel}
-        onClearSelection={() => {}}
-      />
+      <ChannelsTour />
+      <div data-tour="channels-header">
+        <ChannelsHeader
+          totalCount={totalCount}
+          selectedCount={0}
+          searchValue={query}
+          onSearchChange={setQuery}
+          onNewChannel={handleNewChannel}
+          onClearSelection={() => {}}
+        />
+      </div>
 
-      <div className="flex items-center justify-end mb-3">
+      <div className="flex items-center justify-end mb-3" data-tour="channels-view-toggle">
         <div className="flex items-center border rounded-lg">
           <Button
             variant={viewMode === 'cards' ? 'default' : 'ghost'}
@@ -199,7 +203,7 @@ export default function Channels() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto" data-tour="channels-list">
         {isLoadingInboxes ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, idx) => (
@@ -238,15 +242,17 @@ export default function Channels() {
 
       {/* Pagination */}
       {totalCount > 0 && (
-        <ChannelsPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalCount={totalCount}
-          perPage={perPage}
-          onPageChange={setCurrentPage}
-          onPerPageChange={setPerPage}
-          loading={isLoadingInboxes}
-        />
+        <div data-tour="channels-pagination">
+          <ChannelsPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalCount={totalCount}
+            perPage={perPage}
+            onPageChange={setCurrentPage}
+            onPerPageChange={setPerPage}
+            loading={isLoadingInboxes}
+          />
+        </div>
       )}
 
       {/* Delete Confirmation Modal */}
