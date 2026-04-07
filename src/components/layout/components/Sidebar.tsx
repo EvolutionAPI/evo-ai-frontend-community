@@ -44,6 +44,9 @@ export default function Sidebar({
   const companyName = t('sidebar.footer.brand');
   const supportWhatsappUrl = 'https://api.whatsapp.com/send/?phone=553196219989&text=Ol%C3%A1%21+Preciso+de+suporte.&type=phone_number&app_absent=0';
 
+  const mainMenuItems = menuItems.filter(item => item.href !== '/tutorials');
+  const tutorialsItem = menuItems.find(item => item.href === '/tutorials');
+
   return (
     <>
       {/* Desktop Sidebar */}
@@ -56,7 +59,7 @@ export default function Sidebar({
         <TooltipProvider delayDuration={300}>
           {/* Navigation Menu */}
           <nav className="space-y-1.5 flex-1 px-2 py-4">
-            {menuItems.map(item => (
+            {mainMenuItems.map(item => (
               <MenuItem
                 key={item.id || item.href}
                 item={item}
@@ -68,8 +71,21 @@ export default function Sidebar({
             ))}
           </nav>
 
+          {/* Tutorials - fixed at bottom */}
+          {tutorialsItem && (
+            <div className="px-2 pb-2">
+              <MenuItem
+                item={tutorialsItem}
+                isCollapsed={isCollapsed}
+                isActive={pathname === tutorialsItem.href}
+                activeMenu={activeMenu}
+                onClick={(e) => handleMenuClick(tutorialsItem, e)}
+              />
+            </div>
+          )}
+
           {/* Sidebar Footer */}
-          <div className="mt-auto p-4 border-t border-sidebar-border">
+          <div className="p-4 border-t border-sidebar-border">
             {isCollapsed ? (
               <div className="flex flex-col items-center">
                 <div className="text-xs text-muted-foreground text-center">© {currentYear}</div>

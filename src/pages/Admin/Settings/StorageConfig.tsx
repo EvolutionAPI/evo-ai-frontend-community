@@ -203,6 +203,7 @@ export default function StorageConfig() {
       }
 
       const data = await adminConfigService.saveConfig('storage', payload as AdminConfigData);
+
       updateSecretStatus(data);
       reset(buildFormValues(data, storageService));
 
