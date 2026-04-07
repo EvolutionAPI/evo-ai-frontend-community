@@ -103,7 +103,8 @@
       "cannedResponses": "Canned Responses",
       "macros": "Macros",
       "integrations": "Integrations",
-      "accessTokens": "Access Tokens"
+      "accessTokens": "Access Tokens",
+      "admin": "Admin Settings"
     }
   }
 }
