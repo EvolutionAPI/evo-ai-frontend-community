@@ -158,7 +158,6 @@ export default function StorageConfig() {
     setLoading(true);
     try {
       const data = await adminConfigService.getConfig('storage');
-      setServerData(data);
 
       const type = (data.ACTIVE_STORAGE_SERVICE as StorageServiceType) || 'local';
       updateSecretStatus(data);
@@ -204,7 +203,6 @@ export default function StorageConfig() {
       }
 
       const data = await adminConfigService.saveConfig('storage', payload as AdminConfigData);
-      setServerData(data);
       updateSecretStatus(data);
       reset(buildFormValues(data, storageService));
 

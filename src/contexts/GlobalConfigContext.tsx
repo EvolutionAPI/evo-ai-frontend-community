@@ -3,6 +3,20 @@ import { api } from '@/services/core';
 import { setupService } from '@/services/setup/setupService';
 import { initClarity } from '@/utils/clarityUtils';
 
+export interface WhitelabelConfig {
+  enabled: boolean;
+  logo?: { light: string; dark: string };
+  favicon?: string;
+  companyName?: string;
+  systemName?: string;
+  termsOfServiceUrl?: string;
+  privacyPolicyUrl?: string;
+  colors?: {
+    light: { primary: string; primaryForeground: string };
+    dark: { primary: string; primaryForeground: string };
+  };
+}
+
 export interface GlobalConfig {
   fbAppId?: string;
   fbApiVersion?: string;

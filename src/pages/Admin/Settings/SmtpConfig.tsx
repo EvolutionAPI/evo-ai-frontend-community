@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, type FieldValues } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -144,9 +144,10 @@ export default function SmtpConfig() {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<EmailFormData>({
-    resolver: zodResolver(emailConfigSchema),
-    defaultValues: SMTP_DEFAULTS,
+  } = useForm<FieldValues>({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(emailConfigSchema) as any,
+    defaultValues: SMTP_DEFAULTS as FieldValues,
   });
 
   const mailerType = watch('MAILER_TYPE');
@@ -187,7 +188,7 @@ export default function SmtpConfig() {
     setSecretModified({});
   };
 
-  const onSubmit = async (formData: EmailFormData) => {
+  const onSubmit = async (formData: FieldValues) => {
     setSaving(true);
     try {
       const payload: Record<string, unknown> = {};
@@ -463,7 +464,7 @@ export default function SmtpConfig() {
                 {...register('MAILER_SENDER_EMAIL')}
               />
               {errors.MAILER_SENDER_EMAIL && (
-                <p className="text-xs text-destructive">{errors.MAILER_SENDER_EMAIL.message}</p>
+                <p className="text-xs text-destructive">{errors.MAILER_SENDER_EMAIL.message as string}</p>
               )}
             </div>
 

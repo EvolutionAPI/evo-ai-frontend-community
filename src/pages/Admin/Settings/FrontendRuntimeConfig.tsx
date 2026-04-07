@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -18,7 +18,7 @@ import { adminConfigService } from '@/services/admin/adminConfigService';
 import { extractError } from '@/utils/apiHelpers';
 import type { AdminConfigData } from '@/types/admin/adminConfig';
 
-function createFrontendRuntimeSchema(t: (key: string) => string) {
+function createFrontendRuntimeSchema(_t: (key: string) => string) {
   return z.object({
     RECAPTCHA_SITE_KEY: z.string().optional().nullable(),
     CLARITY_PROJECT_ID: z.string().optional().nullable(),

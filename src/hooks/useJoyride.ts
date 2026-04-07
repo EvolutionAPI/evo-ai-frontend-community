@@ -15,7 +15,6 @@ export function useJoyride({ tourKey, steps, autoStart = true }: UseJoyrideOptio
   const { Tour, controls, on } = useJoyrideLib({
     steps,
     continuous: true,
-    showSkipButton: false,
     scrollToFirstStep: true,
     portalElement: 'main.overflow-auto',
     tooltipComponent: JoyrideTooltip,
