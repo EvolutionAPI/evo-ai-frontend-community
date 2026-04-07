@@ -257,6 +257,24 @@ export const EvolutionApiService = {
   },
 
   /**
+   * Get current profile settings for Evolution Go instance
+   */
+  async getProfile(instanceName: string, provider: string = 'evolution'): Promise<any> {
+    try {
+      const endpoint =
+        provider === 'evolution_go'
+          ? `/evolution_go/profile/${instanceName}`
+          : `/evolution/profile/${instanceName}`;
+
+      const { data } = await api.get(endpoint);
+      return data;
+    } catch (error) {
+      console.error('EvolutionApiService.getProfile error:', error);
+      throw error;
+    }
+  },
+
+  /**
    * Fetch profile data for Evolution instance
    */
   async fetchProfile(
