@@ -164,6 +164,130 @@
       "content": "Questo è l'identificatore univoco del tuo account. Potresti averne bisogno quando contatti il supporto o configuri integrazioni esterne."
     }
   },
+  "settingsAgents": {
+    "step1": {
+      "title": "Agenti",
+      "content": "In questa sezione gestisci tutti gli agenti del tuo team."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Usa la ricerca per trovare agenti, creane di nuovi o invia inviti di massa."
+    },
+    "step3": {
+      "title": "Modalità di Visualizzazione",
+      "content": "Passa dalla visualizzazione a schede a quella a tabella in base alle tue preferenze."
+    },
+    "step4": {
+      "title": "Lista Agenti",
+      "content": "Qui vengono visualizzati tutti gli agenti. Fai clic su uno per modificare o rimuovere."
+    }
+  },
+  "settingsTeams": {
+    "step1": {
+      "title": "Team",
+      "content": "Organizza i tuoi agenti in team per facilitare la distribuzione delle conversazioni."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Crea nuovi team, importa/esporta dati e cerca team esistenti."
+    },
+    "step3": {
+      "title": "Modalità di Visualizzazione",
+      "content": "Passa dalla visualizzazione a schede a quella a tabella."
+    },
+    "step4": {
+      "title": "Lista Team",
+      "content": "Visualizza tutti i team registrati. Fai clic su \"Gestisci Membri\" per aggiungere o rimuovere agenti da un team."
+    }
+  },
+  "settingsLabels": {
+    "step1": {
+      "title": "Etichette",
+      "content": "Crea etichette colorate per categorizzare e organizzare le tue conversazioni."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Cerca etichette esistenti o creane una nuova cliccando su \"Nuova Etichetta\"."
+    },
+    "step3": {
+      "title": "Lista Etichette",
+      "content": "Tutte le etichette sono visualizzate qui con nome, descrizione e colore. Fai clic sulle icone di azione per modificare o eliminare."
+    }
+  },
+  "settingsCustomAttributes": {
+    "step1": {
+      "title": "Attributi Personalizzati",
+      "content": "Crea campi aggiuntivi per arricchire le informazioni di conversazioni, contatti e pipeline."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Cerca attributi o aggiungine di nuovi cliccando su \"Nuovo Attributo\"."
+    },
+    "step3": {
+      "title": "Categorie di Attributi",
+      "content": "Usa le schede per filtrare tra attributi di Conversazione, Contatto o Pipeline."
+    }
+  },
+  "settingsCannedResponses": {
+    "step1": {
+      "title": "Risposte Rapide",
+      "content": "Crea scorciatoie di testo per velocizzare il servizio con risposte predefinite."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Cerca risposte per codice o contenuto, o crea una nuova risposta rapida."
+    },
+    "step3": {
+      "title": "Lista Risposte Rapide",
+      "content": "Tutte le risposte registrate sono elencate qui con il codice di scorciatoia e il contenuto. Durante il servizio, digita \"/\" per accedervi rapidamente."
+    }
+  },
+  "settingsMacros": {
+    "step1": {
+      "title": "Macro",
+      "content": "I macro sono sequenze di azioni automatizzate che possono essere applicate alle conversazioni con un solo clic."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Crea nuovi macro o cerca tra quelli esistenti per nome."
+    },
+    "step3": {
+      "title": "Lista Macro",
+      "content": "Tutti i macro registrati appaiono qui. Fai clic su un macro per modificarne le azioni, o usa il pulsante di esecuzione per applicarlo."
+    }
+  },
+  "settingsIntegrations": {
+    "step1": {
+      "title": "Integrazioni",
+      "content": "Collega il sistema a strumenti esterni come CRM, comunicazione, produttività e IA."
+    },
+    "step2": {
+      "title": "Titolo e Descrizione",
+      "content": "Panoramica delle integrazioni disponibili sulla piattaforma."
+    },
+    "step3": {
+      "title": "Ricerca Integrazioni",
+      "content": "Trova rapidamente un'integrazione specifica per nome o descrizione."
+    },
+    "step4": {
+      "title": "Categorie",
+      "content": "Filtra le integrazioni per categoria: CRM, Comunicazione, Produttività, IA o Personalizzate. Ogni scheda permette di configurare o attivare/disattivare l'integrazione."
+    }
+  },
+  "settingsAccessTokens": {
+    "step1": {
+      "title": "Token di Accesso",
+      "content": "Genera e gestisci token API per integrare il sistema con applicazioni esterne in modo sicuro."
+    },
+    "step2": {
+      "title": "Barra degli Strumenti",
+      "content": "Crea nuovi token o cerca tra quelli esistenti per nome, valore o ambito."
+    },
+    "step3": {
+      "title": "Lista Token",
+      "content": "Tutti i token appaiono qui con nome, ambiti e scadenza. Usa le azioni per visualizzare il valore completo, rigenerare o eliminare il token."
+    }
+  },
   "campaigns": {
     "step1": {
       "title": "Gestione Campagne",

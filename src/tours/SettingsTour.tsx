@@ -69,44 +69,45 @@ export function SettingsTour() {
 const AGENTS_ROUTE = '/settings/users';
 
 export function SettingsAgentsTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-agents',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-agents-page"]',
-          title: 'Atendentes',
-          content: 'Nesta seção você gerencia todos os atendentes da sua equipe.',
+          title: t('settingsAgents.step1.title'),
+          content: t('settingsAgents.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-agents-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Use a busca para encontrar atendentes, crie novos ou faça convite em massa.',
+          title: t('settingsAgents.step2.title'),
+          content: t('settingsAgents.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-agents-view-toggle"]',
-          title: 'Modo de Visualização',
-          content: 'Alterne entre a visualização em cards e em tabela conforme sua preferência.',
+          title: t('settingsAgents.step3.title'),
+          content: t('settingsAgents.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-agents-content"]',
-          title: 'Lista de Atendentes',
-          content: 'Aqui são exibidos todos os atendentes. Clique em um para editar ou remover.',
+          title: t('settingsAgents.step4.title'),
+          content: t('settingsAgents.step4.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -126,44 +127,45 @@ export function SettingsAgentsTour() {
 const TEAMS_ROUTE = '/settings/teams';
 
 export function SettingsTeamsTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-teams',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-teams-page"]',
-          title: 'Times',
-          content: 'Organize seus atendentes em times para facilitar a distribuição de conversas.',
+          title: t('settingsTeams.step1.title'),
+          content: t('settingsTeams.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-teams-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Crie novos times, importe/exporte dados e busque times existentes.',
+          title: t('settingsTeams.step2.title'),
+          content: t('settingsTeams.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-teams-view-toggle"]',
-          title: 'Modo de Visualização',
-          content: 'Alterne entre a visualização em cards e em tabela.',
+          title: t('settingsTeams.step3.title'),
+          content: t('settingsTeams.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-teams-content"]',
-          title: 'Lista de Times',
-          content: 'Veja todos os times cadastrados. Clique em "Gerenciar Membros" para adicionar ou remover atendentes de um time.',
+          title: t('settingsTeams.step4.title'),
+          content: t('settingsTeams.step4.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -183,36 +185,37 @@ export function SettingsTeamsTour() {
 const LABELS_ROUTE = '/settings/labels';
 
 export function SettingsLabelsTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-labels',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-labels-page"]',
-          title: 'Etiquetas',
-          content: 'Crie etiquetas coloridas para categorizar e organizar suas conversas.',
+          title: t('settingsLabels.step1.title'),
+          content: t('settingsLabels.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-labels-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Pesquise etiquetas existentes ou crie uma nova clicando no botão "Nova Etiqueta".',
+          title: t('settingsLabels.step2.title'),
+          content: t('settingsLabels.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-labels-content"]',
-          title: 'Lista de Etiquetas',
-          content: 'Todas as etiquetas são exibidas aqui com seu nome, descrição e cor. Clique nos ícones de ação para editar ou excluir.',
+          title: t('settingsLabels.step3.title'),
+          content: t('settingsLabels.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -232,36 +235,37 @@ export function SettingsLabelsTour() {
 const CUSTOM_ATTRIBUTES_ROUTE = '/settings/attributes';
 
 export function SettingsCustomAttributesTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-custom-attributes',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-custom-attributes-page"]',
-          title: 'Atributos Personalizados',
-          content: 'Crie campos extras para enriquecer informações de conversas, contatos e pipelines.',
+          title: t('settingsCustomAttributes.step1.title'),
+          content: t('settingsCustomAttributes.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-custom-attributes-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Pesquise atributos ou adicione novos clicando em "Novo Atributo".',
+          title: t('settingsCustomAttributes.step2.title'),
+          content: t('settingsCustomAttributes.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-custom-attributes-tabs"]',
-          title: 'Categorias de Atributos',
-          content: 'Use as abas para filtrar entre atributos de Conversa, Contato ou Pipeline.',
+          title: t('settingsCustomAttributes.step3.title'),
+          content: t('settingsCustomAttributes.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -281,36 +285,37 @@ export function SettingsCustomAttributesTour() {
 const CANNED_RESPONSES_ROUTE = '/settings/canned-responses';
 
 export function SettingsCannedResponsesTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-canned-responses',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-canned-responses-page"]',
-          title: 'Respostas Rápidas',
-          content: 'Crie atalhos de texto para agilizar o atendimento com respostas pré-definidas.',
+          title: t('settingsCannedResponses.step1.title'),
+          content: t('settingsCannedResponses.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-canned-responses-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Busque respostas por código ou conteúdo, ou crie uma nova resposta rápida.',
+          title: t('settingsCannedResponses.step2.title'),
+          content: t('settingsCannedResponses.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-canned-responses-content"]',
-          title: 'Lista de Respostas Rápidas',
-          content: 'Aqui ficam todas as respostas cadastradas com seu código de atalho e conteúdo. Durante o atendimento, use "/" para acessá-las rapidamente.',
+          title: t('settingsCannedResponses.step3.title'),
+          content: t('settingsCannedResponses.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -330,36 +335,37 @@ export function SettingsCannedResponsesTour() {
 const MACROS_ROUTE = '/settings/macros';
 
 export function SettingsMacrosTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-macros',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-macros-page"]',
-          title: 'Macros',
-          content: 'Macros são sequências de ações automatizadas que podem ser aplicadas a conversas com um único clique.',
+          title: t('settingsMacros.step1.title'),
+          content: t('settingsMacros.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-macros-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Crie novos macros ou busque entre os existentes pelo nome.',
+          title: t('settingsMacros.step2.title'),
+          content: t('settingsMacros.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-macros-content"]',
-          title: 'Lista de Macros',
-          content: 'Todos os macros cadastrados aparecem aqui. Clique em um macro para editar suas ações, ou use o botão de execução para aplicá-lo.',
+          title: t('settingsMacros.step3.title'),
+          content: t('settingsMacros.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -379,44 +385,45 @@ export function SettingsMacrosTour() {
 const INTEGRATIONS_ROUTE = '/settings/integrations';
 
 export function SettingsIntegrationsTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-integrations',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-integrations-page"]',
-          title: 'Integrações',
-          content: 'Conecte o sistema a ferramentas externas como CRM, comunicação, produtividade e IA.',
+          title: t('settingsIntegrations.step1.title'),
+          content: t('settingsIntegrations.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-integrations-header"]',
-          title: 'Título e Descrição',
-          content: 'Visão geral das integrações disponíveis na plataforma.',
+          title: t('settingsIntegrations.step2.title'),
+          content: t('settingsIntegrations.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-integrations-search"]',
-          title: 'Busca de Integrações',
-          content: 'Encontre rapidamente uma integração específica pelo nome ou descrição.',
+          title: t('settingsIntegrations.step3.title'),
+          content: t('settingsIntegrations.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-integrations-categories"]',
-          title: 'Categorias',
-          content: 'Filtre as integrações por categoria: CRM, Comunicação, Produtividade, IA ou Personalizadas. Cada card permite configurar ou ativar/desativar a integração.',
+          title: t('settingsIntegrations.step4.title'),
+          content: t('settingsIntegrations.step4.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);
@@ -436,36 +443,37 @@ export function SettingsIntegrationsTour() {
 const ACCESS_TOKENS_ROUTE = '/settings/access-tokens';
 
 export function SettingsAccessTokensTour() {
+  const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
     tourKey: 'settings-access-tokens',
     steps: useMemo<Step[]>(
       () => [
         {
           target: '[data-tour="settings-access-tokens-page"]',
-          title: 'Tokens de Acesso',
-          content: 'Gere e gerencie tokens de API para integrar o sistema com aplicações externas de forma segura.',
+          title: t('settingsAccessTokens.step1.title'),
+          content: t('settingsAccessTokens.step1.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-access-tokens-header"]',
-          title: 'Barra de Ferramentas',
-          content: 'Crie novos tokens ou pesquise entre os existentes pelo nome, valor ou escopo.',
+          title: t('settingsAccessTokens.step2.title'),
+          content: t('settingsAccessTokens.step2.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
         {
           target: '[data-tour="settings-access-tokens-content"]',
-          title: 'Lista de Tokens',
-          content: 'Todos os tokens aparecem aqui com nome, escopos e validade. Use as ações para visualizar o valor completo, regenerar ou excluir o token.',
+          title: t('settingsAccessTokens.step3.title'),
+          content: t('settingsAccessTokens.step3.content'),
           placement: 'auto',
           disableBeacon: true,
           disableScrolling: true,
         },
       ],
-      [],
+      [t],
     ),
   });
   const controlsRef = useRef(controls);

@@ -17,7 +17,7 @@
     },
     "step2": {
       "title": "Filters",
-      "content": "Use filters to segment data by channel, agent, team, or other criteria."
+      "content": "Use filters to segment data by channel, attendant, team, or other criteria."
     },
     "step3": {
       "title": "Analysis Period",
@@ -47,7 +47,7 @@
     },
     "step3": {
       "title": "Conversation Filters",
-      "content": "Filter conversations by status (open, resolved, pending), assigned agent, team, or service channel."
+      "content": "Filter conversations by status (open, resolved, pending), assigned attendant, team, or service channel."
     },
     "step4": {
       "title": "Conversation List",
@@ -162,6 +162,130 @@
     "step4": {
       "title": "Account ID",
       "content": "This is your account's unique identifier. You may need it when contacting support or configuring external integrations."
+    }
+  },
+  "settingsAgents": {
+    "step1": {
+      "title": "Attendants",
+      "content": "In this section you manage all attendants on your team."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Use search to find attendants, create new ones, or send bulk invitations."
+    },
+    "step3": {
+      "title": "View Mode",
+      "content": "Switch between card and table view according to your preference."
+    },
+    "step4": {
+      "title": "Attendant List",
+      "content": "All attendants are displayed here. Click one to edit or remove."
+    }
+  },
+  "settingsTeams": {
+    "step1": {
+      "title": "Teams",
+      "content": "Organize your attendants into teams to streamline conversation distribution."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Create new teams, import/export data, and search existing teams."
+    },
+    "step3": {
+      "title": "View Mode",
+      "content": "Switch between card and table view."
+    },
+    "step4": {
+      "title": "Team List",
+      "content": "See all registered teams. Click 'Manage Members' to add or remove attendants from a team."
+    }
+  },
+  "settingsLabels": {
+    "step1": {
+      "title": "Labels",
+      "content": "Create colored labels to categorize and organize your conversations."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Search existing labels or create a new one by clicking 'New Label'."
+    },
+    "step3": {
+      "title": "Label List",
+      "content": "All labels are displayed here with their name, description, and color. Click the action icons to edit or delete."
+    }
+  },
+  "settingsCustomAttributes": {
+    "step1": {
+      "title": "Custom Attributes",
+      "content": "Create extra fields to enrich information on conversations, contacts, and pipelines."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Search attributes or add new ones by clicking 'New Attribute'."
+    },
+    "step3": {
+      "title": "Attribute Categories",
+      "content": "Use tabs to filter between Conversation, Contact, or Pipeline attributes."
+    }
+  },
+  "settingsCannedResponses": {
+    "step1": {
+      "title": "Canned Responses",
+      "content": "Create text shortcuts to speed up support with predefined responses."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Search responses by shortcode or content, or create a new canned response."
+    },
+    "step3": {
+      "title": "Canned Response List",
+      "content": "All registered responses are listed here with their shortcode and content. During a conversation, type '/' to access them quickly."
+    }
+  },
+  "settingsMacros": {
+    "step1": {
+      "title": "Macros",
+      "content": "Macros are automated action sequences that can be applied to conversations with a single click."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Create new macros or search existing ones by name."
+    },
+    "step3": {
+      "title": "Macro List",
+      "content": "All registered macros appear here. Click a macro to edit its actions, or use the run button to apply it."
+    }
+  },
+  "settingsIntegrations": {
+    "step1": {
+      "title": "Integrations",
+      "content": "Connect the system to external tools such as CRM, communication, productivity, and AI."
+    },
+    "step2": {
+      "title": "Title and Description",
+      "content": "Overview of integrations available on the platform."
+    },
+    "step3": {
+      "title": "Integration Search",
+      "content": "Quickly find a specific integration by name or description."
+    },
+    "step4": {
+      "title": "Categories",
+      "content": "Filter integrations by category: CRM, Communication, Productivity, AI, or Custom. Each card lets you configure or toggle the integration."
+    }
+  },
+  "settingsAccessTokens": {
+    "step1": {
+      "title": "Access Tokens",
+      "content": "Generate and manage API tokens to securely integrate the system with external applications."
+    },
+    "step2": {
+      "title": "Toolbar",
+      "content": "Create new tokens or search existing ones by name, value, or scope."
+    },
+    "step3": {
+      "title": "Token List",
+      "content": "All tokens appear here with name, scopes, and expiry. Use the actions to view the full value, regenerate, or delete the token."
     }
   },
   "campaigns": {

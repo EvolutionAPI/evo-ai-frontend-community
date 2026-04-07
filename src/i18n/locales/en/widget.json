@@ -12,7 +12,7 @@
     "retryMessage": "Retry",
     "replyTo": "Reply",
     "you": "You",
-    "agent": "Agent",
+    "agent": "Attendant",
     "user": "User",
     "file": "File",
     "fileSize": "{{size}} KB",
@@ -42,7 +42,7 @@
     "replyingTo": "Replying to {{name}}",
     "cancelReply": "Cancel reply",
     "you": "You",
-    "agent": "Agent"
+    "agent": "Attendant"
   },
   "messageList": {
     "loadingOld": "Loading old messages...",

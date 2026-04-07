@@ -164,6 +164,130 @@
       "content": "Este é o identificador único da sua conta. Você pode precisar dele ao entrar em contato com o suporte ou ao configurar integrações externas."
     }
   },
+  "settingsAgents": {
+    "step1": {
+      "title": "Atendentes",
+      "content": "Nesta seção você gerencia todos os atendentes da sua equipe."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Use a busca para encontrar atendentes, crie novos ou faça convite em massa."
+    },
+    "step3": {
+      "title": "Modo de Visualização",
+      "content": "Alterne entre a visualização em cards e em tabela conforme sua preferência."
+    },
+    "step4": {
+      "title": "Lista de Atendentes",
+      "content": "Aqui são exibidos todos os atendentes. Clique em um para editar ou remover."
+    }
+  },
+  "settingsTeams": {
+    "step1": {
+      "title": "Times",
+      "content": "Organize seus atendentes em times para facilitar a distribuição de conversas."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Crie novos times, importe/exporte dados e busque times existentes."
+    },
+    "step3": {
+      "title": "Modo de Visualização",
+      "content": "Alterne entre a visualização em cards e em tabela."
+    },
+    "step4": {
+      "title": "Lista de Times",
+      "content": "Veja todos os times cadastrados. Clique em \"Gerenciar Membros\" para adicionar ou remover atendentes de um time."
+    }
+  },
+  "settingsLabels": {
+    "step1": {
+      "title": "Etiquetas",
+      "content": "Crie etiquetas coloridas para categorizar e organizar suas conversas."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Pesquise etiquetas existentes ou crie uma nova clicando no botão \"Nova Etiqueta\"."
+    },
+    "step3": {
+      "title": "Lista de Etiquetas",
+      "content": "Todas as etiquetas são exibidas aqui com seu nome, descrição e cor. Clique nos ícones de ação para editar ou excluir."
+    }
+  },
+  "settingsCustomAttributes": {
+    "step1": {
+      "title": "Atributos Personalizados",
+      "content": "Crie campos extras para enriquecer informações de conversas, contatos e pipelines."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Pesquise atributos ou adicione novos clicando em \"Novo Atributo\"."
+    },
+    "step3": {
+      "title": "Categorias de Atributos",
+      "content": "Use as abas para filtrar entre atributos de Conversa, Contato ou Pipeline."
+    }
+  },
+  "settingsCannedResponses": {
+    "step1": {
+      "title": "Respostas Rápidas",
+      "content": "Crie atalhos de texto para agilizar o atendimento com respostas pré-definidas."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Busque respostas por código ou conteúdo, ou crie uma nova resposta rápida."
+    },
+    "step3": {
+      "title": "Lista de Respostas Rápidas",
+      "content": "Aqui ficam todas as respostas cadastradas com seu código de atalho e conteúdo. Durante o atendimento, use \"/\" para acessá-las rapidamente."
+    }
+  },
+  "settingsMacros": {
+    "step1": {
+      "title": "Macros",
+      "content": "Macros são sequências de ações automatizadas que podem ser aplicadas a conversas com um único clique."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Crie novos macros ou busque entre os existentes pelo nome."
+    },
+    "step3": {
+      "title": "Lista de Macros",
+      "content": "Todos os macros cadastrados aparecem aqui. Clique em um macro para editar suas ações, ou use o botão de execução para aplicá-lo."
+    }
+  },
+  "settingsIntegrations": {
+    "step1": {
+      "title": "Integrações",
+      "content": "Conecte o sistema a ferramentas externas como CRM, comunicação, produtividade e IA."
+    },
+    "step2": {
+      "title": "Título e Descrição",
+      "content": "Visão geral das integrações disponíveis na plataforma."
+    },
+    "step3": {
+      "title": "Busca de Integrações",
+      "content": "Encontre rapidamente uma integração específica pelo nome ou descrição."
+    },
+    "step4": {
+      "title": "Categorias",
+      "content": "Filtre as integrações por categoria: CRM, Comunicação, Produtividade, IA ou Personalizadas. Cada card permite configurar ou ativar/desativar a integração."
+    }
+  },
+  "settingsAccessTokens": {
+    "step1": {
+      "title": "Tokens de Acesso",
+      "content": "Gere e gerencie tokens de API para integrar o sistema com aplicações externas de forma segura."
+    },
+    "step2": {
+      "title": "Barra de Ferramentas",
+      "content": "Crie novos tokens ou pesquise entre os existentes pelo nome, valor ou escopo."
+    },
+    "step3": {
+      "title": "Lista de Tokens",
+      "content": "Todos os tokens aparecem aqui com nome, escopos e validade. Use as ações para visualizar o valor completo, regenerar ou excluir o token."
+    }
+  },
   "campaigns": {
     "step1": {
       "title": "Gerenciamento de Campanhas",
