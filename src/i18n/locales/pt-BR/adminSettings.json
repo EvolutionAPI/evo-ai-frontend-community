@@ -3,14 +3,11 @@
   "navigation": {
     "email": "E-mail",
     "storage": "Armazenamento",
-    "payments": "Pagamentos",
     "socialLogin": "Login Social",
     "channels": "Canais",
     "openai": "OpenAI",
     "integrations": "Integracoes",
     "inboundEmail": "E-mail de Entrada",
-    "pushNotifications": "Notificacoes Push",
-    "whitelabel": "Whitelabel",
     "frontendRuntime": "Frontend Runtime"
   },
   "email": {
@@ -109,34 +106,6 @@
     "testing": "Testando...",
     "testFailed": "Teste de conexao falhou",
     "testError": "Falha ao executar teste de conexao"
-  },
-  "payments": {
-    "title": "Configuracao de Pagamentos",
-    "description": "Configure as credenciais do Stripe para processar pagamentos na plataforma.",
-    "fields": {
-      "cardTitle": "Credenciais do Stripe",
-      "publishableKey": "Chave Publicavel",
-      "secretKey": "Chave Secreta",
-      "webhookSecret": "Segredo do Webhook"
-    },
-    "placeholders": {
-      "publishableKey": "pk_test_...",
-      "secretKey": "Digite a nova chave secreta",
-      "webhookSecret": "Digite o novo segredo do webhook"
-    },
-    "validation": {
-      "publishableKeyRequired": "Chave publicavel e obrigatoria"
-    },
-    "secretConfigured": "Configurado",
-    "secretNotConfigured": "Nao configurado",
-    "clearSecret": "Limpar valor salvo",
-    "messages": {
-      "saveSuccess": "Configuracao de pagamentos salva com sucesso",
-      "saveError": "Falha ao salvar configuracao de pagamentos",
-      "loadError": "Falha ao carregar configuracao de pagamentos"
-    },
-    "save": "Salvar Configuracao",
-    "saving": "Salvando..."
   },
   "socialLogin": {
     "title": "Configuracao de Login Social",
@@ -452,76 +421,6 @@
       "loadError": "Falha ao carregar configuracao de e-mail de entrada"
     },
     "save": "Salvar Configuracao",
-    "saving": "Salvando..."
-  },
-  "pushNotifications": {
-    "title": "Configuração de Notificações Push",
-    "description": "Configure as credenciais do Firebase e os identificadores de aplicativos móveis para notificações push.",
-    "fields": {
-      "cardTitle": "Firebase e Configurações Mobile",
-      "projectId": "ID do Projeto Firebase",
-      "credentialsJson": "JSON de Credenciais",
-      "iosAppId": "ID do App iOS",
-      "androidBundleId": "Bundle ID Android"
-    },
-    "placeholders": {
-      "projectId": "meu-projeto-firebase",
-      "credentialsJson": "Cole o JSON da conta de serviço do Firebase aqui...",
-      "iosAppId": "com.exemplo.app",
-      "androidBundleId": "com.exemplo.app"
-    },
-    "secretConfigured": "Configurado",
-    "secretNotConfigured": "Não configurado",
-    "clearSecret": "Limpar valor salvo",
-    "messages": {
-      "saveSuccess": "Configuração de notificações push salva com sucesso",
-      "saveError": "Falha ao salvar configuração de notificações push",
-      "loadError": "Falha ao carregar configuração de notificações push",
-      "testFailed": "Teste de conexão Firebase falhou"
-    },
-    "save": "Salvar Configuração",
-    "saving": "Salvando...",
-    "testConnection": "Testar Conexão",
-    "testing": "Testando..."
-  },
-  "whitelabel": {
-    "title": "Configuração de Whitelabel",
-    "description": "Personalize a marca, logotipos, cores e URLs legais da sua plataforma.",
-    "sections": {
-      "logos": "Logotipos",
-      "colors": "Cores",
-      "branding": "Marca",
-      "legal": "URLs Legais"
-    },
-    "fields": {
-      "enabled": "Habilitar Whitelabel",
-      "enabledDescription": "Habilitar personalização de marca para esta instalação",
-      "logoLight": "Logotipo (Modo Claro)",
-      "logoDark": "Logotipo (Modo Escuro)",
-      "primaryColorLight": "Cor Primária (Claro)",
-      "primaryColorDark": "Cor Primária (Escuro)",
-      "foregroundLight": "Cor do Texto (Claro)",
-      "foregroundDark": "Cor do Texto (Escuro)",
-      "companyName": "Nome da Empresa",
-      "systemName": "Nome do Sistema",
-      "termsUrl": "URL dos Termos de Serviço",
-      "privacyUrl": "URL da Política de Privacidade"
-    },
-    "placeholders": {
-      "logoLight": "https://exemplo.com/logo-claro.svg",
-      "logoDark": "https://exemplo.com/logo-escuro.svg",
-      "companyName": "Sua Empresa",
-      "systemName": "Sua Plataforma"
-    },
-    "validation": {
-      "invalidUrl": "Informe uma URL válida"
-    },
-    "messages": {
-      "saveSuccess": "Configuração de whitelabel salva com sucesso",
-      "saveError": "Falha ao salvar configuração de whitelabel",
-      "loadError": "Falha ao carregar configuração de whitelabel"
-    },
-    "save": "Salvar Configuração",
     "saving": "Salvando..."
   },
   "frontendRuntime": {

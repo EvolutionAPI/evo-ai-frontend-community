@@ -3,14 +3,11 @@
   "navigation": {
     "email": "Email",
     "storage": "Storage",
-    "payments": "Payments",
     "socialLogin": "Social Login",
     "channels": "Channels",
     "openai": "OpenAI",
     "integrations": "Integrations",
     "inboundEmail": "Inbound Email",
-    "pushNotifications": "Push Notifications",
-    "whitelabel": "Whitelabel",
     "frontendRuntime": "Frontend Runtime"
   },
   "email": {
@@ -109,34 +106,6 @@
     "testing": "Testing...",
     "testFailed": "Connection test failed",
     "testError": "Failed to run connection test"
-  },
-  "payments": {
-    "title": "Payments Configuration",
-    "description": "Configure Stripe payment credentials for processing payments on the platform.",
-    "fields": {
-      "cardTitle": "Stripe Credentials",
-      "publishableKey": "Publishable Key",
-      "secretKey": "Secret Key",
-      "webhookSecret": "Webhook Secret"
-    },
-    "placeholders": {
-      "publishableKey": "pk_test_...",
-      "secretKey": "Enter new secret key",
-      "webhookSecret": "Enter new webhook secret"
-    },
-    "validation": {
-      "publishableKeyRequired": "Publishable key is required"
-    },
-    "secretConfigured": "Configured",
-    "secretNotConfigured": "Not configured",
-    "clearSecret": "Clear saved value",
-    "messages": {
-      "saveSuccess": "Payments configuration saved successfully",
-      "saveError": "Failed to save payments configuration",
-      "loadError": "Failed to load payments configuration"
-    },
-    "save": "Save Configuration",
-    "saving": "Saving..."
   },
   "socialLogin": {
     "title": "Social Login Configuration",
@@ -450,76 +419,6 @@
       "saveSuccess": "Inbound email configuration saved successfully",
       "saveError": "Failed to save inbound email configuration",
       "loadError": "Failed to load inbound email configuration"
-    },
-    "save": "Save Configuration",
-    "saving": "Saving..."
-  },
-  "pushNotifications": {
-    "title": "Push Notifications Configuration",
-    "description": "Configure Firebase credentials and mobile app identifiers for push notifications.",
-    "fields": {
-      "cardTitle": "Firebase & Mobile Settings",
-      "projectId": "Firebase Project ID",
-      "credentialsJson": "Credentials JSON",
-      "iosAppId": "iOS App ID",
-      "androidBundleId": "Android Bundle ID"
-    },
-    "placeholders": {
-      "projectId": "my-firebase-project",
-      "credentialsJson": "Paste your Firebase service account JSON here...",
-      "iosAppId": "com.example.app",
-      "androidBundleId": "com.example.app"
-    },
-    "secretConfigured": "Configured",
-    "secretNotConfigured": "Not configured",
-    "clearSecret": "Clear saved value",
-    "messages": {
-      "saveSuccess": "Push notifications configuration saved successfully",
-      "saveError": "Failed to save push notifications configuration",
-      "loadError": "Failed to load push notifications configuration",
-      "testFailed": "Firebase connection test failed"
-    },
-    "save": "Save Configuration",
-    "saving": "Saving...",
-    "testConnection": "Test Connection",
-    "testing": "Testing..."
-  },
-  "whitelabel": {
-    "title": "Whitelabel Configuration",
-    "description": "Customize branding, logos, colors, and legal URLs for your platform.",
-    "sections": {
-      "logos": "Logos",
-      "colors": "Colors",
-      "branding": "Branding",
-      "legal": "Legal URLs"
-    },
-    "fields": {
-      "enabled": "Enable Whitelabel",
-      "enabledDescription": "Enable custom branding for this installation",
-      "logoLight": "Logo (Light Mode)",
-      "logoDark": "Logo (Dark Mode)",
-      "primaryColorLight": "Primary Color (Light)",
-      "primaryColorDark": "Primary Color (Dark)",
-      "foregroundLight": "Foreground Color (Light)",
-      "foregroundDark": "Foreground Color (Dark)",
-      "companyName": "Company Name",
-      "systemName": "System Name",
-      "termsUrl": "Terms of Service URL",
-      "privacyUrl": "Privacy Policy URL"
-    },
-    "placeholders": {
-      "logoLight": "https://example.com/logo-light.svg",
-      "logoDark": "https://example.com/logo-dark.svg",
-      "companyName": "Your Company",
-      "systemName": "Your Platform"
-    },
-    "validation": {
-      "invalidUrl": "Please enter a valid URL"
-    },
-    "messages": {
-      "saveSuccess": "Whitelabel configuration saved successfully",
-      "saveError": "Failed to save whitelabel configuration",
-      "loadError": "Failed to load whitelabel configuration"
     },
     "save": "Save Configuration",
     "saving": "Saving..."

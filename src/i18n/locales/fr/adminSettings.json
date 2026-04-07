@@ -3,14 +3,11 @@
   "navigation": {
     "email": "E-mail",
     "storage": "Stockage",
-    "payments": "Paiements",
     "socialLogin": "Connexion Sociale",
     "channels": "Canaux",
     "openai": "OpenAI",
     "integrations": "Integrations",
     "inboundEmail": "E-mail Entrant",
-    "pushNotifications": "Notifications Push",
-    "whitelabel": "Whitelabel",
     "frontendRuntime": "Frontend Runtime"
   },
   "email": {
@@ -109,34 +106,6 @@
     "testing": "Test en cours...",
     "testFailed": "Le test de connexion a echoue",
     "testError": "Impossible d'executer le test de connexion"
-  },
-  "payments": {
-    "title": "Configuration des Paiements",
-    "description": "Configurez les identifiants Stripe pour le traitement des paiements sur la plateforme.",
-    "fields": {
-      "cardTitle": "Identifiants Stripe",
-      "publishableKey": "Cle Publiable",
-      "secretKey": "Cle Secrete",
-      "webhookSecret": "Secret du Webhook"
-    },
-    "placeholders": {
-      "publishableKey": "pk_test_...",
-      "secretKey": "Entrez la nouvelle cle secrete",
-      "webhookSecret": "Entrez le nouveau secret du webhook"
-    },
-    "validation": {
-      "publishableKeyRequired": "La cle publiable est obligatoire"
-    },
-    "secretConfigured": "Configure",
-    "secretNotConfigured": "Non configure",
-    "clearSecret": "Effacer la valeur enregistree",
-    "messages": {
-      "saveSuccess": "Configuration des paiements enregistree avec succes",
-      "saveError": "Echec de l'enregistrement de la configuration des paiements",
-      "loadError": "Echec du chargement de la configuration des paiements"
-    },
-    "save": "Enregistrer la Configuration",
-    "saving": "Enregistrement..."
   },
   "socialLogin": {
     "title": "Configuration de Connexion Sociale",
@@ -426,76 +395,6 @@
       "saveSuccess": "Configuration d'e-mail entrant enregistree avec succes",
       "saveError": "Echec de l'enregistrement de la configuration d'e-mail entrant",
       "loadError": "Echec du chargement de la configuration d'e-mail entrant"
-    },
-    "save": "Enregistrer la Configuration",
-    "saving": "Enregistrement..."
-  },
-  "pushNotifications": {
-    "title": "Configuration des Notifications Push",
-    "description": "Configurez les identifiants Firebase et les identifiants d'applications mobiles pour les notifications push.",
-    "fields": {
-      "cardTitle": "Firebase et Parametres Mobile",
-      "projectId": "ID du Projet Firebase",
-      "credentialsJson": "JSON des Identifiants",
-      "iosAppId": "ID de l'App iOS",
-      "androidBundleId": "Bundle ID Android"
-    },
-    "placeholders": {
-      "projectId": "mon-projet-firebase",
-      "credentialsJson": "Collez le JSON du compte de service Firebase ici...",
-      "iosAppId": "com.exemple.app",
-      "androidBundleId": "com.exemple.app"
-    },
-    "secretConfigured": "Configure",
-    "secretNotConfigured": "Non configure",
-    "clearSecret": "Effacer la valeur enregistree",
-    "messages": {
-      "saveSuccess": "Configuration des notifications push enregistree avec succes",
-      "saveError": "Echec de l'enregistrement de la configuration des notifications push",
-      "loadError": "Echec du chargement de la configuration des notifications push",
-      "testFailed": "Echec du test de connexion Firebase"
-    },
-    "save": "Enregistrer la Configuration",
-    "saving": "Enregistrement...",
-    "testConnection": "Tester la Connexion",
-    "testing": "Test en cours..."
-  },
-  "whitelabel": {
-    "title": "Configuration Whitelabel",
-    "description": "Personnalisez la marque, les logos, les couleurs et les URLs légales de votre plateforme.",
-    "sections": {
-      "logos": "Logos",
-      "colors": "Couleurs",
-      "branding": "Marque",
-      "legal": "URLs Légales"
-    },
-    "fields": {
-      "enabled": "Activer Whitelabel",
-      "enabledDescription": "Activer la personnalisation de marque pour cette installation",
-      "logoLight": "Logo (Mode Clair)",
-      "logoDark": "Logo (Mode Sombre)",
-      "primaryColorLight": "Couleur Primaire (Clair)",
-      "primaryColorDark": "Couleur Primaire (Sombre)",
-      "foregroundLight": "Couleur du Texte (Clair)",
-      "foregroundDark": "Couleur du Texte (Sombre)",
-      "companyName": "Nom de l'Entreprise",
-      "systemName": "Nom du Système",
-      "termsUrl": "URL des Conditions d'Utilisation",
-      "privacyUrl": "URL de la Politique de Confidentialité"
-    },
-    "placeholders": {
-      "logoLight": "https://exemple.com/logo-clair.svg",
-      "logoDark": "https://exemple.com/logo-sombre.svg",
-      "companyName": "Votre Entreprise",
-      "systemName": "Votre Plateforme"
-    },
-    "validation": {
-      "invalidUrl": "Veuillez entrer une URL valide"
-    },
-    "messages": {
-      "saveSuccess": "Configuration whitelabel enregistrée avec succès",
-      "saveError": "Échec de l'enregistrement de la configuration whitelabel",
-      "loadError": "Échec du chargement de la configuration whitelabel"
     },
     "save": "Enregistrer la Configuration",
     "saving": "Enregistrement..."

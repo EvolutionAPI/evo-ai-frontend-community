@@ -72,14 +72,11 @@ import DashboardAppPage from '../pages/Customer/DashboardApp';
 import AdminSettingsLayout from '@/pages/Admin/Settings';
 const SmtpConfig = React.lazy(() => import('@/pages/Admin/Settings/SmtpConfig'));
 const StorageConfig = React.lazy(() => import('@/pages/Admin/Settings/StorageConfig'));
-const PaymentsConfig = React.lazy(() => import('@/pages/Admin/Settings/PaymentsConfig'));
 const SocialLoginConfig = React.lazy(() => import('@/pages/Admin/Settings/SocialLoginConfig'));
 const ChannelConfig = React.lazy(() => import('@/pages/Admin/Settings/ChannelConfig'));
 const OpenAIConfig = React.lazy(() => import('@/pages/Admin/Settings/OpenAIConfig'));
 const IntegrationsConfig = React.lazy(() => import('@/pages/Admin/Settings/IntegrationsConfig'));
 const InboundEmailConfig = React.lazy(() => import('@/pages/Admin/Settings/InboundEmailConfig'));
-const PushNotificationsConfig = React.lazy(() => import('@/pages/Admin/Settings/PushNotificationsConfig'));
-const WhitelabelConfig = React.lazy(() => import('@/pages/Admin/Settings/WhitelabelConfig'));
 const FrontendRuntimeConfig = React.lazy(() => import('@/pages/Admin/Settings/FrontendRuntimeConfig'));
 
 // Páginas compartilhadas
@@ -1146,14 +1143,6 @@ const AppRouter = () => {
               }
             />
             <Route
-              path="payments"
-              element={
-                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
-                  <PaymentsConfig />
-                </Suspense>
-              }
-            />
-            <Route
               path="social-login"
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
@@ -1190,22 +1179,6 @@ const AppRouter = () => {
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
                   <InboundEmailConfig />
-                </Suspense>
-              }
-            />
-            <Route
-              path="push-notifications"
-              element={
-                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
-                  <PushNotificationsConfig />
-                </Suspense>
-              }
-            />
-            <Route
-              path="whitelabel"
-              element={
-                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
-                  <WhitelabelConfig />
                 </Suspense>
               }
             />
