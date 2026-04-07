@@ -20,7 +20,6 @@ export interface GlobalConfig {
   enableAccountSignup?: boolean;
   recaptchaSiteKey?: string;
   clarityProjectId?: string;
-  whitelabel?: WhitelabelConfig;
 }
 
 interface GlobalConfigContextValue extends GlobalConfig {

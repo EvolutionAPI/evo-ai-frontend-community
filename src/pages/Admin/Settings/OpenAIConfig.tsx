@@ -22,7 +22,7 @@ import type { AdminConfigData } from '@/types/admin/adminConfig';
 
 // --- Schema factory with i18n ---
 
-function createOpenAISchema(t: (key: string) => string) {
+function createOpenAISchema(_t: (key: string) => string) {
   return z.object({
     OPENAI_API_URL: z.string().optional(),
     OPENAI_API_SECRET: z.string().optional().nullable(),

@@ -59,19 +59,6 @@ describe('GlobalConfigContext', () => {
       enableAccountSignup: true,
       recaptchaSiteKey: '6Lc_test_key',
       clarityProjectId: 'clarity_test_id',
-      whitelabel: {
-        enabled: true,
-        logo: { light: '/logo.svg', dark: '/logo_dark.svg' },
-        favicon: '/favicon.ico',
-        companyName: 'Test Corp',
-        systemName: 'Test Platform',
-        termsOfServiceUrl: 'https://test.com/tos',
-        privacyPolicyUrl: 'https://test.com/privacy',
-        colors: {
-          light: { primary: '#ff0000', primaryForeground: '#ffffff' },
-          dark: { primary: '#00ff00', primaryForeground: '#000000' },
-        },
-      },
     };
 
     mockApi.get.mockResolvedValueOnce({ data: fullConfig });
@@ -94,9 +81,6 @@ describe('GlobalConfigContext', () => {
       expect(parsed.enableAccountSignup).toBe(true);
       expect(parsed.recaptchaSiteKey).toBe('6Lc_test_key');
       expect(parsed.clarityProjectId).toBe('clarity_test_id');
-      expect(parsed.whitelabel.enabled).toBe(true);
-      expect(parsed.whitelabel.companyName).toBe('Test Corp');
-      expect(parsed.whitelabel.colors.light.primary).toBe('#ff0000');
     });
   });
 

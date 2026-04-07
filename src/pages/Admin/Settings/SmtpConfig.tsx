@@ -145,7 +145,8 @@ export default function SmtpConfig() {
     setValue,
     formState: { errors },
   } = useForm<EmailFormData>({
-    resolver: zodResolver(emailConfigSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(emailConfigSchema) as any,
     defaultValues: SMTP_DEFAULTS,
   });
 
@@ -301,7 +302,8 @@ export default function SmtpConfig() {
           <CardTitle className="text-base">{t('email.provider.label')}</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          <form onSubmit={handleSubmit(onSubmit as any)} className="space-y-5">
             {/* Provider selector — driven by RHF Controller */}
             <div className="space-y-2">
               <Label>{t('email.provider.label')}</Label>
@@ -337,7 +339,7 @@ export default function SmtpConfig() {
                       placeholder={t('email.placeholders.host')}
                       {...register('SMTP_ADDRESS' as EmailFieldKey)}
                     />
-                    {errors.SMTP_ADDRESS && (
+                    {(errors as Record<string, { message?: string }>).SMTP_ADDRESS && (
                       <p className="text-xs text-destructive">{(errors as Record<string, { message?: string }>).SMTP_ADDRESS?.message}</p>
                     )}
                   </div>
@@ -349,7 +351,7 @@ export default function SmtpConfig() {
                       placeholder={t('email.placeholders.port')}
                       {...register('SMTP_PORT' as EmailFieldKey)}
                     />
-                    {errors.SMTP_PORT && (
+                    {(errors as Record<string, { message?: string }>).SMTP_PORT && (
                       <p className="text-xs text-destructive">{(errors as Record<string, { message?: string }>).SMTP_PORT?.message}</p>
                     )}
                   </div>

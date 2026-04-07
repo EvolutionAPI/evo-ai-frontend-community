@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { useForm, Controller, UseFormRegister } from 'react-hook-form';
+import { useForm, Controller, UseFormRegister, Path } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
@@ -247,7 +247,7 @@ function SecretField<T extends Record<string, unknown>>({
           type="password"
           autoComplete="off"
           placeholder={placeholder}
-          {...register(fieldName, {
+          {...register(fieldName as Path<T>, {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               onSecretModifiedChange((prev) => ({ ...prev, [fieldName]: e.target.value.length > 0 })),
           })}
