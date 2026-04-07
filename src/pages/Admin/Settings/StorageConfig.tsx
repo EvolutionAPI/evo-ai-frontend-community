@@ -126,7 +126,6 @@ export default function StorageConfig() {
   const [testing, setTesting] = useState(false);
   const [secretModified, setSecretModified] = useState<Record<string, boolean>>({});
   const [secretConfigured, setSecretConfigured] = useState<Record<string, boolean>>({});
-  const [serverData, setServerData] = useState<Record<string, unknown>>({});
 
   const storageSchema = useMemo(() => createStorageSchema(t), [t]);
 

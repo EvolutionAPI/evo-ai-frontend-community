@@ -134,7 +134,7 @@ function SecretField<T extends Record<string, unknown>>({
           type="password"
           autoComplete="off"
           placeholder={placeholder}
-          {...register(fieldName, {
+          {...register(fieldName as Parameters<typeof register>[0], {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               onSecretModifiedChange((prev) => ({ ...prev, [fieldName]: e.target.value.length > 0 })),
           })}

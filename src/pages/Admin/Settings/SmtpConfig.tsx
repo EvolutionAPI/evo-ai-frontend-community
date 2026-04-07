@@ -374,7 +374,7 @@ export default function SmtpConfig() {
                       name={'SMTP_AUTHENTICATION' as EmailFieldKey}
                       control={control}
                       render={({ field }) => (
-                        <Select value={field.value} onValueChange={field.onChange}>
+                        <Select value={field.value as string | undefined} onValueChange={field.onChange}>
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>
@@ -404,7 +404,7 @@ export default function SmtpConfig() {
                       control={control}
                       render={({ field }) => (
                         <Switch
-                          checked={field.value}
+                          checked={!!field.value}
                           onCheckedChange={field.onChange}
                         />
                       )}
@@ -417,7 +417,7 @@ export default function SmtpConfig() {
                       name={'SMTP_OPENSSL_VERIFY_MODE' as EmailFieldKey}
                       control={control}
                       render={({ field }) => (
-                        <Select value={field.value} onValueChange={field.onChange}>
+                        <Select value={field.value as string | undefined} onValueChange={field.onChange}>
                           <SelectTrigger>
                             <SelectValue />
                           </SelectTrigger>

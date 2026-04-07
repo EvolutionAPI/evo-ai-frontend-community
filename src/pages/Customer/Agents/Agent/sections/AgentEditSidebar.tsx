@@ -1,4 +1,4 @@
-import { User, BookOpen, Wrench, Plug, Server, Users, ListChecks, Settings } from 'lucide-react';
+import { User, Wrench, Plug, Server, Users, ListChecks, Settings } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Agent } from '@/types/agents';
 
