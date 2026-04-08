@@ -20,8 +20,8 @@
       },
       "userFallback": "User",
       "agent": {
-        "badge": "Agent",
-        "fallback": "Agent"
+        "badge": "Attendant",
+        "fallback": "Attendant"
       },
       "bot": {
         "badge": "🤖 Bot",
@@ -29,7 +29,7 @@
       },
       "privateNote": {
         "badge": "Private Note",
-        "description": "Visible only to Agents"
+        "description": "Visible only to Attendants"
       },
       "moderation": {
         "pending": "Pending Moderation",
@@ -91,10 +91,10 @@
   },
   "assignment": {
     "agent": {
-      "title": "Assign Agent",
-      "description": "Select an Agent for the conversation with {{name}}",
+      "title": "Assign Attendant",
+      "description": "Select an Attendant for the conversation with {{name}}",
       "contactFallback": "this contact",
-      "searchPlaceholder": "Search Agents..."
+      "searchPlaceholder": "Search Attendants..."
     },
     "team": {
       "title": "Assign Team",
@@ -265,7 +265,7 @@
       "unpinConversation": "Unpin conversation",
       "archiveConversation": "Archive conversation",
       "unarchiveConversation": "Unarchive conversation",
-      "assignAgent": "Assign Agent",
+      "assignAgent": "Assign Attendant",
       "assignTeam": "Assign Team",
       "assignTag": "Assign Label",
       "deleteConversation": "Delete conversation"
@@ -338,7 +338,7 @@
         "status": "Status:",
         "channel": "Channel:",
         "assigned": "Assigned:",
-        "assignedTo": "Agent #{{id}}"
+        "assignedTo": "Attendant #{{id}}"
       },
       "conversationAttributes": {
         "title": "Conversation Attributes",
@@ -403,7 +403,7 @@
       },
       "assignment": {
         "title": "Assignment",
-        "assignedTo": "Assigned to Agent #{{id}}",
+        "assignedTo": "Assigned to Attendant #{{id}}",
         "notAssigned": "Conversation not assigned",
         "unassign": "Unassign conversation",
         "assignedSuccess": "Conversation assigned successfully",
@@ -487,7 +487,7 @@
           },
           "unassigned": {
             "label": "Unassigned",
-            "description": "Conversations without assigned Agent"
+            "description": "Conversations without assigned Attendant"
           }
         },
         "showAll": "Show all conversations"
@@ -553,7 +553,7 @@
   "replyModeToggle": {
     "reply": "Reply",
     "privateNote": "Private Note",
-    "visibleOnlyToAgents": "Visible only to Agents"
+    "visibleOnlyToAgents": "Visible only to Attendants"
   },
   "contexts": {
     "conversations": {
@@ -568,7 +568,7 @@
         "markAsUnread": "Error marking as unread",
         "markAsResolved": "Error marking as resolved",
         "markAsPending": "Error marking as pending",
-        "assignAgent": "Error assigning agent",
+        "assignAgent": "Error assigning attendant",
         "assignTeam": "Error assigning team",
         "assignLabels": "Error assigning labels",
         "pinConversation": "Error pinning conversation",
@@ -586,8 +586,8 @@
         "markedAsUnread": "Conversation marked as unread",
         "markedAsResolved": "Conversation marked as resolved",
         "markedAsPending": "Conversation marked as pending",
-        "agentAssigned": "Agent assigned successfully",
-        "agentRemoved": "Agent removed successfully",
+        "agentAssigned": "Attendant assigned successfully",
+        "agentRemoved": "Attendant removed successfully",
         "teamAssigned": "Team assigned successfully",
         "teamRemoved": "Team removed successfully",
         "labelsAssigned": "Labels assigned successfully",
@@ -820,7 +820,7 @@
     "archiveConversation": "Archive conversation",
     "unarchiveConversation": "Unarchive conversation",
     "assignment": "Assignment",
-    "assignAgent": "Assign Agent",
+    "assignAgent": "Assign Attendant",
     "assignTeam": "Assign team",
     "assignTag": "Assign tag",
     "deleteConversation": "Delete conversation"

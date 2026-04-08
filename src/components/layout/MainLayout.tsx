@@ -43,11 +43,9 @@ export default function MainLayout({ children }: MainLayoutProps) {
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
 
   // Load dashboard apps for sidebar integration
-  // ⚡ OTIMIZAÇÃO AGRESSIVA: Desabilitado autoload - carrega apenas quando sidebar é aberta
-  // Dashboard apps não são críticos no carregamento inicial da página
   const { apps: dashboardApps } = useDashboardApps({
-    autoLoad: false, // Não carregar automaticamente
-    loadDelay: 0
+    autoLoad: true,
+    loadDelay: 1000, // Defer slightly to not block initial render
   });
 
   // Load saved sidebar state
@@ -70,14 +68,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
 
   const menuItems = useMemo(() => {
     const rawMenuItems = getMenuItems();
-    let finalItems = filterMenuItemsByPermissions(rawMenuItems, can, canAny, canAll);
+    let finalItems = filterMenuItemsByPermissions(rawMenuItems, can, canAny, canAll, user?.role?.key);
 
     if (dashboardApps.length > 0) {
       finalItems = injectDashboardAppsIntoMenu(finalItems, dashboardApps);
     }
 
     return finalItems;
-  }, [getMenuItems, can, canAny, canAll, dashboardApps]);
+  }, [getMenuItems, can, canAny, canAll, dashboardApps, user?.role?.key]);
 
   // Use the custom menu state hook
   const menuState = useMenuState(menuItems, setIsMobileMenuOpen);

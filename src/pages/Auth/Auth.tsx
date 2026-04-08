@@ -666,38 +666,6 @@ export const Auth: React.FC = () => {
             </Tabs>
           </div>
 
-          {/* Mensagem de termos de serviço */}
-          {(globalConfig.whitelabel?.termsOfServiceUrl || globalConfig.whitelabel?.privacyPolicyUrl) && (
-            <div className="text-center text-xs text-muted-foreground">
-              <p>
-                {t('auth.footer.agreementText')}{' '}
-                {globalConfig.whitelabel?.termsOfServiceUrl && (
-                  <>
-                    <a
-                      href={globalConfig.whitelabel.termsOfServiceUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline hover:text-primary"
-                    >
-                      {t('auth.footer.termsOfService')}
-                    </a>
-                    {globalConfig.whitelabel?.privacyPolicyUrl && <span> {t('auth.footer.and')} </span>}
-                  </>
-                )}
-                {globalConfig.whitelabel?.privacyPolicyUrl && (
-                  <a
-                    href={globalConfig.whitelabel.privacyPolicyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline hover:text-primary"
-                  >
-                    {t('auth.footer.privacyPolicy')}
-                  </a>
-                )}
-                .
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </div>

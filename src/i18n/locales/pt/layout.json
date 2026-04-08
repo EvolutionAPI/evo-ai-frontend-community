@@ -68,8 +68,8 @@
     "collapse": "Recolher barra lateral",
     "closeSubmenu": "Fechar submenu",
     "footer": {
-      "brand": "Evo AI",
-      "copyright": "© {{year}} Evo AI",
+      "brand": "Evo CRM",
+      "copyright": "© {{year}} Evolution Foundation. All rights reserved.",
       "documentation": "Documentação",
       "support": "Preciso de suporte"
     }
@@ -82,6 +82,7 @@
       "pipelines": "Pipelines",
       "agents": "Agentes de IA",
       "channels": "Canais",
+      "tutorials": "Tutoriais",
       "settings": "Configurações"
     },
     "contacts": {
@@ -102,7 +103,8 @@
       "cannedResponses": "Respostas Rápidas",
       "macros": "Macros",
       "integrations": "Integrações",
-      "accessTokens": "Tokens de Acesso"
+      "accessTokens": "Tokens de Acesso",
+      "admin": "Configurações Admin"
     }
   }
 }

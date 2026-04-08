@@ -19,6 +19,8 @@ import {
   Wand,
   Settings,
   List,
+  GraduationCap,
+  Shield,
 } from 'lucide-react';
 
 export interface MenuItem {
@@ -31,6 +33,7 @@ export interface MenuItem {
   action?: string;
   permissions?: string[];
   requireAll?: boolean;
+  requiredRoleKey?: string;
 }
 
 export interface SubMenuItem {
@@ -41,6 +44,7 @@ export interface SubMenuItem {
   action?: string;
   permissions?: string[];
   requireAll?: boolean;
+  requiredRoleKey?: string;
 }
 
 export interface ProfileMenuItem {
@@ -135,6 +139,11 @@ export const getCustomerMenuItems = (t: (key: string) => string): MenuItem[] => 
     action: 'read',
   },
   {
+    name: t('menu.customer.tutorials'),
+    href: '/tutorials',
+    icon: GraduationCap,
+  },
+  {
     id: 'customer-settings',
     name: t('menu.customer.settings'),
     href: '#',
@@ -202,6 +211,13 @@ export const getCustomerMenuItems = (t: (key: string) => string): MenuItem[] => 
         resource: 'access_tokens',
         action: 'read',
       },
+      {
+        name: t('menu.settings.admin'),
+        href: '/settings/admin',
+        icon: Shield,
+        resource: 'installation_configs',
+        action: 'manage',
+      },
     ],
   },
 ];
@@ -232,8 +248,14 @@ export const shouldShowMenuItem = (
   item: MenuItem | SubMenuItem,
   canFunction: (resource: string, action: string) => boolean,
   canAnyFunction: (permissions: string[]) => boolean,
-  canAllFunction: (permissions: string[]) => boolean
+  canAllFunction: (permissions: string[]) => boolean,
+  userRoleKey?: string
 ): boolean => {
+  // Verificar role obrigatória
+  if (item.requiredRoleKey) {
+    return userRoleKey === item.requiredRoleKey;
+  }
+
   // Verificar permissões específicas
   if (item.permissions && item.permissions.length > 0) {
     return item.requireAll
@@ -255,15 +277,16 @@ export const filterMenuItemsByPermissions = (
   items: MenuItem[],
   canFunction: (resource: string, action: string) => boolean,
   canAnyFunction: (permissions: string[]) => boolean,
-  canAllFunction: (permissions: string[]) => boolean
+  canAllFunction: (permissions: string[]) => boolean,
+  userRoleKey?: string
 ): MenuItem[] => {
   return items
-    .filter(item => shouldShowMenuItem(item, canFunction, canAnyFunction, canAllFunction))
+    .filter(item => shouldShowMenuItem(item, canFunction, canAnyFunction, canAllFunction, userRoleKey))
     .map(item => {
       // Se o item tem subitens, filtrar os subitens também
       if (item.subItems && item.subItems.length > 0) {
         const filteredSubItems = item.subItems.filter(subItem =>
-          shouldShowMenuItem(subItem, canFunction, canAnyFunction, canAllFunction)
+          shouldShowMenuItem(subItem, canFunction, canAnyFunction, canAllFunction, userRoleKey)
         );
 
         // Se não há subitens visíveis, não mostrar o item pai

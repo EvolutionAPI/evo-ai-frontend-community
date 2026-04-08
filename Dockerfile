@@ -12,18 +12,13 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build args for environment variables
-ARG VITE_API_URL=""
-ARG VITE_AUTH_API_URL=""
-ARG VITE_WS_URL=""
-ARG VITE_EVOAI_API_URL=""
-ARG VITE_AGENT_PROCESSOR_URL=""
-# Set environment variables for build
-ENV VITE_API_URL=$VITE_API_URL
-ENV VITE_AUTH_API_URL=$VITE_AUTH_API_URL
-ENV VITE_WS_URL=$VITE_WS_URL
-ENV VITE_EVOAI_API_URL=$VITE_EVOAI_API_URL
-ENV VITE_AGENT_PROCESSOR_URL=$VITE_AGENT_PROCESSOR_URL
+# Build with placeholder values that will be replaced at runtime
+ENV VITE_API_URL=VITE_API_URL_PLACEHOLDER
+ENV VITE_AUTH_API_URL=VITE_AUTH_API_URL_PLACEHOLDER
+ENV VITE_WS_URL=VITE_WS_URL_PLACEHOLDER
+ENV VITE_EVOAI_API_URL=VITE_EVOAI_API_URL_PLACEHOLDER
+ENV VITE_AGENT_PROCESSOR_URL=VITE_AGENT_PROCESSOR_URL_PLACEHOLDER
+
 # Build the application
 RUN npm run build
 
@@ -36,9 +31,12 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Copy runtime entrypoint
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
 # Expose port
 EXPOSE 80
 
-# Start nginx
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]
-

@@ -29,7 +29,6 @@ import MessageStatus from '@/components/chat/messages/MessageStatus';
 import SystemMessage from '@/components/chat/messages/SystemMessage';
 import ReplyPreview from '@/components/chat/messages/ReplyPreview';
 import { FacebookCommentModeration } from '@/types/channels/inbox';
-import { getMessageBubbleClasses, getAgentBadgeClasses } from '@/utils/whitelabelStyles';
 
 interface MessageBubbleProps {
   message: Message;
@@ -408,7 +407,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
         {/* 📛 Nome do Agente: mostrar para mensagens de agentes (lado direito) */}
         {isOwn && isFromAgent && (
           <div className="text-xs mb-1 flex items-center justify-end gap-1.5 text-muted-foreground">
-            <Badge variant="outline" className={getAgentBadgeClasses()}>
+            <Badge variant="outline" className="h-4 px-1 text-[10px] font-medium bg-primary/10 text-primary border border-primary/30 dark:bg-primary/20 dark:text-primary dark:border-primary/50">
               {t('messages.messageBubble.agent.badge')}
             </Badge>
             {message.sender?.name || t('messages.messageBubble.agent.fallback')}
@@ -433,13 +432,13 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
               } ${isPrivate
                 ? 'bg-orange-50 border-2 border-orange-200 border-l-4 border-l-orange-400 dark:bg-orange-950/20 dark:border-orange-800/50 dark:border-l-orange-600'
                 : isFromAgent
-                  ? getMessageBubbleClasses()
+                  ? 'bg-primary text-primary-foreground hover:bg-primary/85'
                   : isFromBot
                     ? 'bg-purple-600 text-white dark:bg-purple-700'
                     : isOwn
-                      ? getMessageBubbleClasses()
+                      ? 'bg-primary text-primary-foreground hover:bg-primary/85'
                       : isThreadReply
-                        ? 'bg-muted/70 border border-l-2 border-l-[var(--primary,#00ffa7)]/40 dark:bg-muted/50' // Estilo mais sutil para replies
+                        ? 'bg-muted/70 border border-l-2 border-l-primary/40 dark:bg-muted/50' // Estilo mais sutil para replies
                         : 'bg-muted border'
               }`}
           >

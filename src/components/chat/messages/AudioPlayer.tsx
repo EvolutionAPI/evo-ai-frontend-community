@@ -146,12 +146,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ src, filename, className = ''
               onClick={handleProgressClick}
             >
               <div
-                className="h-full bg-[var(--primary,#00ffa7)] rounded-full transition-all duration-150"
+                className="h-full bg-primary rounded-full transition-all duration-150"
                 style={{ width: `${progress}%` }}
               />
               {/* Bolinha indicadora */}
               <div
-                className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-[var(--primary,#00ffa7)] rounded-full border border-background shadow-sm transition-all duration-150"
+                className="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-primary rounded-full border border-background shadow-sm transition-all duration-150"
                 style={{ left: `${progress}%`, transform: 'translateX(-50%) translateY(-50%)' }}
               />
             </div>

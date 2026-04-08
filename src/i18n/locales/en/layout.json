@@ -57,7 +57,7 @@
     "noOrganizations": "No organization available",
     "roles": {
       "administrator": "Administrator",
-      "agent": "Agent"
+      "agent": "Attendant"
     }
   },
   "sidebar": {
@@ -68,8 +68,8 @@
     "collapse": "Collapse sidebar",
     "closeSubmenu": "Close submenu",
     "footer": {
-      "brand": "Evo AI",
-      "copyright": "© {{year}} Evo AI",
+      "brand": "Evo CRM",
+      "copyright": "© {{year}} Evolution Foundation. All rights reserved.",
       "documentation": "Documentation",
       "support": "I need support"
     }
@@ -82,6 +82,7 @@
       "pipelines": "Pipelines",
       "agents": "AI Agents",
       "channels": "Channels",
+      "tutorials": "Tutorials",
       "settings": "Settings"
     },
     "contacts": {
@@ -95,14 +96,15 @@
     },
     "settings": {
       "account": "Account",
-      "users": "Agents",
+      "users": "Attendants",
       "teams": "Teams",
       "labels": "Labels",
       "customAttributes": "Custom Attributes",
       "cannedResponses": "Canned Responses",
       "macros": "Macros",
       "integrations": "Integrations",
-      "accessTokens": "Access Tokens"
+      "accessTokens": "Access Tokens",
+      "admin": "Admin Settings"
     }
   }
 }

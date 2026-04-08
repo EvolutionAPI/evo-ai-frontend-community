@@ -22,6 +22,16 @@ export class RecaptchaService {
     this.enabled = !!this.siteKey;
   }
 
+  /**
+   * Configure the service with a site key from the backend API.
+   * Falls back to VITE_RECAPTCHA_SITE_KEY if no key is provided.
+   */
+  public configure(siteKey?: string | null): void {
+    const resolvedKey = siteKey || import.meta.env.VITE_RECAPTCHA_SITE_KEY || '';
+    this.siteKey = resolvedKey;
+    this.enabled = !!resolvedKey;
+  }
+
   public static getInstance(): RecaptchaService {
     if (!RecaptchaService.instance) {
       RecaptchaService.instance = new RecaptchaService();

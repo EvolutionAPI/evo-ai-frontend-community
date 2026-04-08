@@ -21,7 +21,7 @@ import {
   X,
 } from 'lucide-react';
 import { CustomTool, CustomToolFormData } from '@/types/ai';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 
 interface CustomToolFormProps {
   tool?: CustomTool;
@@ -561,7 +561,7 @@ export default function CustomToolForm({
         <Button
           type="submit"
           disabled={loading}
-          className={getPrimaryButtonClasses('flex-1')}
+          className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold flex-1"
         >
           {loading
             ? t('form.actions.saving')

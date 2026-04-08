@@ -6,7 +6,6 @@ import AppInitializer from './components/AppInitializer';
 import { GlobalConfigProvider } from './contexts/GlobalConfigContext';
 import { NotificationsProvider } from './contexts/NotificationsContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
-import { WhitelabelApplier } from './components/WhitelabelApplier';
 import { UISettingsApplier } from './components/UISettingsApplier';
 
 import { Toaster } from '@evoapi/design-system';
@@ -33,7 +32,6 @@ function App() {
     <AuthProvider>
       <DarkModeProvider>
         <GlobalConfigProvider>
-          <WhitelabelApplier />
           <UISettingsApplier />
           <PermissionsProvider>
           <NotificationsProvider>

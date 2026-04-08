@@ -192,7 +192,7 @@ export default function PipelineSwitcher({
                   </div>
 
                   {selectedPipeline?.id === pipeline.id && (
-                    <div className="w-2 h-2 rounded-full bg-[var(--primary,#00ffa7)] flex-shrink-0 mt-3" />
+                    <div className="w-2 h-2 rounded-full bg-primary flex-shrink-0 mt-3" />
                   )}
                 </DropdownMenuItem>
               ))

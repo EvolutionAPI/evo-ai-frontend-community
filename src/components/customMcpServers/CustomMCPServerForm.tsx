@@ -16,7 +16,7 @@ import {
   Tags,
 } from 'lucide-react';
 import { CustomMcpServer, CustomMcpServerFormData } from '@/types/ai';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 
 interface CustomMCPServerFormProps {
   server?: CustomMcpServer;
@@ -353,7 +353,7 @@ export default function CustomMCPServerForm({
         <Button
           type="submit"
           disabled={loading}
-          className={getPrimaryButtonClasses('flex-1')}
+          className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold flex-1"
         >
           {loading ? t('form.buttons.saving') : mode === 'create' ? t('form.buttons.create') : t('form.buttons.update')}
         </Button>

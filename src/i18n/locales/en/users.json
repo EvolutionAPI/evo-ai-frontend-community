@@ -1,7 +1,7 @@
 {
-  "title": "Agents",
+  "title": "Attendants",
   "subtitle": "Manage your team and configure access permissions",
-  "loading": "Loading agents...",
+  "loading": "Loading attendants...",
   "card": {
     "id": "ID",
     "role": "Role",
@@ -52,14 +52,14 @@
       "placeholder": "Activity history will be implemented soon."
     },
     "settingsTab": {
-      "title": "Agent Settings",
+      "title": "Attendant Settings",
       "systemRole": {
         "title": "System Role",
-        "description": "Define the permissions and access of the agent"
+        "description": "Define the permissions and access of the attendant"
       },
       "availabilityStatus": {
         "title": "Availability Status",
-        "description": "Indicates if the agent is available to receive conversations"
+        "description": "Indicates if the attendant is available to receive conversations"
       },
       "emailConfirmation": {
         "title": "Email Confirmation",
@@ -72,13 +72,13 @@
   },
   "form": {
     "title": {
-      "create": "New Agent",
-      "edit": "Edit Agent"
+      "create": "New Attendant",
+      "edit": "Edit Attendant"
     },
     "fields": {
       "name": {
         "label": "Name *",
-        "placeholder": "Agent name"
+        "placeholder": "Attendant name"
       },
       "email": {
         "label": "Email *",
@@ -117,12 +117,12 @@
       "cancel": "Cancel",
       "saving": "Saving...",
       "save": "Save",
-      "create": "Create Agent"
+      "create": "Create Attendant"
     },
     "messages": {
-      "createSuccess": "Agent created successfully",
-      "updateSuccess": "Agent updated successfully",
-      "saveError": "Error saving agent"
+      "createSuccess": "Attendant created successfully",
+      "updateSuccess": "Attendant updated successfully",
+      "saveError": "Error saving attendant"
     }
   },
   "bulkInvite": {
@@ -137,7 +137,7 @@
     },
     "fields": {
       "emails": {
-        "label": "Agents Emails",
+        "label": "Attendants Emails",
         "placeholder": "agent1@example.com\nagent2@example.com, agent3@example.com\nagent4@example.com",
         "hint": "Paste a list of emails, one per line or separated by comma"
       }
@@ -163,14 +163,14 @@
     }
   },
   "filter": {
-    "title": "Filter Agents",
-    "description": "Configure the filters to find the agents you are looking for",
+    "title": "Filter Attendants",
+    "description": "Configure the filters to find the attendants you are looking for",
     "applyFilters": "Apply Filters",
     "clearFilters": "Clear Filters",
     "addFilter": "Add Filter"
   },
   "header": {
-    "newUser": "New Agent",
+    "newUser": "New Attendant",
     "bulkInvite": "Bulk Invite",
     "export": "Export",
     "delete": "Delete",
@@ -178,7 +178,7 @@
   },
   "table": {
     "columns": {
-      "user": "Agent",
+      "user": "Attendant",
       "role": "Role",
       "status": "Status",
       "confirmation": "Confirmation",
@@ -191,43 +191,43 @@
       "delete": "Delete"
     },
     "empty": {
-      "title": "No agents found",
-      "description": "Create your first agent to start managing your team.",
-      "action": "New Agent"
+      "title": "No attendants found",
+      "description": "Create your first attendant to start managing your team.",
+      "action": "New Attendant"
     }
   },
   "messages": {
     "permissionDenied": {
-      "read": "You don't have permission to view agents",
-      "create": "You don't have permission to create agents",
-      "update": "You don't have permission to edit agents",
-      "delete": "You don't have permission to delete agents",
-      "invite": "You don't have permission to invite agents"
+      "read": "You don't have permission to view attendants",
+      "create": "You don't have permission to create attendants",
+      "update": "You don't have permission to edit attendants",
+      "delete": "You don't have permission to delete attendants",
+      "invite": "You don't have permission to invite attendants"
     },
-    "loadError": "Error loading agents",
+    "loadError": "Error loading attendants",
     "filterError": "Error applying filters",
-    "deleteSuccess": "Agent deleted successfully",
-    "deleteError": "Error deleting agent",
-    "bulkDeleteSuccess": "{{count}} agent(s) deleted successfully",
-    "bulkDeleteError": "Error deleting agents",
+    "deleteSuccess": "Attendant deleted successfully",
+    "deleteError": "Error deleting attendant",
+    "bulkDeleteSuccess": "{{count}} attendant(s) deleted successfully",
+    "bulkDeleteError": "Error deleting attendants",
     "availabilityUpdated": "Availability status updated"
   },
   "empty": {
-    "title": "No agents found",
-    "description": "Create your first agent to start managing your team.",
-    "action": "New Agent"
+    "title": "No attendants found",
+    "description": "Create your first attendant to start managing your team.",
+    "action": "New Attendant"
   },
   "dialog": {
     "delete": {
-      "title": "Delete Agent",
-      "description": "Are you sure you want to delete the agent \"{{name}}\"? This action cannot be undone.",
+      "title": "Delete Attendant",
+      "description": "Are you sure you want to delete the attendant \"{{name}}\"? This action cannot be undone.",
       "cancel": "Cancel",
       "deleting": "Deleting...",
       "confirm": "Delete"
     },
     "bulkDelete": {
-      "title": "Delete Agents",
-      "description": "Are you sure you want to delete {{count}} agent(s) selected? This action cannot be undone.",
+      "title": "Delete Attendants",
+      "description": "Are you sure you want to delete {{count}} attendant(s) selected? This action cannot be undone.",
       "cancel": "Cancel",
       "deleting": "Deleting...",
       "confirm": "Delete All"
