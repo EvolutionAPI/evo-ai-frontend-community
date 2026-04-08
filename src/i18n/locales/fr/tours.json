@@ -256,8 +256,7 @@
       "title": "Liste des Parcours",
       "content": "Voyez tous vos parcours ici. Activez ou désactivez chaque parcours via le bouton de statut, ouvrez l'éditeur de flux pour personnaliser les étapes ou dupliquez des parcours existants pour accélérer la création."
     }
-  }
-,
+  },
   "channelGrid": {
     "step1": {
       "title": "Choisissez le type de canal",
@@ -346,6 +345,22 @@
     "step1": {
       "title": "Fournisseur d'E-mail",
       "content": "Choisissez votre fournisseur d'e-mail : Gmail (Google), Outlook (Microsoft) ou un autre fournisseur compatible IMAP/SMTP. Le flux d'authentification démarrera après la sélection."
+    }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Sélectionnez un Fournisseur",
+      "content": "Choisissez le fournisseur d'API à utiliser pour ce canal. Chaque fournisseur a des fonctionnalités, des tarifs et des exigences de configuration différents."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Identifiants du Canal",
+      "content": "Remplissez les informations d'authentification de votre fournisseur WhatsApp. Vous les trouverez dans le tableau de bord de votre fournisseur."
+    },
+    "step2": {
+      "title": "Paramètres Avancés",
+      "content": "Ajustez les paramètres de l'instance selon vos besoins. Consultez la documentation du fournisseur pour plus de détails."
     }
   }
 }

@@ -29,6 +29,8 @@ import { getChannelTypes } from '@/constants/channelTypes';
 
 // Import tours
 import { NewChannelTour } from '@/tours/NewChannelTour';
+import { ProviderSelectionTour } from '@/tours/ProviderSelectionTour';
+import { WhatsappProviderTour } from '@/tours/WhatsappProviderTour';
 import { TelegramChannelTour } from '@/tours/TelegramChannelTour';
 import { ApiChannelTour } from '@/tours/ApiChannelTour';
 import { WebWidgetChannelTour } from '@/tours/WebWidgetChannelTour';
@@ -293,7 +295,10 @@ export default function NewChannel() {
       case 'api': return <ApiChannelTour />;
       case 'web_widget': return <WebWidgetChannelTour />;
       case 'whatsapp':
-        return selectedProvider?.id === 'whatsapp_cloud' ? <WhatsappCloudChannelTour /> : null;
+        if (!selectedProvider) return null;
+        return selectedProvider.id === 'whatsapp_cloud'
+          ? <WhatsappCloudChannelTour />
+          : <WhatsappProviderTour providerId={selectedProvider.id} />;
       case 'sms': return <SmsChannelTour />;
       case 'instagram': return <InstagramChannelTour />;
       case 'facebook': return <FacebookChannelTour />;
@@ -337,26 +342,29 @@ export default function NewChannel() {
 
           // Se houver um canal selecionado, mas não houver um provider selecionado, mostrar o grid de providers
         ) : !selectedProvider && selectedChannel.providers ? (
-          <ProviderSelection
-            channelName={selectedChannel?.name || ''}
-            channelType={selectedChannel?.type || 'whatsapp'}
-            providers={selectedChannel?.providers || []}
-            isDisabled={providerId => {
-              if (providerId === 'whatsapp_cloud') return !canWpCloud;
-              if (selectedChannel?.type === 'email') {
-                if (providerId === 'google')
-                  return !(
-                    typeof config.googleOAuthClientId === 'string' && config.googleOAuthClientId
-                  );
-                if (providerId === 'microsoft')
-                  return !(typeof config.azureAppId === 'string' && config.azureAppId);
-              }
-              return false;
-            }}
-            onProviderSelect={handleProviderSelectWithValidation}
-            onBack={handleGoBack}
-            onChannelListClick={() => navigate('/channels')}
-          />
+          <>
+            <ProviderSelectionTour channelType={selectedChannel.type} />
+            <ProviderSelection
+              channelName={selectedChannel?.name || ''}
+              channelType={selectedChannel?.type || 'whatsapp'}
+              providers={selectedChannel?.providers || []}
+              isDisabled={providerId => {
+                if (providerId === 'whatsapp_cloud') return !canWpCloud;
+                if (selectedChannel?.type === 'email') {
+                  if (providerId === 'google')
+                    return !(
+                      typeof config.googleOAuthClientId === 'string' && config.googleOAuthClientId
+                    );
+                  if (providerId === 'microsoft')
+                    return !(typeof config.azureAppId === 'string' && config.azureAppId);
+                }
+                return false;
+              }}
+              onProviderSelect={handleProviderSelectWithValidation}
+              onBack={handleGoBack}
+              onChannelListClick={() => navigate('/channels')}
+            />
+          </>
 
           // Se houver um canal selecionado e um provider selecionado, mostrar o formulário de configuração
         ) : (

@@ -346,5 +346,21 @@
       "title": "Provedor de E-mail",
       "content": "Escolha o provedor do seu e-mail: Gmail (Google), Outlook (Microsoft) ou outro provedor compatível com IMAP/SMTP. O fluxo de autenticação será iniciado após a seleção."
     }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Selecione o Provedor",
+      "content": "Escolha o provedor de API que deseja usar para este canal. Cada provedor tem características, custos e requisitos de configuração diferentes."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Credenciais do Canal",
+      "content": "Preencha as informações de autenticação do seu provedor WhatsApp. Você encontra esses dados no painel do provedor escolhido."
+    },
+    "step2": {
+      "title": "Configurações Avançadas",
+      "content": "Ajuste as configurações da instância conforme necessário. Consulte a documentação do provedor para detalhes sobre cada opção."
+    }
   }
 }

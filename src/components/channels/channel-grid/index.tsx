@@ -55,7 +55,7 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
 
       {/* Channel Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8" data-tour="channel-grid-list">
-        {filteredChannels.map(channel => {
+        {filteredChannels.map((channel, index) => {
           const disabled =
             channel.type === 'facebook' || channel.type === 'instagram' ? !canFB : false;
 
@@ -65,6 +65,7 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
               channel={channel}
               disabled={disabled}
               onClick={() => onChannelSelect(channel)}
+              data-tour={index === 0 ? 'channel-grid-first-card' : undefined}
             />
           );
         })}

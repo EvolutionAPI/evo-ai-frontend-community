@@ -7,35 +7,30 @@ import { tourRegistry } from './tourRegistry';
 
 const ROUTE = '/channels/new';
 
-export function ApiChannelTour() {
+interface WhatsappProviderTourProps {
+  providerId: string;
+}
+
+export function WhatsappProviderTour({ providerId }: WhatsappProviderTourProps) {
   const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
-    tourKey: 'channels/new/api',
+    tourKey: `channels/new/whatsapp/${providerId}`,
     steps: useMemo<Step[]>(
       () => [
         {
-          target: '[data-tour="api-display-name"]',
-          title: t('channelApi.step1.title'),
-          content: t('channelApi.step1.content'),
+          target: '[data-tour="whatsapp-credentials"]',
+          title: t('channelWhatsappProvider.step1.title'),
+          content: t('channelWhatsappProvider.step1.content'),
           placement: 'bottom',
           skipBeacon: true,
           skipScroll: false,
           scrollOffset: 80,
         },
         {
-          target: '[data-tour="api-webhook-url"]',
-          title: t('channelApi.step2.title'),
-          content: t('channelApi.step2.content'),
-          placement: 'bottom',
-          skipBeacon: true,
-          skipScroll: false,
-          scrollOffset: 80,
-        },
-        {
-          target: '[data-tour="api-info"]',
-          title: t('channelApi.step3.title'),
-          content: t('channelApi.step3.content'),
-          placement: 'right',
+          target: '[data-tour="whatsapp-help"]',
+          title: t('channelWhatsappProvider.step2.title'),
+          content: t('channelWhatsappProvider.step2.content'),
+          placement: 'top',
           skipBeacon: true,
           skipScroll: false,
           scrollOffset: 80,

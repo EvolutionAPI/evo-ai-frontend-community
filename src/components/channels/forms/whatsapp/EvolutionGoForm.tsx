@@ -47,7 +47,7 @@ export const EvolutionGoForm = ({ form, onFormChange, hasEvolutionGoConfig }: Ev
         </>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="whatsapp-credentials">
         <FormField
           label={t('evolutionGoForm.fields.displayName.label')}
           value={getStr('display_name')}
@@ -150,6 +150,7 @@ export const EvolutionGoForm = ({ form, onFormChange, hasEvolutionGoConfig }: Ev
       <FormSection
         title={t('evolutionGoForm.help.title')}
         className="bg-green-50/10 border-green-200/20"
+        data-tour="whatsapp-help"
       >
         <div className="text-sm text-sidebar-foreground/70 space-y-2">
           <p><strong>{t('evolutionGoForm.help.performance.title')}:</strong> {t('evolutionGoForm.help.performance.description')}</p>
