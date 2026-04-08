@@ -67,7 +67,7 @@ const OperationHeatmapCard = ({
 
   return (
     <Card>
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-2" data-tour="dashboard-heatmap">
         <CardTitle className="text-lg">{title}</CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>

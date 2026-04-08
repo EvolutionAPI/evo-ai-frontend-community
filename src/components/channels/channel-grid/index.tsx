@@ -36,10 +36,12 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
 
   return (
     <div className={pageContainer}>
-      {renderHeader(t('newChannel.channelGrid.title'), t('newChannel.channelGrid.subtitle'))}
+      <div data-tour="channel-grid-header">
+        {renderHeader(t('newChannel.channelGrid.title'), t('newChannel.channelGrid.subtitle'))}
+      </div>
 
       {/* Search */}
-      <div className="mb-8">
+      <div className="mb-8" data-tour="channel-grid-search">
         <div className="relative max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sidebar-foreground/60 h-5 w-5" />
           <Input
@@ -52,7 +54,7 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
       </div>
 
       {/* Channel Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8" data-tour="channel-grid-list">
         {filteredChannels.map(channel => {
           const disabled =
             channel.type === 'facebook' || channel.type === 'instagram' ? !canFB : false;

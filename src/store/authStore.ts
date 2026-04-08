@@ -1,6 +1,7 @@
 import { create } from 'zustand';
-import { UserResponse, UISettings } from '@/types/auth';
+import { UserResponse, UISettings, UserTour } from '@/types/auth';
 import { validateToken } from '@/services/auth/authService';
+import { tourService } from '@/services/tours/tourService';
 import { useAppDataStore } from './appDataStore';
 
 interface ImpersonationData {
@@ -23,6 +24,9 @@ interface AuthState {
   isLoading: boolean;
   isFetching: boolean;
 
+  // Tours
+  tours: Record<string, 'completed' | 'skipped'>;
+
   // Actions
   setUser: (user: UserResponse | null) => void;
   setLoading: (loading: boolean) => void;
@@ -32,6 +36,12 @@ interface AuthState {
   updateUISettings: (settings: Partial<UISettings>) => void;
   updateAvailability: (availability: 'online' | 'offline' | 'busy') => void;
   getAuthHeader: () => { Authorization: string } | undefined;
+
+  // Tour actions
+  setTours: (tours: UserTour[]) => void;
+  markTourCompleted: (tourKey: string) => void;
+  markTourSkipped: (tourKey: string) => void;
+  resetTour: (tourKey: string) => void;
 
   // Impersonation actions
   startImpersonation: (impersonatedUser: UserResponse, impersonatedToken: string, clientName: string) => void;
@@ -50,6 +60,7 @@ export const useAuthStore = create<AuthState>((set, get) => {
     isLoading: true,
     isFetching: false,
     impersonation: null,
+    tours: {},
 
     setUser: user => {
       const isLoggedIn = checkIsLoggedIn(user);
@@ -155,6 +166,37 @@ export const useAuthStore = create<AuthState>((set, get) => {
           accessToken: impersonatedToken,
         });
       }
+    },
+
+    setTours: (tours) => {
+      const toursMap = Object.fromEntries(
+        tours.map(t => [t.tour_key, t.status ?? 'completed'])
+      ) as Record<string, 'completed' | 'skipped'>;
+      set({ tours: toursMap });
+    },
+
+    markTourCompleted: (tourKey) => {
+      set(state => ({ tours: { ...state.tours, [tourKey]: 'completed' as const } }));
+      tourService.completeTour(tourKey, 'completed').catch(err => {
+        console.error('Failed to persist tour completion:', err);
+      });
+    },
+
+    markTourSkipped: (tourKey) => {
+      set(state => ({ tours: { ...state.tours, [tourKey]: 'skipped' as const } }));
+      tourService.completeTour(tourKey, 'skipped').catch(err => {
+        console.error('Failed to persist tour skip:', err);
+      });
+    },
+
+    resetTour: (tourKey) => {
+      set(state => {
+        const { [tourKey]: _, ...rest } = state.tours;
+        return { tours: rest };
+      });
+      tourService.resetTour(tourKey).catch(err => {
+        console.error('Failed to reset tour:', err);
+      });
     },
 
     exitImpersonation: () => {

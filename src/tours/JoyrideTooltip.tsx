@@ -3,6 +3,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 export function JoyrideTooltip({
   continuous,
+  controls,
   index,
   isLastStep,
   size,
@@ -61,6 +62,7 @@ export function JoyrideTooltip({
         </div>
         <button
           {...closeProps}
+          onClick={() => controls.skip()}
           style={{
             background: 'none',
             border: 'none',
@@ -88,37 +90,43 @@ export function JoyrideTooltip({
         {step.content}
       </div>
 
+      {/* Progress bar */}
+      <div
+        style={{
+          height: 3,
+          borderRadius: 2,
+          background: '#2e3344',
+          marginBottom: '12px',
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            borderRadius: 2,
+            background: '#00C48C',
+            width: `${((index + 1) / size) * 100}%`,
+            transition: 'width 0.3s ease',
+          }}
+        />
+      </div>
+
       {/* Footer */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          gap: '8px',
         }}
       >
-        {/* Left: "X de Y" + progress dots */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ color: '#8b8fa8', fontSize: '11px', whiteSpace: 'nowrap' }}>
-            {t('stepOf', { current: index + 1, total: size })}
-          </span>
-          <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-            {Array.from({ length: size }).map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: '50%',
-                  background: i === index ? '#00C48C' : '#2e3344',
-                  flexShrink: 0,
-                }}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Left: "X de Y" */}
+        <span style={{ color: '#8b8fa8', fontSize: '11px', whiteSpace: 'nowrap', flexShrink: 0 }}>
+          {t('stepOf', { current: index + 1, total: size })}
+        </span>
 
         {/* Right: Back + Next/Finish buttons */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexShrink: 0 }}>
           {index > 0 && (
             <button
               {...backProps}

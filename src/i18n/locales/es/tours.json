@@ -1,10 +1,11 @@
 {
   "welcome": {
-    "title": "¡Bienvenido a EvoAI!",
+    "title": "¡Bienvenido a Evo CRM!",
     "description": "¿Te gustaría hacer un tour guiado para conocer las funcionalidades de la plataforma?",
     "startButton": "Iniciar tour guiado",
     "skipButton": "Prefiero explorar por mi cuenta"
   },
+  "viewPageTour": "Ver tour de esta página",
   "stepOf": "{{current}} de {{total}}",
   "next": "Siguiente",
   "back": "Anterior",
@@ -12,28 +13,84 @@
   "close": "Cerrar",
   "dashboard": {
     "step1": {
-      "title": "¡Bienvenido al Dashboard!",
-      "content": "Este es el panel principal de la plataforma. Aquí puedes seguir las métricas más importantes de tu negocio en tiempo real."
+      "title": "Filtros del Dashboard",
+      "content": "Filtra los datos por período, canal y agente para analizar exactamente lo que necesitas."
     },
     "step2": {
-      "title": "Filtros",
-      "content": "Usa los filtros para segmentar los datos por canal, agente, equipo u otros criterios."
+      "title": "Mensajes Recibidos",
+      "content": "Total de mensajes recibidos en el período seleccionado. Usa los filtros para comparar diferentes intervalos de tiempo."
     },
     "step3": {
-      "title": "Período de Análisis",
-      "content": "Selecciona el período que deseas analizar: hoy, últimos 7 días, 30 días o un intervalo personalizado."
+      "title": "Tiempo Promedio de Respuesta",
+      "content": "Monitorea la velocidad de tu atención. Cuanto menor sea, mejor será la experiencia del cliente."
     },
     "step4": {
-      "title": "Métricas Principales",
-      "content": "Ve los indicadores clave: total de conversaciones, mensajes enviados, tasa de resolución y tiempo promedio de respuesta."
+      "title": "CSAT Promedio",
+      "content": "Índice de satisfacción de los clientes con el servicio. Monitoréalo para mantener la calidad del servicio."
     },
     "step5": {
-      "title": "Tendencias",
-      "content": "Los gráficos de tendencia muestran la evolución de las métricas a lo largo del tiempo para identificar patrones."
+      "title": "Follow-ups Pendientes",
+      "content": "Conversaciones que necesitan atención y no han sido retomadas. Mantén este número bajo para no perder clientes."
     },
     "step6": {
-      "title": "Rendimiento",
-      "content": "Sigue el rendimiento de tu equipo con clasificaciones, tasas de satisfacción y distribución de atenciones."
+      "title": "IA vs Humano",
+      "content": "Distribución de respuestas entre IA y agentes humanos. Ayuda a calibrar la automatización de tu equipo."
+    },
+    "step7": {
+      "title": "Conversaciones Activas Ahora",
+      "content": "Backlog operacional en tiempo real. Ve cuántas conversaciones están abiertas y quién las está atendiendo."
+    },
+    "step8": {
+      "title": "Conversaciones sin Responsable",
+      "content": "Conversaciones abiertas que aún no han sido asignadas a ningún agente. Mantén este número cercano a cero para evitar clientes sin atención."
+    },
+    "step9": {
+      "title": "Conversaciones por Día",
+      "content": "Tendencia diaria de conversaciones en el período seleccionado. Identifica picos de volumen y días más activos."
+    },
+    "step10": {
+      "title": "Tiempo de 1ª Respuesta por Día",
+      "content": "Evolución diaria del tiempo promedio de primera respuesta. Monitorea si el equipo está mejorando o empeorando la velocidad de atención."
+    },
+    "step11": {
+      "title": "Participación por Canal",
+      "content": "Distribución porcentual de conversaciones por canal de comunicación. Ve qué canales concentran más volumen en el período."
+    },
+    "step12": {
+      "title": "Insights de Canales",
+      "content": "Resumen de canales: canal líder, concentración del Top 3, total de canales activos y valor total generado por los canales."
+    },
+    "step13": {
+      "title": "Mapa de Calor",
+      "content": "Identifica los horarios y días de mayor volumen de mensajes para ayudar en la planificación de tu equipo."
+    },
+    "step14": {
+      "title": "Distribución de Notas CSAT",
+      "content": "Ve cómo se distribuyen las evaluaciones de los clientes de 1 a 5 estrellas. Identifica patrones de satisfacción y áreas de mejora en el servicio."
+    },
+    "step15": {
+      "title": "Embudo por Etapa",
+      "content": "Sigue tus oportunidades a lo largo del embudo de ventas. Cada barra muestra la cantidad y el valor acumulado en cada etapa del pipeline."
+    },
+    "step16": {
+      "title": "Resumen del Embudo",
+      "content": "Métricas consolidadas del embudo: porcentaje de conversaciones que entraron al pipeline, ticket promedio y valor total de oportunidades en el período."
+    },
+    "step17": {
+      "title": "Desempeño por Canal",
+      "content": "Distribución de conversaciones y valor generado por cada canal de comunicación. Identifica qué canales traen más volumen e ingresos."
+    },
+    "step18": {
+      "title": "Canales con Mayor Valor",
+      "content": "Ranking de los canales que generan más ingresos en el período. Úsalo para priorizar inversiones y estrategias de comunicación."
+    },
+    "step19": {
+      "title": "Desempeño de los Agentes",
+      "content": "Rendimiento individual del equipo: conversaciones atendidas, tiempo de respuesta y satisfacción por agente."
+    },
+    "step20": {
+      "title": "Desempeño de los Agentes de IA",
+      "content": "Volumen y participación de los agentes de IA en las respuestas. Sigue qué agentes están más activos y generan más interacciones."
     }
   },
   "conversations": {
@@ -198,6 +255,97 @@
     "step3": {
       "title": "Lista de Journeys",
       "content": "Ve todos tus journeys aquí. Activa o desactiva cada journey con el interruptor de estado, abre el editor de flujo para personalizar los pasos o duplica journeys existentes para agilizar la creación."
+    }
+  }
+,
+  "channelGrid": {
+    "step1": {
+      "title": "Elige el tipo de canal",
+      "content": "Selecciona el canal de comunicación que deseas conectar. Cada opción tiene una configuración específica para integrarse con tu cuenta."
+    },
+    "step2": {
+      "title": "Buscar canal",
+      "content": "Usa la búsqueda para encontrar rápidamente un tipo de canal específico por nombre o descripción."
+    },
+    "step3": {
+      "title": "Canales disponibles",
+      "content": "Haz clic en cualquier canal para iniciar la configuración. WhatsApp, Instagram y Facebook pueden requerir credenciales externas. Telegram, API y Widget Web son los más sencillos de configurar."
+    }
+  },
+  "channelTelegram": {
+    "step1": {
+      "title": "Token del Bot",
+      "content": "Pega aquí el token de tu bot de Telegram. Obtienes este token al crear un bot con @BotFather — es una secuencia única de números y letras para tu bot."
+    },
+    "step2": {
+      "title": "Cómo crear tu bot",
+      "content": "Sigue los pasos: abre Telegram, ve a @BotFather, envía /newbot, elige un nombre y un nombre de usuario, y copia el token proporcionado."
+    }
+  },
+  "channelApi": {
+    "step1": {
+      "title": "Nombre del Canal",
+      "content": "Define un nombre amigable para identificar este canal. El nombre interno se generará automáticamente a partir del nombre mostrado."
+    },
+    "step2": {
+      "title": "URL del Webhook",
+      "content": "Ingresa la dirección (URL) que recibirá las notificaciones de mensajes de este canal. Es opcional, pero necesario para la integración con sistemas externos."
+    },
+    "step3": {
+      "title": "Acerca del Canal API",
+      "content": "El canal API permite integración personalizada con cualquier sistema. Consulta la documentación para ver los endpoints disponibles y ejemplos de uso."
+    }
+  },
+  "channelWebWidget": {
+    "step1": {
+      "title": "Información Básica",
+      "content": "Define el nombre del canal y la URL del sitio web donde se instalará el widget. Estos campos son obligatorios para identificar y restringir el dominio de uso."
+    },
+    "step2": {
+      "title": "Apariencia del Widget",
+      "content": "Personaliza los colores, título y subtítulo del widget de chat. Estas configuraciones definen cómo aparecen el botón y la ventana de chat para tus visitantes."
+    },
+    "step3": {
+      "title": "Comportamiento",
+      "content": "Configura si el widget debe abrirse automáticamente, mostrar el formulario de pre-atención y otras opciones de comportamiento al cargarse en el sitio."
+    }
+  },
+  "channelWhatsappCloud": {
+    "step1": {
+      "title": "Conectar con Meta",
+      "content": "Haz clic en 'Continuar con Facebook' para autenticarte con tu cuenta Meta Business y autorizar el acceso a la WhatsApp Cloud API de forma automática."
+    },
+    "step2": {
+      "title": "Credenciales de la API",
+      "content": "Completa los datos de tu cuenta Meta: nombre del canal, número de teléfono, Access Token, Phone Number ID, Business Account ID y WABA ID. Toda esta información está disponible en Meta Business Manager."
+    }
+  },
+  "channelSms": {
+    "step1": {
+      "title": "Credenciales del Proveedor",
+      "content": "Ingresa las credenciales de autenticación de tu proveedor de SMS (Twilio o Bandwidth). Encontrarás esta información en el panel de control de tu proveedor."
+    },
+    "step2": {
+      "title": "Configuración de Teléfono",
+      "content": "Elige si deseas usar un número de teléfono directo o un Messaging Service SID para el envío. El Messaging Service es recomendado para mayor escala y redundancia."
+    }
+  },
+  "channelInstagram": {
+    "step1": {
+      "title": "Conectar Instagram",
+      "content": "Para conectar Instagram, necesitarás autorizar el acceso a través de la cuenta de Facebook vinculada a tu página de negocios. Asegúrate de que tu cuenta de Instagram esté configurada como perfil de empresa."
+    }
+  },
+  "channelFacebook": {
+    "step1": {
+      "title": "Conectar Facebook Messenger",
+      "content": "Haz clic en 'Iniciar sesión con Facebook' para autorizar el acceso al Messenger de tu Página. Necesitarás permisos de administrador en la Página de Facebook que deseas conectar."
+    }
+  },
+  "channelEmail": {
+    "step1": {
+      "title": "Proveedor de Correo",
+      "content": "Elige tu proveedor de correo: Gmail (Google), Outlook (Microsoft) u otro proveedor compatible con IMAP/SMTP. El flujo de autenticación comenzará después de la selección."
     }
   }
 }

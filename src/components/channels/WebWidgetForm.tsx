@@ -60,7 +60,7 @@ export default function WebWidgetForm({
     return (
     <div className="space-y-6">
       {/* Basic Information */}
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="web-widget-basic-info">
         <div className="flex items-center gap-3 pb-3 border-b border-border">
           <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-950/20">
             <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,7 +111,7 @@ export default function WebWidgetForm({
       </div>
 
       {/* Widget Appearance */}
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="web-widget-appearance">
         <div className="flex items-center gap-3 pb-3 border-b border-border">
           <div className="p-2 rounded-lg bg-purple-50 dark:bg-purple-950/20">
             <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +139,7 @@ export default function WebWidgetForm({
       </div>
 
       {/* Greeting Configuration */}
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="web-widget-behavior">
         <div className="flex items-center gap-3 pb-3 border-b border-border">
           <div className="p-2 rounded-lg bg-green-50 dark:bg-green-950/20">
             <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

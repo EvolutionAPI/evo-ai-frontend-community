@@ -1,10 +1,12 @@
 import { useSyncExternalStore } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Navigation } from 'lucide-react';
+import { CircleHelp } from 'lucide-react';
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from '@evoapi/design-system';
 import { tourRegistry, matchTourRoute } from '@/tours/tourRegistry';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export function TourFab() {
+  const { t } = useTranslation('tours');
   const snapshot = useSyncExternalStore(
     tourRegistry.subscribe,
     tourRegistry.getSnapshot,
@@ -21,14 +23,14 @@ export function TourFab() {
           variant="ghost"
           size="icon"
           onClick={() => tourRegistry.start(matchedRoute)}
-          aria-label="Ver tour desta página"
+          aria-label={t('viewPageTour')}
           className="h-10 w-10 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground cursor-pointer"
         >
-          <Navigation className="h-5 w-5" />
+          <CircleHelp className="h-5 w-5" />
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>Ver tour desta página</p>
+        <p>{t('viewPageTour')}</p>
       </TooltipContent>
     </Tooltip>
   );
