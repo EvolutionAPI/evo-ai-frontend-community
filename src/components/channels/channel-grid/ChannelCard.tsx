@@ -6,9 +6,10 @@ interface ChannelCardProps {
   channel: ChannelType;
   disabled?: boolean;
   onClick: () => void;
+  'data-tour'?: string;
 }
 
-export const ChannelCard = ({ channel, disabled = false, onClick }: ChannelCardProps) => {
+export const ChannelCard = ({ channel, disabled = false, onClick, 'data-tour': dataTour }: ChannelCardProps) => {
   return (
     <Card
       className={`h-full transition-all duration-200 border-sidebar-border rounded-lg ${
@@ -17,6 +18,7 @@ export const ChannelCard = ({ channel, disabled = false, onClick }: ChannelCardP
           : 'cursor-pointer bg-sidebar hover:bg-sidebar-accent/50 hover:border-sidebar-border hover:shadow-md'
       }`}
       onClick={() => !disabled && onClick()}
+      data-tour={dataTour}
     >
       <CardContent className="p-6 text-center">
         <div className="flex justify-center mb-4">

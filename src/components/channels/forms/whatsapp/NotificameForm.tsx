@@ -23,7 +23,7 @@ export const NotificameForm = ({ form, onFormChange }: NotificameFormProps) => {
   return (
     <div className="space-y-6">
       {/* Display Name and Channel Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="whatsapp-credentials">
         <FormField
           label={t('notificameForm.fields.displayName.label')}
           value={getStr('display_name')}
@@ -78,6 +78,7 @@ export const NotificameForm = ({ form, onFormChange }: NotificameFormProps) => {
       <FormSection
         title={t('notificameForm.help.title')}
         className="bg-green-50/10 border-green-200/20"
+        data-tour="whatsapp-help"
       >
         <div className="text-sm text-sidebar-foreground/70 space-y-2">
           <p>

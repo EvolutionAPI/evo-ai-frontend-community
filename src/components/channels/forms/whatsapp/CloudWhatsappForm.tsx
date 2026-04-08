@@ -252,6 +252,7 @@ export const CloudWhatsappForm = ({ form, onFormChange, canFB }: CloudWhatsappFo
         <FormSection
           title={t('cloudWhatsappForm.facebookIntegration.title')}
           className="bg-blue-50/10 border-blue-200/20"
+          data-tour="whatsapp-cloud-connect"
         >
           <div className="flex flex-col items-center justify-center text-center">
             <button
@@ -343,6 +344,7 @@ export const CloudWhatsappForm = ({ form, onFormChange, canFB }: CloudWhatsappFo
       )}
 
       {/* Basic Information */}
+      <div data-tour="whatsapp-cloud-credentials">
       <FormField
         label={t('cloudWhatsappForm.fields.displayName.label')}
         value={getStr('display_name')}
@@ -375,6 +377,7 @@ export const CloudWhatsappForm = ({ form, onFormChange, canFB }: CloudWhatsappFo
 
       {/* Campos sensíveis removidos da UI - são preenchidos automaticamente via Facebook OAuth */}
       {/* api_key, phone_number_id, business_account_id, waba_id são mantidos no form state mas não exibidos */}
+      </div>
     </div>
   );
 };

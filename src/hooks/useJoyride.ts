@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import { useJoyride as useJoyrideLib, EVENTS } from 'react-joyride';
+import { useJoyride as useJoyrideLib, EVENTS, STATUS } from 'react-joyride';
 import type { Step } from 'react-joyride';
 import { JoyrideTooltip } from '@/tours/JoyrideTooltip';
+import { useAuthStore } from '@/store/authStore';
 
 interface UseJoyrideOptions {
   tourKey: string;
@@ -10,14 +11,29 @@ interface UseJoyrideOptions {
 }
 
 export function useJoyride({ tourKey, steps, autoStart = true }: UseJoyrideOptions) {
-  const storageKey = `tour:${tourKey}`;
+  const tours = useAuthStore(state => state.tours);
+  const markTourCompleted = useAuthStore(state => state.markTourCompleted);
+  const markTourSkipped = useAuthStore(state => state.markTourSkipped);
+  const resetTourInStore = useAuthStore(state => state.resetTour);
 
   const { Tour, controls, on } = useJoyrideLib({
     steps,
     continuous: true,
     scrollToFirstStep: true,
-    portalElement: 'main.overflow-auto',
     tooltipComponent: JoyrideTooltip,
+    floatingOptions: {
+      strategy: 'fixed',
+      shiftOptions: {
+        boundary: 'clippingAncestors',
+        rootBoundary: 'viewport',
+        padding: 20,
+      },
+      flipOptions: {
+        boundary: 'clippingAncestors',
+        rootBoundary: 'viewport',
+        padding: 20,
+      },
+    },
     options: {
       skipBeacon: true,
       zIndex: 10000,
@@ -35,30 +51,35 @@ export function useJoyride({ tourKey, steps, autoStart = true }: UseJoyrideOptio
     },
   });
 
-  // Persist completion to localStorage when tour ends or is skipped
+  // Mark completed only when the user finishes all steps.
+  // Clicking "x" (status = skipped) just interrupts without persisting completion.
   useEffect(() => {
-    const unsubscribe = on(EVENTS.TOUR_END, () => {
-      localStorage.setItem(storageKey, 'true');
+    const unsubscribe = on(EVENTS.TOUR_END, (data: any) => {
+      if (data?.status === STATUS.FINISHED) {
+        markTourCompleted(tourKey);
+      } else if (data?.status === STATUS.SKIPPED) {
+        markTourSkipped(tourKey);
+      }
     });
     return unsubscribe;
-  }, [on, storageKey]);
+  }, [on, tourKey, markTourCompleted, markTourSkipped]);
 
-  // Auto-start on first visit (only after the welcome modal has been dismissed)
+  // Auto-start on first visit (only after welcome modal has been dismissed)
   useEffect(() => {
     if (!autoStart) return;
 
-    const welcomeSeen = localStorage.getItem('onboarding:welcome-seen');
+    const welcomeSeen = tours['onboarding:welcome'];
     if (!welcomeSeen) return;
 
-    const completed = localStorage.getItem(storageKey);
-    if (!completed) {
+    const seen = tours[tourKey];
+    if (!seen) {
       const timer = setTimeout(() => controls.start(), 600);
       return () => clearTimeout(timer);
     }
-  }, [storageKey, autoStart, controls]);
+  }, [tourKey, autoStart, controls, tours]);
 
   const resetTour = () => {
-    localStorage.removeItem(storageKey);
+    resetTourInStore(tourKey);
     controls.reset(true);
   };
 
@@ -66,6 +87,6 @@ export function useJoyride({ tourKey, steps, autoStart = true }: UseJoyrideOptio
     Tour,
     controls,
     resetTour,
-    isCompleted: !!localStorage.getItem(storageKey),
+    isCompleted: tours[tourKey] === 'completed',
   };
 }

@@ -21,7 +21,7 @@ export const ApiForm = ({ form, onFormChange }: ApiFormProps) => {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="api-display-name">
         <FormField
           label={t('fields.displayName.label')}
           value={getStr('display_name')}
@@ -39,17 +39,20 @@ export const ApiForm = ({ form, onFormChange }: ApiFormProps) => {
         />
       </div>
 
-      <FormField
-        label={t('fields.webhookUrl.label')}
-        value={getStr('webhook_url')}
-        onChange={value => onFormChange('webhook_url', value)}
-        placeholder={t('fields.webhookUrl.placeholder')}
-        helpText={t('fields.webhookUrl.helpText')}
-      />
+      <div data-tour="api-webhook-url">
+        <FormField
+          label={t('fields.webhookUrl.label')}
+          value={getStr('webhook_url')}
+          onChange={value => onFormChange('webhook_url', value)}
+          placeholder={t('fields.webhookUrl.placeholder')}
+          helpText={t('fields.webhookUrl.helpText')}
+        />
+      </div>
 
       <FormSection
         title={t('info.title')}
         className="bg-gray-50/10 border-gray-200/20"
+        data-tour="api-info"
       >
         <div className="text-sm text-sidebar-foreground/70 space-y-2">
           <p><strong>{t('info.title')}:</strong> {t('info.description')}</p>

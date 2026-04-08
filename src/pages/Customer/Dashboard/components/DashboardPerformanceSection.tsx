@@ -49,7 +49,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       />
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <Card>
+        <Card data-tour="dashboard-csat-distribution">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
               {t('dashboard.csat.breakdown') || 'Distribuição de notas'}
@@ -75,7 +75,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
           </CardContent>
         </Card>
 
-        <Card>
+        <Card data-tour="dashboard-funnel">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div>
@@ -129,7 +129,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-        <Card>
+        <Card data-tour="dashboard-funnel-summary">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
               {tx('dashboard.pipeline.insights', 'Resumo do funil')}
@@ -151,7 +151,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
           </CardContent>
         </Card>
 
-        <Card className="xl:col-span-2">
+        <Card className="xl:col-span-2" data-tour="dashboard-channel-performance">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-lg">
               <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center">
@@ -188,7 +188,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <Card>
+        <Card data-tour="dashboard-channels-value">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">
               {tx('dashboard.channels.valueLeaders', 'Canais com maior valor')}
@@ -212,7 +212,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
         </Card>
 
         <div className="grid grid-cols-1 gap-4">
-          <Card>
+          <Card data-tour="dashboard-agents-performance">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center">
@@ -250,7 +250,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
             </CardContent>
           </Card>
 
-          <Card>
+          <Card data-tour="dashboard-ai-agents-performance">
             <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2 text-lg">
                 <div className="h-7 w-7 rounded-md bg-muted flex items-center justify-center">
