@@ -256,8 +256,7 @@
       "title": "Lista Journey",
       "content": "Vedi tutti i tuoi journey qui. Attiva o disattiva ogni journey tramite l'interruttore di stato, apri l'editor di flusso per personalizzare i passaggi o duplica journey esistenti per velocizzare la creazione."
     }
-  }
-,
+  },
   "channelGrid": {
     "step1": {
       "title": "Scegli il tipo di canale",
@@ -346,6 +345,22 @@
     "step1": {
       "title": "Provider Email",
       "content": "Scegli il tuo provider email: Gmail (Google), Outlook (Microsoft) o un altro provider compatibile con IMAP/SMTP. Il flusso di autenticazione inizierà dopo la selezione."
+    }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Seleziona un Provider",
+      "content": "Scegli il provider API che vuoi usare per questo canale. Ogni provider ha funzionalità, costi e requisiti di configurazione diversi."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Credenziali del Canale",
+      "content": "Compila le informazioni di autenticazione del tuo provider WhatsApp. Le trovi nel pannello del tuo provider."
+    },
+    "step2": {
+      "title": "Impostazioni Avanzate",
+      "content": "Regola le impostazioni dell'istanza secondo necessità. Consulta la documentazione del provider per i dettagli."
     }
   }
 }

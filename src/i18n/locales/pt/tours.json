@@ -256,8 +256,7 @@
       "title": "Lista de Jornadas",
       "content": "Veja todas as suas jornadas aqui. Ative ou desative cada jornada pelo botão de estado, abra o editor de fluxo para personalizar os passos ou duplique jornadas existentes para agilizar a criação."
     }
-  }
-,
+  },
   "channelGrid": {
     "step1": {
       "title": "Escolha o tipo de canal",
@@ -346,6 +345,22 @@
     "step1": {
       "title": "Fornecedor de E-mail",
       "content": "Escolha o fornecedor do seu e-mail: Gmail (Google), Outlook (Microsoft) ou outro fornecedor compatível com IMAP/SMTP. O fluxo de autenticação será iniciado após a seleção."
+    }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Selecione o Fornecedor",
+      "content": "Escolha o fornecedor de API que pretende usar para este canal. Cada fornecedor tem características, custos e requisitos de configuração diferentes."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Credenciais do Canal",
+      "content": "Preencha as informações de autenticação do seu fornecedor WhatsApp. Encontrá-las-á no painel do seu fornecedor."
+    },
+    "step2": {
+      "title": "Configurações Avançadas",
+      "content": "Ajuste as configurações da instância conforme necessário. Consulte a documentação do fornecedor para detalhes."
     }
   }
 }

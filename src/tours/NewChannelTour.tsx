@@ -31,10 +31,10 @@ export function NewChannelTour() {
           scrollOffset: 80,
         },
         {
-          target: '[data-tour="channel-grid-list"]',
+          target: '[data-tour="channel-grid-first-card"]',
           title: t('channelGrid.step3.title'),
           content: t('channelGrid.step3.content'),
-          placement: 'top',
+          placement: 'right',
           skipBeacon: true,
           skipScroll: false,
           scrollOffset: 80,

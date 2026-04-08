@@ -256,8 +256,7 @@
       "title": "Lista de Journeys",
       "content": "Ve todos tus journeys aquí. Activa o desactiva cada journey con el interruptor de estado, abre el editor de flujo para personalizar los pasos o duplica journeys existentes para agilizar la creación."
     }
-  }
-,
+  },
   "channelGrid": {
     "step1": {
       "title": "Elige el tipo de canal",
@@ -346,6 +345,22 @@
     "step1": {
       "title": "Proveedor de Correo",
       "content": "Elige tu proveedor de correo: Gmail (Google), Outlook (Microsoft) u otro proveedor compatible con IMAP/SMTP. El flujo de autenticación comenzará después de la selección."
+    }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Seleccione el Proveedor",
+      "content": "Elija el proveedor de API que desea usar para este canal. Cada proveedor tiene características, costos y requisitos de configuración diferentes."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Credenciales del Canal",
+      "content": "Completa los datos de autenticación de tu proveedor de WhatsApp. Los encontrarás en el panel de tu proveedor."
+    },
+    "step2": {
+      "title": "Configuración Avanzada",
+      "content": "Ajusta la configuración de la instancia según sea necesario. Consulta la documentación del proveedor para detalles."
     }
   }
 }

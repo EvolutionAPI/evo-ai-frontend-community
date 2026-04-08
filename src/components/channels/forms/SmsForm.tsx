@@ -140,7 +140,7 @@ export const SmsForm = ({ selectedProvider, form, onFormChange }: SmsFormProps) 
   if (selectedProvider.id === 'bandwidth') {
     return (
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="sms-credentials">
           <FormField
             label={t('fields.bandwidth.displayName.label')}
             value={getStr('display_name')}
@@ -204,6 +204,7 @@ export const SmsForm = ({ selectedProvider, form, onFormChange }: SmsFormProps) 
         <FormSection
           title={t('fields.bandwidth.info.title')}
           className="bg-orange-50/10 border-orange-200/20"
+          data-tour="sms-phone-config"
         >
           <div className="text-sm text-sidebar-foreground/70 space-y-2">
             <p><strong>API Key & Secret:</strong> {t('fields.bandwidth.info.apiKeyInfo')}</p>

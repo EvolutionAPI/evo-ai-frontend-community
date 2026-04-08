@@ -47,7 +47,7 @@ export const EvolutionForm = ({ form, onFormChange, hasEvolutionConfig }: Evolut
         </>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="whatsapp-credentials">
         <FormField
           label={t('evolutionForm.fields.displayName.label')}
           value={getStr('display_name')}
@@ -144,6 +144,7 @@ export const EvolutionForm = ({ form, onFormChange, hasEvolutionConfig }: Evolut
       <FormSection
         title={t('evolutionForm.sections.instance.title')}
         className="bg-gray-50/10 border-gray-200/20"
+        data-tour="whatsapp-help"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormCheckbox

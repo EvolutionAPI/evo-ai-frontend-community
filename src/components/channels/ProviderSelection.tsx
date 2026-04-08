@@ -54,12 +54,14 @@ const ProviderSelection: React.FC<ProviderSelectionProps> = ({
           {t('newChannel.providerSelection.apiProvider')}
         </h2>
 
-        <ProviderGrid
-          channelType={channelType}
-          providers={providers}
-          isDisabled={isDisabled}
-          onSelect={onProviderSelect}
-        />
+        <div data-tour="provider-grid">
+          <ProviderGrid
+            channelType={channelType}
+            providers={providers}
+            isDisabled={isDisabled}
+            onSelect={onProviderSelect}
+          />
+        </div>
       </div>
     </div>
   );

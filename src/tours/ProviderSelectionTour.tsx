@@ -7,35 +7,21 @@ import { tourRegistry } from './tourRegistry';
 
 const ROUTE = '/channels/new';
 
-export function ApiChannelTour() {
+interface ProviderSelectionTourProps {
+  channelType: string;
+}
+
+export function ProviderSelectionTour({ channelType }: ProviderSelectionTourProps) {
   const { t } = useTranslation('tours');
   const { Tour, controls } = useJoyride({
-    tourKey: 'channels/new/api',
+    tourKey: `channels/new/${channelType}/provider`,
     steps: useMemo<Step[]>(
       () => [
         {
-          target: '[data-tour="api-display-name"]',
-          title: t('channelApi.step1.title'),
-          content: t('channelApi.step1.content'),
-          placement: 'bottom',
-          skipBeacon: true,
-          skipScroll: false,
-          scrollOffset: 80,
-        },
-        {
-          target: '[data-tour="api-webhook-url"]',
-          title: t('channelApi.step2.title'),
-          content: t('channelApi.step2.content'),
-          placement: 'bottom',
-          skipBeacon: true,
-          skipScroll: false,
-          scrollOffset: 80,
-        },
-        {
-          target: '[data-tour="api-info"]',
-          title: t('channelApi.step3.title'),
-          content: t('channelApi.step3.content'),
-          placement: 'right',
+          target: '[data-tour="provider-grid"]',
+          title: t('providerSelection.step1.title'),
+          content: t('providerSelection.step1.content'),
+          placement: 'top',
           skipBeacon: true,
           skipScroll: false,
           scrollOffset: 80,

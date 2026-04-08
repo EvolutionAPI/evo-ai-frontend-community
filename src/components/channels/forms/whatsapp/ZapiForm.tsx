@@ -23,7 +23,7 @@ export const ZapiForm = ({ form, onFormChange }: ZapiFormProps) => {
   return (
     <div className="space-y-6">
       {/* Display Name and Channel Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="whatsapp-credentials">
         <FormField
           label={t('zapiForm.fields.displayName.label')}
           value={getStr('display_name')}
@@ -92,6 +92,7 @@ export const ZapiForm = ({ form, onFormChange }: ZapiFormProps) => {
       <FormSection
         title={t('zapiForm.help.title')}
         className="bg-blue-50/10 border-blue-200/20"
+        data-tour="whatsapp-help"
       >
         <div className="text-sm text-sidebar-foreground/70 space-y-2">
           <p>

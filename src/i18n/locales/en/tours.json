@@ -256,8 +256,7 @@
       "title": "Journey List",
       "content": "See all your journeys here. Enable or disable each journey via the status toggle, open the flow editor to customize the steps, or duplicate existing journeys to speed up creation."
     }
-  }
-,
+  },
   "channelGrid": {
     "step1": {
       "title": "Choose the channel type",
@@ -346,6 +345,22 @@
     "step1": {
       "title": "Email Provider",
       "content": "Choose your email provider: Gmail (Google), Outlook (Microsoft), or another IMAP/SMTP-compatible provider. The authentication flow will begin after selection."
+    }
+  },
+  "providerSelection": {
+    "step1": {
+      "title": "Select a Provider",
+      "content": "Choose the API provider you want to use for this channel. Each provider has different features, pricing, and configuration requirements."
+    }
+  },
+  "channelWhatsappProvider": {
+    "step1": {
+      "title": "Channel Credentials",
+      "content": "Fill in the authentication details for your WhatsApp provider. You can find these in your provider's dashboard."
+    },
+    "step2": {
+      "title": "Advanced Settings",
+      "content": "Adjust the instance settings as needed. Check your provider's documentation for details on each option."
     }
   }
 }
