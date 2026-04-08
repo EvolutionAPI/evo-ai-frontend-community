@@ -280,7 +280,7 @@ export default function FacebookChannelForm({ onSuccess, onCancel }: FacebookCha
   // Initial state - show login button
   if (!hasLoginStarted) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-6" data-tour="facebook-connect">
         {/* Configuration Check */}
         {!isFacebookConfigured && (
           <div className="flex items-start gap-3 p-4 rounded-lg border border-yellow-200 bg-yellow-50 dark:bg-yellow-950/20">

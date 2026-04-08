@@ -1,22 +1,24 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Map } from 'lucide-react';
 import { Button } from '@evoapi/design-system/button';
 import { tourRegistry } from '@/tours/tourRegistry';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useAuthStore } from '@/store/authStore';
 
-const STORAGE_KEY = 'onboarding:welcome-seen';
 const TOUR_ROUTE = '/channels';
 
 export function WelcomeTourModal() {
   const { t } = useTranslation('tours');
-  const [dismissed, setDismissed] = useState(
-    () => !!localStorage.getItem(STORAGE_KEY),
-  );
+  const tours = useAuthStore(state => state.tours);
+  const markTourCompleted = useAuthStore(state => state.markTourCompleted);
+
   const [pendingTour, setPendingTour] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const dismissed = !!tours['onboarding:welcome'];
 
   // Only start the tour after we have navigated to TOUR_ROUTE
   useEffect(() => {
@@ -36,12 +38,11 @@ export function WelcomeTourModal() {
   if (dismissed) return null;
 
   const handleDismiss = () => {
-    localStorage.setItem(STORAGE_KEY, 'true');
-    setDismissed(true);
+    markTourCompleted('onboarding:welcome');
   };
 
   const handleStartTour = () => {
-    handleDismiss();
+    markTourCompleted('onboarding:welcome');
     navigate(TOUR_ROUTE);
     setPendingTour(true);
   };

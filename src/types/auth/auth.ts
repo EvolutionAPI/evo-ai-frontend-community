@@ -135,6 +135,13 @@ export interface ApiError {
   message?: string;
 }
 
+export interface UserTour {
+  id: string;
+  tour_key: string;
+  completed_at: string;
+  status: 'completed' | 'skipped';
+}
+
 export interface ForgotPasswordResponse {
   message: string;
   success: boolean;

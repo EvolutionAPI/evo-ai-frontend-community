@@ -35,43 +35,49 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <AreaChartCard
-          title={t('dashboard.charts.visitorsTrend') || 'Conversas por dia'}
-          description={t('dashboard.charts.visitorsDescription') || 'Tendência diária de conversas no período'}
-          data={data.trends.conversations_daily}
-          icon={TrendingUp}
-          color="#22c55e"
-          gradientFrom="#22c55e"
-          gradientTo="#10b981"
-          valueFormatter={value => value.toFixed(0)}
-        />
+        <div data-tour="dashboard-trends-conversations" className="h-full">
+          <AreaChartCard
+            title={t('dashboard.charts.visitorsTrend') || 'Conversas por dia'}
+            description={t('dashboard.charts.visitorsDescription') || 'Tendência diária de conversas no período'}
+            data={data.trends.conversations_daily}
+            icon={TrendingUp}
+            color="#22c55e"
+            gradientFrom="#22c55e"
+            gradientTo="#10b981"
+            valueFormatter={value => value.toFixed(0)}
+          />
+        </div>
 
-        <BarChartCard
-          title={t('dashboard.charts.sessionDuration') || 'Tempo de 1ª resposta por dia'}
-          description={responseTimeCardDescription}
-          data={data.trends.response_time_daily}
-          icon={BarChart3}
-          color="#3b82f6"
-          gradientFrom="#3b82f6"
-          gradientTo="#8b5cf6"
-          valueFormatter={value => `${Math.round(value)}s`}
-          highlightMax
-        />
+        <div data-tour="dashboard-trends-response" className="h-full">
+          <BarChartCard
+            title={t('dashboard.charts.sessionDuration') || 'Tempo de 1ª resposta por dia'}
+            description={responseTimeCardDescription}
+            data={data.trends.response_time_daily}
+            icon={BarChart3}
+            color="#3b82f6"
+            gradientFrom="#3b82f6"
+            gradientTo="#8b5cf6"
+            valueFormatter={value => `${Math.round(value)}s`}
+            highlightMax
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-        <DonutChartCard
-          title={t('dashboard.charts.channelShare') || 'Participação por canal'}
-          description={t('dashboard.charts.channelShareDescription') || 'Distribuição percentual de conversas por canal'}
-          data={channelShareData}
-          icon={Layers}
-          gradientFrom="#ec4899"
-          gradientTo="#8b5cf6"
-          centerLabel={tx('dashboard.charts.channelsLabel', 'Canais')}
-          centerValue={tx('dashboard.charts.shareLabel', 'Participação')}
-        />
+        <div data-tour="dashboard-channel-participation" className="h-full">
+          <DonutChartCard
+            title={t('dashboard.charts.channelShare') || 'Participação por canal'}
+            description={t('dashboard.charts.channelShareDescription') || 'Distribuição percentual de conversas por canal'}
+            data={channelShareData}
+            icon={Layers}
+            gradientFrom="#ec4899"
+            gradientTo="#8b5cf6"
+            centerLabel={tx('dashboard.charts.channelsLabel', 'Canais')}
+            centerValue={tx('dashboard.charts.shareLabel', 'Participação')}
+          />
+        </div>
 
-        <Card>
+        <Card data-tour="dashboard-channel-insights">
           <CardHeader className="pb-2">
             <CardTitle className="text-base">{tx('dashboard.channels.insights', 'Insights de canais')}</CardTitle>
           </CardHeader>

@@ -52,52 +52,60 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        <DashboardMetricCard
-          title={t('dashboard.stats.incomingMessages') || 'Mensagens recebidas'}
-          value={data.stats.incoming_messages_count}
-          subtitle={`${data.stats.outgoing_messages_count} ${t('dashboard.stats.sent')}`}
-          icon={MessageSquare}
-          accentClassName="bg-fuchsia-500/20 text-fuchsia-400"
-          importance="primary"
-          status={{
-            label: tx('dashboard.status.volume', 'Volume no período'),
-            tone: 'neutral',
-          }}
-        />
+        <div data-tour="dashboard-messages-card" className="h-full">
+          <DashboardMetricCard
+            title={t('dashboard.stats.incomingMessages') || 'Mensagens recebidas'}
+            value={data.stats.incoming_messages_count}
+            subtitle={`${data.stats.outgoing_messages_count} ${t('dashboard.stats.sent')}`}
+            icon={MessageSquare}
+            accentClassName="bg-fuchsia-500/20 text-fuchsia-400"
+            importance="primary"
+            status={{
+              label: tx('dashboard.status.volume', 'Volume no período'),
+              tone: 'neutral',
+            }}
+          />
+        </div>
 
-        <DashboardMetricCard
-          title={t('dashboard.stats.avgResponseTime')}
-          value={formatSeconds(data.stats.avg_first_response_time_seconds)}
-          subtitle={t('dashboard.stats.realData') || 'Dados reais'}
-          icon={Clock}
-          accentClassName="bg-emerald-500/20 text-emerald-400"
-          importance="primary"
-          status={responseStatus}
-        />
+        <div data-tour="dashboard-response-time-card" className="h-full">
+          <DashboardMetricCard
+            title={t('dashboard.stats.avgResponseTime')}
+            value={formatSeconds(data.stats.avg_first_response_time_seconds)}
+            subtitle={t('dashboard.stats.realData') || 'Dados reais'}
+            icon={Clock}
+            accentClassName="bg-emerald-500/20 text-emerald-400"
+            importance="primary"
+            status={responseStatus}
+          />
+        </div>
 
-        <DashboardMetricCard
-          title={t('dashboard.csat.avg') || 'CSAT médio'}
-          value={`${data.csat.avg_rating.toFixed(2)} / 5`}
-          subtitle={`${data.csat.total_responses} ${t('dashboard.csat.responses') || 'avaliações'}`}
-          icon={CheckCircle2}
-          accentClassName="bg-violet-500/20 text-violet-400"
-          importance="primary"
-          status={csatStatus}
-        />
+        <div data-tour="dashboard-csat-card" className="h-full">
+          <DashboardMetricCard
+            title={t('dashboard.csat.avg') || 'CSAT médio'}
+            value={`${data.csat.avg_rating.toFixed(2)} / 5`}
+            subtitle={`${data.csat.total_responses} ${t('dashboard.csat.responses') || 'avaliações'}`}
+            icon={CheckCircle2}
+            accentClassName="bg-violet-500/20 text-violet-400"
+            importance="primary"
+            status={csatStatus}
+          />
+        </div>
 
-        <DashboardMetricCard
-          title={t('dashboard.stats.followUpsPending')}
-          value={data.follow_ups.pending}
-          subtitle={`${data.follow_ups.overdue} ${tx('dashboard.status.overdue', 'em atraso')}`}
-          icon={AlertTriangle}
-          accentClassName="bg-amber-500/20 text-amber-400"
-          importance="primary"
-          status={followUpStatus}
-        />
+        <div data-tour="dashboard-followups-card" className="h-full">
+          <DashboardMetricCard
+            title={t('dashboard.stats.followUpsPending')}
+            value={data.follow_ups.pending}
+            subtitle={`${data.follow_ups.overdue} ${tx('dashboard.status.overdue', 'em atraso')}`}
+            icon={AlertTriangle}
+            accentClassName="bg-amber-500/20 text-amber-400"
+            importance="primary"
+            status={followUpStatus}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-4">
-        <Card className="xl:col-span-7 border-primary/20 bg-primary/[0.02]">
+        <Card className="xl:col-span-7 border-primary/20 bg-primary/[0.02]" data-tour="dashboard-ia-vs-human">
           <CardHeader className="pb-2">
             <CardTitle className="text-base flex items-center gap-2">
               <Bot className="h-4 w-4 text-primary" />
@@ -164,7 +172,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
         </Card>
 
         <div className="xl:col-span-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-4">
-          <Card className="border-dashed border-amber-500/40 bg-amber-500/[0.03]">
+          <Card className="border-dashed border-amber-500/40 bg-amber-500/[0.03]" data-tour="dashboard-active-conversations">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <MessageSquare className="h-4 w-4 text-amber-400" />
@@ -186,7 +194,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             </CardContent>
           </Card>
 
-          <Card className="border-dashed border-rose-500/40 bg-rose-500/[0.03]">
+          <Card className="border-dashed border-rose-500/40 bg-rose-500/[0.03]" data-tour="dashboard-unassigned">
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <UserX className="h-4 w-4 text-rose-400" />

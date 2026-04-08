@@ -46,7 +46,7 @@ export default function InstagramForm({ onCancel }: InstagramFormProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" data-tour="instagram-connect">
       {/* Configuration Check */}
       {!isInstagramConfigured && (
         <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-800 rounded-lg flex items-start gap-3">
