@@ -132,7 +132,7 @@ const EmailForm: React.FC<EmailFormProps> = ({ provider, onSuccess, onBack }) =>
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-6" data-tour="email-connect">
       {/* Header */}
       <div className="flex items-center space-x-4">
         <Button variant="outline" size="sm" onClick={onBack}>

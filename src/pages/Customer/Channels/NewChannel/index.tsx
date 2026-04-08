@@ -27,6 +27,17 @@ import { ApiForm } from '@/components/channels/forms/ApiForm';
 // Import constants
 import { getChannelTypes } from '@/constants/channelTypes';
 
+// Import tours
+import { NewChannelTour } from '@/tours/NewChannelTour';
+import { TelegramChannelTour } from '@/tours/TelegramChannelTour';
+import { ApiChannelTour } from '@/tours/ApiChannelTour';
+import { WebWidgetChannelTour } from '@/tours/WebWidgetChannelTour';
+import { WhatsappCloudChannelTour } from '@/tours/WhatsappCloudChannelTour';
+import { SmsChannelTour } from '@/tours/SmsChannelTour';
+import { InstagramChannelTour } from '@/tours/InstagramChannelTour';
+import { FacebookChannelTour } from '@/tours/FacebookChannelTour';
+import { EmailChannelTour } from '@/tours/EmailChannelTour';
+
 export default function NewChannel() {
   const navigate = useNavigate();
   const { t } = useLanguage('channels');
@@ -275,6 +286,22 @@ export default function NewChannel() {
     }
   };
 
+  const renderChannelTour = () => {
+    if (!selectedChannel) return null;
+    switch (selectedChannel.type) {
+      case 'telegram': return <TelegramChannelTour />;
+      case 'api': return <ApiChannelTour />;
+      case 'web_widget': return <WebWidgetChannelTour />;
+      case 'whatsapp':
+        return selectedProvider?.id === 'whatsapp_cloud' ? <WhatsappCloudChannelTour /> : null;
+      case 'sms': return <SmsChannelTour />;
+      case 'instagram': return <InstagramChannelTour />;
+      case 'facebook': return <FacebookChannelTour />;
+      case 'email': return <EmailChannelTour />;
+      default: return null;
+    }
+  };
+
   const shouldShowFooter = () => {
     return (
       selectedChannel?.type !== 'facebook' &&
@@ -297,6 +324,7 @@ export default function NewChannel() {
       <div className="flex-1 overflow-auto pb-8">
         {!selectedChannel ? (
           <>
+            <NewChannelTour />
             <div className={pageContainer}>
               <ChannelBreadcrumb items={getBreadcrumbs()} onBack={handleGoBack} />
             </div>
@@ -345,6 +373,7 @@ export default function NewChannel() {
                   <p className="text-sidebar-foreground/70">{t('newChannel.description')}</p>
                 </div>
 
+                {renderChannelTour()}
                 <FormContainer
                   selectedChannel={selectedChannel}
                   selectedProvider={selectedProvider}

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAppDataStore } from '@/store/appDataStore';
+import { useAuthStore } from '@/store/authStore';
+import { tourService } from '@/services/tours/tourService';
 import i18n from '@/i18n/config';
 import LoadingScreen from '@/components/LoadingScreen';
 interface AppInitializerProps {
@@ -12,6 +14,7 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
   const { t } = useLanguage('common');
   const { user, isLoading } = useAuth();
   const { account, initializeAppDataDeferred } = useAppDataStore();
+  const setTours = useAuthStore(state => state.setTours);
 
   const [isInitialized, setIsInitialized] = useState(false);
   const [initError, setInitError] = useState<string | null>(null);
@@ -67,6 +70,15 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
             await i18n.changeLanguage(i18nLocale);
             localStorage.setItem('i18nextLng', i18nLocale);
           }
+        }
+
+        // Load user tours so WelcomeTourModal and useJoyride have the correct
+        // state before the first render — prevents welcome modal flashing
+        try {
+          const tours = await tourService.getTours();
+          setTours(tours);
+        } catch {
+          // Non-critical: tours default to empty (all tours will show)
         }
 
         // ⚡ OTIMIZAÇÃO: Removido carregamento antecipado de dados

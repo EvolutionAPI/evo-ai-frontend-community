@@ -27,7 +27,7 @@ export const SmsForm = ({ selectedProvider, form, onFormChange }: SmsFormProps) 
     return (
       <div className="space-y-6">
         {/* Basic Configuration */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-tour="sms-credentials">
           <FormField
             label={t('fields.twilio.displayName.label')}
             value={getStr('display_name')}
@@ -95,6 +95,7 @@ export const SmsForm = ({ selectedProvider, form, onFormChange }: SmsFormProps) 
         <FormSection
           title={t('fields.phoneConfig.title')}
           description={t('fields.phoneConfig.description')}
+          data-tour="sms-phone-config"
         >
           <div className="space-y-4">
             <FormCheckbox
