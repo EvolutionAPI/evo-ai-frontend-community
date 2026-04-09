@@ -585,6 +585,28 @@ const EvolutionWhatsAppConfig: React.FC<{
     };
 
     loadInstanceSettings();
+
+    // Load profile settings for Evolution Go
+    const loadProfileSettings = async () => {
+      try {
+        if (inbox.provider !== 'evolution_go') return;
+        const identifier = getIdentifier();
+        if (!identifier) return;
+
+        const response = await EvolutionApiService.getProfile(identifier, inbox.provider);
+        const profileData = response?.data || response;
+        if (profileData) {
+          setProfileSettings(prev => ({
+            ...prev,
+            profileName: profileData.profileName || prev.profileName,
+          }));
+        }
+      } catch (error) {
+        console.error('Error loading profile settings:', error);
+      }
+    };
+
+    loadProfileSettings();
   }, [inbox.provider, inbox.provider_config, inbox.name]);
 
   // Load instance status on mount and poll while modal is open

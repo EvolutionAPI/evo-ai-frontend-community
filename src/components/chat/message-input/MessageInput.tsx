@@ -43,7 +43,6 @@ import type { CannedResponse } from '@/types/knowledge';
 
 import { MessageTemplateModal } from '../message-template';
 import '../rich-text-editor/RichTextEditor.css';
-import { getPrimaryActionButtonClasses } from '@/utils/whitelabelStyles';
 import { getModifierSymbol } from '@/utils/platform';
 
 interface SendMessageOptions {
@@ -808,9 +807,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
                   disabled={isDisabled || isSending}
                   className={
                     isRecordingAudio
-                      ? getPrimaryActionButtonClasses(
-                          'h-9 w-9 flex-shrink-0 shadow-md transition-all duration-200',
-                        )
+                      ? 'bg-primary hover:bg-primary/85 text-primary-foreground h-9 w-9 flex-shrink-0 shadow-md transition-all duration-200'
                       : 'h-9 w-9 flex-shrink-0 hover:bg-accent transition-all duration-200'
                   }
                   onClick={startAudioRecording}
@@ -826,9 +823,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
                       size="icon"
                       onClick={handleSend}
                       disabled={!canSend}
-                      className={getPrimaryActionButtonClasses(
-                        'h-9 w-9 flex-shrink-0 disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50',
-                      )}
+                      className="bg-primary hover:bg-primary/85 text-primary-foreground h-9 w-9 flex-shrink-0 disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50"
                     >
                       {isSending ? (
                         <Loader2 className="h-4 w-4 animate-spin" />

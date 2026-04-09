@@ -186,7 +186,7 @@ export function BaseFlowNode({
 
   // Estilos para selected e executing - mantém compatibilidade
   const selectedStyle = {
-    border: "border-[var(--primary,#00ffa7)]/90",
+    border: "border-primary/90",
     glow: colorStyle.selectedGlow
   };
 

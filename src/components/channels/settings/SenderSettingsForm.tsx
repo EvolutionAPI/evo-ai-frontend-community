@@ -71,7 +71,7 @@ const SenderNamePreview: React.FC<SenderNamePreviewProps> = ({
             <Card
               className={`transition-all hover:shadow-md ${
                 isActive
-                  ? 'ring-2 ring-[var(--primary,#00ffa7)] bg-[var(--primary,#00ffa7)]/5 dark:bg-[var(--primary,#00ffa7)]/10'
+                  ? 'ring-2 ring-primary bg-primary/5 dark:bg-primary/10'
                   : 'border-border'
               }`}
             >
@@ -81,14 +81,14 @@ const SenderNamePreview: React.FC<SenderNamePreviewProps> = ({
                   <div className="flex items-center gap-2">
                     <IconComponent
                       className={`w-5 h-5 ${
-                        isActive ? 'text-[var(--primary,#00ffa7)]' : 'text-muted-foreground'
+                        isActive ? 'text-primary' : 'text-muted-foreground'
                       }`}
                     />
                     <div className="text-left">
                       <h3
                         className={`font-medium text-sm ${
                           isActive
-                            ? 'text-[var(--primary,#00ffa7)] dark:text-[var(--primary,#00ffa7)]'
+                            ? 'text-primary dark:text-primary'
                             : 'text-foreground'
                         }`}
                       >
@@ -99,7 +99,7 @@ const SenderNamePreview: React.FC<SenderNamePreviewProps> = ({
                   </div>
 
                   {/* Preview */}
-                  <div className="bg-[var(--primary,#00ffa7)]/5 dark:bg-[var(--primary,#00ffa7)]/10 rounded-lg p-3">
+                  <div className="bg-primary/5 dark:bg-primary/10 rounded-lg p-3">
                     <span className="text-xs text-muted-foreground block mb-2">
                       {t('settings.senderSettings.preview.example')}
                     </span>
@@ -233,7 +233,7 @@ const SenderSettingsForm: React.FC<SenderSettingsFormProps> = ({
             variant="ghost"
             onClick={handleShowBusinessNameInput}
             disabled={isUpdating}
-            className="text-[var(--primary,#00ffa7)] hover:text-[var(--primary,#00ffa7)]/80"
+            className="text-primary hover:text-primary/80"
           >
             {businessName
               ? t('settings.senderSettings.businessName.change')

@@ -209,7 +209,7 @@ const ConversationBadges: React.FC<ConversationBadgesProps> = ({
         {/* Primeira linha: Pipeline + tempo */}
         
         <div className="flex items-center gap-2">
-          <div className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full text-[var(--primary-foreground,#000000)]" style={{ backgroundColor: getPipelineStageColor() }}>
+          <div className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium rounded-full text-primary-foreground" style={{ backgroundColor: getPipelineStageColor() }}>
             <GitBranch className="w-2.5 h-2.5" />
             <span>{getPipelineNameText()}</span>
           </div>

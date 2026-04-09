@@ -453,7 +453,7 @@ const MessageAudio: React.FC<MessageAudioProps> = ({ attachments }) => {
                     variant="default"
                     size="icon"
                     onClick={() => togglePlayback(attachment)}
-                    className="h-9 w-9 rounded-full bg-[var(--primary,#00ffa7)] hover:bg-[color-mix(in_srgb,var(--primary,#00ffa7)_85%,black)] text-[var(--primary-foreground,#000000)] flex-shrink-0 border-0 shadow-sm"
+                    className="h-9 w-9 rounded-full bg-primary hover:bg-primary/85 text-primary-foreground flex-shrink-0 border-0 shadow-sm"
                   >
                     {isCurrentlyPlaying ? (
                       <PauseFilled className="h-4 w-4" />
@@ -474,7 +474,7 @@ const MessageAudio: React.FC<MessageAudioProps> = ({ attachments }) => {
                             key={i}
                             className={`w-0.5 rounded-full transition-all duration-150 ${
                               isActive
-                                ? 'bg-[var(--primary,#00ffa7)]'
+                                ? 'bg-primary'
                                 : 'bg-muted-foreground/30 dark:bg-muted-foreground/20'
                             }`}
                             style={{

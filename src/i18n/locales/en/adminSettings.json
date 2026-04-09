@@ -1,0 +1,446 @@
+{
+  "title": "Admin Settings",
+  "navigation": {
+    "email": "Email",
+    "storage": "Storage",
+    "socialLogin": "Social Login",
+    "channels": "Channels",
+    "openai": "OpenAI",
+    "integrations": "Integrations",
+    "inboundEmail": "Inbound Email",
+    "frontendRuntime": "Frontend Runtime"
+  },
+  "email": {
+    "title": "Email Configuration",
+    "description": "Configure the email provider and credentials used for sending transactional emails.",
+    "provider": {
+      "label": "Email Provider",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Server Address",
+      "port": "Port",
+      "username": "Username",
+      "password": "Password",
+      "authentication": "Authentication Type",
+      "domain": "Domain",
+      "starttls": "Enable STARTTLS",
+      "sslVerifyMode": "SSL Verify Mode",
+      "senderEmail": "Sender Email",
+      "apiKey": "API Key",
+      "ipPool": "IP Pool"
+    },
+    "placeholders": {
+      "host": "smtp.example.com",
+      "port": "587",
+      "username": "user@example.com",
+      "password": "Enter new password",
+      "domain": "example.com",
+      "senderEmail": "noreply@example.com",
+      "apiKey": "Enter new API key",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "Server address is required",
+      "portMin": "Port must be at least 1",
+      "portMax": "Port must be at most 65535",
+      "emailRequired": "A valid sender email is required"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Email configuration saved successfully",
+      "saveError": "Failed to save email configuration",
+      "loadError": "Failed to load email configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "testFailed": "Connection test failed",
+    "testError": "Failed to run connection test"
+  },
+  "storage": {
+    "title": "Storage Configuration",
+    "description": "Configure the file storage provider used for attachments and uploads.",
+    "provider": {
+      "label": "Storage Provider",
+      "local": "Local Storage",
+      "amazon": "Amazon S3",
+      "s3Compatible": "S3-Compatible"
+    },
+    "fields": {
+      "bucketName": "Bucket Name",
+      "accessKeyId": "Access Key ID",
+      "accessSecret": "Secret Access Key",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "my-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Enter new secret access key",
+      "region": "us-east-1",
+      "endpoint": "https://s3.example.com"
+    },
+    "validation": {
+      "bucketRequired": "Bucket name is required",
+      "accessKeyRequired": "Access key ID is required",
+      "regionRequired": "Region is required",
+      "endpointRequired": "Endpoint is required for S3-compatible providers"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Storage configuration saved successfully",
+      "saveError": "Failed to save storage configuration",
+      "loadError": "Failed to load storage configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "testFailed": "Connection test failed",
+    "testError": "Failed to run connection test"
+  },
+  "socialLogin": {
+    "title": "Social Login Configuration",
+    "description": "Configure OAuth credentials for social login providers so users can sign in with Google or Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret",
+        "callbackUrl": "Callback URL"
+      },
+      "placeholders": {
+        "clientId": "your-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Enter new client secret",
+        "callbackUrl": "https://your-domain.com/auth/google/callback"
+      },
+      "secretConfigured": "Configured",
+      "secretNotConfigured": "Not configured",
+      "clearSecret": "Clear saved value",
+      "saveSuccess": "Google OAuth configuration saved successfully",
+      "saveError": "Failed to save Google OAuth configuration"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "Application ID",
+        "appSecret": "Application Secret"
+      },
+      "placeholders": {
+        "appId": "your-azure-application-id",
+        "appSecret": "Enter new application secret"
+      },
+      "secretConfigured": "Configured",
+      "secretNotConfigured": "Not configured",
+      "clearSecret": "Clear saved value",
+      "saveSuccess": "Microsoft configuration saved successfully",
+      "saveError": "Failed to save Microsoft configuration"
+    },
+    "validation": {
+      "clientIdRequired": "Client ID is required",
+      "callbackUrlInvalid": "Callback URL must be a valid URL",
+      "appIdRequired": "Application ID is required"
+    },
+    "messages": {
+      "loadError": "Failed to load social login configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  },
+  "channels": {
+    "title": "Channel Integrations",
+    "description": "Configure credentials for messaging channels and integrations.",
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "facebook": {
+      "tabTitle": "Facebook",
+      "fields": {
+        "appId": "App ID",
+        "verifyToken": "Verify Token",
+        "appSecret": "App Secret",
+        "apiVersion": "API Version",
+        "humanAgent": "Enable Human Agent",
+        "feedComments": "Enable Feed Comments"
+      },
+      "placeholders": {
+        "appId": "Your Facebook App ID",
+        "verifyToken": "Enter verify token",
+        "appSecret": "Enter new app secret",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Facebook configuration saved successfully",
+      "saveError": "Failed to save Facebook configuration"
+    },
+    "whatsapp": {
+      "tabTitle": "WhatsApp",
+      "fields": {
+        "appId": "App ID",
+        "verifyToken": "Verify Token",
+        "appSecret": "App Secret",
+        "configId": "WhatsApp Config ID",
+        "apiVersion": "API Version"
+      },
+      "placeholders": {
+        "appId": "Your WhatsApp App ID",
+        "verifyToken": "Enter verify token",
+        "appSecret": "Enter new app secret",
+        "configId": "Your WhatsApp Config ID",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "WhatsApp configuration saved successfully",
+      "saveError": "Failed to save WhatsApp configuration"
+    },
+    "instagram": {
+      "tabTitle": "Instagram",
+      "fields": {
+        "appId": "App ID",
+        "appSecret": "App Secret",
+        "verifyToken": "Verify Token",
+        "apiVersion": "API Version",
+        "humanAgent": "Enable Human Agent"
+      },
+      "placeholders": {
+        "appId": "Your Instagram App ID",
+        "appSecret": "Enter new app secret",
+        "verifyToken": "Enter verify token",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Instagram configuration saved successfully",
+      "saveError": "Failed to save Instagram configuration"
+    },
+    "evolution": {
+      "tabTitle": "Evolution",
+      "fields": {
+        "apiUrl": "API URL",
+        "adminSecret": "Admin Secret"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-api.example.com",
+        "adminSecret": "Enter new admin secret"
+      },
+      "saveSuccess": "Evolution configuration saved successfully",
+      "saveError": "Failed to save Evolution configuration"
+    },
+    "evolutionGo": {
+      "tabTitle": "Evolution Go",
+      "fields": {
+        "apiUrl": "API URL",
+        "adminSecret": "Admin Secret",
+        "instanceId": "Instance ID",
+        "instanceSecret": "Instance Secret"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-go.example.com",
+        "adminSecret": "Enter new admin secret",
+        "instanceId": "Your Evolution Go Instance ID",
+        "instanceSecret": "Enter new instance secret"
+      },
+      "saveSuccess": "Evolution Go configuration saved successfully",
+      "saveError": "Failed to save Evolution Go configuration"
+    },
+    "twitter": {
+      "tabTitle": "Twitter",
+      "fields": {
+        "appId": "App ID",
+        "consumerKey": "Consumer Key",
+        "consumerSecret": "Consumer Secret",
+        "environment": "Environment"
+      },
+      "placeholders": {
+        "appId": "Your Twitter App ID",
+        "consumerKey": "Your Twitter Consumer Key",
+        "consumerSecret": "Enter new consumer secret",
+        "environment": "production"
+      },
+      "saveSuccess": "Twitter configuration saved successfully",
+      "saveError": "Failed to save Twitter configuration"
+    },
+    "messages": {
+      "loadError": "Failed to load channel configuration"
+    }
+  },
+  "openai": {
+    "title": "OpenAI Configuration",
+    "description": "Configure the OpenAI API connection and AI prompt templates used for reply suggestions, summaries, and text transformations.",
+    "connection": {
+      "cardTitle": "Connection Settings",
+      "fields": {
+        "apiUrl": "API URL",
+        "apiSecret": "API Key",
+        "model": "Model",
+        "audioTranscription": "Enable Audio Transcription"
+      },
+      "placeholders": {
+        "apiUrl": "https://api.openai.com/v1",
+        "apiSecret": "Enter new API key",
+        "model": "gpt-4o"
+      }
+    },
+    "prompts": {
+      "cardTitle": "AI Prompt Templates",
+      "fields": {
+        "OPENAI_PROMPT_REPLY": "Reply Suggestion",
+        "OPENAI_PROMPT_SUMMARY": "Conversation Summary",
+        "OPENAI_PROMPT_REPHRASE": "Rephrase Message",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Fix Grammar",
+        "OPENAI_PROMPT_SHORTEN": "Shorten Text",
+        "OPENAI_PROMPT_EXPAND": "Expand Text",
+        "OPENAI_PROMPT_FRIENDLY": "Make Friendly",
+        "OPENAI_PROMPT_FORMAL": "Make Formal",
+        "OPENAI_PROMPT_SIMPLIFY": "Simplify Text"
+      },
+      "placeholders": {
+        "OPENAI_PROMPT_REPLY": "Enter prompt for reply suggestions...",
+        "OPENAI_PROMPT_SUMMARY": "Enter prompt for conversation summaries...",
+        "OPENAI_PROMPT_REPHRASE": "Enter prompt for rephrasing messages...",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Enter prompt for grammar fixes...",
+        "OPENAI_PROMPT_SHORTEN": "Enter prompt for shortening text...",
+        "OPENAI_PROMPT_EXPAND": "Enter prompt for expanding text...",
+        "OPENAI_PROMPT_FRIENDLY": "Enter prompt for friendly tone...",
+        "OPENAI_PROMPT_FORMAL": "Enter prompt for formal tone...",
+        "OPENAI_PROMPT_SIMPLIFY": "Enter prompt for simplifying text..."
+      }
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "OpenAI configuration saved successfully",
+      "saveError": "Failed to save OpenAI configuration",
+      "loadError": "Failed to load OpenAI configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  },
+  "integrations": {
+    "title": "Integrations Configuration",
+    "description": "Configure OAuth credentials for third-party integrations such as Linear, HubSpot, Shopify, and Slack.",
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "save": "Save Configuration",
+    "saving": "Saving...",
+    "linear": {
+      "cardTitle": "Linear",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret"
+      },
+      "placeholders": {
+        "clientId": "Your Linear Client ID",
+        "clientSecret": "Enter new client secret"
+      },
+      "saveSuccess": "Linear configuration saved successfully",
+      "saveError": "Failed to save Linear configuration"
+    },
+    "hubspot": {
+      "cardTitle": "HubSpot",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret"
+      },
+      "placeholders": {
+        "clientId": "Your HubSpot Client ID",
+        "clientSecret": "Enter new client secret"
+      },
+      "saveSuccess": "HubSpot configuration saved successfully",
+      "saveError": "Failed to save HubSpot configuration"
+    },
+    "shopify": {
+      "cardTitle": "Shopify",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret"
+      },
+      "placeholders": {
+        "clientId": "Your Shopify Client ID",
+        "clientSecret": "Enter new client secret"
+      },
+      "saveSuccess": "Shopify configuration saved successfully",
+      "saveError": "Failed to save Shopify configuration"
+    },
+    "slack": {
+      "cardTitle": "Slack",
+      "fields": {
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret"
+      },
+      "placeholders": {
+        "clientId": "Your Slack Client ID",
+        "clientSecret": "Enter new client secret"
+      },
+      "saveSuccess": "Slack configuration saved successfully",
+      "saveError": "Failed to save Slack configuration"
+    },
+    "messages": {
+      "loadError": "Failed to load integrations configuration"
+    }
+  },
+  "inboundEmail": {
+    "title": "Inbound Email Configuration",
+    "description": "Configure the inbound email provider and credentials used for receiving and processing incoming emails.",
+    "provider": {
+      "label": "Inbound Email Service",
+      "relay": "Relay (Exim / Postfix / Qmail)",
+      "mailgun": "Mailgun",
+      "mandrill": "Mandrill",
+      "sendgrid": "SendGrid"
+    },
+    "fields": {
+      "password": "Ingress Password",
+      "domain": "Inbound Email Domain",
+      "mailgunSigningKey": "Mailgun Signing Key",
+      "mandrillApiKey": "Mandrill API Key"
+    },
+    "placeholders": {
+      "password": "Enter new ingress password",
+      "domain": "reply.example.com",
+      "mailgunSigningKey": "Enter new Mailgun signing key",
+      "mandrillApiKey": "Enter new Mandrill API key"
+    },
+    "validation": {
+      "domainRequired": "Inbound email domain is required"
+    },
+    "secretConfigured": "Configured",
+    "secretNotConfigured": "Not configured",
+    "clearSecret": "Clear saved value",
+    "messages": {
+      "saveSuccess": "Inbound email configuration saved successfully",
+      "saveError": "Failed to save inbound email configuration",
+      "loadError": "Failed to load inbound email configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  },
+  "frontendRuntime": {
+    "title": "Frontend Runtime Configuration",
+    "description": "Configure reCAPTCHA and Clarity settings that are loaded by the frontend at runtime.",
+    "fields": {
+      "cardTitle": "Runtime Keys",
+      "recaptchaSiteKey": "reCAPTCHA Site Key",
+      "clarityProjectId": "Clarity Project ID"
+    },
+    "placeholders": {
+      "recaptchaSiteKey": "6Lc...",
+      "clarityProjectId": "abc123xyz"
+    },
+    "messages": {
+      "saveSuccess": "Frontend runtime configuration saved successfully",
+      "saveError": "Failed to save frontend runtime configuration",
+      "loadError": "Failed to load frontend runtime configuration"
+    },
+    "save": "Save Configuration",
+    "saving": "Saving..."
+  }
+}

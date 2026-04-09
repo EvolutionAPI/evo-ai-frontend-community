@@ -41,11 +41,6 @@ import ConversationBadges from '../conversation/ConversationBadges';
 import ConversationsFilter from '../conversation/ConversationsFilter';
 import { BaseFilter } from '@/types/core';
 import { useLanguage } from '@/hooks/useLanguage';
-import {
-  getAssigneeBadgeClasses,
-  getAssigneeIconClasses,
-  getAssigneeTextClasses,
-} from '@/utils/whitelabelStyles';
 
 interface ChatSidebarProps {
   mobileView: 'list' | 'chat';
@@ -702,10 +697,10 @@ const ChatSidebar = ({
                         {/* Assignee indicator badge */}
                         {conversation?.assignee && (
                           <div className="flex items-center gap-1.5 mt-1">
-                            <div className={getAssigneeBadgeClasses()}>
-                              <UserIcon className={getAssigneeIconClasses()} />
+                            <div className="flex items-center space-x-1.5 px-2 py-1 rounded-md text-xs font-medium bg-primary/10 dark:bg-primary/20">
+                              <UserIcon className="h-3 w-3 flex-shrink-0 text-primary dark:text-primary" />
                               <span
-                                className={getAssigneeTextClasses()}
+                                className="truncate max-w-32 text-primary dark:text-primary/90"
                                 title={conversation.assignee?.name}
                               >
                                 {conversation.assignee?.name}

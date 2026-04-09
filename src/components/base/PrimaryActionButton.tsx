@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@evoapi/design-system';
 import { cn } from '@/utils/cn';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 
 interface PrimaryActionButtonProps {
   label: string;
@@ -54,8 +54,7 @@ export default function PrimaryActionButton({
       onClick={onClick}
       disabled={disabled}
       className={cn(
-        // Usa variável CSS do whitelabel, com fallback para cor padrão
-        variant === 'default' && getPrimaryButtonClasses(),
+        variant === 'default' && 'bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold',
         disabled && 'opacity-50 cursor-not-allowed',
         className
       )}

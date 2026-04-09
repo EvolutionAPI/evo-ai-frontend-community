@@ -713,11 +713,15 @@ export default function PipelineKanban() {
                                         t('kanban.conversation.system')}
                                     </span>
                                   </div>
-                                  <p className="text-sm text-foreground line-clamp-2 leading-relaxed">
-                                    {item.conversation.last_non_activity_message
-                                      .processed_message_content ||
-                                      item.conversation.last_non_activity_message.content}
-                                  </p>
+                                  <p
+                                    className="text-sm text-foreground line-clamp-2 leading-relaxed [&_p]:inline [&_br]:hidden"
+                                    dangerouslySetInnerHTML={{
+                                      __html:
+                                        item.conversation.last_non_activity_message
+                                          .processed_message_content ||
+                                        item.conversation.last_non_activity_message.content || '',
+                                    }}
+                                  />
                                   <div className="flex items-center justify-between mt-2">
                                     <span className="text-xs text-muted-foreground">
                                       {new Date(

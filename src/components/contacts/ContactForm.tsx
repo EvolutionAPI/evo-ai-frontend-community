@@ -34,7 +34,7 @@ import CustomAttributes from './CustomAttributes';
 import CompanyMultiSelect from './CompanyMultiSelect';
 import { labelsService } from '@/services/contacts';
 import { Label as LabelType } from '@/types/settings';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 import { PhoneInput } from '@/components/shared/PhoneInput';
 import { TaxIdInput } from '@/components/shared/TaxIdInput';
 import { validateTaxId, getTaxIdLabel } from '@/utils/validation';
@@ -881,7 +881,7 @@ export default function ContactForm({
             {t('form.actions.cancel')}
           </Button>
         )}
-        <Button type="submit" disabled={loading} className={getPrimaryButtonClasses('flex-1')}>
+        <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold flex-1">
           {loading
             ? t('form.actions.saving')
             : isNew

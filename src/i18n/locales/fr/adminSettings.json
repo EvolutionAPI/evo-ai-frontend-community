@@ -1,0 +1,422 @@
+{
+  "title": "Parametres Admin",
+  "navigation": {
+    "email": "E-mail",
+    "storage": "Stockage",
+    "socialLogin": "Connexion Sociale",
+    "channels": "Canaux",
+    "openai": "OpenAI",
+    "integrations": "Integrations",
+    "inboundEmail": "E-mail Entrant",
+    "frontendRuntime": "Frontend Runtime"
+  },
+  "email": {
+    "title": "Configuration E-mail",
+    "description": "Configurez le fournisseur de messagerie et les identifiants utilises pour l'envoi d'e-mails transactionnels.",
+    "provider": {
+      "label": "Fournisseur de Messagerie",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Adresse du Serveur",
+      "port": "Port",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "authentication": "Type d'Authentification",
+      "domain": "Domaine",
+      "starttls": "Activer STARTTLS",
+      "sslVerifyMode": "Mode de Verification SSL",
+      "senderEmail": "E-mail de l'Expediteur",
+      "apiKey": "Cle API",
+      "ipPool": "Pool IP"
+    },
+    "placeholders": {
+      "host": "smtp.exemple.com",
+      "port": "587",
+      "username": "utilisateur@exemple.com",
+      "password": "Entrez le nouveau mot de passe",
+      "domain": "exemple.com",
+      "senderEmail": "noreply@exemple.com",
+      "apiKey": "Entrez la nouvelle cle API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "L'adresse du serveur est obligatoire",
+      "portMin": "Le port doit etre au minimum 1",
+      "portMax": "Le port doit etre au maximum 65535",
+      "emailRequired": "Un e-mail d'expediteur valide est requis"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration e-mail enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration e-mail",
+      "loadError": "Echec du chargement de la configuration e-mail"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "testConnection": "Tester la Connexion",
+    "testing": "Test en cours...",
+    "testFailed": "Le test de connexion a echoue",
+    "testError": "Impossible d'executer le test de connexion"
+  },
+  "storage": {
+    "title": "Configuration du Stockage",
+    "description": "Configurez le fournisseur de stockage de fichiers utilise pour les pieces jointes et les telechargements.",
+    "provider": {
+      "label": "Fournisseur de Stockage",
+      "local": "Stockage Local",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compatible S3"
+    },
+    "fields": {
+      "bucketName": "Nom du Bucket",
+      "accessKeyId": "ID de Cle d'Acces",
+      "accessSecret": "Cle d'Acces Secrete",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "mon-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Entrez la nouvelle cle d'acces secrete",
+      "region": "us-east-1",
+      "endpoint": "https://s3.exemple.com"
+    },
+    "validation": {
+      "bucketRequired": "Le nom du bucket est obligatoire",
+      "accessKeyRequired": "L'ID de cle d'acces est obligatoire",
+      "regionRequired": "La region est obligatoire",
+      "endpointRequired": "L'endpoint est obligatoire pour les fournisseurs compatibles S3"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration de stockage enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration de stockage",
+      "loadError": "Echec du chargement de la configuration de stockage"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "testConnection": "Tester la Connexion",
+    "testing": "Test en cours...",
+    "testFailed": "Le test de connexion a echoue",
+    "testError": "Impossible d'executer le test de connexion"
+  },
+  "socialLogin": {
+    "title": "Configuration de Connexion Sociale",
+    "description": "Configurez les identifiants OAuth des fournisseurs de connexion sociale pour que les utilisateurs puissent se connecter avec Google ou Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID Client",
+        "clientSecret": "Secret Client",
+        "callbackUrl": "URL de Callback"
+      },
+      "placeholders": {
+        "clientId": "votre-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Entrez le nouveau secret client",
+        "callbackUrl": "https://votre-domaine.com/auth/google/callback"
+      },
+      "secretConfigured": "Configure",
+      "secretNotConfigured": "Non configure",
+      "clearSecret": "Effacer la valeur enregistree",
+      "saveSuccess": "Configuration Google OAuth enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Google OAuth"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID d'Application",
+        "appSecret": "Secret d'Application"
+      },
+      "placeholders": {
+        "appId": "votre-azure-application-id",
+        "appSecret": "Entrez le nouveau secret d'application"
+      },
+      "secretConfigured": "Configure",
+      "secretNotConfigured": "Non configure",
+      "clearSecret": "Effacer la valeur enregistree",
+      "saveSuccess": "Configuration Microsoft enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Microsoft"
+    },
+    "validation": {
+      "clientIdRequired": "L'ID client est obligatoire",
+      "callbackUrlInvalid": "L'URL de callback doit etre une URL valide",
+      "appIdRequired": "L'ID d'application est obligatoire"
+    },
+    "messages": {
+      "loadError": "Echec du chargement de la configuration de connexion sociale"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  },
+  "channels": {
+    "title": "Integrations de Canaux",
+    "description": "Configurez les identifiants pour les canaux de messagerie et integrations.",
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "facebook": {
+      "tabTitle": "Facebook",
+      "fields": {
+        "appId": "ID de l'App",
+        "verifyToken": "Token de Verification",
+        "appSecret": "Secret de l'App",
+        "apiVersion": "Version de l'API",
+        "humanAgent": "Activer l'Agent Humain",
+        "feedComments": "Activer les Commentaires du Fil"
+      },
+      "placeholders": {
+        "appId": "Votre Facebook App ID",
+        "verifyToken": "Entrez le token de verification",
+        "appSecret": "Entrez le nouveau secret de l'app",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuration Facebook enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Facebook"
+    },
+    "whatsapp": {
+      "tabTitle": "WhatsApp",
+      "fields": {
+        "appId": "ID de l'App",
+        "verifyToken": "Token de Verification",
+        "appSecret": "Secret de l'App",
+        "configId": "ID de Configuration WhatsApp",
+        "apiVersion": "Version de l'API"
+      },
+      "placeholders": {
+        "appId": "Votre WhatsApp App ID",
+        "verifyToken": "Entrez le token de verification",
+        "appSecret": "Entrez le nouveau secret de l'app",
+        "configId": "Votre WhatsApp Config ID",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuration WhatsApp enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration WhatsApp"
+    },
+    "instagram": {
+      "tabTitle": "Instagram",
+      "fields": {
+        "appId": "ID de l'App",
+        "appSecret": "Secret de l'App",
+        "verifyToken": "Token de Verification",
+        "apiVersion": "Version de l'API",
+        "humanAgent": "Activer l'Agent Humain"
+      },
+      "placeholders": {
+        "appId": "Votre Instagram App ID",
+        "appSecret": "Entrez le nouveau secret de l'app",
+        "verifyToken": "Entrez le token de verification",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuration Instagram enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Instagram"
+    },
+    "evolution": {
+      "tabTitle": "Evolution",
+      "fields": {
+        "apiUrl": "URL de l'API",
+        "adminSecret": "Secret Admin"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-api.exemple.com",
+        "adminSecret": "Entrez le nouveau secret admin"
+      },
+      "saveSuccess": "Configuration Evolution enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Evolution"
+    },
+    "evolutionGo": {
+      "tabTitle": "Evolution Go",
+      "fields": {
+        "apiUrl": "URL de l'API",
+        "adminSecret": "Secret Admin",
+        "instanceId": "ID d'Instance",
+        "instanceSecret": "Secret d'Instance"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-go.exemple.com",
+        "adminSecret": "Entrez le nouveau secret admin",
+        "instanceId": "Votre Evolution Go Instance ID",
+        "instanceSecret": "Entrez le nouveau secret d'instance"
+      },
+      "saveSuccess": "Configuration Evolution Go enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Evolution Go"
+    },
+    "twitter": {
+      "tabTitle": "Twitter",
+      "fields": {
+        "appId": "ID de l'App",
+        "consumerKey": "Cle Consommateur",
+        "consumerSecret": "Secret Consommateur",
+        "environment": "Environnement"
+      },
+      "placeholders": {
+        "appId": "Votre Twitter App ID",
+        "consumerKey": "Votre cle consommateur Twitter",
+        "consumerSecret": "Entrez le nouveau secret consommateur",
+        "environment": "production"
+      },
+      "saveSuccess": "Configuration Twitter enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Twitter"
+    },
+    "messages": {
+      "loadError": "Echec du chargement de la configuration des canaux"
+    }
+  },
+  "openai": {
+    "title": "Configuration OpenAI",
+    "description": "Configurez la connexion a l'API OpenAI et les modeles de prompts IA utilises pour les suggestions de reponse, les resumes et les transformations de texte.",
+    "connection": {
+      "cardTitle": "Parametres de Connexion",
+      "fields": {
+        "apiUrl": "URL de l'API",
+        "apiSecret": "Cle API",
+        "model": "Modele",
+        "audioTranscription": "Activer la Transcription Audio"
+      },
+      "placeholders": {
+        "apiUrl": "https://api.openai.com/v1",
+        "apiSecret": "Entrez la nouvelle cle API",
+        "model": "gpt-4o"
+      }
+    },
+    "prompts": {
+      "cardTitle": "Modeles de Prompts IA",
+      "fields": {
+        "OPENAI_PROMPT_REPLY": "Suggestion de Reponse",
+        "OPENAI_PROMPT_SUMMARY": "Resume de Conversation",
+        "OPENAI_PROMPT_REPHRASE": "Reformuler le Message",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Corriger la Grammaire",
+        "OPENAI_PROMPT_SHORTEN": "Raccourcir le Texte",
+        "OPENAI_PROMPT_EXPAND": "Developper le Texte",
+        "OPENAI_PROMPT_FRIENDLY": "Ton Amical",
+        "OPENAI_PROMPT_FORMAL": "Ton Formel",
+        "OPENAI_PROMPT_SIMPLIFY": "Simplifier le Texte"
+      },
+      "placeholders": {
+        "OPENAI_PROMPT_REPLY": "Entrez le prompt pour les suggestions de reponse...",
+        "OPENAI_PROMPT_SUMMARY": "Entrez le prompt pour les resumes de conversation...",
+        "OPENAI_PROMPT_REPHRASE": "Entrez le prompt pour reformuler les messages...",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Entrez le prompt pour les corrections grammaticales...",
+        "OPENAI_PROMPT_SHORTEN": "Entrez le prompt pour raccourcir le texte...",
+        "OPENAI_PROMPT_EXPAND": "Entrez le prompt pour developper le texte...",
+        "OPENAI_PROMPT_FRIENDLY": "Entrez le prompt pour un ton amical...",
+        "OPENAI_PROMPT_FORMAL": "Entrez le prompt pour un ton formel...",
+        "OPENAI_PROMPT_SIMPLIFY": "Entrez le prompt pour simplifier le texte..."
+      }
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration OpenAI enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration OpenAI",
+      "loadError": "Echec du chargement de la configuration OpenAI"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  },
+  "integrations": {
+    "title": "Configuration des Integrations",
+    "description": "Configurez les identifiants OAuth pour les integrations tierces telles que Linear, HubSpot, Shopify et Slack.",
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement...",
+    "linear": {
+      "cardTitle": "Linear",
+      "fields": { "clientId": "ID Client", "clientSecret": "Secret Client" },
+      "placeholders": { "clientId": "Votre Linear Client ID", "clientSecret": "Entrez le nouveau secret client" },
+      "saveSuccess": "Configuration Linear enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Linear"
+    },
+    "hubspot": {
+      "cardTitle": "HubSpot",
+      "fields": { "clientId": "ID Client", "clientSecret": "Secret Client" },
+      "placeholders": { "clientId": "Votre HubSpot Client ID", "clientSecret": "Entrez le nouveau secret client" },
+      "saveSuccess": "Configuration HubSpot enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration HubSpot"
+    },
+    "shopify": {
+      "cardTitle": "Shopify",
+      "fields": { "clientId": "ID Client", "clientSecret": "Secret Client" },
+      "placeholders": { "clientId": "Votre Shopify Client ID", "clientSecret": "Entrez le nouveau secret client" },
+      "saveSuccess": "Configuration Shopify enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Shopify"
+    },
+    "slack": {
+      "cardTitle": "Slack",
+      "fields": { "clientId": "ID Client", "clientSecret": "Secret Client" },
+      "placeholders": { "clientId": "Votre Slack Client ID", "clientSecret": "Entrez le nouveau secret client" },
+      "saveSuccess": "Configuration Slack enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration Slack"
+    },
+    "messages": {
+      "loadError": "Echec du chargement de la configuration des integrations"
+    }
+  },
+  "inboundEmail": {
+    "title": "Configuration E-mail Entrant",
+    "description": "Configurez le fournisseur de messagerie entrante et les identifiants utilises pour recevoir et traiter les e-mails entrants.",
+    "provider": {
+      "label": "Service d'E-mail Entrant",
+      "relay": "Relay (Exim / Postfix / Qmail)",
+      "mailgun": "Mailgun",
+      "mandrill": "Mandrill",
+      "sendgrid": "SendGrid"
+    },
+    "fields": {
+      "password": "Mot de passe d'ingestion",
+      "domain": "Domaine d'E-mail Entrant",
+      "mailgunSigningKey": "Cle de signature Mailgun",
+      "mandrillApiKey": "Cle API Mandrill"
+    },
+    "placeholders": {
+      "password": "Entrez le nouveau mot de passe d'ingestion",
+      "domain": "reply.example.com",
+      "mailgunSigningKey": "Entrez la nouvelle cle de signature Mailgun",
+      "mandrillApiKey": "Entrez la nouvelle cle API Mandrill"
+    },
+    "validation": {
+      "domainRequired": "Le domaine d'e-mail entrant est requis"
+    },
+    "secretConfigured": "Configure",
+    "secretNotConfigured": "Non configure",
+    "clearSecret": "Effacer la valeur enregistree",
+    "messages": {
+      "saveSuccess": "Configuration d'e-mail entrant enregistree avec succes",
+      "saveError": "Echec de l'enregistrement de la configuration d'e-mail entrant",
+      "loadError": "Echec du chargement de la configuration d'e-mail entrant"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  },
+  "frontendRuntime": {
+    "title": "Configuration Frontend Runtime",
+    "description": "Configurez les clés reCAPTCHA et Clarity chargées par le frontend au démarrage.",
+    "fields": {
+      "cardTitle": "Clés Runtime",
+      "recaptchaSiteKey": "Clé du Site reCAPTCHA",
+      "clarityProjectId": "ID du Projet Clarity"
+    },
+    "placeholders": {
+      "recaptchaSiteKey": "6Lc...",
+      "clarityProjectId": "abc123xyz"
+    },
+    "messages": {
+      "saveSuccess": "Configuration frontend runtime enregistrée avec succès",
+      "saveError": "Échec de l'enregistrement de la configuration frontend runtime",
+      "loadError": "Échec du chargement de la configuration frontend runtime"
+    },
+    "save": "Enregistrer la Configuration",
+    "saving": "Enregistrement..."
+  }
+}

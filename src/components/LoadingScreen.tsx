@@ -1,6 +1,5 @@
 import { Loader2 } from 'lucide-react';
 import { cn } from '@/utils/cn';
-import { useWhitelabelConfig } from '@/hooks/useWhitelabelConfig';
 
 import logo from '@/assets/EVO_CRM.png';
 
@@ -11,12 +10,7 @@ interface LoadingScreenProps {
 }
 
 const LoadingScreen = ({ fullScreen = false, showLogo = false, className }: LoadingScreenProps) => {
-  const { config: whitelabelConfig } = useWhitelabelConfig();
-
-  const displayLogo =
-    whitelabelConfig.enabled && whitelabelConfig.logo?.light
-      ? whitelabelConfig.logo.light
-      : logo;
+  const displayLogo = logo;
 
   return (
     <div

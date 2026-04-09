@@ -113,7 +113,7 @@ export default function BasePagination({
       className={cn(
         'min-w-9 disabled:opacity-50 disabled:cursor-not-allowed',
         isActive
-          ? 'bg-[var(--primary,#00ffa7)] border-[var(--primary,#00ffa7)] text-[var(--primary-foreground,#000000)] hover:bg-[color-mix(in_srgb,var(--primary,#00ffa7)_85%,black)]'
+          ? 'bg-primary border-primary text-primary-foreground hover:bg-primary/85'
           : 'bg-sidebar border-sidebar-border text-sidebar-foreground hover:bg-sidebar-accent'
       )}
     >

@@ -20,7 +20,6 @@ import {
   ScrollArea,
 } from '@evoapi/design-system';
 import { useLanguage } from '../../../hooks/useLanguage';
-import { useWhitelabelConfig } from '../../../hooks/useWhitelabelConfig';
 import NotificationBell from '../NotificationBell';
 import ProfileMenu from './ProfileMenu';
 import { TourFab } from '@/components/TourFab';
@@ -72,13 +71,9 @@ export default function Header({
   handleMenuClick,
 }: HeaderProps) {
   const { t } = useLanguage('layout');
-  const { config: whitelabelConfig } = useWhitelabelConfig();
   const [expandedMobileMenus, setExpandedMobileMenus] = useState<Set<string>>(new Set());
 
-  const displayLogo =
-    whitelabelConfig.enabled && whitelabelConfig.logo?.light
-      ? whitelabelConfig.logo.light
-      : logo;
+  const displayLogo = logo;
 
   return (
     <div className="flex-shrink-0 bg-sidebar border-b border-sidebar-border px-0 py-3 flex items-center shadow-sm">
