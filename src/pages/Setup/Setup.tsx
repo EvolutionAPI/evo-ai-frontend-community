@@ -90,7 +90,7 @@ const Setup: React.FC = () => {
     setError('');
 
     try {
-      await setupService.bootstrap(data);
+      const result = await setupService.bootstrap(data);
 
       clearSetupCache();
 
@@ -98,7 +98,12 @@ const Setup: React.FC = () => {
         description: t('success.description'),
       });
 
-      navigate('/login', { replace: true });
+      if (result.survey_token) {
+        sessionStorage.setItem('survey_token', result.survey_token);
+        navigate('/setup/onboarding', { replace: true });
+      } else {
+        navigate('/login', { replace: true });
+      }
     } catch (err: any) {
       const message =
         err?.response?.data?.error || err?.message || t('error.generic');

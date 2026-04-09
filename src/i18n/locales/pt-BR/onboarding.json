@@ -1,4 +1,47 @@
 {
+  "survey": {
+    "title": "Personalize sua experiência",
+    "subtitle": "Essas perguntas nos ajudam a configurar o sistema de acordo com a sua operação.",
+    "placeholder": "Selecionar...",
+    "progress": {
+      "of": "de"
+    },
+    "teamSize": {
+      "label": "Quantas pessoas fazem atendimento na sua equipe?",
+      "options": ["Só eu", "2 a 5 pessoas", "5 a 10 pessoas", "10 a 20 pessoas", "Mais de 20 pessoas"]
+    },
+    "dailyVolume": {
+      "label": "Quantos atendimentos vocês fazem por dia, em média?",
+      "options": ["Menos de 20", "20 a 100", "100 a 500", "Mais de 500"]
+    },
+    "channel": {
+      "label": "Qual é o seu principal canal de atendimento?",
+      "other": "Outro",
+      "otherPlaceholder": "Descreva o canal que você usa...",
+      "options": ["WhatsApp", "Instagram", "Facebook", "Telegram", "E-mail", "Chat do site", "SMS", "API", "Twitter / X", "LINE", "Outro"]
+    },
+    "ai": {
+      "label": "Você já usa inteligência artificial no atendimento?",
+      "options": ["Não uso ainda", "Uso chatbot básico", "Uso agente de IA", "Uso IA com integrações avançadas"]
+    },
+    "pain": {
+      "label": "Qual é a sua maior dor no atendimento hoje?",
+      "options": ["Tempo de resposta alto", "Atendimento desorganizado", "Falta de visibilidade da equipe", "Muitos canais sem integração", "Custo alto com suporte"]
+    },
+    "crm": {
+      "label": "Você já usou algum CRM ou sistema de atendimento?",
+      "options": ["Nunca usei", "Já usei, mas era difícil", "Tenho experiência com CRM", "Estou migrando de outro sistema"]
+    },
+    "goal": {
+      "label": "Qual é o seu principal objetivo com o Evo CRM?",
+      "options": ["Organizar o atendimento", "Automatizar com IA", "Escalar o time", "Centralizar os canais", "Acompanhar métricas"]
+    },
+    "submit": {
+      "idle": "Começar a usar o Evo CRM",
+      "loading": "Salvando..."
+    },
+    "footer": "Leva menos de 1 minuto · Você pode alterar depois nas configurações"
+  },
   "createAccount": {
     "title": "Bem-vindo!",
     "subtitle": "Para começar a usar o sistema, você precisa criar sua primeira organização.",
