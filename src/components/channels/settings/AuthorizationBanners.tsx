@@ -531,20 +531,20 @@ const AuthorizationSuccessBanner: React.FC<{
     isWhatsAppCloud;
 
   return (
-    <Card className="border-[var(--primary,#00ffa7)]/20 dark:border-[var(--primary,#00ffa7)]/30 bg-[var(--primary,#00ffa7)]/5 dark:bg-[var(--primary,#00ffa7)]/10">
+    <Card className="border-primary/20 dark:border-primary/30 bg-primary/5 dark:bg-primary/10">
       <CardContent className="p-4">
         <div className="flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-[var(--primary,#00ffa7)]" />
+          <CheckCircle className="w-5 h-5 text-primary" />
           <div className="flex-1">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 {getProviderIcon()}
-                <h3 className="font-semibold text-[var(--primary,#00ffa7)] dark:text-[var(--primary,#00ffa7)]">
+                <h3 className="font-semibold text-primary dark:text-primary">
                   {t('settings.authorizationBanners.success.connectedWith', { provider })}
                 </h3>
                 <Badge
                   variant="default"
-                  className="bg-[var(--primary,#00ffa7)] text-[var(--primary-foreground,#000000)] dark:text-[var(--primary-foreground,#000000)]"
+                  className="bg-primary text-primary-foreground dark:text-primary-foreground"
                 >
                   {t('settings.authorizationBanners.success.active')}
                 </Badge>
@@ -559,7 +559,7 @@ const AuthorizationSuccessBanner: React.FC<{
                   loading={isReconnecting}
                   size="sm"
                   variant="outline"
-                  className="border-[var(--primary,#00ffa7)]/30 text-[var(--primary,#00ffa7)] hover:bg-[var(--primary,#00ffa7)]/10"
+                  className="border-primary/30 text-primary hover:bg-primary/10"
                 >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   {t('settings.authorizationBanners.success.reconnect')}

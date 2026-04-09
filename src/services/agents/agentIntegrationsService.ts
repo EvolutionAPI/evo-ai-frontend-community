@@ -1,4 +1,4 @@
-import api from '@/services/core/api';
+import evoaiApi from '@/services/core/apiEvoAI';
 import { extractData } from '@/utils/apiHelpers';
 
 /**
@@ -18,7 +18,7 @@ class AgentIntegrationsService {
    * @returns Configurações de integrações e status de credenciais
    */
   async getAgentIntegrations(agentId: string): Promise<IntegrationsResponse> {
-    const response = await api.get(`/agents/${agentId}/integrations`);
+    const response = await evoaiApi.get(`/agents/${agentId}/integrations`);
     return extractData<IntegrationsResponse>(response);
   }
 }

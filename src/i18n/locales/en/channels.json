@@ -335,17 +335,17 @@
     },
     "collaborators": {
       "agents": {
-        "title": "Agents",
-        "description": "Manage agents who can handle conversations on this channel",
-        "selectedCount": "{{count}} agent selected",
-        "selectedCount_other": "{{count}} agents selected",
+        "title": "Attendants",
+        "description": "Manage attendants who can handle conversations on this channel",
+        "selectedCount": "{{count}} attendant selected",
+        "selectedCount_other": "{{count}} attendants selected",
         "total": "total",
-        "loading": "Loading agents...",
-        "noAgentsSelected": "No agents selected",
-        "allAgentsSelected": "All agents selected",
+        "loading": "Loading attendants...",
+        "noAgentsSelected": "No attendants selected",
+        "allAgentsSelected": "All attendants selected",
         "noAgents": {
-          "title": "No agents found",
-          "description": "There are no agents available at the moment. Please add agents first."
+          "title": "No attendants found",
+          "description": "There are no attendants available at the moment. Please add attendants first."
         },
         "buttons": {
           "selectFirst": "Select First",
@@ -355,7 +355,7 @@
           "updating": "Updating..."
         },
         "roles": {
-          "agent": "Agent",
+          "agent": "Attendant",
           "administrator": "Administrator"
         }
       },
@@ -373,16 +373,16 @@
       },
       "autoAssignment": {
         "title": "Auto Assignment",
-        "description": "Configure how conversations are automatically assigned to agents",
+        "description": "Configure how conversations are automatically assigned to attendants",
         "enable": {
           "label": "Enable auto assignment",
-          "description": "New conversations will be automatically assigned to available agents"
+          "description": "New conversations will be automatically assigned to available attendants"
         },
         "maxLimit": {
           "title": "Maximum Conversations Limit",
-          "label": "Maximum conversations per agent",
+          "label": "Maximum conversations per attendant",
           "placeholder": "Enter the maximum number",
-          "help": "Maximum number of conversations an agent can have simultaneously"
+          "help": "Maximum number of conversations an attendant can have simultaneously"
         },
         "buttons": {
           "updateLimit": "Update Limit",
@@ -390,10 +390,10 @@
         },
         "info": {
           "title": "Important Information:",
-          "point1": "Auto assignment distributes conversations among available agents",
-          "point2": "Considers each agent's current workload",
-          "point3": "Offline agents don't receive new conversations automatically",
-          "point4": "You can set maximum conversation limit per agent"
+          "point1": "Auto assignment distributes conversations among available attendants",
+          "point2": "Considers each attendant's current workload",
+          "point3": "Offline attendants don't receive new conversations automatically",
+          "point4": "You can set maximum conversation limit per attendant"
         },
         "success": {
           "updated": "Auto assignment updated successfully!",
@@ -409,13 +409,13 @@
       },
       "errors": {
         "loadError": "Error loading collaborators data",
-        "updateError": "Error updating agents"
+        "updateError": "Error updating attendants"
       },
       "success": {
         "updated": "Collaborators updated successfully!"
       },
       "validation": {
-        "selectAtLeastOne": "Select at least one agent"
+        "selectAtLeastOne": "Select at least one attendant"
       }
     },
     "businessHours": {
@@ -471,7 +471,7 @@
         "title": "Important Information:",
         "point1": "Hours are based on the selected timezone",
         "point2": "Messages received outside hours will receive auto-reply",
-        "point3": "Agents can still respond manually outside hours",
+        "point3": "Attendants can still respond manually outside hours",
         "point4": "Settings apply only to this channel"
       },
       "buttons": {
@@ -1118,7 +1118,7 @@
       },
       "continuityViaEmail": {
         "label": "Continuity via Email",
-        "description": "Continue conversation via email when agent is offline"
+        "description": "Continue conversation via email when attendant is offline"
       },
       "featureFlags": {
         "title": "Widget Features",
@@ -1146,7 +1146,7 @@
       "description": "Configure how messages will appear to customers",
       "friendly": {
         "title": "Friendly",
-        "description": "Messages appear with agent's first name",
+        "description": "Messages appear with attendant's first name",
         "format": "{{name}}"
       },
       "professional": {

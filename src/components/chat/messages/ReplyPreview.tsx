@@ -2,7 +2,6 @@ import React from 'react';
 import { Reply } from 'lucide-react';
 import { Message } from '@/types/chat/api';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getReplyPreviewOwnClasses, getReplyPreviewReceivedClasses } from '@/utils/whitelabelStyles';
 
 interface ReplyPreviewProps {
   message: Message;
@@ -48,8 +47,8 @@ const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
     <div
       className={`px-2 py-1.5 rounded-sm mb-2 cursor-pointer transition-colors hover:opacity-80 ${
         isOwn
-          ? getReplyPreviewOwnClasses()
-          : getReplyPreviewReceivedClasses()
+          ? 'bg-primary/20 dark:bg-primary/15 text-white dark:text-white/90 border-l-2 border-primary/40 dark:border-primary/50'
+          : 'bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-200 border-l-2 border-slate-300 dark:border-slate-600'
       }`}
       onClick={() => {
         // Scroll para mensagem original (implementar depois)

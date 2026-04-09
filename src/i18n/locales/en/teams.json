@@ -1,6 +1,6 @@
 {
   "title": "Teams",
-  "subtitle": "Organize your Agents in teams for better management and automatic assignment",
+  "subtitle": "Organize your Attendants in teams for better management and automatic assignment",
   "loading": "Loading teams...",
   "card": {
     "autoAssign": "Auto-assignment",
@@ -43,7 +43,7 @@
     "settings": {
       "title": "Team Settings",
       "autoAssignTitle": "Auto-assignment of conversations",
-      "autoAssignDescription": "Allows conversations to be automatically assigned to team members",
+      "autoAssignDescription": "Allows conversations to be automatically assigned to attendants",
       "enabled": "Enabled",
       "disabled": "Disabled",
       "editSettings": "Edit Settings"
@@ -70,7 +70,7 @@
     "configuration": "Settings",
     "autoAssign": {
       "label": "Auto-assignment of conversations",
-      "description": "Allows conversations to be automatically assigned to team members"
+      "description": "Allows conversations to be automatically assigned to attendants"
     },
     "actions": {
       "cancel": "Cancel",
@@ -131,7 +131,7 @@
   },
   "empty": {
     "title": "No team found",
-    "description": "Create your first team to organize your Agents.",
+    "description": "Create your first team to organize your Attendants.",
     "action": "New Team"
   },
   "addUsers": {

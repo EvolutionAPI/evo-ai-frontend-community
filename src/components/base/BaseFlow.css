@@ -103,12 +103,12 @@
 
 /* Edges styling */
 .react-flow__edge-path {
-  stroke: var(--primary, #00ffa7); /* Use primary color for edges */
+  stroke: var(--primary); /* Use primary color for edges */
   stroke-width: 2;
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
-  stroke: var(--primary, #00ffa7); /* Use primary color for selected edges */
+  stroke: var(--primary); /* Use primary color for selected edges */
   stroke-width: 3;
 }
 
@@ -117,14 +117,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--primary, #00ffa7);
-  border: 2px solid var(--primary, #00ffa7);
+  background-color: var(--primary);
+  border: 2px solid var(--primary);
   opacity: 0.8;
 }
 
 .react-flow__handle:hover {
-  background-color: var(--primary, #00ffa7);
-  border-color: var(--primary, #00ffa7);
+  background-color: var(--primary);
+  border-color: var(--primary);
   opacity: 1;
 }
 

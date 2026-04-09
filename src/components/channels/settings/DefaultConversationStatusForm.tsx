@@ -27,8 +27,8 @@ export default function DefaultConversationStatusForm({
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-3 pb-3 border-b border-border">
-        <div className="p-2 rounded-lg bg-[var(--primary,#00ffa7)]/5 dark:bg-[var(--primary,#00ffa7)]/10">
-          <MessageCircle className="w-5 h-5 text-[var(--primary,#00ffa7)]" />
+        <div className="p-2 rounded-lg bg-primary/5 dark:bg-primary/10">
+          <MessageCircle className="w-5 h-5 text-primary" />
         </div>
         <div>
           <h4 className="font-semibold text-foreground">{t('settings.defaultConversationStatus.title')}</h4>
@@ -65,10 +65,10 @@ export default function DefaultConversationStatusForm({
       </div>
 
       {/* Info Box */}
-      <div className="p-4 bg-[var(--primary,#00ffa7)]/5 dark:bg-[var(--primary,#00ffa7)]/10 border border-[var(--primary,#00ffa7)]/20 dark:border-[var(--primary,#00ffa7)]/30 rounded-lg">
+      <div className="p-4 bg-primary/5 dark:bg-primary/10 border border-primary/20 dark:border-primary/30 rounded-lg">
         <div className="flex gap-2">
           <div className="flex-shrink-0">
-            <svg className="w-5 h-5 text-[var(--primary,#00ffa7)]" fill="currentColor" viewBox="0 0 20 20">
+            <svg className="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
               <path
                 fillRule="evenodd"
                 d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"

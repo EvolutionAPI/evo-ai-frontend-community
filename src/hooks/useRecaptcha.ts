@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { recaptchaService } from '@/lib/recaptcha';
+import { useGlobalConfig } from '@/contexts/GlobalConfigContext';
 
 export interface UseRecaptchaOptions {
   autoLoad?: boolean;
@@ -16,12 +17,18 @@ export interface UseRecaptchaReturn {
 
 export function useRecaptcha(options: UseRecaptchaOptions = {}): UseRecaptchaReturn {
   const { autoLoad = true } = options;
+  const { recaptchaSiteKey } = useGlobalConfig();
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(recaptchaService.isEnabled());
   const [error, setError] = useState<string | null>(null);
 
-  const isEnabled = recaptchaService.isEnabled();
+  // Configure recaptcha service with backend API key (falls back to VITE_* env var)
+  useEffect(() => {
+    recaptchaService.configure(recaptchaSiteKey);
+    setIsEnabled(recaptchaService.isEnabled());
+  }, [recaptchaSiteKey]);
 
   const loadRecaptcha = useCallback(async () => {
     if (!isEnabled || isLoaded || isLoading) {

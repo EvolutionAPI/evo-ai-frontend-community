@@ -81,15 +81,13 @@ class AccountService {
       // Reutilizar o cache do GlobalConfigContext (evita chamada duplicada)
       const globalConfig = await fetchGlobalConfig();
 
-      const whitelabel = globalConfig.whitelabel;
-
       return {
         appVersion: import.meta.env.VITE_APP_VERSION || '3.0.0',
         gitSha: import.meta.env.VITE_GIT_SHA || 'unknown',
         isOnEvolutionCloud: globalConfig.hasEvolutionConfig === true || globalConfig.hasEvolutionGoConfig === true || false,
         deploymentEnv: import.meta.env.MODE || 'development',
-        brandName: whitelabel?.companyName || 'Evolution',
-        installationName: whitelabel?.systemName || 'Evolution',
+        brandName: 'Evolution',
+        installationName: 'Evolution',
       };
     } catch (error: any) {
       console.error('Erro ao buscar configuração global:', error);

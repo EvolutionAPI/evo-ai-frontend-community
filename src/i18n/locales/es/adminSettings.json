@@ -1,0 +1,422 @@
+{
+  "title": "Configuracion de Admin",
+  "navigation": {
+    "email": "Correo electronico",
+    "storage": "Almacenamiento",
+    "socialLogin": "Inicio de Sesion Social",
+    "channels": "Canales",
+    "openai": "OpenAI",
+    "integrations": "Integraciones",
+    "inboundEmail": "Correo Entrante",
+    "frontendRuntime": "Frontend Runtime"
+  },
+  "email": {
+    "title": "Configuracion de Correo Electronico",
+    "description": "Configure el proveedor de correo electronico y las credenciales utilizadas para enviar correos transaccionales.",
+    "provider": {
+      "label": "Proveedor de Correo",
+      "smtp": "SMTP",
+      "bms": "BMS",
+      "resend": "Resend"
+    },
+    "fields": {
+      "host": "Direccion del Servidor",
+      "port": "Puerto",
+      "username": "Usuario",
+      "password": "Contrasena",
+      "authentication": "Tipo de Autenticacion",
+      "domain": "Dominio",
+      "starttls": "Habilitar STARTTLS",
+      "sslVerifyMode": "Modo de Verificacion SSL",
+      "senderEmail": "Correo del Remitente",
+      "apiKey": "Clave de API",
+      "ipPool": "Pool de IP"
+    },
+    "placeholders": {
+      "host": "smtp.ejemplo.com",
+      "port": "587",
+      "username": "usuario@ejemplo.com",
+      "password": "Ingrese la nueva contrasena",
+      "domain": "ejemplo.com",
+      "senderEmail": "noreply@ejemplo.com",
+      "apiKey": "Ingrese la nueva clave de API",
+      "ipPool": "default"
+    },
+    "validation": {
+      "hostRequired": "La direccion del servidor es obligatoria",
+      "portMin": "El puerto debe ser al menos 1",
+      "portMax": "El puerto debe ser como maximo 65535",
+      "emailRequired": "Se requiere un correo de remitente valido"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de correo guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de correo",
+      "loadError": "Error al cargar la configuracion de correo"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "testConnection": "Probar Conexion",
+    "testing": "Probando...",
+    "testFailed": "La prueba de conexion fallo",
+    "testError": "Error al ejecutar la prueba de conexion"
+  },
+  "storage": {
+    "title": "Configuracion de Almacenamiento",
+    "description": "Configure el proveedor de almacenamiento de archivos utilizado para adjuntos y cargas.",
+    "provider": {
+      "label": "Proveedor de Almacenamiento",
+      "local": "Almacenamiento Local",
+      "amazon": "Amazon S3",
+      "s3Compatible": "Compatible con S3"
+    },
+    "fields": {
+      "bucketName": "Nombre del Bucket",
+      "accessKeyId": "ID de Clave de Acceso",
+      "accessSecret": "Clave de Acceso Secreta",
+      "region": "Region",
+      "endpoint": "Endpoint"
+    },
+    "placeholders": {
+      "bucketName": "mi-bucket",
+      "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+      "accessSecret": "Ingrese la nueva clave de acceso secreta",
+      "region": "us-east-1",
+      "endpoint": "https://s3.ejemplo.com"
+    },
+    "validation": {
+      "bucketRequired": "El nombre del bucket es obligatorio",
+      "accessKeyRequired": "El ID de clave de acceso es obligatorio",
+      "regionRequired": "La region es obligatoria",
+      "endpointRequired": "El endpoint es obligatorio para proveedores compatibles con S3"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de almacenamiento guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de almacenamiento",
+      "loadError": "Error al cargar la configuracion de almacenamiento"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "testConnection": "Probar Conexion",
+    "testing": "Probando...",
+    "testFailed": "La prueba de conexion fallo",
+    "testError": "Error al ejecutar la prueba de conexion"
+  },
+  "socialLogin": {
+    "title": "Configuracion de Inicio de Sesion Social",
+    "description": "Configure las credenciales OAuth de los proveedores de inicio de sesion social para que los usuarios puedan iniciar sesion con Google o Microsoft.",
+    "google": {
+      "cardTitle": "Google OAuth",
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente",
+        "callbackUrl": "URL de Callback"
+      },
+      "placeholders": {
+        "clientId": "su-google-client-id.apps.googleusercontent.com",
+        "clientSecret": "Ingrese el nuevo secreto de cliente",
+        "callbackUrl": "https://su-dominio.com/auth/google/callback"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "No configurado",
+      "clearSecret": "Borrar valor guardado",
+      "saveSuccess": "Configuracion de Google OAuth guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Google OAuth"
+    },
+    "microsoft": {
+      "cardTitle": "Microsoft / Azure",
+      "fields": {
+        "appId": "ID de Aplicacion",
+        "appSecret": "Secreto de Aplicacion"
+      },
+      "placeholders": {
+        "appId": "su-azure-application-id",
+        "appSecret": "Ingrese el nuevo secreto de aplicacion"
+      },
+      "secretConfigured": "Configurado",
+      "secretNotConfigured": "No configurado",
+      "clearSecret": "Borrar valor guardado",
+      "saveSuccess": "Configuracion de Microsoft guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Microsoft"
+    },
+    "validation": {
+      "clientIdRequired": "El ID de cliente es obligatorio",
+      "callbackUrlInvalid": "La URL de callback debe ser una URL valida",
+      "appIdRequired": "El ID de aplicacion es obligatorio"
+    },
+    "messages": {
+      "loadError": "Error al cargar la configuracion de inicio de sesion social"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando..."
+  },
+  "channels": {
+    "title": "Integraciones de Canales",
+    "description": "Configure las credenciales para los canales de mensajeria e integraciones.",
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "facebook": {
+      "tabTitle": "Facebook",
+      "fields": {
+        "appId": "ID de App",
+        "verifyToken": "Token de Verificacion",
+        "appSecret": "Secreto de App",
+        "apiVersion": "Version de API",
+        "humanAgent": "Habilitar Agente Humano",
+        "feedComments": "Habilitar Comentarios del Feed"
+      },
+      "placeholders": {
+        "appId": "Su Facebook App ID",
+        "verifyToken": "Ingrese el token de verificacion",
+        "appSecret": "Ingrese el nuevo secreto de app",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuracion de Facebook guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Facebook"
+    },
+    "whatsapp": {
+      "tabTitle": "WhatsApp",
+      "fields": {
+        "appId": "ID de App",
+        "verifyToken": "Token de Verificacion",
+        "appSecret": "Secreto de App",
+        "configId": "ID de Configuracion de WhatsApp",
+        "apiVersion": "Version de API"
+      },
+      "placeholders": {
+        "appId": "Su WhatsApp App ID",
+        "verifyToken": "Ingrese el token de verificacion",
+        "appSecret": "Ingrese el nuevo secreto de app",
+        "configId": "Su WhatsApp Config ID",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuracion de WhatsApp guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de WhatsApp"
+    },
+    "instagram": {
+      "tabTitle": "Instagram",
+      "fields": {
+        "appId": "ID de App",
+        "appSecret": "Secreto de App",
+        "verifyToken": "Token de Verificacion",
+        "apiVersion": "Version de API",
+        "humanAgent": "Habilitar Agente Humano"
+      },
+      "placeholders": {
+        "appId": "Su Instagram App ID",
+        "appSecret": "Ingrese el nuevo secreto de app",
+        "verifyToken": "Ingrese el token de verificacion",
+        "apiVersion": "v18.0"
+      },
+      "saveSuccess": "Configuracion de Instagram guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Instagram"
+    },
+    "evolution": {
+      "tabTitle": "Evolution",
+      "fields": {
+        "apiUrl": "URL de API",
+        "adminSecret": "Secreto de Admin"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-api.ejemplo.com",
+        "adminSecret": "Ingrese el nuevo secreto de admin"
+      },
+      "saveSuccess": "Configuracion de Evolution guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Evolution"
+    },
+    "evolutionGo": {
+      "tabTitle": "Evolution Go",
+      "fields": {
+        "apiUrl": "URL de API",
+        "adminSecret": "Secreto de Admin",
+        "instanceId": "ID de Instancia",
+        "instanceSecret": "Secreto de Instancia"
+      },
+      "placeholders": {
+        "apiUrl": "https://evolution-go.ejemplo.com",
+        "adminSecret": "Ingrese el nuevo secreto de admin",
+        "instanceId": "Su Evolution Go Instance ID",
+        "instanceSecret": "Ingrese el nuevo secreto de instancia"
+      },
+      "saveSuccess": "Configuracion de Evolution Go guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Evolution Go"
+    },
+    "twitter": {
+      "tabTitle": "Twitter",
+      "fields": {
+        "appId": "ID de App",
+        "consumerKey": "Clave de Consumidor",
+        "consumerSecret": "Secreto de Consumidor",
+        "environment": "Entorno"
+      },
+      "placeholders": {
+        "appId": "Su Twitter App ID",
+        "consumerKey": "Su clave de consumidor Twitter",
+        "consumerSecret": "Ingrese el nuevo secreto de consumidor",
+        "environment": "production"
+      },
+      "saveSuccess": "Configuracion de Twitter guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Twitter"
+    },
+    "messages": {
+      "loadError": "Error al cargar la configuracion de canales"
+    }
+  },
+  "openai": {
+    "title": "Configuracion de OpenAI",
+    "description": "Configure la conexion con la API de OpenAI y las plantillas de prompts de IA usadas para sugerencias de respuesta, resumenes y transformaciones de texto.",
+    "connection": {
+      "cardTitle": "Configuracion de Conexion",
+      "fields": {
+        "apiUrl": "URL de la API",
+        "apiSecret": "Clave de API",
+        "model": "Modelo",
+        "audioTranscription": "Habilitar Transcripcion de Audio"
+      },
+      "placeholders": {
+        "apiUrl": "https://api.openai.com/v1",
+        "apiSecret": "Ingrese la nueva clave de API",
+        "model": "gpt-4o"
+      }
+    },
+    "prompts": {
+      "cardTitle": "Plantillas de Prompts de IA",
+      "fields": {
+        "OPENAI_PROMPT_REPLY": "Sugerencia de Respuesta",
+        "OPENAI_PROMPT_SUMMARY": "Resumen de Conversacion",
+        "OPENAI_PROMPT_REPHRASE": "Reformular Mensaje",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Corregir Gramatica",
+        "OPENAI_PROMPT_SHORTEN": "Acortar Texto",
+        "OPENAI_PROMPT_EXPAND": "Expandir Texto",
+        "OPENAI_PROMPT_FRIENDLY": "Tono Amigable",
+        "OPENAI_PROMPT_FORMAL": "Tono Formal",
+        "OPENAI_PROMPT_SIMPLIFY": "Simplificar Texto"
+      },
+      "placeholders": {
+        "OPENAI_PROMPT_REPLY": "Ingrese el prompt para sugerencias de respuesta...",
+        "OPENAI_PROMPT_SUMMARY": "Ingrese el prompt para resumenes de conversacion...",
+        "OPENAI_PROMPT_REPHRASE": "Ingrese el prompt para reformular mensajes...",
+        "OPENAI_PROMPT_FIX_GRAMMAR": "Ingrese el prompt para correcciones gramaticales...",
+        "OPENAI_PROMPT_SHORTEN": "Ingrese el prompt para acortar texto...",
+        "OPENAI_PROMPT_EXPAND": "Ingrese el prompt para expandir texto...",
+        "OPENAI_PROMPT_FRIENDLY": "Ingrese el prompt para tono amigable...",
+        "OPENAI_PROMPT_FORMAL": "Ingrese el prompt para tono formal...",
+        "OPENAI_PROMPT_SIMPLIFY": "Ingrese el prompt para simplificar texto..."
+      }
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de OpenAI guardada con exito",
+      "saveError": "Error al guardar la configuracion de OpenAI",
+      "loadError": "Error al cargar la configuracion de OpenAI"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando..."
+  },
+  "integrations": {
+    "title": "Configuracion de Integraciones",
+    "description": "Configure credenciales OAuth para integraciones de terceros como Linear, HubSpot, Shopify y Slack.",
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "save": "Guardar Configuracion",
+    "saving": "Guardando...",
+    "linear": {
+      "cardTitle": "Linear",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Linear Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Linear guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Linear"
+    },
+    "hubspot": {
+      "cardTitle": "HubSpot",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su HubSpot Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de HubSpot guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de HubSpot"
+    },
+    "shopify": {
+      "cardTitle": "Shopify",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Shopify Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Shopify guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Shopify"
+    },
+    "slack": {
+      "cardTitle": "Slack",
+      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
+      "placeholders": { "clientId": "Su Slack Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "saveSuccess": "Configuracion de Slack guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de Slack"
+    },
+    "messages": {
+      "loadError": "Error al cargar la configuracion de integraciones"
+    }
+  },
+  "inboundEmail": {
+    "title": "Configuracion de Correo Entrante",
+    "description": "Configure el proveedor de correo entrante y las credenciales utilizadas para recibir y procesar correos electronicos entrantes.",
+    "provider": {
+      "label": "Servicio de Correo Entrante",
+      "relay": "Relay (Exim / Postfix / Qmail)",
+      "mailgun": "Mailgun",
+      "mandrill": "Mandrill",
+      "sendgrid": "SendGrid"
+    },
+    "fields": {
+      "password": "Contrasena de Ingreso",
+      "domain": "Dominio de Correo Entrante",
+      "mailgunSigningKey": "Clave de Firma Mailgun",
+      "mandrillApiKey": "Clave de API Mandrill"
+    },
+    "placeholders": {
+      "password": "Ingrese la nueva contrasena de ingreso",
+      "domain": "reply.example.com",
+      "mailgunSigningKey": "Ingrese la nueva clave de firma Mailgun",
+      "mandrillApiKey": "Ingrese la nueva clave de API Mandrill"
+    },
+    "validation": {
+      "domainRequired": "El dominio de correo entrante es obligatorio"
+    },
+    "secretConfigured": "Configurado",
+    "secretNotConfigured": "No configurado",
+    "clearSecret": "Borrar valor guardado",
+    "messages": {
+      "saveSuccess": "Configuracion de correo entrante guardada exitosamente",
+      "saveError": "Error al guardar la configuracion de correo entrante",
+      "loadError": "Error al cargar la configuracion de correo entrante"
+    },
+    "save": "Guardar Configuracion",
+    "saving": "Guardando..."
+  },
+  "frontendRuntime": {
+    "title": "Configuración Frontend Runtime",
+    "description": "Configure las claves de reCAPTCHA y Clarity que el frontend carga en tiempo de ejecución.",
+    "fields": {
+      "cardTitle": "Claves Runtime",
+      "recaptchaSiteKey": "Clave del Sitio reCAPTCHA",
+      "clarityProjectId": "ID del Proyecto Clarity"
+    },
+    "placeholders": {
+      "recaptchaSiteKey": "6Lc...",
+      "clarityProjectId": "abc123xyz"
+    },
+    "messages": {
+      "saveSuccess": "Configuración de frontend runtime guardada exitosamente",
+      "saveError": "Error al guardar la configuración de frontend runtime",
+      "loadError": "Error al cargar la configuración de frontend runtime"
+    },
+    "save": "Guardar Configuración",
+    "saving": "Guardando..."
+  }
+}

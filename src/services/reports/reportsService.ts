@@ -21,7 +21,7 @@ import {
 class ReportsService {
   // Get conversation metrics (overview stats) - Using live_reports API v2
   async getConversationMetrics(params: ConversationMetricsParams = {}): Promise<ConversationMetric> {
-    const response = await api.get(`/api/v2/accounts/current/live_reports/conversation_metrics`, {
+    const response = await api.get(`/api/v2/live_reports/conversation_metrics`, {
       params,
     });
     return extractData<any>(response);
@@ -45,7 +45,7 @@ class ReportsService {
   // Get grouped conversation metrics (agents/teams)
   async getGroupedConversations(groupBy: 'assignee_id' | 'team_id' = 'assignee_id'): Promise<GroupedConversationResponse> {
     const [groupedResponse, agentsResponse] = await Promise.all([
-      api.get(`/api/v2/accounts/current/live_reports/grouped_conversation_metrics`, {
+      api.get(`/api/v2/live_reports/grouped_conversation_metrics`, {
         params: { group_by: groupBy },
       }),
       api.get(`/users`) // Get agents list to merge data
@@ -108,7 +108,7 @@ class ReportsService {
       const toUnix = Math.floor(to.getTime() / 1000);
       const fromUnix = Math.floor(from.getTime() / 1000);
 
-      const response = await api.get(`/api/v2/accounts/current/reports`, {
+      const response = await api.get(`/api/v2/reports`, {
         params: {
           metric: 'conversations_count',
           since: fromUnix,
@@ -207,7 +207,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports/summary`, {
+      const response = await api.get(`/api/v2/reports/summary`, {
         params: {
           since: from,
           until: to,
@@ -236,7 +236,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports`, {
+      const response = await api.get(`/api/v2/reports`, {
         params: {
           metric,
           since: from,
@@ -262,7 +262,7 @@ class ExtendedReportsService extends ReportsService {
     businessHours: boolean = false
   ): Promise<AgentSummaryReport[]> {
     try {
-      const response = await api.get(`/api/v2/accounts/current/summary_reports/agent`, {
+      const response = await api.get(`/api/v2/summary_reports/agent`, {
         params: {
           since: from,
           until: to,
@@ -289,7 +289,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports`, {
+      const response = await api.get(`/api/v2/reports`, {
         params: {
           metric,
           since: from,
@@ -320,7 +320,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports/summary`, {
+      const response = await api.get(`/api/v2/reports/summary`, {
         params: {
           since: from,
           until: to,
@@ -346,7 +346,7 @@ class ExtendedReportsService extends ReportsService {
     businessHours: boolean = false
   ): Promise<LabelSummaryReport[]> {
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports/labels`, {
+      const response = await api.get(`/api/v2/reports/labels`, {
         params: {
           since: from,
           until: to,
@@ -373,7 +373,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports`, {
+      const response = await api.get(`/api/v2/reports`, {
         params: {
           metric,
           since: from,
@@ -404,7 +404,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports/summary`, {
+      const response = await api.get(`/api/v2/reports/summary`, {
         params: {
           since: from,
           until: to,
@@ -433,7 +433,7 @@ class ExtendedReportsService extends ReportsService {
     const getTimeOffset = () => -new Date().getTimezoneOffset() / 60;
 
     try {
-      const response = await api.get(`/api/v2/accounts/current/reports.csv`, {
+      const response = await api.get(`/api/v2/reports/conversation_traffic`, {
         params: {
           since: from,
           until: to,

@@ -68,6 +68,20 @@ import DashboardAppPage from '../pages/Customer/DashboardApp';
 // import { Overview, Conversations } from '../pages/Customer/Reports';
 // import * as Reports from '../pages/Customer/Reports';
 
+// Páginas admin
+import AdminSettingsLayout from '@/pages/Admin/Settings';
+const SmtpConfig = React.lazy(() => import('@/pages/Admin/Settings/SmtpConfig'));
+const StorageConfig = React.lazy(() => import('@/pages/Admin/Settings/StorageConfig'));
+const SocialLoginConfig = React.lazy(() => import('@/pages/Admin/Settings/SocialLoginConfig'));
+const ChannelConfig = React.lazy(() => import('@/pages/Admin/Settings/ChannelConfig'));
+const OpenAIConfig = React.lazy(() => import('@/pages/Admin/Settings/OpenAIConfig'));
+const IntegrationsConfig = React.lazy(() => import('@/pages/Admin/Settings/IntegrationsConfig'));
+const InboundEmailConfig = React.lazy(() => import('@/pages/Admin/Settings/InboundEmailConfig'));
+const FrontendRuntimeConfig = React.lazy(() => import('@/pages/Admin/Settings/FrontendRuntimeConfig'));
+
+// Página de tutoriais
+import Tutorials from '@/pages/Customer/Tutorials';
+
 // Páginas compartilhadas
 import Documentation from '@/pages/Shared/Documentation';
 import Marketplace from '@/pages/Shared/Marketplace';
@@ -1099,8 +1113,103 @@ const AppRouter = () => {
 
           <Route path="/conversations/:conversationId" element={ChatRouteElement} />
 
+          {/* Tutoriais */}
+          <Route
+            path="/tutorials"
+            element={
+              <PrivateRoute>
+                <CustomerRoute>
+                  <MainLayout>
+                    <Tutorials />
+                  </MainLayout>
+                </CustomerRoute>
+              </PrivateRoute>
+            }
+          />
+
           {/* Rotas específicas de canais foram integradas no fluxo unificado do NewChannel */}
           {/* Meta e WhatsApp Cloud agora são parte do componente NewChannel */}
+
+          {/* Admin Settings Routes */}
+          <Route
+            path="/settings/admin"
+            element={
+              <PrivateRoute>
+                <CustomerRoute>
+                  <MainLayout>
+                    <PermissionRoute resource="installation_configs" action="manage">
+                      <AdminSettingsLayout />
+                    </PermissionRoute>
+                  </MainLayout>
+                </CustomerRoute>
+              </PrivateRoute>
+            }
+          >
+            <Route
+              path="email"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <SmtpConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="storage"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <StorageConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="social-login"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <SocialLoginConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="channels"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <ChannelConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="openai"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <OpenAIConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="integrations"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <IntegrationsConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="inbound-email"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <InboundEmailConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="frontend-runtime"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <FrontendRuntimeConfig />
+                </Suspense>
+              }
+            />
+          </Route>
 
           {/* Rotas Compartilhadas */}
           <Route

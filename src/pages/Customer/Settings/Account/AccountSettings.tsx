@@ -18,7 +18,7 @@ import BaseHeader from '@/components/base/BaseHeader';
 import { accountService } from '@/services/account/accountService';
 import type { Account, FormDataOptions } from '@/types/settings';
 import { Copy } from 'lucide-react';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 import { SettingsTour } from '@/tours';
 
 // Componente para seção
@@ -380,7 +380,7 @@ export default function AccountSettings() {
               )}
 
               <div>
-                <Button type="submit" disabled={saving} className={getPrimaryButtonClasses()}>
+                <Button type="submit" disabled={saving} className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold">
                   {saving ? t('buttons.saving') : t('buttons.save')}
                 </Button>
               </div>
@@ -483,7 +483,7 @@ export default function AccountSettings() {
                   <Button
                     onClick={handleAutoResolveSubmit}
                     disabled={saving}
-                    className={getPrimaryButtonClasses()}
+                    className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold"
                   >
                     {saving ? t('buttons.saving') : t('buttons.updateAutoResolve')}
                   </Button>

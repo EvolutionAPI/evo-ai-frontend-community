@@ -19,7 +19,7 @@ import useRoles from '@/hooks/useRoles';
 import type { User, UserFormData, UserUpdateData } from '@/types/users';
 import { Loader2 } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getPrimaryButtonClasses } from '@/utils/whitelabelStyles';
+
 
 interface UserFormModalProps {
   isOpen: boolean;
@@ -302,7 +302,7 @@ export default function UserFormModal({ isOpen, onClose, user, onSuccess }: User
             >
               {t('form.actions.cancel')}
             </Button>
-            <Button type="submit" disabled={loading} className={getPrimaryButtonClasses()}>
+            <Button type="submit" disabled={loading} className="bg-primary hover:bg-primary/85 text-primary-foreground border-0 font-semibold">
               {loading ? (
                 <>
                   <Loader2 className="h-4 w-4 mr-2 animate-spin" />
