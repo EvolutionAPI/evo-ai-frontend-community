@@ -12,6 +12,8 @@ interface RouterGuardProps {
 
 const SPECIAL_ROUTES = {
   PUBLIC_ROUTES: ['/auth', '/login', '/register', '/widget', '/setup'],
+  // Routes that bypass the "redirect authenticated users to /conversations" rule
+  AUTH_EXEMPT_ROUTES: ['/setup/onboarding'],
 };
 
 const RouterGuard: React.FC<RouterGuardProps> = ({ children }) => {
@@ -62,7 +64,11 @@ const RouterGuard: React.FC<RouterGuardProps> = ({ children }) => {
         // If user is already authenticated and trying to access auth pages, redirect
         // EXCEPT when there are OAuth parameters (oauth_url or return_to) or accessing widget
         // IMPORTANT: Only redirect if user is fully loaded to avoid loops
-        if (isAuthenticated && user && location.pathname !== '/widget' && !isLoading) {
+        const isAuthExemptRoute = SPECIAL_ROUTES.AUTH_EXEMPT_ROUTES.some(route =>
+          location.pathname.startsWith(route)
+        );
+
+        if (isAuthenticated && user && location.pathname !== '/widget' && !isLoading && !isAuthExemptRoute) {
           const urlParams = new URLSearchParams(location.search);
           const hasOAuthParams = urlParams.has('oauth_url') || urlParams.has('return_to');
 
@@ -92,6 +98,7 @@ const RouterGuard: React.FC<RouterGuardProps> = ({ children }) => {
           markBootstrapPhaseEnd('router-guard', { stage: 'waiting_permissions', path: location.pathname });
           return;
         }
+
       }
     };
 

@@ -24,6 +24,7 @@ export function TourFab() {
           size="icon"
           onClick={() => tourRegistry.start(matchedRoute)}
           aria-label={t('viewPageTour')}
+          data-tour="nav-tour-icon"
           className="h-10 w-10 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground cursor-pointer"
         >
           <CircleHelp className="h-5 w-5" />

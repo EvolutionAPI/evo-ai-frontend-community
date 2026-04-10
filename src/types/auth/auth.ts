@@ -122,6 +122,7 @@ export interface UserResponse {
   unconfirmed_email?: string | null;
   created_at?: string;
   custom_attributes?: Record<string, unknown>;
+  setup_survey_completed?: boolean;
   [key: string]: unknown;
 }
 
