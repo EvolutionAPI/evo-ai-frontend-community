@@ -89,6 +89,7 @@ import Profile from '@/pages/Shared/Profile';
 
 // Página de setup inicial
 import Setup from '@/pages/Setup/Setup';
+import OnboardingPage from '@/pages/Setup/OnboardingPage';
 
 // Outras páginas
 import NotFound from '@/pages/NotFound';
@@ -362,6 +363,7 @@ const AppRouter = () => {
 
           {/* Rota de Setup Inicial */}
           <Route path="/setup" element={<Setup />} />
+          <Route path="/setup/onboarding" element={<OnboardingPage />} />
 
           <Route
             path="/contacts"

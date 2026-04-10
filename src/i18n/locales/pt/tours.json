@@ -6,6 +6,10 @@
     "skipButton": "Prefiro explorar por conta própria"
   },
   "viewPageTour": "Ver tour desta página",
+  "soloHint": {
+    "title": "Precisa de ajuda?",
+    "content": "Se tiver dúvidas, clique aqui para iniciar a visita guiada a qualquer momento."
+  },
   "stepOf": "{{current}} de {{total}}",
   "next": "Seguinte",
   "back": "Anterior",

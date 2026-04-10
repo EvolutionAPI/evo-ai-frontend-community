@@ -12,6 +12,7 @@ export function WelcomeTourModal() {
   const { t } = useTranslation('tours');
   const tours = useAuthStore(state => state.tours);
   const markTourCompleted = useAuthStore(state => state.markTourCompleted);
+  const markTourSkipped = useAuthStore(state => state.markTourSkipped);
 
   const [pendingTour, setPendingTour] = useState(false);
   const navigate = useNavigate();
@@ -38,10 +39,12 @@ export function WelcomeTourModal() {
   if (dismissed) return null;
 
   const handleDismiss = () => {
+    markTourSkipped('onboarding:preference');
     markTourCompleted('onboarding:welcome');
   };
 
   const handleStartTour = () => {
+    markTourCompleted('onboarding:preference');
     markTourCompleted('onboarding:welcome');
     navigate(TOUR_ROUTE);
     setPendingTour(true);

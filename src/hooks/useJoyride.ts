@@ -64,12 +64,15 @@ export function useJoyride({ tourKey, steps, autoStart = true }: UseJoyrideOptio
     return unsubscribe;
   }, [on, tourKey, markTourCompleted, markTourSkipped]);
 
-  // Auto-start on first visit (only after welcome modal has been dismissed)
+  // Auto-start on first visit (only after welcome modal has been dismissed and user chose guided tour)
   useEffect(() => {
     if (!autoStart) return;
 
     const welcomeSeen = tours['onboarding:welcome'];
     if (!welcomeSeen) return;
+
+    // Only auto-start tours if the user opted into the guided tour
+    if (tours['onboarding:preference'] !== 'completed') return;
 
     const seen = tours[tourKey];
     if (!seen) {

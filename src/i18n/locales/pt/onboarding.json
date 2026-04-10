@@ -1,4 +1,47 @@
 {
+  "survey": {
+    "title": "Personalize a sua experiência",
+    "subtitle": "Estas perguntas ajudam-nos a configurar o sistema de acordo com a sua operação.",
+    "placeholder": "Selecionar...",
+    "progress": {
+      "of": "de"
+    },
+    "teamSize": {
+      "label": "Quantas pessoas fazem atendimento na sua equipa?",
+      "options": ["Só eu", "2 a 5 pessoas", "5 a 10 pessoas", "10 a 20 pessoas", "Mais de 20 pessoas"]
+    },
+    "dailyVolume": {
+      "label": "Quantos atendimentos fazem por dia, em média?",
+      "options": ["Menos de 20", "20 a 100", "100 a 500", "Mais de 500"]
+    },
+    "channel": {
+      "label": "Qual é o seu principal canal de atendimento?",
+      "other": "Outro",
+      "otherPlaceholder": "Descreva o canal que utiliza...",
+      "options": ["WhatsApp", "Instagram", "Facebook", "Telegram", "E-mail", "Chat do site", "SMS", "API", "Twitter / X", "LINE", "Outro"]
+    },
+    "ai": {
+      "label": "Já utiliza inteligência artificial no atendimento?",
+      "options": ["Ainda não utilizo", "Utilizo chatbot básico", "Utilizo agente de IA", "Utilizo IA com integrações avançadas"]
+    },
+    "pain": {
+      "label": "Qual é o seu maior problema no atendimento hoje?",
+      "options": ["Tempo de resposta elevado", "Atendimento desorganizado", "Falta de visibilidade da equipa", "Muitos canais sem integração", "Custo elevado com suporte"]
+    },
+    "crm": {
+      "label": "Já utilizou algum CRM ou sistema de atendimento?",
+      "options": ["Nunca utilizei", "Já utilizei, mas era difícil", "Tenho experiência com CRM", "Estou a migrar de outro sistema"]
+    },
+    "goal": {
+      "label": "Qual é o seu principal objetivo com o Evo CRM?",
+      "options": ["Organizar o atendimento", "Automatizar com IA", "Escalar a equipa", "Centralizar os canais", "Acompanhar métricas"]
+    },
+    "submit": {
+      "idle": "Começar a usar o Evo CRM",
+      "loading": "A guardar..."
+    },
+    "footer": "Demora menos de 1 minuto · Pode alterar nas configurações mais tarde"
+  },
   "createAccount": {
     "title": "Bem-vindo!",
     "subtitle": "Para começar a usar o sistema, você precisa criar sua primeira organização.",
