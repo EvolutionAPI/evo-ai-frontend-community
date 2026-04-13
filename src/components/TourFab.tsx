@@ -4,6 +4,7 @@ import { CircleHelp } from 'lucide-react';
 import { Button, Tooltip, TooltipContent, TooltipTrigger } from '@evoapi/design-system';
 import { tourRegistry, matchTourRoute } from '@/tours/tourRegistry';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useAuthStore } from '@/store/authStore';
 
 export function TourFab() {
   const { t } = useTranslation('tours');
@@ -12,9 +13,13 @@ export function TourFab() {
     tourRegistry.getSnapshot,
   );
   const { pathname } = useLocation();
+  const tours = useAuthStore(state => state.tours);
   const matchedRoute = matchTourRoute(pathname, snapshot);
 
   if (!matchedRoute) return null;
+
+  const tourKey = matchedRoute.slice(1);
+  const tourSeen = tours[tourKey] === 'completed' || tours[tourKey] === 'skipped';
 
   return (
     <Tooltip>
@@ -30,9 +35,11 @@ export function TourFab() {
           <CircleHelp className="h-5 w-5" />
         </Button>
       </TooltipTrigger>
-      <TooltipContent>
-        <p>{t('viewPageTour')}</p>
-      </TooltipContent>
+      {tourSeen && (
+        <TooltipContent>
+          <p>{t('viewPageTour')}</p>
+        </TooltipContent>
+      )}
     </Tooltip>
   );
 }

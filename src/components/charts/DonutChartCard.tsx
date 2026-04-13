@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, Badge } from '@evoapi/design-system';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { LucideIcon } from 'lucide-react';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface DonutChartData {
   name: string;
@@ -19,6 +20,10 @@ interface DonutChartCardProps {
   showLegend?: boolean;
   centerLabel?: string;
   centerValue?: string;
+  tooltip?: {
+    title: string;
+    content: string;
+  };
 }
 
 const DonutChartCard = ({
@@ -31,6 +36,7 @@ const DonutChartCard = ({
   showLegend = true,
   centerLabel,
   centerValue,
+  tooltip,
 }: DonutChartCardProps) => {
   const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
@@ -80,6 +86,7 @@ const DonutChartCard = ({
             </div>
           )}
           {title}
+          {tooltip && <TooltipInfo title={tooltip.title} content={tooltip.content} />}
         </CardTitle>
         {description && (
           <CardDescription className="mt-1">{description}</CardDescription>

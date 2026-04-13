@@ -3,6 +3,8 @@ import { Badge, Card, CardContent, CardHeader, CardTitle } from '@evoapi/design-
 import { AreaChartCard, BarChartCard, DonutChartCard } from '@/components/charts';
 import type { CustomerDashboardResponse } from '@/types/analytics/dashboard';
 import { formatCurrency } from './dashboardUtils';
+import { useTranslation } from '@/hooks/useTranslation';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface DashboardTrendsSectionProps {
   data: CustomerDashboardResponse;
@@ -11,6 +13,7 @@ interface DashboardTrendsSectionProps {
 }
 
 const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSectionProps) => {
+  const { t: tTours } = useTranslation('tours');
   const tx = (key: string, fallback: string) => {
     const value = t(key);
     return value === key ? fallback : value;
@@ -45,6 +48,7 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
             gradientFrom="#22c55e"
             gradientTo="#10b981"
             valueFormatter={value => value.toFixed(0)}
+            tooltip={{ title: tTours('dashboard.step9.title'), content: tTours('dashboard.step9.content') }}
           />
         </div>
 
@@ -59,6 +63,7 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
             gradientTo="#8b5cf6"
             valueFormatter={value => `${Math.round(value)}s`}
             highlightMax
+            tooltip={{ title: tTours('dashboard.step10.title'), content: tTours('dashboard.step10.content') }}
           />
         </div>
       </div>
@@ -74,12 +79,16 @@ const DashboardTrendsSection = ({ data, t, channelShareData }: DashboardTrendsSe
             gradientTo="#8b5cf6"
             centerLabel={tx('dashboard.charts.channelsLabel', 'Canais')}
             centerValue={tx('dashboard.charts.shareLabel', 'Participação')}
+            tooltip={{ title: tTours('dashboard.step11.title'), content: tTours('dashboard.step11.content') }}
           />
         </div>
 
         <Card data-tour="dashboard-channel-insights">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">{tx('dashboard.channels.insights', 'Insights de canais')}</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2">
+              {tx('dashboard.channels.insights', 'Insights de canais')}
+              <TooltipInfo title={tTours('dashboard.step12.title')} content={tTours('dashboard.step12.content')} />
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="rounded-md border p-3 bg-muted/10 flex items-center justify-between gap-3">

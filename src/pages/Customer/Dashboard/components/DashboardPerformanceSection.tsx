@@ -3,6 +3,8 @@ import { Bot, Layers, TrendingUp, Users } from 'lucide-react';
 import { OperationHeatmapCard } from '@/components/charts';
 import type { CustomerDashboardResponse } from '@/types/analytics/dashboard';
 import { formatCurrency, formatSeconds } from './dashboardUtils';
+import { useTranslation } from '@/hooks/useTranslation';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface DashboardPerformanceSectionProps {
   data: CustomerDashboardResponse;
@@ -10,6 +12,7 @@ interface DashboardPerformanceSectionProps {
 }
 
 const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionProps) => {
+  const { t: tTours } = useTranslation('tours');
   const tx = (key: string, fallback: string) => {
     const value = t(key);
     return value === key ? fallback : value;
@@ -35,6 +38,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
         description={t('dashboard.charts.heatmapDescription') || 'Volume de conversas por dia da semana e hora'}
         data={data.trends.operation_heatmap}
         peakDayInPeriod={data.trends.peak_day_in_period}
+        tooltip={{ title: tTours('dashboard.step13.title'), content: tTours('dashboard.step13.content') }}
         labels={{
           peakSlot: t('dashboard.charts.heatmapPeakSlot') || 'Pico',
           peakWeekday: t('dashboard.charts.heatmapPeakWeekday') || 'Dia mais forte',
@@ -51,8 +55,9 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <Card data-tour="dashboard-csat-distribution">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               {t('dashboard.csat.breakdown') || 'Distribuição de notas'}
+              <TooltipInfo title={tTours('dashboard.step14.title')} content={tTours('dashboard.step14.content')} />
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -84,6 +89,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
                     <TrendingUp className="h-4 w-4 text-muted-foreground" />
                   </div>
                   {t('dashboard.pipeline.title')}
+                  <TooltipInfo title={tTours('dashboard.step15.title')} content={tTours('dashboard.step15.content')} />
                 </CardTitle>
                 <CardDescription className="mt-1">{t('dashboard.pipeline.subtitle')}</CardDescription>
               </div>
@@ -131,8 +137,9 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <Card data-tour="dashboard-funnel-summary">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               {tx('dashboard.pipeline.insights', 'Resumo do funil')}
+              <TooltipInfo title={tTours('dashboard.step16.title')} content={tTours('dashboard.step16.content')} />
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
@@ -158,6 +165,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
                 <Layers className="h-4 w-4 text-muted-foreground" />
               </div>
               {t('dashboard.channels.title')}
+              <TooltipInfo title={tTours('dashboard.step17.title')} content={tTours('dashboard.step17.content')} />
             </CardTitle>
             <CardDescription className="mt-1">{t('dashboard.channels.subtitle')}</CardDescription>
           </CardHeader>
@@ -190,8 +198,9 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <Card data-tour="dashboard-channels-value">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
               {tx('dashboard.channels.valueLeaders', 'Canais com maior valor')}
+              <TooltipInfo title={tTours('dashboard.step18.title')} content={tTours('dashboard.step18.content')} />
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -219,6 +228,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
                   <Users className="h-4 w-4 text-muted-foreground" />
                 </div>
                 {tx('dashboard.agents.humanTitle', 'Desempenho dos Atendentes')}
+                <TooltipInfo title={tTours('dashboard.step19.title')} content={tTours('dashboard.step19.content')} />
               </CardTitle>
               <CardDescription className="mt-1">
                 {tx('dashboard.agents.humanSubtitle', 'Performance do time humano no período filtrado')}
@@ -257,6 +267,7 @@ const DashboardPerformanceSection = ({ data, t }: DashboardPerformanceSectionPro
                   <Bot className="h-4 w-4 text-muted-foreground" />
                 </div>
                 {tx('dashboard.agents.aiTitle', 'Desempenho dos Agentes de IA')}
+                <TooltipInfo title={tTours('dashboard.step20.title')} content={tTours('dashboard.step20.content')} />
               </CardTitle>
               <CardDescription className="mt-1">
                 {tx('dashboard.agents.aiSubtitle', 'Volume e participação dos agentes IA nas respostas')}

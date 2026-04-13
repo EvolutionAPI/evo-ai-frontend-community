@@ -3,6 +3,8 @@ import { Badge, Card, CardContent, CardHeader, CardTitle } from '@evoapi/design-
 import type { CustomerDashboardResponse } from '@/types/analytics/dashboard';
 import DashboardMetricCard from './DashboardMetricCard';
 import { formatSeconds } from './dashboardUtils';
+import { useTranslation } from '@/hooks/useTranslation';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface DashboardMetricsSectionProps {
   data: CustomerDashboardResponse;
@@ -10,6 +12,7 @@ interface DashboardMetricsSectionProps {
 }
 
 const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
+  const { t: tTours } = useTranslation('tours');
   const tx = (key: string, fallback: string) => {
     const value = t(key);
     return value === key ? fallback : value;
@@ -64,6 +67,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
               label: tx('dashboard.status.volume', 'Volume no período'),
               tone: 'neutral',
             }}
+            tooltip={{ title: tTours('dashboard.step2.title'), content: tTours('dashboard.step2.content') }}
           />
         </div>
 
@@ -76,6 +80,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             accentClassName="bg-emerald-500/20 text-emerald-400"
             importance="primary"
             status={responseStatus}
+            tooltip={{ title: tTours('dashboard.step3.title'), content: tTours('dashboard.step3.content') }}
           />
         </div>
 
@@ -88,6 +93,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             accentClassName="bg-violet-500/20 text-violet-400"
             importance="primary"
             status={csatStatus}
+            tooltip={{ title: tTours('dashboard.step4.title'), content: tTours('dashboard.step4.content') }}
           />
         </div>
 
@@ -100,6 +106,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             accentClassName="bg-amber-500/20 text-amber-400"
             importance="primary"
             status={followUpStatus}
+            tooltip={{ title: tTours('dashboard.step5.title'), content: tTours('dashboard.step5.content') }}
           />
         </div>
       </div>
@@ -110,6 +117,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             <CardTitle className="text-base flex items-center gap-2">
               <Bot className="h-4 w-4 text-primary" />
               {tx('dashboard.aiVsHuman.title', 'IA vs Humano')}
+              <TooltipInfo title={tTours('dashboard.step6.title')} content={tTours('dashboard.step6.content')} />
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -177,6 +185,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <MessageSquare className="h-4 w-4 text-amber-400" />
                 {tx('dashboard.stats.activeConversations', 'Conversas ativas agora')}
+                <TooltipInfo title={tTours('dashboard.step7.title')} content={tTours('dashboard.step7.content')} />
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -199,6 +208,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
               <CardTitle className="text-sm font-medium flex items-center gap-2">
                 <UserX className="h-4 w-4 text-rose-400" />
                 {tx('dashboard.stats.unassignedConversations', 'Conversas sem responsável')}
+                <TooltipInfo title={tTours('dashboard.step8.title')} content={tTours('dashboard.step8.content')} />
               </CardTitle>
             </CardHeader>
             <CardContent>

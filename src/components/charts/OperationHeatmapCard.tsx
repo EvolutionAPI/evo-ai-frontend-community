@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, Badge, Button } from '@evoapi/design-system';
 import { useState } from 'react';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface OperationHeatmapData {
   timezone: string;
@@ -29,6 +30,10 @@ interface OperationHeatmapCardProps {
     collapse?: string;
     showing?: string;
   };
+  tooltip?: {
+    title: string;
+    content: string;
+  };
 }
 
 const toHourLabel = (hour: number) => `${String(hour).padStart(2, '0')}h`;
@@ -53,6 +58,7 @@ const OperationHeatmapCard = ({
   data,
   peakDayInPeriod,
   labels,
+  tooltip,
 }: OperationHeatmapCardProps) => {
   const [expanded, setExpanded] = useState(false);
   const byKey = new Map<string, number>();
@@ -68,7 +74,10 @@ const OperationHeatmapCard = ({
   return (
     <Card>
       <CardHeader className="pb-2" data-tour="dashboard-heatmap">
-        <CardTitle className="text-lg">{title}</CardTitle>
+        <CardTitle className="flex items-center gap-2 text-lg">
+          {title}
+          {tooltip && <TooltipInfo title={tooltip.title} content={tooltip.content} />}
+        </CardTitle>
         {description && <CardDescription>{description}</CardDescription>}
       </CardHeader>
       <CardContent className="space-y-4">

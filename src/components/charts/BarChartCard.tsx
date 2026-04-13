@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@evoapi/design-system';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { LucideIcon } from 'lucide-react';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface BarChartCardProps {
   title: string;
@@ -12,6 +13,10 @@ interface BarChartCardProps {
   gradientTo?: string;
   valueFormatter?: (value: number) => string;
   highlightMax?: boolean;
+  tooltip?: {
+    title: string;
+    content: string;
+  };
 }
 
 const toChartId = (value: string) =>
@@ -32,6 +37,7 @@ const BarChartCard = ({
   gradientTo = '#8b5cf6',
   valueFormatter = (value) => value.toLocaleString(),
   highlightMax = true,
+  tooltip,
 }: BarChartCardProps) => {
   const maxValue = data.length > 0 ? Math.max(...data.map(d => d.value)) : 0;
   const chartId = toChartId(title);
@@ -62,6 +68,7 @@ const BarChartCard = ({
             </div>
           )}
           {title}
+          {tooltip && <TooltipInfo title={tooltip.title} content={tooltip.content} />}
         </CardTitle>
         {description && (
           <CardDescription className="mt-1">{description}</CardDescription>

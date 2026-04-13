@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@evoapi/design-system';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { LucideIcon } from 'lucide-react';
+import { TooltipInfo } from '@/components/base/TooltipInfo';
 
 interface AreaChartCardProps {
   title: string;
@@ -11,6 +12,10 @@ interface AreaChartCardProps {
   gradientFrom?: string;
   gradientTo?: string;
   valueFormatter?: (value: number) => string;
+  tooltip?: {
+    title: string;
+    content: string;
+  };
 }
 
 const toChartId = (value: string) =>
@@ -30,6 +35,7 @@ const AreaChartCard = ({
   gradientFrom = '#3b82f6',
   gradientTo = '#8b5cf6',
   valueFormatter = (value) => value.toLocaleString(),
+  tooltip,
 }: AreaChartCardProps) => {
   const chartId = toChartId(title);
   const areaGradientId = `gradient-${chartId}`;
@@ -58,6 +64,7 @@ const AreaChartCard = ({
             </div>
           )}
           {title}
+          {tooltip && <TooltipInfo title={tooltip.title} content={tooltip.content} />}
         </CardTitle>
         {description && (
           <CardDescription className="mt-1">{description}</CardDescription>
