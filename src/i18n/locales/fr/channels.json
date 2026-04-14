@@ -120,7 +120,8 @@
     "channelGrid": {
       "title": "Sélectionnez un type de canal",
       "subtitle": "Choisissez le canal qui répond le mieux à vos besoins de communication",
-      "searchPlaceholder": "Rechercher des canaux..."
+      "searchPlaceholder": "Rechercher des canaux...",
+      "notConfiguredTooltip": "Ce canal n'est pas configuré. Configurez-le dans Paramètres Admin > Canaux avant de l'utiliser."
     },
     "channelTypes": {
       "website": {

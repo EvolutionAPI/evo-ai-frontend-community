@@ -360,6 +360,12 @@ export default function NewChannel() {
                 }
                 return false;
               }}
+              disabledTooltip={providerId => {
+                if (providerId === 'whatsapp_cloud' && !canWpCloud) {
+                  return t('newChannel.channelGrid.notConfiguredTooltip');
+                }
+                return undefined;
+              }}
               onProviderSelect={handleProviderSelectWithValidation}
               onBack={handleGoBack}
               onChannelListClick={() => navigate('/channels')}

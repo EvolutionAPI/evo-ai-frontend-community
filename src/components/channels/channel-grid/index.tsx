@@ -64,6 +64,7 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
               key={channel.id}
               channel={channel}
               disabled={disabled}
+              disabledTooltip={disabled ? t('newChannel.channelGrid.notConfiguredTooltip') : undefined}
               onClick={() => onChannelSelect(channel)}
               data-tour={index === 0 ? 'channel-grid-first-card' : undefined}
             />
