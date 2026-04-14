@@ -15,6 +15,7 @@ export interface OnboardingFormData {
   mainChannelOther: string;
   usesAI: string;
   biggestPain: string;
+  crmExperience: string;
   mainGoal: string;
 }
 
@@ -122,6 +123,7 @@ export default function OnboardingPage() {
     mainChannelOther: '',
     usesAI: '',
     biggestPain: '',
+    crmExperience: '',
     mainGoal: '',
   });
   const [loading, setLoading] = useState(false);
@@ -154,10 +156,11 @@ export default function OnboardingPage() {
     isChannelValid ? 'ok' : '',
     form.usesAI,
     form.biggestPain,
+    form.crmExperience,
     form.mainGoal,
   ].filter(Boolean).length;
 
-  const progressPct = Math.round((filledCount / 6) * 100);
+  const progressPct = Math.round((filledCount / 7) * 100);
 
   const handleSubmit = async () => {
     if (loading) return;
@@ -191,6 +194,7 @@ export default function OnboardingPage() {
   const channelOptions    = t('survey.channel.options', { returnObjects: true }) as unknown as string[];
   const aiOptions         = t('survey.ai.options', { returnObjects: true }) as unknown as string[];
   const painOptions       = t('survey.pain.options', { returnObjects: true }) as unknown as string[];
+  const crmOptions        = t('survey.crm.options', { returnObjects: true }) as unknown as string[];
   const goalOptions       = t('survey.goal.options', { returnObjects: true }) as unknown as string[];
 
   return (
@@ -432,6 +436,14 @@ export default function OnboardingPage() {
                 value={form.biggestPain}
                 options={Array.isArray(painOptions) ? painOptions : []}
                 onChange={set('biggestPain')}
+              />
+
+              <SelectField
+                label={t('survey.crm.label')}
+                id="crmExperience"
+                value={form.crmExperience}
+                options={Array.isArray(crmOptions) ? crmOptions : []}
+                onChange={set('crmExperience')}
               />
 
               <SelectField
