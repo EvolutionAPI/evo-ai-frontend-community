@@ -122,7 +122,8 @@
     "channelGrid": {
       "title": "Select a channel type",
       "subtitle": "Choose the channel that best meets your communication needs",
-      "searchPlaceholder": "Search channels..."
+      "searchPlaceholder": "Search channels...",
+      "notConfiguredTooltip": "This channel is not configured. Set it up under Admin Settings > Channels before using it."
     },
     "channelTypes": {
       "website": {
