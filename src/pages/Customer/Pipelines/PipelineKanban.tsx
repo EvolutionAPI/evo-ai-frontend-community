@@ -18,6 +18,7 @@ import {
   GripVertical,
   Edit,
   Trash2,
+  Copy,
   ArrowUpDown,
   Phone,
   Mail,
@@ -516,6 +517,16 @@ export default function PipelineKanban() {
                       <Edit className="h-4 w-4 mr-2" />
                       {t('kanban.header.editPipeline')}
                     </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={async () => {
+                        if (!pipeline?.id) return;
+                        await navigator.clipboard.writeText(String(pipeline.id));
+                        toast.success(t('kanban.idCopied'));
+                      }}
+                    >
+                      <Copy className="h-4 w-4 mr-2" />
+                      {t('kanban.copyId')}
+                    </DropdownMenuItem>
                     <DropdownMenuItem onClick={handleReorderStages}>
                       <ArrowUpDown className="h-4 w-4 mr-2" />
                       {t('kanban.header.reorderStages')}
@@ -581,6 +592,15 @@ export default function PipelineKanban() {
                               <Edit className="h-4 w-4 mr-2" />
                               {t('kanban.stage.editStage')}
                             </DropdownMenuItem>
+                            <DropdownMenuItem
+                              onClick={async () => {
+                                await navigator.clipboard.writeText(String(stage.id));
+                                toast.success(t('kanban.idCopied'));
+                              }}
+                            >
+                              <Copy className="h-4 w-4 mr-2" />
+                              {t('kanban.copyId')}
+                            </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
                               className="text-destructive"
@@ -634,6 +654,15 @@ export default function PipelineKanban() {
                                   <DropdownMenuItem onClick={() => handleEditItem(item)}>
                                     <Edit className="h-4 w-4 mr-2" />
                                     {t('kanban.item.editItem')}
+                                  </DropdownMenuItem>
+                                  <DropdownMenuItem
+                                    onClick={async () => {
+                                      await navigator.clipboard.writeText(String(item.id));
+                                      toast.success(t('kanban.idCopied'));
+                                    }}
+                                  >
+                                    <Copy className="h-4 w-4 mr-2" />
+                                    {t('kanban.copyId')}
                                   </DropdownMenuItem>
                                   <DropdownMenuItem
                                     onClick={() => {

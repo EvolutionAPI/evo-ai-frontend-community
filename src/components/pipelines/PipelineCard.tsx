@@ -1,7 +1,8 @@
 import { useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent } from '@evoapi/design-system';
 import { Button } from '@evoapi/design-system';
-import { GitBranch, Eye, Edit, Trash2, Copy, Power, MoreVertical, Star } from 'lucide-react';
+import { GitBranch, Eye, Edit, Trash2, Copy, CopyPlus, Power, MoreVertical, Star } from 'lucide-react';
+import { toast } from 'sonner';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -142,8 +143,18 @@ export default function PipelineCard({
                   onDuplicate(pipeline);
                 }}
               >
-                <Copy className="h-4 w-4 mr-2" />
+                <CopyPlus className="h-4 w-4 mr-2" />
                 {t('pipelineCard.duplicate')}
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={async e => {
+                  e.stopPropagation();
+                  await navigator.clipboard.writeText(String(pipeline.id));
+                  toast.success(t('pipelineCard.idCopied'));
+                }}
+              >
+                <Copy className="h-4 w-4 mr-2" />
+                {t('pipelineCard.copyId')}
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={e => {
