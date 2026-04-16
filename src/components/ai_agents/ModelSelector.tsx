@@ -14,8 +14,9 @@ import {
   CommandItem,
   Input,
 } from '@evoapi/design-system';
-import { Check, ChevronsUpDown } from 'lucide-react';
-import { ApiKey } from '@/types/agents';
+import { Check, ChevronsUpDown, Loader2 } from 'lucide-react';
+import { ApiKey, ApiKeyModelInfo } from '@/types/agents';
+import { agentsService } from '@/services/agents/agentService';
 
 const CUSTOM_MODEL_OPTION = '__custom_model__';
 const CUSTOM_OPENAI_PROVIDER = 'custom_openai_compatible';
@@ -142,15 +143,7 @@ const ModelSelector = ({
   const { t } = useLanguage('aiAgents');
   const [open, setOpen] = useState(false);
 
-  const selectedModel = useMemo(() => {
-    return availableModels.find(model => model.value === value);
-  }, [value]);
-
-  const [isCustomMode, setIsCustomMode] = useState(Boolean(value) && !selectedModel);
-
-  useEffect(() => {
-    setIsCustomMode(Boolean(value) && !selectedModel);
-  }, [value, selectedModel]);
+  const [isCustomMode, setIsCustomMode] = useState(false);
 
   const selectedApiKey = useMemo(() => {
     return apiKeys.find(key => key.id === apiKeyId);
@@ -158,15 +151,61 @@ const ModelSelector = ({
 
   const customProviderSelected = selectedApiKey?.provider === CUSTOM_OPENAI_PROVIDER;
 
+  // Dynamic model list fetched from the provider via the backend. Populated
+  // when the user picks an API key for a provider the backend supports. Falls
+  // back to the hardcoded `availableModels` below if this is null or empty.
+  const [dynamicModels, setDynamicModels] = useState<ApiKeyModelInfo[] | null>(null);
+  const [isLoadingModels, setIsLoadingModels] = useState(false);
+
+  useEffect(() => {
+    if (!apiKeyId || customProviderSelected) {
+      setDynamicModels(null);
+      return;
+    }
+
+    let cancelled = false;
+    setIsLoadingModels(true);
+    agentsService
+      .listApiKeyModels(apiKeyId)
+      .then(res => {
+        if (cancelled) return;
+        setDynamicModels(res.supported && res.models.length > 0 ? res.models : null);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setDynamicModels(null);
+      })
+      .finally(() => {
+        if (cancelled) return;
+        setIsLoadingModels(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [apiKeyId, customProviderSelected]);
+
   const filteredModels = useMemo(() => {
     if (customProviderSelected) {
       return [];
+    }
+    if (dynamicModels && dynamicModels.length > 0) {
+      return dynamicModels;
     }
     if (!selectedApiKey) {
       return availableModels;
     }
     return availableModels.filter(model => model.provider === selectedApiKey.provider);
-  }, [selectedApiKey, customProviderSelected]);
+  }, [selectedApiKey, customProviderSelected, dynamicModels]);
+
+  const selectedModel = useMemo(() => {
+    return filteredModels.find(model => model.value === value)
+      || availableModels.find(model => model.value === value);
+  }, [value, filteredModels]);
+
+  useEffect(() => {
+    setIsCustomMode(Boolean(value) && !selectedModel);
+  }, [value, selectedModel]);
 
   useEffect(() => {
     if (customProviderSelected) {
@@ -227,13 +266,18 @@ const ModelSelector = ({
                   variant="outline"
                   role="combobox"
                   aria-expanded={open}
+                  disabled={isLoadingModels}
                   className={`${className} justify-between ${error || customModelError ? 'border-red-500' : ''}`}
                   id={id}
                 >
-                  {value
-                    ? selectedModel?.label || value
-                    : t('llmConfig.searchOrSelectModel')}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  {isLoadingModels
+                    ? t('llmConfig.loadingModels', { defaultValue: 'Loading models...' })
+                    : value
+                      ? selectedModel?.label || value
+                      : t('llmConfig.searchOrSelectModel')}
+                  {isLoadingModels
+                    ? <Loader2 className="ml-2 h-4 w-4 shrink-0 animate-spin opacity-70" />
+                    : <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />}
                 </Button>
               </PopoverTrigger>
               <PopoverContent className={`${className} p-0`} align="start">
