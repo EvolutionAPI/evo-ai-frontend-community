@@ -40,9 +40,23 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Tracks whether the permission fetches have completed for the current user.
+  // Starts false so we never report `isReady` true with empty permissions during
+  // the brief render between user appearing and the fetch effect running — that
+  // window used to flash the Unauthorized page after a fresh login.
+  const [userPermsLoaded, setUserPermsLoaded] = useState(false);
+  const [accountPermsLoaded, setAccountPermsLoaded] = useState(false);
+
   // Config state
   const [resourceActions, setResourceActions] = useState<ResourceActionsResponse | null>(null);
   const [configLoading, setConfigLoading] = useState(false);
+
+  // Reset loaded flags whenever the logged-in user changes so the next user's
+  // permissions go through the fetch cycle before `isReady` flips back to true.
+  useEffect(() => {
+    setUserPermsLoaded(false);
+    setAccountPermsLoaded(false);
+  }, [user?.id]);
 
   // Load permissions config (metadata)
   useEffect(() => {
@@ -69,6 +83,7 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
   useEffect(() => {
     if (!user?.id) {
       setUserPermissions([]);
+      setUserPermsLoaded(true);
       return;
     }
 
@@ -90,6 +105,7 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
         setUserPermissions([]);
       } finally {
         setLoading(false);
+        setUserPermsLoaded(true);
       }
     };
 
@@ -102,11 +118,13 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
     const isAuthenticated = useAuthStore.getState().isLoggedIn;
     if (!isAuthenticated || !user) {
       setAccountPermissions([]);
+      setAccountPermsLoaded(true);
       return;
     }
 
     // ⚡ Proteção: não carregar se já tem permissões (evita recarregar desnecessariamente)
     if (accountPermissions.length > 0) {
+      setAccountPermsLoaded(true);
       return;
     }
 
@@ -130,6 +148,7 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
         setAccountPermissions([]);
       } finally {
         setLoading(false);
+        setAccountPermsLoaded(true);
       }
     };
 
@@ -231,16 +250,18 @@ export const PermissionsProvider: React.FC<PermissionsProviderProps> = ({ childr
     }
   }, [user?.id]);
 
-  // isReady: true when user is loaded and the permissions fetch has completed
-  // (regardless of whether permissions came back empty or with data).
-  // Returning false when loading is done but permissions are empty causes an
-  // infinite loading spinner because the RouterGuard waits for this to be true.
+  // isReady: true when user is loaded, config finished, and both permission
+  // fetches completed at least once for the current user. Tracking completion
+  // (rather than just `!loading`) prevents PermissionRoute from evaluating
+  // `can()` against empty arrays during the render window between user
+  // appearing and the fetch effect firing — that flashed Unauthorized after
+  // a fresh login.
   const isReady = useMemo(() => {
     if (!user) return false;
     if (configLoading) return false;
     if (loading) return false;
-    return true;
-  }, [configLoading, loading, user]);
+    return userPermsLoaded && accountPermsLoaded;
+  }, [configLoading, loading, user, userPermsLoaded, accountPermsLoaded]);
 
   const value: PermissionsContextValue = {
     userPermissions,
