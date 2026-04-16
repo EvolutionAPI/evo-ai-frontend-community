@@ -72,15 +72,6 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
           }
         }
 
-        // Load user tours so WelcomeTourModal and useJoyride have the correct
-        // state before the first render — prevents welcome modal flashing
-        try {
-          const tours = await tourService.getTours();
-          setTours(tours);
-        } catch {
-          // Non-critical: tours default to empty (all tours will show)
-        }
-
         // ⚡ OTIMIZAÇÃO: Removido carregamento antecipado de dados
         // Antes: carregava agents, inboxes, labels, teams mesmo sem precisar
         // Agora: cada página carrega apenas o que precisa, quando precisa
@@ -97,6 +88,20 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
 
     initializeApp();
   }, [isLoading, user, isInitialized, t]);
+
+  // Fetch user tours whenever the logged-in user changes. Keyed on user?.id
+  // so that logout → Ctrl+F5 → login re-populates `tours` in the store
+  // (the main initializeApp effect short-circuits on subsequent logins once
+  // `isInitialized` is set, so tour loading has to live outside of it).
+  useEffect(() => {
+    if (!user?.id) return;
+    tourService
+      .getTours()
+      .then(setTours)
+      .catch(() => {
+        // Non-critical: tours default to empty (all tours will show)
+      });
+  }, [user?.id, setTours]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
