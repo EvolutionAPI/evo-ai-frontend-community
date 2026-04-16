@@ -11,6 +11,7 @@ import {
   AgentDeleteResponse,
   FolderDeleteResponse,
   ApiKeyDeleteResponse,
+  ApiKeyModelsResponse,
   AgentListResponse,
 } from '@/types/agents';
 import { processAgentData } from '@/utils/agentUtils';
@@ -127,6 +128,11 @@ class AgentsService {
   async deleteApiKey(keyId: string): Promise<ApiKeyDeleteResponse> {
     const response = await evoaiApi.delete(`/agents/apikeys/${keyId}`);
     return extractData<ApiKeyDeleteResponse>(response);
+  }
+
+  async listApiKeyModels(keyId: string): Promise<ApiKeyModelsResponse> {
+    const response = await evoaiApi.get(`/agents/apikeys/${keyId}/models`);
+    return extractData<ApiKeyModelsResponse>(response);
   }
 
   // Helper methods for backward compatibility

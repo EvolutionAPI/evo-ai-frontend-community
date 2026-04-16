@@ -226,3 +226,15 @@ export interface FolderDeleteResponse extends StandardResponse<{ message: string
 export interface AgentListResponse extends PaginatedResponse<Agent> {}
 
 export interface ApiKeyDeleteResponse extends StandardResponse<{ message: string }> {}
+
+export interface ApiKeyModelInfo {
+  value: string;
+  label: string;
+  provider: string;
+}
+
+export interface ApiKeyModelsResponse {
+  provider: string;
+  supported: boolean;
+  models: ApiKeyModelInfo[];
+}
