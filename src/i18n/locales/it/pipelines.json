@@ -384,6 +384,8 @@
     "inactive": "Inattiva",
     "edit": "Modifica",
     "duplicate": "Duplica",
+    "copyId": "Copia ID",
+    "idCopied": "ID copiato negli appunti",
     "activate": "Attiva",
     "deactivate": "Disattiva",
     "delete": "Elimina",
@@ -430,6 +432,8 @@
       "view": "Visualizza",
       "edit": "Modifica",
       "duplicate": "Duplica",
+      "copyId": "Copia ID",
+      "idCopied": "ID copiato negli appunti",
       "activate": "Attiva",
       "deactivate": "Disattiva",
       "delete": "Elimina"
@@ -497,6 +501,8 @@
     "save": "Salva Ordine"
   },
   "kanban": {
+    "copyId": "Copia ID",
+    "idCopied": "ID copiato negli appunti",
     "header": {
       "conversations": "Conversazioni",
       "stages": "Fasi",

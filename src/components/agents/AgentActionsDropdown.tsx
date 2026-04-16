@@ -6,7 +6,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@evoapi/design-system';
-import { Edit, Trash2 } from 'lucide-react';
+import { Copy, Edit, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 import { Agent } from '@/types/agents';
 
 interface AgentActionsDropdownProps {
@@ -35,6 +36,15 @@ export default function AgentActionsDropdown({
         <DropdownMenuItem onClick={() => onEdit(agent)}>
           <Edit className="h-4 w-4 mr-2" />
           {t('dropdown.edit')}
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={async () => {
+            await navigator.clipboard.writeText(agent.id);
+            toast.success(t('dropdown.idCopied'));
+          }}
+        >
+          <Copy className="h-4 w-4 mr-2" />
+          {t('dropdown.copyId')}
         </DropdownMenuItem>
         {/* {onExportAsJSON && (
           <DropdownMenuItem onClick={() => onExportAsJSON(agent)}>

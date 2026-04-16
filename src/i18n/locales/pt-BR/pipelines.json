@@ -424,6 +424,8 @@
     "default": "Padrão",
     "edit": "Editar",
     "duplicate": "Duplicar",
+    "copyId": "Copiar ID",
+    "idCopied": "ID copiado para a área de transferência",
     "activate": "Ativar",
     "deactivate": "Desativar",
     "delete": "Deletar",
@@ -471,6 +473,8 @@
       "view": "Visualizar",
       "edit": "Editar",
       "duplicate": "Duplicar",
+      "copyId": "Copiar ID",
+      "idCopied": "ID copiado para a área de transferência",
       "activate": "Ativar",
       "deactivate": "Desativar",
       "delete": "Deletar"
@@ -538,6 +542,8 @@
     "save": "Salvar Ordem"
   },
   "kanban": {
+    "copyId": "Copiar ID",
+    "idCopied": "ID copiado para a área de transferência",
     "header": {
       "conversations": "Itens",
       "stages": "Etapas",
