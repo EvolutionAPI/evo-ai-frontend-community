@@ -132,5 +132,8 @@
   "close": "Chiudi",
   "table": {
     "inUse": "In uso"
+  },
+  "validation": {
+    "required": "Questo campo è obbligatorio"
   }
 }

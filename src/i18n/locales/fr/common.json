@@ -132,5 +132,8 @@
   "close": "Fermer",
   "table": {
     "inUse": "En cours d'utilisation"
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire"
   }
 }

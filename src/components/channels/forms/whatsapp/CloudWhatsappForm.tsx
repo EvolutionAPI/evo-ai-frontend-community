@@ -54,10 +54,13 @@ export const CloudWhatsappForm = ({ form, onFormChange, canFB }: CloudWhatsappFo
 
   // Load Facebook SDK on component mount
   useEffect(() => {
-    if (canFB) {
+    // The SDK initializes with wpAppId — if the GlobalConfig response hasn't
+    // arrived yet (context races with initial render), bail. When config
+    // hydrates, wpAppId/wpApiVersion become truthy and the effect re-runs.
+    if (canFB && config.wpAppId) {
       loadFacebookSDK();
     }
-  }, [canFB]);
+  }, [canFB, config.wpAppId, config.wpApiVersion]);
 
   // Listen for Facebook postMessage events
   useEffect(() => {
@@ -160,11 +163,12 @@ export const CloudWhatsappForm = ({ form, onFormChange, canFB }: CloudWhatsappFo
       setFbSDKReady(true);
     };
 
-    // Create script element
+    // Create script element — no crossOrigin; Facebook's CDN doesn't emit the
+    // CORS headers required by crossOrigin='anonymous' and the browser would
+    // block the script load entirely.
     const script = document.createElement('script');
     script.async = true;
     script.defer = true;
-    script.crossOrigin = 'anonymous';
     script.src = 'https://connect.facebook.net/en_US/sdk.js';
     document.head.appendChild(script);
   };

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
-import { render, screen, waitFor, fireEvent, act } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, act, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'sonner';
 import ChannelConfig from './ChannelConfig';
@@ -342,10 +342,9 @@ describe('ChannelConfig', () => {
     });
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('channels.facebook.saveError', {
-        description: 'Test error',
-      });
+      expect(screen.getByRole('alert')).toHaveTextContent('Test error');
     });
+    expect(toast.error).not.toHaveBeenCalled();
   });
 
   it('shows error toast when load fails', async () => {
@@ -572,7 +571,7 @@ describe('ChannelConfig', () => {
     await user.click(screen.getByText('channels.save'));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('channels.evolution.saveError', { description: 'Test error' });
+      expect(screen.getByRole('alert')).toHaveTextContent('Test error');
     });
   });
 
@@ -589,7 +588,7 @@ describe('ChannelConfig', () => {
     await user.click(screen.getByText('channels.save'));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('channels.evolutionGo.saveError', { description: 'Test error' });
+      expect(screen.getByRole('alert')).toHaveTextContent('Test error');
     });
   });
 
@@ -606,7 +605,7 @@ describe('ChannelConfig', () => {
     await user.click(screen.getByText('channels.save'));
 
     await waitFor(() => {
-      expect(toast.error).toHaveBeenCalledWith('channels.twitter.saveError', { description: 'Test error' });
+      expect(screen.getByRole('alert')).toHaveTextContent('Test error');
     });
   });
 
@@ -674,5 +673,83 @@ describe('ChannelConfig', () => {
 
     const remaining = screen.queryAllByText('channels.secretConfigured');
     expect(remaining.length).toBe(0);
+  });
+
+  describe('required enforcement', () => {
+    // Each integration renders its own Save button inside its tab. The forms
+    // share the same required-string + SECRET_SENTINEL pattern, so we exercise
+    // the invariants on the default tab (Facebook) and on one representative
+    // secondary tab (WhatsApp) that has the largest required-key set.
+    it('disables Facebook Save button when required fields are empty on mount', async () => {
+      await renderAndWait();
+
+      const saveButton = screen.getAllByText('channels.save')[0].closest('button');
+      expect(saveButton).toBeDisabled();
+    });
+
+    it('enables Facebook Save button when all required fields + masked secret are populated', async () => {
+      await renderAndWait({ fbData: CONFIGURED_FACEBOOK });
+
+      const saveButton = screen.getAllByText('channels.save')[0].closest('button');
+      expect(saveButton).not.toBeDisabled();
+    });
+
+    it('shows inline required errors on Facebook only after first submit attempt', async () => {
+      await renderAndWait();
+
+      // Before any submit: no inline required errors
+      expect(screen.queryAllByText('common:validation.required').length).toBe(0);
+
+      // Save button is disabled in empty state; simulate Enter-key submit by firing
+      // the form submit event directly (the browser path when inputs are focused).
+      const form = screen.getAllByText('channels.save')[0].closest('form') as HTMLFormElement;
+      await act(async () => {
+        fireEvent.submit(form);
+      });
+
+      // Facebook has exactly 3 required fields: FB_APP_ID, FB_VERIFY_TOKEN, FB_APP_SECRET.
+      // Scope to the form so other tabs' fields never inflate the count.
+      await waitFor(() => {
+        expect(within(form).getAllByText('common:validation.required')).toHaveLength(3);
+      });
+      expect(within(form).getByLabelText('channels.facebook.fields.appId')).toHaveAttribute('aria-invalid', 'true');
+      expect(mockSaveConfig).not.toHaveBeenCalled();
+    });
+
+    it('saves Facebook when all required fields are filled', async () => {
+      await renderAndWait({ fbData: CONFIGURED_FACEBOOK });
+      mockSaveConfig.mockResolvedValue(CONFIGURED_FACEBOOK);
+
+      const saveButton = screen.getAllByText('channels.save')[0].closest('button') as HTMLButtonElement;
+      await act(async () => {
+        fireEvent.click(saveButton);
+      });
+
+      await waitFor(() => {
+        expect(mockSaveConfig).toHaveBeenCalledWith('facebook', expect.objectContaining({
+          FB_APP_ID: 'test-fb-app-id',
+          FB_VERIFY_TOKEN: 'test-verify-token',
+          // Masked secret loaded from backend → sentinel → buildPayload maps back to null.
+          FB_APP_SECRET: null,
+        }));
+      });
+    });
+
+    it('blocks WhatsApp save when a required key is cleared', async () => {
+      await renderAndWait({ wpData: CONFIGURED_WHATSAPP });
+      const user = userEvent.setup();
+
+      await user.click(screen.getByText('channels.whatsapp.tabTitle'));
+
+      const configIdInput = await screen.findByLabelText('channels.whatsapp.fields.configId');
+      await act(async () => {
+        fireEvent.change(configIdInput, { target: { value: '' } });
+      });
+
+      // The WhatsApp Save lives under the whatsapp tab; it's the Save button for
+      // that form. Same label for every card, so grab the visible one.
+      const whatsappSave = screen.getAllByText('channels.save')[0].closest('button');
+      expect(whatsappSave).toBeDisabled();
+    });
   });
 });

@@ -414,7 +414,8 @@
       "title": "Intégration avec Facebook",
       "connectButton": "Connecter avec Facebook",
       "description": "Connectez-vous avec votre compte Facebook pour remplir automatiquement les informations de WhatsApp Business",
-      "connecting": "Connexion en cours..."
+      "connecting": "Connexion en cours...",
+      "loadingSDK": "Chargement du SDK Facebook..."
     },
     "autoFilled": {
       "title": "Informations Remplies Automatiquement",

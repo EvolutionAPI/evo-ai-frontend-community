@@ -163,6 +163,7 @@
     "clearSecret": "Borrar valor guardado",
     "save": "Guardar Configuracion",
     "saving": "Guardando...",
+    "dismissError": "Cerrar error",
     "facebook": {
       "tabTitle": "Facebook",
       "fields": {
@@ -333,29 +334,53 @@
     "saving": "Guardando...",
     "linear": {
       "cardTitle": "Linear",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Linear Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Linear Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Linear guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Linear"
     },
     "hubspot": {
       "cardTitle": "HubSpot",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su HubSpot Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su HubSpot Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de HubSpot guardada exitosamente",
       "saveError": "Error al guardar la configuracion de HubSpot"
     },
     "shopify": {
       "cardTitle": "Shopify",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Shopify Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Shopify Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Shopify guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Shopify"
     },
     "slack": {
       "cardTitle": "Slack",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Slack Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Slack Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Slack guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Slack"
     },
