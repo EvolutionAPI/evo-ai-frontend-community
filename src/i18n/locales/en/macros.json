@@ -28,7 +28,7 @@
       "visibilityPersonal": "Private",
       "visibilityPersonalDesc": "This macro will be private and available only to you",
       "visibilityGlobal": "Public",
-      "visibilityGlobalDesc": "This macro will be public and available to all attendants",
+      "visibilityGlobalDesc": "This macro will be public and available to all team members",
       "actionsTitle": "Actions",
       "actionsSubtitle": "Macros will execute actions in the defined order",
       "addAction": "Add Action",

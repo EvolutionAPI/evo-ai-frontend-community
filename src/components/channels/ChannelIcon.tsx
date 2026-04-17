@@ -132,7 +132,7 @@ export default function ChannelIcon({
     return (
       <div
         className={cn(
-          'rounded-lg bg-slate-900 flex items-center justify-center text-sidebar-foreground/60',
+          'rounded-lg bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-sidebar-foreground/60',
           containerSizeClasses[size],
           className
         )}
@@ -148,7 +148,7 @@ export default function ChannelIcon({
     return (
       <div
         className={cn(
-          'rounded-lg bg-slate-900 flex items-center justify-center',
+          'rounded-lg bg-slate-100 dark:bg-slate-900 flex items-center justify-center',
           containerSizeClasses[size],
           className
         )}
@@ -161,7 +161,7 @@ export default function ChannelIcon({
   return (
     <div
       className={cn(
-        'rounded-lg bg-slate-900 flex items-center justify-center overflow-hidden',
+        'rounded-lg bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden',
         containerSizeClasses[size],
         className
       )}

@@ -432,8 +432,8 @@
           "hint": "Language to which messages will be translated by default"
         },
         "enableAgentBot": {
-          "label": "Translation for Attendants",
-          "description": "Allows attendants to see translations of customer messages"
+          "label": "Translation for Team Members",
+          "description": "Allows team members to see translations of customer messages"
         },
         "enableAutoTranslate": {
           "label": "Automatic Translation",
@@ -449,7 +449,7 @@
         "realtime": "Real-time message translation",
         "detection": "Automatic language detection",
         "languages": "Support for over 100 languages",
-        "multilingual": "Multilingual interface for attendants",
+        "multilingual": "Multilingual interface for team members",
         "context": "Preservation of original context"
       },
       "warning": {
@@ -1168,7 +1168,7 @@
   },
   "googleCalendar": {
     "name": "Google Calendar",
-    "description": "OAuth integration with Google Calendar for attendants",
+    "description": "OAuth integration with Google Calendar for team members",
     "clientId": "Google Calendar Client ID",
     "clientSecret": "Google Calendar Client Secret",
     "redirectUri": "Redirect URI",
@@ -1183,7 +1183,7 @@
   },
   "googleSheets": {
     "name": "Google Sheets",
-    "description": "OAuth integration with Google Sheets for attendants",
+    "description": "OAuth integration with Google Sheets for team members",
     "clientId": "Google Sheets Client ID",
     "clientSecret": "Google Sheets Client Secret",
     "redirectUri": "Redirect URI",

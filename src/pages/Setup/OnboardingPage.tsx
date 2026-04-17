@@ -4,7 +4,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { setupService } from '@/services/setup/setupService';
 import { surveyService } from '@/services/survey/surveyService';
 import { useAuth } from '@/contexts/AuthContext';
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -280,7 +280,7 @@ export default function OnboardingPage() {
         >
           {/* Logo */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1.75rem' }}>
-            <img src={logo} alt="Evo CRM" style={{ height: '30px' }} />
+            <AppLogo alt="Evo CRM" style={{ height: '30px' }} forceTheme="dark" />
           </div>
 
           {/* Title */}

@@ -25,8 +25,8 @@ import ProfileMenu from './ProfileMenu';
 import { TourFab } from '@/components/TourFab';
 import MenuItem from './MenuItem';
 import { MenuItem as MenuItemType } from '../config/menuItems';
-
-import logo from '../../../assets/EVO_CRM.png';
+import { ThemeToggle } from '../../ThemeToggle';
+import { AppLogo } from '../../AppLogo';
 
 // Utility function for className merging
 function cn(...classes: (string | undefined | null | false)[]) {
@@ -72,8 +72,6 @@ export default function Header({
 }: HeaderProps) {
   const { t } = useLanguage('layout');
   const [expandedMobileMenus, setExpandedMobileMenus] = useState<Set<string>>(new Set());
-
-  const displayLogo = logo;
 
   return (
     <div className="flex-shrink-0 bg-sidebar border-b border-sidebar-border px-0 py-3 flex items-center shadow-sm">
@@ -181,6 +179,10 @@ export default function Header({
                 </nav>
               </ScrollArea>
 
+              <div className="p-4 border-t border-sidebar-border">
+                <ThemeToggle />
+              </div>
+
               {/* Mobile User Menu */}
               <ProfileMenu
                 user={user}
@@ -195,14 +197,7 @@ export default function Header({
         {/* Center: Logo */}
         <div className="flex-1 flex justify-center">
           <div className="flex items-center gap-2">
-            <img
-              src={displayLogo}
-              onError={e => {
-                (e.target as HTMLImageElement).src = logo;
-              }}
-              alt="EVO CRM"
-              className="h-8 max-w-32"
-            />
+            <AppLogo className="h-8 max-w-32" />
           </div>
         </div>
 
@@ -229,14 +224,7 @@ export default function Header({
           {/* App Logo - only show when not collapsed */}
           {!isCollapsed && (
             <div className="flex-shrink-0 flex items-center gap-2">
-              <img
-                src={displayLogo}
-                alt="EVO CRM"
-                className="h-8 max-w-32"
-                onError={e => {
-                  (e.target as HTMLImageElement).src = logo;
-                }}
-              />
+              <AppLogo className="h-8 max-w-32" />
             </div>
           )}
 
@@ -270,6 +258,8 @@ export default function Header({
         {/* Right side */}
         <div className="flex items-center gap-2 px-4">
           <TourFab />
+          {/* Theme Toggle */}
+          <ThemeToggle />
           {/* Notifications */}
           <NotificationBell />
           {/* User Menu */}

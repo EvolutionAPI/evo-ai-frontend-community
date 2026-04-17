@@ -336,17 +336,17 @@
     },
     "collaborators": {
       "agents": {
-        "title": "Attendants",
-        "description": "Manage attendants who can handle conversations on this channel",
-        "selectedCount": "{{count}} attendant selected",
-        "selectedCount_other": "{{count}} attendants selected",
+        "title": "Team Members",
+        "description": "Manage team members who can handle conversations on this channel",
+        "selectedCount": "{{count}} team member selected",
+        "selectedCount_other": "{{count}} team members selected",
         "total": "total",
-        "loading": "Loading attendants...",
-        "noAgentsSelected": "No attendants selected",
-        "allAgentsSelected": "All attendants selected",
+        "loading": "Loading team members...",
+        "noAgentsSelected": "No team members selected",
+        "allAgentsSelected": "All team members selected",
         "noAgents": {
-          "title": "No attendants found",
-          "description": "There are no attendants available at the moment. Please add attendants first."
+          "title": "No team members found",
+          "description": "There are no team members available at the moment. Please add team members first."
         },
         "buttons": {
           "selectFirst": "Select First",
@@ -356,7 +356,7 @@
           "updating": "Updating..."
         },
         "roles": {
-          "agent": "Attendant",
+          "agent": "Team Member",
           "administrator": "Administrator"
         }
       },
@@ -374,16 +374,16 @@
       },
       "autoAssignment": {
         "title": "Auto Assignment",
-        "description": "Configure how conversations are automatically assigned to attendants",
+        "description": "Configure how conversations are automatically assigned to team members",
         "enable": {
           "label": "Enable auto assignment",
-          "description": "New conversations will be automatically assigned to available attendants"
+          "description": "New conversations will be automatically assigned to available team members"
         },
         "maxLimit": {
           "title": "Maximum Conversations Limit",
-          "label": "Maximum conversations per attendant",
+          "label": "Maximum conversations per team member",
           "placeholder": "Enter the maximum number",
-          "help": "Maximum number of conversations an attendant can have simultaneously"
+          "help": "Maximum number of conversations an team member can have simultaneously"
         },
         "buttons": {
           "updateLimit": "Update Limit",
@@ -391,10 +391,10 @@
         },
         "info": {
           "title": "Important Information:",
-          "point1": "Auto assignment distributes conversations among available attendants",
-          "point2": "Considers each attendant's current workload",
-          "point3": "Offline attendants don't receive new conversations automatically",
-          "point4": "You can set maximum conversation limit per attendant"
+          "point1": "Auto assignment distributes conversations among available team members",
+          "point2": "Considers each team member's current workload",
+          "point3": "Offline team members don't receive new conversations automatically",
+          "point4": "You can set maximum conversation limit per team member"
         },
         "success": {
           "updated": "Auto assignment updated successfully!",
@@ -410,13 +410,13 @@
       },
       "errors": {
         "loadError": "Error loading collaborators data",
-        "updateError": "Error updating attendants"
+        "updateError": "Error updating team members"
       },
       "success": {
         "updated": "Collaborators updated successfully!"
       },
       "validation": {
-        "selectAtLeastOne": "Select at least one attendant"
+        "selectAtLeastOne": "Select at least one team member"
       }
     },
     "businessHours": {
@@ -472,7 +472,7 @@
         "title": "Important Information:",
         "point1": "Hours are based on the selected timezone",
         "point2": "Messages received outside hours will receive auto-reply",
-        "point3": "Attendants can still respond manually outside hours",
+        "point3": "Team Members can still respond manually outside hours",
         "point4": "Settings apply only to this channel"
       },
       "buttons": {
@@ -1119,7 +1119,7 @@
       },
       "continuityViaEmail": {
         "label": "Continuity via Email",
-        "description": "Continue conversation via email when attendant is offline"
+        "description": "Continue conversation via email when team member is offline"
       },
       "featureFlags": {
         "title": "Widget Features",
@@ -1147,7 +1147,7 @@
       "description": "Configure how messages will appear to customers",
       "friendly": {
         "title": "Friendly",
-        "description": "Messages appear with attendant's first name",
+        "description": "Messages appear with team member's first name",
         "format": "{{name}}"
       },
       "professional": {

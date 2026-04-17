@@ -10,7 +10,7 @@ import {
 import { Shield, Smartphone, Mail, RefreshCw, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
 
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 interface MfaVerificationProps {
   email: string;
@@ -107,11 +107,7 @@ const MfaVerification = ({
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <img
-            src={logo}
-            alt="EVO CRM"
-            className="h-10 mx-auto"
-          />
+          <AppLogo className="h-10 mx-auto" />
         </div>
 
         {/* Formulário */}

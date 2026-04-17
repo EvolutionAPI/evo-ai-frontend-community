@@ -108,7 +108,7 @@
     },
     "step3": {
       "title": "Conversation Filters",
-      "content": "Filter conversations by status (open, resolved, pending), assigned attendant, team, or service channel."
+      "content": "Filter conversations by status (open, resolved, pending), assigned team member, team, or service channel."
     },
     "step4": {
       "title": "Conversation List",
@@ -227,26 +227,26 @@
   },
   "settingsAgents": {
     "step1": {
-      "title": "Attendants",
-      "content": "In this section you manage all attendants on your team."
+      "title": "Team Members",
+      "content": "In this section you manage all team members on your team."
     },
     "step2": {
       "title": "Toolbar",
-      "content": "Use search to find attendants, create new ones, or send bulk invitations."
+      "content": "Use search to find team members, create new ones, or send bulk invitations."
     },
     "step3": {
       "title": "View Mode",
       "content": "Switch between card and table view according to your preference."
     },
     "step4": {
-      "title": "Attendant List",
-      "content": "All attendants are displayed here. Click one to edit or remove."
+      "title": "Team Member List",
+      "content": "All team members are displayed here. Click one to edit or remove."
     }
   },
   "settingsTeams": {
     "step1": {
       "title": "Teams",
-      "content": "Organize your attendants into teams to streamline conversation distribution."
+      "content": "Organize your team members into teams to streamline conversation distribution."
     },
     "step2": {
       "title": "Toolbar",
@@ -258,7 +258,7 @@
     },
     "step4": {
       "title": "Team List",
-      "content": "See all registered teams. Click 'Manage Members' to add or remove attendants from a team."
+      "content": "See all registered teams. Click 'Manage Members' to add or remove team members from a team."
     }
   },
   "settingsLabels": {

@@ -6,7 +6,7 @@ import { CheckCircle, XCircle, Mail, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { confirmEmail, resendConfirmation } from '@/services/auth/authService';
 
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 const EmailConfirmation = () => {
   const { t } = useLanguage('auth');
@@ -103,11 +103,7 @@ const EmailConfirmation = () => {
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <img
-            src={logo}
-            alt="EVO CRM"
-            className="h-10 mx-auto"
-          />
+          <AppLogo className="h-10 mx-auto" />
         </div>
 
         {/* Card */}

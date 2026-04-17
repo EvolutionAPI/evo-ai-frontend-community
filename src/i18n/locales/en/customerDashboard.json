@@ -91,8 +91,8 @@
       "valueLeaders": "Highest value channels"
     },
     "agents": {
-      "title": "Attendant Performance",
-      "subtitle": "Individual attendant performance metrics",
+      "title": "Team Member Performance",
+      "subtitle": "Individual team member performance metrics",
       "conversations": "conversations",
       "avgTime": "Avg. Time",
       "satisfaction": "Satisfaction"
