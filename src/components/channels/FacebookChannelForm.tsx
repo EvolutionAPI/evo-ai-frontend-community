@@ -134,7 +134,6 @@ export default function FacebookChannelForm({ onSuccess, onCancel }: FacebookCha
       script.src = 'https://connect.facebook.net/en_US/sdk.js';
       script.async = true;
       script.defer = true;
-      script.crossOrigin = 'anonymous';
       script.onerror = () => {
         console.error('[Facebook Messenger SDK] Failed to load Facebook SDK script');
         reject(new Error('ScriptLoaderError'));

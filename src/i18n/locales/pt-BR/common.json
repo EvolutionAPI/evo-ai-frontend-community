@@ -142,5 +142,8 @@
       "light": "Modo claro",
       "dark": "Modo escuro"
     }
+  },
+  "validation": {
+    "required": "Este campo é obrigatório"
   }
 }

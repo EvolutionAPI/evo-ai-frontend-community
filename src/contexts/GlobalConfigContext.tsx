@@ -14,8 +14,12 @@ export interface GlobalConfig {
   azureAppId?: string;
   // 🔒 SECURITY: Don't expose sensitive API URLs to frontend
   // Only boolean indicators to check if config exists
+  hasFacebookConfig?: boolean;
+  hasWhatsappConfig?: boolean;
+  hasInstagramConfig?: boolean;
   hasEvolutionConfig?: boolean;
   hasEvolutionGoConfig?: boolean;
+  hasTwitterConfig?: boolean;
   openaiConfigured?: boolean;
   enableAccountSignup?: boolean;
   recaptchaSiteKey?: string;
@@ -85,10 +89,14 @@ export const fetchSetupStatus = async (): Promise<boolean> => {
 
 // Listeners para notificar componentes React quando o cache é limpo
 const setupCacheListeners: Set<() => void> = new Set();
+const globalConfigListeners: Set<() => void> = new Set();
 
 export const clearGlobalConfigCache = () => {
   globalConfigCache = null;
   globalConfigPromise = null;
+  // Notificar listeners para re-fetch (ex.: após admin salvar uma config, os
+  // booleans `hasXxxConfig` mudam e o fluxo de criação de canal precisa refletir)
+  globalConfigListeners.forEach(listener => listener());
 };
 
 export const clearSetupCache = () => {
@@ -130,9 +138,16 @@ export const GlobalConfigProvider: React.FC<{ children: React.ReactNode }> = ({ 
     };
     setupCacheListeners.add(onCacheCleared);
 
+    // Re-fetch when global config cache is cleared (admin save invalidates it)
+    const onGlobalConfigCleared = () => {
+      if (mounted) loadConfig();
+    };
+    globalConfigListeners.add(onGlobalConfigCleared);
+
     return () => {
       mounted = false;
       setupCacheListeners.delete(onCacheCleared);
+      globalConfigListeners.delete(onGlobalConfigCleared);
     };
   }, []);
 

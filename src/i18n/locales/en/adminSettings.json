@@ -163,6 +163,7 @@
     "clearSecret": "Clear saved value",
     "save": "Save Configuration",
     "saving": "Saving...",
+    "dismissError": "Dismiss error",
     "facebook": {
       "tabTitle": "Facebook",
       "fields": {

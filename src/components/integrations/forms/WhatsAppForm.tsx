@@ -18,6 +18,7 @@ export function WhatsAppForm({ config, onConfigChange }: IntegrationFormProps) {
         value={getValue('wpAppId')}
         onChange={(value) => onConfigChange('wpAppId', value)}
         placeholder={t('integrations.whatsapp.placeholders.appId')}
+        required
       />
       <FormField
         id="WP_APP_SECRET"
@@ -33,6 +34,7 @@ export function WhatsAppForm({ config, onConfigChange }: IntegrationFormProps) {
         value={getValue('wpWhatsappConfigId')}
         onChange={(value) => onConfigChange('wpWhatsappConfigId', value)}
         placeholder={t('integrations.whatsapp.placeholders.configId')}
+        required
       />
       <FormField
         id="WP_VERIFY_TOKEN"
