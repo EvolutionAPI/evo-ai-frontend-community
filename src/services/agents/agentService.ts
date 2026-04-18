@@ -15,8 +15,6 @@ import {
   AgentListResponse,
 } from '@/types/agents';
 import type {
-  OAuthDeviceCodeResponse,
-  OAuthPollResponse,
   OAuthStatusResponse,
 } from '@/types/agents/oauth';
 import { processAgentData } from '@/utils/agentUtils';
@@ -140,21 +138,16 @@ class AgentsService {
     return extractData<ApiKeyModelsResponse>(response);
   }
 
-  // --- OAuth Codex API methods ---
+  // --- OAuth Codex API methods (PKCE Browser Flow) ---
 
-  async initiateOAuthDeviceCode(clientId: string, name: string): Promise<OAuthDeviceCodeResponse> {
-    const response = await evoaiApi.post('/agents/oauth/codex/device-code', {
-      client_id: clientId,
-      name,
-    });
-    return extractData<OAuthDeviceCodeResponse>(response);
+  async startOAuthFlow(name: string = 'OpenAI Codex'): Promise<{ authorize_url: string; key_id: string }> {
+    const response = await evoaiApi.post('/agents/oauth/codex/auth-start', { name });
+    return extractData<{ authorize_url: string; key_id: string }>(response);
   }
 
-  async pollOAuthDeviceCode(keyId: string): Promise<OAuthPollResponse> {
-    const response = await evoaiApi.post('/agents/oauth/codex/device-poll', {
-      key_id: keyId,
-    });
-    return extractData<OAuthPollResponse>(response);
+  async completeOAuthFlow(keyId: string, callbackUrl: string): Promise<{ status: string; key_id: string }> {
+    const response = await evoaiApi.post('/agents/oauth/codex/auth-complete', { key_id: keyId, callback_url: callbackUrl });
+    return extractData<{ status: string; key_id: string }>(response);
   }
 
   async getOAuthStatus(keyId: string, clientId: string): Promise<OAuthStatusResponse> {
@@ -217,8 +210,8 @@ export const getAccessibleAgents = (page?: number, pageSize?: number) => agentsS
 export const shareAgent = (agentId: string) => agentsService.shareAgent(agentId);
 export const getAgentIntegrations = (agentId: string) => agentsService.getAgentIntegrations(agentId);
 
-// OAuth Codex exports
-export const initiateOAuthDeviceCode = (clientId: string, name: string) => agentsService.initiateOAuthDeviceCode(clientId, name);
-export const pollOAuthDeviceCode = (keyId: string) => agentsService.pollOAuthDeviceCode(keyId);
+// OAuth Codex exports (PKCE Browser Flow)
+export const startOAuthFlow = (name?: string) => agentsService.startOAuthFlow(name);
+export const completeOAuthFlow = (keyId: string, callbackUrl: string) => agentsService.completeOAuthFlow(keyId, callbackUrl);
 export const getOAuthStatus = (keyId: string, clientId: string) => agentsService.getOAuthStatus(keyId, clientId);
 export const revokeOAuth = (keyId: string, clientId: string) => agentsService.revokeOAuth(keyId, clientId);

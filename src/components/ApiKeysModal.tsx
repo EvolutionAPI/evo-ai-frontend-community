@@ -22,7 +22,7 @@ import { Edit, Eye, ExternalLink, Key, Plus, Trash2, X, Loader2 } from 'lucide-r
 import { toast } from 'sonner';
 import { ApiKey, ApiKeyCreate, ApiKeyUpdate } from '@/types/agents';
 import { createApiKey, listApiKeys, updateApiKey, deleteApiKey } from '@/services/agents';
-import { OAuthDeviceCodeFlow } from '@/components/agents/OAuthDeviceCodeFlow';
+import { OAuthBrowserFlow } from '@/components/agents/OAuthBrowserFlow';
 import { OAuthStatusBadge } from '@/components/agents/OAuthStatusBadge';
 
 interface ApiKeysModalProps {
@@ -71,15 +71,6 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
   const getProviderLabel = (providerValue: string) => {
     return availableProviders.find(provider => provider.value === providerValue)?.label || providerValue;
   };
-
-  // Derive clientId from the first available API key or use a default
-  const getClientId = useCallback(() => {
-    if (apiKeys.length > 0 && apiKeys[0].id) {
-      // Use the client_id pattern from existing keys if available
-      return apiKeys[0].id.split('-').slice(0, 5).join('-');
-    }
-    return 'default';
-  }, [apiKeys]);
 
   const isOAuthCodexProvider = currentApiKey.provider === OAUTH_CODEX_PROVIDER;
 
@@ -260,8 +251,7 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
                 </div>
 
                 {showOAuthFlow ? (
-                  <OAuthDeviceCodeFlow
-                    clientId={getClientId()}
+                  <OAuthBrowserFlow
                     name={currentApiKey.name || 'ChatGPT OAuth'}
                     onSuccess={handleOAuthSuccess}
                     onCancel={() => setShowOAuthFlow(false)}
@@ -481,7 +471,7 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
                             )}
                             <Badge variant="outline">{getProviderLabel(apiKey.provider)}</Badge>
                             {apiKey.auth_type === 'oauth_codex' ? (
-                              <OAuthStatusBadge keyId={apiKey.id} clientId={getClientId()} />
+                              <OAuthStatusBadge keyId={apiKey.id} clientId={apiKey.id} />
                             ) : (
                               <span className="text-sm text-muted-foreground">
                                 {t('list.createdAt')} {new Date(apiKey.created_at).toLocaleDateString('pt-BR')}

@@ -18,7 +18,7 @@ import {
 } from '@evoapi/design-system';
 import { Brain, AlertCircle, ExternalLink } from 'lucide-react';
 import { OpenAIHook, OpenAIFormData, IntegrationHook } from '@/types/integrations';
-import { OAuthDeviceCodeFlow } from '@/components/agents/OAuthDeviceCodeFlow';
+import { OAuthBrowserFlow } from '@/components/agents/OAuthBrowserFlow';
 import { OAuthStatusBadge } from '@/components/agents/OAuthStatusBadge';
 import { useAppDataStore } from '@/store/appDataStore';
 
@@ -153,8 +153,7 @@ export default function OpenAIModal({
                   {formData.oauth_key_id ? (
                     <OAuthStatusBadge keyId={formData.oauth_key_id} clientId={clientId} />
                   ) : (
-                    <OAuthDeviceCodeFlow
-                      clientId={clientId}
+                    <OAuthBrowserFlow
                       name="OpenAI Integration"
                       onSuccess={(keyId) => setFormData(prev => ({...prev, oauth_key_id: keyId}))}
                       onCancel={() => {}}
