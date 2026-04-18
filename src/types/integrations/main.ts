@@ -184,7 +184,7 @@ export interface OpenAIHook extends IntegrationHook {
 export interface OpenAIFormData {
   api_key: string;
   enable_audio_transcription?: boolean;
-  auth_method: 'api_key' | 'oauth';
+  auth_method?: 'api_key' | 'oauth';
   oauth_key_id?: string;
 }
 

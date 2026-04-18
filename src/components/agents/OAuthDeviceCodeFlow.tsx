@@ -23,7 +23,7 @@ export function OAuthDeviceCodeFlow({
   const [state, setState] = useState<FlowState>('loading');
   const [userCode, setUserCode] = useState('');
   const [verificationUri, setVerificationUri] = useState('');
-  const [keyId, setKeyId] = useState('');
+  const [_keyId, setKeyId] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [copied, setCopied] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(0);
