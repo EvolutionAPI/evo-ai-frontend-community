@@ -18,9 +18,9 @@ import {
 } from '@evoapi/design-system';
 import { Brain, AlertCircle, ExternalLink } from 'lucide-react';
 import { OpenAIHook, OpenAIFormData, IntegrationHook } from '@/types/integrations';
-import OAuthDeviceCodeFlow from '@/components/agents/OAuthDeviceCodeFlow';
-import OAuthStatusBadge from '@/components/agents/OAuthStatusBadge';
-import { useAuthStore } from '@/store/authStore';
+import { OAuthDeviceCodeFlow } from '@/components/agents/OAuthDeviceCodeFlow';
+import { OAuthStatusBadge } from '@/components/agents/OAuthStatusBadge';
+import { useAppDataStore } from '@/store/appDataStore';
 
 interface OpenAIModalProps {
   hook?: IntegrationHook;
@@ -41,7 +41,8 @@ export default function OpenAIModal({
 }: OpenAIModalProps) {
   const { t } = useLanguage('integrations');
   const [loading, setLoading] = useState(false);
-  const { clientId } = useAuthStore();
+  const { account } = useAppDataStore();
+  const clientId = account?.id?.toString() || '';
   const [formData, setFormData] = useState<OpenAIFormData>({
     api_key: '',
     enable_audio_transcription: false,
