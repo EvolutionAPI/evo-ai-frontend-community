@@ -22,8 +22,7 @@ export function OAuthBrowserFlow({ name = 'OpenAI Codex', onSuccess, onCancel }:
   const handleStartAuth = async () => {
     try {
       setState('idle');
-      const response = await startOAuthFlow(name);
-      const data = response?.data || response;
+      const data = await startOAuthFlow(name);
       setKeyId(data.key_id);
       window.open(data.authorize_url, '_blank');
       setState('waiting');
