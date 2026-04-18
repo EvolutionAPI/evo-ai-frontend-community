@@ -24,6 +24,7 @@ import { ApiKey, ApiKeyCreate, ApiKeyUpdate } from '@/types/agents';
 import { createApiKey, listApiKeys, updateApiKey, deleteApiKey } from '@/services/agents';
 import { OAuthBrowserFlow } from '@/components/agents/OAuthBrowserFlow';
 import { OAuthStatusBadge } from '@/components/agents/OAuthStatusBadge';
+import { useAppDataStore } from '@/store/appDataStore';
 
 interface ApiKeysModalProps {
   open: boolean;
@@ -56,6 +57,8 @@ const availableProviders = [
 
 export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysModalProps) {
   const { t } = useLanguage('apiKeys');
+  const { account } = useAppDataStore();
+  const clientId = account?.id?.toString() || '';
   const [apiKeys, setApiKeys] = useState<ApiKey[]>([]);
   const [loading, setLoading] = useState(false);
   const [isAddingKey, setIsAddingKey] = useState(false);
@@ -471,7 +474,7 @@ export function ApiKeysModal({ open, onOpenChange, onApiKeysChange }: ApiKeysMod
                             )}
                             <Badge variant="outline">{getProviderLabel(apiKey.provider)}</Badge>
                             {apiKey.auth_type === 'oauth_codex' ? (
-                              <OAuthStatusBadge keyId={apiKey.id} clientId={apiKey.id} />
+                              <OAuthStatusBadge keyId={apiKey.id} clientId={clientId} />
                             ) : (
                               <span className="text-sm text-muted-foreground">
                                 {t('list.createdAt')} {new Date(apiKey.created_at).toLocaleDateString('pt-BR')}
