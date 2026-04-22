@@ -906,5 +906,21 @@
     "success": {
       "sent": "Template sent successfully!"
     }
+  },
+  "globalSearch": {
+    "ariaLabel": "Global search",
+    "loading": "Searching...",
+    "error": "Search failed. Try again.",
+    "noResults": "No results found",
+    "emptyHint": "Type to search conversations, contacts, and messages",
+    "typeMoreHint": "Type at least 2 characters",
+    "sections": {
+      "conversations": "Conversations",
+      "contacts": "Contacts",
+      "messages": "Messages",
+      "conversationsEmpty": "No conversations found",
+      "contactsEmpty": "No contacts found",
+      "messagesEmpty": "No messages found"
+    }
   }
 }

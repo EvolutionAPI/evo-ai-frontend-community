@@ -883,5 +883,21 @@
     "success": {
       "sent": "Template enviado com sucesso!"
     }
+  },
+  "globalSearch": {
+    "ariaLabel": "Busca global",
+    "loading": "Buscando...",
+    "error": "Erro ao buscar. Tente novamente.",
+    "noResults": "Nenhum resultado encontrado",
+    "emptyHint": "Digite para buscar conversas, contatos e mensagens",
+    "typeMoreHint": "Digite pelo menos 2 caracteres",
+    "sections": {
+      "conversations": "Conversas",
+      "contacts": "Contatos",
+      "messages": "Mensagens",
+      "conversationsEmpty": "Nenhuma conversa encontrada",
+      "contactsEmpty": "Nenhum contato encontrado",
+      "messagesEmpty": "Nenhuma mensagem encontrada"
+    }
   }
 }

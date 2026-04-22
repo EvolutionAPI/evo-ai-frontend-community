@@ -6,7 +6,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useChatContext } from '@/contexts/chat/ChatContext';
 import { usePermissions } from '@/contexts/PermissionsContext';
 
-import { useDebounce } from '../../../hooks/useDebounce';
 import { useLanguage } from '@/hooks/useLanguage';
 
 // Hooks customizados
@@ -68,7 +67,7 @@ const Chat = () => {
   const chatContext = useChatContext();
   // Explicitly type conversations to ensure TypeScript recognizes it has 'state'
   const conversations = chatContext.conversations;
-  const { messages, filters, selectedConversation, selectedMessages } = chatContext;
+  const { messages, selectedConversation, selectedMessages } = chatContext;
 
   // 🔒 RACE CONDITION FIX: Ref para rastrear última conversa carregada
   const lastLoadedConversationRef = useRef<string | null>(null);
@@ -102,9 +101,6 @@ const Chat = () => {
   // Dashboard Apps state (lazy loaded, not auto-fetched)
   const [dashboardApps] = useState<DashboardApp[]>([]);
   const [activeTab, setActiveTab] = useState<string>('chat');
-
-  // Debounce da busca para não sobrecarregar a API
-  const debouncedSearchTerm = useDebounce(searchInput, 500);
 
   // Hooks customizados para lógica de negócio
   const conversationHandlers = useConversationHandlers();
@@ -205,26 +201,6 @@ const Chat = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversations.state.selectedConversationId]); // Removido 'messages' para evitar loop
-
-  // Apply search with debounce
-  useEffect(() => {
-    // 🔒 PROTEÇÃO: Só aplicar busca se o usuário realmente digitou algo
-    // Se searchInput ainda está vazio (valor inicial), não fazer nada
-
-    // Só aplicar busca se o usuário interagiu com o campo de busca
-    if (debouncedSearchTerm === undefined || debouncedSearchTerm === '') {
-      return; // Ignorar busca vazia inicial
-    }
-
-    filters.applySearch(
-      debouncedSearchTerm,
-      () => {},
-      error => {
-        console.error('Search error:', error);
-      },
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedSearchTerm]); // Removido 'filters' para evitar loop
 
   // Sincronizar conversa selecionada com URL com debounce
   useEffect(() => {
