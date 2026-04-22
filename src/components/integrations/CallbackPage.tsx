@@ -5,7 +5,7 @@ import { Button } from '@evoapi/design-system';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import i18n from '@/i18n/config';
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 import { cn } from '@/lib/utils';
 
 interface CallbackPageProps {
@@ -118,7 +118,7 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="flex justify-center">
-          <img src={logo} alt="EVO CRM" className="h-12" />
+          <AppLogo className="h-12" />
         </div>
 
         {/* Status Card */}

@@ -1,7 +1,7 @@
 {
-  "title": "Attendants",
+  "title": "Team Members",
   "subtitle": "Manage your team and configure access permissions",
-  "loading": "Loading attendants...",
+  "loading": "Loading team members...",
   "card": {
     "id": "ID",
     "role": "Role",
@@ -52,14 +52,14 @@
       "placeholder": "Activity history will be implemented soon."
     },
     "settingsTab": {
-      "title": "Attendant Settings",
+      "title": "Team Member Settings",
       "systemRole": {
         "title": "System Role",
-        "description": "Define the permissions and access of the attendant"
+        "description": "Define the permissions and access of the team member"
       },
       "availabilityStatus": {
         "title": "Availability Status",
-        "description": "Indicates if the attendant is available to receive conversations"
+        "description": "Indicates if the team member is available to receive conversations"
       },
       "emailConfirmation": {
         "title": "Email Confirmation",
@@ -72,13 +72,13 @@
   },
   "form": {
     "title": {
-      "create": "New Attendant",
-      "edit": "Edit Attendant"
+      "create": "New Team Member",
+      "edit": "Edit Team Member"
     },
     "fields": {
       "name": {
         "label": "Name *",
-        "placeholder": "Attendant name"
+        "placeholder": "Team Member name"
       },
       "email": {
         "label": "Email *",
@@ -117,12 +117,12 @@
       "cancel": "Cancel",
       "saving": "Saving...",
       "save": "Save",
-      "create": "Create Attendant"
+      "create": "Create Team Member"
     },
     "messages": {
-      "createSuccess": "Attendant created successfully",
-      "updateSuccess": "Attendant updated successfully",
-      "saveError": "Error saving attendant"
+      "createSuccess": "Team Member created successfully",
+      "updateSuccess": "Team Member updated successfully",
+      "saveError": "Error saving team member"
     }
   },
   "bulkInvite": {
@@ -137,7 +137,7 @@
     },
     "fields": {
       "emails": {
-        "label": "Attendants Emails",
+        "label": "Team Members Emails",
         "placeholder": "agent1@example.com\nagent2@example.com, agent3@example.com\nagent4@example.com",
         "hint": "Paste a list of emails, one per line or separated by comma"
       }
@@ -163,14 +163,14 @@
     }
   },
   "filter": {
-    "title": "Filter Attendants",
-    "description": "Configure the filters to find the attendants you are looking for",
+    "title": "Filter Team Members",
+    "description": "Configure the filters to find the team members you are looking for",
     "applyFilters": "Apply Filters",
     "clearFilters": "Clear Filters",
     "addFilter": "Add Filter"
   },
   "header": {
-    "newUser": "New Attendant",
+    "newUser": "New Team Member",
     "bulkInvite": "Bulk Invite",
     "export": "Export",
     "delete": "Delete",
@@ -178,7 +178,7 @@
   },
   "table": {
     "columns": {
-      "user": "Attendant",
+      "user": "Team Member",
       "role": "Role",
       "status": "Status",
       "confirmation": "Confirmation",
@@ -191,43 +191,43 @@
       "delete": "Delete"
     },
     "empty": {
-      "title": "No attendants found",
-      "description": "Create your first attendant to start managing your team.",
-      "action": "New Attendant"
+      "title": "No team members found",
+      "description": "Create your first team member to start managing your team.",
+      "action": "New Team Member"
     }
   },
   "messages": {
     "permissionDenied": {
-      "read": "You don't have permission to view attendants",
-      "create": "You don't have permission to create attendants",
-      "update": "You don't have permission to edit attendants",
-      "delete": "You don't have permission to delete attendants",
-      "invite": "You don't have permission to invite attendants"
+      "read": "You don't have permission to view team members",
+      "create": "You don't have permission to create team members",
+      "update": "You don't have permission to edit team members",
+      "delete": "You don't have permission to delete team members",
+      "invite": "You don't have permission to invite team members"
     },
-    "loadError": "Error loading attendants",
+    "loadError": "Error loading team members",
     "filterError": "Error applying filters",
-    "deleteSuccess": "Attendant deleted successfully",
-    "deleteError": "Error deleting attendant",
-    "bulkDeleteSuccess": "{{count}} attendant(s) deleted successfully",
-    "bulkDeleteError": "Error deleting attendants",
+    "deleteSuccess": "Team Member deleted successfully",
+    "deleteError": "Error deleting team member",
+    "bulkDeleteSuccess": "{{count}} team member(s) deleted successfully",
+    "bulkDeleteError": "Error deleting team members",
     "availabilityUpdated": "Availability status updated"
   },
   "empty": {
-    "title": "No attendants found",
-    "description": "Create your first attendant to start managing your team.",
-    "action": "New Attendant"
+    "title": "No team members found",
+    "description": "Create your first team member to start managing your team.",
+    "action": "New Team Member"
   },
   "dialog": {
     "delete": {
-      "title": "Delete Attendant",
-      "description": "Are you sure you want to delete the attendant \"{{name}}\"? This action cannot be undone.",
+      "title": "Delete Team Member",
+      "description": "Are you sure you want to delete the team member \"{{name}}\"? This action cannot be undone.",
       "cancel": "Cancel",
       "deleting": "Deleting...",
       "confirm": "Delete"
     },
     "bulkDelete": {
-      "title": "Delete Attendants",
-      "description": "Are you sure you want to delete {{count}} attendant(s) selected? This action cannot be undone.",
+      "title": "Delete Team Members",
+      "description": "Are you sure you want to delete {{count}} team member(s) selected? This action cannot be undone.",
       "cancel": "Cancel",
       "deleting": "Deleting...",
       "confirm": "Delete All"

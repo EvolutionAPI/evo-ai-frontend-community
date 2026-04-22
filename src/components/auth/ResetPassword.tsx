@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 const resetPasswordSchema = (t: any) => z
   .object({
@@ -106,11 +106,7 @@ const ResetPassword = () => {
       <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-t from-primary/20 via-background/95 to-background relative">
         <div className="w-full max-w-md space-y-6">
           <div className="text-center">
-            <img
-              src={logo}
-              alt="EVO CRM"
-              className="h-10 mx-auto"
-            />
+            <AppLogo className="h-10 mx-auto" />
           </div>
 
           <div className="bg-background/80 backdrop-blur-sm border rounded-lg p-6 shadow-lg">
@@ -147,11 +143,7 @@ const ResetPassword = () => {
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <img
-            src={logo}
-            alt="EVO CRM"
-            className="h-10 mx-auto"
-          />
+          <AppLogo className="h-10 mx-auto" />
         </div>
 
         {/* Form */}

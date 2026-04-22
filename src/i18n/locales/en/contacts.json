@@ -156,7 +156,7 @@
       "conversation_created": "New conversation created in inbox \"{{inbox_name}}\"",
       "conversation_updated": "Conversation updated ({{count}} changes)",
       "message_created_incoming": "received from contact",
-      "message_created_outgoing": "sent by Attendant",
+      "message_created_outgoing": "sent by Team Member",
       "pipeline_added": "Added to pipeline \"{{pipeline_name}}\" in stage \"{{pipeline_stage_name}}\"",
       "pipeline_stage_changed": "Pipeline \"{{pipeline_name}}\": moved from \"{{old_stage_name}}\" to \"{{new_stage_name}}\"",
       "pipeline_custom_fields": "Custom fields of pipeline \"{{pipeline_name}}\" updated (total value: {{value}})",
@@ -186,7 +186,7 @@
       "message": "Message",
       "messageTypes": {
         "incoming": "📥 From Contact",
-        "outgoing": "📤 From Attendant"
+        "outgoing": "📤 From Team Member"
       },
       "type": "Type: {{type}}",
       "channel": "Channel: {{channel}}",
@@ -201,7 +201,7 @@
         "first_reply_created_at": "First reply recorded",
         "cached_label_list": "Label list updated",
         "status": "Conversation status changed",
-        "assignee_last_seen_at": "Last seen by Attendant",
+        "assignee_last_seen_at": "Last seen by Team Member",
         "generic": "Field \"{{field}}\" was modified"
       },
       "inbox": "Inbox: {{name}}",
@@ -499,7 +499,7 @@
     "apply": "Apply Filters",
     "clear": "Clear Filters",
     "attribute": "Attribute",
-    "operator": "Operator",
+    "operator": "Team Member",
     "value": "Value",
     "addFilter": "Add Filter",
     "type": {

@@ -57,7 +57,7 @@
     "noOrganizations": "No organization available",
     "roles": {
       "administrator": "Administrator",
-      "agent": "Attendant"
+      "agent": "Team Member"
     }
   },
   "sidebar": {
@@ -96,7 +96,7 @@
     },
     "settings": {
       "account": "Account",
-      "users": "Attendants",
+      "users": "Team Members",
       "teams": "Teams",
       "labels": "Labels",
       "customAttributes": "Custom Attributes",

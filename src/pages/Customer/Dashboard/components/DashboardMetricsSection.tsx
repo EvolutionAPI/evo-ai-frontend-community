@@ -191,7 +191,7 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
             <CardContent>
               <div className="flex items-center justify-between">
                 <div className="text-2xl font-semibold">{data.stats.open_conversations}</div>
-                <Badge variant="outline" className="border-amber-500/40 text-amber-300 bg-amber-500/10">
+                <Badge variant="outline" className="border-amber-500/40 text-amber-700 dark:text-amber-300 bg-amber-500/10">
                   {data.stats.open_conversations > 0
                     ? tx('dashboard.status.monitor', 'Monitorar')
                     : tx('dashboard.status.good', 'Estável')}
@@ -218,10 +218,10 @@ const DashboardMetricsSection = ({ data, t }: DashboardMetricsSectionProps) => {
                   variant="outline"
                   className={
                     unassignedStatus.tone === 'critical'
-                      ? 'border-red-500/40 text-red-300 bg-red-500/10'
+                      ? 'border-red-500/40 text-red-700 dark:text-red-300 bg-red-500/10'
                       : unassignedStatus.tone === 'warning'
-                        ? 'border-amber-500/40 text-amber-300 bg-amber-500/10'
-                        : 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10'
+                        ? 'border-amber-500/40 text-amber-700 dark:text-amber-300 bg-amber-500/10'
+                        : 'border-emerald-500/40 text-emerald-700 dark:text-emerald-300 bg-emerald-500/10'
                   }
                 >
                   {unassignedStatus.label}

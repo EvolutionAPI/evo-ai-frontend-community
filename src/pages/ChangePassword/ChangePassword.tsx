@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useLanguage } from '@/hooks/useLanguage';
 
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 const ChangePassword = () => {
   const { t } = useLanguage('changePassword');
@@ -84,12 +84,7 @@ const ChangePassword = () => {
       <div className="z-10 flex flex-col items-center justify-center w-full p-2">
         {/* Logo */}
         <div className="mb-4">
-          <img
-            src={logo}
-            alt="EVO CRM"
-            className="h-16"
-          />
-          {/* Se não tiver o logo, usar texto */}
+          <AppLogo className="h-16" />
         </div>
 
         {/* Formulário */}

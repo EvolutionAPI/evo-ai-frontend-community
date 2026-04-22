@@ -35,7 +35,7 @@ import { ApiError } from '@/types/auth';
 import { type Locale } from '@/i18n/config';
 import { useGlobalConfig } from '@/contexts/GlobalConfigContext';
 
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 export const Auth: React.FC = () => {
   const { login: authLogin, mfaState, verifyMfaCode, clearMfaState, setMfaRequired } = useAuth();
@@ -432,11 +432,7 @@ export const Auth: React.FC = () => {
         <div className="w-full max-w-md space-y-6">
           {/* Logo */}
           <div className="text-center">
-            <img
-              src={logo}
-              alt="EVO CRM"
-              className="h-10 mx-auto"
-            />
+            <AppLogo className="h-10 mx-auto" />
           </div>
 
           {/* Formulário */}

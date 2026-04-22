@@ -31,6 +31,7 @@ import {
   Pin,
   Archive,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { useChatContext } from '@/contexts/chat/ChatContext';
 import { Conversation, ConversationFilter } from '@/types/chat/api';
 import { formatConversationTime, formatDetailedTime } from '@/utils/time/timeHelpers';
@@ -39,8 +40,16 @@ import { NoConversations } from '../empty-states';
 import ContactAvatar from '../contact/ContactAvatar';
 import ConversationBadges from '../conversation/ConversationBadges';
 import ConversationsFilter from '../conversation/ConversationsFilter';
+import GlobalSearchPanel from '../search/GlobalSearchPanel';
 import { BaseFilter } from '@/types/core';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useDebounce } from '@/hooks/useDebounce';
+import chatService from '@/services/chat/chatService';
+import type {
+  SearchConversationResult,
+  SearchContactResult,
+  SearchMessageResult,
+} from '@/types/chat/search';
 
 interface ChatSidebarProps {
   mobileView: 'list' | 'chat';
@@ -149,13 +158,64 @@ const ChatSidebar = ({
     }
   }, [filters.state.activeFilters, conversationFilters]);
 
-  // Debounce da busca para nÃ£o sobrecarregar a API
-  // const debouncedSearchTerm = useDebounce(searchInput, 500);
+  const navigate = useNavigate();
+  const [isSearchPanelOpen, setIsSearchPanelOpen] = useState(false);
+  const debouncedSearchTerm = useDebounce(searchInput, 500);
 
-  // Apply search with debounce
   const handleSearchChange = (value: string) => {
     onSearchChange(value);
+    if (value.trim().length > 0) {
+      setIsSearchPanelOpen(true);
+    }
   };
+
+  const handleSearchFocus = () => {
+    if (searchInput.trim().length > 0) {
+      setIsSearchPanelOpen(true);
+    }
+  };
+
+  const handleSelectConversation = useCallback(
+    (item: SearchConversationResult) => {
+      navigate(`/conversations/${item.id}`);
+      onSearchChange('');
+      setIsSearchPanelOpen(false);
+    },
+    [navigate, onSearchChange],
+  );
+
+  const handleSelectContact = useCallback(
+    (item: SearchContactResult) => {
+      navigate(`/contacts/${item.id}`);
+      onSearchChange('');
+      setIsSearchPanelOpen(false);
+    },
+    [navigate, onSearchChange],
+  );
+
+  const handleSelectMessage = useCallback(
+    async (item: SearchMessageResult) => {
+      setIsSearchPanelOpen(false);
+      onSearchChange('');
+
+      if (item.conversation_id == null) return;
+
+      try {
+        const raw = await chatService.getConversation(String(item.conversation_id));
+        const envelope = raw as { data?: { uuid?: string; id?: string }; uuid?: string; id?: string } | null;
+        const conv = envelope?.data?.id ? envelope.data : envelope;
+        const uuid = conv?.uuid || conv?.id;
+        if (uuid) {
+          navigate(`/conversations/${uuid}`, {
+            state: { scrollToMessageId: item.id },
+          });
+        }
+      } catch (error) {
+        console.error('Failed to load conversation from message result:', error);
+      }
+    },
+    [navigate, onSearchChange],
+  );
 
   const handleApplyFilters = async (newFilters: BaseFilter[]) => {
     setConversationFilters(newFilters);
@@ -517,7 +577,17 @@ const ChatSidebar = ({
             placeholder={t('chatSidebar.searchPlaceholder')}
             value={searchInput}
             onChange={e => handleSearchChange(e.target.value)}
+            onFocus={handleSearchFocus}
             className="pl-10"
+          />
+          <GlobalSearchPanel
+            isOpen={isSearchPanelOpen && searchInput.trim().length > 0}
+            searchTerm={debouncedSearchTerm}
+            rawInputValue={searchInput}
+            onClose={() => setIsSearchPanelOpen(false)}
+            onSelectConversation={handleSelectConversation}
+            onSelectContact={handleSelectContact}
+            onSelectMessage={handleSelectMessage}
           />
         </div>
 
