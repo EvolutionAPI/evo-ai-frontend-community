@@ -81,9 +81,15 @@ export const fetchSetupStatus = async (): Promise<boolean> => {
     const status = await setupService.getStatus();
     setupRequiredCache = status.status === 'inactive';
     return setupRequiredCache;
-  } catch {
-    setupRequiredCache = false;
-    return false;
+  } catch (e) {
+    // Fail open to the setup wizard so a transient backend outage during
+    // first boot (auth-service still warming up, migrations running, etc.)
+    // doesn't strand the user on /login with no way to bootstrap.
+    // The bootstrap endpoint itself rejects with AlreadyBootstrappedError
+    // if setup was already completed, so this is safe for healthy installs.
+    // Do not cache the failure — the next render retries.
+    console.warn('[GlobalConfig] /setup/status failed, defaulting setupRequired=true', e);
+    return true;
   }
 };
 
