@@ -353,18 +353,23 @@ const Profile = () => {
         updateData.avatar = userData.avatar;
       }
 
+      const hadAvatarChange = !!userData.avatar;
+
       await profileService.updateProfile(updateData);
 
       // Buscar dados atualizados do perfil para garantir que temos os dados mais recentes
       const profileResponse = await profileService.getProfile();
       const updatedUser = profileResponse.user;
 
+      const serverAvatarUrl = normalizeAvatarUrl(updatedUser.avatar_url);
+      const avatarUploadFailed = hadAvatarChange && !serverAvatarUrl;
+
       // Atualizar dados do usuário no store DIRETAMENTE para refletir mudanças imediatamente
       if (user) {
         const mergedUser = {
           ...user,
           ...updatedUser,
-          avatar_url: normalizeAvatarUrl(updatedUser.avatar_url) || user.avatar_url,
+          avatar_url: serverAvatarUrl || user.avatar_url,
         };
 
         useAuthStore.getState().setUser(mergedUser);
@@ -379,10 +384,12 @@ const Profile = () => {
         unconfirmed_email: updatedUser.unconfirmed_email || null,
         message_signature: updatedUser.message_signature || '',
         avatar: null, // Clear file after upload
-        avatar_url: normalizeAvatarUrl(updatedUser.avatar_url) || prev.avatar_url,
+        avatar_url: serverAvatarUrl || (avatarUploadFailed ? normalizeAvatarUrl(user?.avatar_url) : prev.avatar_url),
       }));
 
-      if (updatedUser.unconfirmed_email) {
+      if (avatarUploadFailed) {
+        toast.error(t('photoUploader.uploadError'));
+      } else if (updatedUser.unconfirmed_email) {
         toast.success(t('personalData.emailConfirmation.emailUpdatedPending', { email: updatedUser.unconfirmed_email }));
       } else {
         toast.success(t('notifications.profileUpdated'));

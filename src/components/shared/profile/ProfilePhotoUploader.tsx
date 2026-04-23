@@ -107,7 +107,6 @@ export default function ProfilePhotoUploader({
 
       setPhotoUrl(url);
       onPhotoChange(croppedFile, url);
-      toast.success(t('photoUploader.photoUpdated'));
 
     } catch (error) {
       console.error('Error cropping photo:', error);
