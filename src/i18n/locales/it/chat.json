@@ -847,6 +847,15 @@
         "language": "Lingua",
         "templateBody": "Contenuto del Modello",
         "category": "Categoria"
+      },
+      "status": {
+        "approved": "Approvato",
+        "pending": "In attesa di approvazione",
+        "rejected": "Rifiutato",
+        "paused": "In pausa",
+        "inactive": "Inattivo",
+        "unknown": "Stato sconosciuto",
+        "disabledTooltip": "I modelli devono essere approvati da Meta prima di poter essere inviati. Apri le impostazioni dell'inbox per sincronizzare."
       }
     },
     "parser": {

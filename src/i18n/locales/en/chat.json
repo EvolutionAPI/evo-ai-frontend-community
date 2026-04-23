@@ -896,6 +896,15 @@
         "language": "Language",
         "templateBody": "Template Body",
         "category": "Category"
+      },
+      "status": {
+        "approved": "Approved",
+        "pending": "Awaiting approval",
+        "rejected": "Rejected",
+        "paused": "Paused",
+        "inactive": "Inactive",
+        "unknown": "Unknown status",
+        "disabledTooltip": "Templates must be approved by Meta before they can be sent. Open the inbox settings to sync."
       }
     },
     "parser": {
