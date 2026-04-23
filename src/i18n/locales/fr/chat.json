@@ -65,7 +65,8 @@
     "messageImage": {
       "downloadStarted": "Téléchargement démarré",
       "imageFallback": "Image",
-      "imageZoomedAlt": "Image agrandie"
+      "imageZoomedAlt": "Image agrandie",
+      "loadError": "Image indisponible"
     },
     "messageList": {
       "loadingConversation": "Chargement de la conversation...",

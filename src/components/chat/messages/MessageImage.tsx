@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from '@evoapi/design-system/button';
-import { Download, ZoomIn, ZoomOut, X } from 'lucide-react';
+import { Download, ImageOff, ZoomIn, ZoomOut, X } from 'lucide-react';
 import { toast } from 'sonner';
 import { Attachment } from '@/types/chat/api';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -14,6 +14,7 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
   const { t } = useLanguage('chat');
   const [selectedImage, setSelectedImage] = useState<Attachment | null>(null);
   const [imageZoom, setImageZoom] = useState(1);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   const resolveImageSrc = (attachment: Attachment): string | null => {
     const src = attachment.thumb_url || attachment.data_url;
@@ -68,7 +69,9 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
     <>
       <div className="space-y-2">
         {attachments.map((attachment, index) => {
+            const attachmentKey = String(attachment.id || index);
             const imageSrc = resolveImageSrc(attachment);
+            const hasFailed = failedImages.has(attachmentKey);
             return (
           <div key={attachment.id || index} className="space-y-1">
             {/* Container da imagem com hover isolado */}
@@ -83,7 +86,12 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
                   aspectRatio: '16/9', // ✅ Proporção consistente
                 }}
               >
-                {imageSrc ? (
+                {hasFailed ? (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 text-xs text-destructive/70 px-3 text-center">
+                    <ImageOff className="h-5 w-5" />
+                    <span>{t('messages.messageImage.loadError')}</span>
+                  </div>
+                ) : imageSrc ? (
                   <img
                     src={imageSrc}
                     alt={attachment.fallback_title || t('messages.messageImage.imageFallback')}
@@ -97,7 +105,7 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
                         img.src = nextSrc;
                         return;
                       }
-                      img.style.display = 'none';
+                      setFailedImages(prev => new Set(prev).add(attachmentKey));
                     }}
                     style={{
                       objectFit: 'cover',
