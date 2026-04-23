@@ -866,6 +866,15 @@
         "language": "Idioma",
         "templateBody": "Conteúdo do Template",
         "category": "Categoria"
+      },
+      "status": {
+        "approved": "Aprovado",
+        "pending": "A aguardar aprovação",
+        "rejected": "Rejeitado",
+        "paused": "Pausado",
+        "inactive": "Inativo",
+        "unknown": "Estado desconhecido",
+        "disabledTooltip": "Os templates precisam de ser aprovados pela Meta antes de serem enviados. Aceda às definições da caixa de entrada para sincronizar."
       }
     },
     "parser": {
