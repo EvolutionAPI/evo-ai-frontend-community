@@ -21,6 +21,11 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
     return src && src.trim() !== '' ? src : null;
   };
 
+  const resolveModalImageSrc = (attachment: Attachment): string | null => {
+    const src = attachment.data_url || attachment.thumb_url;
+    return src && src.trim() !== '' ? src : null;
+  };
+
   const resolveNextImageSrc = (currentSrc: string, attachment: Attachment): string | null => {
     const orderedSources = [attachment.thumb_url, attachment.data_url]
       .filter((source): source is string => !!source && source.trim() !== '');
@@ -29,16 +34,24 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
     return orderedSources[nextIndex] || null;
   };
 
-  const downloadFile = (attachment: Attachment) => {
-    const result = openAttachmentInNewTab({
-      url: attachment.data_url,
-      filename: attachment.fallback_title || t('messages.messageImage.imageFallback'),
-    });
+  const downloadFile = async (attachment: Attachment) => {
+    const url = attachment.data_url?.trim();
+    if (!url) return;
 
-    if (result === 'download-fallback') {
-      toast.success(t('messages.messageImage.downloadStarted'), {
-        description: attachment.fallback_title || t('messages.messageImage.imageFallback'),
-      });
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('fetch failed');
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = attachment.fallback_title || t('messages.messageImage.imageFallback');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+    } catch {
+      openAttachmentInNewTab({ url, filename: attachment.fallback_title || t('messages.messageImage.imageFallback') });
     }
   };
 
@@ -135,9 +148,9 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
                   <Button
                     size="sm"
                     variant="secondary"
-                    onClick={e => {
+                    onClick={async e => {
                       e.stopPropagation();
-                      downloadFile(attachment);
+                      await downloadFile(attachment);
                     }}
                     className="bg-white/95 text-black hover:bg-white shadow-lg"
                   >
@@ -173,15 +186,7 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
         >
           {/* Header com controles */}
           <div className="flex items-center justify-between p-4 bg-black/50 backdrop-blur-sm">
-            <div className="text-white">
-              <h3 className="font-medium">{selectedImage.fallback_title || t('messages.messageImage.imageFallback')}</h3>
-              <div className="flex items-center gap-4 text-sm text-white/70">
-                {selectedImage.file_size && <span>{formatFileSize(selectedImage.file_size)}</span>}
-                {selectedImage.extension && (
-                  <span className="uppercase">{selectedImage.extension}</span>
-                )}
-              </div>
-            </div>
+            <div />
 
             <div className="flex items-center gap-2">
               {/* Controles de zoom */}
@@ -219,9 +224,9 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
               <Button
                 size="sm"
                 variant="secondary"
-                onClick={e => {
+                onClick={async e => {
                   e.stopPropagation();
-                  downloadFile(selectedImage);
+                  await downloadFile(selectedImage);
                 }}
                 className="bg-white/10 border-white/20 text-white hover:bg-white/20"
               >
@@ -245,9 +250,9 @@ const MessageImage: React.FC<MessageImageProps> = ({ attachments }) => {
 
           {/* Container da imagem */}
           <div className="flex-1 flex items-center justify-center p-4 overflow-auto">
-            {resolveImageSrc(selectedImage) && (
+            {resolveModalImageSrc(selectedImage) && (
               <img
-                src={resolveImageSrc(selectedImage) || undefined}
+                src={resolveModalImageSrc(selectedImage) || undefined}
                 alt={selectedImage.fallback_title || t('messages.messageImage.imageZoomedAlt')}
                 className="max-w-full max-h-full object-contain transition-transform duration-200"
                 style={{
