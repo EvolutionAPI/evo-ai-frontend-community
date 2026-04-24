@@ -52,13 +52,15 @@ export const useFilterOptions = (params: UseFilterOptionsParams = {}): FilterOpt
       setOptions(prev => ({ ...prev, loading: true, error: null }));
 
       try {
-        // ✅ Carregar inboxes, pipelines, contatos e labels em paralelo
+        // ✅ Carregar inboxes, pipelines, contatos e labels em paralelo.
+        // Labels: per_page: 200 evita truncamento silencioso para contas com
+        // mais de 20 labels (default da paginação do /labels endpoint).
         const [inboxesResponse, pipelinesResponse, contactsResponse, labelsResponse] =
           await Promise.allSettled([
             InboxesService.list(),
             chatService.getAvailablePipelines(),
             contactsService.getContacts({ per_page: 100, sort: 'last_activity_at', order: 'desc' }),
-            labelsService.getLabels(),
+            labelsService.getLabels({ per_page: 200 }),
           ]);
 
         // ✅ Processar inboxes
