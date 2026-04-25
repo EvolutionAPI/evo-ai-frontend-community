@@ -224,11 +224,11 @@
       "tabTitle": "Evolution",
       "fields": {
         "apiUrl": "URL da API",
-        "adminSecret": "Segredo do Admin"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-api.exemplo.com",
-        "adminSecret": "Introduza o novo segredo do admin"
+        "adminSecret": "Introduza o novo token admin"
       },
       "saveSuccess": "Configuracao do Evolution guardada com sucesso",
       "saveError": "Falha ao guardar configuracao do Evolution"
@@ -237,15 +237,11 @@
       "tabTitle": "Evolution Go",
       "fields": {
         "apiUrl": "URL da API",
-        "adminSecret": "Segredo do Admin",
-        "instanceId": "ID da Instancia",
-        "instanceSecret": "Segredo da Instancia"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-go.exemplo.com",
-        "adminSecret": "Introduza o novo segredo do admin",
-        "instanceId": "O seu Evolution Go Instance ID",
-        "instanceSecret": "Introduza o novo segredo da instancia"
+        "adminSecret": "Introduza o novo token admin"
       },
       "saveSuccess": "Configuracao do Evolution Go guardada com sucesso",
       "saveError": "Falha ao guardar configuracao do Evolution Go"

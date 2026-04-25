@@ -105,6 +105,18 @@ export const clearGlobalConfigCache = () => {
   globalConfigListeners.forEach(listener => listener());
 };
 
+// Versão await-able: invalida o cache e aguarda o próximo fetch terminar.
+// Usado pelo admin após salvar uma config para garantir que `hasXxxConfig`
+// já está atualizado antes da UI prosseguir (sem janela de race entre o
+// success toast e a próxima ação do usuário).
+export const refreshGlobalConfig = async (): Promise<GlobalConfig> => {
+  globalConfigCache = null;
+  globalConfigPromise = null;
+  const data = await fetchGlobalConfig();
+  globalConfigListeners.forEach(listener => listener());
+  return data;
+};
+
 export const clearSetupCache = () => {
   setupRequiredCache = null;
   // Notificar todos os listeners para re-fetch
