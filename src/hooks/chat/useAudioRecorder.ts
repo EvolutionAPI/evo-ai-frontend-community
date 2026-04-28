@@ -1,5 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
+import { FFmpeg } from '@ffmpeg/ffmpeg';
+import { toBlobURL, fetchFile } from '@ffmpeg/util';
 
 export interface AudioRecordingData {
   blob: Blob;
@@ -27,6 +29,62 @@ interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
 }
 
+// FFmpeg WASM singleton — loaded once, reused across recordings
+let ffmpegInstance: FFmpeg | null = null;
+
+const loadFFmpeg = async (): Promise<FFmpeg> => {
+  if (ffmpegInstance) return ffmpegInstance;
+
+  const ffmpeg = new FFmpeg();
+  // core-st = single-threaded: does NOT require SharedArrayBuffer / COOP+COEP headers
+  const baseURL = 'https://unpkg.com/@ffmpeg/core-st@0.12.6/dist/umd';
+
+  await ffmpeg.load({
+    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
+    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+  });
+
+  ffmpegInstance = ffmpeg;
+  return ffmpeg;
+};
+
+const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
+  const ffmpeg = await loadFFmpeg();
+
+  const mime = inputBlob.type;
+  const ext = mime.includes('mp4') ? 'm4a' : mime.includes('ogg') ? 'ogg' : 'webm';
+  const inputName = `input.${ext}`;
+
+  await ffmpeg.writeFile(inputName, await fetchFile(inputBlob));
+
+  await ffmpeg.exec([
+    '-i', inputName,
+    '-vn',
+    '-c:a', 'libopus',
+    '-b:a', '48k',
+    '-ar', '48000',
+    '-ac', '1',
+    '-avoid_negative_ts', 'make_zero',
+    '-write_xing', '0',
+    '-compression_level', '10',
+    '-application', 'voip',
+    '-fflags', '+bitexact',
+    '-flags', '+bitexact',
+    '-id3v2_version', '0',
+    '-map_metadata', '-1',
+    '-map_chapters', '-1',
+    '-write_bext', '0',
+    'output.ogg',
+  ]);
+
+  const data = await ffmpeg.readFile('output.ogg');
+
+  await ffmpeg.deleteFile(inputName);
+  await ffmpeg.deleteFile('output.ogg');
+
+  return new Blob([new Uint8Array(data as Uint8Array)], { type: 'audio/ogg' });
+};
+
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
   const preferWhatsAppCloudFormat = options?.preferWhatsAppCloudFormat === true;
   const [isRecording, setIsRecording] = useState(false);
@@ -43,7 +101,7 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
   const pausedTimeRef = useRef<number>(0); // Tempo acumulado em pausas
   const pauseStartRef = useRef<number>(0); // Quando pausou
   const isPausedRef = useRef<boolean>(false); // Ref para estado de pausa
-  const durationIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const durationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -177,45 +235,51 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
           const storedDuration = (mediaRecorderRef.current as any)?.__finalDuration;
           const finalDuration = storedDuration || duration;
 
-          const mimeType = normalizeMimeType(selectedMimeTypeRef.current);
-          const extension = getFileExtensionFromMimeType(mimeType);
+          const recordedMimeType = normalizeMimeType(selectedMimeTypeRef.current);
+          const recordedBlob = new Blob(chunksRef.current, { type: recordedMimeType });
 
-          // Criar blob original no formato efetivamente gravado
-          const recordedBlob = new Blob(chunksRef.current, { type: mimeType });
-          // HACK: Adicionar duração como metadado no blob para MessageAudio
-          const finalBlob = new File([recordedBlob], `audio_${generateId()}.${extension}`, {
-            type: mimeType,
+          // When WhatsApp Cloud format is requested, convert to OGG/Opus via FFmpeg WASM
+          // so the audio arrives as a native PTT voice message instead of a generic attachment.
+          // Skip conversion if the browser already recorded natively in OGG (e.g. Firefox).
+          let outputBlob: Blob = recordedBlob;
+          let outputMime = recordedMimeType;
+          let outputExt = getFileExtensionFromMimeType(recordedMimeType);
+
+          if (preferWhatsAppCloudFormat && !recordedMimeType.includes('ogg')) {
+            try {
+              outputBlob = await convertToOggOpus(recordedBlob);
+              outputMime = 'audio/ogg';
+              outputExt = 'ogg';
+            } catch (convErr) {
+              console.warn('[AudioRecorder] OGG conversion failed, sending original format:', convErr);
+              // outputBlob / outputMime / outputExt stay as recorded values
+            }
+          }
+
+          const fileName = `audio_${generateId()}.${outputExt}`;
+          const finalBlob = new File([outputBlob], fileName, {
+            type: outputMime,
             lastModified: Date.now(),
           });
 
-          // Anexar duração como propriedade customizada
           (finalBlob as any).__duration = finalDuration;
 
           const url = URL.createObjectURL(finalBlob);
-
-          // Criar arquivo para upload (sem duração customizada)
-          const fileName = `audio_${generateId()}.${extension}`;
-          const file = new File([recordedBlob], fileName, { type: mimeType });
 
           const audioData: AudioRecordingData = {
             blob: finalBlob,
             url,
             duration: finalDuration,
-            file,
+            file: finalBlob,
           };
-
-          // HACK: Salvar duração no blob para áudios gravados localmente
-          if (finalDuration > 0) {
-            (finalBlob as any).__duration = finalDuration;
-          }
 
           setRecordingData(audioData);
           setHasRecording(true);
         } catch {
           toast.error('Erro ao processar gravação de áudio');
 
-          // Fallback: usar blob original
-          const finalDuration = duration; // DECLARAR AQUI TAMBÉM
+          // Fallback: usar blob original sem conversão
+          const finalDuration = duration;
           const mimeType = normalizeMimeType(selectedMimeTypeRef.current);
           const extension = getFileExtensionFromMimeType(mimeType);
           const recordedBlob = new Blob(chunksRef.current, { type: mimeType });
