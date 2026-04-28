@@ -501,6 +501,17 @@
     "save": "Enregistrer l'Ordre"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Rechercher par nom, téléphone, email...",
+      "assigneeFilter": "Responsable",
+      "allAssignees": "Tous les responsables",
+      "unassigned": "Non assigné",
+      "clearFilters": "Effacer les filtres",
+      "noResults": "Aucune carte ne correspond aux filtres",
+      "resultsCount": "Affichage de {{count}} sur {{total}} cartes dans {{stages}} étape(s)",
+      "loadingAgents": "Chargement de l'équipe...",
+      "noAgents": "Aucun membre de l'équipe trouvé"
+    },
     "header": {
       "conversations": "Conversations",
       "stages": "Étapes",

@@ -538,6 +538,17 @@
     "save": "Salvar Ordem"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Buscar por nome, telefone, email...",
+      "assigneeFilter": "Responsável",
+      "allAssignees": "Todos os responsáveis",
+      "unassigned": "Sem responsável",
+      "clearFilters": "Limpar filtros",
+      "noResults": "Nenhum card corresponde aos filtros",
+      "resultsCount": "Mostrando {{count}} de {{total}} cards em {{stages}} etapa(s)",
+      "loadingAgents": "Carregando equipe...",
+      "noAgents": "Nenhum membro da equipe encontrado"
+    },
     "header": {
       "conversations": "Itens",
       "stages": "Etapas",

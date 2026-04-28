@@ -499,6 +499,17 @@
     "save": "Guardar Orden"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Buscar por nombre, teléfono, email...",
+      "assigneeFilter": "Responsable",
+      "allAssignees": "Todos los responsables",
+      "unassigned": "Sin responsable",
+      "clearFilters": "Limpiar filtros",
+      "noResults": "No hay tarjetas que coincidan con los filtros",
+      "resultsCount": "Mostrando {{count}} de {{total}} tarjetas en {{stages}} etapa(s)",
+      "loadingAgents": "Cargando equipo...",
+      "noAgents": "No se encontraron miembros del equipo"
+    },
     "header": {
       "conversations": "Conversaciones",
       "stages": "Etapas",

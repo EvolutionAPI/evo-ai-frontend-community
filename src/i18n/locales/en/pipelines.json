@@ -538,6 +538,17 @@
     "save": "Save Order"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Search by name, phone, email...",
+      "assigneeFilter": "Assignee",
+      "allAssignees": "All assignees",
+      "unassigned": "Unassigned",
+      "clearFilters": "Clear filters",
+      "noResults": "No cards match the filters",
+      "resultsCount": "Showing {{count}} of {{total}} cards across {{stages}} stage(s)",
+      "loadingAgents": "Loading team...",
+      "noAgents": "No team members found"
+    },
     "header": {
       "conversations": "Items",
       "stages": "Stages",

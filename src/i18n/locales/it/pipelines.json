@@ -497,6 +497,17 @@
     "save": "Salva Ordine"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Cerca per nome, telefono, email...",
+      "assigneeFilter": "Responsabile",
+      "allAssignees": "Tutti i responsabili",
+      "unassigned": "Non assegnato",
+      "clearFilters": "Cancella i filtri",
+      "noResults": "Nessuna scheda corrisponde ai filtri",
+      "resultsCount": "Visualizzazione di {{count}} su {{total}} schede in {{stages}} fase/i",
+      "loadingAgents": "Caricamento del team...",
+      "noAgents": "Nessun membro del team trovato"
+    },
     "header": {
       "conversations": "Conversazioni",
       "stages": "Fasi",

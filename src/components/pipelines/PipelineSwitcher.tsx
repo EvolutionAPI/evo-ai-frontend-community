@@ -82,9 +82,8 @@ export default function PipelineSwitcher({
       <DropdownMenuTrigger asChild>
         <button
           className={cn(
-            'bg-background border border-sidebar-border hover:bg-sidebar-accent text-foreground transition-colors',
-            'flex items-center gap-3 px-4 py-3 text-sm font-medium shadow-sm w-full max-w-full sm:max-w-md',
-            isOpen ? 'rounded-t-lg rounded-b-none' : 'rounded-lg',
+            'hover:bg-accent text-foreground transition-colors',
+            'flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg w-full max-w-full sm:max-w-md',
             className
           )}
         >
