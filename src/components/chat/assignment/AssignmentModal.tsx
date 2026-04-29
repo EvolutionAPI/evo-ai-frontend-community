@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -12,8 +12,9 @@ import { Input } from '@evoapi/design-system/input';
 import { Badge } from '@evoapi/design-system/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@evoapi/design-system/avatar';
 import { Checkbox } from '@evoapi/design-system/checkbox';
-import { Search, User, Users, Tag, X } from 'lucide-react';
+import { Search, User, Users, Tag, X, Plus } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
+import LabelModal from '@/components/labels/LabelModal';
 
 export interface AssignmentOption {
   id: string;
@@ -37,6 +38,8 @@ interface AssignmentModalProps {
   multiSelect?: boolean;
   isLoading?: boolean;
   searchPlaceholder?: string;
+  canCreateInline?: boolean;
+  onCreateInline?: (data: { title: string; description?: string; color: string; show_on_sidebar?: boolean }) => Promise<AssignmentOption>;
 }
 
 const AssignmentModal: React.FC<AssignmentModalProps> = ({
@@ -51,11 +54,17 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
   multiSelect = false,
   isLoading = false,
   searchPlaceholder,
+  canCreateInline = false,
+  onCreateInline,
 }) => {
   const { t } = useLanguage('chat');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIds, setSelectedIds] = useState<string[]>(currentSelection);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [extraOptions, setExtraOptions] = useState<AssignmentOption[]>([]);
+  const [isCreating, setIsCreating] = useState(false);
+  const [isLabelModalOpen, setIsLabelModalOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const defaultSearchPlaceholder = searchPlaceholder || t('assignmentModal.searchPlaceholder');
 
@@ -70,15 +79,49 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
     if (isOpen) {
       setSelectedIds(currentSelection);
       setSearchTerm('');
+      setExtraOptions([]);
     }
   }, [isOpen, currentSelection]);
 
+  const allOptions = useMemo(() => [...options, ...extraOptions], [options, extraOptions]);
+
   // Filter options based on search term
-  const filteredOptions = options.filter(
+  const filteredOptions = allOptions.filter(
     option =>
       option.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       option.description?.toLowerCase().includes(searchTerm.toLowerCase()),
   );
+
+  const hasExactMatch =
+    searchTerm.trim().length > 0 &&
+    allOptions.some(o => o.name.toLowerCase() === searchTerm.trim().toLowerCase());
+
+  const showCreateOption = canCreateInline && !!onCreateInline && !hasExactMatch;
+
+  const handleOpenLabelModal = () => {
+    setIsLabelModalOpen(true);
+  };
+
+  const handleLabelModalSubmit = async (data: {
+    title: string;
+    description?: string;
+    color: string;
+    show_on_sidebar?: boolean;
+  }) => {
+    if (!onCreateInline) return;
+    setIsCreating(true);
+    try {
+      const newOption = await onCreateInline(data);
+      setExtraOptions(prev => [...prev, newOption]);
+      setSelectedIds(prev => [...prev, newOption.id]);
+      setSearchTerm('');
+      setIsLabelModalOpen(false);
+    } catch {
+      // error handled by caller
+    } finally {
+      setIsCreating(false);
+    }
+  };
 
   const handleToggleSelection = (optionId: string) => {
     if (multiSelect) {
@@ -158,6 +201,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
   };
 
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
@@ -173,6 +217,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
+              ref={searchInputRef}
               type="text"
               placeholder={defaultSearchPlaceholder}
               value={searchTerm}
@@ -188,7 +233,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                 {t('assignmentModal.selected')}
               </span>
               {selectedIds.map(id => {
-                const option = options.find(opt => opt.id === id);
+                const option = allOptions.find(opt => opt.id === id);
                 if (!option) return null;
 
                 return (
@@ -215,16 +260,32 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                   {t('assignmentModal.loading')}
                 </div>
               </div>
-            ) : filteredOptions.length === 0 ? (
-              <div className="flex items-center justify-center py-8">
-                <div className="text-sm text-muted-foreground">
-                  {searchTerm
-                    ? t('assignmentModal.noResults')
-                    : t('assignmentModal.noOptions')}
-                </div>
-              </div>
             ) : (
-              filteredOptions.map(renderOption)
+              <>
+                {filteredOptions.length === 0 && !showCreateOption && (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="text-sm text-muted-foreground">
+                      {searchTerm
+                        ? t('assignmentModal.noResults')
+                        : t('assignmentModal.noOptions')}
+                    </div>
+                  </div>
+                )}
+                {filteredOptions.map(renderOption)}
+                {showCreateOption && (
+                  <div
+                    className="flex items-center gap-3 p-3 rounded-lg border border-dashed border-primary/50 cursor-pointer transition-all hover:bg-primary/5 hover:border-primary"
+                    onClick={handleOpenLabelModal}
+                  >
+                    <Plus className="h-4 w-4 text-primary flex-shrink-0" />
+                    <span className="text-sm font-medium text-primary">
+                      {searchTerm.trim()
+                        ? t('assignmentModal.createLabel', { name: searchTerm.trim() })
+                        : t('assignmentModal.newLabel')}
+                    </span>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -245,6 +306,18 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
         </DialogFooter>
       </DialogContent>
     </Dialog>
+
+    {canCreateInline && onCreateInline && (
+      <LabelModal
+        open={isLabelModalOpen}
+        onOpenChange={setIsLabelModalOpen}
+        isNew={true}
+        loading={isCreating}
+        initialTitle={searchTerm.trim()}
+        onSubmit={handleLabelModalSubmit}
+      />
+    )}
+  </>
   );
 };
 

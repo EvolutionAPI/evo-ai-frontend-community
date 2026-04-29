@@ -211,7 +211,10 @@
     "noOptions": "Nessuna opzione disponibile",
     "cancel": "Annulla",
     "applying": "Applicazione...",
-    "apply": "Applica"
+    "apply": "Applica",
+    "createLabel": "Crea etichetta: \"{{name}}\"",
+    "creating": "Creazione...",
+    "newLabel": "Crea nuova etichetta"
   },
   "audioRecorder": {
     "notSupported": "Registrazione audio non supportata in questo browser",

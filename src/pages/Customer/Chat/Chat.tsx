@@ -43,6 +43,7 @@ import { Conversation } from '@/types/chat/api';
 import { BaseFilter } from '@/types/core';
 import type { DashboardApp } from '../../../types/integrations';
 import type { AssignmentOption, AssignmentType } from '@/components/chat/assignment';
+import { labelsService } from '@/services/contacts/labelsService';
 
 const ContactSidebar = React.lazy(() => import('@/components/chat/contact-sidebar/ContactSidebar'));
 
@@ -505,6 +506,17 @@ const Chat = () => {
     }
   };
 
+  const handleCreateLabelInline = async (data: {
+    title: string;
+    description?: string;
+    color: string;
+    show_on_sidebar?: boolean;
+  }): Promise<AssignmentOption> => {
+    const result = await labelsService.createLabel(data);
+    const label = result as any;
+    return { id: label.id, name: label.title, color: label.color };
+  };
+
   // Assignment modal handlers
   const handleAssignmentConfirm = async (selectedIds: string[]) => {
     if (!conversationToAssign) return;
@@ -807,6 +819,8 @@ const Chat = () => {
               multiSelect={assignmentModalData.multiSelect}
               searchPlaceholder={assignmentModalData.searchPlaceholder}
               isLoading={assignmentHandlers.isLoadingAssignmentData}
+              canCreateInline={assignmentType === 'label'}
+              onCreateInline={assignmentType === 'label' ? handleCreateLabelInline : undefined}
             />
           )}
         </Suspense>

@@ -212,7 +212,10 @@
     "noOptions": "No options available",
     "cancel": "Cancel",
     "applying": "Applying...",
-    "apply": "Apply"
+    "apply": "Apply",
+    "createLabel": "Create label: \"{{name}}\"",
+    "creating": "Creating...",
+    "newLabel": "Create new label"
   },
   "audioRecorder": {
     "notSupported": "Audio recording not supported in this browser",
