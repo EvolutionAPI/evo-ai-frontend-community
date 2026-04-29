@@ -220,6 +220,7 @@ class ChatService {
     onUploadProgress?: (progress: number, fileName: string) => void,
     inReplyTo?: string | number,
     echoId?: string,
+    isRecordedAudio?: boolean,
   ): Promise<Message> {
     return withRetry(async () => {
       const formData = new FormData();
@@ -237,6 +238,12 @@ class ChatService {
 
       if (echoId) {
         formData.append('echo_id', echoId);
+      }
+
+      // Sinaliza ao backend que este é um áudio gravado (PTT/voice message)
+      // Usado pelo Baileys para setar ptt: true na mensagem WhatsApp
+      if (isRecordedAudio) {
+        formData.append('is_recorded_audio', 'true');
       }
 
       files.forEach(file => {

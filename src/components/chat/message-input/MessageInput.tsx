@@ -51,6 +51,7 @@ interface SendMessageOptions {
   isPrivate?: boolean;
   templateParams?: any;
   cannedResponseId?: string | null;
+  isRecordedAudio?: boolean;
 }
 
 interface MessageInputProps {
@@ -85,16 +86,19 @@ const MessageInput: React.FC<MessageInputProps> = ({
   const { user } = useAuth();
 
   // Detectar se é WhatsApp Cloud (apenas Cloud, não baileys/evolution/evolution_go)
+  // Usado para features específicas da Cloud API (templates, etc.)
   const isWhatsAppCloud = React.useMemo(() => {
     if (channelType !== 'Channel::Whatsapp') return false;
     const provider = channelProvider?.toLowerCase();
-    const result =
-      provider === 'whatsapp_cloud' || provider === 'default' || !provider || provider === '';
-
-    return result;
+    return provider === 'whatsapp_cloud' || provider === 'default' || !provider || provider === '';
   }, [channelType, channelProvider]);
 
-  // Detectar se é Instagram (também precisa de conversão de áudio WebM para MP3)
+  // Qualquer canal WhatsApp (Cloud, Baileys, Evolution, EvoGo) — usado para conversão de áudio PTT
+  const isWhatsApp = React.useMemo(() => {
+    return channelType === 'Channel::Whatsapp';
+  }, [channelType]);
+
+  // Detectar se é Instagram (também precisa de conversão de áudio WebM para WAV)
   const isInstagram = React.useMemo(() => {
     return channelType === 'Channel::Instagram';
   }, [channelType]);
@@ -261,40 +265,52 @@ const MessageInput: React.FC<MessageInputProps> = ({
         setIsSending(true);
         const isPrivate = replyMode === ReplyMode.NOTE;
 
-        // Converter áudio se necessário (WhatsApp Cloud aceita MP3, Instagram aceita WAV)
+        // Converter áudio para o formato correto por canal:
+        // - WhatsApp (todos os provedores): OGG/Opus para PTT nativo
+        // - Instagram: WAV
         let audioFile = data.file;
-        if ((isWhatsAppCloud || isInstagram) && data.file.type === 'audio/webm') {
+        if (isWhatsApp) {
           try {
-            const { convertAudio, convertToWav } = await import('@/utils/audio/audioConversionUtils');
-            // toast.info(t('messageInput.audio.converting'), { duration: 2000 });
-
-            if (isInstagram) {
-              // Instagram aceita WAV, não MP3
-              const wavBlob = await convertToWav(data.blob);
-              const fileName = data.file.name.replace(/\.webm$/i, '.wav');
-              audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
-            } else if (isWhatsAppCloud) {
-              // WhatsApp Cloud aceita MP3
-              const mp3Blob = await convertAudio(data.blob, 'audio/mp3', 128);
-              const fileName = data.file.name.replace(/\.webm$/i, '.mp3');
-              audioFile = new File([mp3Blob], fileName, { type: 'audio/mp3' });
-            }
+            const convertingToastId = toast.loading(t('messageInput.audio.converting'));
+            const { convertToOggOpus } = await import('@/utils/audio/audioConversionUtils');
+            const oggBlob = await convertToOggOpus(data.blob, percent => {
+              toast.loading(`${t('messageInput.audio.converting')} ${percent}%`, {
+                id: convertingToastId,
+              });
+            });
+            toast.dismiss(convertingToastId);
+            const fileName = data.file.name.replace(/\.\w+$/i, '.ogg');
+            audioFile = new File([oggBlob], fileName, { type: 'audio/ogg; codecs=opus' });
           } catch (conversionError) {
-            console.error('Erro ao converter áudio:', conversionError);
+            console.error('Erro ao converter áudio para OGG/Opus:', conversionError);
             toast.warning(t('messageInput.audio.conversionWarning'), {
               description: t('messageInput.audio.conversionWarningDescription'),
             });
-            // Continuar com o arquivo original mesmo em caso de erro
+            // Continuar com o arquivo original em caso de falha na conversão
+          }
+        } else if (isInstagram && data.file.type === 'audio/webm') {
+          try {
+            toast.info(t('messageInput.audio.converting'), { duration: 2000 });
+            const { convertToWav } = await import('@/utils/audio/audioConversionUtils');
+            const wavBlob = await convertToWav(data.blob);
+            const fileName = data.file.name.replace(/\.webm$/i, '.wav');
+            audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
+          } catch (conversionError) {
+            console.error('Erro ao converter áudio para WAV:', conversionError);
+            toast.warning(t('messageInput.audio.conversionWarning'), {
+              description: t('messageInput.audio.conversionWarningDescription'),
+            });
           }
         }
 
-        // Enviar arquivo de áudio
+        // Enviar arquivo de áudio (isRecordedAudio sinaliza ao backend para setar PTT/voice)
         await onSendMessage({
           content: '',
           files: [audioFile],
           isPrivate,
           templateParams: undefined,
           cannedResponseId: null,
+          isRecordedAudio: true,
         });
 
         setIsRecordingAudio(false);
@@ -306,7 +322,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         setIsSending(false);
       }
     },
-    [onSendMessage, replyMode, t, isWhatsAppCloud, isInstagram],
+    [onSendMessage, replyMode, t, isWhatsApp, isInstagram],
   );
 
   const handleAudioRecordingCancel = useCallback(() => {
@@ -849,7 +865,8 @@ const MessageInput: React.FC<MessageInputProps> = ({
             onRecordingCancel={handleAudioRecordingCancel}
             disabled={isDisabled || isSending}
             autoStart={true}
-            preferWhatsAppCloudFormat={isWhatsAppCloud}
+            preferWhatsAppCloudFormat={isWhatsApp}
+            shouldPreloadConverter={isWhatsApp}
           />
         </div>
       )}

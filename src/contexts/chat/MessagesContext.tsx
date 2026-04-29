@@ -381,6 +381,7 @@ interface MessagesContextValue {
     isPrivate?: boolean,
     cannedResponseId?: string | null,
     onUploadProgress?: (progress: number, fileName: string) => void,
+    isRecordedAudio?: boolean,
   ) => Promise<Message | undefined>;
   // Internal method for template support
   _sendMessageBase: (
@@ -392,6 +393,7 @@ interface MessagesContextValue {
       templateParams?: any;
       cannedResponseId?: string | null;
       onUploadProgress?: (progress: number, fileName: string) => void;
+      isRecordedAudio?: boolean;
     },
   ) => Promise<Message | undefined>;
 
@@ -572,6 +574,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
         templateParams?: any;
         cannedResponseId?: string | null;
         onUploadProgress?: (progress: number, fileName: string) => void;
+        isRecordedAudio?: boolean;
       },
     ) => {
       const {
@@ -580,6 +583,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
         isPrivate = false,
         cannedResponseId,
         onUploadProgress,
+        isRecordedAudio,
       } = options;
 
       // 1. 🔧 REPLY TO: Preparar content_attributes com in_reply_to se houver reply
@@ -661,6 +665,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
                 onUploadProgress,
                 contentAttributes.in_reply_to as string | number | undefined,
                 pendingMessage.id,
+                isRecordedAudio,
               )
             : await chatService.sendMessage(conversationId, {
                 content: messageContent,
@@ -759,6 +764,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
       isPrivate?: boolean,
       cannedResponseId?: string | null,
       onUploadProgress?: (progress: number, fileName: string) => void,
+      isRecordedAudio?: boolean,
     ) => {
       return _sendMessageBase(conversationId, {
         content,
@@ -766,6 +772,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
         isPrivate,
         cannedResponseId,
         onUploadProgress,
+        isRecordedAudio,
       });
     },
     [_sendMessageBase],

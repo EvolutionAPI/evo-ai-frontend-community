@@ -218,7 +218,9 @@
     "notSupported": "Audio recording not supported in this browser",
     "record": "Record",
     "paused": "(paused)",
-    "send": "Send"
+    "send": "Send",
+    "preparingConverter": "Preparing audio converter...",
+    "maxDurationReached": "Maximum recording duration reached (5 min). Audio stopped automatically."
   },
   "cannedResponses": {
     "loading": "Loading canned responses...",
@@ -680,7 +682,10 @@
     },
     "audio": {
       "sentSuccess": "Audio sent successfully!",
-      "sendError": "Error sending audio"
+      "sendError": "Error sending audio",
+      "converting": "Converting audio...",
+      "conversionWarning": "Conversion warning",
+      "conversionWarningDescription": "Could not convert audio to OGG/Opus. Sending in original format."
     },
     "templates": {
       "inDevelopment": "Message templates in development 📝"
