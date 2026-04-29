@@ -530,7 +530,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
           <Reply className="h-4 w-4" />
           <span className="font-medium">
             {t('messageInput.replyPreview.replyingTo', {
-              name: message.sender?.name || t('messageInput.replyPreview.userFallback'),
+              name:
+                (message.content_attributes?.sender_name as string | undefined) ||
+                message.sender?.name ||
+                t('messageInput.replyPreview.userFallback'),
             })}
             {replyMode === ReplyMode.NOTE && (
               <span className="ml-1 text-xs text-orange-600 font-normal">
@@ -557,6 +560,12 @@ const MessageInput: React.FC<MessageInputProps> = ({
               {t('messageInput.replyPreview.fileAttachment', {
                 fileType:
                   message.attachments[0].file_type || t('messageInput.replyPreview.fileFallback'),
+              })}
+            </span>
+          ) : message.content_attributes?.media_type ? (
+            <span className="italic">
+              {t('messageInput.replyPreview.fileAttachment', {
+                fileType: message.content_attributes.media_type as string,
               })}
             </span>
           ) : (

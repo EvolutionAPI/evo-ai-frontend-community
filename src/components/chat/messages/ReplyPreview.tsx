@@ -22,26 +22,33 @@ const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
       return content;
     }
 
-    if (message.attachments && message.attachments.length > 0) {
-      const attachment = message.attachments[0];
-      const fileType = attachment.file_type || 'file';
-      
-      // Traduzir tipo de arquivo
-      const fileTypeMap: Record<string, string> = {
-        image: t('messages.replyPreview.imageAttachment'),
-        audio: t('messages.replyPreview.audioAttachment'),
-        video: t('messages.replyPreview.videoAttachment'),
-        file: t('messages.replyPreview.fileAttachment'),
-        location: t('messages.replyPreview.locationAttachment'),
-      };
+    const fileTypeMap: Record<string, string> = {
+      image: t('messages.replyPreview.imageAttachment'),
+      audio: t('messages.replyPreview.audioAttachment'),
+      video: t('messages.replyPreview.videoAttachment'),
+      file: t('messages.replyPreview.fileAttachment'),
+      location: t('messages.replyPreview.locationAttachment'),
+    };
 
+    if (message.attachments && message.attachments.length > 0) {
+      const fileType = message.attachments[0].file_type || 'file';
       return fileTypeMap[fileType] || fileTypeMap.file;
+    }
+
+    // Fallback: media message whose attachment didn't materialize (e.g. inline base64).
+    // Backend tags content_attributes.media_type so we can still surface the kind.
+    const mediaType = message.content_attributes?.media_type as string | undefined;
+    if (mediaType) {
+      return fileTypeMap[mediaType] || fileTypeMap.file;
     }
 
     return t('messages.replyPreview.noContent');
   };
 
-  const senderName = message.sender?.name || t('messages.replyPreview.userFallback');
+  const senderName =
+    (message.content_attributes?.sender_name as string | undefined) ||
+    message.sender?.name ||
+    t('messages.replyPreview.userFallback');
 
   return (
     <div

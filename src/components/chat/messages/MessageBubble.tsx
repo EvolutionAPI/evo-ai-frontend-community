@@ -397,10 +397,24 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
       )}
 
       <div className={`${isThreadReply ? 'max-w-[calc(70%-2rem)]' : 'max-w-[70%]'} ${isOwn ? 'ml-auto' : ''}`}>
-        {/* 📛 Nome: mostrar apenas para contatos (lado esquerdo) - sempre mostrar em replies */}
-        {!isOwn && (isThreadReply || !showAvatar) && (
-          <div className="text-xs mb-1 flex items-center gap-1.5 text-muted-foreground">
-            {message.sender?.name || t('messages.messageBubble.userFallback')}
+        {/* 📛 Nome do remetente:
+            - Em conversa de grupo (backend WhatsApp anexa content_attributes.sender_name por mensagem),
+              renderiza o nome do participante em destaque acima da bolha.
+            - Em 1:1 cai no comportamento antigo (mostrar só em thread reply / sem avatar).
+        */}
+        {!isOwn && (message.content_attributes?.sender_name || isThreadReply || !showAvatar) && (
+          <div
+            className={`text-xs mb-1 flex items-center gap-1.5 ${
+              message.content_attributes?.sender_name
+                ? 'font-medium text-primary'
+                : 'text-muted-foreground'
+            }`}
+          >
+            {String(
+              message.content_attributes?.sender_name ||
+                message.sender?.name ||
+                t('messages.messageBubble.userFallback'),
+            )}
           </div>
         )}
 

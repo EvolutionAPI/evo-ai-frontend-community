@@ -81,6 +81,8 @@ export interface Conversation {
     message_type: MessageTypeValue;
     created_at: string;
     processed_message_content: string;
+    content_attributes?: Record<string, unknown>;
+    attachments?: Array<{ file_type: string }>;
     sender: {
       id: string;
       name: string;

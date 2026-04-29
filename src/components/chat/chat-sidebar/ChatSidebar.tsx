@@ -312,10 +312,49 @@ const ChatSidebar = ({
     return (tempDiv.textContent || tempDiv.innerText || '').trim();
   };
 
+  const attachmentLabel = (fileType?: string) => {
+    switch (fileType) {
+      case 'image':
+        return '📷 Foto';
+      case 'video':
+        return '🎥 Vídeo';
+      case 'audio':
+        return '🎵 Áudio';
+      case 'file':
+        return '📎 Documento';
+      case 'sticker':
+        return '💟 Figurinha';
+      case 'location':
+        return '📍 Localização';
+      case 'contact':
+        return '👤 Contato';
+      default:
+        return fileType ? `📎 ${fileType}` : '📎 Anexo';
+    }
+  };
+
   const getLastMessage = (conversation: Conversation) => {
     const msg = conversation.last_non_activity_message;
-    const cleanContent = stripHtml(msg?.processed_message_content || msg?.content || '');
-    return cleanContent.length > 60 ? cleanContent.substring(0, 60) + '...' : cleanContent;
+    const rawText = stripHtml(msg?.processed_message_content || msg?.content || '');
+    // Media-only messages (video/image/audio/file) come with empty content; surface
+    // a typed placeholder so the preview tells the operator what was sent. Try the
+    // attachment first, then fall back to content_attributes.media_type (set by the
+    // backend even when the attachment couldn't be downloaded — e.g. inline base64).
+    const firstAttachmentType = msg?.attachments?.[0]?.file_type;
+    const fallbackMediaType = msg?.content_attributes?.media_type as string | undefined;
+    const cleanContent =
+      rawText ||
+      (firstAttachmentType ? attachmentLabel(firstAttachmentType) : '') ||
+      (fallbackMediaType ? attachmentLabel(fallbackMediaType) : '');
+    // For WhatsApp group conversations the backend tags each incoming message with
+    // content_attributes.sender_name (the participant who actually spoke). Prepend
+    // that to the preview so the operator can attribute who said what.
+    const senderName =
+      msg && msg.message_type === 'incoming'
+        ? (msg.content_attributes?.sender_name as string | undefined)
+        : undefined;
+    const preview = senderName ? `${senderName}: ${cleanContent}` : cleanContent;
+    return preview.length > 60 ? preview.substring(0, 60) + '...' : preview;
   };
 
   // Render conversation context menu
