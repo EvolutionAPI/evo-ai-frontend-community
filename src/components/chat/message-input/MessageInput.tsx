@@ -408,9 +408,38 @@ const MessageInput: React.FC<MessageInputProps> = ({
     setIsSending(true);
 
     try {
+      // Convert uploaded audio files to OGG/Opus for WhatsApp PTT (acceptance criteria:
+      // "Works for in-browser recordings AND uploaded audio files")
+      let filesToSend = selectedFiles;
+      if (isWhatsApp && selectedFiles.some(f => f.type.startsWith('audio/'))) {
+        const { convertToOggOpus } = await import('@/utils/audio/audioConversionUtils');
+        filesToSend = await Promise.all(
+          selectedFiles.map(async file => {
+            if (!file.type.startsWith('audio/')) return file;
+            try {
+              const convertingToastId = toast.loading(t('messageInput.audio.converting'));
+              const oggBlob = await convertToOggOpus(file, percent => {
+                toast.loading(`${t('messageInput.audio.converting')} ${percent}%`, {
+                  id: convertingToastId,
+                });
+              });
+              toast.dismiss(convertingToastId);
+              return new File([oggBlob], file.name.replace(/\.\w+$/i, '.ogg'), {
+                type: 'audio/ogg; codecs=opus',
+              });
+            } catch {
+              toast.warning(t('messageInput.audio.conversionWarning'), {
+                description: t('messageInput.audio.conversionWarningDescription'),
+              });
+              return file; // fallback to original
+            }
+          }),
+        );
+      }
+
       await onSendMessage({
         content: currentMessage,
-        files: selectedFiles.length > 0 ? selectedFiles : undefined,
+        files: filesToSend.length > 0 ? filesToSend : undefined,
         isPrivate,
         templateParams: undefined,
         cannedResponseId: selectedCannedResponseId,
