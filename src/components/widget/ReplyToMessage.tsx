@@ -1,6 +1,7 @@
 import React from 'react';
 import { Reply } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
+import { stripHtml } from '@/utils/stripHtml';
 
 interface ReplyToMessageProps {
   replyTo: {
@@ -16,8 +17,9 @@ export const ReplyToMessage: React.FC<ReplyToMessageProps> = ({ replyTo, message
   const { t } = useLanguage('widget');
 
   const truncateText = (text: string, maxLength: number = 40) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + '...';
+    const plain = stripHtml(text);
+    if (plain.length <= maxLength) return plain;
+    return plain.substring(0, maxLength) + '...';
   };
 
   const senderName = replyTo.sender || (replyTo.type === 'out' ? t('replyTo.you') : t('replyTo.agent'));

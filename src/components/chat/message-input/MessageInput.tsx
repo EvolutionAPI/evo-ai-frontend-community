@@ -27,6 +27,7 @@ import { useCannedResponses } from '@/hooks/chat/useCannedResponses';
 import { useMessageSignature } from '@/hooks/useMessageSignature';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAuth } from '@/contexts/AuthContext';
+import { stripHtml } from '@/utils/stripHtml';
 
 import FileUpload from './FileUpload';
 import FilePreview from './FilePreview';
@@ -550,8 +551,8 @@ const MessageInput: React.FC<MessageInputProps> = ({
       </div>
       <div className="mt-2 pl-6">
         <div className="text-sm text-muted-foreground bg-background border-l-2 border-primary/30 pl-3 py-1 rounded-r max-w-md">
-          {message.content ? (
-            <span className="line-clamp-2">{message.content}</span>
+          {message.content && stripHtml(message.content) ? (
+            <span className="line-clamp-2">{stripHtml(message.content)}</span>
           ) : message.attachments && message.attachments.length > 0 ? (
             <span className="italic">
               {t('messageInput.replyPreview.fileAttachment', {

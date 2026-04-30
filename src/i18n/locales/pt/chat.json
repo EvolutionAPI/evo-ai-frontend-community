@@ -95,7 +95,8 @@
       "fileAttachment": "📎 Arquivo",
       "locationAttachment": "📍 Localização",
       "noContent": "Mensagem sem conteúdo",
-      "userFallback": "Usuário"
+      "userFallback": "Usuário",
+      "previousMessage": "Mensagem anterior"
     }
   },
   "assignment": {

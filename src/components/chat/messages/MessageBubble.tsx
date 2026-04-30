@@ -83,11 +83,10 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
 
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  // 🔧 REPLY TO: Buscar mensagem original quando content_attributes.in_reply_to ou in_reply_to_external_id existe
   const replyToMessageId = message.content_attributes?.in_reply_to;
   const replyToExternalId = message.content_attributes?.in_reply_to_external_id;
+  const hasReplyReference = Boolean(replyToMessageId || replyToExternalId);
 
-  // Tentar encontrar mensagem pai usando in_reply_to (ID interno) ou in_reply_to_external_id (source_id)
   const replyToMessage = replyToMessageId
     ? allMessages.find(msg => String(msg.id) === String(replyToMessageId))
     : replyToExternalId
@@ -319,8 +318,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
                 </div>
               )}
 
-              {/* 🔧 REPLY TO: Exibir preview da mensagem reply */}
-              {replyToMessage && !isPrivate && (
+              {hasReplyReference && !isPrivate && (
                 <ReplyPreview message={replyToMessage} isOwn={false} />
               )}
 
@@ -472,8 +470,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
               </div>
             )}
 
-            {/* 🔧 REPLY TO: Exibir preview da mensagem reply */}
-            {replyToMessage && !isPrivate && (
+            {hasReplyReference && !isPrivate && (
               <ReplyPreview message={replyToMessage} isOwn={isOwn} />
             )}
 

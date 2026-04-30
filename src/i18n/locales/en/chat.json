@@ -88,6 +88,16 @@
       "retryInDevelopment": "Retry functionality in development",
       "sendFailed": "Send failed - Click to try again",
       "tryAgain": "Try again"
+    },
+    "replyPreview": {
+      "imageAttachment": "📷 Image",
+      "audioAttachment": "🎵 Audio",
+      "videoAttachment": "🎥 Video",
+      "fileAttachment": "📎 File",
+      "locationAttachment": "📍 Location",
+      "noContent": "Message with no content",
+      "userFallback": "User",
+      "previousMessage": "Previous message"
     }
   },
   "assignment": {

@@ -2,6 +2,7 @@
 // src/utils/widget/messages.ts
 import type { MessageItem } from '@/components/widget/MessageList';
 import { wdebug } from '@/utils/widget/debug';
+import { stripHtml } from '@/utils/stripHtml';
 
 type RawMessage = any;
 
@@ -26,7 +27,7 @@ export function transformMessage(
     if (originalMessage) {
       replyTo = {
         id: replyToId,
-        text: originalMessage.content || '',
+        text: stripHtml(originalMessage.content || ''),
         sender:
           originalMessage.message_type === 0
             ? originalMessage.sender?.name || t('chat.user')
