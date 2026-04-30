@@ -1,0 +1,67 @@
+{
+  "title": "Configure su instancia",
+  "subtitle": "Cree la cuenta de administrador para comenzar",
+  "form": {
+    "firstName": {
+      "label": "Nombre",
+      "placeholder": "Juan",
+      "errors": {
+        "required": "El nombre es obligatorio",
+        "minLength": "Debe tener al menos 2 caracteres"
+      }
+    },
+    "lastName": {
+      "label": "Apellido",
+      "placeholder": "García",
+      "errors": {
+        "required": "El apellido es obligatorio",
+        "minLength": "Debe tener al menos 2 caracteres"
+      }
+    },
+    "email": {
+      "label": "Correo electrónico",
+      "placeholder": "admin@suempresa.com",
+      "errors": {
+        "required": "El correo electrónico es obligatorio",
+        "invalid": "Dirección de correo electrónico inválida"
+      }
+    },
+    "password": {
+      "label": "Contraseña",
+      "placeholder": "Contraseña",
+      "errors": {
+        "required": "La contraseña es obligatoria",
+        "minLength": "Debe tener al menos 8 caracteres",
+        "complexity": "Debe contener mayúscula, minúscula, número y carácter especial"
+      }
+    },
+    "confirmPassword": {
+      "label": "Confirmar contraseña",
+      "placeholder": "Confirme la contraseña",
+      "errors": {
+        "required": "Por favor confirme su contraseña",
+        "mismatch": "Las contraseñas no coinciden"
+      }
+    },
+    "submit": {
+      "idle": "Crear cuenta y continuar",
+      "loading": "Configurando..."
+    }
+  },
+  "success": {
+    "title": "¡Configuración completa!",
+    "description": "Ahora puede iniciar sesión con sus credenciales."
+  },
+  "error": {
+    "generic": "Ocurrió un error durante la configuración. Por favor, inténtelo de nuevo.",
+    "alreadySetup": "Esta instancia ya ha sido configurada."
+  },
+  "footer": "Esto creará la cuenta de administrador para su instancia de EVO CRM.",
+  "language": {
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "italian": "Italiano"
+  }
+}

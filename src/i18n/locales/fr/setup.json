@@ -1,0 +1,67 @@
+{
+  "title": "Configurez votre instance",
+  "subtitle": "Créez le compte administrateur pour commencer",
+  "form": {
+    "firstName": {
+      "label": "Prénom",
+      "placeholder": "Jean",
+      "errors": {
+        "required": "Le prénom est obligatoire",
+        "minLength": "Doit contenir au moins 2 caractères"
+      }
+    },
+    "lastName": {
+      "label": "Nom",
+      "placeholder": "Dupont",
+      "errors": {
+        "required": "Le nom est obligatoire",
+        "minLength": "Doit contenir au moins 2 caractères"
+      }
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "admin@votreentreprise.com",
+      "errors": {
+        "required": "L'email est obligatoire",
+        "invalid": "Adresse email invalide"
+      }
+    },
+    "password": {
+      "label": "Mot de passe",
+      "placeholder": "Mot de passe",
+      "errors": {
+        "required": "Le mot de passe est obligatoire",
+        "minLength": "Doit contenir au moins 8 caractères",
+        "complexity": "Doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial"
+      }
+    },
+    "confirmPassword": {
+      "label": "Confirmer le mot de passe",
+      "placeholder": "Confirmez le mot de passe",
+      "errors": {
+        "required": "Veuillez confirmer votre mot de passe",
+        "mismatch": "Les mots de passe ne correspondent pas"
+      }
+    },
+    "submit": {
+      "idle": "Créer un compte et continuer",
+      "loading": "Configuration en cours..."
+    }
+  },
+  "success": {
+    "title": "Configuration terminée !",
+    "description": "Vous pouvez maintenant vous connecter avec vos identifiants."
+  },
+  "error": {
+    "generic": "Une erreur s'est produite lors de la configuration. Veuillez réessayer.",
+    "alreadySetup": "Cette instance a déjà été configurée."
+  },
+  "footer": "Ceci créera le compte administrateur pour votre instance EVO CRM.",
+  "language": {
+    "portuguese": "Português",
+    "english": "English",
+    "spanish": "Español",
+    "french": "Français",
+    "italian": "Italiano"
+  }
+}
