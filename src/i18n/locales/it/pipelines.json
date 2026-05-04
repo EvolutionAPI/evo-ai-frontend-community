@@ -500,13 +500,25 @@
     "search": {
       "placeholder": "Cerca per nome, telefono, email...",
       "assigneeFilter": "Responsabile",
-      "allAssignees": "Tutti i responsabili",
-      "unassigned": "Non assegnato",
       "clearFilters": "Cancella i filtri",
       "noResults": "Nessuna scheda corrisponde ai filtri",
       "resultsCount": "Visualizzazione di {{count}} su {{total}} schede in {{stages}} fase/i",
       "loadingAgents": "Caricamento del team...",
-      "noAgents": "Nessun membro del team trovato"
+      "noAgents": "Nessun membro del team trovato",
+      "statusFilter": "Stato",
+      "dateRangeFilter": "Intervallo di date",
+      "dateFrom": "Dal",
+      "dateTo": "Al",
+      "labelFilter": "Etichetta",
+      "globalNoResults": "Nessuna scheda corrisponde ai filtri attivi",
+      "status": {
+        "open": "Aperto",
+        "resolved": "Risolto",
+        "pending": "In attesa",
+        "snoozed": "Posticipato"
+      },
+      "itemHiddenByFilter": "Scheda spostata — potrebbe essere nascosta dai filtri attivi",
+      "newItemMayBeHidden": "Scheda aggiunta — potrebbe essere nascosta dai filtri attivi"
     },
     "header": {
       "conversations": "Conversazioni",
@@ -576,7 +588,9 @@
       "conversationRemoved": "Elemento rimosso dalla pipeline con successo",
       "conversationRemoveError": "Errore nella rimozione dell'elemento dalla pipeline",
       "conversationUpdated": "Elemento aggiornato con successo",
-      "conversationUpdateError": "Errore nell'aggiornamento dell'elemento"
+      "conversationUpdateError": "Errore nell'aggiornamento dell'elemento",
+      "itemHiddenByFilter": "Scheda spostata — potrebbe essere nascosta dai filtri attivi",
+      "newItemMayBeHidden": "Scheda aggiunta — potrebbe essere nascosta dai filtri attivi"
     },
     "tasks": {
       "pending": "in sospeso",

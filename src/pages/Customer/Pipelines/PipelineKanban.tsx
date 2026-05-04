@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { getContactColor } from '@/utils/avatar';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -35,6 +36,9 @@ import {
   Users,
   ChevronDown,
   Check,
+  Tag,
+  CircleDot,
+  Calendar,
 } from 'lucide-react';
 
 import { pipelinesService } from '@/services/pipelines';
@@ -66,6 +70,19 @@ export default function PipelineKanban() {
 
   const searchQuery = searchParams.get('search') ?? '';
   const assigneeFilter = searchParams.get('assignee') ?? '';
+  const statusFilter = searchParams.get('status') ?? '';
+  const dateFrom = searchParams.get('dateFrom') ?? '';
+  const dateTo = searchParams.get('dateTo') ?? '';
+  const labelFilter = searchParams.get('label') ?? '';
+
+  // Local state for the search input (immediate UI feedback; URL update is debounced)
+  const [searchInput, setSearchInput] = useState(() => searchParams.get('search') ?? '');
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Sync input if URL changes externally (browser back/forward)
+  useEffect(() => {
+    setSearchInput(searchParams.get('search') ?? '');
+  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { agents, fetchAgents, isLoadingAgents } = useAppDataStore();
 
@@ -175,17 +192,26 @@ export default function PipelineKanban() {
       return;
     }
 
+    // Capture before async operations
+    const movedItem = draggedItem;
+    const willBeHidden = hasActiveFilters && filterItems([movedItem]).length === 0;
+
     try {
       await pipelinesService.moveItem({
-        item_id: draggedItem.id,
+        item_id: movedItem.id,
         pipeline_id: pipelineId!,
-        from_stage_id: draggedItem.stage_id,
+        from_stage_id: movedItem.stage_id,
         to_stage_id: targetStageId,
       });
 
       // Reload pipeline data to reflect changes
       await loadPipelineData();
       toast.success(t('kanban.messages.itemMoved'));
+      if (willBeHidden) {
+        toast.info(t('kanban.messages.itemHiddenByFilter'), {
+          action: { label: t('kanban.search.clearFilters'), onClick: clearFilters },
+        });
+      }
     } catch (error) {
       console.error('Error moving item:', error);
       toast.error(t('kanban.messages.itemMoveError'));
@@ -203,30 +229,50 @@ export default function PipelineKanban() {
 
   // Search & filter helpers
   const updateFilters = useCallback(
-    (updates: { search?: string; assignee?: string }) => {
+    (updates: {
+      search?: string;
+      assignee?: string;
+      status?: string;
+      dateFrom?: string;
+      dateTo?: string;
+      label?: string;
+    }) => {
       setSearchParams(prev => {
         const next = new URLSearchParams(prev);
-        if ('search' in updates) {
-          if (updates.search) next.set('search', updates.search);
-          else next.delete('search');
-        }
-        if ('assignee' in updates) {
-          if (updates.assignee) next.set('assignee', updates.assignee);
-          else next.delete('assignee');
+        const keys = ['search', 'assignee', 'status', 'dateFrom', 'dateTo', 'label'] as const;
+        for (const key of keys) {
+          if (key in updates) {
+            const val = updates[key as keyof typeof updates];
+            if (val) next.set(key, val);
+            else next.delete(key);
+          }
         }
         return next;
-      });
+      }, { replace: true });
     },
     [setSearchParams],
   );
 
   const clearFilters = useCallback(() => {
+    setSearchInput('');
     setSearchParams(prev => {
       const next = new URLSearchParams(prev);
-      next.delete('search');
-      next.delete('assignee');
+      ['search', 'assignee', 'status', 'dateFrom', 'dateTo', 'label'].forEach(k => next.delete(k));
       return next;
-    });
+    }, { replace: true });
+  }, [setSearchParams]);
+
+  const handleSearchChange = useCallback((value: string) => {
+    setSearchInput(value);
+    clearTimeout(searchDebounceRef.current);
+    searchDebounceRef.current = setTimeout(() => {
+      setSearchParams(prev => {
+        const next = new URLSearchParams(prev);
+        if (value) next.set('search', value);
+        else next.delete('search');
+        return next;
+      }, { replace: true });
+    }, 250);
   }, [setSearchParams]);
 
   // All team agents from the store (full team, not just those with pipeline cards)
@@ -238,6 +284,9 @@ export default function PipelineKanban() {
   const filterItems = useCallback(
     (items: PipelineItem[]) => {
       const q = searchQuery.toLowerCase();
+      const dateFromTs = dateFrom ? new Date(dateFrom).getTime() / 1000 : 0;
+      const dateToTs = dateTo ? new Date(dateTo).getTime() / 1000 + 86399 : Infinity;
+
       return items.filter(item => {
         const matchesSearch =
           !q ||
@@ -249,30 +298,71 @@ export default function PipelineKanban() {
         const matchesAssignee =
           !assigneeFilter || String(item.conversation?.assignee?.id) === assigneeFilter;
 
-        return matchesSearch && matchesAssignee;
+        const matchesStatus =
+          !statusFilter || item.conversation?.status === statusFilter;
+
+        const enteredAt = item.entered_at ?? 0;
+        const matchesDateRange =
+          (!dateFrom || enteredAt >= dateFromTs) &&
+          (!dateTo || enteredAt <= dateToTs);
+
+        const matchesLabel =
+          !labelFilter || (item.conversation?.labels ?? []).includes(labelFilter);
+
+        return matchesSearch && matchesAssignee && matchesStatus && matchesDateRange && matchesLabel;
       });
     },
-    [searchQuery, assigneeFilter],
+    [searchQuery, assigneeFilter, statusFilter, dateFrom, dateTo, labelFilter],
   );
 
-  const hasActiveFilters = searchQuery !== '' || assigneeFilter !== '';
+  const hasActiveFilters =
+    searchQuery !== '' ||
+    assigneeFilter !== '' ||
+    statusFilter !== '' ||
+    dateFrom !== '' ||
+    dateTo !== '' ||
+    labelFilter !== '';
 
   const [assigneePopoverOpen, setAssigneePopoverOpen] = useState(false);
+  const [statusPopoverOpen, setStatusPopoverOpen] = useState(false);
+  const [labelPopoverOpen, setLabelPopoverOpen] = useState(false);
+
+  // Memoize filtered items per stage to avoid recomputing 3× per stage per render
+  const filteredItemsByStage = useMemo(() => {
+    const map = new Map<string, PipelineItem[]>();
+    for (const stage of stages) {
+      map.set(stage.id, filterItems(stage.items || []));
+    }
+    return map;
+  }, [stages, filterItems]);
 
   const totalFilteredCount = useMemo(
-    () => stages.reduce((total, stage) => total + filterItems(stage.items || []).length, 0),
-    [stages, filterItems],
+    () => Array.from(filteredItemsByStage.values()).reduce((t, items) => t + items.length, 0),
+    [filteredItemsByStage],
   );
 
   const stagesWithResults = useMemo(
-    () => stages.filter(stage => filterItems(stage.items || []).length > 0).length,
-    [stages, filterItems],
+    () => Array.from(filteredItemsByStage.values()).filter(items => items.length > 0).length,
+    [filteredItemsByStage],
   );
 
   const totalItemCount = useMemo(
     () => stages.reduce((total, stage) => total + (stage.items?.length || 0), 0),
     [stages],
   );
+
+  // Unique labels collected from all items currently loaded
+  const uniqueLabels = useMemo(() => {
+    const set = new Set<string>();
+    for (const stage of stages) {
+      for (const item of stage.items || []) {
+        for (const label of item.conversation?.labels ?? []) {
+          set.add(label);
+        }
+      }
+    }
+    return Array.from(set).sort();
+  }, [stages]);
 
   // Calculate stage total value
   const calculateStageTotal = (items: PipelineItem[] = []) => {
@@ -294,14 +384,6 @@ export default function PipelineKanban() {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value);
-  };
-
-  // Get contact color
-  const getContactColor = (name?: string) => {
-    if (!name) return '#6B7280';
-    const colors = ['#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#F97316'];
-    const index = name.charCodeAt(0) % colors.length;
-    return colors[index];
   };
 
   // Pipeline management handlers
@@ -403,6 +485,12 @@ export default function PipelineKanban() {
     toast.success(t('kanban.messages.itemAdded'));
     // Reload pipeline data to show new item
     await loadPipelineData();
+    // Warn if active filters may hide the newly added card
+    if (hasActiveFilters) {
+      toast.info(t('kanban.messages.newItemMayBeHidden'), {
+        action: { label: t('kanban.search.clearFilters'), onClick: clearFilters },
+      });
+    }
   };
 
   const handleRemoveItem = (item: PipelineItem) => {
@@ -629,14 +717,14 @@ export default function PipelineKanban() {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                   <Input
                     placeholder={t('kanban.search.placeholder')}
-                    value={searchQuery}
-                    onChange={e => updateFilters({ search: e.target.value || undefined })}
+                    value={searchInput}
+                    onChange={e => handleSearchChange(e.target.value)}
                     className="pl-9 h-9 text-sm"
                   />
-                  {searchQuery && (
+                  {searchInput && (
                     <button
                       className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                      onClick={() => updateFilters({ search: undefined })}
+                      onClick={() => handleSearchChange('')}
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -644,7 +732,13 @@ export default function PipelineKanban() {
                 </div>
 
                 {/* Assignee Popover */}
-                <Popover open={assigneePopoverOpen} onOpenChange={setAssigneePopoverOpen}>
+                <Popover
+                  open={assigneePopoverOpen}
+                  onOpenChange={open => {
+                    setAssigneePopoverOpen(open);
+                    if (open) fetchAgents(true);
+                  }}
+                >
                   <PopoverTrigger asChild>
                     {assigneeFilter ? (
                       /* Active state — chip with avatar + name + × to clear */
@@ -751,6 +845,141 @@ export default function PipelineKanban() {
                   </PopoverContent>
                 </Popover>
 
+                {/* Status filter */}
+                <Popover open={statusPopoverOpen} onOpenChange={setStatusPopoverOpen}>
+                  <PopoverTrigger asChild>
+                    {statusFilter ? (
+                      <div className="flex items-center gap-1.5 h-9 px-3 rounded-md border bg-secondary text-secondary-foreground text-sm font-medium cursor-pointer select-none hover:bg-secondary/80 transition-colors">
+                        <CircleDot className="w-4 h-4 flex-shrink-0" />
+                        <span className="max-w-24 truncate">
+                          {t(`kanban.search.status.${statusFilter}`, statusFilter)}
+                        </span>
+                        <button
+                          className="ml-0.5 text-secondary-foreground/60 hover:text-secondary-foreground transition-colors"
+                          onClick={e => { e.stopPropagation(); updateFilters({ status: undefined }); }}
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <Button variant="outline" size="sm" className="h-9 gap-2 whitespace-nowrap">
+                        <CircleDot className="w-4 h-4" />
+                        {t('kanban.search.statusFilter')}
+                        <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
+                      </Button>
+                    )}
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-48 p-2">
+                    <div className="px-2 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                      {t('kanban.search.statusFilter')}
+                    </div>
+                    {(['open', 'resolved', 'pending', 'snoozed'] as const).map(s => (
+                      <button
+                        key={s}
+                        onClick={() => { updateFilters({ status: s }); setStatusPopoverOpen(false); }}
+                        className="flex items-center justify-between w-full px-2 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+                      >
+                        <span className="text-foreground">{t(`kanban.search.status.${s}`)}</span>
+                        {statusFilter === s && <Check className="w-4 h-4 text-primary" />}
+                      </button>
+                    ))}
+                  </PopoverContent>
+                </Popover>
+
+                {/* Date range filter */}
+                <Popover>
+                  <PopoverTrigger asChild>
+                    {(dateFrom || dateTo) ? (
+                      <div className="flex items-center gap-1.5 h-9 px-3 rounded-md border bg-secondary text-secondary-foreground text-sm font-medium cursor-pointer select-none hover:bg-secondary/80 transition-colors">
+                        <Calendar className="w-4 h-4 flex-shrink-0" />
+                        <span className="max-w-32 truncate">
+                          {dateFrom && dateTo ? `${dateFrom} — ${dateTo}` : dateFrom ? `≥ ${dateFrom}` : `≤ ${dateTo}`}
+                        </span>
+                        <button
+                          className="ml-0.5 text-secondary-foreground/60 hover:text-secondary-foreground transition-colors"
+                          onClick={e => { e.stopPropagation(); updateFilters({ dateFrom: undefined, dateTo: undefined }); }}
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ) : (
+                      <Button variant="outline" size="sm" className="h-9 gap-2 whitespace-nowrap">
+                        <Calendar className="w-4 h-4" />
+                        {t('kanban.search.dateRangeFilter')}
+                        <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
+                      </Button>
+                    )}
+                  </PopoverTrigger>
+                  <PopoverContent align="start" className="w-64 p-3 space-y-3">
+                    <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                      {t('kanban.search.dateRangeFilter')}
+                    </div>
+                    <div className="space-y-2">
+                      <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">{t('kanban.search.dateFrom')}</label>
+                        <Input
+                          type="date"
+                          value={dateFrom}
+                          onChange={e => updateFilters({ dateFrom: e.target.value || undefined })}
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-xs text-muted-foreground mb-1 block">{t('kanban.search.dateTo')}</label>
+                        <Input
+                          type="date"
+                          value={dateTo}
+                          onChange={e => updateFilters({ dateTo: e.target.value || undefined })}
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
+
+                {/* Label filter — only shown when pipeline items have labels */}
+                {uniqueLabels.length > 0 && (
+                  <Popover open={labelPopoverOpen} onOpenChange={setLabelPopoverOpen}>
+                    <PopoverTrigger asChild>
+                      {labelFilter ? (
+                        <div className="flex items-center gap-1.5 h-9 px-3 rounded-md border bg-secondary text-secondary-foreground text-sm font-medium cursor-pointer select-none hover:bg-secondary/80 transition-colors">
+                          <Tag className="w-4 h-4 flex-shrink-0" />
+                          <span className="max-w-24 truncate">{labelFilter}</span>
+                          <button
+                            className="ml-0.5 text-secondary-foreground/60 hover:text-secondary-foreground transition-colors"
+                            onClick={e => { e.stopPropagation(); updateFilters({ label: undefined }); }}
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ) : (
+                        <Button variant="outline" size="sm" className="h-9 gap-2 whitespace-nowrap">
+                          <Tag className="w-4 h-4" />
+                          {t('kanban.search.labelFilter')}
+                          <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
+                        </Button>
+                      )}
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="w-48 p-2">
+                      <div className="px-2 pb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                        {t('kanban.search.labelFilter')}
+                      </div>
+                      <div className="max-h-56 overflow-y-auto space-y-0.5">
+                        {uniqueLabels.map(label => (
+                          <button
+                            key={label}
+                            onClick={() => { updateFilters({ label }); setLabelPopoverOpen(false); }}
+                            className="flex items-center justify-between w-full px-2 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+                          >
+                            <span className="text-foreground truncate">{label}</span>
+                            {labelFilter === label && <Check className="w-4 h-4 text-primary flex-shrink-0" />}
+                          </button>
+                        ))}
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                )}
+
                 {/* Clear all filters */}
                 {hasActiveFilters && (
                   <Button
@@ -778,10 +1007,7 @@ export default function PipelineKanban() {
                   {searchQuery && (
                     <span className="inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
                       &ldquo;{searchQuery}&rdquo;
-                      <button
-                        onClick={() => updateFilters({ search: undefined })}
-                        className="hover:text-primary/60 transition-colors"
-                      >
+                      <button onClick={() => handleSearchChange('')} className="hover:text-primary/60 transition-colors">
                         <X className="w-3 h-3" />
                       </button>
                     </span>
@@ -789,14 +1015,50 @@ export default function PipelineKanban() {
                   {assigneeFilter && (
                     <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
                       {uniqueAssignees.find(a => a.id === assigneeFilter)?.name}
-                      <button
-                        onClick={() => updateFilters({ assignee: undefined })}
-                        className="hover:text-primary/60 transition-colors"
-                      >
+                      <button onClick={() => updateFilters({ assignee: undefined })} className="hover:text-primary/60 transition-colors">
                         <X className="w-3 h-3" />
                       </button>
                     </span>
                   )}
+                  {statusFilter && (
+                    <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                      {t(`kanban.search.status.${statusFilter}`, statusFilter)}
+                      <button onClick={() => updateFilters({ status: undefined })} className="hover:text-primary/60 transition-colors">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  )}
+                  {(dateFrom || dateTo) && (
+                    <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                      <Calendar className="w-3 h-3" />
+                      {dateFrom && dateTo ? `${dateFrom} — ${dateTo}` : dateFrom ? `≥ ${dateFrom}` : `≤ ${dateTo}`}
+                      <button onClick={() => updateFilters({ dateFrom: undefined, dateTo: undefined })} className="hover:text-primary/60 transition-colors">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  )}
+                  {labelFilter && (
+                    <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                      <Tag className="w-3 h-3" />
+                      {labelFilter}
+                      <button onClick={() => updateFilters({ label: undefined })} className="hover:text-primary/60 transition-colors">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Global empty state: all stages empty with active filters */}
+              {hasActiveFilters && totalFilteredCount === 0 && (
+                <div className="flex items-center gap-3 py-2 px-3 rounded-lg bg-muted/60 border border-border/50">
+                  <Search className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                  <span className="text-sm text-muted-foreground flex-1">
+                    {t('kanban.search.globalNoResults')}
+                  </span>
+                  <Button variant="ghost" size="sm" className="h-7 text-xs" onClick={clearFilters}>
+                    {t('kanban.search.clearFilters')}
+                  </Button>
                 </div>
               )}
             </div>
@@ -829,7 +1091,7 @@ export default function PipelineKanban() {
                           <h3 className="text-sm font-medium text-foreground">{stage.name}</h3>
                           <span className="bg-muted text-muted-foreground text-xs px-2 py-1 rounded-full">
                             {hasActiveFilters
-                              ? `${filterItems(stage.items || []).length}/${stage.items?.length || stage.item_count || 0}`
+                              ? `${(filteredItemsByStage.get(stage.id) || []).length}/${stage.items?.length || stage.item_count || 0}`
                               : (stage.items?.length || stage.item_count || 0)}
                           </span>
                           {/* Stage Total Value */}
@@ -874,7 +1136,7 @@ export default function PipelineKanban() {
                       onDrop={e => handleDrop(e, stage.id)}
                     >
                       {/* Items */}
-                      {filterItems(stage.items || []).map(item => (
+                      {(filteredItemsByStage.get(stage.id) || []).map(item => (
                         <div
                           key={item.id}
                           className="group bg-background rounded-xl p-4 border border-border shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-200 cursor-pointer select-none relative"
@@ -1193,7 +1455,7 @@ export default function PipelineKanban() {
                       ))}
 
                       {/* Empty state */}
-                      {filterItems(stage.items || []).length === 0 && (
+                      {(filteredItemsByStage.get(stage.id) || []).length === 0 && (
                         <div className="text-center py-8 text-muted-foreground">
                           <div className="text-sm">
                             {hasActiveFilters

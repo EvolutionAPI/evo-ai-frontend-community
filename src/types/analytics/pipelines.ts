@@ -255,6 +255,7 @@ export interface PipelineItem {
       name: string;
       avatar_url?: string;
     };
+    labels?: string[];
     last_message?: {
       content: string;
       message_type: string;

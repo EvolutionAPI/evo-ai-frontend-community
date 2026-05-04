@@ -502,13 +502,25 @@
     "search": {
       "placeholder": "Buscar por nombre, teléfono, email...",
       "assigneeFilter": "Responsable",
-      "allAssignees": "Todos los responsables",
-      "unassigned": "Sin responsable",
       "clearFilters": "Limpiar filtros",
       "noResults": "No hay tarjetas que coincidan con los filtros",
       "resultsCount": "Mostrando {{count}} de {{total}} tarjetas en {{stages}} etapa(s)",
       "loadingAgents": "Cargando equipo...",
-      "noAgents": "No se encontraron miembros del equipo"
+      "noAgents": "No se encontraron miembros del equipo",
+      "statusFilter": "Estado",
+      "dateRangeFilter": "Rango de fechas",
+      "dateFrom": "Desde",
+      "dateTo": "Hasta",
+      "labelFilter": "Etiqueta",
+      "globalNoResults": "Ninguna tarjeta coincide con los filtros activos",
+      "status": {
+        "open": "Abierto",
+        "resolved": "Resuelto",
+        "pending": "Pendiente",
+        "snoozed": "Pospuesto"
+      },
+      "itemHiddenByFilter": "Tarjeta movida — puede estar oculta por los filtros activos",
+      "newItemMayBeHidden": "Tarjeta añadida — puede estar oculta por los filtros activos"
     },
     "header": {
       "conversations": "Conversaciones",
@@ -578,7 +590,9 @@
       "conversationRemoved": "Ítem removido del pipeline con éxito",
       "conversationRemoveError": "Error al remover ítem del pipeline",
       "conversationUpdated": "Ítem actualizado con éxito",
-      "conversationUpdateError": "Error al actualizar ítem"
+      "conversationUpdateError": "Error al actualizar ítem",
+      "itemHiddenByFilter": "Tarjeta movida — puede estar oculta por los filtros activos",
+      "newItemMayBeHidden": "Tarjeta añadida — puede estar oculta por los filtros activos"
     },
     "tasks": {
       "pending": "pendientes",
