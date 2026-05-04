@@ -514,7 +514,9 @@ const EvolutionWhatsAppConfig: React.FC<{
   const [showQrModal, setShowQrModal] = useState(false);
   const [connectionSettings, setConnectionSettings] = useState({
     apiUrl: (inbox?.provider_config?.api_url as string) || '',
-    adminToken: (inbox?.provider_config?.admin_token as string) || '',
+    // Never pre-populate adminToken — avoids exposing the secret in the DOM value attribute.
+    // The field is only sent if the user explicitly types a new value.
+    adminToken: '',
   });
   const [isUpdatingConnection, setIsUpdatingConnection] = useState(false);
 
@@ -1297,6 +1299,11 @@ const EvolutionWhatsAppConfig: React.FC<{
                   }
                   placeholder={t('settings.configuration.whatsapp.instance.connection.adminTokenPlaceholder')}
                 />
+                {inbox?.provider_config?.admin_token && (
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {t('settings.configuration.whatsapp.instance.connection.adminTokenSet', 'A key is already configured. Leave blank to keep it.')}
+                  </p>
+                )}
               </div>
 
               <Button

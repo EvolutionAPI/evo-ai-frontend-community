@@ -266,30 +266,20 @@ const MessageInput: React.FC<MessageInputProps> = ({
         setIsSending(true);
         const isPrivate = replyMode === ReplyMode.NOTE;
 
-        // Converter áudio se necessário (WhatsApp Cloud aceita MP3, Instagram aceita WAV)
+        // WhatsApp Cloud e Evolution API: conversão ogg/opus feita no hook (useAudioRecorder).
+        // Instagram ainda precisa de WAV — feito aqui como antes.
         let audioFile = data.file;
-        if ((isWhatsAppCloud || isInstagram) && data.file.type === 'audio/webm') {
+        if (isInstagram && data.file.type === 'audio/webm') {
           try {
-            const { convertAudio, convertToWav } = await import('@/utils/audio/audioConversionUtils');
-            // toast.info(t('messageInput.audio.converting'), { duration: 2000 });
-
-            if (isInstagram) {
-              // Instagram aceita WAV, não MP3
-              const wavBlob = await convertToWav(data.blob);
-              const fileName = data.file.name.replace(/\.webm$/i, '.wav');
-              audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
-            } else if (isWhatsAppCloud) {
-              // WhatsApp Cloud aceita MP3
-              const mp3Blob = await convertAudio(data.blob, 'audio/mp3', 128);
-              const fileName = data.file.name.replace(/\.webm$/i, '.mp3');
-              audioFile = new File([mp3Blob], fileName, { type: 'audio/mp3' });
-            }
+            const { convertToWav } = await import('@/utils/audio/audioConversionUtils');
+            const wavBlob = await convertToWav(data.blob);
+            const fileName = data.file.name.replace(/\.webm$/i, '.wav');
+            audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
           } catch (conversionError) {
-            console.error('Erro ao converter áudio:', conversionError);
+            console.error('Erro ao converter áudio para WAV:', conversionError);
             toast.warning(t('messageInput.audio.conversionWarning'), {
               description: t('messageInput.audio.conversionWarningDescription'),
             });
-            // Continuar com o arquivo original mesmo em caso de erro
           }
         }
 

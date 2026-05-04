@@ -255,6 +255,13 @@ export interface PipelineItem {
       name: string;
       avatar_url?: string;
     };
+    labels?: Array<{
+      id: number;
+      title: string;
+      color?: string;
+      description?: string;
+      show_on_sidebar?: boolean;
+    }>;
     last_message?: {
       content: string;
       message_type: string;

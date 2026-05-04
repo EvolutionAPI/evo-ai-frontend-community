@@ -542,6 +542,27 @@
     "save": "Save Order"
   },
   "kanban": {
+    "search": {
+      "placeholder": "Search by name, phone, email...",
+      "assigneeFilter": "Assignee",
+      "clearFilters": "Clear filters",
+      "noResults": "No cards match the filters",
+      "resultsCount": "Showing {{count}} of {{total}} cards across {{stages}} stage(s)",
+      "loadingAgents": "Loading team...",
+      "noAgents": "No team members found",
+      "statusFilter": "Status",
+      "dateRangeFilter": "Date range",
+      "dateFrom": "From",
+      "dateTo": "To",
+      "labelFilter": "Label",
+      "globalNoResults": "No cards match the current filters",
+      "status": {
+        "open": "Open",
+        "resolved": "Resolved",
+        "pending": "Pending",
+        "snoozed": "Snoozed"
+      }
+    },
     "copyId": "Copy ID",
     "idCopied": "ID copied to clipboard",
     "header": {
@@ -615,7 +636,9 @@
       "conversationRemoved": "Item removed from pipeline successfully",
       "conversationRemoveError": "Error removing item from pipeline",
       "conversationUpdated": "Item updated successfully",
-      "conversationUpdateError": "Error updating item"
+      "conversationUpdateError": "Error updating item",
+      "itemHiddenByFilter": "Card moved — it may be hidden by the active filters",
+      "newItemMayBeHidden": "Card added — it may be hidden by the active filters"
     },
     "tasks": {
       "pending": "pending",
@@ -674,7 +697,6 @@
       "assignedTo": "Assigned to",
       "assignedToPlaceholder": "Select an assignee",
       "none": "None",
-      "unassigned": "Unassigned",
       "cancel": "Cancel",
       "create": "Create Task",
       "update": "Update Task",
