@@ -1,4 +1,6 @@
 import lamejs from '@breezystack/lamejs';
+import { fetchFile } from '@ffmpeg/ffmpeg';
+import { preloadFfmpeg, getFfmpegInstance } from './ffmpegLoader';
 
 const writeString = (view: DataView, offset: number, string: string): void => {
   for (let i = 0; i < string.length; i++) {
@@ -133,6 +135,60 @@ export const convertToMp3 = async (audioBlob: Blob, bitrate: number = 128): Prom
  * @param bitrate - Bitrate para MP3 (padrão: 128)
  * @returns Blob convertido
  */
+/**
+ * Converts any supported audio blob to OGG/Opus @ 48 kbps — the format required by
+ * WhatsApp for PTT (Push-To-Talk) voice messages.
+ *
+ * All sources (webm/Chrome, ogg/Firefox, mp4/Safari) are re-encoded through FFmpeg
+ * to guarantee consistent bitrate (48 kbps mono 48 kHz) across browsers (H5).
+ *
+ * @param audioBlob  Source audio blob in any format.
+ * @param onProgress Optional callback receiving conversion progress 0–100.
+ */
+export const convertToOggOpus = async (
+  audioBlob: Blob,
+  onProgress?: (percent: number) => void,
+): Promise<Blob> => {
+  await preloadFfmpeg();
+  const ffmpeg = getFfmpegInstance();
+  if (!ffmpeg) throw new Error('FFmpeg not available');
+
+  // Wire up progress reporting for this conversion
+  ffmpeg.setProgress(({ ratio }) => {
+    onProgress?.(Math.min(100, Math.round(ratio * 100)));
+  });
+
+  const mime = audioBlob.type;
+  const inputExt = mime.includes('mp4') ? 'mp4' : mime.includes('ogg') ? 'ogg' : 'webm';
+  const inputFile = `input.${inputExt}`;
+
+  ffmpeg.FS('writeFile', inputFile, await fetchFile(audioBlob));
+
+  await ffmpeg.run(
+    '-i', inputFile,
+    '-c:a', 'libopus',
+    '-b:a', '48k',   // normalise to 48 kbps across all browsers (fixes H5)
+    '-ar', '48000',
+    '-ac', '1',
+    '-application', 'voip',
+    '-flags', '+bitexact',
+    '-map_metadata', '-1',
+    'output.ogg',
+  );
+
+  onProgress?.(100);
+
+  const data = ffmpeg.FS('readFile', 'output.ogg');
+
+  try { ffmpeg.FS('unlink', inputFile); } catch { /* ignore */ }
+  try { ffmpeg.FS('unlink', 'output.ogg'); } catch { /* ignore */ }
+
+  // Reset progress handler
+  ffmpeg.setProgress(() => {});
+
+  return new Blob([data.buffer], { type: 'audio/ogg; codecs=opus' });
+};
+
 export const convertAudio = async (
   inputBlob: Blob,
   outputFormat: 'audio/wav' | 'audio/mp3',

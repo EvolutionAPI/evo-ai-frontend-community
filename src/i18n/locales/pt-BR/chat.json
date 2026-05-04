@@ -226,7 +226,9 @@
     "notSupported": "Gravação de áudio não suportada neste navegador",
     "record": "Gravar",
     "paused": "(pausado)",
-    "send": "Enviar"
+    "send": "Enviar",
+    "preparingConverter": "Preparando conversor de áudio...",
+    "maxDurationReached": "Duração máxima de gravação atingida (5 min). Áudio parado automaticamente."
   },
   "cannedResponses": {
     "loading": "Carregando respostas prontas...",
@@ -655,7 +657,7 @@
       "sendError": "Erro ao enviar áudio",
       "converting": "Convertendo áudio...",
       "conversionWarning": "Aviso de conversão",
-      "conversionWarningDescription": "Não foi possível converter o áudio para MP3. Tentando enviar no formato original."
+      "conversionWarningDescription": "Não foi possível converter o áudio para OGG/Opus. Enviando no formato original."
     },
     "templates": {
       "inDevelopment": "Templates de mensagem em desenvolvimento 📝"

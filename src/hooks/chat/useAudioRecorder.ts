@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
+import { FFMPEG_MAX_RECORDING_SECONDS } from '@/utils/audio/ffmpegLoader';
 
 export interface AudioRecordingData {
   blob: Blob;
@@ -25,10 +26,13 @@ export interface UseAudioRecorderReturn {
 
 interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
+  /** Called when the recording is auto-stopped due to the 5-min cap (C3). */
+  onMaxDurationReached?: () => void;
 }
 
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
   const preferWhatsAppCloudFormat = options?.preferWhatsAppCloudFormat === true;
+  const onMaxDurationReached = options?.onMaxDurationReached;
   const [isRecording, setIsRecording] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -48,6 +52,7 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const selectedMimeTypeRef = useRef<string>('audio/webm;codecs=opus');
+  const maxDurationTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // TRAVA GLOBAL ANTI-DUPLICAÇÃO
   const isInitializingRef = useRef<boolean>(false);
@@ -296,6 +301,19 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
       }, 100); // Atualizar a cada 100ms para suavidade
       setRecordingData(null);
 
+      // Cap de duração máxima (5 min) — evita UI freeze em transcodificação longa (C3).
+      // Acessa refs diretamente para evitar stale closure no isRecording do useCallback.
+      maxDurationTimerRef.current = setTimeout(() => {
+        onMaxDurationReached?.();
+        if (mediaRecorderRef.current) {
+          isPausedRef.current = true; // Para o timer imediatamente
+          (mediaRecorderRef.current as any).__finalDuration = startTimeRef.current
+            ? (Date.now() - startTimeRef.current - pausedTimeRef.current) / 1000
+            : 0;
+          mediaRecorderRef.current.stop();
+        }
+      }, FFMPEG_MAX_RECORDING_SECONDS * 1000);
+
       // Iniciar monitoramento
       monitorAudioLevel();
     } catch (error) {
@@ -324,7 +342,12 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
     // Resetar estados
     isPausedRef.current = true; // Para o timer imediatamente
 
-    // Limpar timer quando parar
+    // Limpar timers quando parar
+    if (maxDurationTimerRef.current) {
+      clearTimeout(maxDurationTimerRef.current);
+      maxDurationTimerRef.current = null;
+    }
+
     if (durationIntervalRef.current) {
       clearInterval(durationIntervalRef.current);
       durationIntervalRef.current = null;

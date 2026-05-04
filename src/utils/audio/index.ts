@@ -5,3 +5,4 @@
  */
 
 export * from './audioConversionUtils';
+export * from './ffmpegLoader';
