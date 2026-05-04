@@ -51,7 +51,13 @@ interface SendMessageOptions {
   isPrivate?: boolean;
   templateParams?: any;
   cannedResponseId?: string | null;
-  isRecordedAudio?: boolean;
+  /**
+   * Marks attachments as recorded audio (PTT) for the backend.
+   * - `true`: every attachment in this message is recorded audio (e.g. recorder UI).
+   * - `string[]`: list of filenames within the attachments that are recorded audio
+   *   (used when audio + non-audio files are sent in the same message).
+   */
+  isRecordedAudio?: boolean | string[];
 }
 
 interface MessageInputProps {
@@ -409,8 +415,11 @@ const MessageInput: React.FC<MessageInputProps> = ({
 
     try {
       // Convert uploaded audio files to OGG/Opus for WhatsApp PTT (acceptance criteria:
-      // "Works for in-browser recordings AND uploaded audio files")
+      // "Works for in-browser recordings AND uploaded audio files"). Track which
+      // resulting filenames are PTT so the backend marks only those attachments —
+      // important when audio + non-audio files are mixed in the same message.
       let filesToSend = selectedFiles;
+      const recordedAudioFilenames: string[] = [];
       if (isWhatsApp && selectedFiles.some(f => f.type.startsWith('audio/'))) {
         const { convertToOggOpus } = await import('@/utils/audio/audioConversionUtils');
         filesToSend = await Promise.all(
@@ -424,14 +433,19 @@ const MessageInput: React.FC<MessageInputProps> = ({
                 });
               });
               toast.dismiss(convertingToastId);
-              return new File([oggBlob], file.name.replace(/\.\w+$/i, '.ogg'), {
+              const oggName = file.name.replace(/\.\w+$/i, '.ogg');
+              recordedAudioFilenames.push(oggName);
+              return new File([oggBlob], oggName, {
                 type: 'audio/ogg; codecs=opus',
               });
             } catch {
               toast.warning(t('messageInput.audio.conversionWarning'), {
                 description: t('messageInput.audio.conversionWarningDescription'),
               });
-              return file; // fallback to original
+              // Fallback: still mark as PTT so Baileys/EvoGo set ptt:true on the
+              // original (non-OGG) audio — Cloud already hardcodes voice:true.
+              recordedAudioFilenames.push(file.name);
+              return file;
             }
           }),
         );
@@ -443,6 +457,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
         isPrivate,
         templateParams: undefined,
         cannedResponseId: selectedCannedResponseId,
+        isRecordedAudio: recordedAudioFilenames.length > 0 ? recordedAudioFilenames : undefined,
       });
 
       richEditorRef.current?.clear();

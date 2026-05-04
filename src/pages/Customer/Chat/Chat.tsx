@@ -54,7 +54,7 @@ interface SendMessageOptions {
   isPrivate?: boolean;
   templateParams?: any;
   cannedResponseId?: string | null;
-  isRecordedAudio?: boolean;
+  isRecordedAudio?: boolean | string[];
 }
 
 const UUID_V4_REGEX =

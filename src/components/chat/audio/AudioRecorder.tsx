@@ -4,7 +4,7 @@ import { Play, Pause, Square, Trash2, Mic } from 'lucide-react';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useAudioRecorder, AudioRecordingData } from '@/hooks/chat/useAudioRecorder';
-import { preloadFfmpeg, terminateFfmpeg } from '@/utils/audio/ffmpegLoader';
+import { acquireFfmpeg, releaseFfmpeg } from '@/utils/audio/ffmpegLoader';
 
 interface AudioRecorderProps {
   onRecordingComplete: (data: AudioRecordingData) => void;
@@ -65,7 +65,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
       toast.loading(t('audioRecorder.preparingConverter'), { id: 'ffmpeg-loading' });
     }, 1000);
 
-    preloadFfmpeg()
+    acquireFfmpeg()
       .then(() => {
         clearTimeout(toastTimer);
         if (toastShown) toast.dismiss('ffmpeg-loading');
@@ -79,7 +79,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
     return () => {
       clearTimeout(toastTimer);
       toast.dismiss('ffmpeg-loading');
-      terminateFfmpeg();
+      releaseFfmpeg();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldPreloadConverter]);

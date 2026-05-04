@@ -8,6 +8,7 @@ const LOAD_TIMEOUT_MS = 30_000;
 
 let _instance: FFmpeg | null = null;
 let _loadPromise: Promise<void> | null = null;
+let _refCount = 0;
 
 /**
  * Pre-loads the self-hosted FFmpeg WASM singleton.
@@ -41,8 +42,27 @@ export async function preloadFfmpeg(): Promise<void> {
 }
 
 /**
- * Terminates the FFmpeg WASM instance and frees its memory (~25–30 MB).
- * Call this on AudioRecorder unmount to prevent memory leaks.
+ * Acquires a reference to the FFmpeg singleton, pre-loading it if needed.
+ * Pair with releaseFfmpeg() in cleanup — only the last release calls exit().
+ */
+export async function acquireFfmpeg(): Promise<void> {
+  _refCount += 1;
+  await preloadFfmpeg();
+}
+
+/**
+ * Releases a reference to the FFmpeg singleton. When refCount reaches 0,
+ * the WASM instance is terminated to free its memory (~25–30 MB).
+ */
+export function releaseFfmpeg(): void {
+  _refCount = Math.max(0, _refCount - 1);
+  if (_refCount === 0) terminateFfmpeg();
+}
+
+/**
+ * Forcibly terminates the FFmpeg WASM instance and frees its memory.
+ * Prefer acquireFfmpeg/releaseFfmpeg in components — only call this directly
+ * if you own the singleton lifecycle (e.g. global app teardown).
  */
 export function terminateFfmpeg(): void {
   if (_instance) {
@@ -54,6 +74,7 @@ export function terminateFfmpeg(): void {
     _instance = null;
   }
   _loadPromise = null;
+  _refCount = 0;
 }
 
 /** Returns the loaded FFmpeg instance, or null if not yet loaded. */

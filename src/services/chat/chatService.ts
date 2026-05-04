@@ -220,7 +220,7 @@ class ChatService {
     onUploadProgress?: (progress: number, fileName: string) => void,
     inReplyTo?: string | number,
     echoId?: string,
-    isRecordedAudio?: boolean,
+    isRecordedAudio?: boolean | string[], // boolean: all attachments | string[]: filenames marked as PTT
   ): Promise<Message> {
     return withRetry(async () => {
       const formData = new FormData();
@@ -240,10 +240,14 @@ class ChatService {
         formData.append('echo_id', echoId);
       }
 
-      // Sinaliza ao backend que este é um áudio gravado (PTT/voice message)
-      // Usado pelo Baileys para setar ptt: true na mensagem WhatsApp
-      if (isRecordedAudio) {
+      // Sinaliza ao backend que o(s) áudio(s) é(são) PTT/voice message.
+      // - true: todos os attachments são PTT (caso do recorder).
+      // - string[]: apenas os filenames listados são PTT (mistura audio+outros).
+      // Backend (message_builder.rb) aceita boolean OU array (JSON string).
+      if (isRecordedAudio === true) {
         formData.append('is_recorded_audio', 'true');
+      } else if (Array.isArray(isRecordedAudio) && isRecordedAudio.length > 0) {
+        formData.append('is_recorded_audio', JSON.stringify(isRecordedAudio));
       }
 
       files.forEach(file => {

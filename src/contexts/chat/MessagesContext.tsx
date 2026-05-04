@@ -381,7 +381,7 @@ interface MessagesContextValue {
     isPrivate?: boolean,
     cannedResponseId?: string | null,
     onUploadProgress?: (progress: number, fileName: string) => void,
-    isRecordedAudio?: boolean,
+    isRecordedAudio?: boolean | string[],
   ) => Promise<Message | undefined>;
   // Internal method for template support
   _sendMessageBase: (
@@ -393,7 +393,7 @@ interface MessagesContextValue {
       templateParams?: any;
       cannedResponseId?: string | null;
       onUploadProgress?: (progress: number, fileName: string) => void;
-      isRecordedAudio?: boolean;
+      isRecordedAudio?: boolean | string[];
     },
   ) => Promise<Message | undefined>;
 
@@ -574,7 +574,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
         templateParams?: any;
         cannedResponseId?: string | null;
         onUploadProgress?: (progress: number, fileName: string) => void;
-        isRecordedAudio?: boolean;
+        isRecordedAudio?: boolean | string[];
       },
     ) => {
       const {
@@ -764,7 +764,7 @@ export function MessagesProvider({ children }: { children: React.ReactNode }) {
       isPrivate?: boolean,
       cannedResponseId?: string | null,
       onUploadProgress?: (progress: number, fileName: string) => void,
-      isRecordedAudio?: boolean,
+      isRecordedAudio?: boolean | string[],
     ) => {
       return _sendMessageBase(conversationId, {
         content,
