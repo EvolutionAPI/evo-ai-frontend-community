@@ -104,6 +104,9 @@ const playFileWithAudioContext = async (toneFile: string, tone: NotificationTone
     }
 
     const response = await fetch(toneFile);
+    if (!response.ok) {
+      throw new Error(`Audio file fetch failed: ${response.status} ${toneFile}`);
+    }
     const arrayBuffer = await response.arrayBuffer();
     const audioBuffer = await ctx.decodeAudioData(arrayBuffer);
 
@@ -114,9 +117,23 @@ const playFileWithAudioContext = async (toneFile: string, tone: NotificationTone
     source.connect(gainNode);
     gainNode.connect(ctx.destination);
     source.start(0);
-  } catch {
+  } catch (error) {
+    console.error('Error playing notification sound, falling back to oscillator tone:', error);
     playToneWithAudioContext(tone);
   }
+};
+
+/**
+ * Close and reset the shared AudioContext. Useful for tests and hot-reload.
+ */
+export const closeSharedAudioContext = (): void => {
+  if (sharedAudioContext && sharedAudioContext.state !== 'closed') {
+    sharedAudioContext.close().catch(() => {
+      // Ignore — context may already be closing
+    });
+  }
+  sharedAudioContext = null;
+  audioContextUnlocked = false;
 };
 
 let audioSettingsCache: AudioSettings | null = null;

@@ -31,12 +31,28 @@ function ThemedToaster() {
 
 function App() {
   useEffect(() => {
+    // Try to unlock the AudioContext on the widest possible range of user
+    // interactions so notification sounds work even if the user never clicked
+    // or typed before switching tabs (the original EVO-977 scenario).
+    const gestureEvents: Array<keyof WindowEventMap> = [
+      'click',
+      'keydown',
+      'pointerdown',
+      'touchstart',
+    ];
     const unlock = () => unlockAudioContext();
-    window.addEventListener('click', unlock, { once: true });
-    window.addEventListener('keydown', unlock, { once: true });
+    gestureEvents.forEach(evt => window.addEventListener(evt, unlock, { once: true }));
+
+    // visibilitychange does not count as a user gesture, but when the tab
+    // becomes visible again the browser usually allows resume() — try it.
+    const onVisibility = () => {
+      if (!document.hidden) unlockAudioContext();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
     return () => {
-      window.removeEventListener('click', unlock);
-      window.removeEventListener('keydown', unlock);
+      gestureEvents.forEach(evt => window.removeEventListener(evt, unlock));
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);
 

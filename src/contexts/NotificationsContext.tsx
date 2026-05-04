@@ -3,7 +3,8 @@ import type { AxiosError } from 'axios';
 import notificationsService, { type Notification } from '@/services/notifications/NotificationsService';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGlobalWebSocket } from '@/hooks/useGlobalWebSocket';
-import { playNotificationSound, getAudioSettings, unlockAudioContext } from '@/utils/audioNotificationUtils';
+import { playNotificationSound, getAudioSettings } from '@/utils/audioNotificationUtils';
+import i18n from '@/i18n/config';
 
 interface NotificationsMeta {
   count: number;
@@ -316,6 +317,9 @@ const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ chil
       try {
         await notificationsService.markAllAsRead();
         dispatch({ type: 'MARK_ALL_AS_READ' });
+        // Reconcile with server: NotificationBell now refetches on every open,
+        // so make sure the next fetch sees a consistent unread count.
+        await actions.fetchUnreadCount();
       } catch (error) {
         console.error('Error marking all notifications as read:', error);
         throw error;
@@ -460,18 +464,27 @@ const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ chil
         document.hidden
       ) {
         try {
-          const title = notification.push_message_title || 'Nova notificação';
-          new Notification(title, {
+          const title = notification.push_message_title || i18n.t('layout:notifications.push.fallbackTitle');
+          const assigneeName = notification.primary_actor_meta?.assignee?.name;
+          const body = assigneeName
+            ? i18n.t('layout:notifications.push.bodyWithAssignee', { name: assigneeName })
+            : undefined;
+          const desktopNotification = new Notification(title, {
             icon: '/favicon.ico',
             tag: `notification-${notification.id}`,
+            body,
           });
+          desktopNotification.onclick = () => {
+            window.focus();
+            if (conversationId) {
+              window.location.assign(`/conversations/${conversationId}`);
+            }
+            desktopNotification.close();
+          };
         } catch {
           // Browser may block Notification constructor in certain contexts
         }
       }
-
-      // Unlock AudioContext on the WebSocket callback (counts as indirect user context in some browsers)
-      unlockAudioContext();
 
       // Play notification sound if enabled
       const audioSettings = getAudioSettings();
@@ -503,12 +516,9 @@ const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ chil
           return hasUnread;
         };
 
-        // Use setTimeout to ensure state is updated before checking
-        setTimeout(() => {
-          playNotificationSound(audioSettings, checkUnreadConversations).catch(error => {
-            console.error('❌ Error playing notification sound:', error);
-          });
-        }, 100);
+        playNotificationSound(audioSettings, checkUnreadConversations).catch(error => {
+          console.error('❌ Error playing notification sound:', error);
+        });
       }
     },
     [state.meta.unreadCount, actions],
