@@ -34,6 +34,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useChatContext } from '@/contexts/chat/ChatContext';
 import { Conversation, ConversationFilter } from '@/types/chat/api';
+import {
+  attachmentLabel,
+  mediaTypeFromAttributes,
+  senderNameFromAttributes,
+} from '@/utils/chat/mediaLabels';
 import { formatConversationTime, formatDetailedTime } from '@/utils/time/timeHelpers';
 import { ConversationSkeleton } from '../loading-states';
 import { NoConversations } from '../empty-states';
@@ -312,46 +317,21 @@ const ChatSidebar = ({
     return (tempDiv.textContent || tempDiv.innerText || '').trim();
   };
 
-  const attachmentLabel = (fileType?: string) => {
-    switch (fileType) {
-      case 'image':
-        return '📷 Foto';
-      case 'video':
-        return '🎥 Vídeo';
-      case 'audio':
-        return '🎵 Áudio';
-      case 'file':
-        return '📎 Documento';
-      case 'sticker':
-        return '💟 Figurinha';
-      case 'location':
-        return '📍 Localização';
-      case 'contact':
-        return '👤 Contato';
-      default:
-        return fileType ? `📎 ${fileType}` : '📎 Anexo';
-    }
-  };
-
   const getLastMessage = (conversation: Conversation) => {
     const msg = conversation.last_non_activity_message;
     const rawText = stripHtml(msg?.processed_message_content || msg?.content || '');
-    // Media-only messages (video/image/audio/file) come with empty content; surface
-    // a typed placeholder so the preview tells the operator what was sent. Try the
-    // attachment first, then fall back to content_attributes.media_type (set by the
-    // backend even when the attachment couldn't be downloaded — e.g. inline base64).
+    // Media-only messages come with empty content; surface a typed placeholder.
+    // Prefer the attachment file_type; fall back to backend-tagged media_type.
     const firstAttachmentType = msg?.attachments?.[0]?.file_type;
-    const fallbackMediaType = msg?.content_attributes?.media_type as string | undefined;
+    const fallbackMediaType = mediaTypeFromAttributes(msg?.content_attributes);
     const cleanContent =
       rawText ||
       (firstAttachmentType ? attachmentLabel(firstAttachmentType) : '') ||
       (fallbackMediaType ? attachmentLabel(fallbackMediaType) : '');
-    // For WhatsApp group conversations the backend tags each incoming message with
-    // content_attributes.sender_name (the participant who actually spoke). Prepend
-    // that to the preview so the operator can attribute who said what.
+    // Group conversations: prepend the participant who actually spoke.
     const senderName =
       msg && msg.message_type === 'incoming'
-        ? (msg.content_attributes?.sender_name as string | undefined)
+        ? senderNameFromAttributes(msg.content_attributes)
         : undefined;
     const preview = senderName ? `${senderName}: ${cleanContent}` : cleanContent;
     return preview.length > 60 ? preview.substring(0, 60) + '...' : preview;

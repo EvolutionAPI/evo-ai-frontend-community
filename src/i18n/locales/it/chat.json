@@ -655,7 +655,11 @@
       "asPrivateNote": "(come nota privata)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "File",
-      "noContent": "Messaggio senza contenuto"
+      "noContent": "Messaggio senza contenuto",
+      "imageAttachment": "📷 Immagine",
+      "videoAttachment": "🎥 Video",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Posizione"
     },
     "signature": {
       "enable": "Abilita firma",
