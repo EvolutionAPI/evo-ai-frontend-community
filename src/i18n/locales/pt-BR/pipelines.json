@@ -557,9 +557,7 @@
         "resolved": "Resolvido",
         "pending": "Pendente",
         "snoozed": "Adiado"
-      },
-      "itemHiddenByFilter": "Card movido — pode estar oculto pelos filtros ativos",
-      "newItemMayBeHidden": "Card adicionado — pode estar oculto pelos filtros ativos"
+      }
     },
     "header": {
       "conversations": "Itens",
@@ -694,7 +692,6 @@
       "assignedTo": "Atribuído a",
       "assignedToPlaceholder": "Selecione um responsável",
       "none": "Nenhum",
-      "unassigned": "Não atribuído",
       "cancel": "Cancelar",
       "create": "Criar Tarefa",
       "update": "Atualizar Tarefa",

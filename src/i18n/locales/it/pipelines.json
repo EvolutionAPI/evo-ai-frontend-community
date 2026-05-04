@@ -516,9 +516,7 @@
         "resolved": "Risolto",
         "pending": "In attesa",
         "snoozed": "Posticipato"
-      },
-      "itemHiddenByFilter": "Scheda spostata — potrebbe essere nascosta dai filtri attivi",
-      "newItemMayBeHidden": "Scheda aggiunta — potrebbe essere nascosta dai filtri attivi"
+      }
     },
     "header": {
       "conversations": "Conversazioni",
@@ -649,7 +647,6 @@
       "assignedTo": "Assegnato a",
       "assignedToPlaceholder": "Seleziona un responsabile",
       "none": "Nessuno",
-      "unassigned": "Non assegnato",
       "cancel": "Annulla",
       "create": "Crea Attività",
       "update": "Aggiorna Attività",

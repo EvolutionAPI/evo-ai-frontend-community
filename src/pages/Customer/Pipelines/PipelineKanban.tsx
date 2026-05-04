@@ -79,10 +79,20 @@ export default function PipelineKanban() {
   const [searchInput, setSearchInput] = useState(() => searchParams.get('search') ?? '');
   const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>();
 
-  // Sync input if URL changes externally (browser back/forward)
+  // Sync input if URL changes externally (browser back/forward).
+  // We compare before setting to avoid clobbering keystrokes the user just typed
+  // while a debounce was still pending — those will be flushed by the timeout.
+  const urlSearch = searchParams.get('search') ?? '';
   useEffect(() => {
-    setSearchInput(searchParams.get('search') ?? '');
-  }, [searchParams]); // eslint-disable-line react-hooks/exhaustive-deps
+    setSearchInput(prev => (prev === urlSearch ? prev : urlSearch));
+  }, [urlSearch]);
+
+  // Cancel any pending debounce on unmount to avoid setState on unmounted tree.
+  useEffect(() => {
+    return () => {
+      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    };
+  }, []);
 
   const { agents, fetchAgents, isLoadingAgents } = useAppDataStore();
 
@@ -254,6 +264,9 @@ export default function PipelineKanban() {
   );
 
   const clearFilters = useCallback(() => {
+    // Cancel any pending debounce so it doesn't resurrect the search query
+    // a few hundred ms after the user clicked "clear filters".
+    if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
     setSearchInput('');
     setSearchParams(prev => {
       const next = new URLSearchParams(prev);
@@ -284,8 +297,15 @@ export default function PipelineKanban() {
   const filterItems = useCallback(
     (items: PipelineItem[]) => {
       const q = searchQuery.toLowerCase();
-      const dateFromTs = dateFrom ? new Date(dateFrom).getTime() / 1000 : 0;
-      const dateToTs = dateTo ? new Date(dateTo).getTime() / 1000 + 86399 : Infinity;
+      // Parse YYYY-MM-DD as local time so the filter matches the operator's
+      // calendar day. `new Date('2026-05-04')` would be interpreted as UTC
+      // midnight, which drops the last 3h of the day for BRT users.
+      const toLocalStartTs = (s: string) => {
+        const [y, m, d] = s.split('-').map(Number);
+        return new Date(y, m - 1, d).getTime() / 1000;
+      };
+      const dateFromTs = dateFrom ? toLocalStartTs(dateFrom) : 0;
+      const dateToTs = dateTo ? toLocalStartTs(dateTo) + 86399 : Infinity;
 
       return items.filter(item => {
         const matchesSearch =
@@ -307,7 +327,8 @@ export default function PipelineKanban() {
           (!dateTo || enteredAt <= dateToTs);
 
         const matchesLabel =
-          !labelFilter || (item.conversation?.labels ?? []).includes(labelFilter);
+          !labelFilter ||
+          (item.conversation?.labels ?? []).some(l => l.title === labelFilter);
 
         return matchesSearch && matchesAssignee && matchesStatus && matchesDateRange && matchesLabel;
       });
@@ -351,18 +372,21 @@ export default function PipelineKanban() {
     [stages],
   );
 
-  // Unique labels collected from all items currently loaded
+  // Unique labels collected from all items currently loaded.
+  // Always include the active labelFilter so the popover/chip stays interactive
+  // even after the last matching card moves out of view.
   const uniqueLabels = useMemo(() => {
     const set = new Set<string>();
     for (const stage of stages) {
       for (const item of stage.items || []) {
         for (const label of item.conversation?.labels ?? []) {
-          set.add(label);
+          if (label?.title) set.add(label.title);
         }
       }
     }
+    if (labelFilter) set.add(labelFilter);
     return Array.from(set).sort();
-  }, [stages]);
+  }, [stages, labelFilter]);
 
   // Calculate stage total value
   const calculateStageTotal = (items: PipelineItem[] = []) => {

@@ -520,9 +520,7 @@
         "resolved": "Résolu",
         "pending": "En attente",
         "snoozed": "Reporté"
-      },
-      "itemHiddenByFilter": "Carte déplacée — elle peut être masquée par les filtres actifs",
-      "newItemMayBeHidden": "Carte ajoutée — elle peut être masquée par les filtres actifs"
+      }
     },
     "header": {
       "conversations": "Conversations",
@@ -653,7 +651,6 @@
       "assignedTo": "Assigné à",
       "assignedToPlaceholder": "Sélectionnez un responsable",
       "none": "Aucun",
-      "unassigned": "Non assigné",
       "cancel": "Annuler",
       "create": "Créer une tâche",
       "update": "Mettre à jour la tâche",
