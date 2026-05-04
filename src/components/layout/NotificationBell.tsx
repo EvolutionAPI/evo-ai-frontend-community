@@ -16,13 +16,12 @@ export default function NotificationBell() {
   const [isOpen, setIsOpen] = useState(false);
   const { state, actions } = useNotifications();
 
-
-  // Fetch notifications when dropdown is opened
+  // Fetch notifications every time the dropdown opens
   useEffect(() => {
-    if (isOpen && state.notifications.length === 0) {
+    if (isOpen) {
       actions.fetchNotifications({ page: 1 });
     }
-  }, [isOpen]); // Remover dependencies que causam loop
+  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const unreadCount = state.meta.unreadCount;
 

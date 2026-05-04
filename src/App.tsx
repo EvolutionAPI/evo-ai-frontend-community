@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import AppRouter from './routes';
 import { AuthProvider } from './contexts/AuthContext';
 import { DarkModeProvider } from './contexts/ThemeContext';
@@ -7,6 +8,7 @@ import { GlobalConfigProvider } from './contexts/GlobalConfigContext';
 import { NotificationsProvider } from './contexts/NotificationsContext';
 import { PermissionsProvider } from './contexts/PermissionsContext';
 import { UISettingsApplier } from './components/UISettingsApplier';
+import { unlockAudioContext } from '@/utils/audioNotificationUtils';
 
 import { Toaster } from '@evoapi/design-system';
 
@@ -28,6 +30,16 @@ function ThemedToaster() {
 }
 
 function App() {
+  useEffect(() => {
+    const unlock = () => unlockAudioContext();
+    window.addEventListener('click', unlock, { once: true });
+    window.addEventListener('keydown', unlock, { once: true });
+    return () => {
+      window.removeEventListener('click', unlock);
+      window.removeEventListener('keydown', unlock);
+    };
+  }, []);
+
   return (
     <AuthProvider>
       <DarkModeProvider>

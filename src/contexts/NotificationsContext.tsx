@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 import type { AxiosError } from 'axios';
-import notificationsService, { Notification } from '@/services/notifications/NotificationsService';
+import notificationsService, { type Notification } from '@/services/notifications/NotificationsService';
 import { useAuth } from '@/contexts/AuthContext';
 import { useGlobalWebSocket } from '@/hooks/useGlobalWebSocket';
-import { playNotificationSound, getAudioSettings } from '@/utils/audioNotificationUtils';
+import { playNotificationSound, getAudioSettings, unlockAudioContext } from '@/utils/audioNotificationUtils';
 
 interface NotificationsMeta {
   count: number;
@@ -451,6 +451,27 @@ const NotificationsProviderInner: React.FC<NotificationsProviderProps> = ({ chil
       if (isConversationOpen) {
         return; // Não tocar som nem mostrar notificação se a conversa está aberta
       }
+
+      // Fire browser desktop push notification when permission is granted and tab is inactive
+      if (
+        typeof window !== 'undefined' &&
+        'Notification' in window &&
+        Notification.permission === 'granted' &&
+        document.hidden
+      ) {
+        try {
+          const title = notification.push_message_title || 'Nova notificação';
+          new Notification(title, {
+            icon: '/favicon.ico',
+            tag: `notification-${notification.id}`,
+          });
+        } catch {
+          // Browser may block Notification constructor in certain contexts
+        }
+      }
+
+      // Unlock AudioContext on the WebSocket callback (counts as indirect user context in some browsers)
+      unlockAudioContext();
 
       // Play notification sound if enabled
       const audioSettings = getAudioSettings();

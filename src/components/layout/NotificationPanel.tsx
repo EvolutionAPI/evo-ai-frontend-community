@@ -144,7 +144,7 @@ export default function NotificationPanel({
             <div className="w-8 h-8 animate-spin rounded-full border-2 border-primary border-t-transparent mb-4" />
             <p className="text-muted-foreground">{t('notifications.panel.loading')}</p>
           </div>
-        ) : totalUnreadCount === 0 ? (
+        ) : totalUnreadCount === 0 || paginatedNotifications.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full p-8 text-center">
             <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
               <ListCheck className="h-8 w-8 text-muted-foreground" />

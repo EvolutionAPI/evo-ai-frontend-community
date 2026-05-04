@@ -613,6 +613,11 @@ const Profile = () => {
       return;
     }
 
+    // Auto-request browser permission on first push enable
+    if (type === 'push' && value && 'Notification' in window && Notification.permission === 'default') {
+      await requestNotificationPermission();
+    }
+
     // Atualizar estado local primeiro (otimistic update)
     const notificationType = `${type}_notifications` as keyof typeof notificationSettings;
     const currentNotifications = notificationSettings[notificationType] as Record<string, boolean> | undefined;
