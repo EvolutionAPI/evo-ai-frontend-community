@@ -39,6 +39,11 @@ import { CannedResponsesList } from '../canned-responses';
 import { RichTextEditor, RichTextEditorRef } from '../rich-text-editor';
 
 import { ReplyMode, Message } from '@/types/chat/api';
+import {
+  attachmentI18nKey,
+  mediaTypeFromAttributes,
+  senderNameFromAttributes,
+} from '@/utils/chat/mediaLabels';
 import type { CannedResponse } from '@/types/knowledge';
 
 import { MessageTemplateModal } from '../message-template';
@@ -520,7 +525,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
           <Reply className="h-4 w-4" />
           <span className="font-medium">
             {t('messageInput.replyPreview.replyingTo', {
-              name: message.sender?.name || t('messageInput.replyPreview.userFallback'),
+              name:
+                senderNameFromAttributes(message.content_attributes) ||
+                message.sender?.name ||
+                t('messageInput.replyPreview.userFallback'),
             })}
             {replyMode === ReplyMode.NOTE && (
               <span className="ml-1 text-xs text-orange-600 font-normal">
@@ -544,10 +552,15 @@ const MessageInput: React.FC<MessageInputProps> = ({
             <span className="line-clamp-2">{message.content}</span>
           ) : message.attachments && message.attachments.length > 0 ? (
             <span className="italic">
-              {t('messageInput.replyPreview.fileAttachment', {
-                fileType:
-                  message.attachments[0].file_type || t('messageInput.replyPreview.fileFallback'),
-              })}
+              {t(`messageInput.replyPreview.${attachmentI18nKey(message.attachments[0].file_type)}`)}
+            </span>
+          ) : mediaTypeFromAttributes(message.content_attributes) ? (
+            <span className="italic">
+              {t(
+                `messageInput.replyPreview.${attachmentI18nKey(
+                  mediaTypeFromAttributes(message.content_attributes),
+                )}`,
+              )}
             </span>
           ) : (
             <span className="italic">{t('messageInput.replyPreview.noContent')}</span>

@@ -19,63 +19,74 @@ import { Loader2, Lock, LockOpen, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { adminConfigService } from '@/services/admin/adminConfigService';
 import { extractError } from '@/utils/apiHelpers';
+import { refreshGlobalConfig } from '@/contexts/GlobalConfigContext';
 import type { AdminConfigData } from '@/types/admin/adminConfig';
+
+// Sentinel used when the backend reports a secret as "configured" (masked).
+// The form stores this placeholder so zod's .min(1) required validation passes
+// without exposing the real value; buildPayload maps it back to `null` so the
+// backend preserves the existing DB value.
+const SECRET_SENTINEL = '__CONFIGURED__';
 
 // --- Schema factories ---
 
-function createFacebookSchema() {
+type T = (key: string) => string;
+
+const required = (t: T) =>
+  z.string({ required_error: t('common:validation.required') })
+    .min(1, { message: t('common:validation.required') });
+
+function createFacebookSchema(t: T) {
   return z.object({
-    FB_APP_ID: z.string().optional(),
-    FB_VERIFY_TOKEN: z.string().optional(),
-    FB_APP_SECRET: z.string().optional().nullable(),
+    FB_APP_ID: required(t),
+    FB_VERIFY_TOKEN: required(t),
+    FB_APP_SECRET: required(t),
     FACEBOOK_API_VERSION: z.string().optional(),
     ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT: z.union([z.boolean(), z.string()]).optional(),
     FB_FEED_COMMENTS_ENABLED: z.union([z.boolean(), z.string()]).optional(),
   });
 }
 
-function createWhatsappSchema() {
+function createWhatsappSchema(t: T) {
   return z.object({
-    WP_APP_ID: z.string().optional(),
-    WP_VERIFY_TOKEN: z.string().optional(),
-    WP_APP_SECRET: z.string().optional().nullable(),
-    WP_WHATSAPP_CONFIG_ID: z.string().optional(),
+    WP_APP_ID: required(t),
+    WP_VERIFY_TOKEN: required(t),
+    WP_APP_SECRET: required(t),
+    WP_WHATSAPP_CONFIG_ID: required(t),
     WP_API_VERSION: z.string().optional(),
   });
 }
 
-function createInstagramSchema() {
+function createInstagramSchema(t: T) {
   return z.object({
-    INSTAGRAM_APP_ID: z.string().optional(),
-    INSTAGRAM_APP_SECRET: z.string().optional().nullable(),
-    INSTAGRAM_VERIFY_TOKEN: z.string().optional(),
+    INSTAGRAM_APP_ID: required(t),
+    INSTAGRAM_APP_SECRET: required(t),
+    INSTAGRAM_VERIFY_TOKEN: required(t),
     INSTAGRAM_API_VERSION: z.string().optional(),
     ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: z.union([z.boolean(), z.string()]).optional(),
   });
 }
 
-function createEvolutionSchema() {
+function createEvolutionSchema(t: T) {
   return z.object({
-    EVOLUTION_API_URL: z.string().optional(),
-    EVOLUTION_ADMIN_SECRET: z.string().optional().nullable(),
+    EVOLUTION_API_URL: required(t),
+    EVOLUTION_ADMIN_SECRET: required(t),
   });
 }
 
-function createEvolutionGoSchema() {
+function createEvolutionGoSchema(t: T) {
   return z.object({
-    EVOLUTION_GO_API_URL: z.string().optional(),
-    EVOLUTION_GO_ADMIN_SECRET: z.string().optional().nullable(),
-    EVOLUTION_GO_INSTANCE_ID: z.string().optional(),
-    EVOLUTION_GO_INSTANCE_SECRET: z.string().optional().nullable(),
+    EVOLUTION_GO_API_URL: required(t),
+    EVOLUTION_GO_ADMIN_SECRET: required(t),
   });
 }
 
-function createTwitterSchema() {
+function createTwitterSchema(t: T) {
   return z.object({
-    TWITTER_APP_ID: z.string().optional(),
-    TWITTER_CONSUMER_KEY: z.string().optional(),
-    TWITTER_CONSUMER_SECRET: z.string().optional().nullable(),
-    TWITTER_ENVIRONMENT: z.string().optional(),
+    TWITTER_APP_ID: required(t),
+    TWITTER_CONSUMER_KEY: required(t),
+    TWITTER_CONSUMER_SECRET: required(t),
+    TWITTER_ENVIRONMENT: required(t),
   });
 }
 
@@ -89,7 +100,7 @@ type TwitterFormData = z.infer<ReturnType<typeof createTwitterSchema>>;
 const FACEBOOK_DEFAULTS: FacebookFormData = {
   FB_APP_ID: '',
   FB_VERIFY_TOKEN: '',
-  FB_APP_SECRET: null,
+  FB_APP_SECRET: '',
   FACEBOOK_API_VERSION: '',
   ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT: false,
   FB_FEED_COMMENTS_ENABLED: false,
@@ -98,14 +109,14 @@ const FACEBOOK_DEFAULTS: FacebookFormData = {
 const WHATSAPP_DEFAULTS: WhatsAppFormData = {
   WP_APP_ID: '',
   WP_VERIFY_TOKEN: '',
-  WP_APP_SECRET: null,
+  WP_APP_SECRET: '',
   WP_WHATSAPP_CONFIG_ID: '',
   WP_API_VERSION: '',
 };
 
 const INSTAGRAM_DEFAULTS: InstagramFormData = {
   INSTAGRAM_APP_ID: '',
-  INSTAGRAM_APP_SECRET: null,
+  INSTAGRAM_APP_SECRET: '',
   INSTAGRAM_VERIFY_TOKEN: '',
   INSTAGRAM_API_VERSION: '',
   ENABLE_INSTAGRAM_CHANNEL_HUMAN_AGENT: false,
@@ -113,20 +124,18 @@ const INSTAGRAM_DEFAULTS: InstagramFormData = {
 
 const EVOLUTION_DEFAULTS: EvolutionFormData = {
   EVOLUTION_API_URL: '',
-  EVOLUTION_ADMIN_SECRET: null,
+  EVOLUTION_ADMIN_SECRET: '',
 };
 
 const EVOLUTION_GO_DEFAULTS: EvolutionGoFormData = {
   EVOLUTION_GO_API_URL: '',
-  EVOLUTION_GO_ADMIN_SECRET: null,
-  EVOLUTION_GO_INSTANCE_ID: '',
-  EVOLUTION_GO_INSTANCE_SECRET: null,
+  EVOLUTION_GO_ADMIN_SECRET: '',
 };
 
 const TWITTER_DEFAULTS: TwitterFormData = {
   TWITTER_APP_ID: '',
   TWITTER_CONSUMER_KEY: '',
-  TWITTER_CONSUMER_SECRET: null,
+  TWITTER_CONSUMER_SECRET: '',
   TWITTER_ENVIRONMENT: '',
 };
 
@@ -135,7 +144,7 @@ const FACEBOOK_SECRET_FIELDS = ['FB_APP_SECRET'];
 const WHATSAPP_SECRET_FIELDS = ['WP_APP_SECRET'];
 const INSTAGRAM_SECRET_FIELDS = ['INSTAGRAM_APP_SECRET'];
 const EVOLUTION_SECRET_FIELDS = ['EVOLUTION_ADMIN_SECRET'];
-const EVOLUTION_GO_SECRET_FIELDS = ['EVOLUTION_GO_ADMIN_SECRET', 'EVOLUTION_GO_INSTANCE_SECRET'];
+const EVOLUTION_GO_SECRET_FIELDS = ['EVOLUTION_GO_ADMIN_SECRET'];
 const TWITTER_SECRET_FIELDS = ['TWITTER_CONSUMER_SECRET'];
 
 const FACEBOOK_BOOLEAN_FIELDS = ['ENABLE_MESSENGER_CHANNEL_HUMAN_AGENT', 'FB_FEED_COMMENTS_ENABLED'];
@@ -151,23 +160,30 @@ function toBool(value: unknown): boolean {
   return false;
 }
 
-function buildFormValues<T extends Record<string, unknown>>(
+function buildFormValues<TData extends Record<string, unknown>>(
   data: Record<string, unknown>,
-  defaults: T,
+  defaults: TData,
   secretFields: string[],
   booleanFields: string[],
-): T {
+): TData {
   const formValues: Record<string, unknown> = { ...defaults };
   for (const [key, value] of Object.entries(data)) {
     if (secretFields.includes(key)) {
-      formValues[key] = isSecretMasked(value) ? '' : (value ?? '');
+      // Masked value from backend → fill sentinel so required-string schemas
+      // don't block the admin from saving unrelated fields.
+      formValues[key] = isSecretMasked(value) ? SECRET_SENTINEL : (value ?? '');
     } else if (booleanFields.includes(key)) {
       formValues[key] = toBool(value);
+    } else if (isSecretMasked(value)) {
+      // Defense in depth: a non-secret field should never arrive masked. If it
+      // does (backend misclassification), drop to the default so validation can
+      // surface the missing value instead of echoing the mask back on save.
+      formValues[key] = formValues[key] ?? '';
     } else {
       formValues[key] = value ?? formValues[key] ?? '';
     }
   }
-  return formValues as T;
+  return formValues as TData;
 }
 
 function updateSecretStatus(data: Record<string, unknown>, secretFields: string[]) {
@@ -186,6 +202,10 @@ function buildPayload(
   const payload: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(formData)) {
     if (secretFields.includes(key)) {
+      // Untouched secret field (whether backing sentinel or empty) → null so the
+      // backend preserves its existing value. If the admin *did* type the literal
+      // sentinel string themselves, secretModified[key] is true and we forward
+      // it verbatim — their call.
       if (!secretModified[key] || value === '') {
         payload[key] = null;
       } else {
@@ -200,19 +220,21 @@ function buildPayload(
 
 // --- SecretField subcomponent ---
 
-interface SecretFieldProps<T extends Record<string, unknown>> {
-  fieldName: string & keyof T;
+interface SecretFieldProps<TData extends Record<string, unknown>> {
+  fieldName: string & keyof TData;
   label: string;
   placeholder: string;
-  register: UseFormRegister<T>;
+  register: UseFormRegister<TData>;
   secretModified: Record<string, boolean>;
   onSecretModifiedChange: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
   secretConfigured: Record<string, boolean>;
   onClear: () => void;
   t: (key: string) => string;
+  required?: boolean;
+  error?: string;
 }
 
-function SecretField<T extends Record<string, unknown>>({
+function SecretField<TData extends Record<string, unknown>>({
   fieldName,
   label,
   placeholder,
@@ -222,11 +244,16 @@ function SecretField<T extends Record<string, unknown>>({
   secretConfigured,
   onClear,
   t,
-}: SecretFieldProps<T>) {
+  required,
+  error,
+}: SecretFieldProps<TData>) {
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <Label htmlFor={fieldName}>{label}</Label>
+        <div className="flex items-center">
+          <Label htmlFor={fieldName}>{label}</Label>
+          {required && <span className="text-destructive ml-1" aria-hidden="true">*</span>}
+        </div>
         {!secretModified[fieldName] && (
           secretConfigured[fieldName] ? (
             <span className="inline-flex items-center gap-1 text-xs text-green-600">
@@ -247,7 +274,9 @@ function SecretField<T extends Record<string, unknown>>({
           type="password"
           autoComplete="off"
           placeholder={placeholder}
-          {...register(fieldName as Path<T>, {
+          aria-required={required || undefined}
+          aria-invalid={error ? true : undefined}
+          {...register(fieldName as Path<TData>, {
             onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
               onSecretModifiedChange((prev) => ({ ...prev, [fieldName]: e.target.value.length > 0 })),
           })}
@@ -264,6 +293,7 @@ function SecretField<T extends Record<string, unknown>>({
           </button>
         )}
       </div>
+      {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   );
 }
@@ -279,17 +309,23 @@ interface TextFieldProps {
   error?: { message?: string };
   type?: string;
   readOnly?: boolean;
+  required?: boolean;
 }
 
-function TextField({ id, label, placeholder, register, error, type, readOnly }: TextFieldProps) {
+function TextField({ id, label, placeholder, register, error, type, readOnly, required }: TextFieldProps) {
   return (
     <div className="space-y-2">
-      <Label htmlFor={id}>{label}</Label>
+      <div className="flex items-center">
+        <Label htmlFor={id}>{label}</Label>
+        {required && <span className="text-destructive ml-1" aria-hidden="true">*</span>}
+      </div>
       <Input
         id={id}
         placeholder={placeholder}
         type={type}
         readOnly={readOnly}
+        aria-required={required || undefined}
+        aria-invalid={error ? true : undefined}
         className={readOnly ? 'bg-muted cursor-not-allowed' : undefined}
         {...register}
       />
@@ -303,18 +339,37 @@ function TextField({ id, label, placeholder, register, error, type, readOnly }: 
 interface ChannelFormCardProps {
   onSubmit: () => void;
   saving: boolean;
+  canSubmit: boolean;
+  saveError: string | null;
+  onDismissError: () => void;
   t: (key: string) => string;
   children: React.ReactNode;
 }
 
-function ChannelFormCard({ onSubmit, saving, t, children }: ChannelFormCardProps) {
+function ChannelFormCard({ onSubmit, saving, canSubmit, saveError, onDismissError, t, children }: ChannelFormCardProps) {
   return (
     <Card>
       <CardContent className="pt-6">
         <form onSubmit={onSubmit} className="space-y-5">
+          {saveError && (
+            <div
+              role="alert"
+              className="flex items-start justify-between gap-3 rounded-md border-2 border-destructive bg-destructive/20 p-4 text-sm font-medium text-destructive shadow-sm"
+            >
+              <span className="whitespace-pre-wrap break-words select-text">{saveError}</span>
+              <button
+                type="button"
+                onClick={onDismissError}
+                aria-label={t('channels.dismissError')}
+                className="shrink-0 rounded p-0.5 text-destructive hover:bg-destructive/20"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          )}
           {children}
           <div className="pt-2">
-            <Button type="submit" disabled={saving}>
+            <Button type="submit" disabled={saving || !canSubmit}>
               {saving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {saving ? t('channels.saving') : t('channels.save')}
             </Button>
@@ -378,41 +433,54 @@ export default function ChannelConfig() {
   const [twSecretModified, setTwSecretModified] = useState<Record<string, boolean>>({});
   const [twSecretConfigured, setTwSecretConfigured] = useState<Record<string, boolean>>({});
 
-  const facebookSchema = useMemo(() => createFacebookSchema(), []);
-  const whatsappSchema = useMemo(() => createWhatsappSchema(), []);
-  const instagramSchema = useMemo(() => createInstagramSchema(), []);
-  const evolutionSchema = useMemo(() => createEvolutionSchema(), []);
-  const evolutionGoSchema = useMemo(() => createEvolutionGoSchema(), []);
-  const twitterSchema = useMemo(() => createTwitterSchema(), []);
+  const [fbSaveError, setFbSaveError] = useState<string | null>(null);
+  const [wpSaveError, setWpSaveError] = useState<string | null>(null);
+  const [igSaveError, setIgSaveError] = useState<string | null>(null);
+  const [evoSaveError, setEvoSaveError] = useState<string | null>(null);
+  const [evoGoSaveError, setEvoGoSaveError] = useState<string | null>(null);
+  const [twSaveError, setTwSaveError] = useState<string | null>(null);
+
+  const facebookSchema = useMemo(() => createFacebookSchema(t), [t]);
+  const whatsappSchema = useMemo(() => createWhatsappSchema(t), [t]);
+  const instagramSchema = useMemo(() => createInstagramSchema(t), [t]);
+  const evolutionSchema = useMemo(() => createEvolutionSchema(t), [t]);
+  const evolutionGoSchema = useMemo(() => createEvolutionGoSchema(t), [t]);
+  const twitterSchema = useMemo(() => createTwitterSchema(t), [t]);
 
   const facebookForm = useForm<FacebookFormData>({
     resolver: zodResolver(facebookSchema),
     defaultValues: FACEBOOK_DEFAULTS,
+    mode: 'onChange',
   });
 
   const whatsappForm = useForm<WhatsAppFormData>({
     resolver: zodResolver(whatsappSchema),
     defaultValues: WHATSAPP_DEFAULTS,
+    mode: 'onChange',
   });
 
   const instagramForm = useForm<InstagramFormData>({
     resolver: zodResolver(instagramSchema),
     defaultValues: INSTAGRAM_DEFAULTS,
+    mode: 'onChange',
   });
 
   const evolutionForm = useForm<EvolutionFormData>({
     resolver: zodResolver(evolutionSchema),
     defaultValues: EVOLUTION_DEFAULTS,
+    mode: 'onChange',
   });
 
   const evolutionGoForm = useForm<EvolutionGoFormData>({
     resolver: zodResolver(evolutionGoSchema),
     defaultValues: EVOLUTION_GO_DEFAULTS,
+    mode: 'onChange',
   });
 
   const twitterForm = useForm<TwitterFormData>({
     resolver: zodResolver(twitterSchema),
     defaultValues: TWITTER_DEFAULTS,
+    mode: 'onChange',
   });
 
   const loadConfig = useCallback(async () => {
@@ -463,16 +531,18 @@ export default function ChannelConfig() {
 
   const onSubmitFacebook = async (formData: FacebookFormData) => {
     setSavingFacebook(true);
+    setFbSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, FACEBOOK_SECRET_FIELDS, fbSecretModified);
       const data = await adminConfigService.saveConfig('facebook', payload as AdminConfigData);
       setFbSecretConfigured(updateSecretStatus(data, FACEBOOK_SECRET_FIELDS));
       setFbSecretModified({});
       facebookForm.reset(buildFormValues(data, FACEBOOK_DEFAULTS, FACEBOOK_SECRET_FIELDS, FACEBOOK_BOOLEAN_FIELDS));
+      await refreshGlobalConfig();
       toast.success(t('channels.facebook.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.facebook.saveError'), { description: errorInfo.message });
+      setFbSaveError(errorInfo.message || t('channels.facebook.saveError'));
     } finally {
       setSavingFacebook(false);
     }
@@ -480,16 +550,18 @@ export default function ChannelConfig() {
 
   const onSubmitWhatsapp = async (formData: WhatsAppFormData) => {
     setSavingWhatsapp(true);
+    setWpSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, WHATSAPP_SECRET_FIELDS, wpSecretModified);
       const data = await adminConfigService.saveConfig('whatsapp', payload as AdminConfigData);
       setWpSecretConfigured(updateSecretStatus(data, WHATSAPP_SECRET_FIELDS));
       setWpSecretModified({});
       whatsappForm.reset(buildFormValues(data, WHATSAPP_DEFAULTS, WHATSAPP_SECRET_FIELDS, []));
+      await refreshGlobalConfig();
       toast.success(t('channels.whatsapp.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.whatsapp.saveError'), { description: errorInfo.message });
+      setWpSaveError(errorInfo.message || t('channels.whatsapp.saveError'));
     } finally {
       setSavingWhatsapp(false);
     }
@@ -497,16 +569,18 @@ export default function ChannelConfig() {
 
   const onSubmitInstagram = async (formData: InstagramFormData) => {
     setSavingInstagram(true);
+    setIgSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, INSTAGRAM_SECRET_FIELDS, igSecretModified);
       const data = await adminConfigService.saveConfig('instagram', payload as AdminConfigData);
       setIgSecretConfigured(updateSecretStatus(data, INSTAGRAM_SECRET_FIELDS));
       setIgSecretModified({});
       instagramForm.reset(buildFormValues(data, INSTAGRAM_DEFAULTS, INSTAGRAM_SECRET_FIELDS, INSTAGRAM_BOOLEAN_FIELDS));
+      await refreshGlobalConfig();
       toast.success(t('channels.instagram.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.instagram.saveError'), { description: errorInfo.message });
+      setIgSaveError(errorInfo.message || t('channels.instagram.saveError'));
     } finally {
       setSavingInstagram(false);
     }
@@ -514,16 +588,18 @@ export default function ChannelConfig() {
 
   const onSubmitEvolution = async (formData: EvolutionFormData) => {
     setSavingEvolution(true);
+    setEvoSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, EVOLUTION_SECRET_FIELDS, evoSecretModified);
       const data = await adminConfigService.saveConfig('evolution', payload as AdminConfigData);
       setEvoSecretConfigured(updateSecretStatus(data, EVOLUTION_SECRET_FIELDS));
       setEvoSecretModified({});
       evolutionForm.reset(buildFormValues(data, EVOLUTION_DEFAULTS, EVOLUTION_SECRET_FIELDS, []));
+      await refreshGlobalConfig();
       toast.success(t('channels.evolution.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.evolution.saveError'), { description: errorInfo.message });
+      setEvoSaveError(errorInfo.message || t('channels.evolution.saveError'));
     } finally {
       setSavingEvolution(false);
     }
@@ -531,16 +607,18 @@ export default function ChannelConfig() {
 
   const onSubmitEvolutionGo = async (formData: EvolutionGoFormData) => {
     setSavingEvolutionGo(true);
+    setEvoGoSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, EVOLUTION_GO_SECRET_FIELDS, evoGoSecretModified);
       const data = await adminConfigService.saveConfig('evolution_go', payload as AdminConfigData);
       setEvoGoSecretConfigured(updateSecretStatus(data, EVOLUTION_GO_SECRET_FIELDS));
       setEvoGoSecretModified({});
       evolutionGoForm.reset(buildFormValues(data, EVOLUTION_GO_DEFAULTS, EVOLUTION_GO_SECRET_FIELDS, []));
+      await refreshGlobalConfig();
       toast.success(t('channels.evolutionGo.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.evolutionGo.saveError'), { description: errorInfo.message });
+      setEvoGoSaveError(errorInfo.message || t('channels.evolutionGo.saveError'));
     } finally {
       setSavingEvolutionGo(false);
     }
@@ -548,48 +626,50 @@ export default function ChannelConfig() {
 
   const onSubmitTwitter = async (formData: TwitterFormData) => {
     setSavingTwitter(true);
+    setTwSaveError(null);
     try {
       const payload = buildPayload(formData as Record<string, unknown>, TWITTER_SECRET_FIELDS, twSecretModified);
       const data = await adminConfigService.saveConfig('twitter', payload as AdminConfigData);
       setTwSecretConfigured(updateSecretStatus(data, TWITTER_SECRET_FIELDS));
       setTwSecretModified({});
       twitterForm.reset(buildFormValues(data, TWITTER_DEFAULTS, TWITTER_SECRET_FIELDS, []));
+      await refreshGlobalConfig();
       toast.success(t('channels.twitter.saveSuccess'));
     } catch (error) {
       const errorInfo = extractError(error);
-      toast.error(t('channels.twitter.saveError'), { description: errorInfo.message });
+      setTwSaveError(errorInfo.message || t('channels.twitter.saveError'));
     } finally {
       setSavingTwitter(false);
     }
   };
 
   const handleClearFbSecret = (fieldName: keyof FacebookFormData) => {
-    facebookForm.setValue(fieldName, '');
+    facebookForm.setValue(fieldName, '', { shouldValidate: true });
     setFbSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   const handleClearWpSecret = (fieldName: keyof WhatsAppFormData) => {
-    whatsappForm.setValue(fieldName, '');
+    whatsappForm.setValue(fieldName, '', { shouldValidate: true });
     setWpSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   const handleClearIgSecret = (fieldName: keyof InstagramFormData) => {
-    instagramForm.setValue(fieldName, '');
+    instagramForm.setValue(fieldName, '', { shouldValidate: true });
     setIgSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   const handleClearEvoSecret = (fieldName: keyof EvolutionFormData) => {
-    evolutionForm.setValue(fieldName, '');
+    evolutionForm.setValue(fieldName, '', { shouldValidate: true });
     setEvoSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   const handleClearEvoGoSecret = (fieldName: keyof EvolutionGoFormData) => {
-    evolutionGoForm.setValue(fieldName, '');
+    evolutionGoForm.setValue(fieldName, '', { shouldValidate: true });
     setEvoGoSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
   const handleClearTwSecret = (fieldName: keyof TwitterFormData) => {
-    twitterForm.setValue(fieldName, '');
+    twitterForm.setValue(fieldName, '', { shouldValidate: true });
     setTwSecretModified((prev) => ({ ...prev, [fieldName]: true }));
   };
 
@@ -600,6 +680,21 @@ export default function ChannelConfig() {
       </div>
     );
   }
+
+  // submitCount>0 gates inline error rendering; default reValidateMode ('onChange')
+  // then clears/re-shows errors as the user types.
+  const fbErrors = facebookForm.formState.errors;
+  const fbShowErrors = facebookForm.formState.submitCount > 0;
+  const wpErrors = whatsappForm.formState.errors;
+  const wpShowErrors = whatsappForm.formState.submitCount > 0;
+  const igErrors = instagramForm.formState.errors;
+  const igShowErrors = instagramForm.formState.submitCount > 0;
+  const evoErrors = evolutionForm.formState.errors;
+  const evoShowErrors = evolutionForm.formState.submitCount > 0;
+  const evoGoErrors = evolutionGoForm.formState.errors;
+  const evoGoShowErrors = evolutionGoForm.formState.submitCount > 0;
+  const twErrors = twitterForm.formState.errors;
+  const twShowErrors = twitterForm.formState.submitCount > 0;
 
   return (
     <div className="max-w-2xl">
@@ -620,13 +715,21 @@ export default function ChannelConfig() {
 
         {/* Facebook Tab */}
         <TabsContent value="facebook" className="mt-4">
-          <ChannelFormCard onSubmit={facebookForm.handleSubmit(onSubmitFacebook)} saving={savingFacebook} t={t}>
+          <ChannelFormCard
+            onSubmit={facebookForm.handleSubmit(onSubmitFacebook)}
+            saving={savingFacebook}
+            canSubmit={facebookForm.formState.isValid}
+            saveError={fbSaveError}
+            onDismissError={() => setFbSaveError(null)}
+            t={t}
+          >
             <TextField
               id="FB_APP_ID"
               label={t('channels.facebook.fields.appId')}
               placeholder={t('channels.facebook.placeholders.appId')}
               register={facebookForm.register('FB_APP_ID')}
-              error={facebookForm.formState.errors.FB_APP_ID}
+              error={fbShowErrors ? fbErrors.FB_APP_ID : undefined}
+              required
             />
             <TextField
               id="FB_VERIFY_TOKEN"
@@ -634,7 +737,8 @@ export default function ChannelConfig() {
               placeholder={t('channels.facebook.placeholders.verifyToken')}
               type="password"
               register={facebookForm.register('FB_VERIFY_TOKEN')}
-              error={facebookForm.formState.errors.FB_VERIFY_TOKEN}
+              error={fbShowErrors ? fbErrors.FB_VERIFY_TOKEN : undefined}
+              required
             />
             <SecretField<FacebookFormData>
               fieldName="FB_APP_SECRET"
@@ -646,13 +750,15 @@ export default function ChannelConfig() {
               secretConfigured={fbSecretConfigured}
               onClear={() => handleClearFbSecret('FB_APP_SECRET')}
               t={t}
+              required
+              error={fbShowErrors ? fbErrors.FB_APP_SECRET?.message : undefined}
             />
             <TextField
               id="FACEBOOK_API_VERSION"
               label={t('channels.facebook.fields.apiVersion')}
               placeholder={t('channels.facebook.placeholders.apiVersion')}
               register={facebookForm.register('FACEBOOK_API_VERSION')}
-              error={facebookForm.formState.errors.FACEBOOK_API_VERSION}
+              error={fbShowErrors ? fbErrors.FACEBOOK_API_VERSION : undefined}
             />
             <div className="space-y-3 rounded-md border p-4">
               <ToggleField
@@ -671,13 +777,21 @@ export default function ChannelConfig() {
 
         {/* WhatsApp Tab */}
         <TabsContent value="whatsapp" className="mt-4">
-          <ChannelFormCard onSubmit={whatsappForm.handleSubmit(onSubmitWhatsapp)} saving={savingWhatsapp} t={t}>
+          <ChannelFormCard
+            onSubmit={whatsappForm.handleSubmit(onSubmitWhatsapp)}
+            saving={savingWhatsapp}
+            canSubmit={whatsappForm.formState.isValid}
+            saveError={wpSaveError}
+            onDismissError={() => setWpSaveError(null)}
+            t={t}
+          >
             <TextField
               id="WP_APP_ID"
               label={t('channels.whatsapp.fields.appId')}
               placeholder={t('channels.whatsapp.placeholders.appId')}
               register={whatsappForm.register('WP_APP_ID')}
-              error={whatsappForm.formState.errors.WP_APP_ID}
+              error={wpShowErrors ? wpErrors.WP_APP_ID : undefined}
+              required
             />
             <TextField
               id="WP_VERIFY_TOKEN"
@@ -685,7 +799,8 @@ export default function ChannelConfig() {
               placeholder={t('channels.whatsapp.placeholders.verifyToken')}
               type="password"
               register={whatsappForm.register('WP_VERIFY_TOKEN')}
-              error={whatsappForm.formState.errors.WP_VERIFY_TOKEN}
+              error={wpShowErrors ? wpErrors.WP_VERIFY_TOKEN : undefined}
+              required
             />
             <SecretField<WhatsAppFormData>
               fieldName="WP_APP_SECRET"
@@ -697,33 +812,44 @@ export default function ChannelConfig() {
               secretConfigured={wpSecretConfigured}
               onClear={() => handleClearWpSecret('WP_APP_SECRET')}
               t={t}
+              required
+              error={wpShowErrors ? wpErrors.WP_APP_SECRET?.message : undefined}
             />
             <TextField
               id="WP_WHATSAPP_CONFIG_ID"
               label={t('channels.whatsapp.fields.configId')}
               placeholder={t('channels.whatsapp.placeholders.configId')}
               register={whatsappForm.register('WP_WHATSAPP_CONFIG_ID')}
-              error={whatsappForm.formState.errors.WP_WHATSAPP_CONFIG_ID}
+              error={wpShowErrors ? wpErrors.WP_WHATSAPP_CONFIG_ID : undefined}
+              required
             />
             <TextField
               id="WP_API_VERSION"
               label={t('channels.whatsapp.fields.apiVersion')}
               placeholder={t('channels.whatsapp.placeholders.apiVersion')}
               register={whatsappForm.register('WP_API_VERSION')}
-              error={whatsappForm.formState.errors.WP_API_VERSION}
+              error={wpShowErrors ? wpErrors.WP_API_VERSION : undefined}
             />
           </ChannelFormCard>
         </TabsContent>
 
         {/* Instagram Tab */}
         <TabsContent value="instagram" className="mt-4">
-          <ChannelFormCard onSubmit={instagramForm.handleSubmit(onSubmitInstagram)} saving={savingInstagram} t={t}>
+          <ChannelFormCard
+            onSubmit={instagramForm.handleSubmit(onSubmitInstagram)}
+            saving={savingInstagram}
+            canSubmit={instagramForm.formState.isValid}
+            saveError={igSaveError}
+            onDismissError={() => setIgSaveError(null)}
+            t={t}
+          >
             <TextField
               id="INSTAGRAM_APP_ID"
               label={t('channels.instagram.fields.appId')}
               placeholder={t('channels.instagram.placeholders.appId')}
               register={instagramForm.register('INSTAGRAM_APP_ID')}
-              error={instagramForm.formState.errors.INSTAGRAM_APP_ID}
+              error={igShowErrors ? igErrors.INSTAGRAM_APP_ID : undefined}
+              required
             />
             <SecretField<InstagramFormData>
               fieldName="INSTAGRAM_APP_SECRET"
@@ -735,6 +861,8 @@ export default function ChannelConfig() {
               secretConfigured={igSecretConfigured}
               onClear={() => handleClearIgSecret('INSTAGRAM_APP_SECRET')}
               t={t}
+              required
+              error={igShowErrors ? igErrors.INSTAGRAM_APP_SECRET?.message : undefined}
             />
             <TextField
               id="INSTAGRAM_VERIFY_TOKEN"
@@ -742,7 +870,8 @@ export default function ChannelConfig() {
               placeholder={t('channels.instagram.placeholders.verifyToken')}
               type="password"
               register={instagramForm.register('INSTAGRAM_VERIFY_TOKEN')}
-              error={instagramForm.formState.errors.INSTAGRAM_VERIFY_TOKEN}
+              error={igShowErrors ? igErrors.INSTAGRAM_VERIFY_TOKEN : undefined}
+              required
             />
             <TextField
               id="INSTAGRAM_API_VERSION"
@@ -763,13 +892,21 @@ export default function ChannelConfig() {
 
         {/* Evolution Tab */}
         <TabsContent value="evolution" className="mt-4">
-          <ChannelFormCard onSubmit={evolutionForm.handleSubmit(onSubmitEvolution)} saving={savingEvolution} t={t}>
+          <ChannelFormCard
+            onSubmit={evolutionForm.handleSubmit(onSubmitEvolution)}
+            saving={savingEvolution}
+            canSubmit={evolutionForm.formState.isValid}
+            saveError={evoSaveError}
+            onDismissError={() => setEvoSaveError(null)}
+            t={t}
+          >
             <TextField
               id="EVOLUTION_API_URL"
               label={t('channels.evolution.fields.apiUrl')}
               placeholder={t('channels.evolution.placeholders.apiUrl')}
               register={evolutionForm.register('EVOLUTION_API_URL')}
-              error={evolutionForm.formState.errors.EVOLUTION_API_URL}
+              error={evoShowErrors ? evoErrors.EVOLUTION_API_URL : undefined}
+              required
             />
             <SecretField<EvolutionFormData>
               fieldName="EVOLUTION_ADMIN_SECRET"
@@ -781,19 +918,29 @@ export default function ChannelConfig() {
               secretConfigured={evoSecretConfigured}
               onClear={() => handleClearEvoSecret('EVOLUTION_ADMIN_SECRET')}
               t={t}
+              required
+              error={evoShowErrors ? evoErrors.EVOLUTION_ADMIN_SECRET?.message : undefined}
             />
           </ChannelFormCard>
         </TabsContent>
 
         {/* Evolution Go Tab */}
         <TabsContent value="evolution_go" className="mt-4">
-          <ChannelFormCard onSubmit={evolutionGoForm.handleSubmit(onSubmitEvolutionGo)} saving={savingEvolutionGo} t={t}>
+          <ChannelFormCard
+            onSubmit={evolutionGoForm.handleSubmit(onSubmitEvolutionGo)}
+            saving={savingEvolutionGo}
+            canSubmit={evolutionGoForm.formState.isValid}
+            saveError={evoGoSaveError}
+            onDismissError={() => setEvoGoSaveError(null)}
+            t={t}
+          >
             <TextField
               id="EVOLUTION_GO_API_URL"
               label={t('channels.evolutionGo.fields.apiUrl')}
               placeholder={t('channels.evolutionGo.placeholders.apiUrl')}
               register={evolutionGoForm.register('EVOLUTION_GO_API_URL')}
-              error={evolutionGoForm.formState.errors.EVOLUTION_GO_API_URL}
+              error={evoGoShowErrors ? evoGoErrors.EVOLUTION_GO_API_URL : undefined}
+              required
             />
             <SecretField<EvolutionGoFormData>
               fieldName="EVOLUTION_GO_ADMIN_SECRET"
@@ -805,44 +952,37 @@ export default function ChannelConfig() {
               secretConfigured={evoGoSecretConfigured}
               onClear={() => handleClearEvoGoSecret('EVOLUTION_GO_ADMIN_SECRET')}
               t={t}
-            />
-            <TextField
-              id="EVOLUTION_GO_INSTANCE_ID"
-              label={t('channels.evolutionGo.fields.instanceId')}
-              placeholder={t('channels.evolutionGo.placeholders.instanceId')}
-              register={evolutionGoForm.register('EVOLUTION_GO_INSTANCE_ID')}
-              error={evolutionGoForm.formState.errors.EVOLUTION_GO_INSTANCE_ID}
-            />
-            <SecretField<EvolutionGoFormData>
-              fieldName="EVOLUTION_GO_INSTANCE_SECRET"
-              label={t('channels.evolutionGo.fields.instanceSecret')}
-              placeholder={t('channels.evolutionGo.placeholders.instanceSecret')}
-              register={evolutionGoForm.register}
-              secretModified={evoGoSecretModified}
-              onSecretModifiedChange={setEvoGoSecretModified}
-              secretConfigured={evoGoSecretConfigured}
-              onClear={() => handleClearEvoGoSecret('EVOLUTION_GO_INSTANCE_SECRET')}
-              t={t}
+              required
+              error={evoGoShowErrors ? evoGoErrors.EVOLUTION_GO_ADMIN_SECRET?.message : undefined}
             />
           </ChannelFormCard>
         </TabsContent>
 
         {/* Twitter Tab */}
         <TabsContent value="twitter" className="mt-4">
-          <ChannelFormCard onSubmit={twitterForm.handleSubmit(onSubmitTwitter)} saving={savingTwitter} t={t}>
+          <ChannelFormCard
+            onSubmit={twitterForm.handleSubmit(onSubmitTwitter)}
+            saving={savingTwitter}
+            canSubmit={twitterForm.formState.isValid}
+            saveError={twSaveError}
+            onDismissError={() => setTwSaveError(null)}
+            t={t}
+          >
             <TextField
               id="TWITTER_APP_ID"
               label={t('channels.twitter.fields.appId')}
               placeholder={t('channels.twitter.placeholders.appId')}
               register={twitterForm.register('TWITTER_APP_ID')}
-              error={twitterForm.formState.errors.TWITTER_APP_ID}
+              error={twShowErrors ? twErrors.TWITTER_APP_ID : undefined}
+              required
             />
             <TextField
               id="TWITTER_CONSUMER_KEY"
               label={t('channels.twitter.fields.consumerKey')}
               placeholder={t('channels.twitter.placeholders.consumerKey')}
               register={twitterForm.register('TWITTER_CONSUMER_KEY')}
-              error={twitterForm.formState.errors.TWITTER_CONSUMER_KEY}
+              error={twShowErrors ? twErrors.TWITTER_CONSUMER_KEY : undefined}
+              required
             />
             <SecretField<TwitterFormData>
               fieldName="TWITTER_CONSUMER_SECRET"
@@ -854,13 +994,16 @@ export default function ChannelConfig() {
               secretConfigured={twSecretConfigured}
               onClear={() => handleClearTwSecret('TWITTER_CONSUMER_SECRET')}
               t={t}
+              required
+              error={twShowErrors ? twErrors.TWITTER_CONSUMER_SECRET?.message : undefined}
             />
             <TextField
               id="TWITTER_ENVIRONMENT"
               label={t('channels.twitter.fields.environment')}
               placeholder={t('channels.twitter.placeholders.environment')}
               register={twitterForm.register('TWITTER_ENVIRONMENT')}
-              error={twitterForm.formState.errors.TWITTER_ENVIRONMENT}
+              error={twShowErrors ? twErrors.TWITTER_ENVIRONMENT : undefined}
+              required
             />
           </ChannelFormCard>
         </TabsContent>

@@ -1,16 +1,30 @@
-import { Card, CardContent } from '@evoapi/design-system';
+import {
+  Card,
+  CardContent,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@evoapi/design-system';
 import { ChannelIcon } from '@/components/channels';
 import { ChannelType } from '@/hooks/channels/useChannelForm';
 
 interface ChannelCardProps {
   channel: ChannelType;
   disabled?: boolean;
+  disabledTooltip?: string;
   onClick: () => void;
   'data-tour'?: string;
 }
 
-export const ChannelCard = ({ channel, disabled = false, onClick, 'data-tour': dataTour }: ChannelCardProps) => {
-  return (
+export const ChannelCard = ({
+  channel,
+  disabled = false,
+  disabledTooltip,
+  onClick,
+  'data-tour': dataTour,
+}: ChannelCardProps) => {
+  const card = (
     <Card
       className={`h-full transition-all duration-200 border-sidebar-border rounded-lg ${
         disabled
@@ -31,4 +45,21 @@ export const ChannelCard = ({ channel, disabled = false, onClick, 'data-tour': d
       </CardContent>
     </Card>
   );
+
+  if (disabled && disabledTooltip) {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="h-full">{card}</div>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{disabledTooltip}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  }
+
+  return card;
 };

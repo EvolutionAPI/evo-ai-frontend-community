@@ -8,6 +8,7 @@ interface ProviderSelectionProps {
   channelType: 'web_widget' | 'whatsapp' | 'facebook' | 'instagram' | 'telegram' | 'sms' | 'email' | 'api';
   providers: Provider[];
   isDisabled?: (providerId: string) => boolean;
+  disabledTooltip?: (providerId: string) => string | undefined;
   onProviderSelect: (provider: Provider) => void;
   onBack: () => void;
   onChannelListClick?: () => void;
@@ -19,6 +20,7 @@ const ProviderSelection: React.FC<ProviderSelectionProps> = ({
   channelType,
   providers,
   isDisabled,
+  disabledTooltip,
   onProviderSelect,
   onBack,
   onChannelListClick,
@@ -59,6 +61,7 @@ const ProviderSelection: React.FC<ProviderSelectionProps> = ({
             channelType={channelType}
             providers={providers}
             isDisabled={isDisabled}
+            disabledTooltip={disabledTooltip}
             onSelect={onProviderSelect}
           />
         </div>

@@ -163,6 +163,7 @@
     "clearSecret": "Borrar valor guardado",
     "save": "Guardar Configuracion",
     "saving": "Guardando...",
+    "dismissError": "Cerrar error",
     "facebook": {
       "tabTitle": "Facebook",
       "fields": {
@@ -223,11 +224,11 @@
       "tabTitle": "Evolution",
       "fields": {
         "apiUrl": "URL de API",
-        "adminSecret": "Secreto de Admin"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-api.ejemplo.com",
-        "adminSecret": "Ingrese el nuevo secreto de admin"
+        "adminSecret": "Ingrese el nuevo token admin"
       },
       "saveSuccess": "Configuracion de Evolution guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Evolution"
@@ -236,15 +237,11 @@
       "tabTitle": "Evolution Go",
       "fields": {
         "apiUrl": "URL de API",
-        "adminSecret": "Secreto de Admin",
-        "instanceId": "ID de Instancia",
-        "instanceSecret": "Secreto de Instancia"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-go.ejemplo.com",
-        "adminSecret": "Ingrese el nuevo secreto de admin",
-        "instanceId": "Su Evolution Go Instance ID",
-        "instanceSecret": "Ingrese el nuevo secreto de instancia"
+        "adminSecret": "Ingrese el nuevo token admin"
       },
       "saveSuccess": "Configuracion de Evolution Go guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Evolution Go"
@@ -333,29 +330,53 @@
     "saving": "Guardando...",
     "linear": {
       "cardTitle": "Linear",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Linear Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Linear Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Linear guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Linear"
     },
     "hubspot": {
       "cardTitle": "HubSpot",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su HubSpot Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su HubSpot Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de HubSpot guardada exitosamente",
       "saveError": "Error al guardar la configuracion de HubSpot"
     },
     "shopify": {
       "cardTitle": "Shopify",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Shopify Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Shopify Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Shopify guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Shopify"
     },
     "slack": {
       "cardTitle": "Slack",
-      "fields": { "clientId": "ID de Cliente", "clientSecret": "Secreto de Cliente" },
-      "placeholders": { "clientId": "Su Slack Client ID", "clientSecret": "Ingrese el nuevo secreto de cliente" },
+      "fields": {
+        "clientId": "ID de Cliente",
+        "clientSecret": "Secreto de Cliente"
+      },
+      "placeholders": {
+        "clientId": "Su Slack Client ID",
+        "clientSecret": "Ingrese el nuevo secreto de cliente"
+      },
       "saveSuccess": "Configuracion de Slack guardada exitosamente",
       "saveError": "Error al guardar la configuracion de Slack"
     },

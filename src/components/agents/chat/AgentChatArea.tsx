@@ -58,8 +58,8 @@ export function AgentChatArea({ agent }: AgentChatAreaProps) {
   return (
     <div className="flex-1 flex flex-col overflow-hidden h-full">
       {/* Header - Fixed at top */}
-      <div className="flex-shrink-0 p-4 border-b bg-card">
-        <div className="flex justify-between items-center">
+      <div className="flex-shrink-0 p-4 pr-12 border-b bg-card">
+        <div className="flex justify-between items-center gap-3">
           <h2 className="text-xl font-bold flex items-center gap-2">
             <div className="p-1 rounded-full bg-primary/20">
               <MessageSquare className="h-5 w-5 text-primary" />

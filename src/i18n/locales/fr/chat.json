@@ -655,7 +655,11 @@
       "asPrivateNote": "(comme note privée)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "Fichier",
-      "noContent": "Message sans contenu"
+      "noContent": "Message sans contenu",
+      "imageAttachment": "📷 Image",
+      "videoAttachment": "🎥 Vidéo",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Emplacement"
     },
     "signature": {
       "enable": "Activer la signature",
@@ -848,6 +852,15 @@
         "language": "Langue",
         "templateBody": "Contenu du Modèle",
         "category": "Catégorie"
+      },
+      "status": {
+        "approved": "Approuvé",
+        "pending": "En attente d'approbation",
+        "rejected": "Rejeté",
+        "paused": "En pause",
+        "inactive": "Inactif",
+        "unknown": "Statut inconnu",
+        "disabledTooltip": "Les modèles doivent être approuvés par Meta avant d'être envoyés. Ouvrez les paramètres de la boîte de réception pour synchroniser."
       }
     },
     "parser": {

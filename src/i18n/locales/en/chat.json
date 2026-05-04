@@ -20,8 +20,8 @@
       },
       "userFallback": "User",
       "agent": {
-        "badge": "Attendant",
-        "fallback": "Attendant"
+        "badge": "Team Member",
+        "fallback": "Team Member"
       },
       "bot": {
         "badge": "🤖 Bot",
@@ -29,7 +29,7 @@
       },
       "privateNote": {
         "badge": "Private Note",
-        "description": "Visible only to Attendants"
+        "description": "Visible only to Team Members"
       },
       "moderation": {
         "pending": "Pending Moderation",
@@ -92,10 +92,10 @@
   },
   "assignment": {
     "agent": {
-      "title": "Assign Attendant",
-      "description": "Select an Attendant for the conversation with {{name}}",
+      "title": "Assign Team Member",
+      "description": "Select an Team Member for the conversation with {{name}}",
       "contactFallback": "this contact",
-      "searchPlaceholder": "Search Attendants..."
+      "searchPlaceholder": "Search Team Members..."
     },
     "team": {
       "title": "Assign Team",
@@ -266,7 +266,7 @@
       "unpinConversation": "Unpin conversation",
       "archiveConversation": "Archive conversation",
       "unarchiveConversation": "Unarchive conversation",
-      "assignAgent": "Assign Attendant",
+      "assignAgent": "Assign Team Member",
       "assignTeam": "Assign Team",
       "assignTag": "Assign Label",
       "deleteConversation": "Delete conversation"
@@ -339,7 +339,7 @@
         "status": "Status:",
         "channel": "Channel:",
         "assigned": "Assigned:",
-        "assignedTo": "Attendant #{{id}}"
+        "assignedTo": "Team Member #{{id}}"
       },
       "conversationAttributes": {
         "title": "Conversation Attributes",
@@ -404,7 +404,7 @@
       },
       "assignment": {
         "title": "Assignment",
-        "assignedTo": "Assigned to Attendant #{{id}}",
+        "assignedTo": "Assigned to Team Member #{{id}}",
         "notAssigned": "Conversation not assigned",
         "unassign": "Unassign conversation",
         "assignedSuccess": "Conversation assigned successfully",
@@ -488,7 +488,7 @@
           },
           "unassigned": {
             "label": "Unassigned",
-            "description": "Conversations without assigned Attendant"
+            "description": "Conversations without assigned Team Member"
           }
         },
         "showAll": "Show all conversations"
@@ -554,7 +554,7 @@
   "replyModeToggle": {
     "reply": "Reply",
     "privateNote": "Private Note",
-    "visibleOnlyToAgents": "Visible only to Attendants"
+    "visibleOnlyToAgents": "Visible only to Team Members"
   },
   "contexts": {
     "conversations": {
@@ -569,7 +569,7 @@
         "markAsUnread": "Error marking as unread",
         "markAsResolved": "Error marking as resolved",
         "markAsPending": "Error marking as pending",
-        "assignAgent": "Error assigning attendant",
+        "assignAgent": "Error assigning team member",
         "assignTeam": "Error assigning team",
         "assignLabels": "Error assigning labels",
         "pinConversation": "Error pinning conversation",
@@ -587,8 +587,8 @@
         "markedAsUnread": "Conversation marked as unread",
         "markedAsResolved": "Conversation marked as resolved",
         "markedAsPending": "Conversation marked as pending",
-        "agentAssigned": "Attendant assigned successfully",
-        "agentRemoved": "Attendant removed successfully",
+        "agentAssigned": "Team Member assigned successfully",
+        "agentRemoved": "Team Member removed successfully",
         "teamAssigned": "Team assigned successfully",
         "teamRemoved": "Team removed successfully",
         "labelsAssigned": "Labels assigned successfully",
@@ -692,7 +692,11 @@
       "asPrivateNote": "(as private note)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "File",
-      "noContent": "Message with no content"
+      "noContent": "Message with no content",
+      "imageAttachment": "📷 Image",
+      "videoAttachment": "🎥 Video",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Location"
     },
     "signature": {
       "enable": "Enable signature",
@@ -714,8 +718,8 @@
       "equal_to": "Equal to",
       "not_equal_to": "Not equal to",
       "contains": "Contains",
-      "is_present": "Has labels",
-      "is_not_present": "Does not have labels",
+      "is_present": "Has value",
+      "is_not_present": "Has no value",
       "is_greater_than": "Is after",
       "is_less_than": "Is before",
       "days_before": "Days ago"
@@ -730,7 +734,8 @@
       "created_at": "Creation Date",
       "last_activity_at": "Last Activity",
       "priority": "Priority",
-      "pipeline_id": "Pipeline"
+      "pipeline_id": "Pipeline",
+      "contact_id": "Contact"
     },
     "options": {
       "status": {
@@ -764,6 +769,12 @@
         "sms": "SMS",
         "twilio": "Twilio SMS",
         "twitter": "Twitter"
+      }
+    },
+    "errors": {
+      "assigneeMeNoSession": {
+        "title": "'My conversations' filter not applied",
+        "description": "Your session has expired. Sign in again to use this filter."
       }
     }
   },
@@ -821,7 +832,7 @@
     "archiveConversation": "Archive conversation",
     "unarchiveConversation": "Unarchive conversation",
     "assignment": "Assignment",
-    "assignAgent": "Assign Attendant",
+    "assignAgent": "Assign Team Member",
     "assignTeam": "Assign team",
     "assignTag": "Assign tag",
     "deleteConversation": "Delete conversation"
@@ -890,6 +901,15 @@
         "language": "Language",
         "templateBody": "Template Body",
         "category": "Category"
+      },
+      "status": {
+        "approved": "Approved",
+        "pending": "Awaiting approval",
+        "rejected": "Rejected",
+        "paused": "Paused",
+        "inactive": "Inactive",
+        "unknown": "Unknown status",
+        "disabledTooltip": "Templates must be approved by Meta before they can be sent. Open the inbox settings to sync."
       }
     },
     "parser": {
@@ -906,6 +926,22 @@
     },
     "success": {
       "sent": "Template sent successfully!"
+    }
+  },
+  "globalSearch": {
+    "ariaLabel": "Global search",
+    "loading": "Searching...",
+    "error": "Search failed. Try again.",
+    "noResults": "No results found",
+    "emptyHint": "Type to search conversations, contacts, and messages",
+    "typeMoreHint": "Type at least 2 characters",
+    "sections": {
+      "conversations": "Conversations",
+      "contacts": "Contacts",
+      "messages": "Messages",
+      "conversationsEmpty": "No conversations found",
+      "contactsEmpty": "No contacts found",
+      "messagesEmpty": "No messages found"
     }
   }
 }

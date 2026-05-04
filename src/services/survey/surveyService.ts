@@ -9,6 +9,7 @@ function toSnakeCase(data: OnboardingFormData) {
     main_channel_other: data.mainChannelOther,
     uses_ai:            data.usesAI,
     biggest_pain:       data.biggestPain,
+    crm_experience:     data.crmExperience,
     main_goal:          data.mainGoal,
   };
 }

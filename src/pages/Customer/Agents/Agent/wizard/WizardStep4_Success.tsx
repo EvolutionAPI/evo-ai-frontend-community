@@ -14,13 +14,18 @@ const WizardStep4_Success = ({ agentId, agentName, onFinish }: WizardStep4Props)
   const { t } = useLanguage('aiAgents');
 
   const handleViewAgent = () => {
-    navigate(`/agents/${agentId}/edit`);
     onFinish();
+    navigate(`/agents/${agentId}/edit`);
+  };
+
+  const handleTestAgent = () => {
+    onFinish();
+    navigate(`/agents/${agentId}/edit?test=1`);
   };
 
   const handleGoToList = () => {
-    navigate('/agents/list');
     onFinish();
+    navigate('/agents/list');
   };
 
   return (
@@ -49,7 +54,7 @@ const WizardStep4_Success = ({ agentId, agentName, onFinish }: WizardStep4Props)
 
           <Card
             className="cursor-pointer transition-all hover:shadow-lg hover:border-primary group"
-            onClick={() => navigate('/conversations')}
+            onClick={handleTestAgent}
           >
             <CardContent className="p-3.5">
               <div className="flex items-center gap-3">

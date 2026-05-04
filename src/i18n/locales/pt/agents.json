@@ -126,6 +126,8 @@
   "dropdown": {
     "testA2A": "Testar A2A",
     "edit": "Editar",
+    "copyId": "Copiar ID",
+    "idCopied": "ID copiado para a área de transferência",
     "moveToFolder": "Mover para pasta",
     "exportJSON": "Exportar JSON",
     "share": "Compartilhar",

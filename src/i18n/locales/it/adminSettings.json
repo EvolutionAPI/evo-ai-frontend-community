@@ -163,6 +163,7 @@
     "clearSecret": "Cancella valore salvato",
     "save": "Salva Configurazione",
     "saving": "Salvataggio...",
+    "dismissError": "Chiudi errore",
     "facebook": {
       "tabTitle": "Facebook",
       "fields": {
@@ -223,11 +224,11 @@
       "tabTitle": "Evolution",
       "fields": {
         "apiUrl": "URL API",
-        "adminSecret": "Segreto Admin"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-api.esempio.com",
-        "adminSecret": "Inserisci il nuovo segreto admin"
+        "adminSecret": "Inserisci il nuovo token admin"
       },
       "saveSuccess": "Configurazione Evolution salvata con successo",
       "saveError": "Salvataggio della configurazione Evolution non riuscito"
@@ -236,15 +237,11 @@
       "tabTitle": "Evolution Go",
       "fields": {
         "apiUrl": "URL API",
-        "adminSecret": "Segreto Admin",
-        "instanceId": "ID Istanza",
-        "instanceSecret": "Segreto Istanza"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-go.esempio.com",
-        "adminSecret": "Inserisci il nuovo segreto admin",
-        "instanceId": "Il tuo Evolution Go Instance ID",
-        "instanceSecret": "Inserisci il nuovo segreto istanza"
+        "adminSecret": "Inserisci il nuovo token admin"
       },
       "saveSuccess": "Configurazione Evolution Go salvata con successo",
       "saveError": "Salvataggio della configurazione Evolution Go non riuscito"
@@ -333,29 +330,53 @@
     "saving": "Salvataggio...",
     "linear": {
       "cardTitle": "Linear",
-      "fields": { "clientId": "ID Cliente", "clientSecret": "Segreto Cliente" },
-      "placeholders": { "clientId": "Il tuo Linear Client ID", "clientSecret": "Inserisci il nuovo segreto cliente" },
+      "fields": {
+        "clientId": "ID Cliente",
+        "clientSecret": "Segreto Cliente"
+      },
+      "placeholders": {
+        "clientId": "Il tuo Linear Client ID",
+        "clientSecret": "Inserisci il nuovo segreto cliente"
+      },
       "saveSuccess": "Configurazione Linear salvata con successo",
       "saveError": "Errore nel salvataggio della configurazione Linear"
     },
     "hubspot": {
       "cardTitle": "HubSpot",
-      "fields": { "clientId": "ID Cliente", "clientSecret": "Segreto Cliente" },
-      "placeholders": { "clientId": "Il tuo HubSpot Client ID", "clientSecret": "Inserisci il nuovo segreto cliente" },
+      "fields": {
+        "clientId": "ID Cliente",
+        "clientSecret": "Segreto Cliente"
+      },
+      "placeholders": {
+        "clientId": "Il tuo HubSpot Client ID",
+        "clientSecret": "Inserisci il nuovo segreto cliente"
+      },
       "saveSuccess": "Configurazione HubSpot salvata con successo",
       "saveError": "Errore nel salvataggio della configurazione HubSpot"
     },
     "shopify": {
       "cardTitle": "Shopify",
-      "fields": { "clientId": "ID Cliente", "clientSecret": "Segreto Cliente" },
-      "placeholders": { "clientId": "Il tuo Shopify Client ID", "clientSecret": "Inserisci il nuovo segreto cliente" },
+      "fields": {
+        "clientId": "ID Cliente",
+        "clientSecret": "Segreto Cliente"
+      },
+      "placeholders": {
+        "clientId": "Il tuo Shopify Client ID",
+        "clientSecret": "Inserisci il nuovo segreto cliente"
+      },
       "saveSuccess": "Configurazione Shopify salvata con successo",
       "saveError": "Errore nel salvataggio della configurazione Shopify"
     },
     "slack": {
       "cardTitle": "Slack",
-      "fields": { "clientId": "ID Cliente", "clientSecret": "Segreto Cliente" },
-      "placeholders": { "clientId": "Il tuo Slack Client ID", "clientSecret": "Inserisci il nuovo segreto cliente" },
+      "fields": {
+        "clientId": "ID Cliente",
+        "clientSecret": "Segreto Cliente"
+      },
+      "placeholders": {
+        "clientId": "Il tuo Slack Client ID",
+        "clientSecret": "Inserisci il nuovo segreto cliente"
+      },
       "saveSuccess": "Configurazione Slack salvata con successo",
       "saveError": "Errore nel salvataggio della configurazione Slack"
     },

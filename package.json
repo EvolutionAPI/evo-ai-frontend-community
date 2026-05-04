@@ -17,6 +17,7 @@
     "@ffmpeg/ffmpeg": "^0.12.10",
     "@ffmpeg/util": "^0.12.1",
     "@hookform/resolvers": "^5.0.1",
+    "@icons-pack/react-simple-icons": "^13.13.0",
     "@rails/actioncable": "^8.0.201",
     "@tailwindcss/vite": "^4.1.11",
     "@xyflow/react": "^12.8.3",

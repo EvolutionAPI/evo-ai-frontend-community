@@ -221,6 +221,15 @@ const AgentEditPage = () => {
     }
   }, [searchParams, setSearchParams]);
 
+  // Open test chat drawer when ?test=1 is present (wizard "test agent" card)
+  useEffect(() => {
+    if (searchParams.get('test') === '1') {
+      setIsTestChatOpen(true);
+      searchParams.delete('test');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
+
   // Redirect blocked menus for external agents
   useEffect(() => {
     if (agent?.type === 'external') {

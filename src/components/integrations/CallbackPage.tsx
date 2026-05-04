@@ -5,8 +5,9 @@ import { Button } from '@evoapi/design-system';
 import { toast } from 'sonner';
 import { useLanguage } from '@/hooks/useLanguage';
 import i18n from '@/i18n/config';
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 import { cn } from '@/lib/utils';
+import { getBrandIcon } from '@/components/BrandIcon';
 
 interface CallbackPageProps {
   integrationName: string;
@@ -15,9 +16,10 @@ interface CallbackPageProps {
   redirectPath?: string | ((agentId: string) => string);
   iconPath?: string;
   iconPathDark?: string;
+  integrationId?: string;
 }
 
-export default function CallbackPage({ integrationName, onCallback, onSuccess, redirectPath, iconPath, iconPathDark }: CallbackPageProps) {
+export default function CallbackPage({ integrationName, onCallback, onSuccess, redirectPath, iconPath, iconPathDark, integrationId }: CallbackPageProps) {
   const { t } = useLanguage('integrations');
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -113,12 +115,14 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
     handleCallback();
   }, []);
 
+  const BrandIconComponent = integrationId ? getBrandIcon(integrationId) : undefined;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="flex justify-center">
-          <img src={logo} alt="EVO CRM" className="h-12" />
+          <AppLogo className="h-12" />
         </div>
 
         {/* Status Card */}
@@ -142,7 +146,11 @@ export default function CallbackPage({ integrationName, onCallback, onSuccess, r
               </div>
               <h2 className="text-xl font-semibold">{t('callback.success.title', { name: integrationName })}</h2>
               <p className="text-muted-foreground">{message}</p>
-              {iconPath && (
+              {BrandIconComponent ? (
+                <div className="flex justify-center">
+                  <BrandIconComponent size={32} className="h-8 w-8" />
+                </div>
+              ) : iconPath && (
                 <>
                   <img
                     src={iconPath}

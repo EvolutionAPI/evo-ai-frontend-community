@@ -424,6 +424,8 @@
     "default": "Default",
     "edit": "Edit",
     "duplicate": "Duplicate",
+    "copyId": "Copy ID",
+    "idCopied": "ID copied to clipboard",
     "activate": "Activate",
     "deactivate": "Deactivate",
     "delete": "Delete",
@@ -471,6 +473,8 @@
       "view": "View",
       "edit": "Edit",
       "duplicate": "Duplicate",
+      "copyId": "Copy ID",
+      "idCopied": "ID copied to clipboard",
       "activate": "Activate",
       "deactivate": "Deactivate",
       "delete": "Delete"
@@ -559,6 +563,8 @@
         "snoozed": "Snoozed"
       }
     },
+    "copyId": "Copy ID",
+    "idCopied": "ID copied to clipboard",
     "header": {
       "conversations": "Items",
       "stages": "Stages",

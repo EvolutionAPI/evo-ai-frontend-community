@@ -6,7 +6,7 @@ export interface ChannelType {
   id: string;
   name: string;
   description: string;
-  icon: string;
+  icon?: string;
   type: 'web_widget' | 'whatsapp' | 'facebook' | 'instagram' | 'telegram' | 'sms' | 'email' | 'api';
   providers?: ProviderType[];
 }
@@ -235,10 +235,6 @@ export const useChannelForm = () => {
     return false; // indica que deve sair da página
   };
 
-  // Helper function to check if a value is a valid non-empty string
-  const isValidString = (value: unknown): value is string =>
-    typeof value === 'string' && value.trim().length > 0;
-
   return {
     // State
     selectedChannel,
@@ -257,11 +253,16 @@ export const useChannelForm = () => {
     resetForm,
     goBack,
 
-    // Config helpers
+    // Config helpers — derived from backend `hasXxxConfig` booleans, which share
+    // the `IntegrationRequirements` source of truth with the admin save endpoint.
     hasEvolutionConfig: config.hasEvolutionConfig === true,
     hasEvolutionGoConfig: config.hasEvolutionGoConfig === true,
-    canFB: isValidString(config.fbAppId) && isValidString(config.fbApiVersion),
-    canWpCloud: isValidString(config.wpAppId) && isValidString(config.wpWhatsappConfigId),
+    canFB: config.hasFacebookConfig === true,
+    canWpCloud: config.hasWhatsappConfig === true,
+    canIG: config.hasInstagramConfig === true,
+    canTwitter: config.hasTwitterConfig === true,
+    canEmailGoogle: typeof config.googleOAuthClientId === 'string' && config.googleOAuthClientId.length > 0,
+    canEmailMicrosoft: typeof config.azureAppId === 'string' && config.azureAppId.length > 0,
     config,
   };
 };

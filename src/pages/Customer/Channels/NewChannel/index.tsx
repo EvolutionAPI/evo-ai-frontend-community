@@ -59,6 +59,9 @@ export default function NewChannel() {
     hasEvolutionGoConfig,
     canFB,
     canWpCloud,
+    canIG,
+    canEmailGoogle,
+    canEmailMicrosoft,
     config,
   } = useChannelForm();
 
@@ -76,11 +79,11 @@ export default function NewChannel() {
               ...provider,
               description:
                 provider.id === 'google'
-                  ? typeof config.googleOAuthClientId === 'string' && config.googleOAuthClientId
+                  ? canEmailGoogle
                     ? t('newChannel.providers.gmail.description')
                     : t('newChannel.messages.googleOAuthNotConfigured')
                   : provider.id === 'microsoft'
-                  ? typeof config.azureAppId === 'string' && config.azureAppId
+                  ? canEmailMicrosoft
                     ? t('newChannel.providers.outlook.description')
                     : t('newChannel.messages.microsoftOAuthNotConfigured')
                   : provider.description,
@@ -89,7 +92,7 @@ export default function NewChannel() {
         }
         return channel;
       }),
-    [config, t],
+    [canEmailGoogle, canEmailMicrosoft, t],
   );
 
   const handleGoBack = () => {
@@ -104,19 +107,27 @@ export default function NewChannel() {
       return toast.error(t('newChannel.messages.facebookConfigMissing'));
     }
     // Check if Instagram configuration is available
-    if (
-      channel.type === 'instagram' &&
-      !(typeof config.instagramAppId === 'string' && config.instagramAppId)
-    ) {
+    if (channel.type === 'instagram' && !canIG) {
       return toast.error(t('newChannel.messages.instagramConfigMissing'));
     }
     handleChannelSelect(channel);
   };
 
   const handleProviderSelectWithValidation = (provider: ProviderType) => {
-    // WhatsApp Cloud uses integrated component
-    if (selectedChannel?.type === 'whatsapp' && provider.id === 'whatsapp_cloud') {
-      if (!canWpCloud) return toast.error(t('newChannel.messages.whatsappCloudConfigMissing'));
+    if (selectedChannel?.type === 'whatsapp') {
+      if (provider.id === 'whatsapp_cloud' && !canWpCloud) {
+        return toast.error(t('newChannel.messages.whatsappCloudConfigMissing'));
+      }
+      // Evolution e Evolution Go: sempre permitidos. Quando o admin não tem
+      // config global, o próprio formulário do canal coleta URL + token.
+    }
+    if (selectedChannel?.type === 'email') {
+      if (provider.id === 'google' && !canEmailGoogle) {
+        return toast.error(t('newChannel.channelGrid.notConfiguredTooltip'));
+      }
+      if (provider.id === 'microsoft' && !canEmailMicrosoft) {
+        return toast.error(t('newChannel.channelGrid.notConfiguredTooltip'));
+      }
     }
     handleProviderSelect(provider);
   };
@@ -270,7 +281,11 @@ export default function NewChannel() {
             onFormChange={(key, value) => updateForm({ [key]: value })}
             hasEvolutionConfig={hasEvolutionConfig}
             hasEvolutionGoConfig={hasEvolutionGoConfig}
-            canFB={canFB}
+            // CloudWhatsappForm's FB Embedded Signup initializes the SDK with
+            // wpAppId/wpApiVersion and logs in with wpWhatsappConfigId — so this
+            // button is gated by WhatsApp config, not Facebook. Prop name kept
+            // as canFB for backward compat inside the form components.
+            canFB={canWpCloud}
             onWhatsappCloudSuccess={data => {
               const createdId = data?.id ?? data?.payload?.id;
               toast.success(t('newChannel.success.channelCreated'));
@@ -337,6 +352,7 @@ export default function NewChannel() {
               channels={channelTypes}
               onChannelSelect={handleChannelSelectWithValidation}
               canFB={canFB}
+              canIG={canIG}
             />
           </>
 
@@ -349,16 +365,24 @@ export default function NewChannel() {
               channelType={selectedChannel?.type || 'whatsapp'}
               providers={selectedChannel?.providers || []}
               isDisabled={providerId => {
-                if (providerId === 'whatsapp_cloud') return !canWpCloud;
+                if (selectedChannel?.type === 'whatsapp') {
+                  if (providerId === 'whatsapp_cloud') return !canWpCloud;
+                }
                 if (selectedChannel?.type === 'email') {
-                  if (providerId === 'google')
-                    return !(
-                      typeof config.googleOAuthClientId === 'string' && config.googleOAuthClientId
-                    );
-                  if (providerId === 'microsoft')
-                    return !(typeof config.azureAppId === 'string' && config.azureAppId);
+                  if (providerId === 'google') return !canEmailGoogle;
+                  if (providerId === 'microsoft') return !canEmailMicrosoft;
                 }
                 return false;
+              }}
+              disabledTooltip={providerId => {
+                const gated =
+                  (selectedChannel?.type === 'whatsapp' &&
+                    providerId === 'whatsapp_cloud' &&
+                    !canWpCloud) ||
+                  (selectedChannel?.type === 'email' &&
+                    ((providerId === 'google' && !canEmailGoogle) ||
+                      (providerId === 'microsoft' && !canEmailMicrosoft)));
+                return gated ? t('newChannel.channelGrid.notConfiguredTooltip') : undefined;
               }}
               onProviderSelect={handleProviderSelectWithValidation}
               onBack={handleGoBack}

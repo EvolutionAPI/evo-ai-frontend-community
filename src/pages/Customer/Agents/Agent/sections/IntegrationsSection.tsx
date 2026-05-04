@@ -13,13 +13,12 @@ import ElevenLabsConfigDialog from '@/components/integrations/ElevenLabsConfigDi
 import GoogleCalendarConfigDialog from '@/components/integrations/GoogleCalendarConfigDialog';
 import GoogleSheetsConfigDialog from '@/components/integrations/GoogleSheetsConfigDialog';
 import { useIntegrations } from '@/hooks/useIntegrations';
+import { getBrandIcon } from '@/components/BrandIcon';
 
 interface Integration {
   id: string;
   name: string;
   description: string;
-  logo: string;
-  logoDark?: string;
 }
 
 interface IntegrationsSectionProps {
@@ -52,7 +51,6 @@ const IntegrationsSection = ({
       description:
         t('edit.integrations.elevenlabs.description') ||
         'Com ElevenLabs você da a capacidade do seu agente responder seus clientes em áudio, tornando ainda mais humanizado.',
-      logo: '/integrations/elevenlabs.png',
     },
     {
       id: 'google-calendar',
@@ -60,7 +58,6 @@ const IntegrationsSection = ({
       description:
         t('edit.integrations.googleCalendar.description') ||
         'Permite agendar eventos, verificar disponibilidade e gerenciar calendários.',
-      logo: '/integrations/google-calendar.png',
     },
     {
       id: 'google-sheets',
@@ -68,19 +65,16 @@ const IntegrationsSection = ({
       description:
         t('edit.integrations.googleSheets.description') ||
         'Permite criar, ler, atualizar e gerenciar planilhas do Google Sheets.',
-      logo: '/integrations/google-sheets.png',
     },
     // {
     //   id: 'gmail',
     //   name: 'Gmail',
     //   description: t('edit.integrations.gmail.description') || 'Conecte o agente ao Gmail para ler, enviar e gerenciar emails automaticamente.',
-    //   logo: '/integrations/google-gmail.png',
     // },
     // {
     //   id: 'google-drive',
     //   name: 'Google Drive',
     //   description: t('edit.integrations.googleDrive.description') || 'Permite que o agente acesse, busque e gerencie arquivos no Google Drive.',
-    //   logo: '/integrations/google-drive.png',
     // }
   ];
 
@@ -128,26 +122,13 @@ const IntegrationsSection = ({
                     <CardHeader className="flex flex-col items-center text-center space-y-4 pb-4">
                       {/* Logo centralizada e maior */}
                       <div className="flex items-center justify-center w-20 h-20 p-3 rounded-lg bg-muted/50">
-                        {integration.logoDark ? (
-                          <>
-                            <img
-                              src={integration.logo}
-                              alt={`${integration.name} logo`}
-                              className="h-full w-full object-contain dark:hidden"
-                            />
-                            <img
-                              src={integration.logoDark}
-                              alt={`${integration.name} logo dark`}
-                              className="h-full w-full object-contain hidden dark:block"
-                            />
-                          </>
-                        ) : (
-                          <img
-                            src={integration.logo}
-                            alt={`${integration.name} logo`}
-                            className="h-full w-full object-contain"
-                          />
-                        )}
+                        {(() => {
+                          const BrandIconComponent = getBrandIcon(integration.id);
+                          if (BrandIconComponent) {
+                            return <BrandIconComponent size={48} className="h-12 w-12" />;
+                          }
+                          return null;
+                        })()}
                       </div>
 
                       {/* Título */}

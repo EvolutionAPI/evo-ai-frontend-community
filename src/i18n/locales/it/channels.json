@@ -120,7 +120,8 @@
     "channelGrid": {
       "title": "Seleziona un tipo di canale",
       "subtitle": "Scegli il canale che meglio soddisfa le tue esigenze di comunicazione",
-      "searchPlaceholder": "Cerca canali..."
+      "searchPlaceholder": "Cerca canali...",
+      "notConfiguredTooltip": "Questo canale non è configurato. Configuralo in Impostazioni Admin > Canali prima di utilizzarlo."
     },
     "channelTypes": {
       "website": {
@@ -668,11 +669,12 @@
       },
       "status": {
         "approved": "Approvato",
-        "pending": "In Attesa",
+        "pending": "In attesa di approvazione",
         "rejected": "Rifiutato",
         "paused": "In Pausa",
         "active": "Attivo",
-        "inactive": "Inattivo"
+        "inactive": "Inattivo",
+        "unknown": "Stato sconosciuto"
       },
       "preview": {
         "title": "Anteprima",

@@ -13,11 +13,13 @@ import {
   Edit,
   Trash2,
   Copy,
+  CopyPlus,
   Power,
   MoreVertical,
   ChevronUp,
   ChevronDown,
 } from 'lucide-react';
+import { toast } from 'sonner';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -185,8 +187,17 @@ export default function PipelinesTable({
                       {t('pipelinesTable.actions.edit')}
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onDuplicate(pipeline)}>
-                      <Copy className="h-4 w-4 mr-2" />
+                      <CopyPlus className="h-4 w-4 mr-2" />
                       {t('pipelinesTable.actions.duplicate')}
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={async () => {
+                        await navigator.clipboard.writeText(String(pipeline.id));
+                        toast.success(t('pipelinesTable.actions.idCopied'));
+                      }}
+                    >
+                      <Copy className="h-4 w-4 mr-2" />
+                      {t('pipelinesTable.actions.copyId')}
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onToggleStatus(pipeline)}>
                       <Power className="h-4 w-4 mr-2" />

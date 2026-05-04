@@ -308,45 +308,42 @@ const EvolutionPrivacySettings: React.FC<{
     }
   };
 
-  // Privacy options - Evolution Go uses different values than Evolution/Z-API
-  const privacyOptions =
+  // Per-field privacy options — each field has different valid values per provider
+  // evolution (Baileys): WAPrivacyValue, WAPrivacyOnlineValue, WAPrivacyGroupAddValue, WAReadReceiptsValue
+  // evolution_go: subset without contact_blacklist, no 'none' for groupadd
+  const opt = (values: string[]) =>
+    values.map(v => ({
+      value: v,
+      label: t(
+        `settings.configuration.whatsapp.instance.privacy.options.${
+          v === 'contact_blacklist'
+            ? 'contactBlacklist'
+            : v === 'match_last_seen'
+              ? 'matchLastSeen'
+              : v
+        }`,
+      ),
+    }));
+
+  const privacyFieldOptions: Record<string, { value: string; label: string }[]> =
     provider === 'evolution_go'
-      ? [
-          {
-            value: 'all',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.all'),
-          },
-          {
-            value: 'contacts',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.contacts'),
-          },
-          {
-            value: 'none',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.none'),
-          },
-          {
-            value: 'match_last_seen',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.matchLastSeen'),
-          }, // For online field
-        ]
-      : [
-          {
-            value: 'all',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.all'),
-          },
-          {
-            value: 'contacts',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.contacts'),
-          },
-          {
-            value: 'contact_blacklist',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.contactBlacklist'),
-          },
-          {
-            value: 'none',
-            label: t('settings.configuration.whatsapp.instance.privacy.options.none'),
-          },
-        ];
+      ? {
+          readreceipts: opt(['all', 'none']),
+          profile: opt(['all', 'contacts', 'none']),
+          status: opt(['all', 'contacts', 'none']),
+          online: opt(['all', 'match_last_seen']),
+          last: opt(['all', 'contacts', 'none']),
+          groupadd: opt(['all', 'contacts', 'none']),
+        }
+      : {
+          // evolution (Baileys): types WAReadReceiptsValue, WAPrivacyValue, WAPrivacyOnlineValue, WAPrivacyGroupAddValue
+          readreceipts: opt(['all', 'none']),
+          profile: opt(['all', 'contacts', 'contact_blacklist', 'none']),
+          status: opt(['all', 'contacts', 'contact_blacklist', 'none']),
+          online: opt(['all', 'match_last_seen']),
+          last: opt(['all', 'contacts', 'contact_blacklist', 'none']),
+          groupadd: opt(['all', 'contacts', 'contact_blacklist']),
+        };
 
   return (
     <div className="space-y-6">
@@ -364,7 +361,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.readreceipts.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -387,7 +384,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.profile.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -410,7 +407,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.status.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -433,7 +430,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.online.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -456,7 +453,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.last.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>
@@ -479,7 +476,7 @@ const EvolutionPrivacySettings: React.FC<{
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            {privacyOptions.map(option => (
+            {privacyFieldOptions.groupadd.map(option => (
               <SelectItem key={option.value} value={option.value}>
                 {option.label}
               </SelectItem>

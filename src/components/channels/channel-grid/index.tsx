@@ -9,9 +9,10 @@ interface ChannelGridProps {
   channels: ChannelType[];
   onChannelSelect: (channel: ChannelType) => void;
   canFB: boolean;
+  canIG: boolean;
 }
 
-export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridProps) => {
+export const ChannelGrid = ({ channels, onChannelSelect, canFB, canIG }: ChannelGridProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useLanguage('channels');
 
@@ -56,14 +57,22 @@ export const ChannelGrid = ({ channels, onChannelSelect, canFB }: ChannelGridPro
       {/* Channel Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 pb-8" data-tour="channel-grid-list">
         {filteredChannels.map((channel, index) => {
+          // Gate tiles by the backend-sourced `hasXxxConfig` booleans (single
+          // source of truth with the admin save endpoint). Twitter has no
+          // channel type yet — extend here if/when it lands.
           const disabled =
-            channel.type === 'facebook' || channel.type === 'instagram' ? !canFB : false;
+            channel.type === 'facebook'
+              ? !canFB
+              : channel.type === 'instagram'
+              ? !canIG
+              : false;
 
           return (
             <ChannelCard
               key={channel.id}
               channel={channel}
               disabled={disabled}
+              disabledTooltip={disabled ? t('newChannel.channelGrid.notConfiguredTooltip') : undefined}
               onClick={() => onChannelSelect(channel)}
               data-tour={index === 0 ? 'channel-grid-first-card' : undefined}
             />

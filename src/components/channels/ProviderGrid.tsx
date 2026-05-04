@@ -1,5 +1,12 @@
 import React from 'react';
-import { Card, CardContent } from '@evoapi/design-system';
+import {
+  Card,
+  CardContent,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@evoapi/design-system';
 import { ArrowLeft } from 'lucide-react';
 import { ChannelIcon } from '@/components/channels';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -24,6 +31,7 @@ interface ProviderGridProps {
     | 'api';
   providers: Provider[];
   isDisabled?: (providerId: string) => boolean;
+  disabledTooltip?: (providerId: string) => string | undefined;
   onSelect: (provider: Provider) => void;
 }
 
@@ -31,6 +39,7 @@ const ProviderGrid: React.FC<ProviderGridProps> = ({
   channelType,
   providers,
   isDisabled,
+  disabledTooltip,
   onSelect,
 }) => {
   const { t } = useLanguage('channels');
@@ -39,7 +48,9 @@ const ProviderGrid: React.FC<ProviderGridProps> = ({
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {providers.map(provider => {
         const disabled = isDisabled ? isDisabled(provider.id) : false;
-        return (
+        const tooltipText = disabled && disabledTooltip ? disabledTooltip(provider.id) : undefined;
+
+        const card = (
           <Card
             key={provider.id}
             className={`h-full transition-all duration-200 border-sidebar-border rounded-lg relative ${
@@ -77,6 +88,23 @@ const ProviderGrid: React.FC<ProviderGridProps> = ({
             </CardContent>
           </Card>
         );
+
+        if (tooltipText) {
+          return (
+            <TooltipProvider key={provider.id}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="h-full">{card}</div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{tooltipText}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          );
+        }
+
+        return <React.Fragment key={provider.id}>{card}</React.Fragment>;
       })}
     </div>
   );

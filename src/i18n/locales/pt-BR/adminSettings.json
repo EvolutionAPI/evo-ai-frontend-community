@@ -163,6 +163,7 @@
     "clearSecret": "Limpar valor salvo",
     "save": "Salvar Configuracao",
     "saving": "Salvando...",
+    "dismissError": "Fechar erro",
     "facebook": {
       "tabTitle": "Facebook",
       "fields": {
@@ -223,11 +224,11 @@
       "tabTitle": "Evolution",
       "fields": {
         "apiUrl": "URL da API",
-        "adminSecret": "Segredo do Admin"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-api.exemplo.com",
-        "adminSecret": "Digite o novo segredo do admin"
+        "adminSecret": "Digite o novo token admin"
       },
       "saveSuccess": "Configuracao do Evolution salva com sucesso",
       "saveError": "Falha ao salvar configuracao do Evolution"
@@ -236,15 +237,11 @@
       "tabTitle": "Evolution Go",
       "fields": {
         "apiUrl": "URL da API",
-        "adminSecret": "Segredo do Admin",
-        "instanceId": "ID da Instancia",
-        "instanceSecret": "Segredo da Instancia"
+        "adminSecret": "Token Admin"
       },
       "placeholders": {
         "apiUrl": "https://evolution-go.exemplo.com",
-        "adminSecret": "Digite o novo segredo do admin",
-        "instanceId": "Seu Evolution Go Instance ID",
-        "instanceSecret": "Digite o novo segredo da instancia"
+        "adminSecret": "Digite o novo token admin"
       },
       "saveSuccess": "Configuracao do Evolution Go salva com sucesso",
       "saveError": "Falha ao salvar configuracao do Evolution Go"

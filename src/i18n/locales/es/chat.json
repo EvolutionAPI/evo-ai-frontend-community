@@ -655,7 +655,11 @@
       "asPrivateNote": "(como nota privada)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "Archivo",
-      "noContent": "Mensaje sin contenido"
+      "noContent": "Mensaje sin contenido",
+      "imageAttachment": "📷 Imagen",
+      "videoAttachment": "🎥 Vídeo",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Ubicación"
     },
     "signature": {
       "enable": "Habilitar firma",
@@ -848,6 +852,15 @@
         "language": "Idioma",
         "templateBody": "Contenido de la Plantilla",
         "category": "Categoría"
+      },
+      "status": {
+        "approved": "Aprobada",
+        "pending": "Esperando aprobación",
+        "rejected": "Rechazada",
+        "paused": "Pausada",
+        "inactive": "Inactiva",
+        "unknown": "Estado desconocido",
+        "disabledTooltip": "Las plantillas deben ser aprobadas por Meta antes de poder enviarse. Abre la configuración del inbox para sincronizar."
       }
     },
     "parser": {

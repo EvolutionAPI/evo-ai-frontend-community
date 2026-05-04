@@ -126,6 +126,8 @@
   "dropdown": {
     "testA2A": "Tester A2A",
     "edit": "Modifier",
+    "copyId": "Copier l'ID",
+    "idCopied": "ID copié dans le presse-papiers",
     "moveToFolder": "Déplacer vers un dossier",
     "exportJSON": "Exporter JSON",
     "share": "Partager",

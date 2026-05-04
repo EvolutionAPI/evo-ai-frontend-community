@@ -413,7 +413,8 @@
       "title": "Facebook Integration",
       "connectButton": "Connect with Facebook",
       "description": "Connect your Facebook account to automatically fill in the WhatsApp Business information",
-      "connecting": "Connecting..."
+      "connecting": "Connecting...",
+      "loadingSDK": "Loading Facebook SDK..."
     },
     "autoFilled": {
       "title": "Fields Filled Automatically",

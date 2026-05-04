@@ -148,7 +148,10 @@ export function ConversationsProvider({ children }: { children: React.ReactNode 
           return null;
         }
 
-        const conversation = response as unknown as Conversation;
+        const envelope = response as unknown as {
+          data?: Conversation;
+        } & Partial<Conversation>;
+        const conversation = (envelope?.data?.id ? envelope.data : envelope) as unknown as Conversation;
 
         // Validar se conversation é válida
         if (!conversation || !conversation.id) {

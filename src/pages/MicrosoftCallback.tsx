@@ -4,7 +4,7 @@ import { Loader2, CheckCircle, AlertTriangle, Mail } from 'lucide-react';
 import { toast } from 'sonner';
 import oauthCallbackService from '@/services/channels/oauthCallbackService';
 // import { useLanguage } from '@/hooks/useLanguage';
-import logo from '@/assets/EVO_CRM.png';
+import { AppLogo } from '@/components/AppLogo';
 
 export default function MicrosoftCallback() {
   // const { t } = useLanguage('email');
@@ -111,11 +111,7 @@ export default function MicrosoftCallback() {
       <div className="w-full max-w-md space-y-6">
         {/* Logo */}
         <div className="text-center">
-          <img
-            src={logo}
-            alt="EVO CRM"
-            className="h-10 mx-auto"
-          />
+          <AppLogo className="h-10 mx-auto" />
         </div>
 
         {/* Card de Callback */}

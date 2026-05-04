@@ -287,7 +287,6 @@ const AuthorizationSuccessBanner: React.FC<{
       script.src = 'https://connect.facebook.net/en_US/sdk.js';
       script.async = true;
       script.defer = true;
-      script.crossOrigin = 'anonymous';
       script.onerror = () => reject(new Error('ScriptLoaderError'));
       document.head.appendChild(script);
     });

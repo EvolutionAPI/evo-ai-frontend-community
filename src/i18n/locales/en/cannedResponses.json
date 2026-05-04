@@ -63,7 +63,7 @@
     "variables": {
       "title": "Available Variables:",
       "contactName": "Contact Name",
-      "agentName": "Attendant Name",
+      "agentName": "Team Member Name",
       "conversationId": "Conversation ID",
       "accountName": "Account Name",
       "clickToInsert": "Click a variable to insert it into the content.",

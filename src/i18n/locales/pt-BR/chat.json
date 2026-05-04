@@ -696,8 +696,8 @@
       "equal_to": "É igual a",
       "not_equal_to": "É diferente de",
       "contains": "Contém",
-      "is_present": "Tem labels",
-      "is_not_present": "Não tem labels",
+      "is_present": "Possui valor",
+      "is_not_present": "Sem valor",
       "is_greater_than": "É posterior a",
       "is_less_than": "É anterior a",
       "days_before": "Dias atrás"
@@ -712,7 +712,8 @@
       "created_at": "Data de Criação",
       "last_activity_at": "Última Atividade",
       "priority": "Prioridade",
-      "pipeline_id": "Pipeline"
+      "pipeline_id": "Pipeline",
+      "contact_id": "Contato"
     },
     "options": {
       "status": {
@@ -746,6 +747,12 @@
         "sms": "SMS",
         "twilio": "Twilio SMS",
         "twitter": "Twitter"
+      }
+    },
+    "errors": {
+      "assigneeMeNoSession": {
+        "title": "Filtro 'Minhas conversas' não aplicado",
+        "description": "Sua sessão expirou. Faça login novamente para usar este filtro."
       }
     }
   },
@@ -867,6 +874,15 @@
         "language": "Idioma",
         "templateBody": "Conteúdo do Template",
         "category": "Categoria"
+      },
+      "status": {
+        "approved": "Aprovado",
+        "pending": "Aguardando aprovação",
+        "rejected": "Reprovado",
+        "paused": "Pausado",
+        "inactive": "Inativo",
+        "unknown": "Status desconhecido",
+        "disabledTooltip": "Templates precisam ser aprovados pela Meta antes de serem enviados. Acesse as configurações do inbox para sincronizar."
       }
     },
     "parser": {
@@ -883,6 +899,22 @@
     },
     "success": {
       "sent": "Template enviado com sucesso!"
+    }
+  },
+  "globalSearch": {
+    "ariaLabel": "Busca global",
+    "loading": "Buscando...",
+    "error": "Erro ao buscar. Tente novamente.",
+    "noResults": "Nenhum resultado encontrado",
+    "emptyHint": "Digite para buscar conversas, contatos e mensagens",
+    "typeMoreHint": "Digite pelo menos 2 caracteres",
+    "sections": {
+      "conversations": "Conversas",
+      "contacts": "Contatos",
+      "messages": "Mensagens",
+      "conversationsEmpty": "Nenhuma conversa encontrada",
+      "contactsEmpty": "Nenhum contato encontrado",
+      "messagesEmpty": "Nenhuma mensagem encontrada"
     }
   }
 }

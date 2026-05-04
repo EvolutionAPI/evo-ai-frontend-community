@@ -386,6 +386,8 @@
     "default": "Par défaut",
     "edit": "Modifier",
     "duplicate": "Dupliquer",
+    "copyId": "Copier l'ID",
+    "idCopied": "ID copié dans le presse-papiers",
     "activate": "Activer",
     "deactivate": "Désactiver",
     "delete": "Supprimer",
@@ -434,6 +436,8 @@
       "view": "Visualiser",
       "edit": "Modifier",
       "duplicate": "Dupliquer",
+      "copyId": "Copier l'ID",
+      "idCopied": "ID copié dans le presse-papiers",
       "activate": "Activer",
       "deactivate": "Désactiver",
       "delete": "Supprimer"
@@ -522,6 +526,8 @@
         "snoozed": "Reporté"
       }
     },
+    "copyId": "Copier l'ID",
+    "idCopied": "ID copié dans le presse-papiers",
     "header": {
       "conversations": "Conversations",
       "stages": "Étapes",

@@ -142,5 +142,8 @@
       "light": "Light mode",
       "dark": "Dark mode"
     }
+  },
+  "validation": {
+    "required": "This field is required"
   }
 }
