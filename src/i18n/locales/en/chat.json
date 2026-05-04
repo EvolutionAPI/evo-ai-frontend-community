@@ -692,7 +692,11 @@
       "asPrivateNote": "(as private note)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "File",
-      "noContent": "Message with no content"
+      "noContent": "Message with no content",
+      "imageAttachment": "📷 Image",
+      "videoAttachment": "🎥 Video",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Location"
     },
     "signature": {
       "enable": "Enable signature",

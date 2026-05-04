@@ -2,6 +2,11 @@ import React from 'react';
 import { Reply } from 'lucide-react';
 import { Message } from '@/types/chat/api';
 import { useLanguage } from '@/hooks/useLanguage';
+import {
+  attachmentI18nKey,
+  mediaTypeFromAttributes,
+  senderNameFromAttributes,
+} from '@/utils/chat/mediaLabels';
 
 interface ReplyPreviewProps {
   message: Message;
@@ -23,25 +28,23 @@ const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
     }
 
     if (message.attachments && message.attachments.length > 0) {
-      const attachment = message.attachments[0];
-      const fileType = attachment.file_type || 'file';
-      
-      // Traduzir tipo de arquivo
-      const fileTypeMap: Record<string, string> = {
-        image: t('messages.replyPreview.imageAttachment'),
-        audio: t('messages.replyPreview.audioAttachment'),
-        video: t('messages.replyPreview.videoAttachment'),
-        file: t('messages.replyPreview.fileAttachment'),
-        location: t('messages.replyPreview.locationAttachment'),
-      };
+      const fileType = message.attachments[0].file_type || 'file';
+      return t(`messages.replyPreview.${attachmentI18nKey(fileType)}`);
+    }
 
-      return fileTypeMap[fileType] || fileTypeMap.file;
+    // Fallback: media message whose attachment didn't materialize (inline base64).
+    const mediaType = mediaTypeFromAttributes(message.content_attributes);
+    if (mediaType) {
+      return t(`messages.replyPreview.${attachmentI18nKey(mediaType)}`);
     }
 
     return t('messages.replyPreview.noContent');
   };
 
-  const senderName = message.sender?.name || t('messages.replyPreview.userFallback');
+  const senderName =
+    senderNameFromAttributes(message.content_attributes) ||
+    message.sender?.name ||
+    t('messages.replyPreview.userFallback');
 
   return (
     <div
