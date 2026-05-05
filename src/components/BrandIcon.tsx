@@ -69,10 +69,59 @@ const BRAND_ICONS: Record<string, IconType> = {
   'whatsapp-cloud': SiWhatsapp,
 };
 
+// Official brand colors from simple-icons. Used as defaults when ChannelIcon
+// (and other consumers) render a brand glyph — without these the icons fall
+// back to currentColor and end up monochrome on dark themes.
+const BRAND_COLORS: Record<string, string> = {
+  instagram: '#E4405F',
+  telegram: '#26A5E4',
+  facebook: '#0866FF',
+  whatsapp: '#25D366',
+  google: '#4285F4',
+  line: '#00C300',
+  twitter: '#000000',
+  x: '#000000',
+  twitterprofile: '#000000',
+  github: '#181717',
+  gmail: '#EA4335',
+  'google-calendar': '#4285F4',
+  googledrive: '#4285F4',
+  'google-drive': '#4285F4',
+  googlesheets: '#34A853',
+  'google-sheets': '#34A853',
+  googletranslate: '#4285F4',
+  'google-translate': '#4285F4',
+  google_translate: '#4285F4',
+  hubspot: '#FF7A59',
+  linear: '#5E6AD2',
+  mercadopago: '#00B1EA',
+  'mercado-pago': '#00B1EA',
+  notion: '#FFFFFF',
+  paypal: '#003087',
+  shopify: '#7AB55C',
+  stripe: '#635BFF',
+  supabase: '#3FCF8E',
+  asana: '#F06A6A',
+  atlassian: '#0052CC',
+  booking: '#003580',
+  dialogflow: '#FF9800',
+  elevenlabs: '#000000',
+  'eleven-labs': '#000000',
+  intercom: '#1F8DED',
+  whatsappcloud: '#25D366',
+  'whatsapp-cloud': '#25D366',
+};
+
 export function getBrandIcon(id?: string): IconType | undefined {
   if (!id) return undefined;
   const key = id.toLowerCase().replace(/\s|_/g, '');
   return BRAND_ICONS[key] || BRAND_ICONS[id.toLowerCase().replace(/_/g, '-')];
+}
+
+export function getBrandColor(id?: string): string | undefined {
+  if (!id) return undefined;
+  const key = id.toLowerCase().replace(/\s|_/g, '');
+  return BRAND_COLORS[key] || BRAND_COLORS[id.toLowerCase().replace(/_/g, '-')];
 }
 
 interface BrandIconProps {
@@ -85,5 +134,8 @@ interface BrandIconProps {
 export default function BrandIcon({ id, size = 24, className, color }: BrandIconProps) {
   const Icon = getBrandIcon(id);
   if (!Icon) return null;
-  return <Icon size={size} className={className} color={color} />;
+  // Default to the brand's official color so icons stay recognizable on
+  // dark themes; explicit `color` prop still overrides.
+  const resolvedColor = color ?? getBrandColor(id);
+  return <Icon size={size} className={className} color={resolvedColor} />;
 }

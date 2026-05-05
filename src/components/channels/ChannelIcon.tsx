@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 import { useLanguage } from '@/hooks/useLanguage';
-import { getBrandIcon } from '@/components/BrandIcon';
+import { getBrandIcon, getBrandColor } from '@/components/BrandIcon';
 
 interface ChannelIconProps {
   channelType?: string;
@@ -190,6 +190,7 @@ export default function ChannelIcon({
   const { t } = useLanguage('channels');
   const brandId = getChannelBrandId(channelType, provider);
   const BrandIconComponent = brandId ? getBrandIcon(brandId) : undefined;
+  const brandColor = brandId ? getBrandColor(brandId) : undefined;
   const iconSrc = getChannelIconSrc(channelType, provider);
 
   if (BrandIconComponent) {
@@ -201,7 +202,11 @@ export default function ChannelIcon({
           className
         )}
       >
-        <BrandIconComponent size={iconSizes[size]} className={sizeClasses[size]} />
+        <BrandIconComponent
+          size={iconSizes[size]}
+          className={sizeClasses[size]}
+          color={brandColor}
+        />
       </div>
     );
   }
