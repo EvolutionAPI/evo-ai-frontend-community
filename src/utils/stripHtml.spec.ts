@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { stripHtml } from './stripHtml';
 
 describe('stripHtml', () => {
@@ -44,5 +44,39 @@ describe('stripHtml', () => {
 
   it('flattens line breaks into single spaces', () => {
     expect(stripHtml('line one<br>line two<br/>line three')).toBe('line one line two line three');
+  });
+});
+
+describe('stripHtml — SSR fallback (no DOMParser)', () => {
+  const originalDOMParser = globalThis.DOMParser;
+
+  beforeEach(() => {
+    // Simulate SSR: no DOMParser available
+    // @ts-expect-error - intentionally undefined for SSR test
+    globalThis.DOMParser = undefined;
+  });
+
+  afterEach(() => {
+    globalThis.DOMParser = originalDOMParser;
+  });
+
+  it('falls back to regex stripping when DOMParser is unavailable', () => {
+    expect(stripHtml('<p>hello <strong>world</strong></p>')).toBe('hello world');
+  });
+
+  it('flattens block boundaries to spaces in SSR fallback', () => {
+    expect(stripHtml('<p>a</p><p>b</p>')).toBe('a b');
+  });
+
+  it('handles unclosed tags in SSR fallback', () => {
+    expect(stripHtml('<p>unfinished')).toBe('unfinished');
+  });
+
+  it('strips br tags in SSR fallback', () => {
+    expect(stripHtml('line one<br>line two')).toBe('line one line two');
+  });
+
+  it('returns empty for whitespace-only after stripping in SSR', () => {
+    expect(stripHtml('<p>   </p>')).toBe('');
   });
 });

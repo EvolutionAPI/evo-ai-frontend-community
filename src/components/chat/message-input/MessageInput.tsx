@@ -524,49 +524,52 @@ const MessageInput: React.FC<MessageInputProps> = ({
   `;
 
   // Componente de preview da resposta
-  const ReplyPreview = ({ message, onCancel }: { message: Message; onCancel: () => void }) => (
-    <div className="w-full border-t-0 border-x-0 border-b border-border bg-muted/50 px-4 py-3">
-      <div className="flex items-start gap-3">
-        <div className="flex items-center gap-2 text-muted-foreground text-sm">
-          <Reply className="h-4 w-4" />
-          <span className="font-medium">
-            {t('messageInput.replyPreview.replyingTo', {
-              name: message.sender?.name || t('messageInput.replyPreview.userFallback'),
-            })}
-            {replyMode === ReplyMode.NOTE && (
-              <span className="ml-1 text-xs text-orange-600 font-normal">
-                {t('messageInput.replyPreview.asPrivateNote')}
-              </span>
-            )}
-          </span>
-        </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-6 w-6 ml-auto hover:bg-destructive/20 hover:text-destructive"
-          onClick={onCancel}
-        >
-          <X className="h-3 w-3" />
-        </Button>
-      </div>
-      <div className="mt-2 pl-6">
-        <div className="text-sm text-muted-foreground bg-background border-l-2 border-primary/30 pl-3 py-1 rounded-r max-w-md">
-          {message.content && stripHtml(message.content) ? (
-            <span className="line-clamp-2">{stripHtml(message.content)}</span>
-          ) : message.attachments && message.attachments.length > 0 ? (
-            <span className="italic">
-              {t('messageInput.replyPreview.fileAttachment', {
-                fileType:
-                  message.attachments[0].file_type || t('messageInput.replyPreview.fileFallback'),
+  const ReplyPreview = ({ message, onCancel }: { message: Message; onCancel: () => void }) => {
+    const plainContent = message.content ? stripHtml(message.content) : '';
+    return (
+      <div className="w-full border-t-0 border-x-0 border-b border-border bg-muted/50 px-4 py-3">
+        <div className="flex items-start gap-3">
+          <div className="flex items-center gap-2 text-muted-foreground text-sm">
+            <Reply className="h-4 w-4" />
+            <span className="font-medium">
+              {t('messageInput.replyPreview.replyingTo', {
+                name: message.sender?.name || t('messageInput.replyPreview.userFallback'),
               })}
+              {replyMode === ReplyMode.NOTE && (
+                <span className="ml-1 text-xs text-orange-600 font-normal">
+                  {t('messageInput.replyPreview.asPrivateNote')}
+                </span>
+              )}
             </span>
-          ) : (
-            <span className="italic">{t('messageInput.replyPreview.noContent')}</span>
-          )}
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-6 w-6 ml-auto hover:bg-destructive/20 hover:text-destructive"
+            onClick={onCancel}
+          >
+            <X className="h-3 w-3" />
+          </Button>
+        </div>
+        <div className="mt-2 pl-6">
+          <div className="text-sm text-muted-foreground bg-background border-l-2 border-primary/30 pl-3 py-1 rounded-r max-w-md">
+            {plainContent ? (
+              <span className="line-clamp-2">{plainContent}</span>
+            ) : message.attachments && message.attachments.length > 0 ? (
+              <span className="italic">
+                {t('messageInput.replyPreview.fileAttachment', {
+                  fileType:
+                    message.attachments[0].file_type || t('messageInput.replyPreview.fileFallback'),
+                })}
+              </span>
+            ) : (
+              <span className="italic">{t('messageInput.replyPreview.noContent')}</span>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>

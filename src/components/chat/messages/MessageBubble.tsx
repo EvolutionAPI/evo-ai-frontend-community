@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Badge } from '@evoapi/design-system/badge';
 import {
   ContextMenu,
@@ -87,11 +87,18 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
   const replyToExternalId = message.content_attributes?.in_reply_to_external_id;
   const hasReplyReference = Boolean(replyToMessageId || replyToExternalId);
 
-  const replyToMessage = replyToMessageId
-    ? allMessages.find(msg => String(msg.id) === String(replyToMessageId))
-    : replyToExternalId
-      ? allMessages.find(msg => msg.source_id && String(msg.source_id) === String(replyToExternalId))
-      : null;
+  const replyToMessage = useMemo(() => {
+    if (!hasReplyReference) return null;
+    if (replyToMessageId) {
+      return allMessages.find(msg => String(msg.id) === String(replyToMessageId)) ?? null;
+    }
+    if (replyToExternalId) {
+      return allMessages.find(
+        msg => msg.source_id && String(msg.source_id) === String(replyToExternalId),
+      ) ?? null;
+    }
+    return null;
+  }, [hasReplyReference, replyToMessageId, replyToExternalId, allMessages]);
 
   const handleCopyMessage = () => {
     if (message.content) {

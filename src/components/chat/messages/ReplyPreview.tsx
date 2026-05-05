@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Reply } from 'lucide-react';
 import { Message } from '@/types/chat/api';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -12,7 +12,7 @@ interface ReplyPreviewProps {
 const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
   const { t } = useLanguage('chat');
 
-  const getPreviewContent = () => {
+  const previewContent = useMemo(() => {
     if (!message) {
       return t('messages.replyPreview.previousMessage');
     }
@@ -43,14 +43,16 @@ const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
     }
 
     return t('messages.replyPreview.noContent');
-  };
+  }, [message, t]);
 
   const senderName = message?.sender?.name || t('messages.replyPreview.userFallback');
   const isResolved = !!message;
 
   const handleClick = () => {
     if (!message) return;
-    const messageElement = document.querySelector(`[data-message-id="${message.id}"]`);
+    const messageElement = document.querySelector(
+      `[data-message-id="${CSS.escape(String(message.id))}"]`,
+    );
     if (messageElement) {
       messageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -90,7 +92,7 @@ const ReplyPreview: React.FC<ReplyPreviewProps> = ({ message, isOwn }) => {
               ? 'text-white/80 dark:text-white/80'
               : 'text-slate-600 dark:text-slate-300'
           }`}>
-            {getPreviewContent()}
+            {previewContent}
           </div>
         </div>
       </div>

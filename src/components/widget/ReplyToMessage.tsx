@@ -9,6 +9,7 @@ interface ReplyToMessageProps {
     text: string;
     sender?: string;
     type: 'in' | 'out';
+    unresolved?: boolean;
   };
   messageType: 'in' | 'out';
 }
@@ -22,7 +23,10 @@ export const ReplyToMessage: React.FC<ReplyToMessageProps> = ({ replyTo, message
     return plain.substring(0, maxLength) + '...';
   };
 
-  const senderName = replyTo.sender || (replyTo.type === 'out' ? t('replyTo.you') : t('replyTo.agent'));
+  const isUnresolved = replyTo.unresolved === true;
+  const senderName = isUnresolved
+    ? null
+    : replyTo.sender || (replyTo.type === 'out' ? t('replyTo.you') : t('replyTo.agent'));
 
   return (
     <div
@@ -32,8 +36,14 @@ export const ReplyToMessage: React.FC<ReplyToMessageProps> = ({ replyTo, message
     >
       <Reply size={12} className="text-slate-400" />
       <div className="bg-slate-100 dark:bg-slate-800 rounded px-2 py-1 border-l-2 border-slate-300 dark:border-slate-600">
-        <div className="text-slate-600 dark:text-slate-300 font-medium">{senderName}</div>
-        <div className="text-slate-500 dark:text-slate-400">{truncateText(replyTo.text)}</div>
+        {senderName && (
+          <div className="text-slate-600 dark:text-slate-300 font-medium">{senderName}</div>
+        )}
+        <div
+          className={`text-slate-500 dark:text-slate-400 ${isUnresolved ? 'italic' : ''}`}
+        >
+          {isUnresolved ? replyTo.text : truncateText(replyTo.text)}
+        </div>
       </div>
     </div>
   );
