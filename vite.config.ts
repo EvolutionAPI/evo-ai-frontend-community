@@ -1,13 +1,60 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { copyFile, mkdir } from 'node:fs/promises';
+import { createReadStream, existsSync } from 'node:fs';
+import type { Plugin } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
+
+// FFmpeg WASM is loaded by useAudioRecorder to convert recorded webm → ogg/opus
+// before sending audio to WhatsApp Cloud (Meta API rejects audio/webm). The
+// previous implementation referenced unpkg.com which started returning 404 for
+// the pinned version (and would break behind any corporate firewall / CSP
+// anyway). Self-host the assets out of @ffmpeg/core so they never depend on a
+// third-party CDN being reachable.
+const FFMPEG_CORE_DIR = path.resolve(__dirname, 'node_modules/@ffmpeg/core/dist/umd');
+const FFMPEG_FILES = ['ffmpeg-core.js', 'ffmpeg-core.wasm'];
+
+function ffmpegCorePlugin(): Plugin {
+  return {
+    name: 'ffmpeg-core-self-host',
+    configureServer(server) {
+      // Serve /ffmpeg/<file> from node_modules during dev.
+      server.middlewares.use('/ffmpeg', (req, res, next) => {
+        const file = (req.url || '/').replace(/^\/+/, '').split('?')[0];
+        if (!FFMPEG_FILES.includes(file)) return next();
+        const filePath = path.join(FFMPEG_CORE_DIR, file);
+        if (!existsSync(filePath)) return next();
+        res.setHeader(
+          'Content-Type',
+          file.endsWith('.wasm') ? 'application/wasm' : 'text/javascript',
+        );
+        // Same-origin → no CORS dance, but be permissive for dev tooling.
+        res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
+        createReadStream(filePath).pipe(res);
+      });
+    },
+    async writeBundle(options) {
+      // Copy the assets into dist/ffmpeg/ so the production bundle ships
+      // the WASM alongside the SPA.
+      const outDir = options.dir ?? path.resolve(__dirname, 'dist');
+      const dest = path.join(outDir, 'ffmpeg');
+      await mkdir(dest, { recursive: true });
+      await Promise.all(
+        FFMPEG_FILES.map(file =>
+          copyFile(path.join(FFMPEG_CORE_DIR, file), path.join(dest, file)),
+        ),
+      );
+    },
+  };
+}
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react(), 
+    react(),
     tailwindcss(),
+    ffmpegCorePlugin(),
   ],
   build: {
     // Reduce chunking to minimize requests via ngrok

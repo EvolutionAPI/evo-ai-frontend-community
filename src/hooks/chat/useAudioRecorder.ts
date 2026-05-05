@@ -36,8 +36,17 @@ const loadFFmpeg = async (): Promise<FFmpeg> => {
   if (ffmpegInstance) return ffmpegInstance;
 
   const ffmpeg = new FFmpeg();
-  // core-st = single-threaded: does NOT require SharedArrayBuffer / COOP+COEP headers
-  const baseURL = 'https://unpkg.com/@ffmpeg/core-st@0.12.6/dist/umd';
+  // Self-hosted assets shipped alongside the SPA. The Vite plugin
+  // `ffmpegCorePlugin` copies them from node_modules/@ffmpeg/core/dist/umd
+  // to /ffmpeg/* in dev (middleware) and dist/ffmpeg/* on build. We avoid
+  // unpkg.com on purpose:
+  //   - the pinned core-st version started returning 404,
+  //   - browsers behind corporate firewalls / CSP can't reach unpkg,
+  //   - even when reachable, CORS rejects the cross-origin fetch.
+  // toBlobURL fetches the file (now same-origin) and wraps it in a Blob URL
+  // so FFmpeg's worker can `importScripts(...)` it without violating the
+  // worker's same-origin restriction.
+  const baseURL = `${window.location.origin}/ffmpeg`;
 
   await ffmpeg.load({
     coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
