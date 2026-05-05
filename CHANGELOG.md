@@ -25,6 +25,8 @@ Release de estabilização — corrige fluxos de criação de usuário, gestão 
 
 ### Added
 
+- **EVO-989 UI** — **Aba "Automation" no Edit Stage Modal** do kanban: configuração de regras `trigger → action` por estágio (label_added / status_changed / custom_attribute_updated → move_to_stage / assign_agent / apply_label). Componente `StageAutomationRules` novo, com keys estáveis (`useState + generateKey()`), conditional rendering por trigger, i18n nas 6 locales. (#41)
+- **EVO-1007** — clicar em card do pipeline kanban navega para `/conversations/<uuid>`; cards sem conversation (lead / orphan) caem no modal de edit. Drag-suppression preservado. Edit continua disponível via menu `⋮`. (#40)
 - **EVO-987** — criação inline de label a partir do modal "Assign Label". (#33)
 - **EVO-1006** — busca e filtros adicionados ao kanban de pipeline. (#30)
 - **Brand icons**: substituídas imagens estáticas de brand por `@icons-pack/react-simple-icons`. (#25)
@@ -44,6 +46,13 @@ Release de estabilização — corrige fluxos de criação de usuário, gestão 
 - **EVO-1002** — não esconde mais templates não-aprovados; tabela de gestão exibe status real do Meta.
 - **EVO-1001** — labels de conta carregadas como opções do filtro de conversa. (#24)
 - **EVO-971** — fallback para o setup wizard quando `/setup/status` está inacessível. (#22)
+
+#### UX & ícones (regressão da migração para `@icons-pack/react-simple-icons`)
+A PR #25 migrou de PNGs estáticos para SVGs monocromáticos da `@icons-pack/react-simple-icons`, mas perdeu a cor de marca e introduziu vários problemas visuais. Corrigido em sequência:
+- **Cores oficiais das marcas restauradas**: `BrandIcon.tsx` agora aplica a cor oficial via novo helper `getBrandColor()` (mapa com hex de cada brand). `ChannelIcon`, `MCPCard`, `IntegrationCard` e `IntegrationsSection` foram atualizados para usar o `<BrandIcon />` default em vez de invocar `BrandIconComponent` cru — assim WhatsApp volta verde, Telegram azul, Instagram pink, etc.
+- **Provider grid do WhatsApp** (Cloud / Evolution API / Evolution Go / Notificame / Z-API / Twilio): cada provider voltou a renderizar seu logo próprio em vez de mostrar o glyph genérico do WhatsApp para todos. `ChannelIcon` agora prioriza `iconSrc` (PNG/SVG do provider) sobre o brand glyph genérico.
+- **ElevenLabs / Google Calendar / Google Sheets**: o badge "Em breve / Coming soon" estava sendo renderizado em todas as integrações não conectadas, incluindo as que só precisam de API key (ElevenLabs) ou OAuth per-agent (Google Calendar/Sheets). Agora só aparece para integrações OAuth com credenciais globais não configuradas.
+- **Botão "ATIVAR"** das integrações always-available estava `disabled` (`opacity-50`, sem `onClick`) — a ação nunca disparava. Agora abre o `ConfigDialog` correspondente.
 
 ### Changed
 
