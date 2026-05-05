@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
 import Recorder from 'opus-recorder';
+import { PTT_OPUS_CONFIG, OPUS_ENCODER_PATH } from './recordPttOgg';
 
 export interface AudioRecordingData {
   blob: Blob;
@@ -28,35 +29,9 @@ interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
 }
 
-// opus-recorder encodes PCM straight from the mic into OGG/Opus during capture
-// (no post-processing). The config below matches the FFmpeg flags we previously
-// used to produce a WhatsApp-Cloud-compliant PTT voice message:
-//
-//   ffmpeg -c:a libopus -b:a 48k -ar 48000 -ac 1 -application voip
-//          -compression_level 10 -map_metadata -1
-//
-// Mapping:
-//   encoderApplication: 2048   ← -application voip
-//   encoderSampleRate: 48000   ← -ar 48000
-//   encoderBitRate: 48000      ← -b:a 48k
-//   numberOfChannels: 1        ← -ac 1
-//   encoderComplexity: 10      ← -compression_level 10
-//
-// Result: stop() yields a Blob({ type: 'audio/ogg' }) ready to send to Cloud.
-// The encoder worker (encoderWorker.min.js) is self-hosted via vite plugin
-// `opusRecorderPlugin`. It is a single ~376KB JS file with libopusenc bundled
-// as inline base64 WASM — no SharedArrayBuffer / COOP+COEP required.
-const PTT_OPUS_CONFIG = {
-  encoderApplication: 2048,
-  encoderSampleRate: 48000,
-  encoderBitRate: 48000,
-  numberOfChannels: 1,
-  encoderComplexity: 10,
-  streamPages: true,
-  rawOpus: false,
-} as const;
-
-const OPUS_ENCODER_PATH = '/opus-recorder/encoderWorker.min.js';
+// PTT_OPUS_CONFIG and OPUS_ENCODER_PATH are imported from ./recordPttOgg —
+// the same constants the e2e test exercises in a real browser, so the hook
+// can never silently drift away from a Cloud-compatible profile.
 
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
   const preferWhatsAppCloudFormat = options?.preferWhatsAppCloudFormat === true;
@@ -161,12 +136,21 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
 
   const startOpusRecording = async (stream: MediaStream) => {
     opusChunksRef.current = [];
+
+    // CRITICAL: the sourceNode must be passed via CONFIG, not as start() arg.
+    // opus-recorder's initSourceNode checks `this.config.sourceNode.context`
+    // truthiness to decide whether to skip its internal getUserMedia. If we
+    // pass it as start() arg, it falls through and calls getUserMedia({audio:
+    // false}), which throws "At least one of audio and video must be
+    // requested". Verified by e2e/audio-recording.spec.ts.
+    const audioContext = new AudioContext();
+    const sourceNode = audioContext.createMediaStreamSource(stream);
+    audioContextRef.current = audioContext;
+
     const recorder = new Recorder({
       ...PTT_OPUS_CONFIG,
       encoderPath: OPUS_ENCODER_PATH,
-      // Reuse the stream we already opened (so we don't prompt the user twice
-      // and the analyser node sees the same audio).
-      mediaTrackConstraints: false,
+      sourceNode,
     });
 
     recorder.ondataavailable = (chunk: Uint8Array) => {
@@ -174,14 +158,7 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
       opusChunksRef.current.push(chunk);
     };
 
-    // opus-recorder accepts an external MediaStream via sourceNode. We connect
-    // the existing stream to the recorder's audioContext to keep the analyser
-    // in sync.
-    const audioContext = new AudioContext();
-    const sourceNode = audioContext.createMediaStreamSource(stream);
-    audioContextRef.current = audioContext;
-
-    await recorder.start(sourceNode);
+    await recorder.start();
     opusRecorderRef.current = recorder;
   };
 

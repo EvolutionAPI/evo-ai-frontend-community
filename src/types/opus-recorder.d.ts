@@ -13,6 +13,9 @@ declare module 'opus-recorder' {
     streamPages?: boolean;
     rawOpus?: boolean;
     mediaTrackConstraints?: boolean | MediaTrackConstraints;
+    // Pass an external MediaStreamAudioSourceNode so opus-recorder skips its
+    // internal getUserMedia call. The check is on `sourceNode.context` truthiness.
+    sourceNode?: AudioNode;
   }
 
   export default class Recorder {
