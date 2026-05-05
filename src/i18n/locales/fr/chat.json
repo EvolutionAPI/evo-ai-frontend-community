@@ -87,6 +87,16 @@
       "retryInDevelopment": "Fonctionnalité de nouvelle tentative en développement",
       "sendFailed": "Échec de l'envoi - Cliquez pour réessayer",
       "tryAgain": "Réessayer"
+    },
+    "replyPreview": {
+      "imageAttachment": "📷 Image",
+      "audioAttachment": "🎵 Audio",
+      "videoAttachment": "🎥 Vidéo",
+      "fileAttachment": "📎 Fichier",
+      "locationAttachment": "📍 Localisation",
+      "noContent": "Message sans contenu",
+      "userFallback": "Utilisateur",
+      "previousMessage": "Message précédent"
     }
   },
   "assignment": {
