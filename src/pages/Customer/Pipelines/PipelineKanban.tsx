@@ -1617,6 +1617,8 @@ export default function PipelineKanban() {
         stage={stageToEdit}
         onSubmit={handleUpdateStage}
         loading={isEditingStage}
+        stages={stages}
+        agents={uniqueAssignees}
       />
 
       {/* Delete Stage Modal */}

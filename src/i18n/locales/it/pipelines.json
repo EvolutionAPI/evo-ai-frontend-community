@@ -342,10 +342,36 @@
     "saving": "Salvataggio...",
     "save": "Salva Modifiche"
   },
+  "stageAutomation": {
+    "title": "Regole di Automazione",
+    "description": "Definisci regole che attivano azioni automaticamente quando si verificano eventi in questa fase.",
+    "noRules": "Nessuna regola configurata. Clicca su \"Aggiungi Regola\" per iniziare.",
+    "addRule": "Aggiungi Regola",
+    "rule": "Regola",
+    "when": "Quando",
+    "then": "Allora",
+    "anyValue": "Qualsiasi",
+    "labelNamePlaceholder": "Nome dell'etichetta...",
+    "selectStage": "Seleziona fase...",
+    "selectAgent": "Seleziona agente...",
+    "noOtherStages": "Nessun'altra fase disponibile",
+    "noAgents": "Nessun agente disponibile",
+    "triggers": {
+      "label_added": "Etichetta aggiunta",
+      "conversation_status_changed": "Stato conversazione modificato",
+      "custom_attribute_updated": "Attributo personalizzato aggiornato"
+    },
+    "actions": {
+      "move_to_stage": "Sposta alla fase",
+      "assign_agent": "Assegna agente",
+      "apply_label": "Applica etichetta"
+    }
+  },
   "editStage": {
     "title": "Modifica Fase",
     "description": "Modifica le informazioni di questa fase della pipeline.",
     "details": "Dettagli",
+    "automation": "Automazione",
     "customAttributes": "Attributi",
     "attributesDescription": "Configura attributi per questa fase",
     "name": "Nome della Fase",

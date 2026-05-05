@@ -1,6 +1,16 @@
 import type { PaginatedResponse, StandardResponse, PaginationMeta } from '@/types/core';
 import type { Contact } from '@/types/contacts';
 
+export type StageAutomationTrigger = 'label_added' | 'conversation_status_changed' | 'custom_attribute_updated';
+export type StageAutomationAction = 'move_to_stage' | 'assign_agent' | 'apply_label';
+
+export interface StageAutomationRule {
+  trigger: StageAutomationTrigger;
+  trigger_value: string;
+  action: StageAutomationAction;
+  action_value: string;
+}
+
 export interface PipelinesResponse extends PaginatedResponse<Pipeline> {}
 
 export interface PipelineResponse extends StandardResponse<Pipeline> {}
@@ -68,6 +78,7 @@ export interface PipelineStage {
   stage_type?: string;
   automation_rules?: {
     description?: string;
+    rules?: StageAutomationRule[];
   };
   custom_fields?: Record<string, unknown> & {
     attributes?: string[]; // Array of attribute keys created at stage level
