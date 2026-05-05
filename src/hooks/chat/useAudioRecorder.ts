@@ -1,7 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
-import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { toBlobURL, fetchFile } from '@ffmpeg/util';
+import { createFFmpeg, fetchFile, type FFmpeg } from '@ffmpeg/ffmpeg';
 
 export interface AudioRecordingData {
   blob: Blob;
@@ -29,44 +28,61 @@ interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
 }
 
-// FFmpeg WASM singleton — loaded once, reused across recordings
+// FFmpeg WASM singleton — loaded once, reused across recordings.
+//
+// We deliberately use @ffmpeg/ffmpeg@0.11 + @ffmpeg/core-st@0.11.1 (single
+// thread). The newer 0.12 API requires SharedArrayBuffer, which in turn
+// requires COOP+COEP cross-origin isolation headers on the SPA. The CRM is
+// served behind Traefik without those headers (and adding them would block
+// other cross-origin assets), so the modern API silently fails inside the
+// worker with "failed to import ffmpeg-core.js". Single-thread (`-st`) does
+// not need SharedArrayBuffer.
 let ffmpegInstance: FFmpeg | null = null;
 
 const loadFFmpeg = async (): Promise<FFmpeg> => {
-  if (ffmpegInstance) return ffmpegInstance;
+  if (ffmpegInstance && ffmpegInstance.isLoaded()) {
+    console.log('[FFmpeg] reusing cached instance');
+    return ffmpegInstance;
+  }
 
-  const ffmpeg = new FFmpeg();
-  // Self-hosted assets shipped alongside the SPA. The Vite plugin
-  // `ffmpegCorePlugin` copies them from node_modules/@ffmpeg/core/dist/umd
-  // to /ffmpeg/* in dev (middleware) and dist/ffmpeg/* on build. We avoid
-  // unpkg.com on purpose:
-  //   - the pinned core-st version started returning 404,
-  //   - browsers behind corporate firewalls / CSP can't reach unpkg,
-  //   - even when reachable, CORS rejects the cross-origin fetch.
-  // toBlobURL fetches the file (now same-origin) and wraps it in a Blob URL
-  // so FFmpeg's worker can `importScripts(...)` it without violating the
-  // worker's same-origin restriction.
-  const baseURL = `${window.location.origin}/ffmpeg`;
+  console.log('[FFmpeg] creating new instance');
+  // Self-hosted assets — shipped under /ffmpeg/<file> by the Vite plugin
+  // `ffmpegCorePlugin` (see vite.config.ts). Avoids unpkg.com which:
+  //   - returned 404 for the pinned version we previously requested,
+  //   - is blocked by CORS for cross-origin fetches anyway,
+  //   - is unreachable from corporate firewalls.
+  const corePath = `${window.location.origin}/ffmpeg/ffmpeg-core.js`;
+  console.log('[FFmpeg] corePath', corePath);
 
-  await ffmpeg.load({
-    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
+  const ffmpeg = createFFmpeg({
+    corePath,
+    log: false,
+    logger: ({ message }) => console.log('[FFmpeg log]', message),
+    progress: ({ ratio }) =>
+      console.log('[FFmpeg progress]', Math.round(ratio * 100) + '%'),
   });
+
+  console.log('[FFmpeg] calling ffmpeg.load()...');
+  await ffmpeg.load();
+  console.log('[FFmpeg] load() complete');
 
   ffmpegInstance = ffmpeg;
   return ffmpeg;
 };
 
 const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
+  console.log('[AudioConvert] starting — input size', inputBlob.size, 'type', inputBlob.type);
   const ffmpeg = await loadFFmpeg();
+  console.log('[AudioConvert] ffmpeg ready, writing input file...');
 
   const mime = inputBlob.type;
   const ext = mime.includes('mp4') ? 'm4a' : mime.includes('ogg') ? 'ogg' : 'webm';
   const inputName = `input.${ext}`;
 
-  await ffmpeg.writeFile(inputName, await fetchFile(inputBlob));
+  ffmpeg.FS('writeFile', inputName, await fetchFile(inputBlob));
+  console.log('[AudioConvert] input written, executing ffmpeg...');
 
-  await ffmpeg.exec([
+  await ffmpeg.run(
     '-i', inputName,
     '-vn',
     '-c:a', 'libopus',
@@ -84,14 +100,18 @@ const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
     '-map_chapters', '-1',
     '-write_bext', '0',
     'output.ogg',
-  ]);
+  );
 
-  const data = await ffmpeg.readFile('output.ogg');
+  console.log('[AudioConvert] ffmpeg.run done, reading output...');
+  const data = ffmpeg.FS('readFile', 'output.ogg');
+  console.log('[AudioConvert] output read, size', data.byteLength);
 
-  await ffmpeg.deleteFile(inputName);
-  await ffmpeg.deleteFile('output.ogg');
+  ffmpeg.FS('unlink', inputName);
+  ffmpeg.FS('unlink', 'output.ogg');
 
-  return new Blob([new Uint8Array(data as Uint8Array)], { type: 'audio/ogg' });
+  const outputBlob = new Blob([new Uint8Array(data)], { type: 'audio/ogg' });
+  console.log('[AudioConvert] complete — output size', outputBlob.size);
+  return outputBlob;
 };
 
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
