@@ -425,11 +425,13 @@
     "fields": {
       "channelName": {
         "label": "Nome do Canal",
-        "placeholder": "Ex: whatsapp-atendimento"
+        "placeholder": "Ex: whatsapp-atendimento",
+        "helpText": "Gerado automaticamente do nome de exibição"
       },
       "displayName": {
         "label": "Nome de Exibição",
-        "placeholder": "Ex: WhatsApp Atendimento"
+        "placeholder": "Ex: WhatsApp Atendimento",
+        "helpText": "Nome amigável para identificação"
       },
       "phoneNumber": {
         "label": "Número de Telefone",

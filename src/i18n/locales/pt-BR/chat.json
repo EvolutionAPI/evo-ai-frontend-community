@@ -9,7 +9,8 @@
       "downloadStarted": "Download iniciado",
       "audioFallback": "Áudio",
       "playbackError": "Erro ao reproduzir áudio",
-      "playbackErrorDescription": "Não foi possível reproduzir este arquivo de áudio"
+      "playbackErrorDescription": "Não foi possível reproduzir este arquivo de áudio",
+      "transcription": "Transcrição"
     },
     "messageBubble": {
       "contextMenu": {
@@ -221,7 +222,11 @@
     "noOptions": "Nenhuma opção disponível",
     "cancel": "Cancelar",
     "applying": "Aplicando...",
-    "apply": "Aplicar"
+    "apply": "Aplicar",
+    "createLabel": "Criar etiqueta: \"{{name}}\"",
+    "creating": "Criando...",
+    "newLabel": "Criar nova etiqueta",
+    "createLabelError": "Não foi possível criar a etiqueta. Tente novamente."
   },
   "audioRecorder": {
     "notSupported": "Gravação de áudio não suportada neste navegador",
@@ -270,6 +275,10 @@
       "priorityMedium": "Prioridade Média",
       "priorityLow": "Prioridade Baixa",
       "removePriority": "Remover Prioridade",
+      "pinConversation": "Fixar conversa",
+      "unpinConversation": "Desafixar conversa",
+      "archiveConversation": "Arquivar conversa",
+      "unarchiveConversation": "Desarquivar conversa",
       "assignAgent": "Atribuir Atendente",
       "assignTeam": "Atribuir time",
       "assignTag": "Atribuir etiqueta",
@@ -344,6 +353,14 @@
         "channel": "Canal:",
         "assigned": "Atribuído:",
         "assignedTo": "Atendente #{{id}}"
+      },
+      "conversationAttributes": {
+        "title": "Atributos da Conversa",
+        "description": "Atributos personalizados editáveis"
+      },
+      "contactAttributes": {
+        "title": "Atributos do Contato",
+        "description": "Atributos personalizados editáveis"
       }
     },
     "contactHeader": {
@@ -373,6 +390,20 @@
       },
       "notInformed": "Não informado",
       "copiedToClipboard": "Copiado para a área de transferência"
+    },
+    "customAttributes": {
+      "noAttributes": "Nenhum atributo personalizado configurado",
+      "updateSuccess": "Atributos atualizados com sucesso",
+      "updateError": "Erro ao atualizar atributos",
+      "yes": "Sim",
+      "no": "Não"
+    },
+    "conversationAttributes": {
+      "noAttributes": "Nenhum atributo de conversa configurado",
+      "updateSuccess": "Atributos da conversa atualizados",
+      "updateError": "Erro ao atualizar atributos da conversa",
+      "yes": "Sim",
+      "no": "Não"
     },
     "conversationActions": {
       "status": {
@@ -553,7 +584,13 @@
         "markAsPending": "Erro ao marcar como pendente",
         "assignAgent": "Erro ao atribuir atendente",
         "assignTeam": "Erro ao atribuir time",
-        "assignLabels": "Erro ao atribuir etiquetas"
+        "assignLabels": "Erro ao atribuir etiquetas",
+        "pinConversation": "Erro ao fixar conversa",
+        "archiveConversation": "Erro ao arquivar conversa",
+        "pinNotSupported": "Ação indisponível",
+        "pinNotSupportedDescription": "O contrato de backend para fixar conversas não está disponível.",
+        "archiveNotSupported": "Ação indisponível",
+        "archiveNotSupportedDescription": "O contrato de backend para arquivar conversas não está disponível."
       },
       "success": {
         "statusChanged": "Status alterado para: {{status}}",
@@ -567,7 +604,11 @@
         "agentRemoved": "Atendente removido com sucesso",
         "teamAssigned": "Time atribuído com sucesso",
         "teamRemoved": "Time removido com sucesso",
-        "labelsAssigned": "Etiquetas atribuídas com sucesso"
+        "labelsAssigned": "Etiquetas atribuídas com sucesso",
+        "pinned": "Conversa fixada com sucesso",
+        "unpinned": "Conversa desafixada com sucesso",
+        "archived": "Conversa arquivada com sucesso",
+        "unarchived": "Conversa desarquivada com sucesso"
       },
       "statusNames": {
         "open": "Aberta",
@@ -804,6 +845,11 @@
     "mediumPriority": "Média prioridade",
     "highPriority": "Alta prioridade",
     "removePriority": "Remover prioridade",
+    "management": "Gerenciamento",
+    "pinConversation": "Fixar conversa",
+    "unpinConversation": "Desafixar conversa",
+    "archiveConversation": "Arquivar conversa",
+    "unarchiveConversation": "Desarquivar conversa",
     "assignment": "Atribuição",
     "assignAgent": "Atribuir atendente",
     "assignTeam": "Atribuir time",

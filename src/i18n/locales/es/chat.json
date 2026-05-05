@@ -212,7 +212,11 @@
     "noOptions": "No hay opciones disponibles",
     "cancel": "Cancelar",
     "applying": "Aplicando...",
-    "apply": "Aplicar"
+    "apply": "Aplicar",
+    "createLabel": "Crear etiqueta: \"{{name}}\"",
+    "creating": "Creando...",
+    "newLabel": "Crear nueva etiqueta",
+    "createLabelError": "No se pudo crear la etiqueta. Inténtalo de nuevo."
   },
   "audioRecorder": {
     "notSupported": "Grabación de audio no compatible con este navegador",
