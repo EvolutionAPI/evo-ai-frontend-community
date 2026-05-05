@@ -3,7 +3,7 @@
   "navigation": {
     "email": "Email",
     "storage": "Storage",
-    "socialLogin": "Social Login",
+    "socialLogin": "Authentication Providers",
     "channels": "Channels",
     "openai": "OpenAI",
     "integrations": "Integrations",
@@ -61,7 +61,11 @@
     "testConnection": "Test Connection",
     "testing": "Testing...",
     "testFailed": "Connection test failed",
-    "testError": "Failed to run connection test"
+    "testError": "Failed to run connection test",
+    "envWarning": {
+      "title": "Heads up:",
+      "body": "Saving here persists the values, but the email service still reads SMTP credentials from environment variables at boot time. Until EVO-1049 ships, configure SMTP via env vars to take effect."
+    }
   },
   "storage": {
     "title": "Storage Configuration",
@@ -105,11 +109,15 @@
     "testConnection": "Test Connection",
     "testing": "Testing...",
     "testFailed": "Connection test failed",
-    "testError": "Failed to run connection test"
+    "testError": "Failed to run connection test",
+    "envWarning": {
+      "title": "Heads up:",
+      "body": "Saving here persists the choice, but the file service still reads ACTIVE_STORAGE_SERVICE from environment variables at boot time. Until EVO-1050 ships, configure storage via env vars to take effect."
+    }
   },
   "socialLogin": {
-    "title": "Social Login Configuration",
-    "description": "Configure OAuth credentials for social login providers so users can sign in with Google or Microsoft.",
+    "title": "Authentication Providers",
+    "description": "Configure OAuth credentials for SSO authentication providers so users can sign in with Google or Microsoft.",
     "google": {
       "cardTitle": "Google OAuth",
       "fields": {

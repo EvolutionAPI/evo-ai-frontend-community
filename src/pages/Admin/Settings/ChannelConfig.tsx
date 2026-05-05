@@ -710,7 +710,9 @@ export default function ChannelConfig() {
           <TabsTrigger value="instagram">{t('channels.instagram.tabTitle')}</TabsTrigger>
           <TabsTrigger value="evolution">{t('channels.evolution.tabTitle')}</TabsTrigger>
           <TabsTrigger value="evolution_go">{t('channels.evolutionGo.tabTitle')}</TabsTrigger>
-          <TabsTrigger value="twitter">{t('channels.twitter.tabTitle')}</TabsTrigger>
+          {/* Twitter tab intentionally hidden — channel deprecated in customer-facing flow.
+              Form, schema and submit handler are kept below so any installation that already
+              has Twitter credentials configured can still load the page without runtime errors. */}
         </TabsList>
 
         {/* Facebook Tab */}
