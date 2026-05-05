@@ -14,9 +14,6 @@ importers:
       '@evoapi/design-system':
         specifier: ^0.0.6
         version: 0.0.6(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react-is@17.0.2)(react@19.2.1)(redux@5.0.1)(tailwindcss@4.1.17)
-      '@ffmpeg/core':
-        specifier: 0.11.0
-        version: 0.11.0
       '@ffmpeg/core-st':
         specifier: 0.11.0
         version: 0.11.0
@@ -62,6 +59,9 @@ importers:
       lucide-react:
         specifier: ^0.525.0
         version: 0.525.0(react@19.2.1)
+      opus-recorder:
+        specifier: ^8.0.5
+        version: 8.0.5
       prosemirror-commands:
         specifier: ^1.7.1
         version: 1.7.1
@@ -676,9 +676,6 @@ packages:
 
   '@ffmpeg/core-st@0.11.0':
     resolution: {integrity: sha512-wktkKHT0LRNOdeRNn5tZlM2Ufwpw6Wo78CP4g2U4dxEOPlWNzod3ldpDgHa9QRjbSXzx2uWFOGgNj0fR1ixqIQ==}
-
-  '@ffmpeg/core@0.11.0':
-    resolution: {integrity: sha512-9Tt/+2PMpkGPXUK8n6He9G8Y+qR6qmCPSCw9iEKZxHHOvJ9BE/r0Fccj+YgDZTlyu6rXxc9x6EqCaFBIt7qzjA==}
 
   '@ffmpeg/ffmpeg@0.11.6':
     resolution: {integrity: sha512-uN8J8KDjADEavPhNva6tYO9Fj0lWs9z82swF3YXnTxWMBoFLGq3LZ6FLlIldRKEzhOBKnkVfA8UnFJuvGvNxcA==}
@@ -2708,6 +2705,9 @@ packages:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
 
+  opus-recorder@8.0.5:
+    resolution: {integrity: sha512-tBRXc9Btds7i3bVfA7d5rekAlyOcfsivt5vSIXHxRV1Oa+s6iXFW8omZ0Lm3ABWotVcEyKt96iIIUcgbV07YOw==}
+
   orderedmap@2.1.1:
     resolution: {integrity: sha512-TvAWxi0nDe1j/rtMcWcIj94+Ffe6n7zhow33h40SKxmsmozs6dz/e+EajymfoFcHd7sxNn8yHM8839uixMOV6g==}
 
@@ -3820,8 +3820,6 @@ snapshots:
   '@fastify/deepmerge@3.2.1': {}
 
   '@ffmpeg/core-st@0.11.0': {}
-
-  '@ffmpeg/core@0.11.0': {}
 
   '@ffmpeg/ffmpeg@0.11.6':
     dependencies:
@@ -5830,6 +5828,8 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
       word-wrap: 1.2.5
+
+  opus-recorder@8.0.5: {}
 
   orderedmap@2.1.1: {}
 

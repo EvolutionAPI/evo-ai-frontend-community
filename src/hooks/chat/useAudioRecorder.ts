@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { toast } from 'sonner';
-import { createFFmpeg, fetchFile, type FFmpeg } from '@ffmpeg/ffmpeg';
+import Recorder from 'opus-recorder';
 
 export interface AudioRecordingData {
   blob: Blob;
@@ -28,91 +28,35 @@ interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
 }
 
-// FFmpeg WASM singleton — loaded once, reused across recordings.
+// opus-recorder encodes PCM straight from the mic into OGG/Opus during capture
+// (no post-processing). The config below matches the FFmpeg flags we previously
+// used to produce a WhatsApp-Cloud-compliant PTT voice message:
 //
-// We deliberately use @ffmpeg/ffmpeg@0.11 + @ffmpeg/core-st@0.11.1 (single
-// thread). The newer 0.12 API requires SharedArrayBuffer, which in turn
-// requires COOP+COEP cross-origin isolation headers on the SPA. The CRM is
-// served behind Traefik without those headers (and adding them would block
-// other cross-origin assets), so the modern API silently fails inside the
-// worker with "failed to import ffmpeg-core.js". Single-thread (`-st`) does
-// not need SharedArrayBuffer.
-let ffmpegInstance: FFmpeg | null = null;
+//   ffmpeg -c:a libopus -b:a 48k -ar 48000 -ac 1 -application voip
+//          -compression_level 10 -map_metadata -1
+//
+// Mapping:
+//   encoderApplication: 2048   ← -application voip
+//   encoderSampleRate: 48000   ← -ar 48000
+//   encoderBitRate: 48000      ← -b:a 48k
+//   numberOfChannels: 1        ← -ac 1
+//   encoderComplexity: 10      ← -compression_level 10
+//
+// Result: stop() yields a Blob({ type: 'audio/ogg' }) ready to send to Cloud.
+// The encoder worker (encoderWorker.min.js) is self-hosted via vite plugin
+// `opusRecorderPlugin`. It is a single ~376KB JS file with libopusenc bundled
+// as inline base64 WASM — no SharedArrayBuffer / COOP+COEP required.
+const PTT_OPUS_CONFIG = {
+  encoderApplication: 2048,
+  encoderSampleRate: 48000,
+  encoderBitRate: 48000,
+  numberOfChannels: 1,
+  encoderComplexity: 10,
+  streamPages: true,
+  rawOpus: false,
+} as const;
 
-const loadFFmpeg = async (): Promise<FFmpeg> => {
-  if (ffmpegInstance && ffmpegInstance.isLoaded()) {
-    console.log('[FFmpeg] reusing cached instance');
-    return ffmpegInstance;
-  }
-
-  console.log('[FFmpeg] creating new instance');
-  // Self-hosted assets — shipped under /ffmpeg/<file> by the Vite plugin
-  // `ffmpegCorePlugin` (see vite.config.ts). Avoids unpkg.com which:
-  //   - returned 404 for the pinned version we previously requested,
-  //   - is blocked by CORS for cross-origin fetches anyway,
-  //   - is unreachable from corporate firewalls.
-  const corePath = `${window.location.origin}/ffmpeg/ffmpeg-core.js`;
-  console.log('[FFmpeg] corePath', corePath);
-
-  const ffmpeg = createFFmpeg({
-    corePath,
-    log: false,
-    logger: ({ message }) => console.log('[FFmpeg log]', message),
-    progress: ({ ratio }) =>
-      console.log('[FFmpeg progress]', Math.round(ratio * 100) + '%'),
-  });
-
-  console.log('[FFmpeg] calling ffmpeg.load()...');
-  await ffmpeg.load();
-  console.log('[FFmpeg] load() complete');
-
-  ffmpegInstance = ffmpeg;
-  return ffmpeg;
-};
-
-const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
-  console.log('[AudioConvert] starting — input size', inputBlob.size, 'type', inputBlob.type);
-  const ffmpeg = await loadFFmpeg();
-  console.log('[AudioConvert] ffmpeg ready, writing input file...');
-
-  const mime = inputBlob.type;
-  const ext = mime.includes('mp4') ? 'm4a' : mime.includes('ogg') ? 'ogg' : 'webm';
-  const inputName = `input.${ext}`;
-
-  ffmpeg.FS('writeFile', inputName, await fetchFile(inputBlob));
-  console.log('[AudioConvert] input written, executing ffmpeg...');
-
-  await ffmpeg.run(
-    '-i', inputName,
-    '-vn',
-    '-c:a', 'libopus',
-    '-b:a', '48k',
-    '-ar', '48000',
-    '-ac', '1',
-    '-avoid_negative_ts', 'make_zero',
-    '-write_xing', '0',
-    '-compression_level', '10',
-    '-application', 'voip',
-    '-fflags', '+bitexact',
-    '-flags', '+bitexact',
-    '-id3v2_version', '0',
-    '-map_metadata', '-1',
-    '-map_chapters', '-1',
-    '-write_bext', '0',
-    'output.ogg',
-  );
-
-  console.log('[AudioConvert] ffmpeg.run done, reading output...');
-  const data = ffmpeg.FS('readFile', 'output.ogg');
-  console.log('[AudioConvert] output read, size', data.byteLength);
-
-  ffmpeg.FS('unlink', inputName);
-  ffmpeg.FS('unlink', 'output.ogg');
-
-  const outputBlob = new Blob([new Uint8Array(data)], { type: 'audio/ogg' });
-  console.log('[AudioConvert] complete — output size', outputBlob.size);
-  return outputBlob;
-};
+const OPUS_ENCODER_PATH = '/opus-recorder/encoderWorker.min.js';
 
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
   const preferWhatsAppCloudFormat = options?.preferWhatsAppCloudFormat === true;
@@ -123,39 +67,39 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
   const [hasRecording, setHasRecording] = useState(false);
   const [recordingData, setRecordingData] = useState<AudioRecordingData | null>(null);
 
+  // opus-recorder path
+  const opusRecorderRef = useRef<Recorder | null>(null);
+  const opusChunksRef = useRef<Uint8Array[]>([]);
+
+  // MediaRecorder path (non-PTT — voice notes, transcription, etc.)
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const mediaChunksRef = useRef<Blob[]>([]);
+  const selectedMimeTypeRef = useRef<string>('audio/webm;codecs=opus');
+
   const streamRef = useRef<MediaStream | null>(null);
-  const chunksRef = useRef<Blob[]>([]);
   const startTimeRef = useRef<number>(0);
-  const pausedTimeRef = useRef<number>(0); // Tempo acumulado em pausas
-  const pauseStartRef = useRef<number>(0); // Quando pausou
-  const isPausedRef = useRef<boolean>(false); // Ref para estado de pausa
+  const pausedTimeRef = useRef<number>(0);
+  const pauseStartRef = useRef<number>(0);
+  const isPausedRef = useRef<boolean>(false);
   const durationIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationFrameRef = useRef<number | null>(null);
-  const selectedMimeTypeRef = useRef<string>('audio/webm;codecs=opus');
+  const finalDurationRef = useRef<number>(0);
 
-  // TRAVA GLOBAL ANTI-DUPLICAÇÃO
   const isInitializingRef = useRef<boolean>(false);
 
-  // Verificar se navegador suporta MediaRecorder
   const isSupported =
     typeof navigator !== 'undefined' &&
     'mediaDevices' in navigator &&
     'getUserMedia' in navigator.mediaDevices &&
     typeof MediaRecorder !== 'undefined';
 
-  // Gerar ID único para arquivo
   const generateId = () => Math.random().toString(36).substr(2, 9);
 
   const getSupportedRecordingMimeType = () => {
-    const preferredMimeTypes = preferWhatsAppCloudFormat
-      ? ['audio/ogg;codecs=opus', 'audio/webm;codecs=opus', 'audio/mp4', 'audio/webm']
-      : ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4', 'audio/ogg;codecs=opus'];
-
-    const supported = preferredMimeTypes.find(mimeType => MediaRecorder.isTypeSupported(mimeType));
-    return supported || '';
+    const preferredMimeTypes = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'];
+    return preferredMimeTypes.find(m => MediaRecorder.isTypeSupported(m)) || '';
   };
 
   const normalizeMimeType = (mimeType: string) => mimeType.split(';')[0] || 'audio/webm';
@@ -166,301 +110,256 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
     return 'webm';
   };
 
-  // Monitorar nível de áudio
   const monitorAudioLevel = useCallback(() => {
     if (!analyserRef.current) return;
-
     const analyser = analyserRef.current;
     const bufferLength = analyser.frequencyBinCount;
     const dataArray = new Uint8Array(bufferLength);
 
     const checkLevel = () => {
       analyser.getByteFrequencyData(dataArray);
-
-      // Calcular nível médio
       let sum = 0;
-      for (let i = 0; i < bufferLength; i++) {
-        sum += dataArray[i];
-      }
-      const average = sum / bufferLength;
-      const normalizedLevel = average / 255; // Normalizar para 0-1
-
-      setAudioLevel(normalizedLevel);
-
+      for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
+      setAudioLevel(sum / bufferLength / 255);
       if (isRecording && !isPaused) {
         animationFrameRef.current = requestAnimationFrame(checkLevel);
       }
     };
-
     checkLevel();
   }, [isRecording, isPaused]);
 
-  // Iniciar gravação
+  const cleanupResources = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(t => t.stop());
+      streamRef.current = null;
+    }
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+      audioContextRef.current = null;
+    }
+    if (durationIntervalRef.current) {
+      clearInterval(durationIntervalRef.current);
+      durationIntervalRef.current = null;
+    }
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+  };
+
+  const buildRecordingData = (blob: Blob, mimeType: string, ext: string): AudioRecordingData => {
+    const fileName = `audio_${generateId()}.${ext}`;
+    const file = new File([blob], fileName, { type: mimeType, lastModified: Date.now() });
+    (file as unknown as { __duration?: number }).__duration = finalDurationRef.current;
+    return {
+      blob: file,
+      url: URL.createObjectURL(file),
+      duration: finalDurationRef.current,
+      file,
+    };
+  };
+
+  const startOpusRecording = async (stream: MediaStream) => {
+    opusChunksRef.current = [];
+    const recorder = new Recorder({
+      ...PTT_OPUS_CONFIG,
+      encoderPath: OPUS_ENCODER_PATH,
+      // Reuse the stream we already opened (so we don't prompt the user twice
+      // and the analyser node sees the same audio).
+      mediaTrackConstraints: false,
+    });
+
+    recorder.ondataavailable = (chunk: Uint8Array) => {
+      // streamPages: true delivers OGG pages as they are produced.
+      opusChunksRef.current.push(chunk);
+    };
+
+    // opus-recorder accepts an external MediaStream via sourceNode. We connect
+    // the existing stream to the recorder's audioContext to keep the analyser
+    // in sync.
+    const audioContext = new AudioContext();
+    const sourceNode = audioContext.createMediaStreamSource(stream);
+    audioContextRef.current = audioContext;
+
+    await recorder.start(sourceNode);
+    opusRecorderRef.current = recorder;
+  };
+
+  const startMediaRecorderRecording = (stream: MediaStream) => {
+    mediaChunksRef.current = [];
+    const selectedMimeType = getSupportedRecordingMimeType();
+    selectedMimeTypeRef.current = selectedMimeType || 'audio/webm;codecs=opus';
+
+    const opts: MediaRecorderOptions = { audioBitsPerSecond: 64000 };
+    if (selectedMimeType) opts.mimeType = selectedMimeType;
+
+    const mr = new MediaRecorder(stream, opts);
+    mr.ondataavailable = e => {
+      if (e.data.size > 0) mediaChunksRef.current.push(e.data);
+    };
+    mr.onstop = () => {
+      const mimeType = normalizeMimeType(selectedMimeTypeRef.current);
+      const ext = getFileExtensionFromMimeType(mimeType);
+      const blob = new Blob(mediaChunksRef.current, { type: mimeType });
+      setRecordingData(buildRecordingData(blob, mimeType, ext));
+      setHasRecording(true);
+      setIsRecording(false);
+      setIsPaused(false);
+      setAudioLevel(0);
+      mediaRecorderRef.current = null;
+      cleanupResources();
+    };
+    mr.onerror = ev => {
+      console.error('Erro na gravação:', ev);
+      toast.error('Erro durante a gravação de áudio');
+      stopRecording();
+    };
+    mr.start(1000);
+    mediaRecorderRef.current = mr;
+  };
+
   const startRecording = useCallback(async () => {
     if (!isSupported) {
       toast.error('Seu navegador não suporta gravação de áudio');
       return;
     }
-
-    // PROTEÇÃO ROBUSTA CONTRA MÚLTIPLAS GRAVAÇÕES
-    if (isRecording || mediaRecorderRef.current || isInitializingRef.current) {
+    if (isRecording || mediaRecorderRef.current || opusRecorderRef.current || isInitializingRef.current) {
       return;
     }
-
-    // MARCAR COMO INICIALIZANDO
     isInitializingRef.current = true;
 
     try {
-      // Solicitar permissão de microfone (MONO para reduzir tamanho)
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: {
           echoCancellation: true,
           noiseSuppression: true,
           autoGainControl: true,
-          channelCount: 1, // FORÇAR MONO
-          sampleRate: preferWhatsAppCloudFormat ? 48000 : undefined, // alvo WhatsApp Cloud
+          channelCount: 1,
+          sampleRate: preferWhatsAppCloudFormat ? 48000 : undefined,
         },
       });
-
       streamRef.current = stream;
 
-      // Configurar analisador de áudio
-      const AudioContextConstructor =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const audioContext = new AudioContextConstructor();
-      const analyser = audioContext.createAnalyser();
-      const source = audioContext.createMediaStreamSource(stream);
+      if (preferWhatsAppCloudFormat) {
+        await startOpusRecording(stream);
+      } else {
+        startMediaRecorderRecording(stream);
+      }
 
+      // Analyser for level monitoring — separate context when MediaRecorder
+      // path; opus path reuses the recorder's context.
+      if (!audioContextRef.current) {
+        const Ctor =
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+        audioContextRef.current = new Ctor();
+      }
+      const analyser = audioContextRef.current.createAnalyser();
       analyser.fftSize = 256;
-      source.connect(analyser);
-
-      audioContextRef.current = audioContext;
+      audioContextRef.current.createMediaStreamSource(stream).connect(analyser);
       analyserRef.current = analyser;
 
-      // Configurar MediaRecorder com prioridade para formatos mais compatíveis com WhatsApp Cloud
-      const selectedMimeType = getSupportedRecordingMimeType();
-      selectedMimeTypeRef.current = selectedMimeType || 'audio/webm;codecs=opus';
-      const mediaRecorderOptions = {
-        audioBitsPerSecond: preferWhatsAppCloudFormat ? 128000 : 64000,
-      } as MediaRecorderOptions;
-      if (selectedMimeType) {
-        mediaRecorderOptions.mimeType = selectedMimeType;
-      }
-      const mediaRecorder = new MediaRecorder(stream, mediaRecorderOptions);
-
-      mediaRecorderRef.current = mediaRecorder;
-      chunksRef.current = [];
-
-      mediaRecorder.ondataavailable = event => {
-        if (event.data.size > 0) {
-          chunksRef.current.push(event.data);
-        }
-      };
-
-      mediaRecorder.onstop = async () => {
-        try {
-          // USAR A DURAÇÃO ARMAZENADA NO MEDIARECORDER
-          const storedDuration = (mediaRecorderRef.current as any)?.__finalDuration;
-          const finalDuration = storedDuration || duration;
-
-          const recordedMimeType = normalizeMimeType(selectedMimeTypeRef.current);
-          const recordedBlob = new Blob(chunksRef.current, { type: recordedMimeType });
-
-          // When WhatsApp Cloud format is requested, convert to OGG/Opus via FFmpeg WASM
-          // so the audio arrives as a native PTT voice message instead of a generic attachment.
-          // Skip conversion if the browser already recorded natively in OGG (e.g. Firefox).
-          let outputBlob: Blob = recordedBlob;
-          let outputMime = recordedMimeType;
-          let outputExt = getFileExtensionFromMimeType(recordedMimeType);
-
-          if (preferWhatsAppCloudFormat && !recordedMimeType.includes('ogg')) {
-            try {
-              outputBlob = await convertToOggOpus(recordedBlob);
-              outputMime = 'audio/ogg';
-              outputExt = 'ogg';
-            } catch (convErr) {
-              console.warn('[AudioRecorder] OGG conversion failed, sending original format:', convErr);
-              // outputBlob / outputMime / outputExt stay as recorded values
-            }
-          }
-
-          const fileName = `audio_${generateId()}.${outputExt}`;
-          const finalBlob = new File([outputBlob], fileName, {
-            type: outputMime,
-            lastModified: Date.now(),
-          });
-
-          (finalBlob as any).__duration = finalDuration;
-
-          const url = URL.createObjectURL(finalBlob);
-
-          const audioData: AudioRecordingData = {
-            blob: finalBlob,
-            url,
-            duration: finalDuration,
-            file: finalBlob,
-          };
-
-          setRecordingData(audioData);
-          setHasRecording(true);
-        } catch {
-          toast.error('Erro ao processar gravação de áudio');
-
-          // Fallback: usar blob original sem conversão
-          const finalDuration = duration;
-          const mimeType = normalizeMimeType(selectedMimeTypeRef.current);
-          const extension = getFileExtensionFromMimeType(mimeType);
-          const recordedBlob = new Blob(chunksRef.current, { type: mimeType });
-          const url = URL.createObjectURL(recordedBlob);
-          const fileName = `audio_${generateId()}.${extension}`;
-          const file = new File([recordedBlob], fileName, { type: mimeType });
-
-          const audioData: AudioRecordingData = {
-            blob: recordedBlob,
-            url,
-            duration: finalDuration,
-            file,
-          };
-
-          setRecordingData(audioData);
-          setHasRecording(true);
-        }
-
-        // Limpar recursos
-        setIsRecording(false);
-        setIsPaused(false);
-        setAudioLevel(0);
-
-        // LIMPAR MEDIARECORDER
-        mediaRecorderRef.current = null;
-
-        // Limpar stream
-        if (streamRef.current) {
-          streamRef.current.getTracks().forEach(track => track.stop());
-          streamRef.current = null;
-        }
-
-        // Limpar contexto de áudio
-        if (audioContextRef.current) {
-          audioContextRef.current.close();
-          audioContextRef.current = null;
-        }
-
-        // Limpar intervalos
-        if (durationIntervalRef.current) {
-          clearInterval(durationIntervalRef.current);
-          durationIntervalRef.current = null;
-        }
-
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current);
-          animationFrameRef.current = null;
-        }
-      };
-
-      mediaRecorder.onerror = event => {
-        console.error('Erro na gravação:', event);
-        toast.error('Erro durante a gravação de áudio');
-        stopRecording();
-      };
-
-      // Iniciar gravação
-      mediaRecorder.start(1000); // Coletar dados a cada 1 segundo
       startTimeRef.current = Date.now();
-      pausedTimeRef.current = 0; // Reset tempo pausado
-      pauseStartRef.current = 0; // Reset início da pausa
-      isPausedRef.current = false; // Reset ref de pausa
+      pausedTimeRef.current = 0;
+      pauseStartRef.current = 0;
+      isPausedRef.current = false;
 
       setIsRecording(true);
       setIsPaused(false);
       setDuration(0);
       setHasRecording(false);
-
-      // LIBERAR TRAVA - GRAVAÇÃO INICIADA COM SUCESSO
-      isInitializingRef.current = false;
-
-      // Iniciar timer
-      durationIntervalRef.current = setInterval(() => {
-        if (startTimeRef.current && !isPausedRef.current) {
-          const elapsed = (Date.now() - startTimeRef.current - pausedTimeRef.current) / 1000;
-          setDuration(elapsed);
-        }
-      }, 100); // Atualizar a cada 100ms para suavidade
       setRecordingData(null);
 
-      // Iniciar monitoramento
+      isInitializingRef.current = false;
+
+      durationIntervalRef.current = setInterval(() => {
+        if (startTimeRef.current && !isPausedRef.current) {
+          setDuration((Date.now() - startTimeRef.current - pausedTimeRef.current) / 1000);
+        }
+      }, 100);
       monitorAudioLevel();
     } catch (error) {
       console.error('Erro ao acessar microfone:', error);
       toast.error('Erro ao acessar o microfone. Verifique as permissões.');
-
-      // LIBERAR TRAVA EM CASO DE ERRO
       isInitializingRef.current = false;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSupported, preferWhatsAppCloudFormat]);
 
-  // Parar gravação
   const stopRecording = useCallback(() => {
-    // CAPTURAR DURAÇÃO ATUAL ANTES DE PARAR TUDO
-    const currentDuration = startTimeRef.current
+    finalDurationRef.current = startTimeRef.current
       ? (Date.now() - startTimeRef.current - pausedTimeRef.current) / 1000
       : duration;
 
-    if (mediaRecorderRef.current && isRecording) {
-      // Armazenar duração final ANTES de parar o MediaRecorder
-      (mediaRecorderRef.current as any).__finalDuration = currentDuration;
+    if (opusRecorderRef.current) {
+      const recorder = opusRecorderRef.current;
+      opusRecorderRef.current = null;
+      // Recorder.stop() returns a promise that resolves once the encoder has
+      // flushed its final pages — only then is opusChunksRef complete.
+      recorder
+        .stop()
+        .then(() => {
+          const totalSize = opusChunksRef.current.reduce((acc, c) => acc + c.byteLength, 0);
+          const merged = new Uint8Array(totalSize);
+          let offset = 0;
+          for (const chunk of opusChunksRef.current) {
+            merged.set(chunk, offset);
+            offset += chunk.byteLength;
+          }
+          const blob = new Blob([merged], { type: 'audio/ogg' });
+          setRecordingData(buildRecordingData(blob, 'audio/ogg', 'ogg'));
+          setHasRecording(true);
+          setIsRecording(false);
+          setIsPaused(false);
+          setAudioLevel(0);
+          cleanupResources();
+        })
+        .catch(err => {
+          console.error('opus-recorder stop failed', err);
+          toast.error('Erro ao processar gravação de áudio');
+          setIsRecording(false);
+          cleanupResources();
+        });
+    } else if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
     }
 
-    // Resetar estados
-    isPausedRef.current = true; // Para o timer imediatamente
-
-    // Limpar timer quando parar
+    isPausedRef.current = true;
     if (durationIntervalRef.current) {
       clearInterval(durationIntervalRef.current);
       durationIntervalRef.current = null;
     }
-
     if (animationFrameRef.current) {
       cancelAnimationFrame(animationFrameRef.current);
       animationFrameRef.current = null;
     }
   }, [isRecording, duration]);
 
-  // Pausar gravação
   const pauseRecording = useCallback(() => {
     if (isRecording && !isPaused) {
       setIsPaused(true);
       isPausedRef.current = true;
-
-      // Registrar quando pausou
       pauseStartRef.current = Date.now();
+      if (opusRecorderRef.current) opusRecorderRef.current.pause();
+      else if (mediaRecorderRef.current) mediaRecorderRef.current.pause();
     }
-  }, [isRecording, isPaused, duration]);
+  }, [isRecording, isPaused]);
 
-  // Retomar gravação
   const resumeRecording = useCallback(() => {
     if (isRecording && isPaused) {
       setIsPaused(false);
       isPausedRef.current = false;
-
-      // Acumular tempo pausado
       if (pauseStartRef.current > 0) {
-        const pauseDuration = Date.now() - pauseStartRef.current;
-        pausedTimeRef.current += pauseDuration;
+        pausedTimeRef.current += Date.now() - pauseStartRef.current;
         pauseStartRef.current = 0;
       }
+      if (opusRecorderRef.current) opusRecorderRef.current.resume();
+      else if (mediaRecorderRef.current) mediaRecorderRef.current.resume();
     }
   }, [isRecording, isPaused]);
 
-  // Deletar gravação
   const deleteRecording = useCallback(() => {
-    if (recordingData) {
-      URL.revokeObjectURL(recordingData.url);
-    }
-
+    if (recordingData) URL.revokeObjectURL(recordingData.url);
     setRecordingData(null);
     setHasRecording(false);
     setDuration(0);

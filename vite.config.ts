@@ -6,48 +6,39 @@ import { createReadStream, existsSync } from 'node:fs';
 import type { Plugin } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
-// FFmpeg WASM is loaded by useAudioRecorder to convert recorded webm → ogg/opus
-// before sending audio to WhatsApp Cloud (Meta API rejects audio/webm). We pin
-// @ffmpeg/core-st@0.11.0 (single-thread) — the multi-thread @ffmpeg/core requires
-// SharedArrayBuffer / COOP+COEP cross-origin isolation, which we don't ship
-// because it breaks cross-origin asset fetches from the Rails backend.
+// opus-recorder ships a single self-contained worker file (encoderWorker.min.js)
+// that bundles libopusenc as inline base64 WASM — no separate .wasm to fetch,
+// no SharedArrayBuffer needed. We self-host it so the SPA does not depend on
+// unpkg.com (CORS-blocked + unreliable).
 //
-// Note: 0.11.0 ships only 2 files (no worker). 0.11.1 added a 0-byte worker
-// placeholder that breaks _locateFile with InvalidCharacterError. Stay on 0.11.0.
-//
-// Assets are self-hosted so we don't depend on unpkg.com (which started
-// returning 404 for the pinned version and is blocked by CORS anyway).
-const FFMPEG_CORE_DIR = path.resolve(__dirname, 'node_modules/@ffmpeg/core-st/dist');
-const FFMPEG_FILES = ['ffmpeg-core.js', 'ffmpeg-core.wasm'];
+// useAudioRecorder.ts captures mic PCM via Web Audio and pipes it through this
+// worker, which produces OGG/Opus PTT-compliant bytes (48kHz, mono, 16kbps,
+// application=VOIP) that WhatsApp Cloud accepts directly — no post-conversion.
+const OPUS_RECORDER_DIR = path.resolve(__dirname, 'node_modules/opus-recorder/dist');
+const OPUS_RECORDER_FILES = ['encoderWorker.min.js'];
 
-function ffmpegCorePlugin(): Plugin {
+function opusRecorderPlugin(): Plugin {
   return {
-    name: 'ffmpeg-core-self-host',
+    name: 'opus-recorder-self-host',
     configureServer(server) {
-      // Serve /ffmpeg/<file> from node_modules during dev.
-      server.middlewares.use('/ffmpeg', (req, res, next) => {
+      // Serve /opus-recorder/<file> from node_modules during dev.
+      server.middlewares.use('/opus-recorder', (req, res, next) => {
         const file = (req.url || '/').replace(/^\/+/, '').split('?')[0];
-        if (!FFMPEG_FILES.includes(file)) return next();
-        const filePath = path.join(FFMPEG_CORE_DIR, file);
+        if (!OPUS_RECORDER_FILES.includes(file)) return next();
+        const filePath = path.join(OPUS_RECORDER_DIR, file);
         if (!existsSync(filePath)) return next();
-        res.setHeader(
-          'Content-Type',
-          file.endsWith('.wasm') ? 'application/wasm' : 'text/javascript',
-        );
-        // Same-origin → no CORS dance, but be permissive for dev tooling.
+        res.setHeader('Content-Type', 'text/javascript');
         res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
         createReadStream(filePath).pipe(res);
       });
     },
     async writeBundle(options) {
-      // Copy the assets into dist/ffmpeg/ so the production bundle ships
-      // the WASM alongside the SPA.
       const outDir = options.dir ?? path.resolve(__dirname, 'dist');
-      const dest = path.join(outDir, 'ffmpeg');
+      const dest = path.join(outDir, 'opus-recorder');
       await mkdir(dest, { recursive: true });
       await Promise.all(
-        FFMPEG_FILES.map(file =>
-          copyFile(path.join(FFMPEG_CORE_DIR, file), path.join(dest, file)),
+        OPUS_RECORDER_FILES.map(file =>
+          copyFile(path.join(OPUS_RECORDER_DIR, file), path.join(dest, file)),
         ),
       );
     },
@@ -59,7 +50,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    ffmpegCorePlugin(),
+    opusRecorderPlugin(),
   ],
   build: {
     // Reduce chunking to minimize requests via ngrok
