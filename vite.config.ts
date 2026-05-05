@@ -7,15 +7,18 @@ import type { Plugin } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 
 // FFmpeg WASM is loaded by useAudioRecorder to convert recorded webm → ogg/opus
-// before sending audio to WhatsApp Cloud (Meta API rejects audio/webm). We use
-// @ffmpeg/core-st@0.11.x (single-thread) on purpose — the newer @ffmpeg/core
-// requires SharedArrayBuffer / COOP+COEP cross-origin isolation, which the
-// SPA does not have and would break other cross-origin asset fetches.
+// before sending audio to WhatsApp Cloud (Meta API rejects audio/webm). We pin
+// @ffmpeg/core-st@0.11.0 (single-thread) — the multi-thread @ffmpeg/core requires
+// SharedArrayBuffer / COOP+COEP cross-origin isolation, which we don't ship
+// because it breaks cross-origin asset fetches from the Rails backend.
+//
+// Note: 0.11.0 ships only 2 files (no worker). 0.11.1 added a 0-byte worker
+// placeholder that breaks _locateFile with InvalidCharacterError. Stay on 0.11.0.
 //
 // Assets are self-hosted so we don't depend on unpkg.com (which started
 // returning 404 for the pinned version and is blocked by CORS anyway).
 const FFMPEG_CORE_DIR = path.resolve(__dirname, 'node_modules/@ffmpeg/core-st/dist');
-const FFMPEG_FILES = ['ffmpeg-core.js', 'ffmpeg-core.wasm', 'ffmpeg-core.worker.js'];
+const FFMPEG_FILES = ['ffmpeg-core.js', 'ffmpeg-core.wasm'];
 
 function ffmpegCorePlugin(): Plugin {
   return {

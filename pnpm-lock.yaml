@@ -15,8 +15,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react-is@17.0.2)(react@19.2.1)(redux@5.0.1)(tailwindcss@4.1.17)
       '@ffmpeg/core-st':
-        specifier: 0.11.1
-        version: 0.11.1
+        specifier: 0.11.0
+        version: 0.11.0
       '@ffmpeg/ffmpeg':
         specifier: ^0.11.6
         version: 0.11.6
@@ -671,8 +671,8 @@ packages:
   '@fastify/deepmerge@3.2.1':
     resolution: {integrity: sha512-N5Oqvltoa2r9z1tbx4xjky0oRR60v+T47Ic4J1ukoVQcptLOrIdRnCSdTGmOmajZuHVKlTnfcmrjyqsGEW1ztA==}
 
-  '@ffmpeg/core-st@0.11.1':
-    resolution: {integrity: sha512-8R0kdXjQjjOgVaChDMUx/abrTD5/g9JFnuZLqB+lvzJbfNpNEFEZPxFR1Fu4eoON+fVq3K3URVKZcHEEGKZVTQ==}
+  '@ffmpeg/core-st@0.11.0':
+    resolution: {integrity: sha512-wktkKHT0LRNOdeRNn5tZlM2Ufwpw6Wo78CP4g2U4dxEOPlWNzod3ldpDgHa9QRjbSXzx2uWFOGgNj0fR1ixqIQ==}
 
   '@ffmpeg/ffmpeg@0.11.6':
     resolution: {integrity: sha512-uN8J8KDjADEavPhNva6tYO9Fj0lWs9z82swF3YXnTxWMBoFLGq3LZ6FLlIldRKEzhOBKnkVfA8UnFJuvGvNxcA==}
@@ -3813,7 +3813,7 @@ snapshots:
 
   '@fastify/deepmerge@3.2.1': {}
 
-  '@ffmpeg/core-st@0.11.1': {}
+  '@ffmpeg/core-st@0.11.0': {}
 
   '@ffmpeg/ffmpeg@0.11.6':
     dependencies:
