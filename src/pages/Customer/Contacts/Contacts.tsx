@@ -20,7 +20,6 @@ import { Contact, ContactsState, ContactsListParams, ContactFormData } from '@/t
 import { BaseFilter, AppliedFilter } from '@/types/core';
 import { ContactCard } from '@/components/contacts';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
-import { extractError } from '@/utils/apiHelpers';
 
 import ContactsHeader from '@/components/contacts/ContactsHeader';
 import ContactsTable from '@/components/contacts/ContactsTable';

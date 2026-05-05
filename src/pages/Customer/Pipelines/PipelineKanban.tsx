@@ -78,7 +78,10 @@ export default function PipelineKanban() {
 
   // Local state for the search input (immediate UI feedback; URL update is debounced)
   const [searchInput, setSearchInput] = useState(() => searchParams.get('search') ?? '');
-  const searchDebounceRef = useRef<ReturnType<typeof setTimeout>>();
+  // useRef<T>() with no initial argument requires T to admit `undefined` on
+  // newer @types/react. Passing `undefined` explicitly + widening the type
+  // keeps the existing semantics (ref is unset until the first debounce fires).
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // Sync input if URL changes externally (browser back/forward).
   // We compare before setting to avoid clobbering keystrokes the user just typed
