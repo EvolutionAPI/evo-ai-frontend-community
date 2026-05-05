@@ -193,6 +193,29 @@ export default function ChannelIcon({
   const brandColor = brandId ? getBrandColor(brandId) : undefined;
   const iconSrc = getChannelIconSrc(channelType, provider);
 
+  // Prefer provider-specific image (Evolution API, Evolution Go, Z-API, Notificame,
+  // Twilio, etc.) over the generic brand glyph. Only fall back to the brand icon
+  // when no provider-specific asset exists for this combination — that way the
+  // provider grid keeps each provider's own logo instead of showing the parent
+  // channel brand for all of them.
+  if (iconSrc) {
+    return (
+      <div
+        className={cn(
+          'rounded-lg bg-slate-100 dark:bg-slate-900 flex items-center justify-center overflow-hidden',
+          containerSizeClasses[size],
+          className
+        )}
+      >
+        <img
+          src={iconSrc}
+          alt={channelType || ''}
+          className={cn('object-contain', sizeClasses[size])}
+        />
+      </div>
+    );
+  }
+
   if (BrandIconComponent) {
     return (
       <div
