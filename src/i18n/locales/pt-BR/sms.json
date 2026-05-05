@@ -12,18 +12,6 @@
       "placeholder": "SMS {{provider}}",
       "required": true
     },
-    "displayName": {
-      "label": "Nome de Exibição",
-      "placeholder": "Ex: Suporte SMS",
-      "helpText": "Nome amigável para identificação",
-      "required": true
-    },
-    "channelName": {
-      "label": "Nome do Canal",
-      "placeholder": "Ex: suporte-sms",
-      "helpText": "Gerado automaticamente do nome de exibição",
-      "required": true
-    },
     "phoneNumber": {
       "label": "Telefone",
       "placeholder": "+5511999999999",

@@ -660,7 +660,7 @@ const Profile = () => {
       toast.success(t('notifications.updated'));
     } catch (error) {
       console.error('Error updating notification settings:', error);
-      toast.error(t('notifications.settingsUpdateError') || 'Error updating notification settings');
+      toast.error(t('notifications.settingsUpdateError'));
 
       // Reverter mudança em caso de erro
       setNotificationSettings(prev => {
@@ -689,13 +689,13 @@ const Profile = () => {
       toast.success(t('audio.updated'));
     } catch (error) {
       console.error('Error saving audio settings:', error);
-      toast.error('Error saving audio settings');
+      toast.error(t('audio.saveError'));
     }
   };
 
   const requestNotificationPermission = async () => {
     if (!('Notification' in window)) {
-      toast.error('Browser notifications are not supported');
+      toast.error(t('notifications.browserPermission.notSupported'));
       return;
     }
 
@@ -1068,9 +1068,12 @@ const Profile = () => {
       conversation_mention: t('notifications.email.types.conversation_mention'),
       participating_conversation_new_message: t(
         'notifications.email.types.participating_conversation_new_message',
-      ) || 'New message in participating conversation',
+      ),
+      sla_missed_first_response: t('notifications.email.types.sla_missed_first_response'),
+      sla_missed_next_response: t('notifications.email.types.sla_missed_next_response'),
+      sla_missed_resolution: t('notifications.email.types.sla_missed_resolution'),
     };
-    return labels[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    return labels[key] ?? key;
   };
 
   const renderZonaPerigo = () => (

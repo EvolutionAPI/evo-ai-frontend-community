@@ -105,7 +105,8 @@
         "title": "Browser Permission",
         "description": "Allow browser push notifications",
         "granted": "Notification permissions granted",
-        "denied": "Notification permissions denied"
+        "denied": "Notification permissions denied",
+        "notSupported": "Browser notifications are not supported"
       },
       "email": {
         "title": "Email Notifications",
@@ -167,7 +168,8 @@
         "playWhenInactive": "Play only when the tab is inactive",
         "alertUnread": "Alert if there are unread assigned conversations"
       },
-      "updated": "Audio settings updated"
+      "updated": "Audio settings updated",
+      "saveError": "Error saving audio settings"
     },
     "twoFactor": {
       "title": "Two-Factor Authentication",
