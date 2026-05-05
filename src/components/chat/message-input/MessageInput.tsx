@@ -79,22 +79,20 @@ const MessageInput: React.FC<MessageInputProps> = ({
   conversationId,
   inboxId,
   channelType,
-  // channelProvider is part of the public prop contract but no longer used here:
-  // EVO-979 widened audio conversion to all WhatsApp providers, so we only
-  // branch on channelType. Kept in the interface to avoid a breaking change
-  // for callers passing it.
-  channelProvider: _channelProvider,
+  channelProvider,
 }) => {
   const { t } = useLanguage('chat');
   const { user } = useAuth();
 
-  // EVO-979: any WhatsApp channel — Cloud, baileys, evolution, evolution_go —
-  // benefits from OGG/Opus PTT format. Previously this was scoped to Cloud only,
-  // which meant Evolution channels (the product's core) still sent webm and
-  // arrived as generic attachments instead of voice messages.
+  // Detectar se é WhatsApp Cloud (apenas Cloud, não baileys/evolution/evolution_go)
   const isWhatsAppCloud = React.useMemo(() => {
-    return channelType === 'Channel::Whatsapp';
-  }, [channelType]);
+    if (channelType !== 'Channel::Whatsapp') return false;
+    const provider = channelProvider?.toLowerCase();
+    const result =
+      provider === 'whatsapp_cloud' || provider === 'default' || !provider || provider === '';
+
+    return result;
+  }, [channelType, channelProvider]);
 
   // Detectar se é Instagram (também precisa de conversão de áudio WebM para MP3)
   const isInstagram = React.useMemo(() => {
