@@ -40,6 +40,11 @@ import { CannedResponsesList } from '../canned-responses';
 import { RichTextEditor, RichTextEditorRef } from '../rich-text-editor';
 
 import { ReplyMode, Message } from '@/types/chat/api';
+import {
+  attachmentI18nKey,
+  mediaTypeFromAttributes,
+  senderNameFromAttributes,
+} from '@/utils/chat/mediaLabels';
 import type { CannedResponse } from '@/types/knowledge';
 
 import { MessageTemplateModal } from '../message-template';
@@ -262,30 +267,20 @@ const MessageInput: React.FC<MessageInputProps> = ({
         setIsSending(true);
         const isPrivate = replyMode === ReplyMode.NOTE;
 
-        // Converter áudio se necessário (WhatsApp Cloud aceita MP3, Instagram aceita WAV)
+        // WhatsApp Cloud e Evolution API: conversão ogg/opus feita no hook (useAudioRecorder).
+        // Instagram ainda precisa de WAV — feito aqui como antes.
         let audioFile = data.file;
-        if ((isWhatsAppCloud || isInstagram) && data.file.type === 'audio/webm') {
+        if (isInstagram && data.file.type === 'audio/webm') {
           try {
-            const { convertAudio, convertToWav } = await import('@/utils/audio/audioConversionUtils');
-            // toast.info(t('messageInput.audio.converting'), { duration: 2000 });
-
-            if (isInstagram) {
-              // Instagram aceita WAV, não MP3
-              const wavBlob = await convertToWav(data.blob);
-              const fileName = data.file.name.replace(/\.webm$/i, '.wav');
-              audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
-            } else if (isWhatsAppCloud) {
-              // WhatsApp Cloud aceita MP3
-              const mp3Blob = await convertAudio(data.blob, 'audio/mp3', 128);
-              const fileName = data.file.name.replace(/\.webm$/i, '.mp3');
-              audioFile = new File([mp3Blob], fileName, { type: 'audio/mp3' });
-            }
+            const { convertToWav } = await import('@/utils/audio/audioConversionUtils');
+            const wavBlob = await convertToWav(data.blob);
+            const fileName = data.file.name.replace(/\.webm$/i, '.wav');
+            audioFile = new File([wavBlob], fileName, { type: 'audio/wav' });
           } catch (conversionError) {
-            console.error('Erro ao converter áudio:', conversionError);
+            console.error('Erro ao converter áudio para WAV:', conversionError);
             toast.warning(t('messageInput.audio.conversionWarning'), {
               description: t('messageInput.audio.conversionWarningDescription'),
             });
-            // Continuar com o arquivo original mesmo em caso de erro
           }
         }
 
@@ -526,6 +521,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   // Componente de preview da resposta
   const ReplyPreview = ({ message, onCancel }: { message: Message; onCancel: () => void }) => {
     const plainContent = message.content ? stripHtml(message.content) : '';
+    const mediaType = mediaTypeFromAttributes(message.content_attributes);
     return (
       <div className="w-full border-t-0 border-x-0 border-b border-border bg-muted/50 px-4 py-3">
         <div className="flex items-start gap-3">
@@ -533,7 +529,10 @@ const MessageInput: React.FC<MessageInputProps> = ({
             <Reply className="h-4 w-4" />
             <span className="font-medium">
               {t('messageInput.replyPreview.replyingTo', {
-                name: message.sender?.name || t('messageInput.replyPreview.userFallback'),
+                name:
+                  senderNameFromAttributes(message.content_attributes) ||
+                  message.sender?.name ||
+                  t('messageInput.replyPreview.userFallback'),
               })}
               {replyMode === ReplyMode.NOTE && (
                 <span className="ml-1 text-xs text-orange-600 font-normal">
@@ -557,10 +556,11 @@ const MessageInput: React.FC<MessageInputProps> = ({
               <span className="line-clamp-2">{plainContent}</span>
             ) : message.attachments && message.attachments.length > 0 ? (
               <span className="italic">
-                {t('messageInput.replyPreview.fileAttachment', {
-                  fileType:
-                    message.attachments[0].file_type || t('messageInput.replyPreview.fileFallback'),
-                })}
+                {t(`messageInput.replyPreview.${attachmentI18nKey(message.attachments[0].file_type)}`)}
+              </span>
+            ) : mediaType ? (
+              <span className="italic">
+                {t(`messageInput.replyPreview.${attachmentI18nKey(mediaType)}`)}
               </span>
             ) : (
               <span className="italic">{t('messageInput.replyPreview.noContent')}</span>

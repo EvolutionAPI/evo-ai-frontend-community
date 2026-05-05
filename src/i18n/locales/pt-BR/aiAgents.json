@@ -735,7 +735,10 @@
         "description": "Configure instruções para o agente fazer transferência do atendimento.",
         "transferTo": "Transferir para:",
         "aHuman": "Humano",
+        "anAgent": "Agente",
         "aTeam": "Time",
+        "selectAgent": "Selecione o agente:",
+        "selectAgentPlaceholder": "Selecione um agente",
         "selectUser": "Selecione o usuário:",
         "selectUserPlaceholder": "Selecione um usuário",
         "selectTeam": "Selecione o time:",
@@ -1151,7 +1154,21 @@
         "disconnect": "Desconectar"
       },
       "github": {
-        "description": "Integre seu agente com GitHub para acessar repositórios e informações de código."
+        "description": "Integre seu agente com GitHub para acessar repositórios e informações de código.",
+        "configTitle": "Configurar GitHub",
+        "connectTitle": "Conectar com GitHub",
+        "connectDescription": "Conecte sua conta GitHub para permitir que o agente acesse repositórios e informações de código",
+        "connectButton": "Conectar com GitHub",
+        "connecting": "Conectando...",
+        "connected": "Conectado",
+        "connectedAs": "Conectado como",
+        "connectedDescription": "Sua conta GitHub está conectada e o agente pode acessar seus repositórios.",
+        "toolsTitle": "Ferramentas Disponíveis",
+        "toolsDescription": "Selecione quais ferramentas do GitHub o agente poderá usar",
+        "selectAll": "Selecionar todas",
+        "noTools": "Nenhuma ferramenta disponível",
+        "saveConfig": "SALVAR CONFIGURAÇÕES",
+        "disconnect": "Desconectar"
       },
       "canva": {
         "description": "Com Canva seu agente será capaz de criar e editar designs, apresentações e materiais visuais.",
@@ -1411,13 +1428,18 @@
       "buttons": {
         "cancel": "Cancelar",
         "generate": "Gerar Prompt",
-        "generating": "Gerando..."
+        "generating": "Gerando...",
+        "review": "Revisar Prompt",
+        "reviewing": "Revisando..."
       },
       "messages": {
         "accountIdNotFound": "ID da conta não encontrado",
         "fillAtLeastOne": "Preencha pelo menos um campo para gerar o prompt",
+        "fillPromptToReview": "Por favor, insira um prompt para revisar",
         "success": "Prompt gerado com sucesso!",
-        "error": "Erro ao gerar prompt"
+        "error": "Erro ao gerar prompt",
+        "reviewSuccess": "Prompt revisado com sucesso!",
+        "reviewError": "Erro ao revisar prompt"
       }
     },
     "step6": {

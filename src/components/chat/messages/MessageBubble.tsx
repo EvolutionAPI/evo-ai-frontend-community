@@ -402,10 +402,19 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
       )}
 
       <div className={`${isThreadReply ? 'max-w-[calc(70%-2rem)]' : 'max-w-[70%]'} ${isOwn ? 'ml-auto' : ''}`}>
-        {/* 📛 Nome: mostrar apenas para contatos (lado esquerdo) - sempre mostrar em replies */}
-        {!isOwn && (isThreadReply || !showAvatar) && (
-          <div className="text-xs mb-1 flex items-center gap-1.5 text-muted-foreground">
-            {message.sender?.name || t('messages.messageBubble.userFallback')}
+        {/* Em conversa de grupo o backend anexa content_attributes.sender_name por mensagem;
+            destaca o participante acima da bolha. Em 1:1, mantém o comportamento antigo. */}
+        {!isOwn && (message.content_attributes?.sender_name || isThreadReply || !showAvatar) && (
+          <div
+            className={`text-xs mb-1 flex items-center gap-1.5 ${
+              message.content_attributes?.sender_name
+                ? 'font-medium text-primary'
+                : 'text-muted-foreground'
+            }`}
+          >
+            {message.content_attributes?.sender_name ||
+              message.sender?.name ||
+              t('messages.messageBubble.userFallback')}
           </div>
         )}
 

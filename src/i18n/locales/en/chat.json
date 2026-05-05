@@ -223,7 +223,11 @@
     "noOptions": "No options available",
     "cancel": "Cancel",
     "applying": "Applying...",
-    "apply": "Apply"
+    "apply": "Apply",
+    "createLabel": "Create label: \"{{name}}\"",
+    "creating": "Creating...",
+    "newLabel": "Create new label",
+    "createLabelError": "Could not create label. Please try again."
   },
   "audioRecorder": {
     "notSupported": "Audio recording not supported in this browser",
@@ -702,7 +706,11 @@
       "asPrivateNote": "(as private note)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "File",
-      "noContent": "Message with no content"
+      "noContent": "Message with no content",
+      "imageAttachment": "📷 Image",
+      "videoAttachment": "🎥 Video",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Location"
     },
     "signature": {
       "enable": "Enable signature",

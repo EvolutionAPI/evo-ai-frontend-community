@@ -222,7 +222,11 @@
     "noOptions": "No hay opciones disponibles",
     "cancel": "Cancelar",
     "applying": "Aplicando...",
-    "apply": "Aplicar"
+    "apply": "Aplicar",
+    "createLabel": "Crear etiqueta: \"{{name}}\"",
+    "creating": "Creando...",
+    "newLabel": "Crear nueva etiqueta",
+    "createLabelError": "No se pudo crear la etiqueta. Inténtalo de nuevo."
   },
   "audioRecorder": {
     "notSupported": "Grabación de audio no compatible con este navegador",
@@ -665,7 +669,11 @@
       "asPrivateNote": "(como nota privada)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "Archivo",
-      "noContent": "Mensaje sin contenido"
+      "noContent": "Mensaje sin contenido",
+      "imageAttachment": "📷 Imagen",
+      "videoAttachment": "🎥 Vídeo",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Ubicación"
     },
     "signature": {
       "enable": "Habilitar firma",

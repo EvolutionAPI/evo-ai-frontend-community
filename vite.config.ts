@@ -43,6 +43,8 @@ export default defineConfig({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      // NOTE: COOP/COEP removed — @ffmpeg/core-st (single-thread) does NOT need SharedArrayBuffer.
+      // Keeping these headers blocks cross-origin audio from the Rails backend (COEP require-corp).
     },
     hmr: {
       // Reduce HMR overhead via ngrok

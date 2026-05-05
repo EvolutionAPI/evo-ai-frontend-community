@@ -7,6 +7,11 @@
   "creating": "Criando Canal...",
   "fields": {
     "basicInfo": "Informações Básicas",
+    "name": {
+      "label": "Nome do Canal",
+      "placeholder": "SMS {{provider}}",
+      "required": true
+    },
     "displayName": {
       "label": "Nome de Exibição",
       "placeholder": "Ex: Suporte SMS",

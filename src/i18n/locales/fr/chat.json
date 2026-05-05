@@ -222,7 +222,11 @@
     "noOptions": "Aucune option disponible",
     "cancel": "Annuler",
     "applying": "Application...",
-    "apply": "Appliquer"
+    "apply": "Appliquer",
+    "createLabel": "Créer l'étiquette : \"{{name}}\"",
+    "creating": "Création...",
+    "newLabel": "Créer une nouvelle étiquette",
+    "createLabelError": "Impossible de créer l'étiquette. Veuillez réessayer."
   },
   "audioRecorder": {
     "notSupported": "Enregistrement audio non pris en charge dans ce navigateur",
@@ -665,7 +669,11 @@
       "asPrivateNote": "(comme note privée)",
       "fileAttachment": "📎 {{fileType}}",
       "fileFallback": "Fichier",
-      "noContent": "Message sans contenu"
+      "noContent": "Message sans contenu",
+      "imageAttachment": "📷 Image",
+      "videoAttachment": "🎥 Vidéo",
+      "audioAttachment": "🎵 Audio",
+      "locationAttachment": "📍 Emplacement"
     },
     "signature": {
       "enable": "Activer la signature",
