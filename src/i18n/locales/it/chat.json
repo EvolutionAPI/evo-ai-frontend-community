@@ -214,7 +214,8 @@
     "apply": "Applica",
     "createLabel": "Crea etichetta: \"{{name}}\"",
     "creating": "Creazione...",
-    "newLabel": "Crea nuova etichetta"
+    "newLabel": "Crea nuova etichetta",
+    "createLabelError": "Impossibile creare l'etichetta. Riprova."
   },
   "audioRecorder": {
     "notSupported": "Registrazione audio non supportata in questo browser",

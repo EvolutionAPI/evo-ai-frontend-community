@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -64,7 +64,6 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
   const [extraOptions, setExtraOptions] = useState<AssignmentOption[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const [isLabelModalOpen, setIsLabelModalOpen] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const defaultSearchPlaceholder = searchPlaceholder || t('assignmentModal.searchPlaceholder');
 
@@ -85,11 +84,12 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
 
   const allOptions = useMemo(() => [...options, ...extraOptions], [options, extraOptions]);
 
-  // Filter options based on search term
+  // Filter options based on search term (trimmed to stay consistent with hasExactMatch).
+  const normalizedSearch = searchTerm.trim().toLowerCase();
   const filteredOptions = allOptions.filter(
     option =>
-      option.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      option.description?.toLowerCase().includes(searchTerm.toLowerCase()),
+      option.name.toLowerCase().includes(normalizedSearch) ||
+      option.description?.toLowerCase().includes(normalizedSearch),
   );
 
   const hasExactMatch =
@@ -117,7 +117,8 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
       setSearchTerm('');
       setIsLabelModalOpen(false);
     } catch {
-      // error handled by caller
+      // Caller is expected to surface a toast; we keep the LabelModal open so the user can retry
+      // without losing the form state.
     } finally {
       setIsCreating(false);
     }
@@ -217,7 +218,6 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
-              ref={searchInputRef}
               type="text"
               placeholder={defaultSearchPlaceholder}
               value={searchTerm}

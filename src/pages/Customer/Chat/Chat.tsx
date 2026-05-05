@@ -44,6 +44,8 @@ import { BaseFilter } from '@/types/core';
 import type { DashboardApp } from '../../../types/integrations';
 import type { AssignmentOption, AssignmentType } from '@/components/chat/assignment';
 import { labelsService } from '@/services/contacts/labelsService';
+import { useAppDataStore } from '@/store/appDataStore';
+import type { Label } from '@/types/settings';
 
 const ContactSidebar = React.lazy(() => import('@/components/chat/contact-sidebar/ContactSidebar'));
 
@@ -63,6 +65,7 @@ const UUID_V4_REGEX =
 const Chat = () => {
   const { t } = useLanguage('chat');
   const { can, isReady: permissionsReady } = usePermissions();
+  const fetchLabels = useAppDataStore(state => state.fetchLabels);
   const { conversationId } = useParams<{ conversationId?: string }>();
   const navigate = useNavigate();
   const chatContext = useChatContext();
@@ -512,9 +515,24 @@ const Chat = () => {
     color: string;
     show_on_sidebar?: boolean;
   }): Promise<AssignmentOption> => {
-    const result = await labelsService.createLabel(data);
-    const label = result as any;
-    return { id: label.id, name: label.title, color: label.color };
+    try {
+      // labelsService.createLabel returns the unwrapped Label (extractData unwraps response.data.data)
+      // despite the declared LabelResponse type — service typing is inconsistent across the codebase.
+      const label = (await labelsService.createLabel(data)) as unknown as Label;
+      if (!label?.id || !label?.title) {
+        throw new Error('Invalid label payload returned from API');
+      }
+      void fetchLabels(true);
+      return { id: label.id, name: label.title, color: label.color };
+    } catch (error) {
+      console.error('Error creating label inline:', error);
+      const message =
+        error instanceof AxiosError
+          ? error.response?.data?.error?.message || error.response?.data?.message
+          : undefined;
+      toast.error(message || t('assignmentModal.createLabelError'));
+      throw error;
+    }
   };
 
   // Assignment modal handlers
@@ -819,8 +837,12 @@ const Chat = () => {
               multiSelect={assignmentModalData.multiSelect}
               searchPlaceholder={assignmentModalData.searchPlaceholder}
               isLoading={assignmentHandlers.isLoadingAssignmentData}
-              canCreateInline={assignmentType === 'label'}
-              onCreateInline={assignmentType === 'label' ? handleCreateLabelInline : undefined}
+              canCreateInline={assignmentType === 'label' && can('labels', 'create')}
+              onCreateInline={
+                assignmentType === 'label' && can('labels', 'create')
+                  ? handleCreateLabelInline
+                  : undefined
+              }
             />
           )}
         </Suspense>
