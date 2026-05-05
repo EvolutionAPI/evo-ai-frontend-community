@@ -105,7 +105,8 @@
         "title": "Permission du Navigateur",
         "description": "Autoriser les notifications push du navigateur",
         "granted": "Permissions de notification accordées",
-        "denied": "Permissions de notification refusées"
+        "denied": "Permissions de notification refusées",
+        "notSupported": "Les notifications du navigateur ne sont pas prises en charge"
       },
       "email": {
         "title": "Notifications par Email",
@@ -167,7 +168,8 @@
         "playWhenInactive": "Jouer uniquement lorsque l'onglet est inactif",
         "alertUnread": "Alerter s'il existe des conversations non lues assignées"
       },
-      "updated": "Paramètres audio mis à jour"
+      "updated": "Paramètres audio mis à jour",
+      "saveError": "Erreur lors de l'enregistrement des paramètres audio"
     },
     "twoFactor": {
       "title": "Authentification à Deux Facteurs",

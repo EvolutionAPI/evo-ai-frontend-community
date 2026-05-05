@@ -7,16 +7,9 @@
   "creating": "Criando Canal...",
   "fields": {
     "basicInfo": "Informações Básicas",
-    "displayName": {
-      "label": "Nome de Exibição",
-      "placeholder": "Ex: Suporte SMS",
-      "helpText": "Nome amigável para identificação",
-      "required": true
-    },
-    "channelName": {
+    "name": {
       "label": "Nome do Canal",
-      "placeholder": "Ex: suporte-sms",
-      "helpText": "Gerado automaticamente do nome de exibição",
+      "placeholder": "SMS {{provider}}",
       "required": true
     },
     "phoneNumber": {

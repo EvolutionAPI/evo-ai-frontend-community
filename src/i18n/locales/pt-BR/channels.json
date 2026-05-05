@@ -605,6 +605,7 @@
         "editTemplate": "Editar Template",
         "cancel": "Cancelar"
       },
+      "newTemplate": "Novo Modelo de Mensagem",
       "table": {
         "name": "Nome",
         "category": "Categoria",
@@ -1570,6 +1571,67 @@
     "general": {
       "success": {
         "channelCreated": "Canal criado com sucesso"
+      }
+    },
+    "moderation": {
+      "title": "Moderação de Comentários",
+      "description": "Revise e modere comentários do Facebook que requerem aprovação",
+      "filters": {
+        "status": "Status",
+        "type": "Tipo",
+        "all": "Todos",
+        "pending": "Pendente",
+        "approved": "Aprovado",
+        "rejected": "Rejeitado",
+        "allTypes": "Todos os Tipos"
+      },
+      "types": {
+        "explicitWords": "Palavras Explícitas",
+        "offensiveSentiment": "Sentimento Ofensivo",
+        "responseApproval": "Aprovação de Resposta"
+      },
+      "status": {
+        "pending": "Pendente",
+        "approved": "Aprovado",
+        "rejected": "Rejeitado"
+      },
+      "actions": {
+        "approve": "Aprovar",
+        "reject": "Rejeitar",
+        "regenerate": "Regenerar Resposta",
+        "deleteComment": "Excluir Comentário",
+        "blockUser": "Bloquear Usuário",
+        "sendResponse": "Enviar Resposta"
+      },
+      "commentId": "ID do Comentário",
+      "conversation": "Conversa",
+      "originalComment": "Comentário Original",
+      "generatedResponse": "Resposta Gerada",
+      "rejectionReason": "Motivo da Rejeição",
+      "rejectionReasonLabel": "Motivo da Rejeição (Opcional)",
+      "rejectionReasonPlaceholder": "Digite o motivo da rejeição...",
+      "approvedBy": "Aprovado por {{name}} em {{date}}",
+      "rejectedBy": "Rejeitado por {{name}} em {{date}}",
+      "totalCount": "Total: {{count}}",
+      "empty": {
+        "title": "Nenhuma moderação encontrada",
+        "description": "Não há solicitações de moderação correspondentes aos seus filtros."
+      },
+      "pagination": {
+        "previous": "Anterior",
+        "next": "Próximo",
+        "page": "Página {{current}} de {{total}}"
+      },
+      "success": {
+        "approved": "Moderação aprovada com sucesso",
+        "rejected": "Moderação rejeitada com sucesso",
+        "regenerated": "Resposta regenerada com sucesso"
+      },
+      "errors": {
+        "loadError": "Erro ao carregar moderações",
+        "approveError": "Erro ao aprovar moderação",
+        "rejectError": "Erro ao rejeitar moderação",
+        "regenerateError": "Erro ao regenerar resposta"
       }
     }
   },

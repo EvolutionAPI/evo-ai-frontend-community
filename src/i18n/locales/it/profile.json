@@ -105,7 +105,8 @@
         "title": "Autorizzazione browser",
         "description": "Consenti notifiche push dal browser",
         "granted": "Autorizzazioni di notifica concesse",
-        "denied": "Autorizzazioni di notifica negate"
+        "denied": "Autorizzazioni di notifica negate",
+        "notSupported": "Le notifiche del browser non sono supportate"
       },
       "email": {
         "title": "Notifiche via email",
@@ -167,7 +168,8 @@
         "playWhenInactive": "Riproduci solo quando la scheda è inattiva",
         "alertUnread": "Avvisa se esistono conversazioni non lette assegnate"
       },
-      "updated": "Impostazioni audio aggiornate"
+      "updated": "Impostazioni audio aggiornate",
+      "saveError": "Errore durante il salvataggio delle impostazioni audio"
     },
     "twoFactor": {
       "title": "Autenticazione a due fattori",

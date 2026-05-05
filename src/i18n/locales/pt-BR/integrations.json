@@ -65,6 +65,10 @@
     "paypal": {
       "name": "PayPal",
       "description": "Integre com PayPal para gerenciar pagamentos, transações e informações de clientes"
+    },
+    "canva": {
+      "name": "Canva",
+      "description": "Crie e edite designs, apresentações e materiais visuais com o Canva"
     }
   },
   "messages": {
@@ -395,6 +399,17 @@
       "createError": "Erro ao criar aplicação do dashboard",
       "updateSuccess": "Aplicação do dashboard atualizada com sucesso",
       "updateError": "Erro ao atualizar aplicação do dashboard"
+    },
+    "page": {
+      "poweredBy": "Desenvolvido por",
+      "error": {
+        "title": "Erro",
+        "notFound": "Aplicação não encontrada",
+        "heading": "Não foi possível carregar a aplicação",
+        "description": "A aplicação solicitada não foi encontrada ou você não tem permissão para acessá-la.",
+        "goBack": "Voltar",
+        "invalidUrl": "URL inválida"
+      }
     }
   },
   "googleTranslate": {
@@ -636,6 +651,11 @@
           "hint": "Digite sua chave da API do OpenAI para configurar a integração",
           "required": "API Key é obrigatória",
           "invalid": "API Key deve começar com \"sk-\""
+        },
+        "enableAudioTranscription": {
+          "label": "Habilitar Transcrição de Áudio",
+          "description": "Transcrever automaticamente mensagens de áudio recebidas usando a API Whisper do OpenAI",
+          "hint": "Quando habilitado, todas as mensagens de áudio recebidas serão automaticamente transcritas e exibidas junto ao player de áudio"
         }
       },
       "features": {
