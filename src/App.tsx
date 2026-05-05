@@ -41,6 +41,8 @@ function App() {
       'touchstart',
     ];
     const unlock = () => unlockAudioContext();
+    // `once: true` removes the listener automatically after first fire,
+    // so no manual cleanup is needed for these.
     gestureEvents.forEach(evt => window.addEventListener(evt, unlock, { once: true }));
 
     // visibilitychange does not count as a user gesture, but when the tab
@@ -51,7 +53,6 @@ function App() {
     document.addEventListener('visibilitychange', onVisibility);
 
     return () => {
-      gestureEvents.forEach(evt => window.removeEventListener(evt, unlock));
       document.removeEventListener('visibilitychange', onVisibility);
     };
   }, []);

@@ -28,15 +28,17 @@ const getAudioContextClass = (): AudioContextClass | null => {
   return window.AudioContext || (window as unknown as { webkitAudioContext: AudioContextClass }).webkitAudioContext || null;
 };
 
-// Shared AudioContext — created once and reused to survive browser autoplay restrictions
-let sharedAudioContext: AudioContext | null = null;
-let audioContextUnlocked = false;
+// Shared AudioContext — created once and reused to survive browser autoplay restrictions.
+// The "unlocked" flag lives on the context itself (not module-global) so that recreating
+// the context after close() / HMR / suspend automatically requires a fresh unlock.
+type UnlockableAudioContext = AudioContext & { __unlocked?: boolean };
+let sharedAudioContext: UnlockableAudioContext | null = null;
 
-const getOrCreateAudioContext = (): AudioContext | null => {
+const getOrCreateAudioContext = (): UnlockableAudioContext | null => {
   const Ctx = getAudioContextClass();
   if (!Ctx) return null;
   if (!sharedAudioContext || sharedAudioContext.state === 'closed') {
-    sharedAudioContext = new Ctx();
+    sharedAudioContext = new Ctx() as UnlockableAudioContext;
   }
   return sharedAudioContext;
 };
@@ -47,17 +49,16 @@ const getOrCreateAudioContext = (): AudioContext | null => {
  * allowed by the browser's autoplay policy even when the tab is inactive.
  */
 export const unlockAudioContext = (): void => {
-  if (audioContextUnlocked) return;
   const ctx = getOrCreateAudioContext();
-  if (!ctx) return;
+  if (!ctx || ctx.__unlocked) return;
   if (ctx.state === 'suspended') {
     ctx.resume().then(() => {
-      audioContextUnlocked = true;
+      ctx.__unlocked = true;
     }).catch(() => {
       // Ignore — will retry on next user gesture
     });
   } else {
-    audioContextUnlocked = true;
+    ctx.__unlocked = true;
   }
 };
 
@@ -113,7 +114,9 @@ const playFileWithAudioContext = async (toneFile: string, tone: NotificationTone
     const source = ctx.createBufferSource();
     const gainNode = ctx.createGain();
     source.buffer = audioBuffer;
-    gainNode.gain.value = 0.5;
+    // Match oscillator fallback volume so user perception stays stable when the
+    // .mp3 path falls back to the synthesized tone.
+    gainNode.gain.value = 0.3;
     source.connect(gainNode);
     gainNode.connect(ctx.destination);
     source.start(0);
@@ -133,7 +136,6 @@ export const closeSharedAudioContext = (): void => {
     });
   }
   sharedAudioContext = null;
-  audioContextUnlocked = false;
 };
 
 let audioSettingsCache: AudioSettings | null = null;
