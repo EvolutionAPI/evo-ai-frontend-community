@@ -381,10 +381,36 @@
     "saving": "Saving...",
     "save": "Save Changes"
   },
+  "stageAutomation": {
+    "title": "Automation Rules",
+    "description": "Define rules that automatically trigger actions when specific events occur in this stage.",
+    "noRules": "No automation rules configured. Click \"Add Rule\" to get started.",
+    "addRule": "Add Rule",
+    "rule": "Rule",
+    "when": "When",
+    "then": "Then",
+    "anyValue": "Any",
+    "labelNamePlaceholder": "Label name...",
+    "selectStage": "Select stage...",
+    "selectAgent": "Select agent...",
+    "noOtherStages": "No other stages available",
+    "noAgents": "No agents available",
+    "triggers": {
+      "label_added": "Label added",
+      "conversation_status_changed": "Conversation status changed",
+      "custom_attribute_updated": "Custom attribute updated"
+    },
+    "actions": {
+      "move_to_stage": "Move to stage",
+      "assign_agent": "Assign agent",
+      "apply_label": "Apply label"
+    }
+  },
   "editStage": {
     "title": "Edit Stage",
     "description": "Edit the information of this stage of the pipeline.",
     "details": "Details",
+    "automation": "Automation",
     "customAttributes": "Attributes",
     "attributesDescription": "Configure attributes for this stage",
     "name": "Stage Name",

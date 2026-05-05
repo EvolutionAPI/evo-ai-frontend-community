@@ -342,10 +342,36 @@
     "saving": "Guardando...",
     "save": "Guardar Cambios"
   },
+  "stageAutomation": {
+    "title": "Reglas de Automatización",
+    "description": "Define reglas que disparan acciones automáticamente cuando ocurren eventos en esta etapa.",
+    "noRules": "No hay reglas configuradas. Haz clic en \"Agregar Regla\" para comenzar.",
+    "addRule": "Agregar Regla",
+    "rule": "Regla",
+    "when": "Cuando",
+    "then": "Entonces",
+    "anyValue": "Cualquiera",
+    "labelNamePlaceholder": "Nombre de la etiqueta...",
+    "selectStage": "Seleccionar etapa...",
+    "selectAgent": "Seleccionar agente...",
+    "noOtherStages": "No hay otras etapas disponibles",
+    "noAgents": "No hay agentes disponibles",
+    "triggers": {
+      "label_added": "Etiqueta agregada",
+      "conversation_status_changed": "Estado de conversación cambiado",
+      "custom_attribute_updated": "Atributo personalizado actualizado"
+    },
+    "actions": {
+      "move_to_stage": "Mover a etapa",
+      "assign_agent": "Asignar agente",
+      "apply_label": "Aplicar etiqueta"
+    }
+  },
   "editStage": {
     "title": "Editar Etapa",
     "description": "Edite la información de esta etapa del pipeline.",
     "details": "Detalles",
+    "automation": "Automatización",
     "customAttributes": "Atributos",
     "attributesDescription": "Configure atributos para esta etapa",
     "name": "Nombre de la Etapa",
