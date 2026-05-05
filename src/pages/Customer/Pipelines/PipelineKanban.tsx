@@ -1188,9 +1188,15 @@ export default function PipelineKanban() {
                           onDragStart={() => handleDragStart(item)}
                           onDragEnd={handleDragEnd}
                           onClick={() => {
-                            if (!isDraggingRef.current && Date.now() > suppressClickUntilRef.current) {
-                              handleEditItem(item);
+                            if (isDraggingRef.current || Date.now() <= suppressClickUntilRef.current) {
+                              return;
                             }
+                            const conversationUuid = item.conversation?.uuid;
+                            if (conversationUuid) {
+                              navigate(`/conversations/${conversationUuid}`);
+                              return;
+                            }
+                            handleEditItem(item);
                           }}
                         >
                           {/* Card Options Menu */}
