@@ -1,7 +1,7 @@
 import { useLanguage } from '@/hooks/useLanguage';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, Button } from '@evoapi/design-system';
 import { Plus, Check, Settings } from 'lucide-react';
-import { getBrandIcon } from '@/components/BrandIcon';
+import BrandIcon, { getBrandIcon } from '@/components/BrandIcon';
 
 interface AvailableMCP {
   id: string;
@@ -95,16 +95,15 @@ export function MCPCard({
     return null;
   };
 
-  const BrandIconComponent = getBrandIcon(mcp.id);
+  const hasBrandIcon = Boolean(getBrandIcon(mcp.id));
 
   return (
     <Card className="hover:border-primary/50 transition-colors flex flex-col">
       <CardHeader className="flex flex-col items-center text-center space-y-4 pb-4">
-        {/* Logo */}
+        {/* Logo — BrandIcon applies the official brand color so each MCP card
+            renders in its real brand palette instead of monochrome. */}
         <div className="flex items-center justify-center w-20 h-20 p-3 rounded-lg bg-muted/50">
-          {BrandIconComponent ? (
-            <BrandIconComponent size={48} className="h-12 w-12" />
-          ) : null}
+          {hasBrandIcon ? <BrandIcon id={mcp.id} size={48} className="h-12 w-12" /> : null}
         </div>
 
         {/* Title */}

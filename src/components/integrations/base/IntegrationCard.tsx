@@ -4,7 +4,7 @@ import { Button, Card, CardContent } from '@evoapi/design-system';
 import { Settings, Power } from 'lucide-react';
 import { Integration } from '@/types/integrations';
 import BaseStatusBadge from '@/components/base/BaseStatusBadge';
-import { getBrandIcon } from '@/components/BrandIcon';
+import BrandIcon, { getBrandIcon } from '@/components/BrandIcon';
 
 interface IntegrationCardProps {
   integration: Integration;
@@ -29,7 +29,7 @@ export default function IntegrationCard({
   const logoPath = `/integrations/${integration.id}.png`;
   const logoPathDark = `/integrations/${integration.id}-dark.png`;
 
-  const BrandIconComponent = getBrandIcon(integration.id);
+  const hasBrandIcon = Boolean(getBrandIcon(integration.id));
 
   const handleImageError = () => setImageError(true);
   const handleDarkImageError = () => setDarkImageError(true);
@@ -62,8 +62,8 @@ export default function IntegrationCard({
         {/* Header with logo, name and status */}
         <div className="flex items-center gap-3 p-4 border-b border-sidebar-border">
           <div className="w-10 h-10 rounded-lg overflow-hidden bg-sidebar-accent/20 flex items-center justify-center flex-shrink-0 relative">
-            {BrandIconComponent ? (
-              <BrandIconComponent size={28} className="w-7 h-7" />
+            {hasBrandIcon ? (
+              <BrandIcon id={integration.id} size={28} className="w-7 h-7" />
             ) : (
               <>
                 {/* Logo padrão:

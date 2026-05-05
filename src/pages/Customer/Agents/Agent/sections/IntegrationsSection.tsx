@@ -13,7 +13,7 @@ import ElevenLabsConfigDialog from '@/components/integrations/ElevenLabsConfigDi
 import GoogleCalendarConfigDialog from '@/components/integrations/GoogleCalendarConfigDialog';
 import GoogleSheetsConfigDialog from '@/components/integrations/GoogleSheetsConfigDialog';
 import { useIntegrations } from '@/hooks/useIntegrations';
-import { getBrandIcon } from '@/components/BrandIcon';
+import BrandIcon from '@/components/BrandIcon';
 
 interface Integration {
   id: string;
@@ -120,22 +120,19 @@ const IntegrationsSection = ({
                     className="hover:border-primary/50 transition-colors flex flex-col"
                   >
                     <CardHeader className="flex flex-col items-center text-center space-y-4 pb-4">
-                      {/* Logo centralizada e maior */}
+                      {/* Logo centralizada e maior — BrandIcon aplica a cor oficial da marca */}
                       <div className="flex items-center justify-center w-20 h-20 p-3 rounded-lg bg-muted/50">
-                        {(() => {
-                          const BrandIconComponent = getBrandIcon(integration.id);
-                          if (BrandIconComponent) {
-                            return <BrandIconComponent size={48} className="h-12 w-12" />;
-                          }
-                          return null;
-                        })()}
+                        <BrandIcon id={integration.id} size={48} className="h-12 w-12" />
                       </div>
 
                       {/* Título */}
                       <CardTitle className="text-xl font-semibold">{integration.name}</CardTitle>
 
-                      {/* Coming Soon Badge - shown when not connected */}
-                      {!connected && (
+                      {/* Coming Soon Badge — only for integrations that depend on OAuth credentials
+                          not yet configured globally. ElevenLabs / Google Calendar / Google Sheets
+                          are always available (API key or per-agent OAuth), so no "coming soon"
+                          badge for them — just the ATIVAR / ATIVO state below. */}
+                      {!connected && !isAlwaysAvailable && (
                         <span className="px-1 py-0.5 text-[12px] font-medium bg-blue-500/20 text-blue-400 rounded border border-blue-500/30">
                           {t('edit.integrations.comingSoon') || 'Em breve'}
                         </span>
@@ -181,8 +178,16 @@ const IntegrationsSection = ({
                       ) : hasCredentials ? (
                         <Button
                           variant="outline"
-                          className="w-full gap-2 opacity-50 cursor-not-allowed"
-                          disabled
+                          className="w-full gap-2"
+                          onClick={() => {
+                            if (integration.id === 'elevenlabs') {
+                              setShowElevenLabsConfig(true);
+                            } else if (integration.id === 'google-calendar') {
+                              setShowGoogleCalendarConfig(true);
+                            } else if (integration.id === 'google-sheets') {
+                              setShowGoogleSheetsConfig(true);
+                            }
+                          }}
                         >
                           <ExternalLink className="h-4 w-4" />
                           {t('edit.integrations.activate') || 'ATIVAR'}
