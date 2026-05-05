@@ -24,6 +24,7 @@ import MessageText from '@/components/chat/messages/MessageText';
 import MessageImage from '@/components/chat/messages/MessageImage';
 import MessageFile from '@/components/chat/messages/MessageFile';
 import MessageAudio from '@/components/chat/messages/MessageAudio';
+import MessageVideo from '@/components/chat/messages/MessageVideo';
 import MessageLocation from '@/components/chat/messages/MessageLocation';
 import MessageStatus from '@/components/chat/messages/MessageStatus';
 import SystemMessage from '@/components/chat/messages/SystemMessage';
@@ -210,7 +211,6 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
           </>
         );
       } else if (fileType === 'video' || fileType.includes('video/')) {
-        // 🔧 Vídeos são tratados como arquivos por enquanto (pode criar MessageVideo depois)
         return (
           <>
             {message.content && (
@@ -221,7 +221,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
                 contentAttributes={message.content_attributes}
               />
             )}
-            <MessageFile attachments={message.attachments} />
+            <MessageVideo attachments={message.attachments} />
           </>
         );
       } else {
@@ -260,8 +260,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = ({
       case 'audio':
         return <MessageAudio attachments={message.attachments || []} />;
       case 'video':
-        // 🔧 Vídeos são tratados como arquivos por enquanto
-        return <MessageFile attachments={message.attachments || []} />;
+        return <MessageVideo attachments={message.attachments || []} />;
       default:
         return (
           <MessageText
