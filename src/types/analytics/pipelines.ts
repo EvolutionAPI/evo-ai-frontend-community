@@ -234,6 +234,7 @@ export interface PipelineItem {
   };
   conversation?: {
     id: string;
+    uuid?: string;
     display_id: string;
     status: string;
     priority?: string | null;
