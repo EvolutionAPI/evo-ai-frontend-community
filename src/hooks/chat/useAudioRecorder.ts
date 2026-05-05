@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { toast } from 'sonner';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { toBlobURL, fetchFile } from '@ffmpeg/util';
@@ -29,23 +29,88 @@ interface UseAudioRecorderOptions {
   preferWhatsAppCloudFormat?: boolean;
 }
 
-// FFmpeg WASM singleton — loaded once, reused across recordings
+// FFmpeg WASM singleton with reference counting — loaded once on demand,
+// shared across hook instances, terminated when the last consumer unmounts.
+//
+// Self-hosted single-thread umd core is copied from `@ffmpeg/core` into
+// `public/ffmpeg/` at install/build time (see `scripts/copy-ffmpeg-core.mjs`).
+// Override the base URL via `VITE_FFMPEG_BASE_URL` if serving from a CDN under
+// your control. We never load FFmpeg from a third-party CDN — that would mean
+// running unpinned third-party code in an authenticated CRM session.
+const FFMPEG_BASE_URL =
+  (import.meta as unknown as { env?: Record<string, string | undefined> }).env
+    ?.VITE_FFMPEG_BASE_URL || '/ffmpeg';
+const FFMPEG_LOAD_TIMEOUT_MS = 30_000;
+
 let ffmpegInstance: FFmpeg | null = null;
+let ffmpegLoadPromise: Promise<FFmpeg> | null = null;
+let ffmpegRefCount = 0;
+
+const withTimeout = <T,>(promise: Promise<T>, ms: number, label: string): Promise<T> =>
+  new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(
+      () => reject(new Error(`${label} timed out after ${ms}ms`)),
+      ms,
+    );
+    promise.then(
+      value => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      err => {
+        clearTimeout(timer);
+        reject(err);
+      },
+    );
+  });
 
 const loadFFmpeg = async (): Promise<FFmpeg> => {
   if (ffmpegInstance) return ffmpegInstance;
+  if (ffmpegLoadPromise) return ffmpegLoadPromise;
 
-  const ffmpeg = new FFmpeg();
-  // core-st = single-threaded: does NOT require SharedArrayBuffer / COOP+COEP headers
-  const baseURL = 'https://unpkg.com/@ffmpeg/core-st@0.12.6/dist/umd';
+  ffmpegLoadPromise = (async () => {
+    const ffmpeg = new FFmpeg();
+    const base = FFMPEG_BASE_URL.replace(/\/$/, '');
+    try {
+      const [coreURL, wasmURL] = await Promise.all([
+        withTimeout(
+          toBlobURL(`${base}/ffmpeg-core.js`, 'text/javascript'),
+          FFMPEG_LOAD_TIMEOUT_MS,
+          'FFmpeg core download',
+        ),
+        withTimeout(
+          toBlobURL(`${base}/ffmpeg-core.wasm`, 'application/wasm'),
+          FFMPEG_LOAD_TIMEOUT_MS,
+          'FFmpeg wasm download',
+        ),
+      ]);
+      await withTimeout(
+        ffmpeg.load({ coreURL, wasmURL }),
+        FFMPEG_LOAD_TIMEOUT_MS,
+        'FFmpeg init',
+      );
+      ffmpegInstance = ffmpeg;
+      return ffmpeg;
+    } catch (err) {
+      ffmpegLoadPromise = null;
+      throw err;
+    }
+  })();
 
-  await ffmpeg.load({
-    coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-    wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-  });
+  return ffmpegLoadPromise;
+};
 
-  ffmpegInstance = ffmpeg;
-  return ffmpeg;
+const terminateFFmpegIfIdle = () => {
+  if (ffmpegRefCount > 0) return;
+  if (ffmpegInstance) {
+    try {
+      ffmpegInstance.terminate();
+    } catch {
+      // best effort
+    }
+  }
+  ffmpegInstance = null;
+  ffmpegLoadPromise = null;
 };
 
 const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
@@ -53,36 +118,50 @@ const convertToOggOpus = async (inputBlob: Blob): Promise<Blob> => {
 
   const mime = inputBlob.type;
   const ext = mime.includes('mp4') ? 'm4a' : mime.includes('ogg') ? 'ogg' : 'webm';
-  const inputName = `input.${ext}`;
+  // Per-call unique filenames to avoid clashes if conversions ever overlap
+  // (e.g. multiple tabs sharing the singleton via memory pressure won't happen
+  // across tabs, but two recordings finishing concurrently in one tab would).
+  const id = Math.random().toString(36).slice(2, 10);
+  const inputName = `input-${id}.${ext}`;
+  const outputName = `output-${id}.ogg`;
 
   await ffmpeg.writeFile(inputName, await fetchFile(inputBlob));
 
-  await ffmpeg.exec([
-    '-i', inputName,
-    '-vn',
-    '-c:a', 'libopus',
-    '-b:a', '48k',
-    '-ar', '48000',
-    '-ac', '1',
-    '-avoid_negative_ts', 'make_zero',
-    '-write_xing', '0',
-    '-compression_level', '10',
-    '-application', 'voip',
-    '-fflags', '+bitexact',
-    '-flags', '+bitexact',
-    '-id3v2_version', '0',
-    '-map_metadata', '-1',
-    '-map_chapters', '-1',
-    '-write_bext', '0',
-    'output.ogg',
-  ]);
+  try {
+    await ffmpeg.exec([
+      '-i', inputName,
+      '-vn',
+      '-c:a', 'libopus',
+      '-b:a', '48k',
+      '-ar', '48000',
+      '-ac', '1',
+      '-avoid_negative_ts', 'make_zero',
+      '-write_xing', '0',
+      '-compression_level', '10',
+      '-application', 'voip',
+      '-fflags', '+bitexact',
+      '-flags', '+bitexact',
+      '-id3v2_version', '0',
+      '-map_metadata', '-1',
+      '-map_chapters', '-1',
+      '-write_bext', '0',
+      outputName,
+    ]);
 
-  const data = await ffmpeg.readFile('output.ogg');
-
-  await ffmpeg.deleteFile(inputName);
-  await ffmpeg.deleteFile('output.ogg');
-
-  return new Blob([new Uint8Array(data as Uint8Array)], { type: 'audio/ogg' });
+    const data = await ffmpeg.readFile(outputName);
+    return new Blob([new Uint8Array(data as Uint8Array)], { type: 'audio/ogg' });
+  } finally {
+    try {
+      await ffmpeg.deleteFile(inputName);
+    } catch {
+      /* ignore */
+    }
+    try {
+      await ffmpeg.deleteFile(outputName);
+    } catch {
+      /* ignore */
+    }
+  }
 };
 
 export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRecorderReturn => {
@@ -93,6 +172,18 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
   const [audioLevel, setAudioLevel] = useState(0);
   const [hasRecording, setHasRecording] = useState(false);
   const [recordingData, setRecordingData] = useState<AudioRecordingData | null>(null);
+
+  // Ref-count the FFmpeg WASM singleton: each hook consumer counts as one
+  // reference; when the last consumer unmounts we terminate the WASM heap.
+  // Prevents the ~30 MB instance from leaking for the lifetime of the SPA.
+  useEffect(() => {
+    if (!preferWhatsAppCloudFormat) return;
+    ffmpegRefCount += 1;
+    return () => {
+      ffmpegRefCount = Math.max(0, ffmpegRefCount - 1);
+      if (ffmpegRefCount === 0) terminateFFmpegIfIdle();
+    };
+  }, [preferWhatsAppCloudFormat]);
 
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -251,7 +342,16 @@ export const useAudioRecorder = (options?: UseAudioRecorderOptions): UseAudioRec
               outputMime = 'audio/ogg';
               outputExt = 'ogg';
             } catch (convErr) {
-              console.warn('[AudioRecorder] OGG conversion failed, sending original format:', convErr);
+              console.warn(
+                '[AudioRecorder] OGG conversion failed, sending original format:',
+                convErr,
+              );
+              // Surface the failure: without OGG/Opus, WhatsApp Cloud delivers
+              // the audio as a generic file attachment, not a native voice
+              // message. Don't fail silently — that's what EVO-979 was about.
+              toast.warning(
+                'Conversor de áudio indisponível — o áudio será enviado como anexo.',
+              );
               // outputBlob / outputMime / outputExt stay as recorded values
             }
           }

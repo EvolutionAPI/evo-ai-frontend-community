@@ -30,6 +30,10 @@ dist-ssr
 .yalc/
 yalc.lock
 
+# FFmpeg WASM core-st files copied from node_modules at install/build time
+# (see scripts/copy-ffmpeg-core.mjs)
+public/ffmpeg/
+
 # Environment variables
 .env
 .env.local
