@@ -326,7 +326,6 @@ export interface ContactsState {
     list: boolean;
     create: boolean;
     update: boolean;
-    delete: boolean;
     import: boolean;
     export: boolean;
     bulk: boolean;

@@ -6,8 +6,7 @@
       "chat": "Converser",
       "viewDetails": "Voir les détails",
       "viewEvents": "Voir les événements",
-      "edit": "Modifier le contact",
-      "delete": "Supprimer le contact"
+      "edit": "Modifier le contact"
     }
   },
   "details": {
@@ -416,7 +415,6 @@
   "actions": {
     "startConversation": "Démarrer une Conversation",
     "edit": "Modifier",
-    "delete": "Supprimer",
     "viewEvents": "Voir les Événements",
     "cancel": "Annuler",
     "save": "Enregistrer",
@@ -429,8 +427,6 @@
     "createError": "Erreur lors de la création du contact",
     "updateSuccess": "Contact mis à jour avec succès",
     "updateError": "Erreur lors de la mise à jour du contact",
-    "deleteSuccess": "Contact supprimé avec succès",
-    "deleteError": "Erreur lors de la suppression du contact",
     "bulkDeleteSuccess": "{{count}} contact(s) supprimé(s) avec succès",
     "bulkDeleteError": "Erreur lors de la suppression des contacts",
     "mergeSuccess": "Contacts fusionnés avec succès",
@@ -448,13 +444,6 @@
     "loadContact": "Erreur lors du chargement des détails du contact"
   },
   "dialog": {
-    "deleteContact": {
-      "title": "Supprimer le Contact",
-      "description": "Êtes-vous sûr de vouloir supprimer le contact \"{{name}}\" ? Cette action ne peut pas être annulée.",
-      "confirm": "Supprimer",
-      "cancel": "Annuler",
-      "deleting": "Suppression en cours..."
-    },
     "bulkDelete": {
       "title": "Supprimer les Contacts",
       "description": "Êtes-vous sûr de vouloir supprimer {{count}} contact(s) sélectionné(s) ? Cette action ne peut pas être annulée.",
@@ -574,7 +563,6 @@
       "startConversation": "Démarrer une conversation",
       "viewEvents": "Voir les événements",
       "edit": "Modifier le contact",
-      "delete": "Supprimer le contact",
       "create": "Créer un contact"
     },
     "empty": {

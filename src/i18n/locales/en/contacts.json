@@ -6,8 +6,7 @@
       "chat": "Chat",
       "viewDetails": "View details",
       "viewEvents": "View events",
-      "edit": "Edit contact",
-      "delete": "Delete contact"
+      "edit": "Edit contact"
     }
   },
   "details": {
@@ -424,7 +423,6 @@
   "actions": {
     "startConversation": "Start Conversation",
     "edit": "Edit",
-    "delete": "Delete",
     "viewEvents": "View Events",
     "cancel": "Cancel",
     "save": "Save",
@@ -437,8 +435,6 @@
     "createError": "Error creating contact",
     "updateSuccess": "Contact updated successfully",
     "updateError": "Error updating contact",
-    "deleteSuccess": "Contact deleted successfully",
-    "deleteError": "Error deleting contact",
     "bulkDeleteSuccess": "{{count}} contact(s) deleted successfully",
     "bulkDeleteError": "Error deleting contacts",
     "mergeSuccess": "Contacts merged successfully",
@@ -456,13 +452,6 @@
     "loadContact": "Error loading contact details"
   },
   "dialog": {
-    "deleteContact": {
-      "title": "Delete Contact",
-      "description": "Are you sure you want to delete the contact \"{{name}}\"? This action cannot be undone.",
-      "confirm": "Delete",
-      "cancel": "Cancel",
-      "deleting": "Deleting..."
-    },
     "bulkDelete": {
       "title": "Delete Contacts",
       "description": "Are you sure you want to delete {{count}} selected contact(s)? This action cannot be undone.",
@@ -582,7 +571,6 @@
       "startConversation": "Start conversation",
       "viewEvents": "View events",
       "edit": "Edit contact",
-      "delete": "Delete contact",
       "create": "Create contact"
     },
     "empty": {

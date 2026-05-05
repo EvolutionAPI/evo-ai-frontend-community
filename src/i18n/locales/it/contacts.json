@@ -6,8 +6,7 @@
       "chat": "Conversare",
       "viewDetails": "Vedi dettagli",
       "viewEvents": "Visualizza eventi",
-      "edit": "Modifica contatto",
-      "delete": "Elimina contatto"
+      "edit": "Modifica contatto"
     }
   },
   "details": {
@@ -416,7 +415,6 @@
   "actions": {
     "startConversation": "Avvia Conversazione",
     "edit": "Modifica",
-    "delete": "Elimina",
     "viewEvents": "Visualizza Eventi",
     "cancel": "Annulla",
     "save": "Salva",
@@ -429,8 +427,6 @@
     "createError": "Errore durante la creazione del contatto",
     "updateSuccess": "Contatto aggiornato con successo",
     "updateError": "Errore durante l'aggiornamento del contatto",
-    "deleteSuccess": "Contatto eliminato con successo",
-    "deleteError": "Errore durante l'eliminazione del contatto",
     "bulkDeleteSuccess": "{{count}} contatto/i eliminato/i con successo",
     "bulkDeleteError": "Errore durante l'eliminazione dei contatti",
     "importSuccess": "Contatti importati con successo",
@@ -448,13 +444,6 @@
     "loadContact": "Errore durante il caricamento dei dettagli del contatto"
   },
   "dialog": {
-    "deleteContact": {
-      "title": "Elimina Contatto",
-      "description": "Sei sicuro di voler eliminare il contatto \"{{name}}\"? Questa azione non può essere annullata.",
-      "confirm": "Elimina",
-      "cancel": "Annulla",
-      "deleting": "Eliminazione..."
-    },
     "bulkDelete": {
       "title": "Elimina Contatti",
       "description": "Sei sicuro di voler eliminare {{count}} contatto/i selezionato/i? Questa azione non può essere annullata.",
@@ -574,7 +563,6 @@
       "startConversation": "Avvia conversazione",
       "viewEvents": "Visualizza eventi",
       "edit": "Modifica contatto",
-      "delete": "Elimina contatto",
       "create": "Crea contatto"
     },
     "empty": {

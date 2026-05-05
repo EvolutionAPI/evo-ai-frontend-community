@@ -6,8 +6,7 @@
       "chat": "Conversar",
       "viewDetails": "Ver detalles",
       "viewEvents": "Ver eventos",
-      "edit": "Editar contacto",
-      "delete": "Eliminar contacto"
+      "edit": "Editar contacto"
     }
   },
   "details": {
@@ -416,7 +415,6 @@
   "actions": {
     "startConversation": "Iniciar Conversación",
     "edit": "Editar",
-    "delete": "Eliminar",
     "viewEvents": "Ver Eventos",
     "cancel": "Cancelar",
     "save": "Guardar",
@@ -429,8 +427,6 @@
     "createError": "Error al crear contacto",
     "updateSuccess": "Contacto actualizado con éxito",
     "updateError": "Error al actualizar contacto",
-    "deleteSuccess": "Contacto eliminado con éxito",
-    "deleteError": "Error al eliminar contacto",
     "bulkDeleteSuccess": "{{count}} contacto(s) eliminado(s) con éxito",
     "bulkDeleteError": "Error al eliminar contactos",
     "mergeSuccess": "Contactos fusionados con éxito",
@@ -448,13 +444,6 @@
     "loadContact": "Error al cargar detalles del contacto"
   },
   "dialog": {
-    "deleteContact": {
-      "title": "Eliminar Contacto",
-      "description": "¿Está seguro de que desea eliminar el contacto \"{{name}}\"? Esta acción no se puede deshacer.",
-      "confirm": "Eliminar",
-      "cancel": "Cancelar",
-      "deleting": "Eliminando..."
-    },
     "bulkDelete": {
       "title": "Eliminar Contactos",
       "description": "¿Está seguro de que desea eliminar {{count}} contacto(s) seleccionado(s)? Esta acción no se puede deshacer.",
@@ -574,7 +563,6 @@
       "startConversation": "Iniciar conversación",
       "viewEvents": "Ver eventos",
       "edit": "Editar contacto",
-      "delete": "Eliminar contacto",
       "create": "Crear contacto"
     },
     "empty": {

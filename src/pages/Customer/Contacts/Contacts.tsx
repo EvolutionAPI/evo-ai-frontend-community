@@ -51,7 +51,6 @@ const INITIAL_STATE: ContactsState = {
     list: false,
     create: false,
     update: false,
-    delete: false,
     import: false,
     export: false,
     bulk: false,
