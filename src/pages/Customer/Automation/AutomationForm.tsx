@@ -75,8 +75,10 @@ export default function AutomationForm({ mode }: Props) {
           });
         }
       } catch (error) {
+        const status = (error as { response?: { status?: number } })?.response?.status;
+        const i18nKey = status === 404 ? 'messages.ruleNotFound' : 'messages.loadError';
         console.error('Error loading automation:', error);
-        toast.error(t('messages.loadError'));
+        toast.error(t(i18nKey));
         navigate('/automation');
       } finally {
         if (!cancelled) setLoadingExisting(false);
@@ -88,8 +90,12 @@ export default function AutomationForm({ mode }: Props) {
   }, [mode, id, navigate, reset, t]);
 
   const onSubmit = handleSubmit(async (data) => {
+    if (submitting) return;
     setSubmitting(true);
     try {
+      // Cast: AutomationCondition.values is typed as string[] | number[] (homogeneous)
+      // but the Zod schema produces (string | number)[]. Backend accepts mixed; the
+      // type cleanup is deferred per Story 1 audit findings.
       const payload = data as unknown as Parameters<typeof automationService.createAutomation>[0];
       if (mode === 'create') {
         await automationService.createAutomation(payload);
@@ -181,14 +187,11 @@ export default function AutomationForm({ mode }: Props) {
         />
 
         <EventSelector control={control} disabled={submitting} />
+        <p className="text-xs text-muted-foreground">{t('form.fields.event.hint')}</p>
 
         <ConditionsBuilder control={control} formData={formData} />
 
         <ActionsBuilder control={control} formData={formData} />
-
-        {errors.actions && (
-          <p className="text-sm text-red-500">{t('form.fields.actions.empty')}</p>
-        )}
 
         <div className="flex justify-end gap-2 pt-4 border-t">
           <Button

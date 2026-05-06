@@ -34,6 +34,7 @@ export default function ActionsBuilder({ control, formData }: Props) {
           type="button"
           variant="outline"
           size="sm"
+          aria-label={t('form.fields.actions.addRow')}
           onClick={() => append(getDefaultActionForName('send_message'))}
         >
           <Plus className="h-4 w-4 mr-2" />

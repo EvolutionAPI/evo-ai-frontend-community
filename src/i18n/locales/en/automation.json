@@ -45,6 +45,7 @@
       "event": {
         "label": "Trigger event",
         "placeholder": "Select an event",
+        "hint": "Tip: To react to a status change, pick \"Conversation updated\" and add a Status condition.",
         "options": {
           "conversation_created": "Conversation created",
           "conversation_updated": "Conversation updated",
@@ -177,6 +178,7 @@
   },
   "messages": {
     "loadError": "Failed to load automations",
+    "ruleNotFound": "Automation rule not found",
     "createSuccess": "Automation created",
     "createError": "Failed to create automation",
     "updateSuccess": "Automation updated",

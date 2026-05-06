@@ -26,6 +26,7 @@ export default function ConditionsBuilder({ control, formData }: Props) {
           type="button"
           variant="outline"
           size="sm"
+          aria-label={t('form.fields.conditions.addRow')}
           onClick={() =>
             append({
               attribute_key: '',

@@ -45,6 +45,7 @@
       "event": {
         "label": "Evento gatilho",
         "placeholder": "Selecione um evento",
+        "hint": "Dica: Para reagir a uma mudança de status, escolha \"Conversa atualizada\" e adicione uma condição em Status.",
         "options": {
           "conversation_created": "Conversa criada",
           "conversation_updated": "Conversa atualizada",
@@ -177,6 +178,7 @@
   },
   "messages": {
     "loadError": "Falha ao carregar automações",
+    "ruleNotFound": "Automação não encontrada",
     "createSuccess": "Automação criada",
     "createError": "Falha ao criar automação",
     "updateSuccess": "Automação atualizada",
