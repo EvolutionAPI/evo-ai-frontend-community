@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { Link, useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
@@ -11,11 +11,7 @@ import {
 } from '@evoapi/design-system';
 import MenuItem from './MenuItem';
 import { MenuItem as MenuItemType } from '../config/menuItems';
-
-// Utility function for className merging
-function cn(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(' ');
-}
+import { cn } from '@/utils/cn';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -40,12 +36,40 @@ export default function Sidebar({
   const pathname = location.pathname;
   const { t } = useLanguage('layout');
   const currentYear = new Date().getFullYear();
+  const flyoutRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
 
   const companyName = t('sidebar.footer.brand');
   const supportWhatsappUrl = 'https://api.whatsapp.com/send/?phone=553196219989&text=Ol%C3%A1%21+Preciso+de+suporte.&type=phone_number&app_absent=0';
 
   const mainMenuItems = menuItems.filter(item => item.href !== '/tutorials');
   const tutorialsItem = menuItems.find(item => item.href === '/tutorials');
+
+  // Dismiss collapsed flyout on Escape (WAI-ARIA requirement for popover-like elements)
+  useEffect(() => {
+    if (!activeSubmenu || !isCollapsed) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActiveSubmenu(null);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [activeSubmenu, isCollapsed, setActiveSubmenu]);
+
+  // Move focus into flyout when it opens; restore focus to trigger when it closes
+  useEffect(() => {
+    if (activeSubmenu && isCollapsed) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      const firstFocusable = flyoutRef.current?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      firstFocusable?.focus();
+    } else if (!activeSubmenu && previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [activeSubmenu, isCollapsed]);
 
   return (
     <>
@@ -120,18 +144,16 @@ export default function Sidebar({
         </TooltipProvider>
       </div>
 
-      {/* Second Sidebar for Submenus */}
-      {activeSubmenu && isCollapsed && (
-        <div
-          className="hidden md:block absolute inset-0 z-40"
-          onClick={() => setActiveSubmenu(null)}
-        />
-      )}
+      {/* Collapsed flyout submenu panel */}
       {activeSubmenu && (
-        <div className={cn(
-          'hidden md:flex w-64 bg-sidebar text-sidebar-foreground flex-col border-r border-sidebar-border',
-          isCollapsed && 'absolute left-16 top-0 h-full z-50 shadow-xl',
-        )}>
+        <div
+          ref={flyoutRef}
+          className={cn(
+            'hidden md:flex w-64 bg-sidebar text-sidebar-foreground flex-col border-r border-sidebar-border',
+            isCollapsed &&
+              'absolute left-16 top-0 h-full z-50 shadow-xl transition-all duration-150 ease-in-out',
+          )}
+        >
           {/* Submenu Header */}
           <div className="flex items-center gap-3 p-4 border-b border-sidebar-border">
             <activeSubmenu.icon className="h-5 w-5 text-primary" />
@@ -162,18 +184,15 @@ export default function Sidebar({
           {/* Submenu Items */}
           <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
             {activeSubmenu.subItems?.map(subItem => {
-              // For submenu items, check exact match first, then startsWith
-              // But if another subitem has a more specific match (longer path), prefer that one
               const exactMatch = pathname === subItem.href;
               const startsWithMatch = pathname.startsWith(subItem.href + '/');
-
-              // Check if any other subitem has a more specific match
-              const hasMoreSpecificMatch = activeSubmenu.subItems?.some(otherSubItem =>
-                otherSubItem.href !== subItem.href &&
-                (pathname === otherSubItem.href || pathname.startsWith(otherSubItem.href + '/')) &&
-                otherSubItem.href.length > subItem.href.length
+              const hasMoreSpecificMatch = activeSubmenu.subItems?.some(
+                otherSubItem =>
+                  otherSubItem.href !== subItem.href &&
+                  (pathname === otherSubItem.href ||
+                    pathname.startsWith(otherSubItem.href + '/')) &&
+                  otherSubItem.href.length > subItem.href.length,
               );
-
               const isSubActive = exactMatch || (startsWithMatch && !hasMoreSpecificMatch);
               return (
                 <Link
