@@ -394,7 +394,10 @@
     "labelNamePlaceholder": "Label name...",
     "selectStage": "Select stage...",
     "selectAgent": "Select agent...",
+    "selectPipeline": "Select pipeline...",
     "noOtherStages": "No other stages available",
+    "noOtherPipelines": "No other pipelines available",
+    "noStagesInPipeline": "No stages in the selected pipeline",
     "noAgents": "No agents available",
     "noLabels": "No labels available",
     "triggers": {
@@ -404,6 +407,7 @@
     },
     "actions": {
       "move_to_stage": "Move to stage",
+      "move_to_pipeline": "Move to another pipeline",
       "assign_agent": "Assign agent",
       "apply_label": "Apply label"
     }

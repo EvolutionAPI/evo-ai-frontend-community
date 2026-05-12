@@ -354,7 +354,10 @@
     "labelNamePlaceholder": "Nombre de la etiqueta...",
     "selectStage": "Seleccionar etapa...",
     "selectAgent": "Seleccionar agente...",
+    "selectPipeline": "Seleccionar pipeline...",
     "noOtherStages": "No hay otras etapas disponibles",
+    "noOtherPipelines": "No hay otros pipelines disponibles",
+    "noStagesInPipeline": "No hay etapas en el pipeline seleccionado",
     "noAgents": "No hay agentes disponibles",
     "anyLabel": "Cualquier etiqueta",
     "noLabels": "No hay etiquetas disponibles",
@@ -365,6 +368,7 @@
     },
     "actions": {
       "move_to_stage": "Mover a etapa",
+      "move_to_pipeline": "Mover a otro pipeline",
       "assign_agent": "Asignar agente",
       "apply_label": "Aplicar etiqueta"
     }

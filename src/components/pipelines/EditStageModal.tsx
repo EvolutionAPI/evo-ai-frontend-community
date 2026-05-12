@@ -25,9 +25,10 @@ import { PipelineStage } from '@/types/analytics';
 import type { StageAutomationRule } from '@/types/analytics/pipelines';
 import type { Label as ConversationLabel } from '@/types/settings/labels';
 import { labelsService } from '@/services/contacts/labelsService';
+import { pipelinesService } from '@/services/pipelines/pipelinesService';
 import { LocalAttributeDefinition, LocalAttributeDefinitionPayload } from '@/types/pipelines/localAttributeDefinition';
 import PipelineStageCustomAttributes from './PipelineStageCustomAttributes';
-import StageAutomationRules from './StageAutomationRules';
+import StageAutomationRules, { type PipelineWithStages } from './StageAutomationRules';
 
 // Cores predefinidas para as etapas
 const getStageColors = (t: (key: string) => string) => [
@@ -83,6 +84,7 @@ export default function EditStageModal({
   const [customAttributes, setCustomAttributes] = useState<Record<string, unknown>>({});
   const [automationRules, setAutomationRules] = useState<StageAutomationRule[]>([]);
   const [labels, setLabels] = useState<ConversationLabel[]>([]);
+  const [pipelinesWithStages, setPipelinesWithStages] = useState<PipelineWithStages[]>([]);
 
   const stageColors = getStageColors(t);
 
@@ -99,6 +101,51 @@ export default function EditStageModal({
         if (cancelled) return;
         setLabels([]);
       });
+    return () => {
+      cancelled = true;
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        const list = await pipelinesService.getPipelines();
+        const pipelinesArray =
+          (list as { data?: { id: string; name: string }[] } | null)?.data ?? [];
+        if (pipelinesArray.length === 0) {
+          if (!cancelled) setPipelinesWithStages([]);
+          return;
+        }
+
+        const stagesResults = await Promise.allSettled(
+          pipelinesArray.map(p => pipelinesService.getPipelineStages(p.id)),
+        );
+
+        if (cancelled) return;
+
+        const enriched: PipelineWithStages[] = pipelinesArray.map((p, idx) => {
+          const res = stagesResults[idx];
+          const stageList =
+            res.status === 'fulfilled' && res.value
+              ? ((res.value as { data?: { id: string; name: string }[] }).data ?? [])
+              : [];
+          return {
+            id: p.id,
+            name: p.name,
+            stages: stageList.map(s => ({ id: s.id, name: s.name })),
+          };
+        });
+
+        setPipelinesWithStages(enriched);
+      } catch {
+        if (!cancelled) setPipelinesWithStages([]);
+      }
+    };
+
+    load();
     return () => {
       cancelled = true;
     };
@@ -311,9 +358,11 @@ export default function EditStageModal({
               onChange={setAutomationRules}
               disabled={loading}
               currentStageId={stage?.id}
+              currentPipelineId={stage?.pipeline_id}
               stages={stages}
               agents={agents}
               labels={labels}
+              pipelines={pipelinesWithStages}
             />
           </TabsContent>
 

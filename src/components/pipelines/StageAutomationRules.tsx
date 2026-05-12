@@ -19,14 +19,22 @@ interface Agent {
   name: string;
 }
 
+export interface PipelineWithStages {
+  id: string;
+  name: string;
+  stages: { id: string; name: string }[];
+}
+
 interface StageAutomationRulesProps {
   rules: StageAutomationRule[];
   onChange: (rules: StageAutomationRule[]) => void;
   disabled?: boolean;
   currentStageId?: string;
+  currentPipelineId?: string;
   stages?: PipelineStage[];
   agents?: Agent[];
   labels?: Label[];
+  pipelines?: PipelineWithStages[];
 }
 
 const EMPTY_RULE: StageAutomationRule = {
@@ -50,9 +58,11 @@ export default function StageAutomationRules({
   onChange,
   disabled = false,
   currentStageId,
+  currentPipelineId,
   stages = [],
   agents = [],
   labels = [],
+  pipelines = [],
 }: StageAutomationRulesProps) {
   const { t } = useLanguage('pipelines');
 
@@ -186,6 +196,66 @@ export default function StageAutomationRules({
       );
     }
 
+    if (rule.action === 'move_to_pipeline') {
+      const [selectedPipelineId, selectedStageId] = (rule.action_value || '').split(':');
+      const otherPipelines = pipelines.filter(p => p.id !== currentPipelineId);
+      const selectedPipeline = otherPipelines.find(p => p.id === selectedPipelineId);
+
+      return (
+        <div className="flex-1 grid grid-cols-2 gap-2">
+          <Select
+            value={selectedPipelineId || ''}
+            onValueChange={v => updateRule(index, { action_value: v })}
+            disabled={disabled}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder={t('stageAutomation.selectPipeline')} />
+            </SelectTrigger>
+            <SelectContent>
+              {otherPipelines.length === 0 ? (
+                <SelectItem value={PLACEHOLDER_SENTINEL} disabled>
+                  {t('stageAutomation.noOtherPipelines')}
+                </SelectItem>
+              ) : (
+                otherPipelines.map(p => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.name}
+                  </SelectItem>
+                ))
+              )}
+            </SelectContent>
+          </Select>
+
+          <Select
+            value={selectedStageId || ''}
+            onValueChange={v =>
+              updateRule(index, {
+                action_value: selectedPipelineId ? `${selectedPipelineId}:${v}` : '',
+              })
+            }
+            disabled={disabled || !selectedPipeline}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder={t('stageAutomation.selectStage')} />
+            </SelectTrigger>
+            <SelectContent>
+              {!selectedPipeline || selectedPipeline.stages.length === 0 ? (
+                <SelectItem value={PLACEHOLDER_SENTINEL} disabled>
+                  {t('stageAutomation.noStagesInPipeline')}
+                </SelectItem>
+              ) : (
+                selectedPipeline.stages.map(s => (
+                  <SelectItem key={s.id} value={s.id}>
+                    {s.name}
+                  </SelectItem>
+                ))
+              )}
+            </SelectContent>
+          </Select>
+        </div>
+      );
+    }
+
     if (rule.action === 'assign_agent') {
       return (
         <Select
@@ -287,6 +357,7 @@ export default function StageAutomationRules({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="move_to_stage">{t('stageAutomation.actions.move_to_stage')}</SelectItem>
+                    <SelectItem value="move_to_pipeline">{t('stageAutomation.actions.move_to_pipeline')}</SelectItem>
                     <SelectItem value="assign_agent">{t('stageAutomation.actions.assign_agent')}</SelectItem>
                     <SelectItem value="apply_label">{t('stageAutomation.actions.apply_label')}</SelectItem>
                   </SelectContent>
