@@ -31,6 +31,8 @@ import {
 import { Conversation } from '@/types/chat/api';
 import ContactAvatar from '@/components/chat/contact/ContactAvatar';
 import { getStatusLabel, isPendingStatus } from '@/utils/chat/conversationStatus';
+import { isPhoneBearingChannel } from '@/utils/channelUtils';
+import { formatContactPhone } from '@/utils/contact/formatContactPhone';
 import { useLanguage } from '@/hooks/useLanguage';
 
 interface ChatHeaderProps {
@@ -88,11 +90,8 @@ const ChatHeader = ({
   const isArchived = Boolean(conversation.custom_attributes?.archived);
 
   const inboxName = conversation.inbox?.name || '';
-  const rawPhone = conversation.contact?.phone_number;
-  const phoneDisplay = rawPhone
-    ? rawPhone.startsWith('+')
-      ? rawPhone
-      : `+${rawPhone}`
+  const phoneDisplay = isPhoneBearingChannel(conversation.inbox?.channel_type)
+    ? formatContactPhone(conversation.contact?.phone_number)
     : null;
 
   const renderConversationStatusDropdown = () => {
@@ -301,7 +300,8 @@ const ChatHeader = ({
               {phoneDisplay && (
                 <span
                   className="text-sm text-muted-foreground"
-                  title={t('chatHeader.whatsappNumber')}
+                  title={t('chatHeader.phoneNumber')}
+                  aria-label={`${t('chatHeader.phoneNumber')}: ${phoneDisplay}`}
                 >
                   {phoneDisplay}
                 </span>

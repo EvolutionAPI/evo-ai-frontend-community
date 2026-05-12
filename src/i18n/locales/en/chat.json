@@ -289,7 +289,7 @@
     "status": "Status:",
     "openConversation": "Open Conversation",
     "closeConversation": "Close conversation",
-    "whatsappNumber": "WhatsApp number"
+    "phoneNumber": "Phone number"
   },
   "chatSidebar": {
     "searchPlaceholder": "Search conversations...",
@@ -320,7 +320,7 @@
       "noContent": "Message without content"
     },
     "contactNoName": "Contact without name",
-    "whatsappNumber": "WhatsApp number"
+    "phoneNumber": "Phone number"
   },
   "chatTabs": {
     "chat": "Chat"

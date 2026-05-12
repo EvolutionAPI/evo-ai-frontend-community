@@ -40,6 +40,8 @@ import {
   senderNameFromAttributes,
 } from '@/utils/chat/mediaLabels';
 import { formatConversationTime, formatDetailedTime } from '@/utils/time/timeHelpers';
+import { isPhoneBearingChannel } from '@/utils/channelUtils';
+import { formatContactPhone } from '@/utils/contact/formatContactPhone';
 import { ConversationSkeleton } from '../loading-states';
 import { NoConversations } from '../empty-states';
 import ContactAvatar from '../contact/ContactAvatar';
@@ -725,11 +727,8 @@ const ChatSidebar = ({
               const channelType =
                 conversation.inbox?.channel_type || conversation.inbox?.channel_type;
               const channelProvider = conversation.inbox?.provider;
-              const rawPhone = conversation.contact?.phone_number;
-              const phoneDisplay = rawPhone
-                ? rawPhone.startsWith('+')
-                  ? rawPhone
-                  : `+${rawPhone}`
+              const phoneDisplay = isPhoneBearingChannel(channelType)
+                ? formatContactPhone(conversation.contact?.phone_number)
                 : null;
 
               return renderConversationContextMenu(
@@ -785,7 +784,8 @@ const ChatSidebar = ({
                         {phoneDisplay && (
                           <p
                             className="text-xs text-muted-foreground truncate"
-                            title={t('chatSidebar.whatsappNumber')}
+                            title={t('chatSidebar.phoneNumber')}
+                            aria-label={`${t('chatSidebar.phoneNumber')}: ${phoneDisplay}`}
                           >
                             {phoneDisplay}
                           </p>

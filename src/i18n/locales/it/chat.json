@@ -283,7 +283,8 @@
     "contactNoName": "Contatto senza nome",
     "status": "Stato:",
     "openConversation": "Apri Conversazione",
-    "closeConversation": "Chiudi conversazione"
+    "closeConversation": "Chiudi conversazione",
+    "phoneNumber": "Numero di telefono"
   },
   "chatSidebar": {
     "searchPlaceholder": "Cerca conversazioni...",
@@ -313,7 +314,8 @@
       "noMessages": "Nessun messaggio",
       "noContent": "Messaggio senza contenuto"
     },
-    "contactNoName": "Contatto senza nome"
+    "contactNoName": "Contatto senza nome",
+    "phoneNumber": "Numero di telefono"
   },
   "chatTabs": {
     "chat": "Chat"
