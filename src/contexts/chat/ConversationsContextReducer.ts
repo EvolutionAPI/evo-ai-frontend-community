@@ -224,17 +224,24 @@ export function conversationsReducer(
         : (localUnreadCount ?? action.payload.unread_count ?? 0);
 
       // Atualizar na lista de conversas
-      const updatedConversationsList = state.conversations
-        .filter(conv => conv !== null && conv !== undefined && conv.id) // Filtrar elementos nulos e sem ID
-        .map(conv =>
-          String(conv.id) === conversationId
-            ? {
-                ...conv,
-                ...action.payload, // Merge ao invés de substituir
-                unread_count: syncedUnreadCount, // Sincronizar com estado unreadCounts
-              }
-            : conv,
-        );
+      const cleanConversations = state.conversations
+        .filter(conv => conv !== null && conv !== undefined && conv.id);
+
+      const existsInList = cleanConversations.some(
+        conv => String(conv.id) === conversationId,
+      );
+
+      const updatedConversationsList = existsInList
+        ? cleanConversations.map(conv =>
+            String(conv.id) === conversationId
+              ? {
+                  ...conv,
+                  ...action.payload,
+                  unread_count: syncedUnreadCount,
+                }
+              : conv,
+          )
+        : [{ ...action.payload, unread_count: syncedUnreadCount }, ...cleanConversations];
 
       // Se é a conversa selecionada, atualizar os dados também
       const updatedSelectedData =
