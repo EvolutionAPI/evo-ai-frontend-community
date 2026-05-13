@@ -207,16 +207,15 @@ const ChatHeader = ({
         }
       } else {
         if (existingInOtherPipelines.length > 0) {
-          try {
-            await Promise.all(
-              existingInOtherPipelines.map(p => {
-                const item = p.items?.find(i => String(i.item_id) === String(conversation.id));
-                return item?.id
-                  ? pipelinesService.removeItemFromPipeline(p.id, item.id)
-                  : Promise.resolve();
-              }),
-            );
-          } catch {
+          const removeResults = await Promise.allSettled(
+            existingInOtherPipelines.map(p => {
+              const item = p.items?.find(i => String(i.item_id) === String(conversation.id));
+              return item?.id
+                ? pipelinesService.removeItemFromPipeline(p.id, item.id)
+                : Promise.resolve();
+            }),
+          );
+          if (removeResults.some(r => r.status === 'rejected')) {
             toast.error(t('pipeline.removeError'));
             return;
           }

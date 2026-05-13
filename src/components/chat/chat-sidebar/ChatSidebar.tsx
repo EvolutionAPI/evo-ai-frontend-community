@@ -202,6 +202,19 @@ const ChatSidebar = ({
     }
   }, []);
 
+  const refreshConversationBadge = useCallback(async (convId: string) => {
+    try {
+      const raw = await chatService.getConversation(convId);
+      const envelope = raw as unknown as { data?: Conversation } | null;
+      const updated: Conversation | null = envelope?.data ?? (raw as unknown as Conversation);
+      if (updated) {
+        chatContext.conversations.updateConversation(updated);
+      }
+    } catch {
+      // badge refresh is best-effort
+    }
+  }, [chatContext]);
+
   const handlePipelineStageSelect = useCallback(
     async (conversation: Conversation, pipeline: Pipeline, stage: PipelineStage) => {
       const convId = String(conversation.id);
@@ -228,22 +241,24 @@ const ChatSidebar = ({
             next.delete(convId);
             return next;
           });
-          await loadConversationPipelineState(convId);
+          await Promise.all([
+            loadConversationPipelineState(convId),
+            refreshConversationBadge(convId),
+          ]);
         } catch {
           toast.error(t('pipeline.moveError'));
         }
       } else {
         if (existingInOtherPipelines.length > 0) {
-          try {
-            await Promise.all(
-              existingInOtherPipelines.map(p => {
-                const item = p.items?.find(i => String(i.item_id) === convId);
-                return item?.id
-                  ? pipelinesService.removeItemFromPipeline(p.id, item.id)
-                  : Promise.resolve();
-              }),
-            );
-          } catch {
+          const removeResults = await Promise.allSettled(
+            existingInOtherPipelines.map(p => {
+              const item = p.items?.find(i => String(i.item_id) === convId);
+              return item?.id
+                ? pipelinesService.removeItemFromPipeline(p.id, item.id)
+                : Promise.resolve();
+            }),
+          );
+          if (removeResults.some(r => r.status === 'rejected')) {
             toast.error(t('pipeline.removeError'));
             return;
           }
@@ -260,13 +275,16 @@ const ChatSidebar = ({
             next.delete(convId);
             return next;
           });
-          await loadConversationPipelineState(convId);
+          await Promise.all([
+            loadConversationPipelineState(convId),
+            refreshConversationBadge(convId),
+          ]);
         } catch {
           toast.error(t('pipeline.addError'));
         }
       }
     },
-    [convPipelineStates, t, loadConversationPipelineState],
+    [convPipelineStates, t, loadConversationPipelineState, refreshConversationBadge],
   );
 
   const handleRemoveFromPipeline = useCallback(
@@ -283,12 +301,15 @@ const ChatSidebar = ({
           next.delete(convId);
           return next;
         });
-        await loadConversationPipelineState(convId);
+        await Promise.all([
+          loadConversationPipelineState(convId),
+          refreshConversationBadge(convId),
+        ]);
       } catch {
         toast.error(t('pipeline.removeError'));
       }
     },
-    [t, loadConversationPipelineState],
+    [t, loadConversationPipelineState, refreshConversationBadge],
   );
 
   const renderPipelineSubContent = useCallback(
