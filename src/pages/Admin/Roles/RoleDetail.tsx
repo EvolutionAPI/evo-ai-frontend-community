@@ -84,10 +84,14 @@ export default function RoleDetail() {
   };
 
   const handleSave = async () => {
-    if (!role) return;
+    if (!role || !resourceActions) return;
     setSaving(true);
     try {
-      const updated = await rolesService.bulkUpdatePermissions(role.id, Array.from(selected));
+      const knownKeys = Array.from(selected).filter(key => {
+        const [resource, action] = key.split('.');
+        return resourceActions.resources[resource]?.actions?.[action] !== undefined;
+      });
+      const updated = await rolesService.bulkUpdatePermissions(role.id, knownKeys);
       setRole(updated);
       permissionsService.clearPermissionsCache();
       toast.success(t('messages.permissionsSuccess'));

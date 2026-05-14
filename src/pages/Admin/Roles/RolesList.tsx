@@ -72,8 +72,13 @@ export default function RolesList() {
       setCreateOpen(false);
       setCreateForm({ name: '', description: '' });
       navigate(`/settings/roles/${role.id}`);
-    } catch {
-      toast.error(t('messages.createError'));
+    } catch (err: unknown) {
+      const apiErr = (err as { response?: { data?: { error?: { message?: string; details?: Array<{ full_messages: string[] }> } } } })?.response?.data?.error;
+      const message =
+        apiErr?.message && apiErr.message !== 'Validation failed'
+          ? apiErr.message
+          : (apiErr?.details?.[0]?.full_messages?.[0] ?? t('messages.createError'));
+      toast.error(message);
     } finally {
       setCreating(false);
     }
