@@ -95,8 +95,9 @@ export default function RoleDetail() {
       setRole(updated);
       permissionsService.clearPermissionsCache();
       toast.success(t('messages.permissionsSuccess'));
-    } catch {
-      toast.error(t('messages.permissionsError'));
+    } catch (err: unknown) {
+      const apiErr = (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error;
+      toast.error(apiErr?.message ?? t('messages.permissionsError'));
     } finally {
       setSaving(false);
     }
@@ -123,8 +124,9 @@ export default function RoleDetail() {
       setRole(updated);
       toast.success(t('messages.updateSuccess'));
       setEditingMeta(false);
-    } catch {
-      toast.error(t('messages.updateError'));
+    } catch (err: unknown) {
+      const apiErr = (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error;
+      toast.error(apiErr?.message ?? t('messages.updateError'));
     } finally {
       setSavingMeta(false);
     }

@@ -93,8 +93,9 @@ export default function RolesList() {
       toast.success(t('messages.deleteSuccess'));
       setRoles(prev => prev.filter(r => r.id !== deleteDialog.role?.id));
       setDeleteDialog({ open: false, role: null, deleting: false });
-    } catch {
-      toast.error(t('messages.deleteError'));
+    } catch (err: unknown) {
+      const apiErr = (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error;
+      toast.error(apiErr?.message ?? t('messages.deleteError'));
       setDeleteDialog(prev => ({ ...prev, deleting: false }));
     }
   };
