@@ -66,12 +66,12 @@ export default function Sidebar({
       if (!prevActiveSubmenuRef.current) {
         previousFocusRef.current = document.activeElement as HTMLElement;
       }
-      const firstFocusable = flyoutRef.current?.querySelector<HTMLElement>(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
+      const firstFocusable = flyoutRef.current?.querySelector<HTMLElement>('nav a, nav button');
       firstFocusable?.focus();
     } else if (!activeSubmenu && isCollapsed && previousFocusRef.current) {
-      previousFocusRef.current.focus();
+      if (document.contains(previousFocusRef.current)) {
+        previousFocusRef.current.focus();
+      }
       previousFocusRef.current = null;
     }
     prevActiveSubmenuRef.current = activeSubmenu;
@@ -139,7 +139,7 @@ export default function Sidebar({
     <div className="flex items-center gap-3 p-4 border-b border-sidebar-border">
       <item.icon className="h-5 w-5 text-primary" />
       <div className="flex-1">
-        <h3 className="font-semibold text-sidebar-foreground">{item.name}</h3>
+        <h3 id="flyout-title" className="font-semibold text-sidebar-foreground">{item.name}</h3>
       </div>
       <Tooltip>
         <TooltipTrigger asChild>
@@ -245,6 +245,9 @@ export default function Sidebar({
       {isCollapsed && (
         <div
           ref={flyoutRef}
+          role="dialog"
+          aria-labelledby="flyout-title"
+          aria-hidden={activeSubmenu ? undefined : 'true'}
           className={cn(
             'hidden md:flex w-64 bg-sidebar text-sidebar-foreground flex-col border-r border-sidebar-border',
             'absolute left-16 top-0 h-full z-50 shadow-xl',

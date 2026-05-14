@@ -138,7 +138,7 @@ describe('Sidebar — collapsed + activeSubmenu', () => {
     const lastLink = focusable[focusable.length - 1];
     lastLink.focus();
     fireEvent.keyDown(document, { key: 'Tab', shiftKey: false });
-    // Focus should cycle back to first focusable (close button)
+    // Tab from last link wraps to first focusable in DOM order (close button)
     const closeBtn = screen.getByRole('button', { name: 'sidebar.closeSubmenu' });
     expect(document.activeElement).toBe(closeBtn);
   });
@@ -149,5 +149,63 @@ describe('Sidebar — collapsed + activeSubmenu', () => {
     const contactsBtn = screen.getByTestId('menu-item-contacts');
     fireEvent.click(contactsBtn);
     expect(handleMenuClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('switching submenus moves focus to first nav item of new submenu without restoring trigger', () => {
+    const agentsItem: MenuItemType = {
+      id: 'agents',
+      name: 'Agents',
+      href: '/agents',
+      icon: Cog,
+      subItems: [{ name: 'AI Agent', href: '/agents/ai', icon: Cog }],
+    };
+    const setActiveSubmenu = vi.fn();
+
+    const { rerender } = render(
+      <MemoryRouter>
+        <Sidebar {...makeProps({ activeSubmenu: settingsItem, setActiveSubmenu })} />
+      </MemoryRouter>,
+    );
+
+    rerender(
+      <MemoryRouter>
+        <Sidebar {...makeProps({ activeSubmenu: agentsItem, setActiveSubmenu })} />
+      </MemoryRouter>,
+    );
+
+    // Focus moves to first nav link of new submenu
+    const agentLink = screen.getByRole('link', { name: /AI Agent/i });
+    expect(document.activeElement).toBe(agentLink);
+    // previousFocusRef was NOT restored (no null call) — switching does not close flyout
+    expect(setActiveSubmenu).not.toHaveBeenCalledWith(null);
+  });
+
+  it('flyout has role="dialog" when active and is not aria-hidden', () => {
+    const { container } = renderSidebar({ activeSubmenu: settingsItem });
+    const flyout = container.querySelector('.absolute.left-16');
+    expect(flyout).toHaveAttribute('role', 'dialog');
+    expect(flyout).not.toHaveAttribute('aria-hidden');
+  });
+
+  it('flyout is aria-hidden when activeSubmenu is null (prevents broken aria-labelledby reference)', () => {
+    const { container } = renderSidebar({ activeSubmenu: null });
+    const flyout = container.querySelector('.absolute.left-16');
+    expect(flyout).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('flyout aria-labelledby points to the submenu title heading', () => {
+    renderSidebar({ activeSubmenu: settingsItem });
+    const flyout = document.querySelector('[role="dialog"]');
+    const labelledById = flyout?.getAttribute('aria-labelledby');
+    expect(labelledById).toBeTruthy();
+    const title = document.getElementById(labelledById!);
+    expect(title?.textContent).toBe('Settings');
+  });
+
+  it('expanded mode renders inline submenu panel without flyout (AC #3)', () => {
+    const { container } = renderSidebar({ isCollapsed: false, activeSubmenu: settingsItem });
+    expect(container.querySelector('.absolute.left-16')).not.toBeInTheDocument();
+    expect(screen.getByText('General')).toBeInTheDocument();
+    expect(screen.getByText('Security')).toBeInTheDocument();
   });
 });

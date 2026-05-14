@@ -141,8 +141,14 @@ export default function MainLayout({ children }: MainLayoutProps) {
         {/* Backdrop for collapsed sidebar flyout — starts at left-16 so the icon sidebar remains clickable */}
         {menuState.activeSubmenu && isCollapsed && (
           <div
+            role="button"
+            tabIndex={0}
+            aria-label={t('sidebar.closeSubmenu')}
             className="hidden md:block absolute left-16 top-0 bottom-0 right-0 z-40"
             onClick={() => menuState.setActiveSubmenu(null)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') menuState.setActiveSubmenu(null);
+            }}
           />
         )}
 
