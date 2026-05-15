@@ -501,10 +501,13 @@ const EvolutionWhatsAppConfig: React.FC<{
   const hasGlobalConfig = isEvolutionGo
     ? globalConfig.hasEvolutionGoConfig === true
     : globalConfig.hasEvolutionConfig === true;
-  const usingGlobalFallback =
-    hasGlobalConfig &&
-    !inbox?.provider_config?.api_url &&
-    !inbox?.provider_config?.admin_token;
+  // Per-field fallback detection — mirrors backend EvolutionConcern which
+  // resolves api_url and admin_token independently (each falls back to
+  // GlobalConfig separately). The banner shows when ANY field uses fallback;
+  // placeholders are conditional per field.
+  const apiUrlUsesGlobal = hasGlobalConfig && !inbox?.provider_config?.api_url;
+  const adminTokenUsesGlobal = hasGlobalConfig && !inbox?.provider_config?.admin_token;
+  const usingGlobalFallback = apiUrlUsesGlobal || adminTokenUsesGlobal;
 
   const [isLoadingSettings, setIsLoadingSettings] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -1380,7 +1383,7 @@ const EvolutionWhatsAppConfig: React.FC<{
                   onChange={e =>
                     setConnectionSettings(prev => ({ ...prev, apiUrl: e.target.value }))
                   }
-                  placeholder={usingGlobalFallback
+                  placeholder={apiUrlUsesGlobal
                     ? t('settings.configuration.whatsapp.instance.connection.apiUrlGlobalPlaceholder', 'Using global config — fill to override')
                     : t('settings.configuration.whatsapp.instance.connection.apiUrlPlaceholder')}
                 />
@@ -1396,7 +1399,7 @@ const EvolutionWhatsAppConfig: React.FC<{
                   onChange={e =>
                     setConnectionSettings(prev => ({ ...prev, adminToken: e.target.value }))
                   }
-                  placeholder={usingGlobalFallback
+                  placeholder={adminTokenUsesGlobal
                     ? t('settings.configuration.whatsapp.instance.connection.adminTokenGlobalPlaceholder', 'Using global config — fill to override')
                     : t('settings.configuration.whatsapp.instance.connection.adminTokenPlaceholder')}
                 />
