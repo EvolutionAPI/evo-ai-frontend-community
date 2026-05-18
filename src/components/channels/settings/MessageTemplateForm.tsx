@@ -45,6 +45,7 @@ import MessageTemplateService, {
   getChannelTemplateConfig,
 } from '@/services/channels/messageTemplatesService';
 import { TemplatePreview } from './TemplatePreview';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import { MessageTemplate, TemplateFormData } from '@/types';
 import { getStatusBadgeKey } from '@/components/chat/message-template/templateStatus';
 import { extractTemplateFormVariables } from '@/utils/templateVariables';
@@ -571,6 +572,7 @@ const MessageTemplateForm: React.FC<MessageTemplateFormProps> = ({
   const [editingTemplate, setEditingTemplate] = useState<MessageTemplate | null>(null);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [templateToDelete, setTemplateToDelete] = useState<MessageTemplate | null>(null);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
   const canSync = supportsTemplateSync(channelType);
 
@@ -766,15 +768,13 @@ const MessageTemplateForm: React.FC<MessageTemplateFormProps> = ({
           <Button
             onClick={() => {
               if (channelType === 'Channel::Email') {
-                // Redirect to dedicated email template editor page
                 navigate(
                   `/settings/email-template-editor?inboxId=${inboxId}&channelType=${encodeURIComponent(
                     channelType,
                   )}`,
                 );
               } else {
-                // Use modal for other channel types
-                setShowFormModal(true);
+                setCreateDialogOpen(true);
               }
             }}
           >
@@ -937,15 +937,13 @@ const MessageTemplateForm: React.FC<MessageTemplateFormProps> = ({
                 <Button
                   onClick={() => {
                     if (channelType === 'Channel::Email') {
-                      // Redirect to dedicated email template editor page
                       navigate(
                         `/settings/email-template-editor?inboxId=${inboxId}&channelType=${encodeURIComponent(
                           channelType,
                         )}`,
                       );
                     } else {
-                      // Use modal for other channel types
-                      setShowFormModal(true);
+                      setCreateDialogOpen(true);
                     }
                   }}
                 >
@@ -970,6 +968,21 @@ const MessageTemplateForm: React.FC<MessageTemplateFormProps> = ({
         }}
         onSave={editingTemplate ? handleEditTemplate : handleCreateTemplate}
         t={t}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="templates"
+        title="Novo template de mensagem"
+        onAcceptAI={() => {
+          setCreateDialogOpen(false);
+          toast.success('Template criado via IA (mock).');
+        }}
+        onOpenManual={() => {
+          setEditingTemplate(null);
+          setShowFormModal(true);
+        }}
       />
 
       {/* Preview Modal */}

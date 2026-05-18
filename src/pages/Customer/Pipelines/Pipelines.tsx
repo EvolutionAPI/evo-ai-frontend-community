@@ -34,6 +34,7 @@ import {
   DuplicatePipelineModal,
 } from '@/components/pipelines/index';
 import { PipelinesTour } from '@/tours';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 const INITIAL_STATE: PipelinesState = {
   pipelines: [],
@@ -148,12 +149,23 @@ export default function Pipelines() {
     loadPipelines({ page: 1, q: query || undefined });
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const handleCreatePipeline = () => {
     if (!can('pipelines', 'create')) {
       toast.error(t('messages.noPermissionCreate'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualPipeline = () => {
     setCreateModalOpen(true);
+  };
+
+  const handlePipelineAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Pipeline criado via IA (mock).');
   };
 
   const handleEditPipeline = (pipeline: Pipeline) => {
@@ -436,6 +448,15 @@ export default function Pipelines() {
         onOpenChange={setCreateModalOpen}
         onSubmit={handleCreatePipelineSubmit}
         loading={state.loading.create}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="pipeline"
+        title="Novo pipeline"
+        onAcceptAI={handlePipelineAIAccept}
+        onOpenManual={handleOpenManualPipeline}
       />
 
       {/* Edit Pipeline Modal */}

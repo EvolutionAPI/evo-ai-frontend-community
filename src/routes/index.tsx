@@ -42,6 +42,7 @@ const ChatPage = React.lazy(() => import('@/pages/Customer/Chat/ChatPage'));
 
 import Automation from '../pages/Customer/Automation';
 import AutomationForm from '../pages/Customer/Automation/AutomationForm';
+import AssistantHome from '@/pages/Customer/Assistant';
 // import AutomationFlowEditor from '../pages/Customer/Automation/AutomationFlowEditor';
 import Pipelines from '@/pages/Customer/Pipelines/Pipelines';
 import PipelineKanban from '@/pages/Customer/Pipelines/PipelineKanban';
@@ -446,6 +447,19 @@ const AppRouter = () => {
                     <PermissionRoute resource="pipelines" action="read">
                       <PipelineKanban />
                     </PermissionRoute>
+                  </MainLayout>
+                </CustomerRoute>
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/assistant"
+            element={
+              <PrivateRoute>
+                <CustomerRoute>
+                  <MainLayout>
+                    <AssistantHome />
                   </MainLayout>
                 </CustomerRoute>
               </PrivateRoute>

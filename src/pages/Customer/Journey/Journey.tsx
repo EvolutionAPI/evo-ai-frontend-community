@@ -18,6 +18,7 @@ import {
 import { journeyService } from '../../../services';
 import type { Journey } from '@/types/automation';
 import JourneyModal from '@/components/journey/JourneyModal';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import { toast } from 'sonner';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { useLanguage } from '@/hooks/useLanguage';
@@ -31,6 +32,7 @@ export default function JourneyPage() {
   const [selectedJourneys, setSelectedJourneys] = useState<Journey[]>([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [journeyToDelete, setJourneyToDelete] = useState<Journey | null>(null);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
   const navigate = useNavigate();
   const { can, isReady: permissionsReady } = useUserPermissions();
@@ -123,8 +125,18 @@ export default function JourneyPage() {
       toast.error(t('messages.noPermissionCreate'));
       return;
     }
-    setEditingJourney(null);
-    setModalOpen(true);
+    setCreateDialogOpen(true);
+  };
+
+  const handleAcceptAI = () => {
+    setCreateDialogOpen(false);
+    toast.success('Jornada criada via IA (mock).');
+    fetchJourneys();
+  };
+
+  const handleAIManualSubmitSuccess = () => {
+    setCreateDialogOpen(false);
+    fetchJourneys();
   };
 
   const handleEditJourney = (journey: Journey) => {
@@ -282,6 +294,15 @@ export default function JourneyPage() {
         onClose={handleModalClose}
         journey={editingJourney}
         onSave={handleJourneySaved}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="journey"
+        title="Nova jornada"
+        onAcceptAI={handleAcceptAI}
+        onManualSubmitSuccess={handleAIManualSubmitSuccess}
       />
 
       <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

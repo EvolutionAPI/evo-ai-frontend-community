@@ -18,6 +18,7 @@ import EmptyState from '@/components/base/EmptyState';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { campaignsService } from '@/services/campaigns';
 import { Campaign, CampaignsState, CampaignsListParams } from '@/types/campaigns';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
 
 import {
@@ -187,12 +188,23 @@ export default function Campaigns() {
     }
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const handleCreateCampaign = () => {
     if (!can('campaigns', 'create')) {
       toast.error(t('messages.noPermissionToCreate'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualCampaign = () => {
     navigate('/campaigns/new');
+  };
+
+  const handleCampaignAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Campanha criada via IA (mock).');
   };
 
   const handleEditCampaign = (campaign: Campaign) => {
@@ -669,6 +681,15 @@ export default function Campaigns() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="campaigns"
+        title="Nova campanha"
+        onAcceptAI={handleCampaignAIAccept}
+        onOpenManual={handleOpenManualCampaign}
+      />
     </div>
   );
 }

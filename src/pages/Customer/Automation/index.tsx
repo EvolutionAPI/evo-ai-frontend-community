@@ -16,6 +16,7 @@ import { automationService } from '@/services/automation/automationService';
 import type { AutomationRule } from '@/types/automation';
 import { AutomationsHeader, AutomationsTable, AutomationsPagination } from '@/components/automation';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 interface Pagination {
   page: number;
@@ -55,6 +56,7 @@ export default function AutomationsListPage() {
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [ruleToDelete, setRuleToDelete] = useState<AutomationRule | null>(null);
   const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const hasLoaded = useRef(false);
 
   const canRead = can('automation_rules', 'read');
@@ -107,7 +109,16 @@ export default function AutomationsListPage() {
       toast.error(t('messages.permissionDenied.create'));
       return;
     }
-    navigate('/automation/new');
+    setCreateDialogOpen(true);
+  };
+
+  const handleAcceptAI = () => {
+    setCreateDialogOpen(false);
+    toast.success('Automação criada via IA (mock).');
+  };
+
+  const handleManualSubmitSuccess = () => {
+    loadAutomations();
   };
 
   const handleEdit = (rule: AutomationRule) => {
@@ -268,6 +279,15 @@ export default function AutomationsListPage() {
           />
         </div>
       )}
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="automation"
+        title="Nova automação"
+        onAcceptAI={handleAcceptAI}
+        onManualSubmitSuccess={handleManualSubmitSuccess}
+      />
 
       <Dialog open={deleteOpen} onOpenChange={setDeleteOpen}>
         <DialogContent>

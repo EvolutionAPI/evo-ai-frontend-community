@@ -13,6 +13,7 @@ import ProductsHeader from '@/components/products/ProductsHeader';
 import ProductsTable from '@/components/products/ProductsTable';
 import ProductsPagination from '@/components/products/ProductsPagination';
 import ProductModal from '@/components/products/ProductModal';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import {
   Dialog,
   DialogContent,
@@ -76,9 +77,20 @@ export default function Products() {
     fetchProducts();
   }, [fetchProducts]);
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const openCreate = () => {
+    setCreateDialogOpen(true);
+  };
+
+  const openManualProduct = () => {
     setEditing(null);
     setModalOpen(true);
+  };
+
+  const handleProductAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Produto criado via IA (mock).');
   };
 
   const openEdit = (product: Product) => {
@@ -178,6 +190,15 @@ export default function Products() {
           if (!open) setEditing(null);
         }}
         onSubmit={handleSubmit}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="products"
+        title="Novo produto"
+        onAcceptAI={handleProductAIAccept}
+        onOpenManual={openManualProduct}
       />
 
       <Dialog open={Boolean(confirmDelete)} onOpenChange={(open) => !open && setConfirmDelete(null)}>

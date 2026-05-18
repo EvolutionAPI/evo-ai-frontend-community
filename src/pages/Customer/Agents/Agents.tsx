@@ -11,6 +11,7 @@ import { Agent } from '@/types/agents';
 import { useLanguage } from '@/hooks/useLanguage';
 import { ApiKeysModal } from '@/components/ApiKeysModal';
 import { AgentsTour } from '@/tours';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import { exportAsJson, generateExportFilename } from '@/utils/exportUtils';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import type { PaginationMeta } from '@/types/core';
@@ -59,6 +60,7 @@ const Agentes = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [agentToDelete, setAgentToDelete] = useState<Agent | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const isWizardOpen = location.pathname === '/agents/new';
 
   const loadAgents = useCallback(
@@ -154,7 +156,18 @@ const Agentes = () => {
       toast.error(t('permissions.createDenied'));
       return;
     }
-    navigate('/agents/new');
+    setCreateDialogOpen(true);
+  };
+
+  const handleAcceptAI = () => {
+    setCreateDialogOpen(false);
+    toast.success('Agente criado via IA (mock).');
+    loadAgents();
+  };
+
+  const handleManualSubmitSuccess = () => {
+    setCreateDialogOpen(false);
+    loadAgents();
   };
 
   const handleEditAgent = (agentId: string) => {
@@ -379,6 +392,15 @@ const Agentes = () => {
       )}
 
       <ApiKeysModal open={isApiKeysModalOpen} onOpenChange={setIsApiKeysModalOpen} />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="agent"
+        title="Novo agente"
+        onAcceptAI={handleAcceptAI}
+        onManualSubmitSuccess={handleManualSubmitSuccess}
+      />
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>

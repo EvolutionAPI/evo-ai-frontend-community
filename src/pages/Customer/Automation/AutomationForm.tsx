@@ -40,9 +40,13 @@ const DEFAULTS: AutomationRuleFormData = {
 
 interface Props {
   mode: 'create' | 'edit';
+  /** Quando true, esconde header/voltar e usa onSubmitSuccess em vez de navegar. */
+  embedded?: boolean;
+  onSubmitSuccess?: () => void;
+  onCancel?: () => void;
 }
 
-export default function AutomationForm({ mode }: Props) {
+export default function AutomationForm({ mode, embedded = false, onSubmitSuccess, onCancel }: Props) {
   const { t } = useLanguage('automation');
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -106,7 +110,11 @@ export default function AutomationForm({ mode }: Props) {
         await automationService.updateAutomation(id, { ...payload, id });
         toast.success(t('messages.updateSuccess'));
       }
-      navigate('/automation');
+      if (embedded) {
+        onSubmitSuccess?.();
+      } else {
+        navigate('/automation');
+      }
     } catch (error) {
       console.error('Error saving automation:', error);
       toast.error(
@@ -123,15 +131,17 @@ export default function AutomationForm({ mode }: Props) {
 
   return (
     <FormProvider {...methods}>
-    <div className="h-full flex flex-col p-4 max-w-4xl mx-auto w-full">
-      <div className="flex items-center gap-2 mb-4">
-        <Button variant="ghost" size="icon" onClick={() => navigate('/automation')}>
-          <ArrowLeft className="h-4 w-4" />
-        </Button>
-        <h1 className="text-xl font-semibold">
-          {mode === 'create' ? t('form.title.create') : t('form.title.edit')}
-        </h1>
-      </div>
+    <div className={embedded ? 'h-full flex flex-col w-full' : 'h-full flex flex-col p-4 max-w-4xl mx-auto w-full'}>
+      {!embedded && (
+        <div className="flex items-center gap-2 mb-4">
+          <Button variant="ghost" size="icon" onClick={() => navigate('/automation')}>
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <h1 className="text-xl font-semibold">
+            {mode === 'create' ? t('form.title.create') : t('form.title.edit')}
+          </h1>
+        </div>
+      )}
 
       {mode === 'edit' && id ? (
         <Tabs defaultValue="settings" className="flex-1 flex flex-col min-h-0">
@@ -224,7 +234,7 @@ export default function AutomationForm({ mode }: Props) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => navigate('/automation')}
+            onClick={() => (embedded ? onCancel?.() : navigate('/automation'))}
             disabled={submitting}
           >
             {t('form.buttons.cancel')}

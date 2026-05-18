@@ -26,6 +26,7 @@ import {
   Megaphone,
   Route,
   ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
 
 export interface MenuItem {
@@ -60,6 +61,11 @@ export interface ProfileMenuItem {
 }
 
 export const getCustomerMenuItems = (t: (key: string) => string): MenuItem[] => [
+  {
+    name: 'Assistente IA',
+    href: '/assistant',
+    icon: Sparkles,
+  },
   {
     name: t('menu.customer.dashboard'),
     href: '/dashboard',
