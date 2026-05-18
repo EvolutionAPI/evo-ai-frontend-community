@@ -119,6 +119,7 @@ export interface UserResponse {
   availability?: 'online' | 'offline' | 'busy';
   auto_offline?: boolean;
   mfa_enabled?: boolean;
+  mfa_setup_incomplete?: boolean;
   unconfirmed_email?: string | null;
   created_at?: string;
   custom_attributes?: Record<string, unknown>;

@@ -272,7 +272,8 @@
         "enable": "Activar Autenticación de Dos Factores",
         "disable": "Desactivar Autenticación de Dos Factores"
       },
-      "info": "La autenticación de dos factores agrega una capa extra de seguridad exigiendo un código adicional además de su contraseña al iniciar sesión."
+      "info": "La autenticación de dos factores agrega una capa extra de seguridad exigiendo un código adicional además de su contraseña al iniciar sesión.",
+      "setupIncompleteWarning": "Sus códigos de recuperación de autenticación de dos factores fueron invalidados debido a una actualización de seguridad. Configure la autenticación de dos factores nuevamente para restaurar el acceso de recuperación."
     },
     "common": {
       "cancel": "Cancelar",

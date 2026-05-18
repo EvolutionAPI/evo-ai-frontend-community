@@ -272,7 +272,8 @@
         "enable": "Activer l'Authentification à Deux Facteurs",
         "disable": "Désactiver l'Authentification à Deux Facteurs"
       },
-      "info": "L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire en exigeant un code supplémentaire en plus de votre mot de passe lors de la connexion."
+      "info": "L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire en exigeant un code supplémentaire en plus de votre mot de passe lors de la connexion.",
+      "setupIncompleteWarning": "Vos codes de récupération d'authentification à deux facteurs ont été invalidés suite à une mise à jour de sécurité. Veuillez reconfigurer l'authentification à deux facteurs pour restaurer votre accès de récupération."
     },
     "common": {
       "cancel": "Annuler",

@@ -20,6 +20,7 @@ export interface UserProfile {
   custom_attributes?: Record<string, unknown>;
   availability?: 'online' | 'offline' | 'busy';
   mfa_enabled?: boolean;
+  mfa_setup_incomplete?: boolean;
   confirmed?: boolean;
   unconfirmed_email?: string | null;
   created_at?: string;

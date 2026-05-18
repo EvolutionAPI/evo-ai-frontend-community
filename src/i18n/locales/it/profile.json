@@ -272,7 +272,8 @@
         "enable": "Attiva autenticazione a due fattori",
         "disable": "Disattiva autenticazione a due fattori"
       },
-      "info": "L'autenticazione a due fattori aggiunge un ulteriore livello di sicurezza richiedendo un codice aggiuntivo oltre alla password durante l'accesso."
+      "info": "L'autenticazione a due fattori aggiunge un ulteriore livello di sicurezza richiedendo un codice aggiuntivo oltre alla password durante l'accesso.",
+      "setupIncompleteWarning": "I codici di recupero dell'autenticazione a due fattori sono stati invalidati a seguito di un aggiornamento di sicurezza. Riconfigura l'autenticazione a due fattori per ripristinare l'accesso di recupero."
     },
     "common": {
       "cancel": "Annulla",

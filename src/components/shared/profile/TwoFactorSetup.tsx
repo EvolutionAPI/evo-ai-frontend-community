@@ -36,6 +36,7 @@ const TwoFactorSetup = ({ onUpdate }: TwoFactorSetupProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const mfaEnabled = user?.mfa_enabled ?? false;
+  const mfaSetupIncomplete = user?.mfa_setup_incomplete ?? false;
 
   // Setup state
   const [setupDialogOpen, setSetupDialogOpen] = useState(false);
@@ -423,6 +424,14 @@ const TwoFactorSetup = ({ onUpdate }: TwoFactorSetupProps) => {
         <CardContent className="space-y-4">
           {!mfaEnabled ? (
             <>
+              {mfaSetupIncomplete && (
+                <Alert variant="destructive">
+                  <AlertTriangle className="h-4 w-4" />
+                  <AlertDescription>
+                    {t('twoFactor.setupIncompleteWarning')}
+                  </AlertDescription>
+                </Alert>
+              )}
               <Alert>
                 <Shield className="h-4 w-4" />
                 <AlertDescription>
