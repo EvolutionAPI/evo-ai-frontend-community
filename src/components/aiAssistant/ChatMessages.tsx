@@ -7,16 +7,18 @@ interface Props {
   /** Texto da bolha do assistente em streaming agora (não persistido em messages ainda) */
   streamingText?: string;
   emptyState?: React.ReactNode;
+  /** Slot opcional renderizado DENTRO da área scrollável, após as mensagens */
+  afterMessages?: React.ReactNode;
 }
 
-export function ChatMessages({ messages, streamingText, emptyState }: Props) {
+export function ChatMessages({ messages, streamingText, emptyState, afterMessages }: Props) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  }, [messages, streamingText]);
+  }, [messages, streamingText, afterMessages]);
 
-  if (messages.length === 0 && !streamingText && emptyState) {
+  if (messages.length === 0 && !streamingText && !afterMessages && emptyState) {
     return <div className="flex-1 overflow-y-auto">{emptyState}</div>;
   }
 
@@ -27,6 +29,7 @@ export function ChatMessages({ messages, streamingText, emptyState }: Props) {
           <MessageBubble key={m.id} message={m} />
         ))}
         {streamingText !== undefined && <StreamingBubble text={streamingText} />}
+        {afterMessages}
         <div ref={bottomRef} />
       </div>
     </div>

@@ -22,6 +22,7 @@ import { AppliedFilter } from '@/types/core';
 
 import { MacrosHeader, MacrosTable, MacrosPagination, MacroFormModal } from '@/components/macros';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 const INITIAL_STATE: MacrosState = {
   macros: [],
@@ -175,13 +176,24 @@ export default function Macros() {
     setMacroModalOpen(true);
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const handleCreateMacro = () => {
     if (!can('macros', 'create')) {
       toast.error(t('messages.permissionDenied.create'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualMacro = () => {
     setEditingMacro(null);
     setMacroModalOpen(true);
+  };
+
+  const handleMacroAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Macro criada via IA (mock).');
   };
 
   const handleEditMacro = (macro: Macro) => {
@@ -435,6 +447,15 @@ export default function Macros() {
         onClose={() => setMacroModalOpen(false)}
         macro={editingMacro}
         onSuccess={handleMacroFormSubmit}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="macro"
+        title="Nova macro"
+        onAcceptAI={handleMacroAIAccept}
+        onOpenManual={handleOpenManualMacro}
       />
     </div>
   );

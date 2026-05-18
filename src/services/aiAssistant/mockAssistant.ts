@@ -13,6 +13,11 @@ export type AssistantFeature =
   | 'channels'
   | 'templates'
   | 'journey'
+  | 'customTool'
+  | 'customMcp'
+  | 'segment'
+  | 'macro'
+  | 'role'
   | 'general';
 
 export type ChatRole = 'user' | 'assistant';
@@ -197,6 +202,98 @@ export interface TemplatePreviewState {
   variables: TemplateVariable[];
   /** Subject só faz sentido pra email */
   emailSubject?: string;
+}
+
+// -- Custom Tool (HTTP function tool definida pelo cliente) -------------------
+
+export type HttpMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+
+export interface CustomToolParam {
+  name: string;
+  type: 'string' | 'number' | 'boolean';
+  required: boolean;
+  description: string;
+  location: 'path' | 'query' | 'body' | 'header';
+}
+
+export interface CustomToolPreviewState {
+  name: string;
+  description: string;
+  method: HttpMethod;
+  baseUrl: string;
+  path: string;
+  authHeader?: string;
+  params: CustomToolParam[];
+  tags: string[];
+  exampleResponse?: string;
+}
+
+// -- Segment (filtro de contatos) ---------------------------------------------
+
+export interface SegmentRule {
+  field: string;
+  operator: string;
+  value: string;
+}
+
+export interface SegmentPreviewState {
+  name: string;
+  description: string;
+  /** AND/OR entre regras */
+  logic: 'AND' | 'OR';
+  rules: SegmentRule[];
+  /** Quantos contatos batem com as regras (estimativa) */
+  matchCount: number;
+}
+
+// -- Macro (sequência de ações pré-definidas) ---------------------------------
+
+export interface MacroAction {
+  type: 'send_message' | 'add_label' | 'remove_label' | 'assign_team' | 'assign_agent' | 'change_priority' | 'move_pipeline' | 'wait';
+  label: string;
+  /** Resumo curto da config */
+  summary: string;
+}
+
+export interface MacroPreviewState {
+  name: string;
+  description: string;
+  visibility: 'private' | 'public' | 'team';
+  actions: MacroAction[];
+}
+
+// -- Role & Permissions -------------------------------------------------------
+
+export interface RolePermissionGroup {
+  resource: string;
+  /** ações permitidas dentro do recurso */
+  actions: string[];
+  /** total de ações disponíveis no recurso */
+  totalActions: number;
+}
+
+export interface RolePreviewState {
+  name: string;
+  description: string;
+  /** Quantos usuários teriam essa role aplicada na proposta */
+  estimatedUserCount: number;
+  /** Permissões agrupadas por recurso */
+  permissions: RolePermissionGroup[];
+}
+
+// -- Custom MCP Server --------------------------------------------------------
+
+export interface CustomMcpPreviewState {
+  name: string;
+  description: string;
+  url: string;
+  /** Headers (auth, etc) — apenas chaves; valores ficam mascarados */
+  headers: Array<{ key: string; valueMasked: string }>;
+  /** Tools que o servidor MCP expõe (descobertas via handshake) */
+  exposedTools: string[];
+  timeoutSeconds: number;
+  retryCount: number;
+  tags: string[];
 }
 
 /**
@@ -524,6 +621,136 @@ const TEMPLATES: Record<AssistantFeature, AssistantTemplate[]> = {
         'Crie um template de SMS para código de verificação OTP. Tom direto, curto, sem promoção. Variáveis: código, validade em minutos. Categoria authentication.',
     },
   ],
+  segment: [
+    {
+      id: 'seg-inativos',
+      title: 'Inativos há 60 dias',
+      subtitle: 'Sem mensagem nem compra',
+      icon: 'inbox',
+      prompt:
+        'Crie um segmento de contatos que não receberam mensagem nem compraram nada nos últimos 60 dias. Excluir quem tem tag "vip".',
+    },
+    {
+      id: 'seg-vip',
+      title: 'VIPs Brasil',
+      subtitle: 'Top tier brasileiros',
+      icon: 'target',
+      prompt:
+        'Crie um segmento de contatos com tag "VIP", país Brasil e que tiveram pelo menos 1 conversa ativa nos últimos 30 dias.',
+    },
+    {
+      id: 'seg-rfm',
+      title: 'Lead quente',
+      subtitle: 'Engajados recentemente',
+      icon: 'rocket',
+      prompt:
+        'Crie um segmento de leads quentes: contatos sem tag "cliente" mas com 3+ mensagens enviadas e última interação nos últimos 7 dias.',
+    },
+  ],
+  macro: [
+    {
+      id: 'mac-vip',
+      title: 'Tratar como VIP',
+      subtitle: 'Tag + atribui time + prioridade',
+      icon: 'target',
+      prompt:
+        'Crie uma macro que ao ser aplicada em uma conversa adiciona a tag "VIP", atribui ao time de Contas Estratégicas, define prioridade alta e envia uma mensagem padrão de boas-vindas VIP.',
+    },
+    {
+      id: 'mac-encerrar',
+      title: 'Encerrar com pesquisa NPS',
+      subtitle: 'Resolve + NPS + mover etapa',
+      icon: 'workflow',
+      prompt:
+        'Crie uma macro para encerrar atendimento: envia mensagem de despedida, dispara pesquisa NPS, marca como resolvido e move para etapa "Pós-venda" no pipeline.',
+    },
+    {
+      id: 'mac-escalar',
+      title: 'Escalar pro time técnico',
+      subtitle: 'Atribui + tag + nota interna',
+      icon: 'rocket',
+      prompt:
+        'Crie uma macro para escalar uma conversa: atribui ao time "Técnico Nível 2", adiciona tag "escalado" e prioridade urgente.',
+    },
+  ],
+  role: [
+    {
+      id: 'role-sdr',
+      title: 'SDR (Vendas)',
+      subtitle: 'Acessa pipeline + contatos + conversas',
+      icon: 'target',
+      prompt:
+        'Crie uma role para SDR: pode ler/criar/atualizar contatos e mover cards no pipeline, ler e responder conversas, mas não pode mexer em pipelines, automações ou settings.',
+    },
+    {
+      id: 'role-support',
+      title: 'Suporte L1',
+      subtitle: 'Conversas + macros',
+      icon: 'headphones',
+      prompt:
+        'Crie uma role para Suporte Nível 1: pode ler e responder conversas, aplicar macros, ver contatos e marcar como resolvido. Sem acesso a pipelines, agents, campanhas ou settings.',
+    },
+    {
+      id: 'role-admin-ops',
+      title: 'Admin Operações',
+      subtitle: 'Quase tudo, exceto billing',
+      icon: 'sparkles',
+      prompt:
+        'Crie uma role para Admin de Operações: acesso completo a contatos, pipelines, agents, automações, jornadas, campanhas e templates. Sem acesso a billing, users, roles ou admin settings.',
+    },
+  ],
+  customTool: [
+    {
+      id: 'ct-stripe',
+      title: 'Consultar cliente no Stripe',
+      subtitle: 'GET /v1/customers/{id} com Bearer',
+      icon: 'rocket',
+      prompt:
+        'Crie uma tool que consulta um cliente no Stripe via GET /v1/customers/{id}. Use Bearer token da minha conta. Retorna nome, email e status de assinatura.',
+    },
+    {
+      id: 'ct-omie',
+      title: 'Criar nota fiscal Omie',
+      subtitle: 'POST com payload de NF-e',
+      icon: 'workflow',
+      prompt:
+        'Crie uma tool POST para o Omie criar nota fiscal de serviço. Parâmetros: cliente_id, valor, descrição. Auth via API key no header.',
+    },
+    {
+      id: 'ct-internal',
+      title: 'Buscar produto no ERP interno',
+      subtitle: 'GET com auth basic',
+      icon: 'inbox',
+      prompt:
+        'Crie uma tool GET para o ERP interno em https://erp.local/api/v1/products/{sku}. Auth Basic. Retorna nome, estoque e preço.',
+    },
+  ],
+  customMcp: [
+    {
+      id: 'mcp-notion',
+      title: 'Notion MCP',
+      subtitle: 'Acessar pages e databases',
+      icon: 'sparkles',
+      prompt:
+        'Conecte o servidor MCP oficial do Notion em https://mcp.notion.com com minha integration key. Quero que o agente acesse pages e databases.',
+    },
+    {
+      id: 'mcp-github',
+      title: 'GitHub MCP',
+      subtitle: 'Issues, PRs, commits',
+      icon: 'workflow',
+      prompt:
+        'Conecte o GitHub MCP em https://api.githubcopilot.com/mcp/ com PAT. Quero ler issues, abrir PRs e comentar commits dos meus repos.',
+    },
+    {
+      id: 'mcp-internal',
+      title: 'MCP customizado interno',
+      subtitle: 'Servidor MCP da empresa',
+      icon: 'rocket',
+      prompt:
+        'Conecte o servidor MCP interno em https://mcp.minha-empresa.com/v1. Auth via header X-API-Key. Timeout 30s, retry 2 vezes.',
+    },
+  ],
   journey: [
     {
       id: 'jrn-onboarding',
@@ -596,27 +823,210 @@ export interface StreamHandle {
   cancel: () => void;
 }
 
+// =============================================================================
+// SKYWAY — eventos enriquecidos baseados nos padrões Lovable/Replit/V0/Cursor
+// =============================================================================
+
+export type AutonomyLevel = 'conservative' | 'balanced' | 'autopilot';
+export type ToolRiskTag = 'safe' | 'confirm' | 'gated';
+export type ChatMode = 'plan' | 'apply';
+
+export interface SkywayPlanStep {
+  id: string;
+  /** Descrição humana em pt-BR */
+  description: string;
+  /** Tool ADK que será chamada (pra dar transparência) */
+  toolName: string;
+  /** Risco da ação — colore o card e afeta aprovação */
+  risk: ToolRiskTag;
+  /** Se a ação pode ser desfeita depois (move/tag/update = sim; envio de msg = não) */
+  reversible: boolean;
+  /** Pré-selecionado para aprovação? Default true exceto em `gated` que vem off */
+  selectedByDefault: boolean;
+}
+
+export interface SkywayPlan {
+  id: string;
+  /** Resumo de uma linha do que o plano faz */
+  summary: string;
+  steps: SkywayPlanStep[];
+}
+
+export interface SkywayReceiptResult {
+  stepId: string;
+  description: string;
+  status: 'success' | 'error' | 'skipped';
+  errorMessage?: string;
+  /** Entidade que foi tocada — link para abrir */
+  entityRef?: { type: string; id: string; label: string };
+  reversible: boolean;
+}
+
+export interface SkywayReceipt {
+  id: string;
+  results: SkywayReceiptResult[];
+  /** Há ao menos 1 resultado reversível? Se sim, mostra botão Desfazer */
+  undoable: boolean;
+  /** ISO timestamp; após esse tempo o Desfazer expira (UX-only no mock) */
+  undoExpiresAt: string;
+}
+
+export interface SkywayInlineForm {
+  id: string;
+  /** Headline pra explicar o que vai ser perguntado */
+  title: string;
+  fields: Array<
+    | { name: string; label: string; type: 'text' | 'email' | 'tel'; placeholder?: string; required?: boolean }
+    | { name: string; label: string; type: 'number'; placeholder?: string; required?: boolean; min?: number; max?: number; prefix?: string }
+    | { name: string; label: string; type: 'date'; required?: boolean }
+    | { name: string; label: string; type: 'select'; options: Array<{ value: string; label: string }>; required?: boolean }
+  >;
+  /** Texto do CTA primário */
+  submitLabel: string;
+}
+
+export type MentionRefType = 'contato' | 'deal' | 'pipeline' | 'conversa' | 'campanha';
+export interface MentionRef {
+  type: MentionRefType;
+  id: string;
+  label: string;
+}
+
 export interface StreamCallbacks<TPreview = unknown> {
   onToken: (token: string) => void;
   onPreviewUpdate?: (state: TPreview) => void;
   onDone: (full: string) => void;
+  /** SKYWAY: raciocínio resumido entre/antes de tool calls (F-UX-07) */
+  onThinking?: (text: string) => void;
+  /** SKYWAY: plano numerado antes de executar múltiplas ações (F-UX-03) */
+  onPlan?: (plan: SkywayPlan) => void;
+  /** SKYWAY: recibo da execução com flag undoable (F-UX-03) */
+  onReceipt?: (receipt: SkywayReceipt) => void;
+  /** SKYWAY: pergunta estruturada com schema renderizada inline no chat (F-UX-08) */
+  onInlineForm?: (form: SkywayInlineForm) => void;
+}
+
+export interface StreamOptions {
+  /** SKYWAY: contexto anexado via @mentions */
+  mentions?: MentionRef[];
+  /** SKYWAY: modo de execução — `plan` descreve sem agir; `apply` executa */
+  mode?: ChatMode;
+  /** SKYWAY: nível de autonomia atual do usuário */
+  autonomy?: AutonomyLevel;
 }
 
 /**
  * Simula uma resposta da IA com streaming token a token + atualização incremental do preview.
+ *
+ * SKYWAY — também detecta triggers de demo no `userText` para emitir eventos
+ * enriquecidos (thinking, plan, receipt, inline_form). Os triggers são:
+ *   - `demo:plan` ou "siga em massa" / "todos" → emite Plan + Receipt
+ *   - `demo:thinking` ou perguntas longas → emite Thinking events
+ *   - `demo:form` ou pedidos com dado estruturado → emite InlineForm
  */
 export function streamAssistantReply<TPreview = unknown>(
   userText: string,
   feature: AssistantFeature,
   cb: StreamCallbacks<TPreview>,
+  options?: StreamOptions,
 ): StreamHandle {
   let cancelled = false;
 
   (async () => {
+    const lower = userText.toLowerCase();
+    const mode: ChatMode = options?.mode ?? 'apply';
+    const autonomy: AutonomyLevel = options?.autonomy ?? 'balanced';
+
+    // SKYWAY: triggers de demo só ativos no contexto certo.
+    // - Em `general` (chat principal): heurística + demo:* explícito.
+    // - Em features específicas (pipeline, agent, etc.): apenas demo:* explícito.
+    //   Caso contrário, segue fluxo normal de streaming + preview_state, senão
+    //   o painel direito (preview da entidade) fica em branco indevidamente.
+    const isGeneral = feature === 'general';
+
+    const showThinking = cb.onThinking && (
+      lower.includes('demo:thinking') ||
+      (isGeneral && (
+        lower.includes('quais conversas') ||
+        lower.includes('quem mais') ||
+        lower.includes('manda um follow') ||
+        lower.length > 80
+      ))
+    );
+    const showPlan = cb.onPlan && (
+      lower.includes('demo:plan') ||
+      (isGeneral && (
+        lower.includes('todos') ||
+        lower.includes('em massa') ||
+        lower.includes('manda um follow') ||
+        lower.includes('reengaj') ||
+        lower.includes('mover')
+      ))
+    );
+    const showInlineForm = cb.onInlineForm && (
+      lower.includes('demo:form') ||
+      (isGeneral && (
+        lower.includes('agendar') ||
+        lower.includes('proposta') ||
+        lower.includes('marcar reunião')
+      ))
+    );
+
+    // 1. THINKING — antes de qualquer coisa, sinaliza que está pensando
+    if (showThinking) {
+      await wait(220);
+      if (cancelled) return;
+      cb.onThinking!('Entendendo o pedido…');
+      await wait(450);
+      if (cancelled) return;
+      cb.onThinking!('Consultando o CRM e selecionando ferramentas…');
+      await wait(550);
+      if (cancelled) return;
+    }
+
+    // 2. INLINE FORM — antes da resposta principal, pede dado estruturado
+    if (showInlineForm) {
+      await wait(300);
+      if (cancelled) return;
+      cb.onInlineForm!(buildDemoInlineForm(userText));
+      // Form bloqueia: fim do turno aguardando submit do usuário no UI.
+      cb.onDone('');
+      return;
+    }
+
+    // 3. PLAN — quando há múltiplas ações, mostra o plano antes
+    if (showPlan) {
+      await wait(300);
+      if (cancelled) return;
+      const plan = buildDemoPlan(userText, autonomy);
+      cb.onPlan!(plan);
+
+      // Em modo "plan" só descreve. Em "apply" entrega plano + breve resposta.
+      if (mode === 'plan') {
+        await streamReplyTokens(
+          `Aqui está o plano que eu executaria. Em modo Planejar não toco em nada — alterna para "Aplicar" no header quando quiser executar.`,
+          cb,
+          () => cancelled,
+        );
+        cb.onDone('');
+        return;
+      }
+
+      // Em apply, espera 'confirm' externo pra rodar (no mock, o usuário aprova no PlanCard).
+      // O receipt é emitido por approvePlan() abaixo, chamado pelo front.
+      await streamReplyTokens(
+        plan.summary + ' Revise o plano e clique em "Executar" para aplicar.',
+        cb,
+        () => cancelled,
+      );
+      cb.onDone('');
+      return;
+    }
+
+    // 4. Fluxo padrão: streaming de tokens da resposta + previewState
     const reply = composeReply(userText, feature);
     const previewSteps = buildPreviewSteps(userText, feature) as TPreview[];
 
-    // Pequena pausa antes do primeiro token, como um modelo real.
     await wait(280);
     if (cancelled) return;
 
@@ -629,13 +1039,11 @@ export function streamAssistantReply<TPreview = unknown>(
       acc += tok;
       cb.onToken(tok);
 
-      // Vai aplicando o preview no meio da resposta para dar sensação de "trabalhando".
       const stepIdx = Math.floor((i / tokens.length) * previewSteps.length);
       if (cb.onPreviewUpdate && previewSteps[stepIdx]) {
         cb.onPreviewUpdate(previewSteps[stepIdx]);
       }
 
-      // Velocidade do typewriter — não usar Math.random para deixar previsível.
       await wait(tok.trim() === '' ? 15 : 28);
     }
 
@@ -760,6 +1168,41 @@ function composeReply(userText: string, feature: AssistantFeature): string {
     ].join('');
   }
 
+  if (feature === 'segment') {
+    return [
+      'Montei o segmento. Defini as regras com a lógica AND/OR mais natural pro caso, ',
+      'estimei a contagem de contatos que batem e listei tudo pra você revisar antes de criar.',
+    ].join('');
+  }
+
+  if (feature === 'macro') {
+    return [
+      'Configurei a macro com a sequência de ações. Cada uma é executada em ordem quando ',
+      'um operador aplica a macro numa conversa. Você pode reordenar ou editar antes de salvar.',
+    ].join('');
+  }
+
+  if (feature === 'role') {
+    return [
+      'Estruturei a role com as permissões mínimas pra esse perfil. Veja o que está ',
+      'liberado por recurso à direita — pode marcar/desmarcar antes de criar.',
+    ].join('');
+  }
+
+  if (feature === 'customTool') {
+    return [
+      'Configurei a function tool HTTP. Defini método, URL, parâmetros (com tipo e local: path/query/body/header) ',
+      'e autenticação. Veja a especificação à direita — você pode testá-la antes de salvar.',
+    ].join('');
+  }
+
+  if (feature === 'customMcp') {
+    return [
+      'Conectei ao servidor MCP. Fiz handshake e descobri as tools que ele expõe. ',
+      'Configurei timeout, retry e headers de auth (mascarados). Revise as ferramentas disponíveis no preview.',
+    ].join('');
+  }
+
   if (feature === 'templates') {
     return [
       'Pronto, escrevi o template com base no que você pediu. Detectei as variáveis ',
@@ -831,6 +1274,11 @@ function buildPreviewSteps(userText: string, feature: AssistantFeature): unknown
   if (feature === 'campaigns') return buildCampaignSteps(userText);
   if (feature === 'channels') return buildChannelSteps(userText);
   if (feature === 'templates') return buildTemplateSteps(userText);
+  if (feature === 'customTool') return buildCustomToolSteps(userText);
+  if (feature === 'customMcp') return buildCustomMcpSteps(userText);
+  if (feature === 'segment') return buildSegmentSteps(userText);
+  if (feature === 'macro') return buildMacroSteps(userText);
+  if (feature === 'role') return buildRoleSteps(userText);
   if (feature !== 'automation') return [];
 
   const lower = userText.toLowerCase();
@@ -1935,6 +2383,737 @@ function buildTemplateSteps(userText: string): TemplatePreviewState[] {
     // 4. Renderizado com exemplos
     finalState,
   ];
+}
+
+// =============================================================================
+// SKYWAY — helpers para emitir eventos enriquecidos no mock
+// =============================================================================
+
+async function streamReplyTokens(
+  text: string,
+  cb: { onToken: (t: string) => void },
+  isCancelled: () => boolean,
+): Promise<void> {
+  const tokens = text.split(/(\s+)/);
+  for (const tok of tokens) {
+    if (isCancelled()) return;
+    cb.onToken(tok);
+    await wait(tok.trim() === '' ? 15 : 28);
+  }
+}
+
+function uid(prefix = 'sk'): string {
+  return `${prefix}-${Date.now().toString(36)}-${Math.floor(Math.random() * 1e6).toString(36)}`;
+}
+
+function buildDemoPlan(userText: string, autonomy: AutonomyLevel): SkywayPlan {
+  const lower = userText.toLowerCase();
+
+  if (lower.includes('reengaj') || lower.includes('inativ') || lower.includes('manda um follow')) {
+    const steps: SkywayPlanStep[] = [
+      {
+        id: uid('s'),
+        description: 'Buscar 7 conversas sem resposta nos últimos 3 dias',
+        toolName: 'search_messages',
+        risk: 'safe',
+        reversible: true,
+        selectedByDefault: true,
+      },
+      {
+        id: uid('s'),
+        description: 'Adicionar tag "follow-up-junho" aos contatos relacionados',
+        toolName: 'add_label',
+        risk: 'confirm',
+        reversible: true,
+        selectedByDefault: true,
+      },
+      {
+        id: uid('s'),
+        description: 'Enviar template "Sentimos sua falta" para os 7 contatos',
+        toolName: 'bulk_send_template',
+        risk: 'gated',
+        reversible: false,
+        selectedByDefault: autonomy === 'autopilot',
+      },
+      {
+        id: uid('s'),
+        description: 'Mover esses contatos para a etapa "Reengajamento"',
+        toolName: 'move_contact_to_pipeline',
+        risk: 'confirm',
+        reversible: true,
+        selectedByDefault: true,
+      },
+    ];
+    return {
+      id: uid('plan'),
+      summary: 'Identifiquei 7 contatos parados há 3+ dias. Posso reengajar com 1 template + tag + mover de etapa.',
+      steps,
+    };
+  }
+
+  if (lower.includes('mover') || lower.includes('move')) {
+    return {
+      id: uid('plan'),
+      summary: 'Encontrei 12 contatos elegíveis para a movimentação.',
+      steps: [
+        {
+          id: uid('s'),
+          description: 'Validar permissão para os 12 pipelines envolvidos',
+          toolName: 'check_permission',
+          risk: 'safe',
+          reversible: true,
+          selectedByDefault: true,
+        },
+        {
+          id: uid('s'),
+          description: 'Mover 12 contatos para a etapa "Qualificado"',
+          toolName: 'move_contact_to_pipeline',
+          risk: 'confirm',
+          reversible: true,
+          selectedByDefault: true,
+        },
+        {
+          id: uid('s'),
+          description: 'Adicionar tag "qualificado-junho"',
+          toolName: 'add_label',
+          risk: 'confirm',
+          reversible: true,
+          selectedByDefault: true,
+        },
+      ],
+    };
+  }
+
+  // Fallback genérico
+  return {
+    id: uid('plan'),
+    summary: 'Estruturei o que precisa ser feito em 3 passos.',
+    steps: [
+      {
+        id: uid('s'),
+        description: 'Consultar entidades relacionadas no CRM',
+        toolName: 'search_crm',
+        risk: 'safe',
+        reversible: true,
+        selectedByDefault: true,
+      },
+      {
+        id: uid('s'),
+        description: 'Aplicar a mudança principal',
+        toolName: 'apply_change',
+        risk: 'confirm',
+        reversible: true,
+        selectedByDefault: true,
+      },
+      {
+        id: uid('s'),
+        description: 'Registrar a operação no log de auditoria',
+        toolName: 'audit_log',
+        risk: 'safe',
+        reversible: false,
+        selectedByDefault: true,
+      },
+    ],
+  };
+}
+
+function buildDemoInlineForm(userText: string): SkywayInlineForm {
+  const lower = userText.toLowerCase();
+
+  if (lower.includes('agendar') || lower.includes('reunião') || lower.includes('reunir')) {
+    return {
+      id: uid('form'),
+      title: 'Pra agendar, preciso de alguns dados:',
+      fields: [
+        { name: 'contact', label: 'Com quem é a reunião?', type: 'text', placeholder: 'Nome do contato', required: true },
+        { name: 'date', label: 'Quando?', type: 'date', required: true },
+        {
+          name: 'duration',
+          label: 'Duração',
+          type: 'select',
+          required: true,
+          options: [
+            { value: '30', label: '30 minutos' },
+            { value: '60', label: '1 hora' },
+            { value: '90', label: '1h30' },
+          ],
+        },
+      ],
+      submitLabel: 'Agendar reunião',
+    };
+  }
+
+  if (lower.includes('proposta')) {
+    return {
+      id: uid('form'),
+      title: 'Vou montar a proposta. Me confirme os dados:',
+      fields: [
+        { name: 'contact', label: 'Cliente', type: 'text', required: true },
+        { name: 'value', label: 'Valor', type: 'number', prefix: 'R$', required: true, min: 0 },
+        {
+          name: 'plan',
+          label: 'Plano',
+          type: 'select',
+          required: true,
+          options: [
+            { value: 'starter', label: 'Starter' },
+            { value: 'business', label: 'Business' },
+            { value: 'enterprise', label: 'Enterprise' },
+          ],
+        },
+        { name: 'validity', label: 'Validade', type: 'date', required: true },
+      ],
+      submitLabel: 'Criar proposta',
+    };
+  }
+
+  return {
+    id: uid('form'),
+    title: 'Preciso de alguns dados pra prosseguir:',
+    fields: [
+      { name: 'value', label: 'Valor', type: 'number', prefix: 'R$', required: true },
+      { name: 'when', label: 'Quando?', type: 'date', required: true },
+    ],
+    submitLabel: 'Confirmar',
+  };
+}
+
+/**
+ * SKYWAY — chamado pelo front quando o usuário aprova um plano.
+ * Simula a execução dos steps aprovados e emite o receipt.
+ */
+export function approvePlan(
+  plan: SkywayPlan,
+  approvedStepIds: string[],
+  cb: Pick<StreamCallbacks<unknown>, 'onToken' | 'onThinking' | 'onReceipt' | 'onDone'>,
+): StreamHandle {
+  let cancelled = false;
+
+  (async () => {
+    const approved = plan.steps.filter((s) => approvedStepIds.includes(s.id));
+    if (approved.length === 0) {
+      cb.onToken('Nenhum passo foi selecionado — nada a fazer.');
+      cb.onDone('Nenhum passo foi selecionado — nada a fazer.');
+      return;
+    }
+
+    cb.onThinking?.(`Executando ${approved.length} ${approved.length === 1 ? 'passo' : 'passos'}…`);
+    await wait(400);
+    if (cancelled) return;
+
+    const results: SkywayReceiptResult[] = [];
+    for (const step of approved) {
+      if (cancelled) return;
+      cb.onThinking?.(`${step.description}…`);
+      await wait(450 + Math.floor(Math.random() * 350));
+      if (cancelled) return;
+
+      // 90% sucesso para parecer realista — 1 em ~10 falha
+      const success = Math.random() > 0.1;
+      results.push({
+        stepId: step.id,
+        description: step.description,
+        status: success ? 'success' : 'error',
+        errorMessage: success ? undefined : 'Permissão negada para alguns contatos',
+        entityRef: success
+          ? { type: step.toolName, id: uid('ent'), label: step.description }
+          : undefined,
+        reversible: step.reversible && success,
+      });
+    }
+
+    if (cancelled) return;
+
+    const undoable = results.some((r) => r.reversible);
+    const receipt: SkywayReceipt = {
+      id: uid('rcpt'),
+      results,
+      undoable,
+      undoExpiresAt: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+    };
+
+    cb.onReceipt?.(receipt);
+
+    const okCount = results.filter((r) => r.status === 'success').length;
+    const errCount = results.filter((r) => r.status === 'error').length;
+    const summary = errCount === 0
+      ? `Tudo certo — ${okCount} ${okCount === 1 ? 'ação executada' : 'ações executadas'} com sucesso.`
+      : `Executei ${okCount} de ${results.length}. ${errCount} ${errCount === 1 ? 'falhou' : 'falharam'} — veja os detalhes no recibo.`;
+
+    await streamReplyTokens(summary, cb, () => cancelled);
+    cb.onDone(summary);
+  })();
+
+  return { cancel: () => { cancelled = true; } };
+}
+
+/**
+ * SKYWAY — usado pelo InlineForm pra continuar a conversa depois do submit.
+ */
+export function submitInlineForm(
+  form: SkywayInlineForm,
+  values: Record<string, string>,
+  cb: Pick<StreamCallbacks<unknown>, 'onToken' | 'onThinking' | 'onReceipt' | 'onDone'>,
+): StreamHandle {
+  let cancelled = false;
+
+  (async () => {
+    cb.onThinking?.('Processando dados…');
+    await wait(500);
+    if (cancelled) return;
+
+    const summary =
+      form.fields
+        .map((f) => `${f.label}: ${values[f.name] ?? '—'}`)
+        .join(' · ');
+
+    const receipt: SkywayReceipt = {
+      id: uid('rcpt'),
+      results: [
+        {
+          stepId: uid('s'),
+          description: `${form.submitLabel} — ${summary}`,
+          status: 'success',
+          entityRef: { type: 'form_submission', id: uid('ent'), label: form.submitLabel },
+          reversible: true,
+        },
+      ],
+      undoable: true,
+      undoExpiresAt: new Date(Date.now() + 5 * 60 * 1000).toISOString(),
+    };
+
+    cb.onReceipt?.(receipt);
+    await streamReplyTokens(`Pronto — ${form.submitLabel.toLowerCase()} ✓`, cb, () => cancelled);
+    cb.onDone(`Pronto — ${form.submitLabel.toLowerCase()} ✓`);
+  })();
+
+  return { cancel: () => { cancelled = true; } };
+}
+
+// =============================================================================
+// SKYWAY — sugestões de @mentions (mock pra popover)
+// =============================================================================
+
+export const DEMO_MENTIONS: MentionRef[] = [
+  { type: 'contato', id: 'c-001', label: 'Carolina Mendes — Acme Corp' },
+  { type: 'contato', id: 'c-002', label: 'João Pedro Silva — Startup Fintech' },
+  { type: 'contato', id: 'c-003', label: 'Renata Oliveira — CloudSoft' },
+  { type: 'deal', id: 'd-101', label: 'Acme Plano Enterprise · R$ 24k/ano' },
+  { type: 'deal', id: 'd-102', label: 'CloudSoft Business · R$ 8.4k/ano' },
+  { type: 'pipeline', id: 'p-vendas', label: 'Funil de Vendas B2B' },
+  { type: 'pipeline', id: 'p-suporte', label: 'Suporte por Severidade' },
+  { type: 'conversa', id: 'cv-880', label: 'Carolina · WhatsApp · 12 mensagens' },
+  { type: 'conversa', id: 'cv-881', label: 'João Pedro · WhatsApp · 4 mensagens' },
+  { type: 'campanha', id: 'cmp-bf', label: 'Black Friday VIP 2025' },
+  { type: 'campanha', id: 'cmp-reeng', label: 'Reengajamento Inativos 60d' },
+];
+
+export function searchMentions(query: string): MentionRef[] {
+  if (!query.trim()) return DEMO_MENTIONS.slice(0, 6);
+  const q = query.toLowerCase();
+  return DEMO_MENTIONS.filter((m) => m.label.toLowerCase().includes(q)).slice(0, 6);
+}
+
+function buildCustomToolSteps(userText: string): CustomToolPreviewState[] {
+  const lower = userText.toLowerCase();
+
+  type V = CustomToolPreviewState;
+  const variant: V = (() => {
+    if (lower.includes('stripe') || lower.includes('cliente')) {
+      return {
+        name: 'get_stripe_customer',
+        description: 'Consulta dados de um cliente no Stripe pelo ID',
+        method: 'GET' as HttpMethod,
+        baseUrl: 'https://api.stripe.com',
+        path: '/v1/customers/{id}',
+        authHeader: 'Authorization: Bearer sk_live_••••••••••KX9a',
+        params: [
+          { name: 'id', type: 'string', required: true, location: 'path', description: 'ID do cliente Stripe (cus_xxx)' },
+        ],
+        tags: ['stripe', 'billing', 'lookup'],
+        exampleResponse: '{ "id": "cus_NXXX", "email": "carolina@acme.com", "name": "Carolina Mendes", "subscriptions": { "active": true } }',
+      };
+    }
+    if (lower.includes('omie') || lower.includes('nota fiscal') || lower.includes('nf-e')) {
+      return {
+        name: 'create_omie_invoice',
+        description: 'Cria uma nota fiscal de serviço no Omie',
+        method: 'POST' as HttpMethod,
+        baseUrl: 'https://app.omie.com.br',
+        path: '/api/v1/services/invoice/',
+        authHeader: 'X-Api-Key: ••••••••••omie',
+        params: [
+          { name: 'cliente_id', type: 'string', required: true, location: 'body', description: 'ID do cliente no Omie' },
+          { name: 'valor', type: 'number', required: true, location: 'body', description: 'Valor total em BRL' },
+          { name: 'descricao', type: 'string', required: true, location: 'body', description: 'Descrição do serviço' },
+        ],
+        tags: ['omie', 'fiscal', 'billing'],
+        exampleResponse: '{ "nfse_id": "12345", "status": "issued", "pdf_url": "https://..." }',
+      };
+    }
+    if (lower.includes('erp') || lower.includes('estoque') || lower.includes('produto')) {
+      return {
+        name: 'get_internal_product',
+        description: 'Busca produto no ERP interno por SKU',
+        method: 'GET' as HttpMethod,
+        baseUrl: 'https://erp.local',
+        path: '/api/v1/products/{sku}',
+        authHeader: 'Authorization: Basic dXNlcjo••••',
+        params: [
+          { name: 'sku', type: 'string', required: true, location: 'path', description: 'SKU único do produto' },
+        ],
+        tags: ['erp', 'internal', 'inventory'],
+        exampleResponse: '{ "sku": "CT-001", "name": "Camiseta Premium", "stock": 124, "price_brl": 89.90 }',
+      };
+    }
+    return {
+      name: 'new_custom_tool',
+      description: userText.slice(0, 120) || 'Nova ferramenta HTTP',
+      method: 'GET',
+      baseUrl: 'https://api.exemplo.com',
+      path: '/recurso',
+      params: [],
+      tags: [],
+    };
+  })();
+
+  const empty: CustomToolPreviewState = {
+    name: '',
+    description: '',
+    method: 'GET',
+    baseUrl: '',
+    path: '',
+    params: [],
+    tags: [],
+  };
+
+  return [
+    { ...empty, name: variant.name, method: variant.method },
+    { ...empty, name: variant.name, description: variant.description, method: variant.method, baseUrl: variant.baseUrl, path: variant.path },
+    {
+      ...empty,
+      name: variant.name,
+      description: variant.description,
+      method: variant.method,
+      baseUrl: variant.baseUrl,
+      path: variant.path,
+      authHeader: variant.authHeader,
+      params: variant.params,
+    },
+    variant,
+  ];
+}
+
+function buildCustomMcpSteps(userText: string): CustomMcpPreviewState[] {
+  const lower = userText.toLowerCase();
+
+  type V = CustomMcpPreviewState;
+  const variant: V = (() => {
+    if (lower.includes('notion')) {
+      return {
+        name: 'Notion MCP',
+        description: 'Acesso a pages e databases do Notion via MCP oficial',
+        url: 'https://mcp.notion.com/sse',
+        headers: [
+          { key: 'Authorization', valueMasked: 'Bearer secret_••••••••••Ntn' },
+        ],
+        exposedTools: ['notion.search', 'notion.get_page', 'notion.update_page', 'notion.query_database', 'notion.create_page'],
+        timeoutSeconds: 30,
+        retryCount: 2,
+        tags: ['notion', 'docs', 'knowledge'],
+      };
+    }
+    if (lower.includes('github') || lower.includes('git')) {
+      return {
+        name: 'GitHub MCP',
+        description: 'Issues, PRs, commits e arquivos via MCP oficial do GitHub',
+        url: 'https://api.githubcopilot.com/mcp/',
+        headers: [
+          { key: 'Authorization', valueMasked: 'Bearer ghp_••••••••••GH7' },
+        ],
+        exposedTools: ['gh.search_issues', 'gh.create_issue', 'gh.list_prs', 'gh.merge_pr', 'gh.read_file', 'gh.commit_history'],
+        timeoutSeconds: 30,
+        retryCount: 2,
+        tags: ['github', 'dev', 'code'],
+      };
+    }
+    if (lower.includes('interno') || lower.includes('empresa') || lower.includes('local')) {
+      return {
+        name: 'MCP Interno',
+        description: 'Servidor MCP customizado da empresa',
+        url: 'https://mcp.minha-empresa.com/v1',
+        headers: [
+          { key: 'X-API-Key', valueMasked: '••••••••••EMP' },
+        ],
+        exposedTools: ['internal.get_customer', 'internal.create_order', 'internal.list_inventory'],
+        timeoutSeconds: 30,
+        retryCount: 2,
+        tags: ['internal', 'custom'],
+      };
+    }
+    return {
+      name: 'Novo MCP',
+      description: userText.slice(0, 120) || 'Servidor MCP customizado',
+      url: 'https://mcp.exemplo.com',
+      headers: [],
+      exposedTools: [],
+      timeoutSeconds: 30,
+      retryCount: 2,
+      tags: [],
+    };
+  })();
+
+  const empty: CustomMcpPreviewState = {
+    name: '',
+    description: '',
+    url: '',
+    headers: [],
+    exposedTools: [],
+    timeoutSeconds: 30,
+    retryCount: 2,
+    tags: [],
+  };
+
+  return [
+    { ...empty, name: variant.name, url: variant.url },
+    { ...empty, name: variant.name, description: variant.description, url: variant.url, headers: variant.headers },
+    { ...empty, name: variant.name, description: variant.description, url: variant.url, headers: variant.headers, exposedTools: variant.exposedTools.slice(0, Math.max(1, Math.floor(variant.exposedTools.length / 2))) },
+    variant,
+  ];
+}
+
+function buildSegmentSteps(userText: string): SegmentPreviewState[] {
+  const lower = userText.toLowerCase();
+
+  type V = SegmentPreviewState;
+  const variant: V = (() => {
+    if (lower.includes('inativ') || lower.includes('60 dias') || lower.includes('30 dias')) {
+      return {
+        name: 'Inativos 60 dias',
+        description: 'Contatos sem interação recente, excluindo VIPs.',
+        logic: 'AND' as const,
+        rules: [
+          { field: 'last_message_at', operator: 'menor que', value: 'hoje - 60 dias' },
+          { field: 'last_purchase_at', operator: 'menor que', value: 'hoje - 60 dias' },
+          { field: 'tags', operator: 'não contém', value: 'vip' },
+        ],
+        matchCount: 1842,
+      };
+    }
+    if (lower.includes('vip') || lower.includes('brasil')) {
+      return {
+        name: 'VIPs Brasil',
+        description: 'VIPs brasileiros ativos no último mês.',
+        logic: 'AND' as const,
+        rules: [
+          { field: 'tags', operator: 'contém', value: 'vip' },
+          { field: 'country', operator: 'igual a', value: 'BR' },
+          { field: 'last_conversation_at', operator: 'maior que', value: 'hoje - 30 dias' },
+        ],
+        matchCount: 142,
+      };
+    }
+    if (lower.includes('lead quente') || lower.includes('engaj')) {
+      return {
+        name: 'Leads Quentes',
+        description: 'Leads engajados recentemente, ainda não convertidos.',
+        logic: 'AND' as const,
+        rules: [
+          { field: 'tags', operator: 'não contém', value: 'cliente' },
+          { field: 'messages_count', operator: 'maior que', value: '3' },
+          { field: 'last_interaction_at', operator: 'maior que', value: 'hoje - 7 dias' },
+        ],
+        matchCount: 87,
+      };
+    }
+    return {
+      name: 'Novo Segmento',
+      description: userText.slice(0, 120) || 'Filtro customizado',
+      logic: 'AND',
+      rules: [],
+      matchCount: 0,
+    };
+  })();
+
+  const empty: SegmentPreviewState = {
+    name: '',
+    description: '',
+    logic: 'AND',
+    rules: [],
+    matchCount: 0,
+  };
+
+  const steps: SegmentPreviewState[] = [];
+  steps.push({ ...empty, name: variant.name, description: variant.description });
+  for (let i = 0; i < variant.rules.length; i += 1) {
+    steps.push({
+      ...empty,
+      name: variant.name,
+      description: variant.description,
+      logic: variant.logic,
+      rules: variant.rules.slice(0, i + 1),
+      matchCount: 0,
+    });
+  }
+  steps.push(variant);
+  return steps;
+}
+
+function buildMacroSteps(userText: string): MacroPreviewState[] {
+  const lower = userText.toLowerCase();
+
+  type V = MacroPreviewState;
+  const variant: V = (() => {
+    if (lower.includes('vip')) {
+      return {
+        name: 'Tratar como VIP',
+        description: 'Marca conversa como prioritária e atribui ao time estratégico.',
+        visibility: 'team' as const,
+        actions: [
+          { type: 'add_label', label: 'Adicionar tag', summary: 'tag "VIP"' },
+          { type: 'assign_team', label: 'Atribuir time', summary: 'Contas Estratégicas' },
+          { type: 'change_priority', label: 'Definir prioridade', summary: 'alta' },
+          { type: 'send_message', label: 'Enviar mensagem', summary: '"Olá! Você é VIP — atendimento prioritário."' },
+        ],
+      };
+    }
+    if (lower.includes('encerrar') || lower.includes('nps') || lower.includes('pesquisa')) {
+      return {
+        name: 'Encerrar com NPS',
+        description: 'Fecha o atendimento e dispara pesquisa de satisfação.',
+        visibility: 'public' as const,
+        actions: [
+          { type: 'send_message', label: 'Enviar mensagem', summary: '"Foi um prazer atender você."' },
+          { type: 'send_message', label: 'Enviar pesquisa', summary: 'Template NPS_1to10' },
+          { type: 'add_label', label: 'Adicionar tag', summary: 'tag "nps-enviado"' },
+          { type: 'move_pipeline', label: 'Mover etapa', summary: 'pipeline "Pós-venda"' },
+        ],
+      };
+    }
+    if (lower.includes('escalar') || lower.includes('técnico') || lower.includes('tecnico')) {
+      return {
+        name: 'Escalar Técnico Nível 2',
+        description: 'Encaminha para o time técnico com urgência.',
+        visibility: 'team' as const,
+        actions: [
+          { type: 'assign_team', label: 'Atribuir time', summary: 'Técnico Nível 2' },
+          { type: 'add_label', label: 'Adicionar tag', summary: 'tag "escalado"' },
+          { type: 'change_priority', label: 'Definir prioridade', summary: 'urgente' },
+        ],
+      };
+    }
+    return {
+      name: 'Nova Macro',
+      description: userText.slice(0, 120),
+      visibility: 'private',
+      actions: [],
+    };
+  })();
+
+  const empty: MacroPreviewState = {
+    name: '',
+    description: '',
+    visibility: 'private',
+    actions: [],
+  };
+
+  const steps: MacroPreviewState[] = [];
+  steps.push({ ...empty, name: variant.name, description: variant.description, visibility: variant.visibility });
+  for (let i = 0; i < variant.actions.length; i += 1) {
+    steps.push({
+      ...empty,
+      name: variant.name,
+      description: variant.description,
+      visibility: variant.visibility,
+      actions: variant.actions.slice(0, i + 1),
+    });
+  }
+  return steps;
+}
+
+function buildRoleSteps(userText: string): RolePreviewState[] {
+  const lower = userText.toLowerCase();
+
+  type V = RolePreviewState;
+  const variant: V = (() => {
+    if (lower.includes('sdr') || lower.includes('vendas')) {
+      return {
+        name: 'SDR',
+        description: 'Vendedor de qualificação inicial. Acessa pipeline e contatos.',
+        estimatedUserCount: 4,
+        permissions: [
+          { resource: 'Contatos', actions: ['read', 'create', 'update'], totalActions: 5 },
+          { resource: 'Conversas', actions: ['read', 'reply'], totalActions: 4 },
+          { resource: 'Pipeline', actions: ['read', 'move_card'], totalActions: 6 },
+          { resource: 'Templates', actions: ['read', 'use'], totalActions: 4 },
+          { resource: 'Agents', actions: [], totalActions: 5 },
+          { resource: 'Automações', actions: [], totalActions: 5 },
+          { resource: 'Settings', actions: [], totalActions: 10 },
+        ],
+      };
+    }
+    if (lower.includes('suporte') || lower.includes('support')) {
+      return {
+        name: 'Suporte L1',
+        description: 'Atendente de primeiro nível. Foca em conversas e macros.',
+        estimatedUserCount: 6,
+        permissions: [
+          { resource: 'Conversas', actions: ['read', 'reply', 'resolve', 'transfer'], totalActions: 4 },
+          { resource: 'Contatos', actions: ['read'], totalActions: 5 },
+          { resource: 'Macros', actions: ['read', 'use'], totalActions: 3 },
+          { resource: 'Templates', actions: ['read', 'use'], totalActions: 4 },
+          { resource: 'Pipeline', actions: [], totalActions: 6 },
+          { resource: 'Agents', actions: [], totalActions: 5 },
+          { resource: 'Settings', actions: [], totalActions: 10 },
+        ],
+      };
+    }
+    if (lower.includes('admin') || lower.includes('ops') || lower.includes('opera')) {
+      return {
+        name: 'Admin Operações',
+        description: 'Acesso quase completo, exceto billing e gestão de roles.',
+        estimatedUserCount: 2,
+        permissions: [
+          { resource: 'Contatos', actions: ['read', 'create', 'update', 'delete', 'import'], totalActions: 5 },
+          { resource: 'Conversas', actions: ['read', 'reply', 'resolve', 'transfer'], totalActions: 4 },
+          { resource: 'Pipeline', actions: ['read', 'create', 'update', 'delete', 'move_card', 'configure'], totalActions: 6 },
+          { resource: 'Agents', actions: ['read', 'create', 'update', 'delete', 'configure'], totalActions: 5 },
+          { resource: 'Automações', actions: ['read', 'create', 'update', 'delete', 'execute'], totalActions: 5 },
+          { resource: 'Jornadas', actions: ['read', 'create', 'update', 'delete', 'publish'], totalActions: 5 },
+          { resource: 'Campanhas', actions: ['read', 'create', 'update', 'delete', 'execute'], totalActions: 5 },
+          { resource: 'Templates', actions: ['read', 'create', 'update', 'delete'], totalActions: 4 },
+          { resource: 'Billing', actions: [], totalActions: 4 },
+          { resource: 'Users & Roles', actions: [], totalActions: 6 },
+        ],
+      };
+    }
+    return {
+      name: 'Nova Role',
+      description: userText.slice(0, 120),
+      estimatedUserCount: 0,
+      permissions: [],
+    };
+  })();
+
+  const empty: RolePreviewState = {
+    name: '',
+    description: '',
+    estimatedUserCount: 0,
+    permissions: [],
+  };
+
+  const steps: RolePreviewState[] = [];
+  steps.push({ ...empty, name: variant.name, description: variant.description });
+  // Adiciona as permissões progressivamente
+  const stride = Math.max(1, Math.floor(variant.permissions.length / 4));
+  for (let i = stride; i <= variant.permissions.length; i += stride) {
+    steps.push({
+      ...variant,
+      permissions: variant.permissions.slice(0, i),
+    });
+  }
+  steps.push(variant);
+  return steps;
 }
 
 export function newMessage(role: ChatRole, content: string): ChatMessage {

@@ -1,0 +1,164 @@
+=============================================================================
+  EVO AI INTERFACE SYSTEM - TOOLS INVENTORY & ATOMIC TOOLS SUMMARY
+=============================================================================
+
+DOCUMENT: [C]tools-inventory-ai-interface-system.md
+LOCATION:  /Users/etus_0104/Projects/claude_cowork_workspace/workspace/projects/
+           evo-crm-community/_evo-output/planning-artifacts/ai-interface-system/
+
+COMPLETION: 100%
+=============================================================================
+
+EXECUTIVE SUMMARY
+-----------------
+
+Consolidated API endpoint inventory across 4 EVO CRM services + proposed 60 atomic 
+ADK tools mapped to encapsulate high-value business tasks (not 1:1 endpoints).
+
+SERVICES MAPPED
+---------------
+
+1. CRM SERVICE (evo-ai-crm-community) - Rails
+   - 160+ REST endpoints across 9 domains
+   - Contacts, Conversations, Pipelines, Agents, Channels, Automations, etc.
+   
+2. AUTH SERVICE (evo-auth-service-community) - Rails
+   - 45+ endpoints for authentication, roles, permissions, MFA, privacy
+   - OAuth provider, user/account management, compliance (GDPR/LGPD)
+
+3. AI CORE SERVICE (evo-ai-core-service-community) - Go/Gin
+   - 50+ endpoints for AI agents, custom tools, MCP servers, folders, API keys
+   - Agent configuration, integrations, folder sharing
+
+4. EVOFLOW SERVICE (evo-flow) - NestJS/TypeORM
+   - 80+ endpoints for events, journeys, campaigns, segments, click tracking
+   - Journey orchestration, campaign execution, audience computation
+
+TOTAL ENDPOINTS INVENTORIED: ~335+ REST endpoints
+TOTAL BUSINESS ENTITIES: 40+ (Contact, Agent, Journey, Campaign, Segment, etc.)
+
+ATOMIC TOOLS PROPOSED: 60 TOOLS
+--------------------------------
+
+Organized by business domain (not by service or endpoint):
+
+  [3.1] Contacts & Pipeline (8 tools)
+    • create_contact_with_attributes
+    • move_contact_to_pipeline_stage
+    • bulk_update_contact_labels
+    • get_contact_full_history
+    • bulk_import_contacts_from_file
+    • merge_duplicate_contacts
+    • get_pipeline_summary_by_contact
+    • bulk_reassign_conversations_to_agent
+
+  [3.2] Conversations & Messaging (7 tools)
+    • send_message_to_contact
+    • summarize_contact_conversation_history
+    • create_conversation_from_contact
+    • apply_bulk_actions_to_conversations
+    • search_messages_by_keyword
+    • update_conversation_custom_fields
+    • add_participants_to_conversation
+
+  [3.3] Agents & Tools Configuration (9 tools)
+    • create_agent_with_tools_and_mcp
+    • update_agent_system_prompt
+    • attach_custom_tool_to_agent
+    • attach_mcp_server_to_agent
+    • create_custom_mcp_server_integration
+    • revoke_agent_api_key
+    • clone_agent_configuration
+    • organize_agents_in_folders
+    • share_agent_with_team
+
+  [3.4] Journeys & Automation (8 tools)
+    • create_journey_with_nodes_and_edges
+    • trigger_journey_for_segment
+    • create_journey_trigger_rule
+    • pause_resume_journey
+    • get_journey_performance_metrics
+    • schedule_one_time_action
+    • bulk_create_automation_rules
+    • clone_journey_template
+
+  [3.5] Campaigns & Segments (8 tools)
+    • create_segment_with_filter_conditions
+    • compute_segment_audience_size
+    • create_campaign_from_template
+    • schedule_campaign_execution
+    • pause_campaign_in_progress
+    • get_campaign_performance_report
+    • export_segment_contacts_list
+    • apply_campaign_to_segment
+
+  [3.6] Channels & Templates (5 tools)
+    • setup_whatsapp_channel
+    • create_message_template_for_channel
+    • get_assignable_inboxes_for_contact
+    • disconnect_channel_integration
+    • bulk_send_template_to_segment
+
+  [3.7] Reports & Insights (5 tools)
+    • generate_team_performance_report
+    • get_conversation_analytics_by_period
+    • generate_contact_engagement_report
+    • get_bot_performance_metrics
+    • export_custom_report_data
+
+  [3.8] Click Tracking & Links (3 tools)
+    • create_tracked_campaign_link
+    • analyze_link_click_performance
+    • register_custom_domain_for_tracking
+
+  [3.9] Data Privacy & Compliance (3 tools)
+    • export_contact_data_for_gdpr
+    • request_contact_deletion
+    • manage_contact_consent
+
+  [3.10] Integrations (4 tools)
+    • link_conversation_to_linear_issue
+    • link_conversation_to_hubspot_deal
+    • sync_contact_to_external_crm
+    • fetch_external_deal_data
+
+KEY DESIGN PRINCIPLES
+---------------------
+
+✓ Atomic & Task-Oriented: Solves business task, not 1:1 API call
+✓ Multi-Endpoint Encapsulation: Each tool may call 3-5 endpoints
+✓ Natural Language Naming: Business terminology (not technical jargon)
+✓ Error Handling: Built-in validation, rate limiting, clear errors
+✓ Contextual Integration: AI/marketing-aware (e.g., segment → journey enrollment)
+✓ Team-First: Account context inherited from auth token
+
+COVERAGE & GAPS
+---------------
+
+✓ High-Value Coverage: ~70% of core CRM/marketing functionality
+✗ Not Exhaustive: Internal endpoints, health checks, metrics excluded
+✗ Not 1:1 Mapping: Deliberately grouped to reduce complexity for AI agents
+
+NEXT STEPS FOR IMPLEMENTATION
+------------------------------
+
+1. Prioritization: Start with tools from domains [3.1] through [3.5]
+   (Contacts → Conversations → Agents → Journeys → Campaigns)
+   
+2. ADK Implementation: Each tool becomes NestJS controller method with:
+   - Input validation DTO
+   - Multi-step orchestration logic
+   - Consistent response envelope
+   - Error handling & logging
+
+3. Authentication: All tools inherit bearer token from EvoAuth service
+   
+4. Versioning: API v1 stable; watch reports evolve to v2
+
+5. Testing: E2E tests for each tool covering happy path + error scenarios
+
+=============================================================================
+DOCUMENT STATUS: READY FOR PRD REVIEW
+FILE SIZE: 743 lines (~30KB)
+GENERATED: 2026-05-18
+=============================================================================

@@ -27,6 +27,7 @@ import {
   getErrorMessage,
 } from '@/services/agents/customToolsService';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 const INITIAL_STATE: CustomToolsState = initialCustomToolsState;
 
@@ -187,13 +188,24 @@ export default function CustomTools() {
     setDetailsModalOpen(true);
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const handleCreateTool = () => {
     if (!can('ai_custom_tools', 'create')) {
       toast.error(t('permissions.createDenied'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualTool = () => {
     setEditingTool(null);
     setToolModalOpen(true);
+  };
+
+  const handleToolAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Custom Tool criada via IA (mock).');
   };
 
   const handleEditTool = (tool: CustomTool) => {
@@ -470,6 +482,15 @@ export default function CustomTools() {
         mode={!editingTool ? 'create' : 'edit'}
         loading={state.loading.create || state.loading.update}
         onSubmit={handleToolFormSubmit}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="customTool"
+        title="Nova Custom Tool"
+        onAcceptAI={handleToolAIAccept}
+        onOpenManual={handleOpenManualTool}
       />
 
       {/* Tool Details Modal */}

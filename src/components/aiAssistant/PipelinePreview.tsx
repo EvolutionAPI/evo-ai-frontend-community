@@ -97,13 +97,13 @@ export function PipelinePreview({ state, isBuilding = false }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-5 sm:px-5">
+      <div className="flex-1 min-w-0 overflow-y-auto px-4 py-5 sm:px-5">
         {state.stages.length === 0 ? (
           <div className="rounded-xl border border-dashed border-border px-4 py-8 text-center text-xs italic text-muted-foreground">
             {isBuilding ? 'Adicionando etapas...' : 'Nenhuma etapa ainda'}
           </div>
         ) : (
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin">
+          <div className="flex min-w-0 gap-2 overflow-x-auto pb-2 scrollbar-thin">
             {state.stages.map((stage, i) => {
               const tone = STAGE_COLOR[stage.color] ?? STAGE_COLOR.slate;
               return (

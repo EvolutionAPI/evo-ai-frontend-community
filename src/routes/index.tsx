@@ -91,6 +91,7 @@ const OpenAIConfig = React.lazy(() => import('@/pages/Admin/Settings/OpenAIConfi
 const IntegrationsConfig = React.lazy(() => import('@/pages/Admin/Settings/IntegrationsConfig'));
 const InboundEmailConfig = React.lazy(() => import('@/pages/Admin/Settings/InboundEmailConfig'));
 const FrontendRuntimeConfig = React.lazy(() => import('@/pages/Admin/Settings/FrontendRuntimeConfig'));
+const SkywayConfig = React.lazy(() => import('@/pages/Admin/Settings/SkywayConfig'));
 
 // Página de tutoriais
 import Tutorials from '@/pages/Customer/Tutorials';
@@ -1449,6 +1450,14 @@ const AppRouter = () => {
               element={
                 <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
                   <FrontendRuntimeConfig />
+                </Suspense>
+              }
+            />
+            <Route
+              path="skyway"
+              element={
+                <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>}>
+                  <SkywayConfig />
                 </Suspense>
               }
             />

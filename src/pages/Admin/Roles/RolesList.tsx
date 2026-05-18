@@ -21,6 +21,7 @@ import EmptyState from '@/components/base/EmptyState';
 import { rolesService, type Role } from '@/services/roles/rolesService';
 import { permissionsService } from '@/services/permissions';
 import { useUserPermissions } from '@/hooks/useUserPermissions';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 export default function RolesList() {
   const { t } = useLanguage('roles');
@@ -31,6 +32,12 @@ export default function RolesList() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [createOpen, setCreateOpen] = useState(false);
+  const [aiDialogOpen, setAiDialogOpen] = useState(false);
+  const handleRoleAIAccept = () => {
+    setAiDialogOpen(false);
+    toast.success('Role criada via IA (mock).');
+    loadRoles();
+  };
   const [creating, setCreating] = useState(false);
   const [createForm, setCreateForm] = useState({ name: '', description: '' });
   const [deleteDialog, setDeleteDialog] = useState<{ open: boolean; role: Role | null; deleting: boolean }>({
@@ -113,7 +120,7 @@ export default function RolesList() {
             ? {
                 label: t('addRole'),
                 icon: <Plus className="h-4 w-4" />,
-                onClick: () => setCreateOpen(true),
+                onClick: () => setAiDialogOpen(true),
               }
             : undefined
         }
@@ -131,7 +138,7 @@ export default function RolesList() {
             description={t('noRolesDescription')}
             action={
               can('roles', 'create')
-                ? { label: t('addRole'), onClick: () => setCreateOpen(true) }
+                ? { label: t('addRole'), onClick: () => setAiDialogOpen(true) }
                 : undefined
             }
             className="h-full"
@@ -281,6 +288,15 @@ export default function RolesList() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <CreateWithAIDialog
+        open={aiDialogOpen}
+        onOpenChange={setAiDialogOpen}
+        feature="role"
+        title="Nova role"
+        onAcceptAI={handleRoleAIAccept}
+        onOpenManual={() => setCreateOpen(true)}
+      />
     </div>
   );
 }

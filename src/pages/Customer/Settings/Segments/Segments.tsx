@@ -22,6 +22,7 @@ import SegmentsHeader from '@/components/segments/SegmentsHeader';
 import SegmentsTable from '@/components/segments/SegmentsTable';
 import SegmentsPagination from '@/components/segments/SegmentsPagination';
 import { DEFAULT_PAGE_SIZE } from '@/constants/pagination';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 const INITIAL_STATE: SegmentsState = {
   segments: [],
@@ -156,13 +157,24 @@ export default function Segments() {
     loadSegments();
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   // Segment actions
   const handleCreateSegment = () => {
     if (!can('segments', 'create')) {
       toast.error(t('messages.permissionDenied.create'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualSegment = () => {
     navigate('/settings/segments/new');
+  };
+
+  const handleSegmentAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Segmento criado via IA (mock).');
   };
 
   const handleEditSegment = (segment: Segment) => {
@@ -449,6 +461,15 @@ export default function Segments() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="segment"
+        title="Novo segmento"
+        onAcceptAI={handleSegmentAIAccept}
+        onOpenManual={handleOpenManualSegment}
+      />
     </div>
   );
 }

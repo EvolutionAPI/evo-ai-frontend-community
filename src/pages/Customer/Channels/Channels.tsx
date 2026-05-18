@@ -25,7 +25,6 @@ import {
   ChannelCard,
 } from '@/components/channels';
 import EmptyState from '@/components/base/EmptyState';
-import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 // table types imported where needed in ChannelsTable
 import { useNavigate } from 'react-router-dom';
 import { ChannelsTour } from '@/tours';
@@ -102,8 +101,6 @@ export default function Channels() {
     [navigate],
   );
 
-  const [createDialogOpen, setCreateDialogOpen] = useState(false);
-
   const handleNewChannel = useCallback(() => {
     if (permissionsLoading || !permissionsReady) {
       return;
@@ -112,18 +109,8 @@ export default function Channels() {
       toast.error(t('permissions.createDenied'));
       return;
     }
-    setCreateDialogOpen(true);
-  }, [can, permissionsLoading, permissionsReady, t]);
-
-  const handleOpenManualChannel = useCallback(() => {
     navigate('/channels/new');
-  }, [navigate]);
-
-  const handleChannelAIAccept = useCallback(() => {
-    setCreateDialogOpen(false);
-    toast.success('Canal recomendado pela IA (mock). Inicie a configuração manual.');
-    navigate('/channels/new');
-  }, [navigate]);
+  }, [can, permissionsLoading, permissionsReady, t, navigate]);
 
   const openDeleteModal = (channel: Inbox) => {
     // Aguardar até que as permissões estejam carregadas
@@ -320,14 +307,6 @@ export default function Channels() {
         </DialogContent>
       </Dialog>
 
-      <CreateWithAIDialog
-        open={createDialogOpen}
-        onOpenChange={setCreateDialogOpen}
-        feature="channels"
-        title="Novo canal"
-        onAcceptAI={handleChannelAIAccept}
-        onOpenManual={handleOpenManualChannel}
-      />
     </div>
   );
 }

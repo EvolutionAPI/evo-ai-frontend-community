@@ -22,6 +22,7 @@ import {
 } from '@/types/ai';
 import { BaseFilter, AppliedFilter } from '@/types/core';
 import { CustomMCPServerCard } from '@/components/customMcpServers';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 
 import CustomMCPServersHeader from '@/components/customMcpServers/CustomMCPServersHeader';
 import CustomMCPServersTable from '@/components/customMcpServers/CustomMCPServersTable';
@@ -217,13 +218,24 @@ export default function CustomMCPServers() {
     setDetailsModalOpen(true);
   };
 
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
   const handleCreateServer = () => {
     if (!can('ai_custom_mcp_servers', 'create')) {
       toast.error(t('permissions.createDenied'));
       return;
     }
+    setCreateDialogOpen(true);
+  };
+
+  const handleOpenManualServer = () => {
     setEditingServer(null);
     setServerModalOpen(true);
+  };
+
+  const handleMcpAIAccept = () => {
+    setCreateDialogOpen(false);
+    toast.success('Custom MCP conectado via IA (mock).');
   };
 
   const handleEditServer = (server: CustomMcpServer) => {
@@ -520,6 +532,15 @@ export default function CustomMCPServers() {
         onFiltersChange={setActiveFilters}
         onApplyFilters={handleApplyFilters}
         onClearFilters={handleClearFilters}
+      />
+
+      <CreateWithAIDialog
+        open={createDialogOpen}
+        onOpenChange={setCreateDialogOpen}
+        feature="customMcp"
+        title="Novo Custom MCP"
+        onAcceptAI={handleMcpAIAccept}
+        onOpenManual={handleOpenManualServer}
       />
     </div>
   );

@@ -8,9 +8,11 @@ interface AgentEditHeaderProps {
   onTestAgent?: () => void;
   isDirty: boolean;
   isSaving: boolean;
+  /** Slot para ações extras (ex: botão Skyway "Editar com IA") */
+  extraActions?: React.ReactNode;
 }
 
-const AgentEditHeader = ({ onBack, onSave, onTestAgent, isDirty, isSaving }: AgentEditHeaderProps) => {
+const AgentEditHeader = ({ onBack, onSave, onTestAgent, isDirty, isSaving, extraActions }: AgentEditHeaderProps) => {
   const { t } = useLanguage('aiAgents');
 
   return (
@@ -22,6 +24,7 @@ const AgentEditHeader = ({ onBack, onSave, onTestAgent, isDirty, isSaving }: Age
         </Button>
       </div>
       <div className="flex items-center gap-2">
+        {extraActions}
         {onTestAgent && (
           <Button variant="outline" onClick={onTestAgent} className="gap-2">
             <MessageSquare className="h-4 w-4" />

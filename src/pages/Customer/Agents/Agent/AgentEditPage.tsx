@@ -23,6 +23,8 @@ import { MCPServerConfig } from '@/types/ai';
 import { pipelinesService } from '@/services/pipelines/pipelinesService';
 import usersService from '@/services/users/usersService';
 import teamsService from '@/services/teams/teamsService';
+import { EditWithAIButton } from '@/components/aiAssistant/skyway';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import ProfileSection from './sections/ProfileSection';
 import ProductsSection from './sections/ProductsSection';
 import TaskSection from './sections/TaskSection';
@@ -70,6 +72,8 @@ const AgentEditPage = () => {
   const [isDirty, setIsDirty] = useState(false);
   const [activeMenu, setActiveMenu] = useState<SidebarMenu>('profile');
   const [isTestChatOpen, setIsTestChatOpen] = useState(false);
+  const [skywayDialogOpen, setSkywayDialogOpen] = useState(false);
+  const [skywaySessionKey, setSkywaySessionKey] = useState<string | undefined>(undefined);
 
 
   const [agent, setAgent] = useState<Agent | null>(null);
@@ -1030,6 +1034,18 @@ const AgentEditPage = () => {
           onTestAgent={() => setIsTestChatOpen(true)}
           isDirty={isDirty}
           isSaving={isSaving}
+          extraActions={
+            id ? (
+              <EditWithAIButton
+                entityType="agent"
+                entityId={id}
+                onOpen={(key) => {
+                  setSkywaySessionKey(key);
+                  setSkywayDialogOpen(true);
+                }}
+              />
+            ) : null
+          }
         />
 
         {/* Content */}
@@ -1039,6 +1055,22 @@ const AgentEditPage = () => {
       {/* Chat de Teste */}
       {agent && (
         <AgentTestChat open={isTestChatOpen} onOpenChange={setIsTestChatOpen} agent={agent} />
+      )}
+
+      {/* SKYWAY: dialog de edição com IA escopado nesse agente */}
+      {id && (
+        <CreateWithAIDialog
+          open={skywayDialogOpen}
+          onOpenChange={setSkywayDialogOpen}
+          feature="agent"
+          title={`Editar com IA: ${agent?.name ?? 'agente'}`}
+          sessionKey={skywaySessionKey}
+          sessionEntityLabel={agent?.name}
+          onAcceptAI={() => {
+            setSkywayDialogOpen(false);
+            toast.success('Mudanças aplicadas via IA (mock).');
+          }}
+        />
       )}
     </div>
   );

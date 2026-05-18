@@ -156,8 +156,15 @@ const Agentes = () => {
       toast.error(t('permissions.createDenied'));
       return;
     }
+    setResumingSessionKey(undefined);
+    setResumingEntityLabel(undefined);
     setCreateDialogOpen(true);
   };
+
+  // SKYWAY: retomar conversa salva no momento da criação (não usado ainda na listagem,
+  // mas preservado pra futuro override no fluxo de criação se necessário)
+  const [resumingSessionKey, setResumingSessionKey] = useState<string | undefined>(undefined);
+  const [resumingEntityLabel, setResumingEntityLabel] = useState<string | undefined>(undefined);
 
   const handleAcceptAI = () => {
     setCreateDialogOpen(false);
@@ -397,9 +404,11 @@ const Agentes = () => {
         open={createDialogOpen}
         onOpenChange={setCreateDialogOpen}
         feature="agent"
-        title="Novo agente"
+        title={resumingSessionKey ? `Continuar: ${resumingEntityLabel ?? 'agente'}` : 'Novo agente'}
         onAcceptAI={handleAcceptAI}
         onManualSubmitSuccess={handleManualSubmitSuccess}
+        sessionKey={resumingSessionKey}
+        sessionEntityLabel={resumingEntityLabel}
       />
 
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>

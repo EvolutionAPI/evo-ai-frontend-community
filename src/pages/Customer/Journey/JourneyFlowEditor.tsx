@@ -5,6 +5,8 @@ import { toast } from 'sonner';
 import { journeyService } from '@/services';
 import type { Journey } from '@/types/automation';
 import { useLanguage } from '@/hooks/useLanguage';
+import { EditWithAIButton } from '@/components/aiAssistant/skyway';
+import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import { BaseFlowEditor, type NodeType, type NodeCategory } from '@/components/base';
 import { EnvironmentManager, type JourneyVariable } from '@/components/journey/environment-manager';
 import { SessionsViewer } from '@/components/journey/SessionsViewer';
@@ -99,6 +101,8 @@ export default function JourneyFlowEditor() {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
   const [journeyVariables, setJourneyVariables] = useState<JourneyVariable[]>([]);
   const [showSessionsViewer, setShowSessionsViewer] = useState(false);
+  const [skywayDialogOpen, setSkywayDialogOpen] = useState(false);
+  const [skywaySessionKey, setSkywaySessionKey] = useState<string | undefined>(undefined);
 
   const currentFlowDataRef = useRef<{ nodes: any[]; edges: any[]; variables?: string[] } | null>(
     null,
@@ -703,6 +707,18 @@ export default function JourneyFlowEditor() {
               )}
             </div>
 
+            {/* SKYWAY: editar fluxo da jornada com IA */}
+            {id && (
+              <EditWithAIButton
+                entityType="journey"
+                entityId={id}
+                onOpen={(key) => {
+                  setSkywaySessionKey(key);
+                  setSkywayDialogOpen(true);
+                }}
+              />
+            )}
+
             <Button
               variant="outline"
               size="sm"
@@ -778,6 +794,22 @@ export default function JourneyFlowEditor() {
           journeyId={id}
           journeyName={journey.name}
           onClose={() => setShowSessionsViewer(false)}
+        />
+      )}
+
+      {/* SKYWAY: editor IA da jornada */}
+      {id && (
+        <CreateWithAIDialog
+          open={skywayDialogOpen}
+          onOpenChange={setSkywayDialogOpen}
+          feature="journey"
+          title={`Editar fluxo com IA: ${journey?.name ?? 'jornada'}`}
+          sessionKey={skywaySessionKey}
+          sessionEntityLabel={journey?.name}
+          onAcceptAI={() => {
+            setSkywayDialogOpen(false);
+            toast.success('Fluxo atualizado via IA (mock). Aplicado ao canvas.');
+          }}
         />
       )}
     </div>

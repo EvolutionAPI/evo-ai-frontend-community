@@ -25,7 +25,6 @@ import ContactsHeader from '@/components/contacts/ContactsHeader';
 import ContactsTable from '@/components/contacts/ContactsTable';
 import ContactsPagination from '@/components/contacts/ContactsPagination';
 import ContactModal from '@/components/contacts/ContactModal';
-import { CreateWithAIDialog } from '@/components/aiAssistant/CreateWithAIDialog';
 import StartConversationModal from '@/components/contacts/StartConversationModal';
 import ContactDetails from '@/components/contacts/ContactDetails';
 import ContactsFilter from '@/components/contacts/ContactsFilter';
@@ -452,24 +451,13 @@ export default function Contacts() {
     setDetailsModalOpen(true);
   };
 
-  const [createDialogOpen, setCreateDialogOpen] = useState(false);
-
   const handleCreateContact = () => {
     if (!can('contacts', 'create')) {
       toast.error('Você não tem permissão para criar contatos');
       return;
     }
-    setCreateDialogOpen(true);
-  };
-
-  const handleOpenManualContact = () => {
     setEditingContact(null);
     setContactModalOpen(true);
-  };
-
-  const handleContactAIAccept = () => {
-    setCreateDialogOpen(false);
-    toast.success('Contato criado via IA (mock).');
   };
 
   const handleEditContact = (contact: Contact) => {
@@ -965,14 +953,6 @@ export default function Contacts() {
         onSubmit={handleContactFormSubmit}
       />
 
-      <CreateWithAIDialog
-        open={createDialogOpen}
-        onOpenChange={setCreateDialogOpen}
-        feature="contacts"
-        title="Novo contato"
-        onAcceptAI={handleContactAIAccept}
-        onOpenManual={handleOpenManualContact}
-      />
 
       {/* Start Conversation Modal */}
       {conversationContact && (

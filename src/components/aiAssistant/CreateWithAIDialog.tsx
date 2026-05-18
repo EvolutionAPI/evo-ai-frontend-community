@@ -9,7 +9,14 @@ import {
   TabsList,
   TabsTrigger,
 } from '@evoapi/design-system';
-import { ArrowRight, Pencil, Sparkles, Wand2 } from 'lucide-react';
+import { ArrowRight, CircleSlash, Pencil, Sparkles, Wand2 } from 'lucide-react';
+import {
+  AutonomySlider,
+  InlineFormBubble,
+  SkywayPlanCard,
+  SkywayReceiptCard,
+  ThinkingLine,
+} from './skyway';
 import AutomationForm from '@/pages/Customer/Automation/AutomationForm';
 import { AgentWizardModal } from '@/components/agents';
 import { JourneyManualForm } from './JourneyManualForm';
@@ -25,24 +32,54 @@ import { ProductPreview } from './ProductPreview';
 import { CampaignPreview } from './CampaignPreview';
 import { ChannelPreview } from './ChannelPreview';
 import { TemplatePreview } from './TemplatePreview';
+import { CustomToolPreview } from './CustomToolPreview';
+import { CustomMcpPreview } from './CustomMcpPreview';
+import { SegmentPreview } from './SegmentPreview';
+import { MacroPreview } from './MacroPreview';
+import { RolePreview } from './RolePreview';
 import {
   type AgentPreviewState,
   type AssistantFeature,
   type AssistantTemplate,
   type AutomationPreviewState,
+  type AutonomyLevel,
   type CampaignPreviewState,
   type ChannelPreviewState,
+  type CustomMcpPreviewState,
+  type CustomToolPreviewState,
+  type MacroPreviewState,
+  type RolePreviewState,
+  type SegmentPreviewState,
   type ChatMessage,
+  type ChatMode,
   type ContactPreviewState,
   type JourneyPreviewState,
   type PipelinePreviewState,
   type ProductPreviewState,
+  type SkywayInlineForm,
+  type SkywayPlan,
+  type SkywayReceipt,
   type TemplatePreviewState,
   type StreamHandle,
+  approvePlan,
   getTemplates,
   newMessage,
   streamAssistantReply,
+  submitInlineForm,
 } from '@/services/aiAssistant/mockAssistant';
+import {
+  loadSession,
+  saveSession,
+  type PersistedSession,
+  type PersistedSkywayEvent,
+} from '@/services/aiAssistant/aiSessionStore';
+
+/** Eventos Skyway que aparecem no fluxo da conversa entre mensagens */
+type SkywayEvent =
+  | { kind: 'thinking'; id: string; text: string; active: boolean }
+  | { kind: 'plan'; id: string; plan: SkywayPlan; approved: boolean }
+  | { kind: 'receipt'; id: string; receipt: SkywayReceipt; undone: boolean }
+  | { kind: 'inline_form'; id: string; form: SkywayInlineForm; submitted: boolean };
 
 type AnyPreview =
   | AutomationPreviewState
@@ -54,6 +91,11 @@ type AnyPreview =
   | CampaignPreviewState
   | ChannelPreviewState
   | TemplatePreviewState
+  | CustomToolPreviewState
+  | CustomMcpPreviewState
+  | SegmentPreviewState
+  | MacroPreviewState
+  | RolePreviewState
   | null;
 
 interface Props {
@@ -73,6 +115,21 @@ interface Props {
    * modal/rota nativo.
    */
   onOpenManual?: () => void;
+  /**
+   * SKYWAY — quando definido, o dialog persiste a sessão (mensagens, plans,
+   * receipts, autonomy, mode) atrelada a essa chave. Reabrir o dialog com a
+   * mesma key restaura o estado da conversa.
+   *
+   * Formato: `${entityType}:${entityId}` (ex: `pipeline:p-001`).
+   * Em fluxo de criação, passar uma chave provisória tipo `pipeline:new` e
+   * trocar pelo id real depois que onAcceptAI for chamado, ou simplesmente
+   * deixar `undefined` em criação inicial.
+   */
+  sessionKey?: string;
+  /**
+   * SKYWAY — label da entidade pra exibir no botão de retomar (ex: "Funil de Vendas B2B")
+   */
+  sessionEntityLabel?: string;
 }
 
 const FEATURE_LABEL: Record<AssistantFeature, string> = {
@@ -84,6 +141,11 @@ const FEATURE_LABEL: Record<AssistantFeature, string> = {
   campaigns: 'fazer com uma campanha',
   channels: 'conectar como canal',
   templates: 'mandar como mensagem',
+  customTool: 'integrar como API',
+  customMcp: 'conectar como servidor MCP',
+  segment: 'agrupar como segmento',
+  macro: 'automatizar como macro',
+  role: 'permitir como role',
   journey: 'desenhar uma jornada',
   general: 'fazer',
 };
@@ -97,6 +159,11 @@ const FEATURE_CTA: Record<AssistantFeature, string> = {
   campaigns: 'Criar campanha',
   channels: 'Criar canal',
   templates: 'Salvar template',
+  customTool: 'Criar tool',
+  customMcp: 'Conectar MCP',
+  segment: 'Criar segmento',
+  macro: 'Criar macro',
+  role: 'Criar role',
   journey: 'Criar jornada',
   general: 'Criar',
 };
@@ -110,6 +177,11 @@ const FEATURE_PLACEHOLDER: Record<AssistantFeature, string> = {
   campaigns: 'Descreva a campanha — público, canal, mensagem, agendamento...',
   channels: 'Descreva seu caso de uso para eu recomendar o canal certo...',
   templates: 'Descreva a mensagem que você quer — use {{nome}} para variáveis...',
+  customTool: 'Descreva o endpoint HTTP — método, URL, parâmetros, auth...',
+  customMcp: 'Descreva o servidor MCP que você quer conectar (URL, auth, ferramentas)...',
+  segment: 'Descreva o filtro — quem você quer agrupar...',
+  macro: 'Descreva a sequência de ações que a macro vai executar...',
+  role: 'Descreva o perfil — qual time, o que precisa fazer, o que não pode...',
   journey: 'Descreva a jornada do cliente...',
   general: 'Pergunte qualquer coisa...',
 };
@@ -122,6 +194,8 @@ export function CreateWithAIDialog({
   onAcceptAI,
   onManualSubmitSuccess,
   onOpenManual,
+  sessionKey,
+  sessionEntityLabel,
 }: Props) {
   const [tab, setTab] = useState<'ai' | 'manual'>('ai');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -130,16 +204,98 @@ export function CreateWithAIDialog({
   const streamRef = useRef<StreamHandle | null>(null);
   const [mobileView, setMobileView] = useState<'chat' | 'preview'>('chat');
 
+  // SKYWAY: estado dos padrões inspirados em Lovable/Replit/V0
+  const [autonomy, setAutonomy] = useState<AutonomyLevel>('balanced');
+  const [mode, setMode] = useState<ChatMode>('apply');
+  const [skywayEvents, setSkywayEvents] = useState<SkywayEvent[]>([]);
+
+  const pushSkyway = (e: SkywayEvent) => setSkywayEvents((prev) => [...prev, e]);
+  const updateSkyway = (id: string, fn: (e: SkywayEvent) => SkywayEvent) =>
+    setSkywayEvents((prev) => prev.map((e) => (e.id === id ? fn(e) : e)));
+  const deactivateThinking = () =>
+    setSkywayEvents((prev) =>
+      prev.map((e) => (e.kind === 'thinking' && e.active ? { ...e, active: false } : e)),
+    );
+
   useEffect(() => {
     if (!open) {
       setMessages([]);
       setStreamingText(null);
       setPreview(null);
+      setSkywayEvents([]);
       setTab('ai');
+      setMode('apply');
       streamRef.current?.cancel();
       streamRef.current = null;
+      return;
     }
-  }, [open]);
+
+    // SKYWAY: carregar sessão persistida quando o dialog abre com sessionKey
+    if (sessionKey) {
+      const persisted = loadSession(sessionKey);
+      if (persisted) {
+        setMessages(persisted.messages);
+        setAutonomy(persisted.autonomy);
+        setMode(persisted.mode);
+        // Reconstruir SkywayEvents do formato persistido
+        setSkywayEvents(
+          persisted.events
+            .map((e): SkywayEvent | null => {
+              if (e.kind === 'thinking' && e.text !== undefined) {
+                return { kind: 'thinking', id: e.id, text: e.text, active: false };
+              }
+              if (e.kind === 'plan' && e.plan) {
+                return { kind: 'plan', id: e.id, plan: e.plan, approved: e.approved ?? true };
+              }
+              if (e.kind === 'receipt' && e.receipt) {
+                return { kind: 'receipt', id: e.id, receipt: e.receipt, undone: e.undone ?? false };
+              }
+              if (e.kind === 'inline_form' && e.form) {
+                return {
+                  kind: 'inline_form',
+                  id: e.id,
+                  form: e.form,
+                  submitted: e.submitted ?? true,
+                };
+              }
+              return null;
+            })
+            .filter((e): e is SkywayEvent => e !== null),
+        );
+      }
+    }
+  }, [open, sessionKey]);
+
+  /** Helper — persiste sessão atual (chamado em onAcceptAI e ao fechar com mudanças) */
+  const persistCurrentSession = (entityId: string, label: string) => {
+    if (!sessionKey && !entityId) return;
+    const key = sessionKey ?? `${feature}:${entityId}`;
+    const session: PersistedSession = {
+      sessionKey: key,
+      entityType: feature,
+      entityId,
+      entityLabel: label || sessionEntityLabel || 'Entidade',
+      feature,
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      messages,
+      events: skywayEvents.map((e): PersistedSkywayEvent => {
+        if (e.kind === 'thinking') {
+          return { kind: 'thinking', id: e.id, text: e.text, active: false };
+        }
+        if (e.kind === 'plan') {
+          return { kind: 'plan', id: e.id, plan: e.plan, approved: e.approved };
+        }
+        if (e.kind === 'receipt') {
+          return { kind: 'receipt', id: e.id, receipt: e.receipt, undone: e.undone };
+        }
+        return { kind: 'inline_form', id: e.id, form: e.form, submitted: e.submitted };
+      }),
+      autonomy,
+      mode,
+    };
+    saveSession(session);
+  };
 
   const isStreaming = streamingText !== null;
 
@@ -150,14 +306,104 @@ export function CreateWithAIDialog({
     setStreamingText('');
 
     let acc = '';
-    streamRef.current = streamAssistantReply<AnyPreview>(text, feature, {
+    streamRef.current = streamAssistantReply<AnyPreview>(
+      text,
+      feature,
+      {
+        onToken: (tok) => {
+          acc += tok;
+          setStreamingText(acc);
+        },
+        onPreviewUpdate: (state) => setPreview(state),
+        onThinking: (t) => {
+          deactivateThinking();
+          pushSkyway({
+            kind: 'thinking',
+            id: `th-${Date.now()}-${Math.random()}`,
+            text: t,
+            active: true,
+          });
+        },
+        onPlan: (plan) => {
+          pushSkyway({ kind: 'plan', id: plan.id, plan, approved: false });
+        },
+        onInlineForm: (form) => {
+          pushSkyway({ kind: 'inline_form', id: form.id, form, submitted: false });
+        },
+        onDone: (full) => {
+          deactivateThinking();
+          if (full) setMessages((prev) => [...prev, newMessage('assistant', full)]);
+          setStreamingText(null);
+          streamRef.current = null;
+        },
+      },
+      { mode, autonomy },
+    );
+  };
+
+  const handleApprovePlan = (planId: string, stepIds: string[]) => {
+    const planEvt = skywayEvents.find(
+      (e): e is Extract<SkywayEvent, { kind: 'plan' }> => e.kind === 'plan' && e.id === planId,
+    );
+    if (!planEvt) return;
+    updateSkyway(planId, (e) => ({ ...e, approved: true } as SkywayEvent));
+    setStreamingText('');
+    let acc = '';
+    streamRef.current = approvePlan(planEvt.plan, stepIds, {
       onToken: (tok) => {
         acc += tok;
         setStreamingText(acc);
       },
-      onPreviewUpdate: (state) => setPreview(state),
+      onThinking: (t) => {
+        deactivateThinking();
+        pushSkyway({ kind: 'thinking', id: `th-${Date.now()}-${Math.random()}`, text: t, active: true });
+      },
+      onReceipt: (rcpt) => {
+        pushSkyway({ kind: 'receipt', id: rcpt.id, receipt: rcpt, undone: false });
+      },
       onDone: (full) => {
-        setMessages((prev) => [...prev, newMessage('assistant', full)]);
+        deactivateThinking();
+        if (full) setMessages((prev) => [...prev, newMessage('assistant', full)]);
+        setStreamingText(null);
+        streamRef.current = null;
+      },
+    });
+  };
+
+  const handleUndoReceipt = (receiptId: string) => {
+    updateSkyway(receiptId, (e) => ({ ...e, undone: true } as SkywayEvent));
+    setMessages((prev) => [
+      ...prev,
+      newMessage(
+        'assistant',
+        '↩️ Ações reversíveis foram desfeitas. Itens irreversíveis (envios concluídos) permanecem.',
+      ),
+    ]);
+  };
+
+  const handleSubmitInlineForm = (formId: string, values: Record<string, string>) => {
+    const formEvt = skywayEvents.find(
+      (e): e is Extract<SkywayEvent, { kind: 'inline_form' }> => e.kind === 'inline_form' && e.id === formId,
+    );
+    if (!formEvt) return;
+    updateSkyway(formId, (e) => ({ ...e, submitted: true } as SkywayEvent));
+    setStreamingText('');
+    let acc = '';
+    streamRef.current = submitInlineForm(formEvt.form, values, {
+      onToken: (tok) => {
+        acc += tok;
+        setStreamingText(acc);
+      },
+      onThinking: (t) => {
+        deactivateThinking();
+        pushSkyway({ kind: 'thinking', id: `th-${Date.now()}-${Math.random()}`, text: t, active: true });
+      },
+      onReceipt: (rcpt) => {
+        pushSkyway({ kind: 'receipt', id: rcpt.id, receipt: rcpt, undone: false });
+      },
+      onDone: (full) => {
+        deactivateThinking();
+        if (full) setMessages((prev) => [...prev, newMessage('assistant', full)]);
         setStreamingText(null);
         streamRef.current = null;
       },
@@ -170,6 +416,7 @@ export function CreateWithAIDialog({
       setMessages((prev) => [...prev, newMessage('assistant', streamingText || '(geração interrompida)')]);
       setStreamingText(null);
     }
+    deactivateThinking();
   };
 
   const pickTemplate = (tpl: AssistantTemplate) => send(tpl.prompt);
@@ -190,13 +437,53 @@ export function CreateWithAIDialog({
       >
         <DialogTitle className="sr-only">{title}</DialogTitle>
 
-        <div className="flex items-center gap-3 border-b border-border px-3 py-2 sm:px-4 sm:py-2">
+        <div className="flex flex-wrap items-center gap-2 border-b border-border px-3 py-2 sm:px-4 sm:py-2">
           <div className="flex min-w-0 flex-1 items-center gap-2">
             <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary ring-1 ring-primary/20">
               <Sparkles className="h-3.5 w-3.5" />
             </div>
             <h2 className="truncate text-[13px] font-semibold text-foreground">{title}</h2>
+            <span className="hidden md:inline-flex items-center gap-1 rounded bg-primary/10 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-primary ring-1 ring-primary/20">
+              Skyway
+            </span>
           </div>
+
+          {tab === 'ai' && (
+            <div className="hidden sm:flex items-center gap-1.5">
+              {/* Plan/Apply toggle */}
+              <div className="inline-flex items-center gap-0.5 rounded-md border border-border bg-muted/40 p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setMode('plan')}
+                  className={[
+                    'h-7 px-2 rounded text-[11px] font-medium transition-all flex items-center gap-1',
+                    mode === 'plan'
+                      ? 'bg-card shadow-sm text-sky-300'
+                      : 'text-muted-foreground hover:text-foreground',
+                  ].join(' ')}
+                  title="Planejar — IA descreve sem agir"
+                >
+                  <CircleSlash className="h-3 w-3" />
+                  Planejar
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMode('apply')}
+                  className={[
+                    'h-7 px-2 rounded text-[11px] font-medium transition-all flex items-center gap-1',
+                    mode === 'apply'
+                      ? 'bg-card shadow-sm text-emerald-300'
+                      : 'text-muted-foreground hover:text-foreground',
+                  ].join(' ')}
+                  title="Aplicar — IA executa tools"
+                >
+                  <Wand2 className="h-3 w-3" />
+                  Aplicar
+                </button>
+              </div>
+              <AutonomySlider value={autonomy} onChange={setAutonomy} />
+            </div>
+          )}
 
           <Tabs value={tab} onValueChange={(v) => setTab(v as 'ai' | 'manual')}>
             <TabsList className="h-10 bg-muted/60 p-1">
@@ -252,7 +539,7 @@ export function CreateWithAIDialog({
               </button>
             </div>
 
-            <div className="grid h-[calc(100%-52px)] grid-cols-1 lg:h-full lg:grid-cols-[1.1fr_1.2fr]">
+            <div className="grid h-[calc(100%-52px)] grid-cols-1 lg:h-full lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1.2fr)]">
               <div
                 className={[
                   'h-full min-h-0 flex-col border-border bg-card/30 lg:flex lg:border-r',
@@ -269,10 +556,61 @@ export function CreateWithAIDialog({
                       onPickTemplate={pickTemplate}
                     />
                   }
+                  afterMessages={
+                    skywayEvents.length > 0 ? (
+                      <div className="space-y-2.5">
+                        {skywayEvents.map((e) => {
+                          if (e.kind === 'thinking') {
+                            return <ThinkingLine key={e.id} text={e.text} active={e.active} />;
+                          }
+                          if (e.kind === 'plan') {
+                            return (
+                              <SkywayPlanCard
+                                key={e.id}
+                                plan={e.plan}
+                                approved={e.approved}
+                                onApprove={(ids) => handleApprovePlan(e.id, ids)}
+                              />
+                            );
+                          }
+                          if (e.kind === 'receipt') {
+                            return (
+                              <SkywayReceiptCard
+                                key={e.id}
+                                receipt={e.receipt}
+                                undone={e.undone}
+                                onUndo={() => handleUndoReceipt(e.id)}
+                              />
+                            );
+                          }
+                          if (e.kind === 'inline_form') {
+                            return (
+                              <InlineFormBubble
+                                key={e.id}
+                                form={e.form}
+                                submitted={e.submitted}
+                                onSubmit={(vals) => handleSubmitInlineForm(e.id, vals)}
+                              />
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                    ) : undefined
+                  }
                 />
-                <div className="border-t border-border bg-background/60 p-3">
+                <div
+                  className={[
+                    'border-t border-border bg-background/60 p-3',
+                    mode === 'plan' ? 'border-t-sky-500/40' : '',
+                  ].join(' ')}
+                >
                   <AIComposer
-                    placeholder={FEATURE_PLACEHOLDER[feature]}
+                    placeholder={
+                      mode === 'plan'
+                        ? `Modo Planejar — descreva e a IA explica sem executar...`
+                        : FEATURE_PLACEHOLDER[feature]
+                    }
                     onSubmit={send}
                     onStop={stop}
                     isStreaming={isStreaming}
@@ -297,7 +635,14 @@ export function CreateWithAIDialog({
                   <Button
                     size="sm"
                     disabled={!ready || isStreaming}
-                    onClick={() => preview && onAcceptAI?.(preview)}
+                    onClick={() => {
+                      if (!preview) return;
+                      // SKYWAY: persiste sessão antes de finalizar
+                      const newEntityId = `mock-${feature}-${Date.now().toString(36)}`;
+                      const label = extractEntityLabel(feature, preview);
+                      persistCurrentSession(newEntityId, label);
+                      onAcceptAI?.(preview);
+                    }}
                     className="ml-auto gap-1.5"
                   >
                     {FEATURE_CTA[feature]}
@@ -375,6 +720,25 @@ function PreviewRenderer({
       <TemplatePreview state={preview as TemplatePreviewState | null} isBuilding={isStreaming} />
     );
   }
+  if (feature === 'customTool') {
+    return (
+      <CustomToolPreview state={preview as CustomToolPreviewState | null} isBuilding={isStreaming} />
+    );
+  }
+  if (feature === 'customMcp') {
+    return (
+      <CustomMcpPreview state={preview as CustomMcpPreviewState | null} isBuilding={isStreaming} />
+    );
+  }
+  if (feature === 'segment') {
+    return <SegmentPreview state={preview as SegmentPreviewState | null} isBuilding={isStreaming} />;
+  }
+  if (feature === 'macro') {
+    return <MacroPreview state={preview as MacroPreviewState | null} isBuilding={isStreaming} />;
+  }
+  if (feature === 'role') {
+    return <RolePreview state={preview as RolePreviewState | null} isBuilding={isStreaming} />;
+  }
   // default automation
   return (
     <AutomationPreview
@@ -420,6 +784,26 @@ function isReady(feature: AssistantFeature, preview: AnyPreview): boolean {
     case 'templates': {
       const p = preview as TemplatePreviewState;
       return Boolean(p.name && p.content);
+    }
+    case 'customTool': {
+      const p = preview as CustomToolPreviewState;
+      return Boolean(p.name && p.path && p.method);
+    }
+    case 'customMcp': {
+      const p = preview as CustomMcpPreviewState;
+      return Boolean(p.name && p.url && p.exposedTools.length > 0);
+    }
+    case 'segment': {
+      const p = preview as SegmentPreviewState;
+      return Boolean(p.name && p.rules.length > 0);
+    }
+    case 'macro': {
+      const p = preview as MacroPreviewState;
+      return Boolean(p.name && p.actions.length > 0);
+    }
+    case 'role': {
+      const p = preview as RolePreviewState;
+      return Boolean(p.name && p.permissions.length > 0);
     }
     default: {
       const p = preview as AutomationPreviewState;
@@ -565,6 +949,33 @@ function ManualBridge({
         'Abre o editor completo de template — nome, categoria, idioma, corpo da mensagem, variáveis e preview ao vivo.',
       cta: 'Abrir editor de template',
     },
+    customTool: {
+      title: 'Editor de Custom Tool',
+      description:
+        'Abre o editor completo — método, URL, params (path/query/body/header), auth e testes.',
+      cta: 'Abrir editor de tool',
+    },
+    customMcp: {
+      title: 'Editor de Custom MCP',
+      description:
+        'Abre o editor completo — URL do servidor MCP, headers de auth, timeout, retry e descoberta de tools.',
+      cta: 'Abrir editor de MCP',
+    },
+    segment: {
+      title: 'Editor manual de segmento',
+      description: 'Abre o construtor com regras e contagem de matches.',
+      cta: 'Abrir construtor',
+    },
+    macro: {
+      title: 'Editor manual de macro',
+      description: 'Abre o editor de ações em sequência.',
+      cta: 'Abrir editor de macro',
+    },
+    role: {
+      title: 'Editor manual de role',
+      description: 'Abre o painel de permissões por recurso.',
+      cta: 'Abrir editor de role',
+    },
     general: { title: '', description: '', cta: '' },
   };
   const c = copy[feature];
@@ -587,4 +998,21 @@ function ManualBridge({
       </div>
     </div>
   );
+}
+
+/**
+ * SKYWAY — extrai um label humano da entidade no preview pra usar no botão de
+ * retomar conversa depois.
+ */
+function extractEntityLabel(feature: AssistantFeature, preview: AnyPreview): string {
+  if (!preview) return '';
+  const p = preview as unknown as Record<string, unknown>;
+  if (feature === 'contacts') {
+    const first = (p.firstName as string) ?? '';
+    const last = (p.lastName as string) ?? '';
+    return `${first} ${last}`.trim() || 'Contato';
+  }
+  if (typeof p.name === 'string') return p.name;
+  if (typeof p.title === 'string') return p.title;
+  return feature;
 }

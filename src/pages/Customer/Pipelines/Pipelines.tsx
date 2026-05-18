@@ -150,14 +150,20 @@ export default function Pipelines() {
   };
 
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  // SKYWAY: chave da sessão sendo retomada (undefined = nova sessão)
+  const [resumingSessionKey, setResumingSessionKey] = useState<string | undefined>(undefined);
+  const [resumingEntityLabel, setResumingEntityLabel] = useState<string | undefined>(undefined);
 
   const handleCreatePipeline = () => {
     if (!can('pipelines', 'create')) {
       toast.error(t('messages.noPermissionCreate'));
       return;
     }
+    setResumingSessionKey(undefined);
+    setResumingEntityLabel(undefined);
     setCreateDialogOpen(true);
   };
+
 
   const handleOpenManualPipeline = () => {
     setCreateModalOpen(true);
@@ -454,9 +460,11 @@ export default function Pipelines() {
         open={createDialogOpen}
         onOpenChange={setCreateDialogOpen}
         feature="pipeline"
-        title="Novo pipeline"
+        title={resumingSessionKey ? `Continuar: ${resumingEntityLabel ?? 'pipeline'}` : 'Novo pipeline'}
         onAcceptAI={handlePipelineAIAccept}
         onOpenManual={handleOpenManualPipeline}
+        sessionKey={resumingSessionKey}
+        sessionEntityLabel={resumingEntityLabel}
       />
 
       {/* Edit Pipeline Modal */}
