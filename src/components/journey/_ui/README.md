@@ -24,6 +24,42 @@ All `--flow-*` and `--color-flow-*` tokens are declared in `src/styles/globals.c
 
 ---
 
+## Namespace conventions
+
+Two related CSS custom property namespaces are exposed by this layer. They look similar by design — treat them as one logical token with two surfaces:
+
+| Namespace | Where declared | Where consumed | Status |
+|---|---|---|---|
+| `--flow-<surface>-<role>` (raw) | `:root { … }` and `.dark { … }` in `globals.css` | NOT consumed directly. Internal to the indirection. | Internal — do not use in components. |
+| `--color-flow-<surface>-<role>` (public) | `@theme inline { … }` in `globals.css`, mapped via `var(--flow-…)` | Tailwind utility classes (`bg-flow-node-trigger-bg`, etc) and `flowTokens` TS export | **Public API — use this everywhere.** |
+
+The split exists because Tailwind v4's `@theme inline` block expects `--color-*` keys to expose utilities. The raw `--flow-*` layer is the "source of truth" that gets overridden by `.dark`; the `--color-flow-*` layer is the indirection that Tailwind reads at compile time.
+
+**Consumer rules:**
+
+- In `className`: use the Tailwind utility (`bg-flow-node-trigger-bg`).
+- Outside `className` (inline SVG attrs, Recharts, canvas, dynamic CSS-in-JS): use the `flowTokens` TS object exported from `_ui/`.
+- NEVER reference `--flow-*` (raw) from component code — it is implementation detail of the indirection layer and may be renamed without notice.
+
+The `flowTokens` export is typed:
+
+```tsx
+import { flowTokens } from '@/components/journey/_ui';
+
+// inline SVG
+<rect fill={flowTokens.node.trigger.bg} stroke={flowTokens.node.trigger.border} />
+
+// Recharts (consumes a string color prop)
+<Line stroke={flowTokens.edge.active} />
+
+// CSS-in-JS via style prop (avoid in components; reserve for one-off cases)
+<div style={{ color: flowTokens.feedback.warn.fg }} />
+```
+
+Values are `var(--color-flow-…)` strings — resolution happens at runtime through the cascade, so dark/light switching keeps working without re-render.
+
+---
+
 ## Token reference
 
 All tokens use the structured naming `--color-flow-<surface>-<role>`. Roles are restricted to: `bg`, `fg`, `border` (plus canvas / palette / panel surface variants noted inline).
