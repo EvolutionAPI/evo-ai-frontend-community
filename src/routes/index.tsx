@@ -6,7 +6,6 @@ import CustomerRoute from './CustomerRoute';
 import SmartRedirect from './SmartRedirect';
 import RouterGuard from '@/guards/RouterGuard';
 import PermissionRoute from './PermissionRoute';
-import AdminRoute from './AdminRoute';
 import { PluginRoutes, type PluginRoute as PluginRouteType } from '@/plugin-host';
 
 import MainLayout from '@/components/layout/MainLayout';
@@ -56,7 +55,6 @@ import Segments from '@/pages/Customer/Settings/Segments/Segments';
 import SegmentCreateEdit from '@/pages/Customer/Settings/Segments/SegmentCreateEdit';
 import Journey from '@/pages/Customer/Journey/Journey';
 import JourneyFlowEditor from '@/pages/Customer/Journey/JourneyFlowEditor';
-import FlowDesignSystemDemo from '@/pages/Customer/Journey/_dev/FlowDesignSystemDemo';
 import Campaigns from '@/pages/Customer/Campaigns/Campaigns';
 import NewCampaign from '@/pages/Customer/Campaigns/NewCampaign/NewCampaign';
 import CannedResponses from '@/pages/Customer/Settings/CannedResponses';
@@ -585,19 +583,6 @@ const AppRouter = () => {
                     </PermissionRoute>
                   </MainLayout>
                 </CustomerRoute>
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/dev/flow-design-system"
-            element={
-              <PrivateRoute>
-                <AdminRoute>
-                  <MainLayout>
-                    <FlowDesignSystemDemo />
-                  </MainLayout>
-                </AdminRoute>
               </PrivateRoute>
             }
           />

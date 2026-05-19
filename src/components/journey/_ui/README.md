@@ -144,36 +144,26 @@ import { FlowFeedbackBanner } from '@/components/journey/_ui';
 
 ## Visual verification
 
-The demo route renders every token surface in one place:
+This card does NOT ship a dedicated demo / preview surface. Visual verification happens **in situ**: open any flow page that consumes the bridges or tokens after a downstream story lands, toggle dark / light via the CRM header, and use the browser axe DevTools extension on that real page.
 
-```
-/dev/flow-design-system
-```
-
-Gated by `<AdminRoute>` (authenticated users only). Open it in the browser, toggle dark / light via the CRM header. Use it to:
-
-1. Eyeball every variant in both modes.
-2. Validate WCAG AA contrast with the browser axe DevTools extension or Stark.
-3. Spot inconsistencies before downstream stories consume the tokens.
-
-`pnpm test src/pages/Customer/Journey/_dev` runs the axe-core structural a11y check (NOT contrast — see caveat below).
+If you need an isolated swatch view during development, build one locally as a one-off page and discard before committing.
 
 ---
 
 ## WCAG ratio table (validation status)
 
-Contrast ratios must meet WCAG AA: **≥4.5:1 for body text** and **≥3:1 for graphical objects / large text**. The pairs below are pinned for measurement against the demo route.
+Contrast ratios must meet WCAG AA: **≥4.5:1 for body text** and **≥3:1 for graphical objects / large text**. Validation happens against the actual rendered consumer (a node on the canvas, a feedback banner inside a modal, etc.), not against a synthetic surface.
 
-| Pair | Threshold | How to validate |
+| Pair | Threshold | When to validate |
 |---|---|---|
-| Node `bg` × Canvas `bg` | ≥3:1 graphical | Each node must be distinguishable from the canvas. Measure with DevTools axe. |
-| Node `fg` × Node `bg` | ≥4.5:1 body | Text on the node body. Measure via the demo route. |
-| Node `border` × Canvas `bg` | ≥3:1 graphical | Border perception against canvas. |
-| Feedback `fg` × Feedback `bg` | ≥4.5:1 body | Banner text legibility. |
-| Edge `default/active/error` × Canvas `bg` | ≥3:1 graphical | Connection lines must be visible. |
+| Node `bg` × Canvas `bg` | ≥3:1 graphical | When a downstream story (e.g. EVO-1270 light mode, EVO-1268 palette redesign) renders nodes on the canvas. |
+| Node `fg` × Node `bg` | ≥4.5:1 body | Same — text legibility on rendered nodes. |
+| Node `border` × Canvas `bg` | ≥3:1 graphical | Same — border perception against canvas. |
+| Feedback `fg` × Feedback `bg` | ≥4.5:1 body | When `<FlowFeedbackBanner>` is rendered inside a panel by EVO-1274. |
+| Edge `default/active/error` × Canvas `bg` | ≥3:1 graphical | When edges are styled with flow-edge-* tokens (downstream). |
 | Canvas `grid` × Canvas `bg` | <3:1 (intentional) | Grid is decorative; should NOT compete with content. |
 
-**Caveat:** axe-core running in vitest + jsdom cannot validate contrast (no painting in jsdom). The structural a11y check still catches ARIA / label / role regressions. **Run the axe browser extension against the demo route in both modes before claiming AC-1 / AC-2 closed.** When AC-1 / AC-2 are validated, fill the actual measured ratios into the table above and replace this caveat with the validation evidence.
+**How to validate:** install the browser axe DevTools extension. On any page consuming the bridges (e.g. the journey editor after downstream stories ship), run a scan in both dark and light modes. Pin any measured ratios that fall below threshold as follow-up issues against the consuming card, OR adjust the source `oklch()` values in `globals.css` here if the token itself is the problem.
 
 ---
 
@@ -184,7 +174,7 @@ Any PR touching `src/components/journey/`, `src/pages/Customer/Journey/`, or `sr
 - [ ] If you added a `--color-flow-*` token, is it declared in `globals.css` (not fragmented elsewhere)?
 - [ ] If you used a `--color-flow-*` token outside `src/components/journey/` or `src/pages/Customer/Journey/`, did you justify why (and reconsider whether it should be promoted to the design system instead)?
 - [ ] If you used a non-flow token (e.g. `--color-primary`) inside `src/components/journey/_ui/`, prefer the corresponding `--color-flow-*` token if one exists.
-- [ ] Did you run `pnpm test src/components/journey/_ui src/pages/Customer/Journey/_dev` and confirm structural a11y stays green?
+- [ ] Did you run `pnpm test src/components/journey/_ui` and confirm bridge unit tests stay green?
 - [ ] If you changed token hex values, did you visually verify the demo route in BOTH dark and light?
 
 Davidson (or the reviewer) walks this list before approving.
