@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { FlowFeedbackBanner } from './FlowFeedbackBanner';
+import { clearFlowToken, injectFlowToken, readFlowToken } from '../test-utils';
 
 describe('FlowFeedbackBanner', () => {
   it.each(['info', 'warn', 'error', 'success'] as const)(
@@ -39,5 +40,22 @@ describe('FlowFeedbackBanner', () => {
       </FlowFeedbackBanner>,
     );
     expect(screen.getByTestId('banner').getAttribute('role')).toBe('region');
+  });
+
+  describe('CSS variable surface (computed style)', () => {
+    const TOKEN = 'flow-feedback-error-bg';
+    afterEach(() => clearFlowToken(TOKEN));
+
+    it('renders into a document tree that exposes --color-flow-feedback-error-bg', () => {
+      const expected = 'oklch(0.95 0.04 25)';
+      injectFlowToken(TOKEN, expected);
+      const { container, getByTestId } = render(
+        <FlowFeedbackBanner variant="error" data-testid="banner">
+          message
+        </FlowFeedbackBanner>,
+      );
+      expect(readFlowToken(TOKEN)).toBe(expected);
+      expect(container.contains(getByTestId('banner'))).toBe(true);
+    });
   });
 });

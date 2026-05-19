@@ -527,6 +527,7 @@ export function SendMessagePanel({ nodeId, data, onUpdate, onClose }: SendMessag
                     </div>
                   </div>
 
+                  {/* eslint-disable-next-line no-restricted-syntax -- pre-EVO-1253 raw <button>; migration to <Button> tracked by EVO-1274 [10.4] modal refactor. */}
                   <button
                     onClick={() => removeAttachment(attachment.id)}
                     className="flex-shrink-0 p-1 rounded-md hover:bg-red-100 dark:hover:bg-red-900/20 text-red-500"

@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import { FlowCategoryBadge } from './FlowCategoryBadge';
+import { clearFlowToken, injectFlowToken, readFlowToken } from '../test-utils';
 
 describe('FlowCategoryBadge', () => {
   it.each(['trigger', 'condition', 'control', 'exit'] as const)(
@@ -36,5 +37,22 @@ describe('FlowCategoryBadge', () => {
   it('renders its children content', () => {
     render(<FlowCategoryBadge variant="trigger">Trigger</FlowCategoryBadge>);
     expect(screen.queryByText('Trigger')).not.toBeNull();
+  });
+
+  describe('CSS variable surface (computed style)', () => {
+    const TOKEN = 'flow-node-action-webhook-bg';
+    afterEach(() => clearFlowToken(TOKEN));
+
+    it('renders into a document tree that exposes --color-flow-node-action-webhook-bg', () => {
+      const expected = 'oklch(0.22 0.05 305)';
+      injectFlowToken(TOKEN, expected);
+      const { container, getByTestId } = render(
+        <FlowCategoryBadge variant="action" subtype="webhook" data-testid="badge">
+          webhook
+        </FlowCategoryBadge>,
+      );
+      expect(readFlowToken(TOKEN)).toBe(expected);
+      expect(container.contains(getByTestId('badge'))).toBe(true);
+    });
   });
 });

@@ -169,6 +169,7 @@ const VariableTextarea = forwardRef<HTMLTextAreaElement, VariableTextareaProps>(
 
                       <div className="space-y-1">
                         {groupedVariables[category].map(variable => (
+                          // eslint-disable-next-line no-restricted-syntax -- pre-EVO-1253 raw <button>; environment-manager refactor not in scope of EVO-1274; revisit when a dedicated card covers env vars UI.
                           <button
                             key={variable.value}
                             type="button"
